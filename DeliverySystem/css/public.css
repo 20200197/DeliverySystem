@@ -315,14 +315,9 @@ main .center-align{
     border-radius: 15px;
     border: none !important;
     padding: 0px !important;
-}
-
-.siguiente_carrito a{
-    width: 100%;
-    height: 100%;
-    border: 1px solid black;
-    margin: 0px !important;
-    color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -335,6 +330,126 @@ main .center-align{
 }
 
 
+/*----------------------------------------------*/
+/*-------------Confirmación compra--------------*/
+/*----------------------------------------------*/
+
+
+.contenedor_datos_confirmacion{
+    background-color: #659FFF;
+    border-radius: 15px;
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 10%;
+    padding-bottom: 5%;
+}
+
+
+.contenedor_confirmacion{
+    width: 100%;
+    height: 100%;
+}
+
+.direccion_confirmar input{
+    position: relative !important; 
+    background-color: #F2F2F2 !important;
+    color: black !important;
+    width: 85% !important;
+    padding-left: 5px !important;
+}
+
+.direccion_confirmar .caret{
+    background-color: #8DC5FF !important;
+    height: 100% !important;
+    width: 15% !important;
+    position: absolute;
+}
+
+.dato_confirmacion h6{
+    font-weight: 600;
+    height: 20px;
+}
+
+.dato_confirmacion p{
+    height: 20px;
+    margin-top: 5%;
+}
+
+.dato_confirmacion{
+    display: flex;
+    align-items: center;
+}
+
+.metodo_pago_confirmar{
+    width: 40%;
+}
+
+.datos_pago_confirmar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.datos_pago_confirmar .row{
+    width: 100%;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.boton_comprar_confirmar{
+    width: 15%;
+    border-radius: 15px;
+    background-color: #659FFF;
+}
+
+.Total_pagar_confirmar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.Total_pagar_confirmar p{
+    font-weight: 400;
+    margin-left: 7px;
+}
+
+[type="radio"]:not(:checked)+span:before, [type="radio"]:not(:checked)+span:before {
+    border: 0.5px solid black;
+    background-color: #D2E8FF;
+}
+
+[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:after {
+    background-color: #659FFF;
+    border: 0.5px solid black;
+}
+
+[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:before, [type="radio"].with-gap:checked+span:after {
+    border: 0.5px solid #659FFF;
+}
+
+.main_confirmar{
+    height: 100% !important;
+    display: flex;
+    justify-content: space-between;
+}
+
+.encabezado_confirmar{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-left: 3%;
+    margin-bottom: 2%;
+    margin-top: 3%;
+    align-items: center;
+}
+
+.encabezado_confirmar h5{
+    width: 90%;
+    text-align: center
+}
 
 /*----------------------------------------------*/
 /*-------------------Responsive---------------------*/
@@ -385,6 +500,7 @@ main .center-align{
         margin: 0px !important;
         padding: 0px;
         width: 100% !important;
+        position: relative  !important;
     }
     .page-footer .row{
         height: auto;
@@ -432,6 +548,7 @@ main .center-align{
 
     .redes_footer{
         margin-right: -10%;
+        position: relative;
     }
 
     .footer_otros .mapa-footer ul{
@@ -504,5 +621,23 @@ main .center-align{
 
     .listado_productos{
         margin-top: -80px;
+    }
+}
+
+/*-----Responsive carrito de compras*/
+
+@media (max-width:1000px) {
+    .contenedor_confirmacion{
+        overflow-y: scroll;
+    }
+
+
+
+    .contenedor-general{
+        height: 85%;
+    }
+
+    .boton_comprar_confirmar{
+        width: 80%;
     }
 }
