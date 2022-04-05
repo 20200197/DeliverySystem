@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<!--Lenguaje de la página-->
+<html lang="es">
+<html>
+
+<head>
+    <!--Importar iconos-->
+    <link href="../../css/icons.css" rel="stylesheet">
+    <!--Importar archivos CSS-->
+    <link type="text/css" rel="stylesheet" href="../../css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../css/public.css" media="screen,projection" />
+
+    <!--Optimización para mobiles-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+
+
+    <!--Marco general-->
+    <div class="row contenedor-general">
+        <!--Sidebar, opciones para los usuarios-->
+
+        <ul id="slide-out" class="sidenav sidenav-fixed">
+            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
+                        class="material-icons medium">home</i></a></li>
+            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
+                        class="material-icons medium">account_circle</i></a></li>
+            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Compras"><i
+                        class="material-icons medium">shopping_basket</i></a></li>
+            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Categoria"><i
+                        class="material-icons medium">format_list_bulleted</i></a></li>
+            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Cerrar sesión"><i
+                        class="material-icons medium">arrow_back</i></a></li>
+        </ul>
+
+        <!--Contenedor de datos-->
+        <div class="contenedor-datos">
+            <!--Encabezado-->
+            <header class="encabezado">
+                <a href="#" data-target="slide-out"
+                    class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
+                        class="material-icons">menu</i></a>
+                <img src="../resources/img/logo_delivery_system.png" alt="">
+                <a class="waves-effect waves-light btn boton_iniciar_sesion">Log In</a>
+            </header>
+            <!--Información de la página-->
+            <main class="main_perfil_cliente">
+                <h5>Perfil</h5>
+                <div class="row contenedor_perfil_cliente">
+                    <div class="col l5 m5 s12 foto_direccion_cliente">
+                        <i class="material-icons foto_cliente">account_circle</i>
+                        <a href="" class="btn boton_cambiar_foto_cliente">Cambiar foto</a>
+                        <div class="contenedor_titulo_direccion">
+                            <h5>Tus direcciones</h5>
+                            <a href="" class="btn add_direccion_cliente"><i
+                                    class="material-icons">add_circle_outline</i>Añadir dirección</a>
+                        </div>
+                        <div class="contenedor_listado_direcciones_cliente">
+                            <div class="direccion_cliente">
+                                <p>Dirección: Avenida Monseñor Romero y Final Calle 5 de
+                                    Noviembre entre 21ª y 23ª Calle Oriente, una cuadra al norte del Mercado San
+                                    Miguelito.</p>
+                                <div>
+                                    <a href=""><i class="material-icons editar_perfil_cliente">edit</i></a>
+                                    <a href=""><i class="material-icons eliminar_perfil_cliente">delete_forever</i></a>
+                                </div>
+                            </div>
+                            <div class="direccion_cliente">
+                                <p>Dirección: Avenida Monseñor Romero y Final Calle 5 de
+                                    Noviembre entre 21ª y 23ª Calle Oriente, una cuadra al norte del Mercado San
+                                    Miguelito.</p>
+                                <div>
+                                    <a href=""><i class="material-icons editar_perfil_cliente">edit</i></a>
+                                    <a href=""><i class="material-icons eliminar_perfil_cliente">delete_forever</i></a>
+                                </div>
+                            </div>
+                            <div class="direccion_cliente">
+                                <p>Dirección: Avenida Monseñor Romero y Final Calle 5 de
+                                    Noviembre entre 21ª y 23ª Calle Oriente, una cuadra al norte del Mercado San
+                                    Miguelito.</p>
+                                <div>
+                                    <a href=""><i class="material-icons editar_perfil_cliente">edit</i></a>
+                                    <a href=""><i class="material-icons eliminar_perfil_cliente">delete_forever</i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col l7 m7 s12 datos_usuario_perfil_cliente">
+                        <h6>Tus datos personales</h6>
+                        <div class="datos_perfil_cliente">
+                            <div class="input-field col s6">
+                                <input placeholder="Placeholder" id="name" type="text" class="validate">
+                                <label for="first_name">Nombre</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="Placeholder" id="lastname" type="text" class="validate">
+                                <label for="first_name">Apellido</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="Placeholder" id="dui" type="text" class="validate">
+                                <label for="first_name">DUI</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="Placeholder" id="email" type="email" class="validate">
+                                <label for="first_name">Correo</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="Placeholder" id="telefono" type="text" class="validate">
+                                <label for="first_name">Teléfono</label>
+                            </div>
+                        </div>
+
+                        <h6>Datos de tu cuenta</h6>
+                        <div class="contenedor_datos_usuario_perfil_cliente">
+                            <div class="dato_usuario_cliente">
+                                <h6>Nombre de usuario:  </h6>
+                                <p>Tu_nombre_usuario123</p>
+                                <a href=""><i class="material-icons editar_perfil_cliente">edit</i></a>
+                            </div>
+                            <div class="dato_usuario_cliente">
+                                <h6>Contraseña: </h6>
+                                <p>***************</p>
+                                <a href=""><i class="material-icons editar_perfil_cliente">edit</i></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!--Footer-->
+    <footer class="page-footer">
+        <div class="row">
+
+            <!--enlace de redes sociales-->
+            <div class="col l12 m6 s3 redes_footer center-align">
+                <ul>
+                    <li>
+                        <a href=""><i class="material-icons medium">facebook</i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="material-icons medium">local_see</i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="material-icons medium">whatsapp</i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="material-icons medium">email</i></a>
+                    </li>
+                </ul>
+            </div>
+
+            <!--Contenedor para el mapa y el copyright-->
+            <div class="footer_otros">
+                <div class="col l6 m9 s12 logo_copy_footer">
+                    <img src="../resources/img/logo_delivery_system.png" alt="">
+                    <h6>© 2022 DeliverySystem</h6>
+                </div>
+                <div class="col l6 m9 s12 mapa-footer">
+                    <ul>
+                        <li>
+                            <h5>Información pública</h5>
+                        </li>
+                        <li>Quiénes somos</li>
+                        <li>Contáctanos</li>
+                        <li>Misión y visión</li>
+                        <li>Términos y condiciones</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--Importar archivos JavaScrip-->
+    <script type="text/javascript" src="../../js/materialize.min.js"></script>
+    <script type="text/javascript" src="../../controllers/activation.js"></script>
+</body>
+
+</html>

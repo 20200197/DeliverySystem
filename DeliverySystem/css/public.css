@@ -452,6 +452,127 @@ main .center-align{
 }
 
 /*----------------------------------------------*/
+/*--------------Perfil - Cliente----------------*/
+/*----------------------------------------------*/
+
+.main_perfil_cliente{
+    overflow-y: scroll;
+
+}
+
+.main_perfil_cliente h5{
+    text-align: center;
+}
+
+.contenedor_perfil_cliente{
+    width: 100%;
+}
+
+.foto_cliente{
+    font-size: 150pt;
+}
+
+.boton_cambiar_foto_cliente{
+    background-color: #659FFF;
+    color: white;
+    border-radius: 15px;
+}
+
+.foto_direccion_cliente{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contenedor_titulo_direccion{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-top: 3%;
+    margin-bottom: 0px;
+}
+
+.add_direccion_cliente{
+    display: flex;
+    color: white;
+    background-color: #659FFF;
+    border-radius: 15px;
+}
+
+
+.direccion_cliente p{
+    width: 85%;
+    margin: 0px;
+}
+
+.direccion_cliente div{
+    width: 15%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.editar_perfil_cliente{
+        color: #00AB10;
+    font-size: 25pt;
+}
+
+.eliminar_perfil_cliente{
+    color: #FF3F42;
+    font-size: 25pt;
+    
+}
+
+.datos_usuario_perfil_cliente{
+    display: flex;
+    flex-direction: column;
+}
+
+/*Datos del cliente*/
+
+.datos_perfil_cliente{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.datos_usuario_perfil_cliente h6{
+    text-align: center;
+}
+
+.dato_usuario_cliente{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 15%;
+}
+
+.dato_usuario_cliente p{
+    padding-left: 7px;
+}
+
+
+/*Listado de direcciones del cliente en perfil*/
+
+.direccion_cliente{
+    width: 100%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-bottom: 3%;
+    padding-top: 0%;
+    display: flex;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+
+.contenedor_listado_direcciones_cliente{
+    margin-top: 0px;
+}
+
+/*----------------------------------------------*/
 /*-------------------Responsive---------------------*/
 /*----------------------------------------------*/
 
