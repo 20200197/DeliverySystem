@@ -18,6 +18,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 50% !important;
+    width: 100%;
   }
 
   .enrollar_main{
@@ -526,6 +527,13 @@ main .center-align{
     
 }
 
+.contenedor_boton_modificar_datos_cliente{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
 .datos_usuario_perfil_cliente{
     display: flex;
     flex-direction: column;
@@ -570,6 +578,35 @@ main .center-align{
 
 .contenedor_listado_direcciones_cliente{
     margin-top: 0px;
+    width: 100%;
+}
+
+.reducir_place{
+    width: 0px;
+}
+
+/*Modals del perfil del cliente*/
+
+.opciones_modal_perfil_cliente{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-bottom: 10px;
+}
+
+.opciones_modal_perfil_cliente a i{
+    color: white;
+    margin-right: 5px;
+
+}
+.opciones_modal_perfil_cliente a {
+    color: white;
+    display: flex;
+    align-items: center;
+
 }
 
 /*----------------------------------------------*/
@@ -760,5 +797,21 @@ main .center-align{
 
     .boton_comprar_confirmar{
         width: 80%;
+    }
+}
+
+/*Responsive para el perfil*/
+
+
+@media (max-width:1000px) {
+    .contenedor_titulo_direccion{
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    .opciones_modal_perfil_cliente{
+        width: 100%;
+        margin: 0px;
+        margin-bottom: 10px;
     }
 }
