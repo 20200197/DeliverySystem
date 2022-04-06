@@ -538,7 +538,7 @@ main .center-align {
     margin-top: 15px;
 }
 
-.contenedor_boton_modificar_datos_cliente a{
+.contenedor_boton_modificar_datos_cliente a {
     border-radius: 15px;
 }
 
@@ -730,7 +730,7 @@ main .center-align {
 
 }
 
-.producto_sin_entregar_modal{
+.producto_sin_entregar_modal {
     border: 1px solid black;
     border-radius: 15px;
     background-color: white;
@@ -770,10 +770,130 @@ main .center-align {
     text-align: center;
 }
 
-.producto_sin_entregar_modal h6{
+.producto_sin_entregar_modal h6 {
     font-weight: 600;
 }
 
+
+/*----------------------------------------------*/
+/*----------Estadistica - Vendedor------------*/
+/*----------------------------------------------*/
+
+.main_estadistica_vendedor {
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 1%;
+    height: 80%;
+    overflow-y: scroll;
+}
+.main_estadistica_vendedor h5{
+    width: 100%;
+    text-align: center;
+    padding-bottom: 20px;
+    margin: 0px !important;
+}
+
+.main_estadistica_vendedor .row {
+    width: 100%;
+    height: 100%;
+}
+
+.main_estadistica_vendedor .row .col {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: auto;
+
+}
+
+.ventas_estadistica_vendedor {
+    background-color: #8DC5FF;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 50%;
+}
+
+.titulos_valoracion_estadistica_vendedor {
+    width: 100%;
+    display: flex;
+
+}
+
+.nombre_estadistica_vendedor{
+    width: 33.5%;
+    text-align: center;
+}
+.cantidad_estadistica_vendedor{
+    width: 25%;
+    text-align: center;
+}
+
+.precio_estadistica_vendedor{
+    width: 16%;
+    text-align: center;
+}
+.valoracion_estadistica_vendedor{
+    width: 25%;
+    text-align: center;
+}
+
+.contenedor_producto_estadistica_vendedor {
+    width: 100%;
+    height: 100%;
+}
+
+.contenedor_producto_estadistica_vendedor .row {
+    width: 100%;
+    margin: 0px !important;
+    border: 1px solid black;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    background-color: #8DC5FF;
+    margin-top: 5px !important;
+    height: 100%;
+}
+
+.valoracion{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+ }
+ 
+ /*Valoraciones en estrellas*/
+ .estrellas_contenedor{
+    display: flex;
+    flex-direction: row  ;
+    align-items: center;
+    background-origin: 1px solid black;
+    height: auto;
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    justify-content: center;
+ }
+ 
+ label:hover,
+ label:hover ~ label > .estrella{
+    color: rgb(255, 238, 0);
+ }
+ 
+ input[type="radio"]:checked ~ label > .estrella {
+    color: rgb(255, 213, 0);
+  }
+
+
+  .grafica_pastel_vendedor{
+      width: 100%;
+  }
+
+  .grafica_pastel_vendedor img{
+      width: 50%;
+  }
 /*----------------------------------------------*/
 /*-------------------Responsive---------------------*/
 /*----------------------------------------------*/
@@ -1075,10 +1195,23 @@ main .center-align {
         display: flex;
         flex-direction: column;
     }
-    .descripcion_info_producto_pendiente_modal .row{
+
+    .descripcion_info_producto_pendiente_modal .row {
         display: flex;
         flex-direction: row;
     }
 
 
+}
+
+/*Responsive estadistica*/
+@media (max-width:1000px) {
+
+    .ventas_estadistica_vendedor{
+        width: 80%;
+    }
+
+    .main_estadistica_vendedor .row .center-align{
+        margin-top: 20px;
+    }
 }
