@@ -609,6 +609,30 @@ main .center-align{
 
 }
 
+
+
+/*----------------------------------------------*/
+/*------------Perfil - Repartidor---------------*/
+/*----------------------------------------------*/
+
+.comprobacion_legales_repartidor{
+    font-size: 100pt;
+}
+
+.ampliador_perfil_repartidor{
+    width: 100% !important;
+}
+
+.contenedor_fotos_legales{
+    width: 100%;
+}
+
+.ampliador_perfil_repartidor .col{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 /*----------------------------------------------*/
 /*-------------------Responsive---------------------*/
 /*----------------------------------------------*/
