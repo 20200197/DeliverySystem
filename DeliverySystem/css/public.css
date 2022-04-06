@@ -638,12 +638,15 @@ main .center-align{
     }
 
     .encabezado .boton_iniciar_sesion{
-        width: auto;
+        width: 125px;
         margin-left: 10px;
-        font-size: 16pt;
+        font-size: 10pt;
+        padding: 0px !important;
         height: 30px;
         display: flex;
+        flex-direction: column;
         align-items: center;
+        justify-content: center;
     }
 
 
