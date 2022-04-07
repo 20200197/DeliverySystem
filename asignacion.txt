@@ -6,7 +6,6 @@ perfil - Bonilla X
      modal volver a pedir - Bonilla X
   configurar dirección - Bonilla X
 
-categorias - Bonilla 
-   catalogo - Bonilla 
+categorias - Bonilla X
+   catalogo - Bonilla X
       producto individual - Bonilla 
-         direccion de entrega y detalle  - Bonilla 
