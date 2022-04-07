@@ -1,0 +1,12 @@
+perfil - Bonilla X
+  tus pedidos - Bonilla X
+    detalle pedido - Bonilla X
+     modal calificar producto -Bonilla  X
+     modal calificar repartidor - Bonilla X
+     modal volver a pedir - Bonilla X
+  configurar dirección - Bonilla X
+
+categorias - Bonilla 
+   catalogo - Bonilla 
+      producto individual - Bonilla 
+         direccion de entrega y detalle  - Bonilla 
