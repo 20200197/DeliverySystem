@@ -942,12 +942,12 @@ input[type="radio"]:checked~label>.estrella {
     text-align: center;
 }
 
-.promedio_cliente_estadistica_admin{
+.promedio_cliente_estadistica_admin {
     width: 25%;
     text-align: center;
 }
 
-.contenedor_cliente_estadistica_vendedor .row{
+.contenedor_cliente_estadistica_vendedor .row {
     width: 100%;
     display: flex;
     align-items: center;
@@ -959,30 +959,30 @@ input[type="radio"]:checked~label>.estrella {
 
 }
 
-.contenedor_cliente_estadistica_vendedor{
+.contenedor_cliente_estadistica_vendedor {
     width: 100%;
     padding-left: 20px;
     padding-right: 10px;
 }
 
-.main_estadistica_admin .row .col .row{
+.main_estadistica_admin .row .col .row {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-.main_estadistica_admin h5{
+.main_estadistica_admin h5 {
     margin-bottom: 3%;
 }
 
-.main_estadistica_admin{
+.main_estadistica_admin {
     padding: 0px !important;
     margin: 0px !important;
     overflow-y: scroll;
 }
 
-.ventas_estadistica_admin{
+.ventas_estadistica_admin {
     background-color: #8DC5FF;
     border-radius: 15px;
     display: flex;
@@ -990,9 +990,10 @@ input[type="radio"]:checked~label>.estrella {
     justify-content: center;
     align-items: center;
     margin: 0px 20px 0 20px !important;
-    
+
 
 }
+
 /*----------------------------------------------*/
 /*-------------------Responsive---------------------*/
 /*----------------------------------------------*/
