@@ -81,18 +81,6 @@ body {
     box-shadow: none !important;
 }
 
-/*-----------------------------------------*/
-/*-----------------Texto-------------------*/
-/*-----------------------------------------*/
-
-.texto-bool-verdad{
-    color: #255E11;
-}
-
-.texto-bool-falso{
-    color: #5E1123;
-}
-
 /*--------------------------------------------*/
 /*-----------------Imagenes-------------------*/
 /*--------------------------------------------*/
@@ -104,23 +92,6 @@ body {
     border-top-right-radius:30px;
     border-top-left-radius:30px;
 
-}
-
-.perfil-img{
-    background-color: #B2EDFF;
-    border-radius: 200px;
-}
-
-.img-simulada{
-    background-color: #D4EFFE;
-    width: 131px;
-    height: 95px;
-}
-
-tbody tr{
-    background-color: #faf7f7;
-    border-radius: 15px;
-    
 }
 
 .contador_cantidad_carrito {
@@ -143,25 +114,6 @@ tbody tr{
 .contador_cantidad_carrito input:focus {
     border: 1px solid black !important;
     box-shadow: none !important;
-}
-
-/*-------------------------------------------*/
-/*-----------------Botones-------------------*/
-/*-------------------------------------------*/
-
-.boton-perfil{
-    margin-bottom: 40px;
-}
-
-.abajo-alineado{
-    bottom: 27%;
-    right: 2%;
-}
-
-.wrap2 { 
-    width:150px;
-    height: 100px;
-    overflow-y: auto;
 }
 
 /*----------------------------------------------*/
@@ -277,6 +229,35 @@ tbody tr{
     font-size: 35pt;
 }
 
+/*---------------------------------------------------*/
+/*-------------------Rodrigo Bonilla-----------------*/
+/*---------------------------------------------------*/
+
+.texto-bool-verdad{
+    color: #255E11;
+}
+
+.texto-bool-falso{
+    color: #5E1123;
+}
+
+.perfil-img{
+    background-color: #B2EDFF;
+    border-radius: 200px;
+}
+
+.img-simulada{
+    background-color: #D4EFFE;
+    width: 131px;
+    height: 95px;
+}
+
+tbody tr{
+    background-color: #faf7f7;
+    border-radius: 15px;
+    
+}
+
 .wrapper{
     max-height: 150px;
     display: flex;
@@ -292,8 +273,31 @@ tbody tr{
     object-fit: cover;
 }
 
+.detalle-producto-individual{
+    background-color: #faf7f7;
+    border-radius: 15px;
+
+    width: 200px;
+    height: 300px;
+}
+
+.boton-perfil{
+    margin-bottom: 40px;
+}
+
+.abajo-alineado{
+    bottom: 27%;
+    right: 2%;
+}
+
+.wrap2 { 
+    width:150px;
+    height: 100px;
+    overflow-y: auto;
+}
+
 /*----------------------------------------------*/
-/*-------------------Responsive---------------------*/
+/*-------------------Responsive-----------------*/
 /*----------------------------------------------*/
 
 
