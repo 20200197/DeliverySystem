@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<!--Lenguaje de la página-->
+<html lang="es">
+<html>
+
+<head>
+    <!--Importar iconos-->
+    <link href="../../../css/icons.css" rel="stylesheet">
+    <!--Importar archivos CSS-->
+    <link type="text/css" rel="stylesheet" href="../../../css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../../css/plantilla.css" media="screen,projection" />
+
+    <!--Optimización para mobiles-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+
+
+    <!--Marco general-->
+    <div class="row contenedor-general">
+        <!--Sidebar, opciones para los usuarios-->
+
+        <ul id="slide-out" class="sidenav sidenav-fixed">
+            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Hogar"><i class="material-icons medium">home</i></a></li>
+            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Perfil"><i class="material-icons medium">account_circle</i></a></li>
+            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Compras"><i class="material-icons medium">shopping_basket</i></a></li>
+            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Categoria"><i class="material-icons medium">format_list_bulleted</i></a></li>
+            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Cerrar sesión"><i class="material-icons medium">arrow_back</i></a></li>
+        </ul>
+            
+
+
+
+
+        <!--Contenedor de datos-->
+        <div class="contenedor-datos">
+            <!--Encabezado-->
+            <header class="encabezado">
+                <a href="#" data-target="slide-out" class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i class="material-icons">menu</i></a>
+                <img src="../../../resources/logo_delivery_system.png" alt="">
+                <a class="waves-effect waves-light btn boton_iniciar_sesion">Log In</a>
+            </header>
+            <!--Información de la página-->
+            <main>
+                <div class="row">
+                    <div class="col s7 m7 l7 right-align">
+                        <p class="flow-text">Pedidos anteriores</p>
+                    </div>
+                    <div class="hide-on-small-only">
+                        <br>
+                        <br>
+                    </div>
+                    <div class="col s3 m3 l3 right-align">
+                        <a class="waves-effect blue lighten-2 waves-light btn-large modal-trigger" href="#añadir-direccion"><i class="material-icons left hide-on-small-only">add</i><i class="material-icons hide-on-med-and-up">add</i>añadir</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m8 l8 offset-l2 offset-m2">
+                        <table class="responsive-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Municipio</th>
+                                    <th>Descripción</th>
+                                    <th>Punto de referencia</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                    
+                            <tbody>
+                                <tr>
+                                    <td><div class="img-simulada"></div></td>
+                                    <td>San Salvador</td>
+                                    <td class="wrap2">75 avenida norte, pasaje KI, Senda B, casa #173</td>
+                                    <td>Despensa de don juan</td>
+                                    <td class="row">
+                                        <div class="col s6 m6 l4">
+                                            <a class="waves-effect waves-light red darken-4 white-text btn-large col s12 m12 l12 modal-trigger" href="#eliminar-direccion"><i class="material-icons">delete</i></a>
+                                        </div>
+                                        <div class="col s6 m6 l8">
+                                            <a class="waves-effect waves-light blue lighten-2 black-text btn-large col s12 m12 l12 modal-trigger" href="#editar"><i class="material-icons black-text hide-on-large-only">edit</i><i class="material-icons left black-text hide-on-med-and-down">edit</i><div class="hide-on-med-and-down">Editar</div></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><div class="img-simulada"></div></td>
+                                    <td>Aguilares</td>
+                                    <td class="wrap2">6ta calle poniente, casa #4545</td>
+                                    <td>Parque aguilares</td>
+                                    <td class="row">
+                                        <div class="col s6 m6 l4">
+                                            <a class="waves-effect waves-light red darken-4 white-text btn-large col s12 m12 l12 modal-trigger" href="#eliminar-direccion"><i class="material-icons">delete</i></a>
+                                        </div>
+                                        <div class="col s6 m6 l8">
+                                            <a class="waves-effect waves-light blue lighten-2 black-text btn-large col s12 m12 l12 modal-trigger" href="#editar"><i class="material-icons black-text hide-on-large-only">edit</i><i class="material-icons left black-text hide-on-med-and-down">edit</i><div class="hide-on-med-and-down">Editar</div></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><div class="img-simulada"></div></td>
+                                    <td>Apopa</td>
+                                    <td class="wrap2">avenida obrero heroico, pasaje 10 oriente, pasaje los angeles, casa #1279</td>
+                                    <td>Farmacia san jerónimo</td>
+                                    <td class="row">
+                                        <div class="col s6 m6 l4">
+                                            <a class="waves-effect waves-light red darken-4 white-text btn-large col s12 m12 l12 modal-trigger" href="#eliminar-direccion"><i class="material-icons">delete</i></a>
+                                        </div>
+                                        <div class="col s6 m6 l8">
+                                            <a class="waves-effect waves-light blue lighten-2 black-text btn-large col s12 m12 l12 modal-trigger" href="#editar"><i class="material-icons black-text hide-on-large-only">edit</i><i class="material-icons left black-text hide-on-med-and-down">edit</i><div class="hide-on-med-and-down">Editar</div></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!--Modals-->
+                <!--Modal para eliminar una dirección-->
+                <div id="eliminar-direccion" class="modal">
+                    <div class="modal-content">
+                        <div class="row contorno">
+                            <h5 class="center-align">Confirmación</h5>
+                            <div class="col s12 m12 l12 center-align">
+                                <img src="../../../resources/img/cancel_120px.png">
+                            </div>
+                            <h6 class="center-align">¿Está seguro de eliminar esta dirección?</h6>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!"
+                            class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
+                        <a href="#!"
+                            class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Aceptar</a>
+                    </div>
+                </div>
+                <!--modal para añadir una dirección-->
+                <div class="modal" id="añadir-direccion">
+                    <div class="modal-content">
+                        <div class="row center-align">
+                                <p class="flow-text">Añadir dirección</p>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m4 l4">
+                                <img src="../../../resources/img/map.png" class="responsive-img" alt="">
+                            </div>
+                            <form action="">
+                            <div class="col s12 m4 l4">
+                                <div class="input-field col s12">
+                                    <select>
+                                      <option value="" disabled selected>Departamento</option>
+                                      <option value="1">Option 1</option>
+                                      <option value="2">Option 2</option>
+                                      <option value="3">Option 3</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col s12">
+                                    <select>
+                                      <option value="" disabled selected>Municipio</option>
+                                      <option value="1">Option 1</option>
+                                      <option value="2">Option 2</option>
+                                      <option value="3">Option 3</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col s12">
+                                    <input id="punto-ref" type="text"class="validate">
+                                    <label for="punto-ref">Punto de referencia</label>
+                                </div>
+                            </div>
+                            <div class="col s12 m4 l4">
+                                <div class="row">
+                                    <form class="col s12">
+                                      <div class="row">
+                                        <div class="input-field col s12">
+                                          <textarea id="descripcion-direccion" class="materialize-textarea"></textarea>
+                                          <label for="descripcion-direccion">Descripción</label>
+                                        </div>
+                                      </div>
+                                    </form>
+                                  </div>
+                            </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="" class="modal-close waves-effect waves-green btn red darken-3">Descartar</a>
+                            <a href="" class="modal-close waves-effect waves-green btn blue lighten-2">Guardar</a>
+                        </div>
+                    </div>
+                </div>
+                <!--modal para editar una dirección-->
+                <div class="modal" id="editar">
+                    <div class="modal-content">
+                        <div class="row center-align">
+                                <p class="flow-text">Editar dirección</p>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m4 l4">
+                                <img src="../../../resources/img/map.png" class="responsive-img" alt="">
+                            </div>
+                            <form action="">
+                            <div class="col s12 m4 l4">
+                                <div class="input-field col s12">
+                                    <select>
+                                      <option value="" disabled selected>San Salvador</option>
+                                      <option value="1">Option 1</option>
+                                      <option value="2">Option 2</option>
+                                      <option value="3">Option 3</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col s12">
+                                    <select>
+                                      <option value="" disabled selected>San Salvador</option>
+                                      <option value="1">Option 1</option>
+                                      <option value="2">Option 2</option>
+                                      <option value="3">Option 3</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col s12">
+                                    <input id="punto-ref" type="text"class="validate" value="Despensa de don juan">
+                                    <label for="punto-ref">Punto de referencia</label>
+                                </div>
+                            </div>
+                            <div class="col s12 m4 l4">
+                                <div class="row">
+                                    <form class="col s12">
+                                      <div class="row">
+                                        <div class="input-field col s12">
+                                          <textarea id="descripcion-direccion" class="materialize-textarea"></textarea>
+                                          <label for="descripcion-direccion">Descripción</label>
+                                        </div>
+                                      </div>
+                                    </form>
+                                  </div>
+                            </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="" class="modal-close waves-effect waves-green btn red darken-3">Descartar</a>
+                            <a href="" class="modal-close waves-effect waves-green btn blue lighten-2">Guardar</a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!--Footer-->
+    <footer class="page-footer">
+        <div class="row">
+
+            <!--enlace de redes sociales-->
+            <div class="col l12 m6 s3 redes_footer center-align">
+                <ul>
+                    <li>
+                        <a href=""><i class="material-icons medium">facebook</i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="material-icons medium">local_see</i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="material-icons medium">whatsapp</i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="material-icons medium">email</i></a>
+                    </li>
+                </ul>
+            </div>
+
+            <!--Contenedor para el mapa y el copyright-->
+            <div class="footer_otros">
+                <div class="col l6 m9 s12 logo_copy_footer">
+                    <img src="../../../resources/logo_delivery_system.png" alt="">
+                    <h6>© 2022 DeliverySystem</h6>
+                </div>
+                <div class="col l6 m9 s12 mapa-footer">
+                    <ul>
+                        <li>
+                            <h5>Información pública</h5>
+                        </li>
+                        <li>Quiénes somos</li>
+                        <li>Contáctanos</li>
+                        <li>Misión y visión</li>
+                        <li>Términos y condiciones</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--Importar archivos JavaScrip-->
+    <script type="text/javascript" src="../../../js/materialize.min.js"></script>
+    <script type="text/javascript" src="../../../controllers/activation.js"></script>
+</body>
+
+</html>
