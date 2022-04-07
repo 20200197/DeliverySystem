@@ -13,10 +13,6 @@ body {
     z-index: 1;
   }
 
-#categoria{
-    overflow-y: hidden;
-}
-
   main {
     flex: 1 0 auto;
     overflow:scroll;
@@ -277,21 +273,8 @@ tbody tr{
     font-size: 35pt;
 }
 
-.wrapper{
-    max-height: 150px;
-    display: flex;
 
-    overflow-x: scroll;
-}
-
-.imagen-categoria{
-    width: 150px;
-    height: 95px;
-    border-radius: 15px;
-
-    object-fit: cover;
-}
-
+    
 /*----------------------------------------------*/
 /*-------------------Responsive---------------------*/
 /*----------------------------------------------*/
@@ -306,10 +289,7 @@ tbody tr{
         flex: 1 0 auto;
         overflow-y: hidden;
       }
-
-    #categoria{
-        overflow-y: auto;
-    }
+    
 
     .contenedor-datos{
         position: absolute;
