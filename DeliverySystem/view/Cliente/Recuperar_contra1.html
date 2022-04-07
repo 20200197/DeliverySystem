@@ -33,21 +33,15 @@
                     class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
                         class="material-icons">menu</i></a>
                 <img src="../../resources/logo_delivery_system.png" alt="">
-                <a class="waves-effect waves-light btn boton_iniciar_sesion" href="../Cliente/Registrar_no_login.html">Registrarse</a>
             </header>
             <!--Información de la página-->
             <main class="inicio-no-login">
                 <div class="container">
-                    <div class="row">
-                        <div class="col s12 m12 l12 center-align">
-                            <img src="../../resources/logo_delivery_system.png">
-                        </div>
-                    </div>
                     <div class="row center-align" id="r-login">
                         <div class="col s12 m12 l12">
-                            <div class="card-panel" id="card-login">
+                            <p id="titulo-login">Recuperar contraseña</p>
+                            <div class="card-panel" id="card-recu">
                                 <div class="row">
-                                    <p id="titulo-login">Login</p>
                                     <p id="texto-card-login-2">Nombre de Usuario</p>
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix">account_circle</i>
@@ -56,23 +50,22 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <p id="texto-card-login-2">Contraseña</p>
-                                    <div class="input-field col s11">
-                                            <i class=" material-icons prefix">vpn_key</i>
-                                        <input id="password" type="password" class="validate">
-                                        <label for="password">************</label>
-                                        <i class="material-icons prefix">remove_red_eye</i>
+                                    <p id="texto-card-login-2">Correo</p>
+                                    <div class="input-field col s12">
+                                        <i class=" material-icons prefix">email</i>
+                                        <input id="email" type="email" class="validate">
+                                        <label for="email">abc123@gmail.com</label>
                                     </div>
                                 </div>
-                                <div id="texto-card-login">
-                                    <a href="../Cliente/Recuperar_contra1.html">¿Olvidaste tu contraseña?</a>
-                                    <p>
-                                        <label>
-                                            <input type="checkbox" />
-                                            <span>Recordarme</span>
-                                        </label>
-                                    </p>
-                                    <a class="waves-effect waves-light btn" id="boton_ingresar">Ingresar</a>
+                                <a class="waves-effect waves-light btn" id="boton_ingresar">Enviar código</a>
+                                <div class="row">
+                                    <p id="texto-card-login">Código de confirmación</p>
+                                    <div class="input-field col s11">
+                                        <i class=" material-icons prefix">check</i>
+                                        <input id="number" type="number" class="validate">
+                                        <label for="number">123456</label>
+                                        <a href="../Cliente/Recuperar_contra2.html" class="waves-effect waves-light btn" id="boton_ingresar">Aceptar</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -122,6 +115,7 @@
             </div>
         </div>
     </footer>
+    </div>
     <!--Importar archivos JavaScrip-->
     <script type="text/javascript" src="../../js/materialize.min.js"></script>
     <script type="text/javascript" src="../../controllers/activation.js"></script>

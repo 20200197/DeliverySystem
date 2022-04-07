@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<!--Lenguaje de la página-->
+<html lang="es">
+<html>
+
+<head>
+    <!--Importar iconos-->
+    <link href="../../css/icons.css" rel="stylesheet">
+    <!--Importar archivos CSS-->
+    <link type="text/css" rel="stylesheet" href="../../css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../css/Publico.css" media="screen,projection" />
+
+    <!--Optimización para mobiles-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <!--Marco general-->
+    <div class="row contenedor-general-metodo">
+        <!--Sidebar, opciones para los usuarios-->
+
+        <ul id="slide-out" class="sidenav sidenav-fixed">
+            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
+                        class="material-icons medium">home</i></a></li>
+            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
+                        class="material-icons medium">account_circle</i></a></li>
+            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Compras"><i
+                        class="material-icons medium">shopping_basket</i></a></li>
+            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Categoria"><i
+                        class="material-icons medium">format_list_bulleted</i></a></li>
+            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Cerrar sesión"><i
+                        class="material-icons medium">arrow_back</i></a></li>
+        </ul>
+        <!--Contenedor de datos-->
+        <div class="contenedor-datos-metodo">
+            <!--Encabezado-->
+            <header class="encabezado">
+                <a href="#" data-target="slide-out"
+                    class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
+                        class="material-icons">menu</i></a>
+                <img src="../resources/logo_delivery_system.png" alt="">
+                <a class="waves-effect waves-light btn boton_iniciar_sesion">Log In</a>
+            </header>
+            <!--Información de la página-->
+            <main class="metodo-pago">
+                <div class="container">
+                    <h5 id="titulo">Método de pago con tarjetas de crédito o débito</h5>
+                    <a class="btn modal-trigger right" href="#modal_agregar" id="boton_ingresar"><i class="material-icons">add</i>Añadir</a>
+                    <!--modal de metodo de pago-->
+                    <div id="modal_agregar" class="modal">
+                        <div class="modal-content">
+                            <div class="row" id="contorno">
+                                <div class="col s12 m12">
+                                    <h5 id="titulo">Añadir Trajeta de crédito o débito</h5>
+                                    <div class="col s12 m6">
+                                        <h6>Numero de tarjeta:</h6>
+                                        <div class="input-field col s12 m12">
+                                            <input placeholder="0000 0000 0000 0000" id="number" type="number" class="validate">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s12 m12">
+                                                <h6>CCV:</h6>
+                                                <div class="input-field col s12 m12">
+                                                    <input placeholder="12345" id="number" type="number" class="validate">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--Columna siguiente-->
+                                    <div class="col s12 m6">
+                                        <div class="row">
+                                            <div class="col s12 m12">
+                                                <h6>Nombre de titular:</h6>
+                                                <div class="input-field col s12 m12">
+                                                    <input placeholder="ABC DEF">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s12 m12">
+                                                <h6>Fecha vencimiento:</h6>
+                                                <div class="input-field col s12 m12">
+                                                    <input placeholder="fecha registro" id="fecha_registro" type="date"
+                                                        class="validate">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="boton_descartar">Descartar</a>
+                            <a href="#modal_ok" class="modal-trigger btn-flat" id="boton_guardar">Guardar</a>
+                        </div>
+                    </div>
+                    <table class="tabla-tarjetas">
+                        <thead>
+                            <tr>
+                                <th>Numero de tarjeta:</th>
+                                <th>Titular:</th>
+                                <th>Eliminar:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0000 0000 0000 0000</td>
+                                <td>ABC DEF</td>
+                                <td><a class="modal-trigger" href="#modal_eliminar" id="boton_eliminar"><i class=" material-icons prefix">delete</i></td></a>
+                                </td></a>
+                            </tr>
+                            <tr>
+                                <td>0000 0000 0000 0000</td>
+                                <td>ABC DEF</td>
+                                <td><a class="modal-trigger" href="#modal_eliminar" id="boton_eliminar"><i class=" material-icons prefix">delete</i></td></a>
+                                </td></a>
+                            </tr>
+                            <tr>
+                                <td>0000 0000 0000 0000</td>
+                                <td>ABC DEF</td>
+                                <td><a class="modal-trigger" href="#modal_eliminar" id="boton_eliminar"><i class=" material-icons prefix">delete</i></td></a>
+                                </td></a>
+                            </tr>
+                            <tr>
+                                <td>0000 0000 0000 0000</td>
+                                <td>ABC DEF</td>
+                                <td><a class="modal-trigger" href="#modal_eliminar" id="boton_eliminar"><i class=" material-icons prefix">delete</i></td></a>
+                                </td></a>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!--Footer-->
+    <footer class="page-footer">
+        <div class="row">
+
+            <!--enlace de redes sociales-->
+            <div class="col l12 m6 s3 redes_footer center-align">
+                <ul>
+                    <li>
+                        <a href=""><i class="material-icons medium">facebook</i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="material-icons medium">local_see</i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="material-icons medium">whatsapp</i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="material-icons medium">email</i></a>
+                    </li>
+                </ul>
+            </div>
+
+            <!--Contenedor para el mapa y el copyright-->
+            <div class="footer_otros">
+                <div class="col l6 m9 s12 logo_copy_footer">
+                    <img src="../../resources/logo_delivery_system.png" alt="">
+                    <h6>© 2022 DeliverySystem</h6>
+                </div>
+                <div class="col l6 m9 s12 mapa-footer">
+                    <ul>
+                        <li>
+                            <h5>Información pública</h5>
+                        </li>
+                        <li>Quiénes somos</li>
+                        <li>Contáctanos</li>
+                        <li>Misión y visión</li>
+                        <li>Términos y condiciones</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+     <!--ventana de guardado -->
+    <div id="modal_ok" class="modal">
+        <div class="modal-content center-align">
+            <h4>Guardado Exitoso</h4>
+            <div class="row">
+                <div class="input-field col l12 m6 s12 center-align">
+                    <img src="../../resources/public/repartidor/icons8_Check_Circle_350px.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Importar archivos JavaScrip-->
+    <script type="text/javascript" src="../../js/materialize.min.js"></script>
+    <script type="text/javascript" src="../../controllers/activation.js"></script>
+</body>
+
+</html>
