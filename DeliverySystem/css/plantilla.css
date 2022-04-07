@@ -13,16 +13,8 @@ body {
     z-index: 1;
   }
 
-#categoria{
-    overflow-y: hidden;
-}
-
   main {
     flex: 1 0 auto;
-    overflow:scroll;
-    height:85%;
-    margin-bottom:50%;
-    overflow-x:hidden;
   }
 
 
@@ -81,89 +73,6 @@ body {
     box-shadow: none !important;
 }
 
-/*-----------------------------------------*/
-/*-----------------Texto-------------------*/
-/*-----------------------------------------*/
-
-.texto-bool-verdad{
-    color: #255E11;
-}
-
-.texto-bool-falso{
-    color: #5E1123;
-}
-
-/*--------------------------------------------*/
-/*-----------------Imagenes-------------------*/
-/*--------------------------------------------*/
-
-.contorno{
-    border:#8DC5FF 3px solid;
-    border-bottom-right-radius:30px;
-    border-bottom-left-radius:30px;
-    border-top-right-radius:30px;
-    border-top-left-radius:30px;
-
-}
-
-.perfil-img{
-    background-color: #B2EDFF;
-    border-radius: 200px;
-}
-
-.img-simulada{
-    background-color: #D4EFFE;
-    width: 131px;
-    height: 95px;
-}
-
-tbody tr{
-    background-color: #faf7f7;
-    border-radius: 15px;
-    
-}
-
-.contador_cantidad_carrito {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.contador_cantidad_carrito input {
-    width: 30% !important;
-    border: 1px solid black !important;
-    border-radius: 15px;
-    background-color: #ECECEC !important;
-    height: 35px !important;
-    margin-right: 4px !important;
-    margin-left: 4px !important;
-    text-align: center;
-}
-
-.contador_cantidad_carrito input:focus {
-    border: 1px solid black !important;
-    box-shadow: none !important;
-}
-
-/*-------------------------------------------*/
-/*-----------------Botones-------------------*/
-/*-------------------------------------------*/
-
-.boton-perfil{
-    margin-bottom: 40px;
-}
-
-.abajo-alineado{
-    bottom: 27%;
-    right: 2%;
-}
-
-.wrap2 { 
-    width:150px;
-    height: 100px;
-    overflow-y: auto;
-}
-
 /*----------------------------------------------*/
 /*-----------------Encabezado-------------------*/
 /*----------------------------------------------*/
@@ -194,9 +103,6 @@ tbody tr{
     width: 150px;
 }
 
-.perfil-cliente{
-    padding-top: 20px;
-}
 
 /*----------------------------------------------*/
 /*-------------------Footer---------------------*/
@@ -277,21 +183,7 @@ tbody tr{
     font-size: 35pt;
 }
 
-.wrapper{
-    max-height: 150px;
-    display: flex;
-
-    overflow-x: scroll;
-}
-
-.imagen-categoria{
-    width: 150px;
-    height: 95px;
-    border-radius: 15px;
-
-    object-fit: cover;
-}
-
+    
 /*----------------------------------------------*/
 /*-------------------Responsive---------------------*/
 /*----------------------------------------------*/
@@ -302,17 +194,8 @@ tbody tr{
 
 @media (max-width: 1000px) {
 
-    main {
-        flex: 1 0 auto;
-        overflow-y: hidden;
-      }
-
-    #categoria{
-        overflow-y: auto;
-    }
-
     .contenedor-datos{
-        position: absolute;
+        position: fixed;
     }
 
     .sidenav{
@@ -338,10 +221,6 @@ tbody tr{
         align-items: center;
     }
 
-    .abajo-alineado{
-        bottom: 30%;
-        right: 2%;
-    }
 }
 
 
@@ -349,13 +228,10 @@ tbody tr{
 @media (max-width: 1000px) {
 
     .page-footer{
-        bottom: 0;
         height: auto;
         margin: 0px !important;
         padding: 0px;
         width: 100% !important;
-        position: fixed;
-        z-index: 10;
     }
     .page-footer .row{
         height: auto;
@@ -419,4 +295,5 @@ tbody tr{
     .mapa-footer ul li h5{
         font-size: 14pt;
     }
+
 }
