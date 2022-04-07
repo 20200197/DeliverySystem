@@ -69,7 +69,7 @@ main {
     justify-content: center;
 }
 
-#slide-out li a{
+#slide-out li a {
     margin: 0px !important;
     padding: 0px !important;
 }
@@ -794,7 +794,8 @@ main .center-align {
     height: 80%;
     overflow-y: scroll;
 }
-.main_estadistica_vendedor h5{
+
+.main_estadistica_vendedor h5 {
     width: 100%;
     text-align: center;
     padding-bottom: 20px;
@@ -832,20 +833,22 @@ main .center-align {
 
 }
 
-.nombre_estadistica_vendedor{
+.nombre_estadistica_vendedor {
     width: 33.5%;
     text-align: center;
 }
-.cantidad_estadistica_vendedor{
+
+.cantidad_estadistica_vendedor {
     width: 25%;
     text-align: center;
 }
 
-.precio_estadistica_vendedor{
+.precio_estadistica_vendedor {
     width: 16%;
     text-align: center;
 }
-.valoracion_estadistica_vendedor{
+
+.valoracion_estadistica_vendedor {
     width: 25%;
     text-align: center;
 }
@@ -867,41 +870,129 @@ main .center-align {
     height: 100%;
 }
 
-.valoracion{
+.valoracion {
     display: flex;
     flex-direction: row;
     justify-content: center;
- }
- 
- /*Valoraciones en estrellas*/
- .estrellas_contenedor{
+}
+
+/*Valoraciones en estrellas*/
+.estrellas_contenedor {
     display: flex;
-    flex-direction: row  ;
+    flex-direction: row;
     align-items: center;
     background-origin: 1px solid black;
     height: auto;
     direction: rtl;
     unicode-bidi: bidi-override;
     justify-content: center;
- }
- 
- label:hover,
- label:hover ~ label > .estrella{
+}
+
+label:hover,
+label:hover~label>.estrella {
     color: rgb(255, 238, 0);
- }
- 
- input[type="radio"]:checked ~ label > .estrella {
+}
+
+input[type="radio"]:checked~label>.estrella {
     color: rgb(255, 213, 0);
-  }
+}
 
 
-  .grafica_pastel_vendedor{
-      width: 100%;
-  }
+.grafica_pastel_vendedor {
+    width: 100%;
+}
 
-  .grafica_pastel_vendedor img{
-      width: 50%;
-  }
+.grafica_pastel_vendedor img {
+    width: 50%;
+}
+
+/*----------------------------------------------*/
+/*-----------Estadística - admin----------------*/
+/*----------------------------------------------*/
+
+
+.nombre_estadistica_admin {
+    width: 41.65%;
+    text-align: center;
+}
+
+.promedio_estadistica_admin {
+    width: 33.32%;
+    text-align: center;
+}
+
+.venta_estadistica_admin {
+    width: 25%;
+    text-align: center;
+}
+
+/**/
+.cliente_estadistica_admin {
+    width: 33.32%;
+    text-align: center;
+}
+
+.correo_estadistica_admin {
+    width: 25%;
+    text-align: center;
+}
+
+.factura_estadistica_admin {
+    width: 18.66%;
+    text-align: center;
+}
+
+.promedio_cliente_estadistica_admin{
+    width: 25%;
+    text-align: center;
+}
+
+.contenedor_cliente_estadistica_vendedor .row{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #8DC5FF;
+    border-radius: 15px;
+    border: 1px solid black;
+    margin-bottom: 5px;
+    height: auto !important;
+
+}
+
+.contenedor_cliente_estadistica_vendedor{
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 10px;
+}
+
+.main_estadistica_admin .row .col .row{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.main_estadistica_admin h5{
+    margin-bottom: 3%;
+}
+
+.main_estadistica_admin{
+    padding: 0px !important;
+    margin: 0px !important;
+    overflow-y: scroll;
+}
+
+.ventas_estadistica_admin{
+    background-color: #8DC5FF;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 20px 0 20px !important;
+    
+
+}
 /*----------------------------------------------*/
 /*-------------------Responsive---------------------*/
 /*----------------------------------------------*/
@@ -1215,11 +1306,11 @@ main .center-align {
 /*Responsive estadistica*/
 @media (max-width:1000px) {
 
-    .ventas_estadistica_vendedor{
+    .ventas_estadistica_vendedor {
         width: 80%;
     }
 
-    .main_estadistica_vendedor .row .center-align{
+    .main_estadistica_vendedor .row .center-align {
         margin-top: 20px;
     }
 }
