@@ -3,15 +3,6 @@
 /*Clases para quitar border y padding*/
 
 body {
-<<<<<<< Updated upstream
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  height: 100%;
-  width: 100% !important;
-  position: absolute;
-  z-index: 1;
-=======
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -40,7 +31,6 @@ overflow-x:hidden;
     padding: 0px !important;
     margin: 0px !important;
     display: flex;
->>>>>>> Stashed changes
 }
 
 main {
@@ -157,25 +147,6 @@ main {
   height: 100%;
 }
 
-<<<<<<< Updated upstream
-.redes_footer ul {
-  display: flex;
-  justify-content: space-between;
-  height: 20%;
-  margin: 0px;
-  padding-left: 38%;
-  padding-right: 38%;
-  position: relative;
-  margin-left: -5%;
-}
-
-.footer_otros {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  position: fixed;
-=======
 
 
 .redes_footer ul{
@@ -196,7 +167,6 @@ main {
     justify-content: flex-start;
     position: fixed;
     
->>>>>>> Stashed changes
 }
 
 .footer_otros img {
@@ -653,8 +623,6 @@ input[type="radio"]:checked ~ label > .estrella {
   margin: 0px 20px 0 20px !important;
 }
 
-<<<<<<< Updated upstream
-=======
 
 
 /*----------------------------------------------*/
@@ -682,7 +650,6 @@ main .center-align .row:not(main .center-align .n_l){
     height: 100%;
 }
 
->>>>>>> Stashed changes
 /*----------------------------------------------*/
 /*-------------Carrito - clientes---------------*/
 /*----------------------------------------------*/
