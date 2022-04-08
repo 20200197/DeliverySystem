@@ -9,7 +9,7 @@
     <link href="../../../recursos/css/icons.css" rel="stylesheet">
     <!--Importar archivos CSS-->
     <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
-    <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_publico.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_privado.css" media="screen,projection" />
 
     <!--Optimización para mobiles-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,309 +20,64 @@
     <div class="row contenedor-general">
         <!--Sidebar, opciones para los usuarios-->
         <ul id="slide-out" class="sidenav sidenav-fixed">
-            <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
-                        class="material-icons medium">home</i></a></li>
-            <li><a href="perfil.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
-                        class="material-icons medium">account_circle</i></a></li>
-            <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Compras"><i
-                        class="material-icons medium">shopping_basket</i></a></li>
-            <li><a href="estadistica.html" class="tooltipped" data-position="right" data-tooltip="Gráficos"><i
-                        class="material-icons medium">pie_chart</i></a></li>
-            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Cerrar sesión"><i
-                        class="material-icons medium">arrow_back</i></a></li>
+            <li>
+                <a href="index.html" class="tooltipped" data-position="right" data-tooltip="Hogar">
+                    <i class="material-icons medium">home</i>
+                </a>
+            </li>
         </ul>
         <!--Contenedor de datos-->
-        <div class="contenedor-datos">
+        <div class="contenedor-datos-nologin">
             <!--Encabezado-->
             <header class="encabezado">
                 <a href="#" data-target="slide-out"
                     class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
                         class="material-icons">menu</i></a>
                 <img src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png" alt="">
-                <a class="waves-effect waves-light btn boton_iniciar_sesion">Log In</a>
+                <a class="waves-effect waves-light btn boton_iniciar_sesion"
+                    href="../Cliente/Registrar_no_login.html">Registrarse</a>
             </header>
             <!--Información de la página-->
-            <main>
-                <!--Titulo-->
-                <div class="row">
-                    <h5 class="center-align">Mis productos</h5>
-                </div>
-                <!--Boton agregar-->
-                <div class="row">
-                    <a class="btn-large right modal-trigger" id="boton_agregar_producto" href="#modal_agregar_producto"><i
-                            class="material-icons left">add</i>Agregar</a>
-                </div>
-                <!--Contenedor-->
-                <div class="row">
-                    <div class="row">
-                        <!--Card de producto-->
+            <main class="inicio-no-login">
+                <div class="container">
+                    <div class="row ">
+                        <div class="col s12 m12 l12 center-align">
+                            <img src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png">
+                        </div>
+                    </div>
+                    <div class="row center-align" id="r-login">
                         <div class="col s12 m12 l12">
-                            <div class="card  ">
-                                <div class="card-content ">
-                                    <div class="row">
-                                        <div class="col s12 m12 l2">
-                                            <img src="../../../recursos/img/publico/clientes/modals/images (5).jpg"
-                                                id="imagen_producto_vende">
-                                        </div>
-                                        <div class="col s12 m12 l6">
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur eveniet
-                                                ad expedita animi nulla eaque unde odio nesciunt dolores autem voluptate
-                                                quam perferendis, cumque non ipsum iusto, ab dolore libero?.
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-                                                eveniet
-                                                ad expedita animi nulla eaque unde odio nesciunt dolores autem voluptate
-                                                quam perferendis, cumque non ipsum iusto, ab dolore libero?.
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-                                                eveniet
-                                                ad expedita animi nulla eaque unde odio nesciunt dolores autem voluptate
-                                                quam perferendis, cumque non ipsum iusto, ab dolore libero?.</p>
-                                        </div>
-                                        <div class="col s12 m12 l4">
-                                            <div class="row">
-                                                <div class="col s12 m12 l12 ">
-                                                    <a class="btn-large right modal-trigger" id="boton_elimi_pro"
-                                                        href="#modal_eliminar_produ"><i
-                                                            class="material-icons left">delete</i>Eliminar</a>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col s12 m12 l12">
-                                                    <a class="btn-large right modal-trigger" id="boton_edita_pro"
-                                                        href="#modal_editar"><i
-                                                            class="material-icons left">edit</i>Editar</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                            <div class="card-panel" id="card-login">
+                                <div class="row n_l">
+                                    <p id="titulo-login">Inicio de sesión</p>
+                                    <p id="texto-card-login-2">Nombre de Usuario</p>
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">account_circle</i>
+                                        <input id="icon_prefix" type="text" class="validate">
+                                        <label for="icon_prefix">Escribe tu Usuario</label>
                                     </div>
+                                </div>
+                                <div class="row n_l">
+                                    <p id="texto-card-login-2">Contraseña</p>
+                                    <div class="input-field col s11">
+                                        <i class=" material-icons prefix">vpn_key</i>
+                                        <input id="password" type="password" class="validate">
+                                        <label for="password">************</label>
+                                        <i class="material-icons prefix">remove_red_eye</i>
+                                    </div>
+                                </div>
+                                <div id="texto-card-login">
+                                    <a href="../Cliente/Recuperar_contra1.html">¿Olvidaste tu contraseña?</a>
+                                    <p>
+                                        <label>
+                                            <input type="checkbox" />
+                                            <span>Recordarme</span>
+                                        </label>
+                                    </p>
+                                    <a class="waves-effect waves-light btn" id="boton_ingresar">Ingresar</a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <!--Card de producto-->
-                        <div class="col s12 m12 l12">
-                            <div class="card  ">
-                                <div class="card-content ">
-                                    <div class="row">
-                                        <div class="col s12 m12 l2">
-                                            <img src="../../../recursos/img/publico/clientes/modals/images (5).jpg "
-                                                id="imagen_producto_vende">
-                                        </div>
-                                        <div class="col s12 m12 l6">
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur eveniet
-                                                ad expedita animi nulla eaque unde odio nesciunt dolores autem voluptate
-                                                quam perferendis, cumque non ipsum iusto, ab dolore libero?.
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-                                                eveniet
-                                                ad expedita animi nulla eaque unde odio nesciunt dolores autem voluptate
-                                                quam perferendis, cumque non ipsum iusto, ab dolore libero?.
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-                                                eveniet
-                                                ad expedita animi nulla eaque unde odio nesciunt dolores autem voluptate
-                                                quam perferendis, cumque non ipsum iusto, ab dolore libero?.</p>
-                                        </div>
-                                        <div class="col s12 m12 l4">
-                                            <div class="row">
-                                                <div class="col s12 m12 l12 ">
-                                                    <a class="btn-large right modal-trigger" id="boton_elimi_pro"
-                                                        href="#modal_eliminar_produ"><i
-                                                            class="material-icons left">delete</i>Eliminar</a>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col s12 m12 l12">
-                                                    <a class="btn-large right modal-trigger" id="boton_edita_pro"
-                                                        href="#modal_editar"><i
-                                                            class="material-icons left">edit</i>Editar</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Modal editar producto-->
-                <div id="modal_editar" class="modal">
-                    <div class="modal-content ">
-                        <div class="row contorno">
-                            <h5 class="center-align">Editar producto</h5>>
-                            <div class="row ">
-                                <div class="col s12 m12 l12 ">
-                                    <div class="col s12 m12 l3 imagen_cancelar_produ">
-                                        <img src="../../../recursos/img/publico/clientes/modals/images (5).jpg"
-                                            class="imagen_prod_o">
-                                        &nbsp;
-                                        <div class="row">
-                                            <div class="col s12 m12 l12">
-                                                <a class="btn center-align boton_agregar_modi">Subir</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col s12 m12 l1"></div>
-                                    <!--Siguiente columna-->
-                                    <div class="col s12 m4 l4">
-                                        <div class="col s12 m12 l12">
-                                            <h6>Nombre de producto:</h6>
-                                            <div class="input-field col s12 m12 l12 nombre_field">
-                                                <input placeholder="Nombre" id="nombre_producto" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="col s12 m12 l12">
-                                            <h6>Cantidad:</h6>
-                                            <div class="input-field col s12 m12 l12">
-                                                <input class="validate" id="cantidad_produ" type="number"
-                                                    placeholder="0">
-                                            </div>
-                                            <div class="col s12 m12 l12">
-                                                <h6>Precio producto:</h6>
-                                                <div class="input-field col s12 m12 l12">
-                                                    <input placeholder="$00.00" id="precio_produ" type="text"
-                                                        class="validate">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col s12 m12 l12">
-                                            <h6>Descripción:</h6>
-                                            <div class="input-field col s12 m12 l12 descripcion">
-                                                <input class="materialize-textarea" id="descripcion_produ"
-                                                    placeholder="Descripción">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--Siguiente columna-->
-                                    <div class="col s12 m4 l4">
-                                        <div class="col s12 m12 l12">
-                                            <h6>Categoria:</h6>
-                                            <select class="browser-default ">
-                                                <option value="" disabled selected>Choose your option</option>
-                                            </select>
-                                            <div class="col s12 m12 l12 nomb_marca">
-                                                <h6>Marca:</h6>
-                                                <select class="browser-default ">
-                                                    <option value="" disabled selected>Choose your option
-                                                    </option>
-                                                </select>
-                                            </div>
-                                            <div class="col s12 m12 l12 nomb_vendedor">
-                                                <h6>Vendedor:</h6>
-                                                <select class="browser-default ">
-                                                    <option value="" disabled selected>Choose your option
-                                                    </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#!"
-                            class="modal-close waves-effect waves-green btn-flat boton_cancelar_modi">Cancelar</a>
-                        <a href="#!"
-                            class="modal-close waves-effect waves-green btn-flat boton_agregar_modi">Modificar</a>
-                    </div>
-                </div>
-                <!--Modal agregar producto-->
-                <div id="modal_agregar_producto" class="modal">
-                    <div class="modal-content ">
-                        <div class="row contorno">
-                            <h5 class="center-align">Agregar producto</h5>>
-                            <div class="row ">
-                                <div class="col s12 m12 l12 ">
-                                    <div class="col s12 m12 l3 imagen_cancelar_produ">
-                                        <img src="../../../recursos/img/publico/clientes/modals/images (5).jpg"
-                                            class="imagen_prod_o">
-                                        &nbsp;
-                                        <div class="row">
-                                            <div class="col s12 m12 l12">
-                                                <a class="btn center-align boton_agregar_modi">Subir</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col s12 m12 l1"></div>
-                                    <!--Siguiente columna-->
-                                    <div class="col s12 m4 l4">
-                                        <div class="col s12 m12 l12">
-                                            <h6>Nombre de producto:</h6>
-                                            <div class="input-field col s12 m12 l12 nombre_field">
-                                                <input placeholder="Nombre" id="nombre_producto" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="col s12 m12 l12">
-                                            <h6>Cantidad:</h6>
-                                            <div class="input-field col s12 m12 l12">
-                                                <input class="validate" id="cantidad_produ" type="number"
-                                                    placeholder="0">
-                                            </div>
-                                            <div class="col s12 m12 l12">
-                                                <h6>Precio producto:</h6>
-                                                <div class="input-field col s12 m12 l12">
-                                                    <input placeholder="$00.00" id="precio_produ" type="text"
-                                                        class="validate">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col s12 m12 l12">
-                                            <h6>Descripción:</h6>
-                                            <div class="input-field col s12 m12 l12 descripcion">
-                                                <input class="materialize-textarea" id="descripcion_produ"
-                                                    placeholder="Descripción">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--Siguiente columna-->
-                                    <div class="col s12 m4 l4">
-                                        <div class="col s12 m12 l12">
-                                            <h6>Categoria:</h6>
-                                            <select class="browser-default ">
-                                                <option value="" disabled selected>Choose your option</option>
-                                            </select>
-                                            <div class="col s12 m12 l12 nomb_marca">
-                                                <h6>Marca:</h6>
-                                                <select class="browser-default ">
-                                                    <option value="" disabled selected>Choose your option
-                                                    </option>
-                                                </select>
-                                            </div>
-                                            <div class="col s12 m12 l12 nomb_vendedor">
-                                                <h6>Vendedor:</h6>
-                                                <select class="browser-default ">
-                                                    <option value="" disabled selected>Choose your option
-                                                    </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#!"
-                            class="modal-close waves-effect waves-green btn-flat boton_cancelar_modi">Cancelar</a>
-                        <a href="#!"
-                            class="modal-close waves-effect waves-green btn-flat boton_agregar_modi">Modificar</a>
-                    </div>
-                </div>
-                <!--Modal eliminar producto-->
-                <div id="modal_eliminar_produ" class="modal">
-                    <div class="modal-content">
-                        <div class="row contorno">
-                            <h5 class="center-align">Eliminar</h5>>
-                            <div class="col s12 m12 l12 imagen_cancelar_produ">
-                                <img src="../../../recursos/img/publico/clientes/modals/cancel_120px.png">
-                            </div>
-                            <h6 class="center-align">¿Está seguro de eliminar este producto?</h6>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#!"
-                            class="modal-close waves-effect waves-green btn-flat boton_cancelar_modi">Cancelar</a>
-                        <a href="#!"
-                            class="modal-close waves-effect waves-green btn-flat boton_aceptar_produ">Aceptar</a>
                     </div>
                 </div>
             </main>
@@ -330,45 +85,14 @@
     </div>
 
     <!--Footer-->
-    <footer class="page-footer">
-        <div class="row">
-            <!--enlace de redes sociales-->
-            <div class="col l12 m6 s3 redes_footer center-align">
-                <ul>
-                    <li>
-                        <a href=""><i class="material-icons medium">facebook</i></a>
-                    </li>
-                    <li>
-                        <a href=""><img
-                                src="../../../recursos/img/publico/clientes/footer/instagram_old_50px.png"></i></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="material-icons medium">whatsapp</i></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="material-icons medium">email</i></a>
-                    </li>
-                </ul>
-            </div>
+    <footer class="page-footer"> 
             <!--Contenedor para el mapa y el copyright-->
             <div class="footer_otros">
                 <div class="col l6 m9 s12 logo_copy_footer">
                     <img src="../../../recursos/img/publico/clientes/modals/logo.png" alt="">
                     <h6>© 2022 DeliverySystem</h6>
                 </div>
-                <div class="col l6 m9 s12 mapa-footer">
-                    <ul>
-                        <li>
-                            <h5>Información pública</h5>
-                        </li>
-                        <li><a href="../publico_cliente/quienes somos.html ">Quiénes somos</a></li>
-                        <li><a href="../publico_cliente/contactenos.html">Contáctanos</a></li>
-                        <li><a href="../publico_cliente/mision_vision.html">Misión y visión</a></li>
-                        <li><a href="../publico_cliente/terminos.html">Términos y condiciones</a></li>
-                    </ul>
-                </div>
             </div>
-        </div>
     </footer>
     <!--Importar archivos JavaScrip-->
     <script type="text/javascript" src="../../../js/materialize.min.js"></script>
