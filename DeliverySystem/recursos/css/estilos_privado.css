@@ -3,6 +3,7 @@
 /*Clases para quitar border y padding*/
 
 body {
+<<<<<<< Updated upstream
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -10,6 +11,36 @@ body {
   width: 100% !important;
   position: absolute;
   z-index: 1;
+=======
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    height: 100%;
+    width: 100% !important;
+    position: absolute;
+    z-index: 1;
+
+  }
+
+  main {
+    flex: 1 0 auto;
+   overflow:scroll;
+ height:85%;
+ margin-bottom:50%;
+overflow-x:hidden;
+
+  }
+
+ 
+
+  /*Contenedores*/
+.contenedor-general{
+    height: 75%;
+    width: 100% !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    display: flex;
+>>>>>>> Stashed changes
 }
 
 main {
@@ -126,6 +157,7 @@ main {
   height: 100%;
 }
 
+<<<<<<< Updated upstream
 .redes_footer ul {
   display: flex;
   justify-content: space-between;
@@ -143,6 +175,28 @@ main {
   display: flex;
   justify-content: flex-start;
   position: fixed;
+=======
+
+
+.redes_footer ul{
+    display: flex;
+    justify-content: flex-start;
+    height: 20%;
+    margin:0px;
+    padding-left: 38%;
+    padding-right: 38%;
+    position: relative;
+    margin-left: -5%;
+}
+
+.footer_otros{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    position: fixed;
+    
+>>>>>>> Stashed changes
 }
 
 .footer_otros img {
@@ -599,9 +653,40 @@ input[type="radio"]:checked ~ label > .estrella {
   margin: 0px 20px 0 20px !important;
 }
 
+<<<<<<< Updated upstream
+=======
+
+
+/*----------------------------------------------*/
+/*-------------Login - Administrar---------------*/
+/*----------------------------------------------*/
+.inicio-no-login {
+    overflow-y: scroll;
+    display: flex;
+    justify-content: center;
+    height: 80%;
+    padding-bottom: 10px !important;
+}
+
+
+.contenedor-datos-nologin{
+    width: 100%;
+}
+
+
+.contenedor-datos-nologin .container{
+    width: 40%;
+}
+
+main .center-align .row:not(main .center-align .n_l){
+    height: 100%;
+}
+
+>>>>>>> Stashed changes
 /*----------------------------------------------*/
 /*-------------Carrito - clientes---------------*/
 /*----------------------------------------------*/
+
 
 .producto_carrito {
   border: 1px solid black;
@@ -1724,4 +1809,28 @@ a {
   .contenedor_producto_estadistica_vendedor .row {
     width: 100% !important;
   }
+}
+
+@media (max-width: 1000px){
+    .inicio-no-login{
+        height: 80%;
+        position: relative;
+    }
+
+    .contenedor-datos-nologin{
+        position: relative;
+        width: 100%;
+    }
+
+    .metodo-pago{
+        height: 100%;
+    }
+
+    .contenedor-general-metodo {
+        height: 100%;
+        width: 100% !important;
+        padding: 0px !important;
+        margin: 0px !important;
+        display: flex;
+    }
 }
