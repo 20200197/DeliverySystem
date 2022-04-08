@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!--Lenguaje de la página-->
+<html lang="es">
+<html>
+
+<head>
+    <!--Importar iconos-->
+    <link href="../../../recursos/css/icons.css" rel="stylesheet">
+    <!--Importar archivos CSS-->
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_publico.css" media="screen,projection" />
+
+    <!--Optimización para mobiles-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <!--Marco general-->
+    <div class="row contenedor-general">
+        <!--Sidebar, opciones para los usuarios-->
+        <ul id="slide-out" class="sidenav sidenav-fixed">
+            <li>
+                <a href="index.html" class="tooltipped" data-position="right" data-tooltip="Hogar">
+                    <i class="material-icons medium">home</i>
+                </a>
+            </li>
+        </ul>
+        <!--Contenedor de datos-->
+        <div class="contenedor-datos-nologin">
+            <!--Encabezado-->
+            <header class="encabezado">
+                <a href="#" data-target="slide-out"
+                    class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
+                        class="material-icons">menu</i></a>
+                <img src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png" alt="">
+                <a class="waves-effect waves-light btn boton_iniciar_sesion" href="../Cliente/Inicio_no_login.html">Log
+                    in</a>
+            </header>
+            <!--Información de la página-->
+            <main class="main_admin">
+                <div class="row contenedor_admin ">
+                    <div class="col l5 m5 s12 foto_de_admin ">
+                        <i class="material-icons foto_admin ">account_circle</i>
+                        <form action="#">
+                            <div class="btn boton_foto_admin file-field input-field file-path-wrapper  validate">
+                                <span>Agregar Foto</span>
+                                <input type="file">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col l7 m7 s12 datos_usuario_perfil_cliente">
+                        <h6>Datos personales</h6>
+                        <div class="datos_perfil_cliente">
+                            <div class="input-field col s6">
+                                <input placeholder="Nombre" id="name" type="text" class="validate">
+                                <label for="first_name">Nombre</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="Apellido" id="lastname" type="text" class="validate">
+                                <label for="first_name">Apellido</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="Número de DUI" id="dui" type="text" class="validate">
+                                <label for="first_name">DUI</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="Correo" id="email" type="email" class="validate">
+                                <label for="first_name">Correo</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="Telefono" id="Telefono" type="text" class="validate">
+                                <label for="first_name">Telefono</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="fecha registro" id="fecha_registro" type="date" class="validate">
+                                <label for="first_name">fecha registro</label>
+                            </div>
+                        </div>
+                        <h6>Datos de tu cuenta</h6>
+                        <div class="contenedor_datos_repartidor">
+                            <div class="dato_usuario_vendedor">
+                                <div class="input-field col s6">
+                                    <input placeholder="Nombre del usuario administrador" id="Nombre_administrador"
+                                        type="text" class="validate">
+                                    <label for="first_name">Nombre del usuario administrador:</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input placeholder="********" id="Contraseña" type="password" class="validate">
+                                    <label for="first_name">Contraseña</label>
+                                </div>
+                            </div>
+                            <div class="dato_usuario_admin">
+                            </div>
+                            <div class="contenedor_boton_modificar_datos_cliente">
+                                <a href="#datos-cuenta" class="btn modal-trigger boton_foto_admin">
+                                    <i class="material-icons left">edit</i> Guardar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!--Footer-->
+    <footer class="page-footer">
+        <div class="row">
+            <!--enlace de redes sociales-->
+            <div class="col l12 m6 s3 redes_footer center-align">
+                <ul>
+                    <li>
+                        <a href=""><i class="material-icons medium">facebook</i></a>
+                    </li>
+                    <li>
+                        <a href=""><img src="../../../recursos/img/publico/clientes/footer/instagram_old_50px.png"></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="material-icons medium">whatsapp</i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="material-icons medium">email</i></a>
+                    </li>
+                </ul>
+            </div>
+            <!--Contenedor para el mapa y el copyright-->
+            <div class="footer_otros">
+                <div class="col l6 m9 s12 logo_copy_footer">
+                    <img src="../../../recursos/img/publico/clientes/modals/logo.png" alt="">
+                    <h6>© 2022 DeliverySystem</h6>
+                </div>
+                <div class="col l6 m9 s12 mapa-footer">
+                    <ul>
+                        <li>
+                            <h5>Información pública</h5>
+                        </li>
+                        <li><a href="quienes somos.html">Quiénes somos</a></li>
+                        <li><a href="contactenos.html">Contáctanos</a></li>
+                        <li><a href="mision_vision.html">Misión y visión</a></li>
+                        <li><a href="terminos.html">Términos y condiciones</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--ventana de guardado -->
+    <div id="datos-cuenta" class="modal">
+        <div class="modal-content center-align">
+            <h4>Guardado Exitoso</h4>
+            <div class="row">
+                <div class="input-field col l12 m6 s12 center-align">
+                    <img src="../../resources/public/repartidor/icons8_Check_Circle_350px.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Importar archivos JavaScrip-->
+    <script type="text/javascript" src="../../../js/materialize.min.js"></script>
+    <script type="text/javascript" src="../../../controladores/publico/activation.js"></script>
+</body>
+
+</html>
