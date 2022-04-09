@@ -49,54 +49,59 @@
                             class="material-icons left">add</i>Añadir</a>
                     <!--modal de metodo de pago-->
                     <div id="modal_agregar" class="modal">
-                        <div class="modal-content">
-                            <div class="row" id="contorno">
-                                <div class="col s12 m12">
-                                    <h5 id="titulo">Añadir Trajeta de crédito o débito</h5>
-                                    <div class="col s12 m6">
-                                        <h6>Numero de tarjeta:</h6>
-                                        <div class="input-field col s12 m12">
-                                            <input placeholder="0000 0000 0000 0000" id="number" type="number"
-                                                class="validate">
-                                        </div>
-                                        <div class="row">
-                                            <div class="col s12 m12">
-                                                <h6>CCV:</h6>
+                        <form action="">
+                            <div class="modal-content">
+                                <div class="row" id="contorno">
+                                    <div class="col s12 m12">
+                                        <form action="">
+                                            <h5 id="titulo">Añadir Trajeta de crédito o débito</h5>
+                                            <div class="col s12 m6">
+                                                <h6>Numero de tarjeta:</h6>
                                                 <div class="input-field col s12 m12">
-                                                    <input placeholder="12345" id="number" type="number"
+                                                    <input placeholder="0000 0000 0000 0000" id="number" type="number"
                                                         class="validate">
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--Columna siguiente-->
-                                    <div class="col s12 m6">
-                                        <div class="row">
-                                            <div class="col s12 m12">
-                                                <h6>Nombre de titular:</h6>
-                                                <div class="input-field col s12 m12">
-                                                    <input placeholder="ABC DEF">
+                                                <div class="row">
+                                                    <div class="col s12 m12">
+                                                        <h6>CCV:</h6>
+                                                        <div class="input-field col s12 m12">
+                                                            <input placeholder="12345" id="number" type="number"
+                                                                class="validate">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col s12 m12">
-                                                <h6>Fecha vencimiento:</h6>
-                                                <div class="input-field col s12 m12">
-                                                    <input placeholder="fecha registro" id="fecha_registro" type="date"
-                                                        class="validate">
+                                            <!--Columna siguiente-->
+                                            <div class="col s12 m6">
+                                                <div class="row">
+                                                    <div class="col s12 m12">
+                                                        <h6>Nombre de titular:</h6>
+                                                        <div class="input-field col s12 m12">
+                                                            <input placeholder="ABC DEF">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col s12 m12">
+                                                        <h6>Fecha vencimiento:</h6>
+                                                        <div class="input-field col s12 m12">
+                                                            <input placeholder="fecha registro" id="fecha_registro"
+                                                                type="date" class="validate">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#!" class="modal-close waves-effect waves-green btn-flat"
-                                id="boton_descartar">Descartar</a>
-                            <a href="#modal_ok" class="modal-trigger btn-flat" id="boton_guardar">Guardar</a>
-                        </div>
+                            <div class="modal-footer">
+                                <a href="#!" class="modal-close waves-effect waves-green btn-flat"
+                                    id="boton_descartar">Descartar</a>
+                                <button href="#modal_ok" class="modal-trigger btn-flat"
+                                    id="boton_guardar">Guardar</button>
+                            </div>
+                        </form>
                     </div>
                     <table class="tabla-tarjetas centered">
                         <thead>
