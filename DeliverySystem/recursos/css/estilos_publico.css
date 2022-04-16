@@ -1,5 +1,6 @@
 /* Clases generales del diseño*/
 
+<<<<<<< HEAD
 /*Clases para quitar border y padding*/
 
 body {
@@ -39,11 +40,56 @@ main {
 .encabezado a i {
   color: #3f79ff !important;
 }
+=======
+
+/*Clases para quitar border y padding*/
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    height: 100%;
+    width: 100% !important;
+    position: absolute;
+    z-index: 1;
+
+  }
+
+  main {
+    flex: 1 0 auto;
+ 
+ height:85%;
+ margin-bottom:50%;
+overflow-x:hidden;
+  }
+
+ 
+
+  /*Contenedores*/
+.contenedor-general{
+    height: 75%;
+    width: 100% !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    display: flex;
+}
+
+
+.contenedor-datos{
+    padding: 0px !important;
+    display: flex;
+    flex-direction: column;
+    width: 100% !important;
+}
+
+
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 
 /*----------------------------------------------*/
 /*-----------------Sidebar-------------------*/
 /*----------------------------------------------*/
 
+<<<<<<< HEAD
 #slide-out li i {
   color: white;
   font-size: 50px;
@@ -73,12 +119,45 @@ main {
   height: 100% !important;
   margin-right: 0px !important;
   box-shadow: none !important;
+=======
+#slide-out li i{
+    color: white;
+    font-size: 50px;
+    margin: 0px !important;
+    display: flex;
+    justify-content: center;
+}
+
+#slide-out li {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    margin: 0px !important;
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+}
+
+
+.sidenav{
+    width: 100px !important;
+    background-color: #659FFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative !important;
+    height: 100% !important;
+    margin-right: 0px !important;
+    box-shadow: none !important;
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 }
 
 /*----------------------------------------------*/
 /*-----------------Encabezado-------------------*/
 /*----------------------------------------------*/
 
+<<<<<<< HEAD
 .encabezado {
   height: 80px;
   width: 100% !important;
@@ -104,10 +183,40 @@ main {
   width: 150px;
 }
 
+=======
+.encabezado{
+    height: 80px;
+    width: 100% !important;
+    margin: 0px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.encabezado img{
+    height: 70%;
+}
+
+
+.boton_iniciar_sesion{
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 15px !important;
+    color: black;
+    width: 150px;
+}
+
+
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 /*----------------------------------------------*/
 /*-------------------Footer---------------------*/
 /*----------------------------------------------*/
 
+<<<<<<< HEAD
 .page-footer {
   background-color: #3f79ff !important;
   padding-left: 5%;
@@ -177,10 +286,85 @@ main {
 .redes_footer ul li a i {
   color: white;
   font-size: 35pt;
+=======
+.page-footer{
+    background-color: #3F79FF !important;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    height: 25%;
+    width: 100% !important;
+    margin: 0px !important;
+    position: relative;
+}
+
+.page-footer .row{
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+}
+
+
+
+.redes_footer ul{
+    display: flex;
+    justify-content: space-between;
+    height: 20%;
+    margin:0px;
+    padding-left: 38%;
+    padding-right: 38%;
+    position: relative;
+    margin-left: -5%;
+}
+
+.footer_otros{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    
+}
+
+.footer_otros img{
+    width: 300px;
+}
+.mapa-footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 20%;
+    margin-left: 20% !important;
+}
+
+.mapa-footer ul{
+    height: 100%;
+    margin:0px;
+}
+
+.logo_copy_footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    height: 20%;
+}
+
+.redes_footer{
+    position: fixed;
+    z-index: 1;
+}
+
+.redes_footer ul li a i{
+    color: white;
+    font-size: 35pt;
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 }
 
 /*----------------------------------------------*/
 /*-------------------Main my products---------------------*/
+<<<<<<< HEAD
 /*----------------------------------------------*/
 
 #boton_agregar_producto {
@@ -253,10 +437,89 @@ main {
   color: white;
   background-color: #699af6;
   border-radius: 15px;
+=======
+/*----------------------------------------------*/    
+
+
+#boton_agregar_producto {
+
+    background-color: #699AF6;
+    margin-right: 90px;
+    border-radius:15px;
+}
+
+.card{
+    margin-left:100px;
+    margin-right: 100px;
+    background-color:#FAF7F7;
+    color:black;
+}
+
+#imagen_producto_vende{
+    max-width: 100%;
+    height:auto;
+}
+
+#boton_edita_pro{
+    margin-top:11px;
+    background-color:white;
+    color:black;
+    border-radius:15px;
+    width:170px;
+}
+
+
+#boton_elimi_pro{
+    margin-top:11px;
+    background-color: white;
+    color:black;
+    border-radius:15px;
+    width:170px;
+}
+
+.contorno{
+    border:#8DC5FF 3px solid;
+    border-bottom-right-radius:30px;
+    border-bottom-left-radius:30px;
+    border-top-right-radius:30px;
+    border-top-left-radius:30px;
+
+}
+
+.boton_cancelar_modi{
+    color:white;
+    background-color:#699AF6;
+    border-radius:15px;
+}
+
+.imagen_prod_o{
+    width:100%;
+    height:auto;
+}
+
+.boton_agregar_modi {
+    color:white;
+    background-color:#699AF6;
+    border-radius:15px;
+}
+
+.imagen_cancelar_produ {
+    display:flex;
+    flex-direction:column;
+align-items:center;
+justify-content:center;
+}
+
+.boton_aceptar_produ{
+    color:white;
+    background-color:#699AF6;
+    border-radius:15px;
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 }
 
 /*----------------------------------------------*/
 /*-------------------Main add_product---------------------*/
+<<<<<<< HEAD
 /*----------------------------------------------*/
 
 .contenedor_agre {
@@ -289,11 +552,55 @@ main {
   margin-top: 40px;
 }
 
+=======
+/*----------------------------------------------*/  
+
+.contenedor_agre{
+    margin-right:100px;
+    margin-left:100px;
+
+}
+
+.botonagregar_imaprodu{
+    background-color:#699AF6;
+    color:white;
+    border-radius:15px;
+
+}
+
+.nombre_field{
+    border-radius:15px 15px 15px 15px ;
+    border:1px;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+}
+
+.descripcion{
+    max-height:80px;
+}
+
+.nomb_vendedor{
+    margin-top:40px;
+}
+
+.nomb_marca{
+    margin-top:40px;
+}
+
+
+
+
+
+
+
+
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 /*----------------------------------------------*/
 /*-------------Carrito - clientes---------------*/
 /*----------------------------------------------*/
 
 .producto_carrito {
+<<<<<<< HEAD
   border: 1px solid black;
   margin-top: 5px;
   border-radius: 15px;
@@ -421,12 +728,144 @@ main .center-align {
 
 .siguiente_carrito:focus {
   background-color: #66affd;
+=======
+    border: 1px solid black;
+    margin-top: 5px;
+    border-radius: 15px;
+    height: 200px;
+    width: 100%;
+}
+
+.main_carrito .center-align {
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.producto_carrito .row .col img {
+    height: 150px;
+    border-radius: 15px;
+}
+
+.contador_cantidad_carrito {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contador_cantidad_carrito input {
+    width: 30% !important;
+    border: 1px solid black !important;
+    border-radius: 15px;
+    background-color: #ECECEC !important;
+    height: 35px !important;
+    margin-right: 4px !important;
+    margin-left: 4px !important;
+    text-align: center;
+}
+
+.contador_cantidad_carrito input:focus {
+    border: 1px solid black !important;
+    box-shadow: none !important;
+}
+
+.titulo_producto_carrito {
+    font-size: 14pt;
+}
+
+.descripcion_producto_carrito {
+    padding-right: 5% !important;
+    padding-left: 5% !important;
+    height: 100%;
+}
+
+.descripcion_producto_carrito .row {
+    margin-bottom: -150px !important;
+}
+
+.total_carrito {
+    height: 180px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-top: 3% !important;
+}
+
+main .center-align .row:not(main .center-align .n_l){
+    height: 100%;
+}
+
+main .center-align {
+    height: 90%;
+}
+
+.listado_productos {
+    overflow-y: scroll !important;
+    height: 99% !important;
+    width: 80%;
+    margin-bottom: 2%;
+}
+
+.contenedor_mostrar_total_carrito {
+    height: 100%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cp_total_carrito {
+    background-color: #8DC5FF;
+    height: 70% !important;
+    border-radius: 15px;
+    width: 90% !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 10%;
+
+}
+
+.cp_total_carrito div h6 {
+    color: white;
+    font-weight: 700;
+    font-size: 14pt;
+}
+
+.cp_total_carrito div p {
+    color: white;
+    font-size: 12pt;
+}
+
+.siguiente_carrito {
+    margin-top: 50px;
+    width: 80% !important;
+    height: 50px;
+    background-color: #8DC5FF;
+    color: white;
+    border-radius: 15px;
+    border: none !important;
+    padding: 0px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.siguiente_carrito:hover {
+    background-color: #66affd;
+}
+
+.siguiente_carrito:focus {
+    background-color: #66affd;
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 }
 
 /*----------------------------------------------*/
 /*-------------Confirmación compra--------------*/
 /*----------------------------------------------*/
 .contenedor_datos_confirmacion {
+<<<<<<< HEAD
   background-color: #659fff;
   border-radius: 15px;
   width: 100%;
@@ -533,6 +972,115 @@ main .center-align {
 
 .direccion_confirmar {
   z-index: 0;
+=======
+    background-color: #659FFF;
+    border-radius: 15px;
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 10%;
+    padding-bottom: 5%;
+}
+.contenedor_confirmacion {
+    width: 100%;
+    height: 100%;
+}
+.direccion_confirmar input {
+    position: relative !important;
+    background-color: #F2F2F2 !important;
+    color: black !important;
+    width: 85% !important;
+    padding-left: 5px !important;
+}
+.direccion_confirmar .caret {
+    background-color: #8DC5FF !important;
+    height: 100% !important;
+    width: 15% !important;
+    position: absolute;
+}
+
+
+.dato_confirmacion h6 {
+    font-weight: 600;
+    height: 20px;
+}
+.dato_confirmacion p {
+    height: 20px;
+    margin-top: 5%;
+}
+.dato_confirmacion {
+    display: flex;
+    align-items: center;
+}
+.metodo_pago_confirmar {
+    width: 40%;
+}
+.datos_pago_confirmar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.datos_pago_confirmar .row {
+    width: 100%;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+.boton_comprar_confirmar {
+    width: 15%;
+    border-radius: 15px;
+    background-color: #659FFF;
+}
+.Total_pagar_confirmar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+.Total_pagar_confirmar p {
+    font-weight: 400;
+    margin-left: 7px;
+}
+[type="radio"]:not(:checked)+span:before,
+[type="radio"]:not(:checked)+span:before {
+    border: 0.5px solid black;
+    background-color: #D2E8FF;
+}
+[type="radio"]:checked+span:after,
+[type="radio"].with-gap:checked+span:after {
+    background-color: #659FFF;
+    border: 0.5px solid black;
+}
+[type="radio"]:checked+span:after,
+[type="radio"].with-gap:checked+span:before,
+[type="radio"].with-gap:checked+span:after {
+    border: 0.5px solid #659FFF;
+}
+.main_confirmar {
+    height: 100% !important;
+   
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50%;
+    width: 100%;
+    overflow-y:scroll;
+}
+.encabezado_confirmar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-left: 3%;
+    margin-bottom: 1%;
+    align-items: center;
+}
+.encabezado_confirmar h5 {
+    width: 90%;
+    text-align: center
+}
+
+.direccion_confirmar{
+    z-index:0,
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 }
 
 /*----------------------------------------------*/
@@ -540,6 +1088,7 @@ main .center-align {
 /*----------------------------------------------*/
 
 .main_perfil_cliente {
+<<<<<<< HEAD
   overflow-y: scroll;
 }
 
@@ -621,11 +1170,98 @@ main .center-align {
 .datos_usuario_perfil_cliente {
   display: flex;
   flex-direction: column;
+=======
+    overflow-y: scroll;
+
+}
+
+.main_perfil_cliente h5 {
+    text-align: center;
+}
+
+.contenedor_perfil_cliente {
+    width: 100%;
+}
+
+.foto_cliente {
+    font-size: 150pt;
+}
+
+.boton_cambiar_foto_cliente {
+    background-color: #659FFF;
+    color: white;
+    border-radius: 15px;
+}
+
+.foto_direccion_cliente {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contenedor_titulo_direccion {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-top: 3%;
+    margin-bottom: 0px;
+}
+
+.add_direccion_cliente {
+    display: flex;
+    color: white;
+    background-color: #659FFF;
+    border-radius: 15px;
+}
+
+
+.direccion_cliente p {
+    width: 85%;
+    margin: 0px;
+}
+
+.direccion_cliente div {
+    width: 15%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.editar_perfil_cliente {
+    color: #00AB10;
+    font-size: 25pt;
+}
+
+.eliminar_perfil_cliente {
+    color: #FF3F42;
+    font-size: 25pt;
+
+}
+
+.contenedor_boton_modificar_datos_cliente {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.contenedor_boton_modificar_datos_cliente a {
+    border-radius: 15px;
+}
+
+.datos_usuario_perfil_cliente {
+    display: flex;
+    flex-direction: column;
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 }
 
 /*Datos del cliente*/
 
 .datos_perfil_cliente {
+<<<<<<< HEAD
   padding-left: 5%;
   padding-right: 5%;
 }
@@ -666,11 +1302,55 @@ main .center-align {
 
 .reducir_place {
   width: 0px;
+=======
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.datos_usuario_perfil_cliente h6 {
+    text-align: center;
+}
+
+.dato_usuario_cliente {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 15%;
+}
+
+.dato_usuario_cliente p {
+    padding-left: 7px;
+}
+
+
+/*Listado de direcciones del cliente en perfil*/
+
+.direccion_cliente {
+    width: 100%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-bottom: 3%;
+    padding-top: 0%;
+    display: flex;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+
+.contenedor_listado_direcciones_cliente {
+    margin-top: 0px;
+    width: 100%;
+}
+
+.reducir_place {
+    width: 0px;
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 }
 
 /*Modals del perfil del cliente*/
 
 .opciones_modal_perfil_cliente {
+<<<<<<< HEAD
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -692,11 +1372,38 @@ main .center-align {
   border-radius: 15px !important;
 }
 
+=======
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-bottom: 10px;
+}
+
+.opciones_modal_perfil_cliente a i {
+    color: white;
+    margin-right: 5px;
+
+}
+
+.opciones_modal_perfil_cliente a {
+    color: white;
+    display: flex;
+    align-items: center;
+    border-radius: 15px !important;
+}
+
+
+
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 /*----------------------------------------------*/
 /*------------Perfil - Repartidor---------------*/
 /*----------------------------------------------*/
 
 .comprobacion_legales_repartidor {
+<<<<<<< HEAD
   font-size: 100pt;
 }
 
@@ -715,11 +1422,33 @@ main .center-align {
   align-items: center;
 }
 
+=======
+    font-size: 100pt;
+}
+
+.ampliador_perfil_repartidor {
+    width: 100% !important;
+    margin: 0px !important;
+}
+
+.contenedor_fotos_legales {
+    width: 100%;
+}
+
+.ampliador_perfil_repartidor .col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 /*----------------------------------------------*/
 /*------------Paquetes pendientes---------------*/
 /*----------------------------------------------*/
 
 .main_paquetes_pendientes {
+<<<<<<< HEAD
   padding-left: 5%;
   padding-right: 5%;
   display: flex;
@@ -841,11 +1570,140 @@ main .center-align {
   font-weight: 600;
 }
 
+=======
+    padding-left: 5%;
+    padding-right: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulos_paquetes_pendientes {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.listado_paquetes_pendientes {
+    width: 100%;
+
+}
+
+.contenedor_datos_paquetes_pendiente {
+    display: flex;
+    align-items: center;
+}
+
+.contenedor_datos_paquetes_pendiente p {
+    margin-left: 7px;
+}
+
+.nombre_pendiente {
+    width: 33.33%;
+}
+
+.contacto_pendiente {
+    width: 25%;
+}
+
+.producto_pendiente {
+    width: 8.33%;
+}
+
+.total_pendiente {
+    width: 16.66%;
+}
+
+.entregar_pendiente {
+    width: 16.66%;
+}
+
+.card_paquete_pendiente {
+    border: 1px solid black;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    margin: 0px 0px 5px 0px !important;
+}
+
+.card_paquete_pendiente i {
+    color: #659FFF;
+    font-size: 28pt;
+}
+
+.completar_entrega_pendiente {
+    background-color: #659FFF !important;
+}
+
+.completar_entrega_pendiente i {
+    color: white;
+    font-size: 18pt;
+}
+
+.contenedor-paquetes {
+    width: 100%;
+}
+
+.contenedor_modal_pendientes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.producto_sin_entregar_modal {
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: white;
+}
+
+.foto_producto_modal_pendiente {
+    width: 100%;
+    border-radius: 15px;
+}
+
+
+.descripcion_info_producto_pendiente_modal .row {
+    width: 100%;
+    margin: 0px !important;
+    height: 100%;
+
+}
+
+.contenedor_modal_pendientes .row .col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100% !important;
+}
+
+.contenedor_modal_pendientes .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100% !important;
+}
+
+.titulo_producto_pendiente_modal {
+    width: 100%;
+    text-align: center;
+}
+
+.producto_sin_entregar_modal h6 {
+    font-weight: 600;
+}
+
+
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 /*----------------------------------------------*/
 /*----------Estadistica - Vendedor------------*/
 /*----------------------------------------------*/
 
 .main_estadistica_vendedor {
+<<<<<<< HEAD
   padding-left: 3%;
   padding-right: 3%;
   padding-top: 1%;
@@ -930,10 +1788,99 @@ main .center-align {
   display: flex;
   flex-direction: row;
   justify-content: center;
+=======
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 1%;
+    height: 80%;
+    overflow-y: scroll;
+}
+
+.main_estadistica_vendedor h5 {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 20px;
+    margin: 0px !important;
+}
+
+.main_estadistica_vendedor .row {
+    width: 100%;
+    height: 100%;
+}
+
+.main_estadistica_vendedor .row .col {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: auto;
+
+}
+
+.ventas_estadistica_vendedor {
+    background-color: #8DC5FF;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 50%;
+}
+
+.titulos_valoracion_estadistica_vendedor {
+    width: 100%;
+    display: flex;
+
+}
+
+.nombre_estadistica_vendedor {
+    width: 33.5%;
+    text-align: center;
+}
+
+.cantidad_estadistica_vendedor {
+    width: 25%;
+    text-align: center;
+}
+
+.precio_estadistica_vendedor {
+    width: 16%;
+    text-align: center;
+}
+
+.valoracion_estadistica_vendedor {
+    width: 25%;
+    text-align: center;
+}
+
+.contenedor_producto_estadistica_vendedor {
+    width: 100%;
+    height: 100%;
+}
+
+.contenedor_producto_estadistica_vendedor .row {
+    width: 100%;
+    margin: 0px !important;
+    border: 1px solid black;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    background-color: #8DC5FF;
+    margin-top: 5px !important;
+    height: 100%;
+}
+
+.valoracion {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 }
 
 /*Valoraciones en estrellas*/
 .estrellas_contenedor {
+<<<<<<< HEAD
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -959,12 +1906,41 @@ input[type="radio"]:checked ~ label > .estrella {
 
 .grafica_pastel_vendedor img {
   width: 50%;
+=======
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-origin: 1px solid black;
+    height: auto;
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    justify-content: center;
+}
+
+label:hover,
+label:hover~label>.estrella {
+    color: rgb(255, 238, 0);
+}
+
+input[type="radio"]:checked~label>.estrella {
+    color: rgb(255, 213, 0);
+}
+
+
+.grafica_pastel_vendedor {
+    width: 100%;
+}
+
+.grafica_pastel_vendedor img {
+    width: 50%;
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 }
 
 /*----------------------------------------------*/
 /*-----------Estadística - admin----------------*/
 /*----------------------------------------------*/
 
+<<<<<<< HEAD
 .nombre_estadistica_admin {
   width: 41.65%;
   text-align: center;
@@ -978,10 +1954,27 @@ input[type="radio"]:checked ~ label > .estrella {
 .venta_estadistica_admin {
   width: 25%;
   text-align: center;
+=======
+
+.nombre_estadistica_admin {
+    width: 41.65%;
+    text-align: center;
+}
+
+.promedio_estadistica_admin {
+    width: 33.32%;
+    text-align: center;
+}
+
+.venta_estadistica_admin {
+    width: 25%;
+    text-align: center;
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 }
 
 /**/
 .cliente_estadistica_admin {
+<<<<<<< HEAD
   width: 33.32%;
   text-align: center;
 }
@@ -1061,10 +2054,79 @@ input[type="radio"]:checked ~ label > .estrella {
   padding-left: 20px;
   padding-right: 10px;
 }
+=======
+    width: 33.32%;
+    text-align: center;
+}
+
+.correo_estadistica_admin {
+    width: 25%;
+    text-align: center;
+}
+
+.factura_estadistica_admin {
+    width: 18.66%;
+    text-align: center;
+}
+
+.promedio_cliente_estadistica_admin {
+    width: 25%;
+    text-align: center;
+}
+
+.contenedor_cliente_estadistica_vendedor .row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #8DC5FF;
+    border-radius: 15px;
+    border: 1px solid black;
+    margin-bottom: 5px;
+    height: auto !important;
+
+}
+
+.contenedor_cliente_estadistica_vendedor {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 10px;
+}
+
+.main_estadistica_admin .row .col .row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.main_estadistica_admin h5 {
+    margin-bottom: 3%;
+}
+
+.main_estadistica_admin {
+    padding: 0px !important;
+    margin: 0px !important;
+    overflow-y: scroll;
+}
+
+.ventas_estadistica_admin {
+    background-color: #8DC5FF;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 20px 0 20px !important;
+
+
+}
+
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 
 /*----------------------------------------------*/
 /*-------------------contactenos---------------------*/
 /*----------------------------------------------*/
+<<<<<<< HEAD
 .contactenos {
   background-color: #eef9ff;
   border: 1px solid black;
@@ -1132,10 +2194,89 @@ input[type="radio"]:checked ~ label > .estrella {
   background-color: white;
   color: black;
   border-radius: 15px;
+=======
+.contactenos{
+    background-color: #EEF9FF;
+    border: 1px solid black;
+    margin-top: 5px;
+    border-radius: 15px;
+    height: 100%;
+    width: 100%;
+}
+.titulo_contactenos{
+        font-size: 14pt;
+}
+.contenedor_borde{
+    
+    height: 100%;
+}
+.main_contactenos {
+   padding-left:10% !important;
+   padding-right:10% !important;
+
+}
+
+
+.descripcion_contactenos{
+    padding-right: 5% !important;
+    padding-left: 5% !important;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+.descripcion_contactenos .row h5{
+    width: 100%;
+    text-align: center;
+}
+
+
+
+
+/*----------------------------------------------*/
+/*-------------------Quienes somos---------------------*/
+/*----------------------------------------------*/
+.quienes_somos2{
+   
+    margin-top: 5px;
+    border-radius: 15px;
+    height: 200px;
+    width: 100%;
+}
+.quienes_somos{
+    border: 1px solid black;
+    margin-top: 5px;
+    border-radius: 15px;
+    height: 200px;
+    width: 100%;
+}
+.titulo_quienes_somos{
+    font-size: 14pt;
+}
+
+.descripcion_quienes_somos{
+    padding-right: 5% !important;
+    padding-left: 5% !important;
+    height: 100%;
+    
+
+}
+
+.mision{
+    background-color:EEF9FF;
+    color:black;
+    border-radius:15px;
+}
+
+.vision{
+    background-color:white;
+    color:black;
+    border-radius:15px;
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 }
 /*----------------------------------------------*/
 /*-------------------vision_mision---------------------*/
 /*----------------------------------------------*/
+<<<<<<< HEAD
 .contenedor_mision {
   width: 100%;
 }
@@ -1147,11 +2288,25 @@ input[type="radio"]:checked ~ label > .estrella {
 }
 .titulo_vision {
   font-size: 14pt;
+=======
+.contenedor_mision{
+    width: 100%;
+}
+
+.foto_mision{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.titulo_vision{
+    font-size: 14pt;
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 }
 
 /*----------------------------------------------*/
 /*-------------------terminos---------------------*/
 /*----------------------------------------------*/
+<<<<<<< HEAD
 .descripcion_terminos {
   padding-right: 5% !important;
   padding-left: 5% !important;
@@ -1173,10 +2328,35 @@ input[type="radio"]:checked ~ label > .estrella {
   font-size: 14pt;
 }
 
+=======
+.descripcion_terminos{
+    padding-right: 5% !important;
+    padding-left: 5% !important;
+    height: 100%;
+}
+
+.terminos{
+    border: 1px solid black;
+    margin-top: 5px;
+    border-radius: 15px;
+    height: 100%;
+    width: 100%;
+}
+.main_terminos{
+    padding-left:10% !important;
+    padding-right:10% !important;
+}
+.titulo_terminos{
+    font-size: 14pt;
+}
+
+
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 /*----------------------------------------------*/
 /*-------------------registrar_repartidor---------------------*/
 /*----------------------------------------------*/
 .main_registrar {
+<<<<<<< HEAD
   overflow-y: scroll;
 }
 
@@ -1217,11 +2397,55 @@ input[type="radio"]:checked ~ label > .estrella {
 
 .dato_usuario_cliente {
   padding-left: 5%;
+=======
+    overflow-y: scroll;
+
+}
+
+.main_registrar h5 {
+    text-align: center;
+}
+.contenedor_registrar {
+    width: 100%;
+}
+.boton_foto_registrar {
+    background-color: #659FFF;
+    color: white;
+    border-radius: 15px;
+}
+.foto_registrar {
+    font-size: 150pt;
+}
+
+.foto_repartidor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.contenedor_fotos_reparto {
+    width: 100%;
+}
+
+.dato_usuario_repatidor {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 15%;
+}
+
+.dato_usuario_repatidor p {
+    padding-left: 7px;
+}
+
+.dato_usuario_cliente {
+    padding-left: 5%;
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 }
 /*----------------------------------------------*/
 /*-------------------registrar_vendedor---------------------*/
 /*----------------------------------------------*/
 .main_vendedor {
+<<<<<<< HEAD
   overflow-y: scroll;
 }
 
@@ -1268,11 +2492,61 @@ input[type="radio"]:checked ~ label > .estrella {
   display: flex;
   flex-direction: column;
   align-items: center;
+=======
+    overflow-y: scroll;
+
+}
+
+.main_vendedor h5 {
+    text-align: center;
+}
+.contenedor_vendedor {
+    width: 100%;
+}
+
+.boton_foto_vendedor {
+    background-color: #659FFF;
+    color: white;
+    border-radius: 15px;
+}
+.foto_vendedor {
+    font-size: 150pt;
+}
+
+.foto_vendedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.contenedor_fotos_vendedor {
+    width: 100%;
+}
+
+.dato_usuario_vendedor {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 15%;
+}
+
+.dato_usuario_vendedor p {
+    padding-left: 7px;
+}
+
+.dato_usuario_cliente {
+    padding-left: 5%;
+}
+.foto_de_vendedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 }
 /*----------------------------------------------*/
 /*-------------------registrar_admin---------------------*/
 /*----------------------------------------------*/
 .main_admin {
+<<<<<<< HEAD
   overflow-y: scroll;
 }
 
@@ -1307,11 +2581,49 @@ input[type="radio"]:checked ~ label > .estrella {
   display: flex;
   flex-direction: column;
   align-items: center;
+=======
+    overflow-y: scroll;
+
+}
+
+.main_admin h5 {
+    text-align: center;
+}
+.contenedor_admin {
+    width: 100%;
+}
+
+.boton_foto_admin {
+    background-color: #659FFF;
+    color: white;
+    border-radius: 15px;
+}
+.foto_admin {
+    font-size: 150pt;
+}
+
+.contenedor_fotos_admin {
+    width: 100%;
+}
+
+.dato_usuario_admin {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 15%;
+}
+
+.foto_de_admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 }
 /*----------------------------------------------*/
 /*-------------------Comentarios---------------------*/
 /*----------------------------------------------*/
 
+<<<<<<< HEAD
 .Comentarios {
   background-color: #eef9ff;
   border: 1px solid black;
@@ -1373,10 +2685,80 @@ a {
   height: 100%;
 }
 
+=======
+.Comentarios{
+    background-color: #EEF9FF;
+    border: 1px solid black;
+    margin-top: 5px;
+    border-radius: 15px;
+    height: auto;
+    width: 100%;
+}
+.titulo_contactenos{
+        font-size: 14pt;
+}
+.contenedor_borde{
+
+    height: 100% ;
+}
+
+.descripcion_comentarios{
+    padding-right: 5% !important;
+    padding-left: 5% !important;
+    height: 100%;
+    display: flex;
+    justify-content: left;
+}
+.descripcion_comentarios .row h5{
+    width: 100%;
+    text-align: left;
+}
+.borde{
+    border-bottom: 1px solid black;
+    
+}
+
+a{
+    color:white;
+}
+
+
+/*----------------------------------------------*/
+/*-------------------admin_inicio---------------------*/
+/*----------------------------------------------*/
+.admin_incio{
+    background-color: #EEF9FF;
+    border: 1px solid black;
+    margin-top: 5px;
+    border-radius: 15px;
+    height: 100%;
+    width: 100%;
+}
+.descripcion_admin_inicio{
+    padding-right: 5% !important;
+    padding-left: 5% !important;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+.descripcion_admin_inicio .row h5{
+    width: 100%;
+    text-align: center;
+}
+
+.contenedor_borde_admin_incio{
+    
+    height: 100%;
+}
+
+
+
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 /*---------------------------------------------------*/
 /*-------------------categoria-----------------*/
 /*---------------------------------------------------*/
 
+<<<<<<< HEAD
 .texto-bool-verdad {
   color: #255e11;
 }
@@ -1508,12 +2890,151 @@ tbody tr {
   display: flex;
   flex-direction: column;
   align-items: center;
+=======
+.texto-bool-verdad{
+    color: #255E11;
+}
+
+.texto-bool-falso{
+    color: #5E1123;
+}
+
+.perfil-img{
+    background-color: #B2EDFF;
+    border-radius: 200px;
+}
+
+.img-simulada{
+    background-color: #D4EFFE;
+    width: 131px;
+    height: 95px;
+}
+
+tbody tr{
+    background-color: #faf7f7;
+    border-radius: 15px;
+    
+}
+
+.wrapper{
+    max-height: 150px;
+    display: flex;
+
+    overflow-x: scroll;
+}
+
+.imagen-categoria{
+    width: 150px;
+    height: 95px;
+    border-radius: 15px;
+
+    object-fit: cover;
+}
+
+.detalle-producto-individual{
+    background-color: #faf7f7;
+    border-radius: 15px;
+
+    width: 200px;
+    height: auto;
+    
+}
+
+.boton-perfil{
+    margin-bottom: 40px;
+}
+
+.abajo-alineado{
+    bottom: 27%;
+    right: 2%;
+}
+
+.wrap2 { 
+    width:150px;
+    height: 100px;
+    overflow-y: auto;
+}
+
+
+/*----------------------------------------------*/
+/*-------------------Registrar---------------------*/
+/*----------------------------------------------*/
+.contactenos{
+    background-color: #EEF9FF;
+    border: 1px solid black;
+    margin-top: 5px;
+    border-radius: 15px;
+    height: 100%;
+    width: 100%;
+}
+.titulo_contactenos{
+        font-size: 14pt;
+}
+.contenedor_borde{
+    
+    height: 100%;
+}
+.main_contactenos {
+   padding-left:10% !important;
+   padding-right:10% !important;
+
+}
+.descripcion_contactenos{
+    padding-right: 5% !important;
+    padding-left: 5% !important;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+.descripcion_contactenos .row h5{
+    width: 100%;
+    text-align: center;
+}
+
+.main_admin {
+    overflow-y: scroll;
+    height: 80%;
+}
+
+.main_admin h5 {
+    text-align: center;
+}
+.contenedor_admin {
+    width: 100%;
+}
+
+.boton_foto_admin {
+    background-color: #659FFF;
+    color: white;
+    border-radius: 15px;
+}
+.foto_admin {
+    font-size: 150pt;
+}
+
+.contenedor_fotos_admin {
+    width: 100%;
+}
+
+.dato_usuario_admin {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 15%;
+}
+
+.foto_de_admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 }
 
 /*----------------------------------------------*/
 /*-------------------Perfil vendedor---------------------*/
 /*----------------------------------------------*/
 .main_vendedor {
+<<<<<<< HEAD
   overflow-y: scroll;
   height: 80%;
 }
@@ -1585,12 +3106,86 @@ tbody tr {
 
 .datos_usuario_perfil_cliente h6 {
   text-align: center;
+=======
+    overflow-y: scroll;
+    height: 80%;
+}
+
+.main_vendedor h5 {
+    text-align: center;
+}
+.contenedor_vendedor {
+    width: 100%;
+}
+
+.boton_foto_vendedor {
+    background-color: #659FFF;
+    color: white;
+    border-radius: 15px;
+}
+.foto_vendedor {
+    font-size: 150pt;
+}
+
+.foto_vendedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.contenedor_fotos_vendedor {
+    width: 100%;
+}
+
+.dato_usuario_vendedor {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 0%;
+}
+
+.dato_usuario_vendedor p {
+    padding-left: 7px;
+}
+
+.dato_usuario_cliente {
+    padding-left: 5%;
+}
+.foto_de_vendedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ampliador_perfil_vendedor .col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ampliador_perfil_vendedor .col i{
+    font-size: 150px;
+}
+
+.contenedor_datos_repartidor{
+    width: 100%;
+}
+
+.datos_usuario_perfil_cliente {
+    display: flex;
+    flex-direction: column;
+}
+
+.datos_usuario_perfil_cliente h6 {
+    text-align: center;
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 }
 
 /*----------------------------------------------*/
 /*-----------------Metodo de pago-------------------*/
 /*----------------------------------------------*/
 #titulo {
+<<<<<<< HEAD
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1656,12 +3251,80 @@ tbody tr {
 
 .imagen_product {
   margin-bottom: 8%;
+=======
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.metodo-pago {
+    overflow-y: scroll;
+    height: 80%;
+}
+
+.contenedor-datos-metodo {
+    padding: 0px !important;
+    flex-direction: column;
+    width: 100% !important;
+    height: 75%;
+    margin: 0px !important;
+    display: flex;
+}
+
+.contenedor-general-metodo{
+    height: 75%;
+    width: 100% !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    display: flex;
+}
+
+.tabla-tarjetas{
+    justify-content: center;
+}
+
+#contorno{
+    border: #8DC5FF 1px solid;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+#boton_descartar{
+    background: #9A1635;
+    color: white;
+    border-radius: 15px;
+}
+
+#boton_guardar{
+    background: #699AF6;
+    color: white;
+    border-radius: 15px;
+}
+
+.main_favo{
+    flex: 1 0 auto;
+    height:85%;
+    margin-bottom:50%;
+}
+
+.a_a a{
+    color:black;
+}
+
+.imagen_product{
+    margin-bottom:8%;
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 }
 
 /*----------------------------------------------*/
 /*-------------------Responsive---------------------*/
 /*----------------------------------------------*/
 
+<<<<<<< HEAD
 /*Responsive para el sidebar*/
 
 @media (max-width: 1000px) {
@@ -1866,10 +3529,239 @@ tbody tr {
   .total_carrito {
     height: 20% !important;
   }
+=======
+
+
+/*Responsive para el sidebar*/
+
+@media (max-width: 1000px) {
+
+    .contenedor-datos{
+        position: absolute;
+        padding-bottom:25%;
+    
+    }
+
+    .sidenav{
+        position: absolute !important;
+    }
+
+    .encabezado img{
+        height:50%;
+        margin-left: 10px;
+    }
+
+    .encabezado{
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .encabezado .boton_iniciar_sesion{
+        width: auto;
+        margin-left: 10px;
+        font-size: 16pt;
+        height: 30px;
+        display: flex;
+        align-items: center;
+    }
+
+    .Comentarios{
+        height:85%;
+        margin-bottom:85%;
+    }
+
+    .pedido_detalle{
+        z-index:0;
+        margin-bottom:98%;
+    }
+
+
+
+}
+
+
+
+/*Responsive para el footer*/
+@media (max-width: 1000px) {
+
+    .page-footer{
+        height: auto;
+        margin: 0px !important;
+        padding: 0px;
+        width: 100% !important;
+        position:fixed;
+       bottom:0 !important;
+    }
+    .page-footer .row{
+        height: auto;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .redes_footer ul{
+        flex-direction: column;
+        height: 70% !important;
+    }
+       
+    .redes_footer ul li i{
+        font-size: 30pt;
+        justify-content: space-between;
+    }
+
+    .footer_otros{
+        display: flex;
+        flex-direction: column-reverse;
+        width: 100%;
+        justify-content: flex-start;
+        position: relative;
+    }
+
+    .footer_otros h4{
+        font-size: 20pt;
+    }
+
+    .footer_otros h6{
+        font-size: 14pt;
+    }
+
+    .logo_copy_footer{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: auto;
+        width: 70% !important;
+    }
+
+    .logo_copy_footer img{
+        width: 70%;
+    }
+
+    .redes_footer{
+        margin-right: -10%;
+    }
+
+    .footer_otros .mapa-footer ul{
+        margin: 0px;
+        height: 80%;
+    }
+
+    .mapa-footer{
+        justify-content: flex-start;
+        width: 50% !important;
+        margin-left: 30% !important;
+    }
+
+    .mapa-footer ul li h5{
+        font-size: 14pt;
+    }
+
+}
+
+
+/*-----Responsive carrito de compras*/
+
+@media (max-width:1000px) {
+
+
+    .contenedor-datos {
+        position: relative;
+        width: 100% !important;
+        margin: 0px !important;
+    }
+
+    .producto_carrito {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    .total_carrito {
+        margin-top: 20px;
+        height: 50px !important;
+        width:100%;
+    }
+
+    .descripcion_producto_carrito {
+        height: 30%;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .producto_carrito .row {
+        height: auto !important;
+    }
+
+    .descripcion_producto_carrito .row {
+        margin-bottom: 0px !important;
+    }
+
+    .main_carrito .center-align .contenedor_carrito {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .cp_total_carrito {
+        flex-direction: row;
+        height: auto !important;
+        padding-top: 5%;
+    }
+
+    .listado_productos {
+        margin-top: -80px;
+    }
+
+    .siguiente_carrito{
+        margin-top:10px;
+    }
+
+    .main_confirmar {
+
+        overflow:hidden;
+    }
+
+  .valign-wrapper{
+      margin-bottom:5%;
+  }
+
+  .p_e{
+      z-index:0;
+  }
+  
+}
+
+
+
+/*-----Responsive carrito de compras*/
+
+@media (max-width:1000px) {
+    .contenedor_confirmacion {
+        overflow-y: scroll;
+        margin-bottom:40%;
+      
+    }
+
+
+
+    .contenedor-general {
+        height: 85%;
+    }
+
+    .boton_comprar_confirmar {
+        width: 80%;
+    }
+
+    .total_carrito{
+        height:20% !important;
+    }
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 }
 
 /*Responsive para el perfil Vendedor y repartidor*/
 
+<<<<<<< HEAD
 @media (max-width: 1000px) {
   .contenedor_titulo_direccion {
     flex-direction: column;
@@ -1891,10 +3783,38 @@ tbody tr {
   }
 }
 
+=======
+
+@media (max-width:1000px) {
+    .contenedor_titulo_direccion {
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    .add_direccion_cliente {
+        justify-content: center;
+    }
+
+    .opciones_modal_perfil_cliente {
+        width: 100%;
+        margin: 0px;
+        margin-bottom: 10px;
+    }
+
+    .dato_usuario_cliente {
+        padding-left: 5%;
+    }
+
+
+}
+
+
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 /*----------------------------------------------*/
 /*-------------------Login y recuperar contra---------------------*/
 /*----------------------------------------------*/
 #r-login {
+<<<<<<< HEAD
   width: 330px;
   height: 300px;
 }
@@ -1954,11 +3874,73 @@ tbody tr {
   display: flex;
   flex-direction: column;
   width: 100% !important;
+=======
+    width: 330px;
+    height: 300px;
+}
+
+#texto-card-login {
+    text-align: center;
+}
+
+#texto-card-login-2 {
+    line-height: 0px;
+}
+
+#titulo-login {
+    font-size: 20px;
+}
+
+#card-login {
+    width: 330px;
+    height: 435px;
+    background: #EEF9FF;
+    padding-top: 1px;
+}
+
+#card-recu {
+    width: 330px;
+    height: 460px;
+    background: #E6E6E6;
+    padding-top: 1px;
+}
+
+#card-recu2 {
+    width: 330px;
+    height: 310px;
+    background: #E6E6E6;
+    padding-top: 1px;
+}
+
+#boton_ingresar {
+    width: 150px;
+    height: 35px;
+
+    background: #659FFF;
+    border-radius: 15px;
+    z-index: 0;
+}
+
+.inicio-no-login {
+    overflow-y: scroll;
+    display: flex;
+    justify-content: center;
+    height: 80%;
+    padding-bottom: 10px !important;
+}
+
+.contenedor-datos-nologin {
+    padding: 0px !important;
+    display: flex;
+    flex-direction: column;
+    width: 100% !important;
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 }
 
 /*----------------------------------------------*/
 /*-------------------Registrar---------------------*/
 /*----------------------------------------------*/
+<<<<<<< HEAD
 .contactenos {
   background-color: #eef9ff;
   border: 1px solid black;
@@ -2025,12 +4007,83 @@ tbody tr {
   display: flex;
   flex-direction: column;
   align-items: center;
+=======
+.contactenos{
+    background-color: #EEF9FF;
+    border: 1px solid black;
+    margin-top: 5px;
+    border-radius: 15px;
+    height: 100%;
+    width: 100%;
+}
+.titulo_contactenos{
+        font-size: 14pt;
+}
+.contenedor_borde{
+    
+    height: 100%;
+}
+.main_contactenos {
+   padding-left:10% !important;
+   padding-right:10% !important;
+
+}
+.descripcion_contactenos{
+    padding-right: 5% !important;
+    padding-left: 5% !important;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+.descripcion_contactenos .row h5{
+    width: 100%;
+    text-align: center;
+}
+
+.main_admin {
+    overflow-y: scroll;
+    height: 80%;
+}
+
+.main_admin h5 {
+    text-align: center;
+}
+.contenedor_admin {
+    width: 100%;
+}
+
+.boton_foto_admin {
+    background-color: #659FFF;
+    color: white;
+    border-radius: 15px;
+}
+.foto_admin {
+    font-size: 150pt;
+}
+
+.contenedor_fotos_admin {
+    width: 100%;
+}
+
+.dato_usuario_admin {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 15%;
+}
+
+.foto_de_admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 }
 
 /*----------------------------------------------*/
 /*-------------------Perfil vendedor---------------------*/
 /*----------------------------------------------*/
 .main_vendedor {
+<<<<<<< HEAD
   overflow-y: scroll;
   height: 80%;
 }
@@ -2102,12 +4155,86 @@ tbody tr {
 
 .datos_usuario_perfil_cliente h6 {
   text-align: center;
+=======
+    overflow-y: scroll;
+    height: 80%;
+}
+
+.main_vendedor h5 {
+    text-align: center;
+}
+.contenedor_vendedor {
+    width: 100%;
+}
+
+.boton_foto_vendedor {
+    background-color: #659FFF;
+    color: white;
+    border-radius: 15px;
+}
+.foto_vendedor {
+    font-size: 150pt;
+}
+
+.foto_vendedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.contenedor_fotos_vendedor {
+    width: 100%;
+}
+
+.dato_usuario_vendedor {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 0%;
+}
+
+.dato_usuario_vendedor p {
+    padding-left: 7px;
+}
+
+.dato_usuario_cliente {
+    padding-left: 5%;
+}
+.foto_de_vendedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ampliador_perfil_vendedor .col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ampliador_perfil_vendedor .col i{
+    font-size: 150px;
+}
+
+.contenedor_datos_repartidor{
+    width: 100%;
+}
+
+.datos_usuario_perfil_cliente {
+    display: flex;
+    flex-direction: column;
+}
+
+.datos_usuario_perfil_cliente h6 {
+    text-align: center;
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
 }
 
 /*----------------------------------------------*/
 /*-----------------Metodo de pago-------------------*/
 /*----------------------------------------------*/
 #titulo {
+<<<<<<< HEAD
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2178,10 +4305,36 @@ tbody tr {
 
   .contenedor-general-metodo {
     height: 100%;
+=======
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.metodo-pago {
+    overflow-y: scroll;
+    height: 80%;
+}
+
+.contenedor-datos-metodo {
+    padding: 0px !important;
+    flex-direction: column;
+    width: 100% !important;
+    height: 75%;
+    margin: 0px !important;
+    display: flex;
+}
+
+.contenedor-general-metodo{
+    height: 75%;
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
     width: 100% !important;
     padding: 0px !important;
     margin: 0px !important;
     display: flex;
+<<<<<<< HEAD
   }
 }
 
@@ -2290,3 +4443,156 @@ tbody tr {
     height: 84%;
   }
 }
+=======
+}
+
+.tabla-tarjetas{
+    justify-content: center;
+}
+
+#contorno{
+    border: #8DC5FF 1px solid;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+#boton_descartar{
+    background: #9A1635;
+    color: white;
+    border-radius: 15px;
+}
+
+#boton_guardar{
+    background: #699AF6;
+    color: white;
+    border-radius: 15px;
+}
+
+@media (max-width: 1000px){
+    .inicio-no-login{
+        height: 80%;
+        position: relative;
+    }
+
+    .contenedor-datos-nologin{
+        position: relative;
+        width: 100%;
+    }
+
+    .metodo-pago{
+        height: 100%;
+    }
+
+    .contenedor-general-metodo {
+        height: 100%;
+        width: 100% !important;
+        padding: 0px !important;
+        margin: 0px !important;
+        display: flex;
+    }
+}
+
+
+/*Responsive para la listas de paquetes pendientes - Repartidor*/
+
+@media (max-width:1000px) {
+
+    .main_paquetes_pendientes {
+        padding-left: 1%;
+
+    }
+
+    .contenedor-paquetes {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .titulos_paquetes_pendientes {
+        flex-direction: column;
+        width: 25%;
+        height: 80%;
+        margin-top: 10%;
+    }
+
+    .contacto_pendiente {
+        margin-bottom: 10px;
+    }
+
+    .listado_paquetes_pendientes_nc {
+        overflow-x: scroll;
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .card_paquete_pendiente {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 5%;
+        margin-left: 5px !important;
+    }
+
+    .card_paquete_pendiente .col a {
+        display: flex;
+        justify-content: center;
+    }
+
+    .card_paquete_pendiente .col h6 {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+
+    .completar_entrega_pendiente {
+        width: 80%;
+        margin-left: 10%;
+        margin-bottom: 10%;
+    }
+
+    .contacto_pendiente {
+        margin-top: 20% !important;
+    }
+
+    .producto_pendiente {
+        margin-top: 20% !important;
+    }
+
+
+    .titulos_paquetes_pendientes h6 {
+        width: 100% !important;
+        margin: 0px;
+    }
+
+    .contenedor_modal_pendientes .row {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .descripcion_info_producto_pendiente_modal .row {
+        display: flex;
+        flex-direction: row;
+    }
+
+
+}
+
+/*Responsive estadistica*/
+@media (max-width:1000px) {
+
+    .ventas_estadistica_vendedor {
+        width: 80%;
+    }
+
+    .main_estadistica_vendedor .row .center-align {
+        margin-top: 20px;
+    }
+}
+
+>>>>>>> 061684dbb67bf22f1de24e1ba1c63ec16ece1f24
