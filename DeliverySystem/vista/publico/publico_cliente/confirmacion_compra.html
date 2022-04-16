@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!--Lenguaje de la página-->
+<html lang="es">
+<html>
+
+<head>
+    <meta charset="uft=8">
+    <!--Importar iconos-->
+    <link href="../../../recursos/css/icons.css" rel="stylesheet">
+    <!--Importar archivos CSS-->
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_publico.css" media="screen,projection" />
+
+    <!--Optimización para mobiles-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <!--Marco general-->
+    <div class="row contenedor-general">
+        <!--Sidebar, opciones para los usuarios-->
+        <ul id="slide-out" class="sidenav sidenav-fixed">
+            <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
+                        class="material-icons medium">home</i></a></li>
+            <li><a href="perfil_cliente.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
+                        class="material-icons medium">account_circle</i></a></li>
+            <li><a href="pedidos_cliente.html" class="tooltipped" data-position="right" data-tooltip="Compras"><i
+                        class="material-icons medium">shopping_basket</i></a></li>
+            <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Categoria"><i
+                        class="material-icons medium">format_list_bulleted</i></a></li>
+            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Cerrar sesión"><i
+                        class="material-icons medium">arrow_back</i></a></li>
+        </ul>
+        <!--Contenedor de datos-->
+        <div class="contenedor-datos">
+            <!--Encabezado-->
+            <header class="encabezado">
+                <a href="#" data-target="slide-out"
+                    class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
+                        class="material-icons">menu</i></a>
+                <img src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png" alt="">
+                <a class="waves-effect waves-light btn boton_iniciar_sesion">Log In</a>
+            </header>
+            <!--Información de la página-->
+            <main class="center-align main_confirmar">
+                <div class=" encabezado_confirmar">
+                    <!--Regresar al carrito-->
+                    <a href="carrito.html"><i class="material-icons">keyboard_arrow_left</i></a>
+                    <!--Titulo de la página-->
+                    <h5>Confirmación de compra </h5>
+                </div>
+                <!--Contenedor general de la compra-->
+                <div class="row contenedor_confirmacion">
+                    <!--Datos del cliente-->
+                    <div class="col l4 m6 s12">
+                        <h6>Datos del cliente</h6>
+                        <div class="contenedor_datos_confirmacion">
+                            <div class="dato_confirmacion">
+                                <h6>Nombre: </h6>
+                                <p>Nombre del cliente</p>
+                            </div>
+                            <div class="dato_confirmacion">
+                                <h6>Correo: </h6>
+                                <p>example@example.com</p>
+                            </div>
+                            <div class="dato_confirmacion">
+                                <h6>Teléfono: </h6>
+                                <p>1234-5678</p>
+                            </div>
+                            <div class="direccion_confirmar ">
+                                <h6>Selecciona la dirección de envío</h6>
+                                <select>
+                                    <option value="1">Dirección 1</option>
+                                    <option value="2">Dirección 2</option>
+                                    <option value="3">Dirección 3</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Método de pago-->
+                    <div class="col l8 m6 s12 datos_pago_confirmar">
+                        <div class="metodo_pago_confirmar">
+                            <h6>Selecciona el método de pago</h6>
+                            <select>
+                                <option value="1">Tarjeta de crédito</option>
+                                <option value="2">Efectivo </option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <form action="">
+                                <div class="col l6 m6 s12">
+                                    <div class="input-field col s12">
+                                        <input placeholder="Nombre..." id="first_name" type="text" class="validate">
+                                        <label for="first_name">Nombre de titular</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input placeholder="Número..." id="first_name" type="number" class="validate">
+                                        <label for="first_name">Número de la tarjeta</label>
+                                    </div>
+                                </div>
+                                <div class="col l6 m6 s12">
+                                    <div class="input-field col s12">
+                                        <input placeholder="ccv..." id="first_name" type="number" class="validate">
+                                        <label for="first_name">CCV</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input placeholder="Fecha..." id="first_name" type="date" class="validate">
+                                        <label for="first_name">Fecha de vencimiento</label>
+                                    </div>
+                                </div>
+                                <div class="col l12 m12 s12 center-align">
+                                    <form action="#">
+                                        <p>
+                                            <label>
+                                                <input name="group1" type="radio" class="with-gap " />
+                                                <span class="agregar_tarjeta_confirmar">Agregar la tarjeta a mi
+                                                    cuenta</span>
+                                            </label>
+                                        </p>
+                                    </form>
+                                    <h6 class="Total_pagar_confirmar"> Total a pagar <p>$256.96</p>
+                                    </h6>
+                                    <!--Comprar-->
+                                    <button class="btn boton_comprar_confirmar">Comprar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!--Footer-->
+    <footer class="page-footer">
+        <div class="row">
+            <!--enlace de redes sociales-->
+            <div class="col l12 m6 s3 redes_footer center-align">
+                <ul>
+                    <li>
+                        <a href=""><i class="material-icons medium">facebook</i></a>
+                    </li>
+                    <li>
+                        <a href=""><img
+                                src="../../../recursos/img/publico/clientes/footer/instagram_old_50px.png"></i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="material-icons medium">whatsapp</i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="material-icons medium">email</i></a>
+                    </li>
+                </ul>
+            </div>
+            <!--Contenedor para el mapa y el copyright-->
+            <div class="footer_otros">
+                <div class="col l6 m9 s12 logo_copy_footer">
+                    <img src="../../../recursos/img/publico/clientes/modals/logo.png" alt="">
+                    <h6>© 2022 DeliverySystem</h6>
+                </div>
+                <div class="col l6 m9 s12 mapa-footer">
+                    <ul>
+                        <li>
+                            <h5>Información pública</h5>
+                        </li>
+                        <li><a href="quienes somos.html">Quiénes somos</a></li>
+                        <li><a href="contactenos.html">Contáctanos</a></li>
+                        <li><a href="mision_vision.html">Misión y visión</a></li>
+                        <li><a href="terminos.html">Términos y condiciones</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--Modal de confirmacion-->
+    <div id="login_necesario" class="modal">
+        <div class="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
+    <!--Importar archivos JavaScrip-->
+    <script type="text/javascript" src="../../../js/materialize.min.js"></script>
+    <script type="text/javascript" src="../../../controladores/publico/activation.js"></script>
+</body>
+
+</html>
