@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--Lenguaje de la página-->
+<html lang="es">
+<html>
+
+<head>
+    <meta charset="uft=8">
+    <!--Importar iconos-->
+    <link href="../../../recursos/css/icons.css" rel="stylesheet">
+    <!--Importar archivos CSS-->
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_privado.css" media="screen,projection" />
+
+    <!--Optimización para mobiles-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <!--Marco general-->
+    <div class="row contenedor-general">
+        <!--Barra lateral, opciones para los usuarios-->
+        <ul id="slide-out" class="sidenav sidenav-fixed">
+            <li>
+                <a href="index.html" class="tooltipped" data-position="right" data-tooltip="Hogar">
+                    <i class="material-icons medium">home</i>
+                </a>
+            </li>
+        </ul>
+        <!--Contenedor de datos-->
+        <div class="contenedor-datos-nologin">
+            <!--Encabezado-->
+            <header class="encabezado">
+                <a href="#" data-target="slide-out"
+                    class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
+                        class="material-icons">menu</i></a>
+                <img src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png" alt="">
+                <a class="waves-effect waves-light btn boton_iniciar_sesion"
+                    href="../Cliente/Registrar_no_login.html">Registrarse</a>
+            </header>
+            <!--Información de la página-->
+            <main class="inicio-no-login">
+                <div class="container">
+                    <div class="row ">
+                        <div class="col s12 m12 l12 center-align">
+                            <img src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png">
+                        </div>
+                    </div>
+                    <div class="row center-align" id="r-login">
+                        <div class="col s12 m12 l12">
+                            <div class="card-panel" id="card-login">
+                                <form action="">
+                                    <div class="row n_l">
+                                        <p id="titulo-login">Inicio de sesión</p>
+                                        <p id="texto-card-login-2">Nombre de Usuario</p>
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix">account_circle</i>
+                                            <input id="icon_prefix" type="text" class="validate">
+                                            <label for="icon_prefix">Escribe tu Usuario</label>
+                                        </div>
+                                    </div>
+                                    <div class="row n_l">
+                                        <p id="texto-card-login-2">Contraseña</p>
+                                        <div class="input-field col s11">
+                                            <i class=" material-icons prefix">vpn_key</i>
+                                            <input id="password" type="password" class="validate">
+                                            <label for="password">************</label>
+                                            <i class="material-icons prefix">remove_red_eye</i>
+                                        </div>
+                                    </div>
+                                    <div id="texto-card-login">
+                                        <a href="../Cliente/Recuperar_contra1.html">¿Olvidaste tu contraseña?</a>
+                                        <p>
+                                            <label>
+                                                <input type="checkbox" />
+                                                <span>Recordarme</span>
+                                            </label>
+                                        </p>
+                                        <button class="waves-effect waves-light btn"
+                                            id="boton_ingresar">Ingresar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!--Footer-->
+    <footer class="page-footer">
+        <!--Contenedor para el mapa y el copyright-->
+        <div class="footer_otros">
+            <div class="col l6 m9 s12 logo_copy_footer">
+                <img src="../../../recursos/img/publico/clientes/modals/logo.png" alt="">
+                <h6>© 2022 DeliverySystem</h6>
+            </div>
+        </div>
+    </footer>
+    <!--Importar archivos JavaScrip-->
+    <script type="text/javascript" src="../../../js/materialize.min.js"></script>
+    <script type="text/javascript" src="../../../controladores/publico/activation.js"></script>
+</body>
+
+</html>

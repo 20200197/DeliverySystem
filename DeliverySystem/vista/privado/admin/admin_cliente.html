@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<!--Lenguaje de la página-->
+<html lang="es">
+<html>
+
+<head>
+    <meta charset="uft=8">
+    <!--Importar iconos-->
+    <link href="../../../recursos/css/icons.css" rel="stylesheet">
+    <!--Importar archivos CSS-->
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_privado.css" media="screen,projection" />
+
+    <!--Optimización para mobiles-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <!--Marco general-->
+    <div class="row contenedor-general">
+        <!--Barra lateral, opciones para los usuarios-->
+        <ul id="slide-out" class="sidenav sidenav-fixed">
+            <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
+                        class="material-icons medium ">home</i></a></li>
+            <li><a href="perfil.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
+                        class="material-icons medium">account_circle</i></a></li>
+            <li><a href="admin_producto.html" class="tooltipped" data-position="right" data-tooltip="Productos"><i
+                        class="material-icons medium">import_contacts</i></a></li>
+            <li><a href="admin_categoria.html" class="tooltipped" data-position="right" data-tooltip="Categoria"><i
+                        class="material-icons medium">format_list_bulleted</i></a></li>
+            <li><a href="admin_vendedor.html" class="tooltipped" data-position="right" data-tooltip="Vendedores"><i
+                        class="material-icons medium">people</i></a></li>
+            <li><a href="admin_distribuidor.html" class="tooltipped" data-position="right"
+                    data-tooltip="Repartidores"><i class="material-icons medium">motorcycle</i></a></li>
+            <li><a href="admin_cliente.html" class="tooltipped" data-position="right" data-tooltip="Clientes"><i
+                        class="material-icons medium">wc</i></a></li>
+            <li><a href="admin_producto.html" class="tooltipped" data-position="right" data-tooltip="Productos"><i
+                        class="material-icons medium">import_contacts</i></a></li>
+            <li><a href="admin_entrega.html" class="tooltipped" data-position="right" data-tooltip="Reparto"><i
+                        class="material-icons medium">description</i></a></li>
+            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Cerrar sesión"><i
+                        class="material-icons medium">arrow_back</i></a></li>
+        </ul>
+        <!--Contenedor de datos-->
+        <div class="contenedor-datos">
+            <!--Encabezado-->
+            <header class="encabezado">
+                <a href="#" data-target="slide-out"
+                    class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
+                        class="material-icons">menu</i></a>
+                <img src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
+                <a class="waves-effect waves-light btn boton_iniciar_sesion">Log In</a>
+            </header>
+            <!--Información de la página-->
+            <main>
+                <!--Titulo-->
+                <div class="row ">
+                    <h5 class="center-align">Administrar cliente</h5>
+                </div>
+                <div class="row ">
+                    <!--Contenedor-->
+                    <div class="row administrar_cate_o ">
+                        <div class="col s12 m12 l12">
+                            <div class="row">
+                            </div>
+                            <div class="row">
+                            </div>
+                            <div class="row"></div>
+                        </div>
+                        <div class="col s12 l12 m12">
+                            <!--Tabla-->
+                            <table class="responsive-table" id="table">
+                                <thead>
+                                    <tr>
+                                        <!--Columnas-->
+                                        <th>Nombre:</th>
+                                        <th>Apellido:</th>
+                                        <th>Dui:</th>
+                                        <th>Correo:</th>
+                                        <th>Usuario:</th>
+                                        <th>Clave:</th>
+                                        <th>Status:</th>
+                                        <th>Fecha registro: </th>
+                                        <th>Télefono:</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <!--Datos de tabla-->
+                                <tbody>
+                                    <tr>
+                                        <td>Nombre cliente 1</td>
+                                        <td>Apellido cliente 1 </td>
+                                        <td>Dui cliente 1</td>
+                                        <td>Correo cliente 1</td>
+                                        <td>Usuario cliente 1</td>
+                                        <td>Clave usuario 1</td>
+                                        <td>Status cliente 1</td>
+                                        <td>Fecha registro 1 </td>
+                                        <td>Télefono 1</td>
+
+                                        <td><a class="btn-flat boton_eliminar_tabl modal-trigger"
+                                                href="#modal_eliminar_cliente"><i
+                                                    class=" material-icons small ">delete</i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nombre cliente 1</td>
+                                        <td>Apellido cliente 2</td>
+                                        <td>Dui cliente 2 </td>
+                                        <td>Correo cliente 1 </td>
+                                        <td>Usuario cliente 2 </td>
+                                        <td>Clave usuario 2 </td>
+                                        <td>Status cliente 2 </td>
+                                        <td>Fecha registro 2</td>
+                                        <td>Télefono 2 </td>
+                                        <td><a class="btn-flat boton_eliminar_tabl modal-trigger"
+                                                href="#modal_eliminar_cliente"><i
+                                                    class=" material-icons small ">delete</i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nombre cliente 3 </td>
+                                        <td>Apellido cliente 3</td>
+                                        <td>Dui cliente 3 </td>
+                                        <td>Correo cliente 3 </td>
+                                        <td>Usuario cliente 3 </td>
+                                        <td>Clave usuario 3</td>
+                                        <td>Status cliente 3 </td>
+                                        <td>Fecha registro 3</td>
+                                        <td>Télefono 3</td>
+                                        <td><a class="btn-flat boton_eliminar_tabl modal-trigger"
+                                                href="#modal_eliminar_cliente"><i
+                                                    class=" material-icons small ">delete</i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nombre cliente 4</td>
+                                        <td>Apellido cliente 4</td>
+                                        <td>Dui cliente 4</td>
+                                        <td>Correo cliente 4</td>
+                                        <td>Usuario cliente 4 </td>
+                                        <td>Clave usuario 4 </td>
+                                        <td>Status cliente 4</td>
+                                        <td> Fecha registro 4 </td>
+                                        <td>Télefono 4 </td>
+                                        <td><a class="btn-flat boton_eliminar_tabl modal-trigger"
+                                                href="#modal_eliminar_cliente"><i
+                                                    class=" material-icons small ">delete</i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nombre cliente 5 </td>
+                                        <td>Apellido cliente 5 </td>
+                                        <td>Dui cliente 5</td>
+                                        <td>Correo cliente 5 </td>
+                                        <td>Usuario cliente 5 </td>
+                                        <td>Clave usuario 5</td>
+                                        <td>Status cliente 5</td>
+                                        <td> Fecha registro 5 </td>
+                                        <td>Télefono 5</td>
+                                        <td><a class="btn-flat boton_eliminar_tabl modal-trigger"
+                                                href="#modal_eliminar_cliente"><i
+                                                    class=" material-icons small ">delete</i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--Modal dar de baja cliente-->
+                    <div id="modal_eliminar_cliente" class="modal">
+                        <div class="modal-content">
+                            <div class="row contorno">
+                                <h5 class="center-align">Dar de baja</h5>
+                                <div class="col s12 m12 l12 imagen_categ">
+                                    <img src="../../../recursos/img/privado/admin/modals/cancel_120px.png">
+                                </div>
+                                <h6 class="center-align">¿Está seguro de querer dar de baja este cliente?</h6>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!"
+                                class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
+                            <a href="#!"
+                                class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Aceptar</a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!--Footer-->
+    <footer class="page-footer">
+        <!--Contenedor para el mapa y el copyright-->
+        <div class="footer_otros">
+            <div class="col l12 m12 s12 logo_copy_footer">
+                <img src="../../../recursos/img/privado/admin/modals/logo.png" alt="">
+                <h6>© 2022 DeliverySystem</h6>
+            </div>
+        </div>
+    </div>
+</footer>
+    <!--Importar archivos JavaScrip-->
+    <script type="text/javascript" src="../../../js/materialize.min.js"></script>
+    <script type="text/javascript" src="../../../controladores/privado/activation.js"></script>
+</body>
+
+</html>
