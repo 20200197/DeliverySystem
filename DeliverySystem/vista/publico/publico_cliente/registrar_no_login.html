@@ -50,53 +50,55 @@
                     </div>
                     <div class="col l7 m7 s12 datos_usuario_perfil_cliente">
                         <h6>Datos personales</h6>
-                        <div class="datos_perfil_cliente">
-                            <div class="input-field col s6">
-                                <input placeholder="Nombre" id="name" type="text" class="validate">
-                                <label for="first_name">Nombre</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input placeholder="Apellido" id="lastname" type="text" class="validate">
-                                <label for="first_name">Apellido</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input placeholder="Número de DUI" id="dui" type="text" class="validate">
-                                <label for="first_name">DUI</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input placeholder="Correo" id="email" type="email" class="validate">
-                                <label for="first_name">Correo</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input placeholder="Telefono" id="Telefono" type="text" class="validate">
-                                <label for="first_name">Telefono</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input placeholder="fecha registro" id="fecha_registro" type="date" class="validate">
-                                <label for="first_name">fecha registro</label>
-                            </div>
-                        </div>
-                        <h6>Datos de tu cuenta</h6>
-                        <div class="contenedor_datos_repartidor">
-                            <div class="dato_usuario_vendedor">
+                        <form action="">
+                            <div class="datos_perfil_cliente">
                                 <div class="input-field col s6">
-                                    <input placeholder="Nombre del usuario administrador" id="Nombre_administrador"
-                                        type="text" class="validate">
-                                    <label for="first_name">Nombre del usuario administrador:</label>
+                                    <input placeholder="Nombre" id="name" type="text" class="validate">
+                                    <label for="first_name">Nombre</label>
                                 </div>
                                 <div class="input-field col s6">
-                                    <input placeholder="********" id="Contraseña" type="password" class="validate">
-                                    <label for="first_name">Contraseña</label>
+                                    <input placeholder="Apellido" id="lastname" type="text" class="validate">
+                                    <label for="first_name">Apellido</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input placeholder="Número de DUI" id="dui" type="text" class="validate">
+                                    <label for="first_name">DUI</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input placeholder="Correo" id="email" type="email" class="validate">
+                                    <label for="first_name">Correo</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input placeholder="Telefono" id="Telefono" type="text" class="validate">
+                                    <label for="first_name">Telefono</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input placeholder="fecha registro" id="fecha_registro" type="date" class="validate">
+                                    <label for="first_name">fecha registro</label>
                                 </div>
                             </div>
-                            <div class="dato_usuario_admin">
+                            <h6>Datos de tu cuenta</h6>
+                            <div class="contenedor_datos_repartidor">
+                                <div class="dato_usuario_vendedor">
+                                    <div class="input-field col s6">
+                                        <input placeholder="Nombre del usuario administrador" id="Nombre_administrador"
+                                            type="text" class="validate">
+                                        <label for="first_name">Nombre del usuario administrador:</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input placeholder="********" id="Contraseña" type="password" class="validate">
+                                        <label for="first_name">Contraseña</label>
+                                    </div>
+                                </div>
+                                <div class="dato_usuario_admin">
+                                </div>
+                                <div class="contenedor_boton_modificar_datos_cliente">
+                                    <button href="#datos-cuenta" class="btn modal-trigger boton_foto_admin" type="submit">
+                                        <i class="material-icons left">edit</i> Guardar
+                                    </button>
+                                </div>
                             </div>
-                            <div class="contenedor_boton_modificar_datos_cliente">
-                                <a href="#datos-cuenta" class="btn modal-trigger boton_foto_admin">
-                                    <i class="material-icons left">edit</i> Guardar
-                                </a>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </main>
