@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<!--Lenguaje de la página-->
+<html lang="es">
+<html>
+
+<head>
+    <meta charset="uft=8">
+    <!--Importar iconos-->
+    <link href="../../../recursos/css/icons.css" rel="stylesheet" />
+    <!--Importar archivos CSS-->
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_publico.css" media="screen,projection" />
+
+    <!--Optimización para mobiles-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <!--Marco general-->
+    <div class="row contenedor-general">
+        <!--Barra lateral, opciones para los usuarios-->
+        <ul id="slide-out" class="sidenav sidenav-fixed">
+            <li>
+                <a href="index.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
+                        class="material-icons medium">home</i></a>
+            </li>
+            <li>
+                <a href="perfil.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
+                        class="material-icons medium">account_circle</i></a>
+            </li>
+            <li>
+                <a href="admin_producto.html" class="tooltipped" data-position="right" data-tooltip="Productos"><i
+                        class="material-icons medium">import_contacts</i></a>
+            </li>
+            <li>
+                <a href="admin_categoria.html" class="tooltipped" data-position="right" data-tooltip="Categoria"><i
+                        class="material-icons medium">format_list_bulleted</i></a>
+            </li>
+            <li>
+                <a href="admin_vendedor.html" class="tooltipped" data-position="right" data-tooltip="Vendedores"><i
+                        class="material-icons medium">people</i></a>
+            </li>
+            <li>
+                <a href="admin_distribuidor.html" class="tooltipped" data-position="right"
+                    data-tooltip="Repartidores"><i class="material-icons medium">motorcycle</i></a>
+            </li>
+            <li>
+                <a href="admin_cliente.html" class="tooltipped" data-position="right" data-tooltip="Clientes"><i
+                        class="material-icons medium">wc</i></a>
+            </li>
+            <li>
+                <a href="admin_producto.html" class="tooltipped" data-position="right" data-tooltip="Productos"><i
+                        class="material-icons medium">import_contacts</i></a>
+            </li>
+            <li>
+                <a href="admin_entrega.html" class="tooltipped" data-position="right" data-tooltip="Reparto"><i
+                        class="material-icons medium">description</i></a>
+            </li>
+            <li>
+                <a href="" class="tooltipped" data-position="right" data-tooltip="Cerrar sesión"><i
+                        class="material-icons medium">arrow_back</i></a>
+            </li>
+        </ul>
+        <!--Contenedor de datos-->
+        <div class="contenedor-datos">
+            <!--Encabezado-->
+            <header class="encabezado">
+                <a href="#" data-target="slide-out"
+                    class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
+                        class="material-icons">menu</i></a>
+                <img src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png" alt="" />
+                <a class="waves-effect waves-light btn boton_iniciar_sesion">Log In</a>
+            </header>
+            <!--Información de la página-->
+            <main class="main_perfil_cliente">
+                <!--Contenedor general de los datos-->
+                <div class="row contenedor_perfil_cliente">
+                    <!--Datos del cliente Foto y direcciones registradas-->
+                    <div class="col l5 m5 s12 foto_direccion_cliente">
+                        <i class="material-icons foto_cliente">account_circle</i>
+                        <form action="#">
+                            <div class="file-field input-field">
+                                <div class="btn boton_cambiar_foto_cliente">
+                                    <span>Cambiar foto</span>
+                                    <input type="file" />
+                                </div>
+                                <div class="file-path-wrapper reducir_place">
+                                    <input class="file-path validate" type="text" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!--Contenedor de las datos escritos del cliente-->
+                    <div class="col l7 m7 s12 datos_usuario_perfil_cliente">
+                        <h6>Tus datos personales</h6>
+                        <div class="datos_perfil_cliente">
+                            <form action="">
+                                <div class="input-field col s6">
+                                    <input placeholder="Nombre" id="name" type="text" class="validate" />
+                                    <label for="first_name">Nombre</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input placeholder="Apellido" id="lastname" type="text" class="validate" />
+                                    <label for="first_name">Apellido</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input placeholder="Número de DUI" id="dui" type="text" class="validate" />
+                                    <label for="first_name">DUI</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input placeholder="Correo" id="email" type="email" class="validate" />
+                                    <label for="first_name">Correo</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input placeholder="Teléfono" id="telefono" type="tel" class="validate" />
+                                    <label for="first_name">Teléfono</label>
+                                </div>
+                                <button ></button>
+                            </form>
+                        </div>
+                        <!--Datos del usuario del cliente-->
+                        <h6>Datos de tu cuenta</h6>
+                        <div class="contenedor_datos_usuario_perfil_cliente">
+                            <div class="dato_usuario_cliente">
+                                <h6>Nombre de usuario:</h6>
+                                <p>Tu_nombre_usuario123</p>
+                            </div>
+                            <div class="dato_usuario_cliente">
+                                <h6>Contraseña:</h6>
+                                <p>***************</p>
+                            </div>
+                            <div class="contenedor_boton_modificar_datos_cliente">
+                                <a href="#datos-cuenta" class="btn modal-trigger boton_cambiar_foto_cliente"><i
+                                        class="material-icons">edit</i> Modificar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!--Footer-->
+    <footer class="page-footer">
+        <!--Contenedor para el mapa y el copyright-->
+        <div class="footer_otros">
+            <div class="col l12 m12 s12 logo_copy_footer">
+                <img src="../../../recursos/img/privado/admin/modals/logo.png" alt="" />
+                <h6>© 2022 DeliverySystem</h6>
+            </div>
+        </div>
+    </footer>
+    >
+    <!--Modals para modificar los datos del perfil-->
+    <!--Añadir nueva dirección-->
+    <div id="direccion_agregar" class="modal">
+        <div class="modal-content">
+            <div class="container center-align">
+                <h4>Escribe la dirección</h4>
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="textarea1" class="materialize-textarea"></textarea>
+                            <label for="textarea1">Dirección</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="opciones_modal_perfil_cliente">
+            <a href="#!" class="btn green modal-close waves-effect waves-green btn-flat"><i
+                    class="material-icons">add_circle_outline</i> Agregar</a>
+
+            <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat"><i
+                    class="material-icons">check_circle</i> Cancelar</a>
+        </div>
+    </div>
+    <!--Modificar dirección-->
+    <div id="direccion_modificar" class="modal">
+        <div class="modal-content">
+            <div class="container center-align">
+                <h4>Escribe la nueva dirección</h4>
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="textarea1" class="materialize-textarea"></textarea>
+                            <label for="textarea1">Dirección</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="opciones_modal_perfil_cliente">
+            <a href="#!" class="btn green modal-close waves-effect waves-green btn-flat"><i
+                    class="material-icons left">edit</i> Modificar</a>
+            <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat"><i
+                    class="material-icons">check_circle</i> Cancelar</a>
+        </div>
+    </div>
+    <!--Eliminar dirección-->
+    <div id="eliminar_direccion" class="modal">
+        <div class="modal-content">
+            <div class="container center-align">
+                <h4>Eliminar dirección</h4>
+                <p>Estás a punto de eliminar una dirección de tu perfil</p>
+                <p>¿Eliminar?</p>
+            </div>
+            <div class="opciones_modal_perfil_cliente">
+                <a href="#!" class="btn red modal-close waves-effect waves-green btn-flat"><i
+                        class="material-icons">delete</i> Eliminar</a>
+                <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat"><i
+                        class="material-icons">check_circle</i> Cancelar</a>
+            </div>
+        </div>
+    </div>
+    <!--Datos de la cuenta -->
+    <div id="datos-cuenta" class="modal">
+        <div class="modal-content center-align">
+            <h4>Modificar datos de la cuenta</h4>
+            <div class="row">
+                <div class="input-field col l6 m6 s12">
+                    <input placeholder="Nombre de usuario" id="usuario" type="text" class="validate" />
+                    <label for="first_name">Nombre de usuario</label>
+                </div>
+                <div class="input-field col l6 m6 s12">
+                    <input placeholder="***********" id="clave" type="password" class="validate" />
+                    <label for="last_name">Contraseña</label>
+                </div>
+                <div class="opciones_modal_perfil_cliente">
+                    <a href="#!" class="btn green modal-close waves-effect waves-green btn-flat"><i
+                            class="material-icons">edit</i> Modificar</a>
+                    <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat"><i
+                            class="material-icons">check_circle</i> Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Importar archivos JavaScrip-->
+    <script type="text/javascript" src="../../../js/materialize.min.js"></script>
+    <script type="text/javascript" src="../../../controladores/publico/activation.js"></script>
+</body>
+
+</html>
+
+</html>
