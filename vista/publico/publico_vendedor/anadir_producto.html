@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<!--Lenguaje de la página-->
+<html lang="es">
+<html>
+
+<head>
+    <!-- Codificación de caracteres para el documento -->
+    <meta charset="utf-8">
+    <!--Importar fuentes de Google-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Importar iconos-->
+    <link href="../../../recursos/css/icons.css" rel="stylesheet">
+    <!--Importar archivos CSS-->
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_publico.css" media="screen,projection" />
+
+    <!--Optimización para mobiles-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <!--Marco general-->
+    <div class="row contenedor-general">
+        <!--Barra lateral, opciones para los usuarios-->
+        <ul id="slide-out" class="sidenav sidenav-fixed">
+            <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
+                        class="material-icons medium">home</i></a></li>
+            <li><a href="perfil.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
+                        class="material-icons medium">account_circle</i></a></li>
+            <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Compras"><i
+                        class="material-icons medium">shopping_basket</i></a></li>
+            <li><a href="estadistica.html" class="tooltipped" data-position="right" data-tooltip="Gráficos"><i
+                        class="material-icons medium">pie_chart</i></a></li>
+            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Cerrar sesión"><i
+                        class="material-icons medium">arrow_back</i></a></li>
+        </ul>
+        <!--Contenedor de datos-->
+        <div class="contenedor-datos">
+            <!--Encabezado-->
+            <header class="encabezado">
+                <a href="#" data-target="slide-out"
+                    class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
+                        class="material-icons">menu</i></a>
+                <img src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png" alt="">
+                <a class="waves-effect waves-light btn boton_iniciar_sesion">Log In</a>
+            </header>
+            <!--Información de la página-->
+            <main>
+                <!--Titulo-->
+                <div clas="row">
+                    <h5 class="center-align">Agregar producto:</h5>
+                </div>
+                &nbsp;
+                &nbsp;
+                <!--Comtenedor-->
+                <div class="row">
+                    <form action="">
+                        <div class="col s12 m12 l12 ">
+                            <div class="col s12 m12 l12">
+                                <div class="row center-align">
+                                    <!--Primera columna-->
+                                    <div class="col s12 m12 l12">
+                                        <div class="col s12 m12 l12">
+                                            <img src="../../../recursos/img/publico/clientes/modals/images (5).jpg ">
+                                        </div>
+                                        <div class="col s12 m12 l12">
+                                            <a class="btn center-align botonagregar_imaprodu">Agregar imagen</a>
+                                        </div>
+                                    </div>
+                                    <!--Columna siguiente-->
+                                    <div class="col s12 m12 l12 ">
+                                        &nbsp;
+                                        <div class="col s12 m12 l12">
+                                            <h6>Nombre de producto:</h6>
+                                            <div class="input-field col s12 m12 l12 nombre_field">
+                                                <input placeholder="Nombre" id="nombre_producto" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m12 l12">
+                                            <div class="col s12 m6 l6">
+                                                <h6>Cantidad:</h6>
+                                                <div class="input-field col s12 m12 l12">
+                                                    <input class="validate" id="cantidad_produ" type="number"
+                                                        placeholder="0">
+                                                </div>
+                                            </div>
+                                            <div class="col s12 m6 l6">
+                                                <h6>Precio producto:</h6>
+                                                <div class="input-field col s12 m12 l12">
+                                                    <input placeholder="$00.00" id="precio_produ" type="text"
+                                                        class="validate">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m12 l12">
+                                            <h6>Descripción:</h6>
+                                            <div class="input-field col s12 m12 l12 descripcion">
+                                                <input class="materialize-textarea" id="descripcion_produ"
+                                                    placeholder="Descripción">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--Columna siguiente-->
+                                    <div class="col s12 m12 l12">
+                                        <div class="col s12 m12 l12">
+                                            <h6>Categoria:</h6>
+                                            <select class="browser-default ">
+                                                <option value="" disabled selected>Choose your option</option>
+                                            </select>
+                                            <div class="col s12 m12 l12 nomb_marca">
+                                                <h6>Marca:</h6>
+                                                <select class="browser-default ">
+                                                    <option value="" disabled selected>Choose your option</option>
+                                                </select>
+                                            </div>
+                                            <div class="col s12 m12 l12 nomb_vendedor">
+                                                <h6>Vendedor:</h6>
+                                                <select class="browser-default ">
+                                                    <option value="" disabled selected>Choose your option</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row right">
+                            <a class="btn center-align botonagregar_imaprodu">Agregar</a>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!--Footer-->
+    <footer class="page-footer">
+        <div class="row">
+            <!--enlace de redes sociales-->
+            <div class="col l12 m6 s3 redes_footer center-align">
+                <ul>
+                    <li>
+                        <a href=""><i class="material-icons medium">facebook</i></a>
+                    </li>
+                    <li>
+                        <a href=""><img
+                                src="../../../recursos/img/publico/clientes/footer/instagram_old_50px.png"></i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="material-icons medium">whatsapp</i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="material-icons medium">email</i></a>
+                    </li>
+                </ul>
+            </div>
+            <!--Contenedor para el mapa y el copyright-->
+            <div class="footer_otros">
+                <div class="col l6 m9 s12 logo_copy_footer">
+                    <img src="../../../recursos/img/publico/clientes/modals/logo.png" alt="">
+                    <h6>© 2022 DeliverySystem</h6>
+                </div>
+                <div class="col l6 m9 s12 mapa-footer">
+                    <ul>
+                        <li>
+                            <h5>Información pública</h5>
+                        </li>
+                        <li><a href="../publico_cliente/quienes somos.html ">Quiénes somos</a></li>
+                        <li><a href="../publico_cliente/contactenos.html">Contáctanos</a></li>
+                        <li><a href="../publico_cliente/mision_vision.html">Misión y visión</a></li>
+                        <li><a href="../publico_cliente/terminos.html">Términos y condiciones</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--Importar archivos JavaScrip-->
+    <script type="text/javascript" src="../../../js/materialize.min.js"></script>
+    <script type="text/javascript" src="../../../controladores/publico/activation.js"></script>
+</body>
+
+</html>
