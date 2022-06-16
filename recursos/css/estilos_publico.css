@@ -2,38 +2,35 @@
 
 /*Clases para quitar border y padding*/
 
-body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  height: 100%;
-  width: 85% !important;
-  position: absolute;
-  z-index: 1;
-  padding-bottom: 1490px;
-}
-
 main {
   flex: 1 0 auto;
-
   height: 75%;
-  margin-bottom: 50%;
-  margin-left: 190px;
+  margin-top: 80px;
+  margin-left: 100px;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+  width: 100% !important;
 }
 
 /*Contenedores*/
 .contenedor-general {
+  position: relative;
   height: 75%;
   width: 100% !important;
-  padding: 0px !important;
+  padding-bottom: 200px !important;
   margin: 0px !important;
   display: flex;
+  
 }
 
 .contenedor-datos {
   padding: 0px !important;
   display: flex;
   flex-direction: column;
+  margin: 0px !important;
   width: 100% !important;
 }
 
@@ -2003,9 +2000,9 @@ tbody tr {
 
 .inicio-no-login {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   height: 80%;
-  position: fixed;
   padding-bottom: 2px !important;
   padding-top: 100px;
 }
