@@ -1938,8 +1938,29 @@ tbody tr {
   padding-left: 229%;
 }
 
+.n_l{
+  margin-bottom: 5px !important;
+}
+
+.n_l p{
+ text-align: left;
+} 
 #texto-card-login {
   text-align: center;
+  padding-bottom: 10px;
+}
+
+#texto-card-login a{
+  color: #3111F4;
+}
+
+#texto-card-login p {
+  margin-top: 0px !important;
+}
+
+.card-login{
+  background-color: #e3f2fd ;
+  margin: 0px !important;
 }
 
 #texto-card-login-2 {
@@ -2004,7 +2025,7 @@ tbody tr {
   justify-content: center;
   height: 80%;
   padding-bottom: 2px !important;
-  padding-top: 100px;
+  padding-bottom: 195px !important;
 }
 
 .contenedor-datos-nologin {

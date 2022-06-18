@@ -2,15 +2,17 @@
 
 /*Clases para quitar border y padding*/
 
-body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  height: 100%;
-  width: 100% !important;
-  position: absolute;
-  z-index: 1;
+main {
+  flex: 1 0 auto;
+  height: 75%;
+  margin-top: 80px;
+  margin-left: 100px;
+}
 
+body{
+  display: flex;
+  justify-content: center;
+  width: 100% !important;
 }
 
 .body_index {
@@ -714,39 +716,178 @@ input[type="radio"]:checked~label>.estrella {
 /*----------------------------------------------*/
 /*-------------Login - Administrar---------------*/
 /*----------------------------------------------*/
-.inicio-no-login {
-  /*display: flex;
+#r-login {
+  width: 330px;
+  height: 300px;
+  padding-left: 229%;
+}
+
+.n_l{
+  margin-bottom: 5px !important;
+}
+
+.n_l p{
+ text-align: left;
+} 
+#texto-card-login {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+#texto-card-login a{
+  color: #3111F4;
+}
+
+#texto-card-login p {
+  margin-top: 0px !important;
+}
+
+.card-login{
+  background-color: #e3f2fd ;
+  margin: 0px !important;
+}
+
+#texto-card-login-2 {
+  line-height: 0px;
+}
+
+#titulo-login {
+  font-size: 20px;
   justify-content: center;
-  height: 80%;
-  padding-bottom: 10px !important;*/
+  direction: flex;
+
+}
+
+.titulo-login{
   display: flex;
-  justify-content: center;
-  height: 80%;
-  padding-bottom: 10px !important;
+  flex-direction: column;
+  align-items: flex-start;
+
+}
+
+.titulo-index{
+  display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-
-.contenedor-datos-nologin {
-  width: 100%;
-}
-
-
-.contenedor-datos-nologin .container {
-  width: 40%;
+  justify-content: center;
+  z-index: 0;
 }
 
 #card-login {
-  margin-left: 269px;
-  width: 100%;
-  z-index: 0;
-  opacity: 0.8;
-  filter: alpha(opacity=50);
+  width: 330px;
+  height: 535px;
+  background: #eef9ff;
+  padding-top: 1px;
 }
 
-main .center-align .row:not(main .center-align .n_l) {
+#card-recu {
+  width: 330px;
+  height: 460px;
+  background: #e6e6e6;
+  padding-top: 1px;
+}
+
+#card-recu2 {
+  width: 330px;
+  height: 310px;
+  background: #e6e6e6;
+  padding-top: 1px;
+}
+
+#boton_ingresar {
+  width: 150px;
+  height: 35px;
+
+  background: #659fff;
+  border-radius: 15px;
+  z-index: 0;
+}
+
+.inicio-no-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 80%;
+  padding-bottom: 2px !important;
+  padding-bottom: 195px !important;
+}
+
+.contenedor-datos-nologin {
+  padding: 0px !important;
+  display: flex;
+  flex-direction: column;
+  width: 100% !important;
+}
+
+/*----------------------------------------------*/
+/*-------------------Registrar---------------------*/
+/*----------------------------------------------*/
+.contactenos {
+  background-color: #eef9ff;
+  border: 1px solid black;
+  margin-top: 5px;
+  border-radius: 15px;
   height: 100%;
+  width: 100%;
+}
+.titulo_contactenos {
+  font-size: 14pt;
+}
+.contenedor_borde {
+  height: 100%;
+}
+.main_contactenos {
+  padding-left: 10% !important;
+  padding-right: 10% !important;
+}
+.descripcion_contactenos {
+  padding-right: 5% !important;
+  padding-left: 5% !important;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.descripcion_contactenos .row h5 {
+  width: 100%;
+  text-align: center;
+}
+
+.main_admin {
+  overflow-y: scroll;
+  height: 80%;
+}
+
+.main_admin h5 {
+  text-align: center;
+}
+.contenedor_admin {
+  width: 100%;
+}
+
+.boton_foto_admin {
+  background-color: #659fff;
+  color: white;
+  border-radius: 15px;
+}
+.foto_admin {
+  font-size: 150pt;
+}
+
+.contenedor_fotos_admin {
+  width: 100%;
+}
+
+.dato_usuario_admin {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 15%;
+}
+
+.foto_de_admin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /*----------------------------------------------*/

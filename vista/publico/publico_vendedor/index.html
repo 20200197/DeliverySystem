@@ -19,6 +19,14 @@
 </head>
 
 <body>
+    <!--Encabezado-->
+    <header class="encabezado left-align">
+        <a href="#" data-target="slide-out" class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
+                class="material-icons">menu</i></a>
+        <img src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png" alt="">
+        <a class="waves-effect waves-light btn boton_iniciar_sesion"
+            href="../Cliente/Registrar_no_login.html">Registrarse</a>
+    </header>
     <!--Marco general-->
     <div>
         <!--Barra lateral, opciones para los usuarios-->
@@ -31,37 +39,27 @@
         </ul>
         <!--Contenedor de datos-->
         <div class="row center-align">
-            <!--Encabezado-->
-            <header class="encabezado">
-                <a href="#" data-target="slide-out"
-                    class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
-                        class="material-icons">menu</i></a>
-                <img src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png" alt="">
-                <a class="waves-effect waves-light btn boton_iniciar_sesion"
-                    href="../Cliente/Registrar_no_login.html">Registrarse</a>
-            </header>
             <!--Información de la página-->
             <main class="inicio-no-login center-align ">
-                <div class="container ">
+                <div class="col s12 m12 l12 center-align ">
+                    <img src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png " class="responsive-img">
+                </div>
+                <div class="card card-login">
                     <form action="">
+                        <p id="titulo-login">Inicio de sesión</p>
                         <div class="row n_l">
-                            <div class="col s12 m12 l12 center-align ">
-                                <img src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png " class="responsive-img">
-                            </div>
-                            <p id="titulo-login">Inicio de sesión</p>
-                            <p id="texto-card-login-2">Nombre de Usuario</p>
+                            
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">account_circle</i>
-                                <input id="icon_prefix" type="text" class="validate">
-                                <label for="icon_prefix">Escribe tu Usuario</label>
+                                <input id="icon_prefix" placeholder="Escribe tu nombre de usuario" type="text" class="validate">
+                                <label for="icon_prefix">Nombre de usuario</label>
                             </div>
                         </div>
                         <div class="row n_l">
-                            <p id="texto-card-login-2">Contraseña</p>
                             <div class="input-field col s11">
                                 <i class=" material-icons prefix">vpn_key</i>
-                                <input id="password" type="password" class="validate">
-                                <label for="password">************</label>
+                                <input id="password" placeholder="************" type="password" class="validate">
+                                <label for="password">Contraseña</label>
                                 <i class="material-icons prefix">remove_red_eye</i>
                             </div>
                         </div>
@@ -73,7 +71,7 @@
                                     <span>Recordarme</span>
                                 </label>
                             </p>
-                            <a class="waves-effect waves-light btn" id="boton_ingresar">Ingresar</a>
+                            <button class="waves-effect waves-light btn" id="boton_ingresar">Ingresar</button>
                         </div>
                     </form>
                 </div>
