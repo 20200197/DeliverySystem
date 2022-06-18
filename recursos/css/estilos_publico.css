@@ -2373,6 +2373,25 @@ tbody tr {
   }
 }
 
+/*Responsive para cambio de moviles*/
+
+@media (max-width: 996px) {
+  .encabezado{
+    padding: 10px !important;
+  }
+  
+  main{
+    width: 96% !important;
+    margin: 2% !important;
+    padding-top: 50px !important;
+    padding: 10px !important;
+  }
+
+  .ventas_estadistica_admin{
+    margin: 0px !important; 
+  }
+}
+
 /*Responsive tablets*/
 
 @media (max-width:1050.98px) and (min-width:699.98px) {
