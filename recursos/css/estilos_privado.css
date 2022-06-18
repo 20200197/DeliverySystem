@@ -2,11 +2,13 @@
 
 /*Clases para quitar border y padding*/
 
+
 main {
   flex: 1 0 auto;
   height: 75%;
   margin-top: 80px;
   margin-left: 100px;
+  padding-bottom: 125px;
 }
 
 body{
@@ -40,14 +42,6 @@ body{
   padding: 0px !important;
   margin: 0px !important;
   display: flex;
-}
-
-main {
-  flex: 1 0 auto;
-  /*overflow: scroll;*/
-  height: 85%;
-  margin-bottom: 50%;
-  /*overflow-x: hidden;*/
 }
 
 /*Contenedores*/
@@ -289,8 +283,6 @@ main {
 .administrar_cate_o {
   margin-left: 100px;
   margin-right: 100px;
-  /**/
-  padding-left: 5%;
 }
 
 .boton_agrega_r {
@@ -352,6 +344,7 @@ main {
 .nombre_categoria {
   padding-left: 80px;
 }
+
 
 .imagen_categ {
   display: flex;
@@ -1928,22 +1921,14 @@ a {
 
 /*titulo y botones general*/
 .titulo_pega {
-  position: fixed;
   z-index: 1;
   background-color: white;
-  margin-top: 60px;
+  padding-top: 30px;
   ;
 }
 
-/*Contenido general de tabla*/
-.contenido_apar {
-  margin-top: 250px;
-  padding-top: 25px;
-  z-index: 0;
-}
-
 .contenido_apar_marca {
-  margin-top: 315px;
+
   padding-top: 25px;
   z-index: 0;
 }
@@ -2154,6 +2139,17 @@ a {
     margin: 0px !important;
     display: flex;
   }
+}
+
+
+/*------------------ Responsive para el main---------------*/
+
+@media (max-width: 992px) {
+  main{
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+  }
+  
 }
 
 

@@ -5,8 +5,8 @@
 main {
   flex: 1 0 auto;
   height: 75%;
-  margin-top: 80px;
-  margin-left: 100px;
+  padding-top: 80px;
+  padding-left: 100px;
 }
 
 body{
@@ -1080,7 +1080,8 @@ input[type="radio"]:checked ~ label > .estrella {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0px 20px 0 20px !important;
+  margin-right: 4% !important;
+  margin-left: 4% !important;
 }
 
 .contenedor_cliente_estadistica_admin .row {
@@ -1259,13 +1260,7 @@ input[type="radio"]:checked ~ label > .estrella {
 /*----------------------------------------------*/
 /*-------------------registrar_vendedor---------------------*/
 /*----------------------------------------------*/
-.main_vendedor {
-  overflow-y: scroll;
-}
 
-.main_vendedor h5 {
-  text-align: center;
-}
 .contenedor_vendedor {
   width: 100%;
 }
@@ -1551,14 +1546,7 @@ tbody tr {
 /*----------------------------------------------*/
 /*-------------------Perfil vendedor---------------------*/
 /*----------------------------------------------*/
-.main_vendedor {
-  overflow-y: scroll;
-  height: 80%;
-}
 
-.main_vendedor h5 {
-  text-align: center;
-}
 .contenedor_vendedor {
   width: 100%;
 }
@@ -2109,10 +2097,7 @@ tbody tr {
 /*----------------------------------------------*/
 /*-------------------Perfil vendedor---------------------*/
 /*----------------------------------------------*/
-.main_vendedor {
-  overflow-y: scroll;
-  height: 80%;
-}
+
 
 .main_vendedor h5 {
   text-align: center;
@@ -2172,6 +2157,8 @@ tbody tr {
 
 .contenedor_datos_repartidor {
   width: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 .datos_usuario_perfil_cliente {
@@ -2388,10 +2375,6 @@ tbody tr {
 
 @media (max-width:1050.98px) and (min-width:699.98px) {
 
-  main {
-    margin-left:205px;
-  }
- 
   .redes_footer ul{
     padding-top: 0px;
     margin-left:70px;

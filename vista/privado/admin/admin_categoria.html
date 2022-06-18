@@ -13,6 +13,7 @@
 
     <!--Optimización para mobiles-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
 </head>
 
 <body>
@@ -64,30 +65,31 @@
                             <h5 class="center-align titulo_admin">Administrar categoria</h5>
                         </div>
                         <div class="row">
-                            <div class="col s10 m10 l10">
-                                <a class=" btn-floating right boton_color tooltipped" data-position="right"
-                                    data-tooltip="Marcas" href="admin_rmarca.html"><i
-                                        class="material-icons">style</i></a>
-                                <a class="btn-floating right boton_color modal-trigger tooltipped" data-position="left"
-                                    data-tooltip="Agregar" href="#modal_anadir_categ_oo"><i
-                                        class="material-icons left">add</i></a>
+                            <div class="col l8 m8 s12">
+                                <!-- Formulario de búsqueda -->
+                                <form method="post" id="search-form">
+                                    <div class="input-field col sl6 m6 s11">
+                                        <i class="material-icons prefix">search</i>
+                                        <input id="search" type="text" name="search" placeholder="Busque por categoría..." required>
+                                        <label for="search">Buscador</label>
+                                    </div>
+                                    <div class="input-field col s1 m1 l1">
+                                        <button type="submit" class="btn-floating waves-effect blue tooltipped" data-tooltip="Buscar">
+                                            <i class="material-icons">check</i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- Opciones de administración-->
+                            <div class="col l2 m2 s12">
+                                <a class=" btn-floating right boton_color tooltipped" data-position="right" data-tooltip="Marcas"
+                                    href="admin_rmarca.html"><i class="material-icons">style</i></a>
+                                <a class="btn-floating right boton_color modal-trigger tooltipped" data-position="left" data-tooltip="Agregar"
+                                    href="#modal_anadir_categ_oo"><i class="material-icons left">add</i></a>
                             </div>
                         </div>
-                        <!-- Formulario de búsqueda -->
-                        <form method="post" id="search-form">
-                            <div class="input-field col s9 m7 l4">
-                                <i class="material-icons prefix">search</i>
-                                <input id="search" type="text" name="search" placeholder="Busque por categoría..."
-                                    required>
-                                <label for="search">Buscador</label>
-                            </div>
-                            <div class="input-field col s1 m1 l1">
-                                <button type="submit" class="btn-floating waves-effect blue tooltipped"
-                                    data-tooltip="Buscar">
-                                    <i class="material-icons">check</i>
-                                </button>
-                            </div>
-                        </form>
+                        
+                        
                     </div>
                     <!--Columna siguiente-->
                     <div class="col s12 l12 m12 contenido_apar">
@@ -98,8 +100,8 @@
                                     <!--Columnas-->
                                     <th>Nombre categoria:</th>
                                     <th>Imagen categoria:</th>
-                                    <th></th>
-                                    <th></th>
+                                    <th>Eliminar</th>
+                                    <th>Editar</th>
                                 </tr>
                             </thead>
                             <!--Datos de la tabla-->
