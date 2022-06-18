@@ -1733,7 +1733,7 @@ tbody tr {
 }
 
 /*Responsive para el footer*/
-@media (max-width: 1000px) {
+@media (max-width: 992px) {
   .page-footer {
     height: auto;
     margin: 0px !important;
@@ -1950,7 +1950,10 @@ tbody tr {
 
 .card-login{
   background-color: #e3f2fd ;
+  margin-top: 30px;
   margin: 0px !important;
+  height: 80%;
+  
 }
 
 #texto-card-login-2 {
@@ -2009,13 +2012,19 @@ tbody tr {
   z-index: 0;
 }
 
+.contenedor-login{
+  margin: 0px ;
+  width: 40%;
+  margin-bottom: 40px;
+}
+
 .inicio-no-login {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 80%;
-  padding-bottom: 2px !important;
-  padding-bottom: 195px !important;
+  margin-top: 150px;
+  padding: 0px ;
+  width: 100%;
 }
 
 .contenedor-datos-nologin {
@@ -2241,6 +2250,11 @@ tbody tr {
   .inicio-no-login {
     height: 80%;
     position: relative;
+    margin-top: 120px !important;
+  }
+
+  .contenedor-login{
+    width: 90%;
   }
 
   .contenedor-datos-nologin {
