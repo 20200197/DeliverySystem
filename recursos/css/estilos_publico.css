@@ -1950,10 +1950,7 @@ tbody tr {
 
 .card-login{
   background-color: #e3f2fd ;
-  margin-top: 30px;
   margin: 0px !important;
-  height: 80%;
-  
 }
 
 #texto-card-login-2 {
@@ -1972,21 +1969,6 @@ tbody tr {
   flex-direction: column;
   align-items: flex-start;
 
-}
-
-.titulo-index{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 0;
-}
-
-#card-login {
-  width: 330px;
-  height: 535px;
-  background: #eef9ff;
-  padding-top: 1px;
 }
 
 #card-recu {
@@ -2022,7 +2004,7 @@ tbody tr {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 150px;
+  margin-top: 100px;
   padding: 0px ;
   width: 100%;
 }
