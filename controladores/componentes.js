@@ -284,7 +284,7 @@ function sweetAlert(type, text, url) {
             location.href = url
         });
     } else {
-        swal({
+        Swal.fire({
             title: title,
             text: text,
             icon: icon,
