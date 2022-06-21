@@ -54,6 +54,17 @@ if (true) { // Se cambiará por isset($_SESSION['id_usuario'])
                 }else{
                     $result['exception'] = Database::getException();
                 }
+            break;
+            case 'delete':
+                if(!$administrar_vendedor->setIdentificador($_POST['identificador'])) {
+                    $result['exception'] = 'Identificador no valido';
+                }elseif($administrar_vendedor->eliminar()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Vendedor eliminado correctamente';
+                }else{
+                    $result['exception'] = Database::getException();
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

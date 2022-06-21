@@ -87,5 +87,12 @@ class AdministrarVendedor extends Validator
         return Database::getRow($sql, $params);
     }
 
-    //Función 
+    //Función para eliminar un vendedor
+
+    public function eliminar()
+    {
+        $sql = 'UPDATE vendedor SET status = false WHERE id_vendedor = ?';
+        $params = array($this->identificador);
+        return Database::executeRow($sql, $params);
+    }
 }

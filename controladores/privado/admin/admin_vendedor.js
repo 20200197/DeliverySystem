@@ -172,3 +172,13 @@ function buscar() {
         }
     });
 }
+
+//función para eliminar un producto
+function eliminar(id) {
+    //Se crea el dato de tipo form
+    let datos = new FormData();
+    //Se llena con el valor de la busqueda
+    datos.append("identificador", id);
+    //Se realiza la promesa
+    confirmDelete(API_VENDEDOR, datos);
+}
