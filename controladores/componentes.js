@@ -273,7 +273,7 @@ function sweetAlert(type, text, url) {
     }
     // Si existe una ruta definida, se muestra el mensaje y se direcciona a dicha ubicación, de lo contrario solo se muestra el mensaje.
     if (url) {
-        swal({
+        Swal.fire({
             title: title,
             text: text,
             icon: icon,
