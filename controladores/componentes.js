@@ -252,6 +252,7 @@ function confirmDelete(api, data) {
 *
 *   Retorno: ninguno.
 */
+
 function sweetAlert(type, text, url) {
     // Se compara el tipo de mensaje a mostrar.
     switch (type) {
