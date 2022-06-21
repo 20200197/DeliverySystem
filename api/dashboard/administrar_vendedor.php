@@ -46,6 +46,14 @@ if (true) { // Se cambiará por isset($_SESSION['id_usuario'])
                     $result['exception'] = Database::getException();
                 }
                 break;
+            case 'detalles':
+                if(!$administrar_vendedor->setIdentificador($_POST['identificador'])) {
+                    $result['exception'] = 'Identificador no valido';
+                }elseif($result['dataset'] = $administrar_vendedor->detalles()) {
+                    $result['status'] = 1;
+                }else{
+                    $result['exception'] = Database::getException();
+                }
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

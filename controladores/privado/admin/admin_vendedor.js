@@ -6,11 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
     readRows(API_VENDEDOR);
     // Se define una variable para establecer las opciones del componente Modal.
-    let options = {
-        dismissible: false,
-    };
-    // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
-    M.Modal.init(document.querySelectorAll(".modal"), options);
     //se inicializan los tooltp
     M.Tooltip.init(document.querySelectorAll(".tooltipped"));
 });
@@ -32,48 +27,119 @@ function fillTable(data) {
                         class="materialboxed imagen_standar">
                     </td>
                     <td data-target="Ver más: ">
-                        <a class=" btn-flat modal-trigger"
-                        href="#modal_info"><i class="material-icons">remove_red_eye</i></a>
+                        <a class="btn-flat modal-trigger"
+                        href="#modal_info" onclick="cargarInfo(${row.id_vendedor})"><i class="material-icons">remove_red_eye</i></a>
                     </td>
                 </tr>
         `;
     });
     //Se Inyecta el HTML en la página
     document.getElementById("contenido").innerHTML = contenido;
+    // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
+    M.Modal.init(document.querySelectorAll(".modal"), { dismissible: false });
 }
 
-//Función que cambia el estado del cliente
-function estado(id) {
-    //Se crea la variable de tipo formulario
-    datos = new FormData();
-    //Se verifica el estado al que se cambiará mediante el switch
-    document.getElementById("estado" + id).checked
-        ? datos.append("estado", true)
-        : datos.append("estado", false);
-    //Se guarda el identificador
+//Función para obtener los datos del modal de la información extra
+function cargarInfo(id) {
+    //Se guarda el identificador en una variable de tipo form
+    let datos = new FormData();
     datos.append("identificador", id);
-    //Se procese a realizar la promesa
-    fetch(API_VENDEDOR + "cambiarEstado", {
+    //Se realiza la promesa
+    fetch(API_VENDEDOR + "detalles", {
         method: "post",
         body: datos,
     }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-        if (request.ok) {
-            // Se obtiene la respuesta en formato JSON.
-            request.json().then(function (response) {
-                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                if (response.status) {
-                    // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
-                    readRows(API_VENDEDOR);
-                    sweetAlert(1, response.message, null);
-                } else {
-                    sweetAlert(2, response.exception, null);
-                }
-            });
-        } else {
-            console.log(request.status + " " + request.statusText);
-        }
+        //Se revisa si la petición fue ejecutada
+        request.ok
+            ? //Se obtiene en Json
+              request.json().then(function (response) {
+                  //Se revisa el estado de la respuesta
+                  response.status
+                      ? //Se envía al método que cargará los datos
+                        cargarModal(response.dataset)
+                      : //Se imprime el problema
+                        sweetAlert(3, response.exception, null);
+              })
+            : console.log(); //Se imprime el error en la consola
     });
+}
+
+//Función para cargar los datos en el modal de información
+function cargarModal(data) {
+    //Se le signa la inyección a la tabla
+    document.getElementById("contenidoInfoModal").innerHTML = `
+        <tr>
+            <th>Nombre:</th>
+            <td>${data.nombre_vendedor}</td>
+        </tr>
+        <tr>
+            <th>Apellido:</th>
+            <td>${data.apellido_vendedor}</td>
+        </tr>
+        <tr>
+            <th>Dui:</th>
+            <td>${data.dui_vendedor}</td>
+        </tr>
+        <tr>
+            <th>Correo:</th>
+            <td>${data.correo_vendedor}</td>
+        </tr>
+        <tr>
+            <th>Usuario:</th>
+            <td>${data.usuario_vendedor}</td>
+        </tr>
+        <tr>
+            <th>Solvencia pnc:</th>
+            <td>
+                <img src="../../../api/imagenes/vendedor/solvencia/${data.antecedente_penal}"
+                class="materialboxed imagen_standar">
+            </td>
+        </tr>
+        <tr>
+            <th>Antecedente pnc:</th>
+            <td>
+                <img src="../../../api/imagenes/vendedor/antecedentes/${data.antecedente_penal}"
+                class="materialboxed imagen_standar">
+            </td>
+        </tr>
+        <tr>
+            <th>Dirección domicilio:</th>
+            <td>${data.direccion_domicilio_vendedor}</td>
+        </tr>
+        <tr>
+            <th>Descripción vendedor:</th>
+            <td>${data.descripcion_vendedor} </td>
+        </tr>
+        <tr>
+            <th>Status:</th>
+            <td>${data.status ? "Activo" : "Inactivo"}</td>
+        </tr>
+        <tr>
+            <th>Foto:</th>
+            <td>
+                <img src="../../../api/imagenes/vendedor/foto/${data.foto_vendedor}"
+                class="materialboxed imagen_standar">
+            </td>
+        </tr>
+        <tr>
+            <th>Fecha registro:</th>
+            <td>${data.fecha_registro_vendedor}</td>
+        </tr>
+        <tr>
+            <th>Coordenadas:</th>
+            <td>${data.coordenadas_vendedor}</td>
+        </tr>
+        <tr>
+            <th></th>
+            <td>
+                <a class="btn-flat boton_eliminar_tabl modal-trigger"
+                 href="#modal_eliminar_vendedor" onclick="eliminar(${data.id_vendedor})">
+                    <i class=" material-icons small ">delete</i>
+                </a>
+            </td>
+        </tr>
+    `;
+
 }
 
 //Función que realiza busquedas en los clientes
@@ -100,6 +166,9 @@ function buscar() {
                     sweetAlert(1, response.exception, null);
                 }
             });
+        } else {
+            //Se imprime el error en la consola
+            console.log(request.status + " " + request.statusText);
         }
     });
 }

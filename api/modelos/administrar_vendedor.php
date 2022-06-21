@@ -54,7 +54,7 @@ class AdministrarVendedor extends Validator
     public function obtenerVendedores()
     {
         $sql = "SELECT id_vendedor, CONCAT(nombre_vendedor, ' ',apellido_vendedor) as nombre_completo, dui_vendedor, correo_vendedor,
-        usuario_vendedor, solvencia_pnc FROM vendedor";
+        usuario_vendedor, solvencia_pnc FROM vendedor WHERE status = true";
         $params = null;
         return Database::getRows($sql, $params);
     }
@@ -68,12 +68,24 @@ class AdministrarVendedor extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    //Función para buscar vendedores
+
     public function buscar()
     {
         $sql = "SELECT id_vendedor, CONCAT(nombre_vendedor, ' ',apellido_vendedor) as nombre_completo, dui_vendedor, correo_vendedor,
         usuario_vendedor, solvencia_pnc FROM vendedor
-         WHERE CONCAT(nombre_vendedor, ' ',apellido_vendedor) ILIKE ? OR correo_vendedor ILIKE ? OR usuario_vendedor ILIKE ?";
+         WHERE (CONCAT(nombre_vendedor, ' ',apellido_vendedor) ILIKE ? OR correo_vendedor ILIKE ? OR usuario_vendedor ILIKE ?) AND status = true";
         $params = array($this->buscador, $this->buscador, $this->buscador);
         return Database::getRows($sql, $params);
     }
+
+    //Función para obtener todos los datos de un vendedor
+    public function detalles()
+    {
+        $sql = 'SELECT * FROM vendedor WHERE id_vendedor = ?';
+        $params = array($this->identificador);
+        return Database::getRow($sql, $params);
+    }
+
+    //Función 
 }
