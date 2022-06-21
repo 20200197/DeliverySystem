@@ -1,6 +1,7 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
 const API_PRODUCTOS = SERVER + 'dashboard/administrar_producto.php?action=';
 
+
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
@@ -11,23 +12,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
     M.Modal.init(document.querySelectorAll('.modal'), options);
-
-
 });
+
 
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
 function fillTable(dataset) {
     let content = '';
-    //Variable de estado
-    let estado_produc = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
-        //Colocamos el swicth checked o no checked dependiendo de el estado
-        if (row.estado_producto == true) {
-            estado_produc = `checked`;
-        } else if (row.estado_producto == false) {
-            estado_produc = ` `;
-        }
         //Establecemos texto para el estado
         var estado_producto;
         (row.estado_producto) ? estado_producto = 'Activo' : estado_producto = 'Inactivo';
@@ -44,13 +36,8 @@ function fillTable(dataset) {
           <td data-target="Categoria: ">${row.categoria}</td>
           <td data-target="Nombre vendedor: ">${row.nombre_vendedor}</td>
           <td data-target="Marca: ">${row.nombre_marca}</td>
-          <td data-target="Dar de baja: "><div class="switch">
-          <label>
-              <input type="checkbox" id="switch_estado${row.id_producto}" name="switch_estado" onclick="updateEstado(${row.id_producto})"   ${estado_produc} >
-              <span class="lever"></span>
-          </label>
-            </div>
-          </td>
+          <td data-target="Dar de baja: "><button class="btn-flat boton_eliminar_tabl modal-trigger" onclick="openUpdate(${row.id_producto})" ><i
+          class="material-icons small">delete</i></button></td>
         </tr>
       `;
     });
@@ -98,18 +85,15 @@ document.getElementById('search-form').addEventListener('keyup', function (event
     });
 });
 
-function updateEstado(id) {
+//Función para abrir modal de actualizar
+function openUpdate(id) {
+    // Se abre la caja de diálogo (modal) que contiene el formulario.
+    M.Modal.getInstance(document.getElementById('update-modal')).open();
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
-    data.append('idP', id);
-
-    //Obtenemos valor de switch
-    if (document.getElementById('switch_estado'+id).checked){
-        data.append('estadoP',true);
-    }else{
-        data.append('estadoP',false)
-    }
-    fetch(API_PRODUCTOS + 'update', {
+    data.append('id', id);
+    // Petición para obtener los datos del registro solicitado.
+    fetch(API_PRODUCTOS + 'readOne', {
         method: 'post',
         body: data
     }).then(function (request) {
@@ -119,9 +103,18 @@ function updateEstado(id) {
             request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
-                    // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
-                    readRows(API_PRODUCTOS);
-                    sweetAlert(1, response.message, null);
+                    document.getElementById('id').value = response.dataset.id_producto;
+                    if (response.dataset.estado_producto == true) {
+                        document.getElementById('estado_producto').checked = true;
+                        document.getElementById('imagen_E').setAttribute('src', '../../../recursos/img/privado/admin/modals/Check Circle_80px.png');
+                        document.getElementById('titulo_E').textContent = 'Activar'
+                        document.getElementById('texto_E').textContent = '¿Está seguro de activar este producto?'
+                    } else {
+                        document.getElementById('estado_producto').checked = false;
+                        document.getElementById('imagen_E').setAttribute('src', '../../../recursos/img/privado/admin/modals/alvertencia.png');
+                        document.getElementById('titulo_E').textContent = 'Advertencia'
+                        document.getElementById('texto_E').textContent = '¿Está seguro de dar de baja este producto?'
+                    }
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -130,6 +123,21 @@ function updateEstado(id) {
             console.log(request.status + ' ' + request.statusText);
         }
     });
+
 }
 
+// Método manejador de eventos que se ejecuta cuando se envía el formulario de guardar.
+document.getElementById('update-form').addEventListener('submit', function (event) {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    //Evaluamos si se quiere activar o dar de baja
+    if (document.getElementById('estado_producto').checked == true) {
+        document.getElementById('estado_producto').checked = false;
+    } else {
+        document.getElementById('estado_producto').checked = true;
+    }
+
+    // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
+    saveRow(API_PRODUCTOS, 'update', 'update-form', 'update-modal');
+});
 
