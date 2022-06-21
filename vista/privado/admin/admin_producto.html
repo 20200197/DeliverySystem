@@ -10,7 +10,9 @@
     <!--Importar archivos CSS-->
     <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_privado.css" media="screen,projection" />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@200&display=swap" rel="stylesheet">
     <!--Optimización para mobiles-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8">
@@ -52,6 +54,15 @@
                     class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
                         class="material-icons">menu</i></a>
                 <img src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
+                <!--Switch de cambiar color-->
+                <div class="switch switch_colorr hide-on-small-and-down">
+                    <label >
+                        🌕
+                        <input type="checkbox" id="switch_color" onclick="modoOscuro()">
+                        <span class="lever" ></span>
+                        🌙
+                    </label>
+                </div>
                 <a class="waves-effect waves-light btn boton_iniciar_sesion">Log In</a>
             </header>
             <!--Información de la página-->
@@ -68,8 +79,8 @@
                             <form method="post" id="search-form">
                                 <div class="input-field col s9 m7 l4">
                                     <i class="material-icons prefix">search</i>
-                                    <input id="search" type="text" name="search" placeholder="Busque por categoría..."
-                                        required>
+                                    <input id="search" type="text" name="search"
+                                        placeholder="Busque por producto, categoria, marca o vendedor..." required>
                                     <label for="search">Buscador</label>
                                 </div>
                                 <div class="input-field col s1 m1 l1">
@@ -80,121 +91,59 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col s12 l12 m12">
-                            <!--Tabla-->
-                            <table id="table">
-                                <thead>
-                                    <!--Columnas-->
-                                    <tr>
-                                        <th>Nombre producto:</th>
-                                        <th>Cantidad:</th>
-                                        <th>Descripción:</th>
-                                        <th>Precio:</th>
-                                        <th>Imagen:</th>
-                                        <th>Categoria</th>
-                                        <th>Marca:</th>
-                                        <th>Vendedor: </th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <!--Datos de tabla-->
-                                <tbody>
-                                    <tr>
-                                        <td data-target="Nombre producto: ">Nombre producto 2</td>
-                                        <td data-target="Cantidad: ">Cantidad 2</td>
-                                        <td data-target="Descripción: ">Descripción 2</td>
-                                        <td data-target="Precio: ">Precio 2</td>
-                                        <td data-target="Imagen: "><img
-                                                src="../../../recursos/img/privado/admin/modals/descarga (2).png "
-                                                class="materialboxed imagen_standar"></td>
-                                        <td data-target="Categoría: ">Categoria 2</td>
-                                        <td data-target="Marca: "> Marca 2</td>
-                                        <td data-target="Vendedor: ">Vendedor 2</td>
-                                        <td data-target="Eliminar: "><a class="btn-flat boton_eliminar_tabl modal-trigger"
-                                                href="#modal_eliminar_product"><i
-                                                    class=" material-icons small ">delete</i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-target="Nombre producto: ">Nombre producto 2</td>
-                                        <td data-target="Cantidad: ">Cantidad 2</td>
-                                        <td data-target="Descripción: ">Descripción 2</td>
-                                        <td data-target="Precio: ">Precio 2</td>
-                                        <td data-target="Imagen: "><img
-                                                src="../../../recursos/img/privado/admin/modals/descarga (2).png "
-                                                class="materialboxed imagen_standar"></td>
-                                        <td data-target="Categoría: ">Categoria 2</td>
-                                        <td data-target="Marca: "> Marca 2</td>
-                                        <td data-target="Vendedor: ">Vendedor 2</td>
-                                        <td data-target="Eliminar: "><a class="btn-flat boton_eliminar_tabl modal-trigger"
-                                                href="#modal_eliminar_product"><i
-                                                    class=" material-icons small ">delete</i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-target="Nombre producto: ">Nombre producto 2</td>
-                                        <td data-target="Cantidad: ">Cantidad 2</td>
-                                        <td data-target="Descripción: ">Descripción 2</td>
-                                        <td data-target="Precio: ">Precio 2</td>
-                                        <td data-target="Imagen: "><img
-                                                src="../../../recursos/img/privado/admin/modals/descarga (2).png "
-                                                class="materialboxed imagen_standar"></td>
-                                        <td data-target="Categoría: ">Categoria 2</td>
-                                        <td data-target="Marca: "> Marca 2</td>
-                                        <td data-target="Vendedor: ">Vendedor 2</td>
-                                        <td data-target="Eliminar: "><a class="btn-flat boton_eliminar_tabl modal-trigger"
-                                                href="#modal_eliminar_product"><i
-                                                    class=" material-icons small ">delete</i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-target="Nombre producto: ">Nombre producto 2</td>
-                                        <td data-target="Cantidad: ">Cantidad 2</td>
-                                        <td data-target="Descripción: ">Descripción 2</td>
-                                        <td data-target="Precio: ">Precio 2</td>
-                                        <td data-target="Imagen: "><img
-                                                src="../../../recursos/img/privado/admin/modals/descarga (2).png "
-                                                class="materialboxed imagen_standar"></td>
-                                        <td data-target="Categoría: ">Categoria 2</td>
-                                        <td data-target="Marca: "> Marca 2</td>
-                                        <td data-target="Vendedor: ">Vendedor 2</td>
-                                        <td data-target="Eliminar: "><a class="btn-flat boton_eliminar_tabl modal-trigger"
-                                                href="#modal_eliminar_product"><i
-                                                    class=" material-icons small ">delete</i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-target="Nombre producto: ">Nombre producto 2</td>
-                                        <td data-target="Cantidad: ">Cantidad 2</td>
-                                        <td data-target="Descripción: ">Descripción 2</td>
-                                        <td data-target="Precio: ">Precio 2</td>
-                                        <td data-target="Imagen: "><img
-                                                src="../../../recursos/img/privado/admin/modals/descarga (2).png "
-                                                class="materialboxed imagen_standar"></td>
-                                        <td data-target="Categoría: ">Categoria 2</td>
-                                        <td data-target="Marca: "> Marca 2</td>
-                                        <td data-target="Vendedor: ">Vendedor 2</td>
-                                        <td data-target="Eliminar: "><a class="btn-flat boton_eliminar_tabl modal-trigger"
-                                                href="#modal_eliminar_product"><i
-                                                    class=" material-icons small ">delete</i></a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <form class="row" id="updatee-form" method="post" enctype="multipart/form-data">
+                            <div class="col s12 l12 m12 contenido_apar">
+                                <!--Tabla-->
+                                <table id="table">
+                                    <thead>
+                                        <!--Columnas-->
+                                        <tr>
+                                            <th>Nombre producto:</th>
+                                            <th>Cantidad:</th>
+                                            <th>Descripción:</th>
+                                            <th>Precio:</th>
+                                            <th>Imagen:</th>
+                                            <th>Estado: </th>
+                                            <th>Categoria: </th>
+                                            <th>Marca:</th>
+                                            <th>Vendedor: </th>
+                                            <th>Dar de baja: </th>
+                                        </tr>
+                                    </thead>
+                                    <!--Datos de tabla-->
+                                    <tbody id="tbody-productos">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
                     </div>
                     <!--Modal eliminar producto-->
-                    <div id="modal_eliminar_product" class="modal">
+                    <div id="update-modal" class="modal">
                         <div class="modal-content">
                             <div class="row contorno">
-                                <h5 class="center-align">Dar de baja</h5>
-                                <div class="col s12 m12 l12 imagen_categ">
-                                    <img src="../../../recursos/img/privado/admin/modals/cancel_120px.png">
-                                </div>
-                                <h6 class="center-align">¿Está seguro de querer dar de baja este producto?</h6>
+                                <h5 class="center-align" id="titulo_E"></h5>
+                                <form id="update-form" method="post">
+                                    <!--Campo ocultos-->
+                                    <input type="text" class="hide" id="id" name="id">
+                                    <!-- <div class="switch">
+                                        <label>
+                                            <input id="estado_producto" type="checkbox" name="estado_producto" >
+                                            <span class="lever hide "></span>
+                                        </label>
+                                    </div>-->
+                                    <div class="col s12 m12 l12 imagen_categ">
+                                        <img id="imagen_E">
+                                    </div>
+                                    <h6 class="center-align" id="texto_E"></h6>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <a href="#!"
                                 class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
-                            <a href="#!"
-                                class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Aceptar</a>
+                            <button class="waves-effect waves-green btn-flat boton_a_gregar">Aceptar</button>
                         </div>
+                        </form>
                     </div>
                 </div>
             </main>
@@ -213,8 +162,12 @@
         </div>
     </footer>
     <!--Importar archivos JavaScrip-->
-    <script type="text/javascript" src="../../../js/materialize.min.js"></script>
-    <script type="text/javascript" src="../../../controladores/privado/activation.js"></script>
+    <script src="../../../recursos/js/materialize.min.js "></script>
+    <script src="../../../recursos/js/sweetalert.min.js"></script>
+    <script src="../../../controladores/componentes.js"></script>
+    <script src="../../../controladores/privado/admin/admin_producto.js"></script>
+    <script src="../../../controladores/privado/admin/modo_oscuro.js"></script>
+
 </body>
 
 </html>

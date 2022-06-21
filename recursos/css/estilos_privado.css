@@ -262,6 +262,8 @@ body{
 /*Titulo para todos*/
 .titulo_admin {
   padding-top: 50px;
+  font-family: 'Fira Sans Condensed', sans-serif;
+  margin-right: 14%;
 }
 
 /*Titulo para index*/
@@ -1925,12 +1927,19 @@ a {
   z-index: 1;
   background-color: white;
   padding-top: 30px;
-  ;
+  position: fixed;
+
 }
 
 .contenido_apar_marca {
 
   padding-top: 25px;
+  z-index: 0;
+}
+
+.contenido_apar {
+margin-top: 240px;
+
   z-index: 0;
 }
 
@@ -1949,22 +1958,57 @@ a {
 /*-------------------Modo oscuro---------------------*/
 /*----------------------------------------------*/
 .sidenav_oscuro .sidenav {
-  background-color: black;
+  background-color: #1A3F7C;
   color: white;
 }
 
 .modo_oscuro {
-  background-color: gray;
+  background-color: #2D4273;
   color: white;
 }
 
 .footer_oscuro .page-footer {
-  background-color: black !important;
+  background-color: #0A2859 !important;
   color: white;
 }
 
+.titulo_pegaa .titulo_pega{
+  background-color: #2D4273;
+  color: white;
+}
+
+.inputs input[type="text"]{
+  color: white;
+}
+
+.encabezado_oscuro .encabezado{
+  background-color: #053A80;
+  color: white;
+}
+
+/*
+Fuentes de tablas
+*/
+
+.th_oscuro th{
+  background-color: #0A2859;
+  font-family:  'Fira Sans Condensed', sans-serif;
+  font-weight: bold;
+}
+
+.i_oscuro i{
+  color: white;
+}
+
+.boton_oscuro button{
+ background-color: #999e9e;
+}
 
 
+th{
+  font-family:  'Fira Sans Condensed', sans-serif;
+  font-weight: bold;
+}
 /*----------------------------------------------*/
 /*-------------------Responsive---------------------*/
 /*----------------------------------------------*/
@@ -2287,3 +2331,4 @@ a {
 
 
 }
+
