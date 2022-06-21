@@ -70,9 +70,9 @@ class AdministrarVendedor extends Validator
 
     public function buscar()
     {
-        $sql = "SELECT id_cliente, CONCAT(nombre_cliente,' ', apellido_cliente) AS nombre_completo,
-         dui_cliente, correo_cliente, usuario_cliente, status_cliente, fecha_registro_cliente, telefono_cliente FROM cliente
-         WHERE CONCAT(nombre_cliente,' ', apellido_cliente) ILIKE ? OR correo_cliente ILIKE ? OR usuario_cliente ILIKE ?";
+        $sql = "SELECT id_vendedor, CONCAT(nombre_vendedor, ' ',apellido_vendedor) as nombre_completo, dui_vendedor, correo_vendedor,
+        usuario_vendedor, solvencia_pnc FROM vendedor
+         WHERE CONCAT(nombre_vendedor, ' ',apellido_vendedor) ILIKE ? OR correo_vendedor ILIKE ? OR usuario_vendedor ILIKE ?";
         $params = array($this->buscador, $this->buscador, $this->buscador);
         return Database::getRows($sql, $params);
     }
