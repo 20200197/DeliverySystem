@@ -210,19 +210,21 @@ function saveRowS(api, action, form) {
 *   Retorno: ninguno.
 */
 function confirmDelete(api, data) {
-    swal({
-        title: 'Advertencia',
-        text: '¿Desea eliminar el registro?',
-        icon: 'warning',
-        buttons: ['No', 'Sí'],
+    Swal.fire({
+        title: "Advertencia",
+        text: "¿Desea eliminar el registro?",
+        icon: "warning",
+        confirmButtonText: "Aceptar",
+        denyButtonText: "Cancelar",
+        showDenyButton: true,
         closeOnClickOutside: false,
-        closeOnEsc: false
-    }).then(function (value) {
+        closeOnEsc: false,
+    }).then((result) => {
         // Se comprueba si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
-        if (value) {
-            fetch(api + 'delete', {
-                method: 'post',
-                body: data
+        if (result.isConfirmed) {
+            fetch(api + "delete", {
+                method: "post",
+                body: data,
             }).then(function (request) {
                 // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
                 if (request.ok) {
@@ -238,12 +240,13 @@ function confirmDelete(api, data) {
                         }
                     });
                 } else {
-                    console.log(request.status + ' ' + request.statusText);
+                    console.log(request.status + " " + request.statusText);
                 }
             });
         }
     });
 }
+
 
 /*
 *   Función para manejar los mensajes de notificación al usuario. Requiere el archivo sweetalert.min.js para funcionar.
