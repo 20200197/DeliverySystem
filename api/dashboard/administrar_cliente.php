@@ -19,8 +19,8 @@ if (isset($_GET['action'])) {
                 if($result['dataset'] = $administrar_cliente->obtenerClientes())
                 {
                     $result['status'] = 1;
-                }elseif($result['exception'] = Database)
-            default:
+                }//elseif($result['exception'] = Database)
+            //default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
         // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
