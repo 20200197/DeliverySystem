@@ -7,6 +7,7 @@ class AdministrarCliente extends Validator
 {
     // Declaración de atributos (propiedades).
     private $identificador = null;
+    private $estado = null;
 
 
     /*
@@ -17,6 +18,16 @@ class AdministrarCliente extends Validator
     {
         if ($this->validateNaturalNumber($value)) {
             $this->identificador = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setEstado($value)
+    {
+        if ($this->validateBoolean($value)) {
+            $this->estado = $value;
             return true;
         } else {
             return false;
@@ -36,4 +47,15 @@ class AdministrarCliente extends Validator
         return Database::getRows($sql, $params);
 
     }
+
+    //función para cambiar el estado de los clientes
+
+    public function cambiarEstado()
+    {
+        $sql = "UPDATE cliente SET status_cliente = ? WHERE id_cliente = ?";
+        $params = array($this->estado, $this->identificador);
+        return Database::executeRow($sql, $params);
+    }
+
+
 }

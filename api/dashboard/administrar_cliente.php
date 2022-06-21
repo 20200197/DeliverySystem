@@ -26,6 +26,21 @@ if (true) { // Se cambiará por isset($_SESSION['id_usuario'])
                     $result['exception'] = 'No hay datos de momento';
                 }
                 break;
+            case 'cambiarEstado':
+                if(!$administrar_cliente->setEstado($_POST['estado']))
+                {
+                    $result['exception'] = 'Estado no valido';
+                }elseif(!$administrar_cliente->setIdentificador($_POST['identificador']))
+                {
+                    $result['exception'] = 'Identificador no valido';
+                }elseif($administrar_cliente->cambiarEstado())
+                {
+                    $result['status'] = 1;
+                    $result['message'] = 'Cambio de estado exitoso';
+                }else{
+                    $result['exception'] = Database::getException();
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
