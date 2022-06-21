@@ -31,8 +31,7 @@ class AdministrarCliente extends Validator
 
     public function obtenerClientes()
     {
-        $sql = "SELECT id_cliente, CONCAT(nombre_cliente,' ', apellido_cliente) AS nombre_completo, dui_cliente, correo_cliente, usuario_cliente, status_cliente, fecha_registro_cliente FROM cliente
-        WHERE status_cliente NOT IN (false)";
+        $sql = "SELECT id_cliente, CONCAT(nombre_cliente,' ', apellido_cliente) AS nombre_completo, dui_cliente, correo_cliente, usuario_cliente, status_cliente, fecha_registro_cliente, telefono_cliente FROM cliente";
         $params = null;
         return Database::getRows($sql, $params);
 
