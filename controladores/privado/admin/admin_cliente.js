@@ -80,3 +80,31 @@ function estado(id) {
         }
     });
 }
+
+//Función que realiza busquedas en los clientes
+
+function buscar() { 
+    //Se crea el dato de tipo form
+    let datos = new FormData();
+    //Se llena con el valor de la busqueda
+    datos.append('buscador', document.getElementById("search").value);
+    //Se realiza la promesa
+    fetch(API_CLIENTE + "buscar", {
+        method: "post",
+        body: datos,
+    }).then(function (request) {
+        //Se verifica si se logró ejecutar la función
+        if (request.ok) {
+            //Se procede a pasarlo a JSON
+            request.json().then(function (response) {
+                //Se verifica el estado de la respuesta
+                if (response.status) {
+                    //Se cargan los datos obtenidos
+                    fillTable(response.dataset);
+                } else {
+                    sweetAlert(1, response.exception, null);
+                }
+            });
+        }
+    });
+}

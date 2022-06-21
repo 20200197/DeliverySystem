@@ -8,6 +8,7 @@ class AdministrarCliente extends Validator
     // Declaración de atributos (propiedades).
     private $identificador = null;
     private $estado = null;
+    private $buscador = null;
 
 
     /*
@@ -34,6 +35,16 @@ class AdministrarCliente extends Validator
         }
     }
 
+    public function setBuscador($value)
+    {
+        if ($this->validateString($value, 0, 50)) {
+            $this->buscador = '%'.$value.'%';
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
@@ -42,10 +53,10 @@ class AdministrarCliente extends Validator
 
     public function obtenerClientes()
     {
-        $sql = "SELECT id_cliente, CONCAT(nombre_cliente,' ', apellido_cliente) AS nombre_completo, dui_cliente, correo_cliente, usuario_cliente, status_cliente, fecha_registro_cliente, telefono_cliente FROM cliente";
+        $sql = "SELECT id_cliente, CONCAT(nombre_cliente,' ', apellido_cliente) AS nombre_completo,
+         dui_cliente, correo_cliente, usuario_cliente, status_cliente, fecha_registro_cliente, telefono_cliente FROM cliente";
         $params = null;
         return Database::getRows($sql, $params);
-
     }
 
     //función para cambiar el estado de los clientes
@@ -57,5 +68,12 @@ class AdministrarCliente extends Validator
         return Database::executeRow($sql, $params);
     }
 
-
+    public function buscar()
+    {
+        $sql = "SELECT id_cliente, CONCAT(nombre_cliente,' ', apellido_cliente) AS nombre_completo,
+         dui_cliente, correo_cliente, usuario_cliente, status_cliente, fecha_registro_cliente, telefono_cliente FROM cliente
+         WHERE CONCAT(nombre_cliente,' ', apellido_cliente) ILIKE ? OR correo_cliente ILIKE ? OR usuario_cliente ILIKE ?";
+        $params = array($this->buscador, $this->buscador, $this->buscador);
+        return Database::getRows($sql, $params);
+    }
 }

@@ -41,6 +41,18 @@ if (true) { // Se cambiará por isset($_SESSION['id_usuario'])
                     $result['exception'] = Database::getException();
                 }
                 break;
+            case 'buscar':
+                $_POST = $administrar_cliente->validateForm($_POST);
+                if(!$administrar_cliente->setBuscador($_POST['buscador']))
+                {
+                    $result['exception'] = 'Entrada de busqueda no valida';
+                }elseif($result['dataset'] = $administrar_cliente->buscar())
+                {
+                    $result['status'] = 1;
+                }else{
+                    $result['exception'] = Database::getException();
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
