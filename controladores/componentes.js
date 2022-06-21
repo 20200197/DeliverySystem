@@ -286,11 +286,15 @@ function sweetAlert(type, text, url) {
         });
     } else {
         Swal.fire({
+            toast:true,
+            position:'top-end',
             title: title,
             text: text,
             icon: icon,
             button: 'Aceptar',
             closeOnClickOutside: false,
+            showConfirmButton: false,
+            timer: 3000,
             closeOnEsc: false
         });
     }
