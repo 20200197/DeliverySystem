@@ -53,7 +53,7 @@ function fillTable(dataset) {
       `;
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
-    document.getElementById("tbody-entrega").innerHTML = content;
+    document.getElementById("contenido").innerHTML = content;
     // Se inicializa el componente Material Box para que funcione el efecto Lightbox.
     M.Materialbox.init(document.querySelectorAll(".materialboxed"));
     // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.

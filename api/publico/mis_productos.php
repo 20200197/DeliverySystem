@@ -20,8 +20,10 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No se logró identificar tu usuario';
                 } elseif ($result['datatset'] = $productos->cargarProductos()) {
                     $result['status'] = 1;
-                } else {
+                } elseif(Database::getException()) {
                     $result['exception'] = Database::getException();
+                }else{
+                    $result['exception'] = 'No hay datos de momento';
                 }
                 break;
             default:
