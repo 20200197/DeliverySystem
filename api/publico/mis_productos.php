@@ -23,7 +23,54 @@ if (isset($_GET['action'])) {
                 } elseif(Database::getException()) {
                     $result['exception'] = Database::getException();
                 }else{
-                    $result['exception'] = 'No hay datos de momento';
+                    $result['exception'] = 'No hay productos registrados';
+                }
+                break;
+            case 'categoria':
+                if($result['dataset'] = $productos->categorias()) {
+                    $result['status'] = 1;
+                }elseif(Database::getException()) {
+                    $result['exception'] = Database::getException();
+                }else{
+                    $result['exception'] = 'No hay categorias disponibles';
+                }
+                break;
+            case 'marca':
+                if ($result['dataset'] = $productos->marca()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay categorias disponibles';
+                }
+                break;
+            case 'guardar':
+                $_POST = $productos->validateForm($_POST);
+                if(!$productos->setNombre($_POST['nombre_productoA'])) {
+                    $result['exception'] = 'Nombre no valido';
+                }elseif(!$productos->setCantidad($_POST['cantidad_productoA'])) {
+                    $result['exception'] = 'Cantidad no válida';
+                }elseif(!$productos->setPrecio($_POST['precio_productoA'])) {
+                    $result['exception'] = 'Precio no valido';
+                }elseif(!$productos->setDescripcion($_POST['descripcion_productoA'])) {
+                    $result['exception'] = 'Descripción no válida';
+                }elseif(!$productos->setCategoria($_POST['categoriaA'])) {
+                    $result['exception'] = 'Categoria no válida';
+                }elseif(!$productos->setMarca($_POST['marcaA'])) {
+                    $result['exception'] = 'Marca no válida';
+                }elseif(!$productos->setUsuario(1)) { //Se debería colocar el id de la sesión
+                    $result['exception'] = 'Usuario no válido';
+                }elseif(!$productos->setImagen($_FILES['imagenA'])) {
+                    $result['exception'] = $productos->getFileError();
+                }elseif($productos->guardarProducto()) {
+                    $result['status'] = 1;
+                    if ($productos->saveFile($_FILES['imagenA'], $productos->getRuta(), $productos->getImagen())) {
+                        $result['message'] = 'Producto creado correctamente';
+                    } else {
+                        $result['message'] = 'Producto creado pero no se guardó la imagen';
+                    }
+                }else{
+                    $result['exception'] = Database::getException();
                 }
                 break;
             default:

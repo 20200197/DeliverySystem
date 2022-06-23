@@ -62,3 +62,18 @@ function fillTable(dataset) {
     // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
     M.Tooltip.init(document.querySelectorAll(".tooltipped"));
 }
+
+//Método que preparará los datos para agregar los productos
+document.getElementById("boton_agregar_producto").addEventListener("click", function () {
+    //Se cargan los datos en los select
+    fillSelect(API_PRODUCTOS + "categoria", "categoriaA", null);
+    fillSelect(API_PRODUCTOS + "marca", "marcaA", null);
+});
+
+//Método que ejecutará el guardado de productos
+document.getElementById("guardarProducto").addEventListener("submit", function (event) {
+    //Se previene la recarga de la página
+    event.preventDefault();
+    //Se procede a ejecutar el método que creará el nuevo registro
+    saveRow(API_PRODUCTOS, "guardar", "guardarProducto", "modal_agregar_producto");
+});
