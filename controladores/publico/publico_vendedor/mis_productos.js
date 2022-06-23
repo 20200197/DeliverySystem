@@ -74,6 +74,14 @@ document.getElementById("boton_agregar_producto").addEventListener("click", func
 document.getElementById("guardarProducto").addEventListener("submit", function (event) {
     //Se previene la recarga de la página
     event.preventDefault();
-    //Se procede a ejecutar el método que creará el nuevo registro
-    saveRow(API_PRODUCTOS, "guardar", "guardarProducto", "modal_agregar_producto");
+    //Se revisa que los select y la imagen hayan sido cargados
+    if (
+        document.getElementById("categoriaA").value == "Seleccione una opción" ||
+        document.getElementById("marcaA").value == "Seleccione una opción"
+    ) {
+        sweetAlert(3, "Existen campos desplegables sin seleccionar");
+    } else {
+        //Se procede a ejecutar el método que creará el nuevo registro
+        saveRow(API_PRODUCTOS, "guardar", "guardarProducto", "modal_agregar_producto");
+    }
 });
