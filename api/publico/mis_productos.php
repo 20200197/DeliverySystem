@@ -18,7 +18,7 @@ if (isset($_GET['action'])) {
             case 'readAll':
                 if (!$productos->setIdentificador(1)) { //Se debería de colocar el id de la sesión
                     $result['exception'] = 'No se logró identificar tu usuario';
-                } elseif ($result['datatset'] = $productos->cargarProductos()) {
+                } elseif ($result['dataset'] = $productos->cargarProductos()) {
                     $result['status'] = 1;
                 } elseif(Database::getException()) {
                     $result['exception'] = Database::getException();
