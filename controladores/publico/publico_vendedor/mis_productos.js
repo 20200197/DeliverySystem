@@ -46,7 +46,7 @@ function fillTable(dataset) {
                                         </div>
                                         <div class="col s12 m6 l4 centrar_boton_mis_productos">
                                             <a class="btn-large right modal-trigger" id="boton_edita_pro"
-                                            href="#modal_editar"><i
+                                            href="#modal_editar_producto" onclick="cargar_editar(${row.id_producto})"><i
                                             class="material-icons left">edit</i>Editar</a>
                                         </div>
                                     </div>
@@ -85,3 +85,8 @@ document.getElementById("guardarProducto").addEventListener("submit", function (
         saveRow(API_PRODUCTOS, "guardar", "guardarProducto", "modal_agregar_producto");
     }
 });
+
+//Función que cargar los datos en el modal de editar
+function cargar_editar() { 
+
+}

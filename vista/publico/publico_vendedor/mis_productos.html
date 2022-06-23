@@ -59,86 +59,75 @@
                     <!--Card de producto-->
                 </div>
                 <!--Modal editar producto-->
-                <div id="modal_editar" class="modal">
-                    <form action="">
+                <div id="modal_editar_producto" class="modal">
+                    <form method="post" id="editarProducto" enctype="multipart/form-data" autocomplete="off">
                         <div class="modal-content ">
                             <div class="row contorno">
-                                <h5 class="center-align">Editar producto</h5>>
-                                <div class="row ">
-                                    <div class="col s12 m12 l12 ">
-                                        <div class="col s12 m12 l3 imagen_cancelar_produ">
-                                            <img src="../../../recursos/img/publico/clientes/modals/images (5).jpg"
-                                                class="imagen_prod_o">
-                                            &nbsp;
-                                            <div class="row">
-                                                <div class="col s12 m12 l12">
-                                                    <a class="btn center-align boton_agregar_modi">Subir</a>
-                                                </div>
+                                <h5 class="center-align">Editar producto</h5>
+                                <div class="row">
+                                    <div class="col l4 m6 s12">
+                                        <img src="../../../recursos/img/publico/clientes/modals/images (5).jpg" class="imagen_prod_o">
+                                        <div class="file-field input-field">
+                                            <div class="btn">
+                                                <span>Imagen</span>
+                                                <input type="file" name="imagenA" required>
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text">
                                             </div>
                                         </div>
-                                        <div class="col s12 m12 l1"></div>
-                                        <!--Siguiente columna-->
-                                        <div class="col s12 m4 l4">
-                                            <div class="col s12 m12 l12">
-                                                <h6>Nombre de producto:</h6>
-                                                <div class="input-field col s12 m12 l12 nombre_field">
-                                                    <input placeholder="Nombre" id="nombre_producto" type="text">
-                                                </div>
-                                            </div>
-                                            <div class="col s12 m12 l12">
-                                                <h6>Cantidad:</h6>
-                                                <div class="input-field col s12 m12 l12">
-                                                    <input class="validate" id="cantidad_produ" type="number"
-                                                        placeholder="0">
-                                                </div>
-                                                <div class="col s12 m12 l12">
-                                                    <h6>Precio producto:</h6>
-                                                    <div class="input-field col s12 m12 l12">
-                                                        <input placeholder="$00.00" id="precio_produ" type="text"
-                                                            class="validate">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col s12 m12 l12">
-                                                <h6>Descripción:</h6>
-                                                <div class="input-field col s12 m12 l12 descripcion">
-                                                    <input class="materialize-textarea" id="descripcion_produ"
-                                                        placeholder="Descripción">
-                                                </div>
-                                            </div>
+                                    </div>
+                                    <div class="col l8 m6 s12">
+                                        <div class="input-field col s12 m12 l6">
+                                            <label for="nombre_productoA">Nombre de producto:</label>
+                                            <input placeholder="Nombre" id="nombre_productoA" name="nombre_productoA" type="text"
+                                                required>
                                         </div>
-                                        <!--Siguiente columna-->
-                                        <div class="col s12 m4 l4">
-                                            <div class="col s12 m12 l12">
-                                                <h6>Categoria:</h6>
-                                                <select class="browser-default ">
-                                                    <option value="" disabled selected>Choose your option</option>
-                                                </select>
-                                                <div class="col s12 m12 l12 nomb_marca">
-                                                    <h6>Marca:</h6>
-                                                    <select class="browser-default ">
-                                                        <option value="" disabled selected>Choose your option
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                                <div class="col s12 m12 l12 nomb_vendedor">
-                                                    <h6>Vendedor:</h6>
-                                                    <select class="browser-default ">
-                                                        <option value="" disabled selected>Choose your option
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                        <div class="input-field col s12 m12 l6">
+                                            <label for="cantidad_productoA">Cantidad:</label>
+                                            <input class="validate" id="cantidad_productoA" name="cantidad_productoA" type="number"
+                                                placeholder="0" required value="0">
+                                                <div class="col l12">
+                                                    <label>
+                                                        <input class="with-gap" type="radio" name="opciones" checked>
+                                                        <span>Agregar</span>
+                                                    </label>
+                                                    <label>
+                                                        <input class="with-gap" type="radio" name="opciones">
+                                                        <span>Eliminar</span>
+                                                    </label>
+                                                </div>  
+                                                    
+                                                
+                                        </div>
+                                        <div class="input-field col s12 m12 l6">
+                                            <label for="precio_productoA">Precio:</label>
+                                            <input placeholder="$00.00" id="precio_productoA" name="precio_productoA" type="text"
+                                                class="validate" required>
+                                        </div>
+                                        <div class="input-field col s12 m12 l6">
+                                            <label for="descripcion_productoA">Descripción:</label>
+                                            <input id="descripcion_productoA" placeholder="Descripción" type="text"
+                                                name="descripcion_productoA" class="validate" required>
+                                        </div>
+                                        <div class="col s12 m12 l6">
+                                            <label>Categoria:</label>
+                                            <select id="categoriaA" class="browser-default" name="categoriaA" required>
+                                            </select>
+                                        </div>
+                                        <div class="col s12 m12 l6">
+                                            <label>Marca:</label>
+                                            <select id="marcaA" class="browser-default" name="marcaA" required>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <a href="#!"
-                                class="modal-close waves-effect waves-green btn-flat boton_cancelar_modi">Cancelar</a>
-                            <button href="#!"
-                                class="modal-close waves-effect waves-green btn-flat boton_agregar_modi">Modificar</button>
+                            <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_cancelar_modi">Cancelar</a>
+                            <button type="submit" href="#!"
+                                class="waves-effect waves-green btn-flat boton_agregar_modi">Agregar</button>
                         </div>
                     </form>
                 </div>

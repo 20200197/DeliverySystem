@@ -134,7 +134,7 @@ class VendedorProducto extends Validator
     //Función para cargar los productos de un vendedor con su identificador
     public function cargarProductos()
     {
-        $sql = 'SELECT nombre_producto, descripcion_producto, cantidad_producto, precio_producto, 
+        $sql = 'SELECT id_producto, nombre_producto, descripcion_producto, cantidad_producto, precio_producto, 
         imagen FROM producto WHERE id_vendedor = ?';
         $params = array($this->identificador);
         return Database::getRows($sql, $params);
