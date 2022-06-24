@@ -83,6 +83,8 @@ document.getElementById("guardarProducto").addEventListener("submit", function (
     } else {
         //Se procede a ejecutar el método que creará el nuevo registro
         saveRow(API_PRODUCTOS, "guardar", "guardarProducto", "modal_agregar_producto");
+        //Se limpian los campos del formulario
+        document.getElementById("guardarProducto").reset();
     }
 });
 
