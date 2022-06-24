@@ -167,5 +167,14 @@ class VendedorProducto extends Validator
         true, $this->categoria, $this->usuario, $this->marca);
         return Database::executeRow($sql, $params);
     }
+
+    //Función para obtener los datos de un solo producto
+    public function productoIndividual()
+    {
+        $sql = 'SELECT id_producto, nombre_producto, descripcion_producto, precio_producto, imagen, 
+        id_categoria, id_marca FROM producto WHERE id_producto = ?';
+        $params = array($this->identificador);
+        return Database::getRow($sql, $params);
+    }
 }
 

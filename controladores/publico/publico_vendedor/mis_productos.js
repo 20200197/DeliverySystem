@@ -89,6 +89,50 @@ document.getElementById("guardarProducto").addEventListener("submit", function (
 });
 
 //Función que cargar los datos en el modal de editar
-function cargar_editar() { 
-
+function cargar_editar(id) {
+    //Se crea una variable de tipo formulario
+    let datos = new FormData();
+    datos.append("identificador", id);
+    //Se realiza la petición para cargar los datos
+    fetch(API_PRODUCTOS + "individual", {
+        method: "post",
+        body: datos,
+    }).then(function (request) {
+        //Se revisa si se ejecutó la sentencia
+        if (request.ok) {
+            //Se pasa a formato JSON
+            request.json().then(function (response) {
+                //Se verifica el estado de la respuesta
+                if (response.status) {
+                    //Se llenan los campos del modal para editar
+                    document.getElementById("nombre_productoM").value =
+                        response.dataset.nombre_producto;
+                    document.getElementById("cantidad_productoM").value = '0';
+                    document.getElementById("precio_productoM").value =
+                        response.dataset.precio_producto;
+                    document.getElementById("descripcion_productoM").value =
+                        response.dataset.descripcion_producto;
+                    document.getElementById("imagenM").src =
+                        "../../../api/imagenes/productos/" + response.dataset.imagen;
+                    //Se llenan los select
+                    fillSelect(
+                        API_PRODUCTOS + "categoria",
+                        "categoriaM",
+                        response.dataset.id_categoria
+                    );
+                    fillSelect(
+                        API_PRODUCTOS + "marca",
+                        "marcaM",
+                        response.dataset.id_marca
+                    );
+                } else {
+                    //Se le notifica el usuario del problema
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            //Se devuelve el error en la consola
+            console.log(request.status + " " + request.statusText);
+        }
+    });
 }

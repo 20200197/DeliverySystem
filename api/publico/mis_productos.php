@@ -20,18 +20,18 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No se logró identificar tu usuario';
                 } elseif ($result['dataset'] = $productos->cargarProductos()) {
                     $result['status'] = 1;
-                } elseif(Database::getException()) {
+                } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
-                }else{
+                } else {
                     $result['exception'] = 'No hay productos registrados';
                 }
                 break;
             case 'categoria':
-                if($result['dataset'] = $productos->categorias()) {
+                if ($result['dataset'] = $productos->categorias()) {
                     $result['status'] = 1;
-                }elseif(Database::getException()) {
+                } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
-                }else{
+                } else {
                     $result['exception'] = 'No hay categorias disponibles';
                 }
                 break;
@@ -46,30 +46,39 @@ if (isset($_GET['action'])) {
                 break;
             case 'guardar':
                 $_POST = $productos->validateForm($_POST);
-                if(!$productos->setNombre($_POST['nombre_productoA'])) {
+                if (!$productos->setNombre($_POST['nombre_productoA'])) {
                     $result['exception'] = 'Nombre no valido';
-                }elseif(!$productos->setCantidad($_POST['cantidad_productoA'])) {
+                } elseif (!$productos->setCantidad($_POST['cantidad_productoA'])) {
                     $result['exception'] = 'Cantidad no válida';
-                }elseif(!$productos->setPrecio($_POST['precio_productoA'])) {
+                } elseif (!$productos->setPrecio($_POST['precio_productoA'])) {
                     $result['exception'] = 'Precio no valido';
-                }elseif(!$productos->setDescripcion($_POST['descripcion_productoA'])) {
+                } elseif (!$productos->setDescripcion($_POST['descripcion_productoA'])) {
                     $result['exception'] = 'Descripción no válida';
-                }elseif(!$productos->setCategoria($_POST['categoriaA'])) {
+                } elseif (!$productos->setCategoria($_POST['categoriaA'])) {
                     $result['exception'] = 'Categoria no válida';
-                }elseif(!$productos->setMarca($_POST['marcaA'])) {
+                } elseif (!$productos->setMarca($_POST['marcaA'])) {
                     $result['exception'] = 'Marca no válida';
-                }elseif(!$productos->setUsuario(1)) { //Se debería colocar el id de la sesión
+                } elseif (!$productos->setUsuario(1)) { //Se debería colocar el id de la sesión
                     $result['exception'] = 'Usuario no válido';
-                }elseif(!$productos->setImagen($_FILES['imagenA'])) {
+                } elseif (!$productos->setImagen($_FILES['imagenA'])) {
                     $result['exception'] = $productos->getFileError();
-                }elseif($productos->guardarProducto()) {
+                } elseif ($productos->guardarProducto()) {
                     $result['status'] = 1;
                     if ($productos->saveFile($_FILES['imagenA'], $productos->getRuta(), $productos->getImagen())) {
                         $result['message'] = 'Producto creado correctamente';
                     } else {
                         $result['message'] = 'Producto creado pero no se guardó la imagen';
                     }
-                }else{
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            case 'individual':
+                if (!$productos->setIdentificador($_POST['identificador'])) {
+                    $result['exception'] = 'No se encontró el producto a editar';
+                } elseif ($result['dataset'] = $productos->productoIndividual()) {
+                    $result['status'] = 1;
+                } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
