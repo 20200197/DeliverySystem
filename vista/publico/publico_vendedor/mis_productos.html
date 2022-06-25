@@ -61,6 +61,7 @@
                 <!--Modal editar producto-->
                 <div id="modal_editar_producto" class="modal">
                     <form method="post" id="editarProducto" enctype="multipart/form-data" autocomplete="off">
+                        <input id='identificador' class="hide" name="identificador" type="text">
                         <div class="modal-content ">
                             <div class="row contorno">
                                 <h5 class="center-align">Editar producto</h5>
@@ -70,7 +71,7 @@
                                         <div class="file-field input-field">
                                             <div class="btn">
                                                 <span>Imagen</span>
-                                                <input type="file" name="imagenM" required>
+                                                <input type="file" name="imagenM">
                                             </div>
                                             <div class="file-path-wrapper">
                                                 <input class="file-path validate" type="text">
@@ -84,16 +85,16 @@
                                                 required>
                                         </div>
                                         <div class="input-field col s12 m12 l6">
-                                            <label for="cantidad_productoM">Cantidad:</label>
+                                            <label id="cantidad_actual" for="cantidad_productoM">Cantidad:</label>
                                             <input class="validate" id="cantidad_productoM" name="cantidad_productoM" type="number"
-                                                placeholder="0" required value="0">
+                                                placeholder="0" value="0">
                                                 <div class="col l12">
                                                     <label>
-                                                        <input class="with-gap" type="radio" name="opciones" checked>
+                                                        <input class="with-gap" type="radio" name="opciones" value="1" checked>
                                                         <span>Agregar</span>
                                                     </label>
                                                     <label>
-                                                        <input class="with-gap" type="radio" name="opciones">
+                                                        <input class="with-gap" type="radio" name="opciones" value="2">
                                                         <span>Eliminar</span>
                                                     </label>
                                                 </div>  

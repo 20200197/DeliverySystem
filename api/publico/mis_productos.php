@@ -82,6 +82,53 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }
                 break;
+            case 'cantidadActual':
+                if (!$productos->setIdentificador($_POST['identificador'])) {
+                    $result['exception'] = 'No se encontró el producto a editar';
+                } elseif ($result['dataset'] = $productos->cantidadActual()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            case 'actualizarProducto':
+                $_POST = $productos->validateForm($_POST);
+                if (!$productos->setNombre($_POST['nombre_productoM'])) {
+                    $result['exception'] = 'Nombre no valido';
+                } elseif (!$productos->setCantidad($_POST['cantidad_productoM'])) {
+                    $result['exception'] = 'Cantidad no válida';
+                } elseif (!$productos->setPrecio($_POST['precio_productoM'])) {
+                    $result['exception'] = 'Precio no valido';
+                } elseif (!$productos->setDescripcion($_POST['descripcion_productoM'])) {
+                    $result['exception'] = 'Descripción no válida';
+                } elseif (!$productos->setCategoria($_POST['categoriaM'])) {
+                    $result['exception'] = 'Categoria no válida';
+                } elseif (!$productos->setMarca($_POST['marcaM'])) {
+                    $result['exception'] = 'Marca no válida';
+                } elseif (!$productos->setIdentificador($_POST['identificador'])) { //Se debería colocar el id de la sesión
+                    $result['exception'] = 'Producto a actualizar no reconocido';
+                } elseif(!$data = $productos->productoIndividual()) {
+                    $result['exception'] = 'El producto a actualizar no existe';
+                }elseif (!is_uploaded_file($_FILES['imagenM']['tmp_name'])) {
+                    if ($productos->actualizar($_POST['opciones'], $data['imagen'])) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Producto modificado correctamente';
+                    } else {
+                        $result['message'] = 'Errocillo del bueno';
+                        $result['exception'] = Database::getException();
+                    }
+                }elseif($productos->actualizar($_POST['opciones'],$_FILES['imagenM'])) {
+                    $result['status'] = 1;
+                    if ($productos->saveFile($_FILES['imagenM'], $productos->getRuta(), $productos->getImagen())) {
+                        $result['message'] = 'Producto modificado correctamente';
+                    } else {
+                        $result['message'] = 'Producto modificado pero no se guardó la imagen';
+                    }
+
+                }else{
+                    $result['exception'] = Database::getException();
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
