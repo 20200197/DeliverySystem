@@ -25,7 +25,7 @@ class VendedorProducto extends Validator
 
     public function setNombre($valor)
     {
-        if ($this->validateAlphabetic($valor, 5, 60)) {
+        if ($this->validateString($valor, 5, 60)) {
             $this->nombre = $valor;
             return true;
         } else {

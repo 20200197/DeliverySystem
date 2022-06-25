@@ -117,7 +117,9 @@ if (isset($_GET['action'])) {
                         $result['message'] = 'Errocillo del bueno';
                         $result['exception'] = Database::getException();
                     }
-                }elseif($productos->actualizar($_POST['opciones'],$_FILES['imagenM'])) {
+                }elseif(!$productos->setImagen($_FILES['imagenM'])){
+                    $result['exception'] = $productos->getFileError();
+                }elseif($productos->actualizar($_POST['opciones'], $productos->getImagen())) {
                     $result['status'] = 1;
                     if ($productos->saveFile($_FILES['imagenM'], $productos->getRuta(), $productos->getImagen())) {
                         $result['message'] = 'Producto modificado correctamente';
