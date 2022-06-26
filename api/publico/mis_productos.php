@@ -131,6 +131,16 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }
                 break;
+            case 'delete':
+                if(!$productos->setIdentificador($_POST['identificador'])) {
+                    $result['exception'] = 'No se logró identificar el producto';
+                }elseif($productos->eliminarProducto()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Producto eliminado correctamente';
+                }else{
+                    $result['exception'] = Database::getException();
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

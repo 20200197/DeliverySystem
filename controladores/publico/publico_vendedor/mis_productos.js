@@ -40,7 +40,7 @@ function fillTable(dataset) {
                                              <h6>${row.precio_producto}</h6>
                                         </div>
                                         <div class="col s12 m6 l4 centrar_boton_mis_productos">
-                                            <a class="btn-large right modal-trigger" id="boton_elimi_pro"
+                                            <a onclick="eliminar(${row.id_producto})" class="btn-large right modal-trigger" id="boton_elimi_pro"
                                             href="#modal_eliminar_produ"><i
                                             class="material-icons left">delete</i>Eliminar</a>
                                         </div>
@@ -187,4 +187,14 @@ function verificarCantidad(id, valor) {
             console.log(request.status + " " + request.statusText);
         }
     });
+}
+
+
+//Función que elimina los productos
+function eliminar(id) {
+    //Se crea una variable de tipo formulario
+    let datos = new FormData();
+    datos.append("identificador", id);
+    //Se ejecuta el método para eliminar, está en componentes.js
+    confirmDelete(API_PRODUCTOS, datos);
 }
