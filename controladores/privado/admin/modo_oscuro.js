@@ -23,6 +23,7 @@ function modo_oscuro() {
         element.classList.toggle("th_oscuro");
         element.classList.toggle("i_oscuro");
         element.classList.toggle("boton_oscuro");
+        element.classList.toggle("mapa_oscuro");
         //Guardamnos item en la sesion
         data = sessionStorage.setItem('oc', '1');
     } else {
@@ -45,6 +46,7 @@ function modoOscuro() {
         element.classList.toggle("th_oscuro");
         element.classList.toggle("i_oscuro");
         element.classList.toggle("boton_oscuro");
+        element.classList.toggle("mapa_oscuro");
         //Guardamos item en la sesion
         data = sessionStorage.setItem('oc', '1');
      }else{
