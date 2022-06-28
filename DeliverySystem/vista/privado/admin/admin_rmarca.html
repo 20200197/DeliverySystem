@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!--Lenguaje de la página-->
+<html lang="es">
+<html>
+
+<head>
+   <meta charset="uft=8">
+   <!--Importar iconos-->
+   <link href="../../../recursos/css/icons.css" rel="stylesheet" />
+   <!--Importar archivos CSS-->
+   <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
+   <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_privado.css" media="screen,projection" />
+
+   <!--Optimización para mobiles-->
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <meta charset="utf-8"> 
+</head>
+
+<body>
+   <!--Marco general-->
+   <div class="row contenedor-general">
+      <!--Barra lateral, opciones para los usuarios-->
+      <ul id="slide-out" class="sidenav sidenav-fixed">
+         <li>
+            <a href="dashboard.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
+                  class="material-icons medium">home</i></a>
+         </li>
+         <li>
+            <a href="perfil.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
+                  class="material-icons medium">account_circle</i></a>
+         </li>
+         <li>
+            <a href="admin_producto.html" class="tooltipped" data-position="right" data-tooltip="Productos"><i
+                  class="material-icons medium">import_contacts</i></a>
+         </li>
+         <li>
+            <a href="admin_categoria.html" class="tooltipped" data-position="right" data-tooltip="Categoria"><i
+                  class="material-icons medium">format_list_bulleted</i></a>
+         </li>
+         <li><a href="admin_rmarca.html" class="tooltipped" data-position="right" data-tooltip="Marcas"><i
+                  class="material-icons medium">style</i></a></li>
+         <li>
+            <a href="admin_vendedor.html" class="tooltipped" data-position="right" data-tooltip="Vendedores"><i
+                  class="material-icons medium">people</i></a>
+         </li>
+         <li>
+            <a href="admin_distribuidor.html" class="tooltipped" data-position="right" data-tooltip="Repartidores"><i
+                  class="material-icons medium">motorcycle</i></a>
+         </li>
+         <li>
+            <a href="admin_cliente.html" class="tooltipped" data-position="right" data-tooltip="Clientes"><i
+                  class="material-icons medium">wc</i></a>
+         </li>
+         <li>
+            <a href="admin_producto.html" class="tooltipped" data-position="right" data-tooltip="Productos"><i
+                  class="material-icons medium">import_contacts</i></a>
+         </li>
+         <li>
+            <a href="admin_entrega.html" class="tooltipped" data-position="right" data-tooltip="Reparto"><i
+                  class="material-icons medium">description</i></a>
+         </li>
+         <li>
+            <a href="admin_admin.html" class="tooltipped" data-position="right" data-tooltip="Administradores"><i
+                  class="material-icons medium">folder_shared</i></a>
+         </li>
+         <li>
+            <button onclick="logOut('Admin')" class="tooltipped logout" data-position="right" data-tooltip="Cerrar sesión"><i
+                  class="material-icons medium">arrow_back</i></button>
+         </li>
+      </ul>
+      <!--Contenedor de datos-->
+      <div class="contenedor-datos">
+         <!--Encabezado-->
+         <header class="encabezado">
+            <a href="#" data-target="slide-out" class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
+                  class="material-icons">menu</i></a>
+            <img src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="" />
+            <a class="waves-effect waves-light btn boton_iniciar_sesion">Log In</a>
+         </header>
+         <!--Información de la página-->
+         <main>
+            <!--contenedor-->
+            <div class="row administrar_cate_o">
+               <div class="col s12 m12 l12 titulo_pega">
+                  <!--Titulo-->
+                  <div class="center-align ">
+                     <h5 class="center-align titulo_admin">Administrar marca</h5>
+                  </div>
+                  <div class="col l8 m8 s12">
+                     <!-- Formulario de búsqueda -->
+                     <form method="post" id="search-form">
+                        <div class="input-field col s9 m10 l6">
+                           <i class="material-icons prefix">search</i>
+                           <input id="search" type="text" name="search" placeholder="Busque por categoría..." required>
+                           <label for="search">Buscador</label>
+                        </div>
+                        <div class="input-field col s1 m1 l1">
+                           <button type="submit" class="btn-floating waves-effect blue tooltipped" data-tooltip="Buscar">
+                              <i class="material-icons">check</i>
+                           </button>
+                        </div>
+                     </form>
+                  </div>
+                  <div class="col l2 m2 s12">
+
+                        <div class="col s12 m12 l12 center-align centrar-horizontal">
+                           <a class="  btn-floating right boton_color tooltipped" data-position="right" data-tooltip="Categorías"
+                              href="admin_categoria.html"><i class="material-icons">format_list_bulleted</i></a>
+                           <a class="btn-floating right boton_color modal-trigger tooltipped" data-position="left" data-tooltip="Agregar"
+                              href="#modal_agregar_marc_a"><i class="material-icons left">add</i></a>
+                        </div>
+                  </div>
+                  
+               </div>
+               <div class="col s12 l12 m12 contenido_apar_marca">
+                  <!--Tabla-->
+                  <table>
+                     <thead>
+                        <tr>
+                           <th>Nombre marca:</th>
+                           <th></th>
+                           <th></th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td data-target="Marca: ">Marca 1</td>
+                           <td data-target="Eliminar: ">
+                              <a class="btn-flat boton_eliminar_tabl modal-trigger" href="#modal_eliminar_marc_a"><i
+                                    class="material-icons small">delete</i></a>
+                           </td>
+                           <td data-target="Editar: ">
+                              <a class="btn-flat boton_editar_tabl modal-trigger" href="#modal_editar_marc_a"><i
+                                    class="material-icons small">edit</i></a>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td data-target="Marca: ">Marca 1</td>
+                           <td data-target="Eliminar: ">
+                              <a class="btn-flat boton_eliminar_tabl modal-trigger" href="#modal_eliminar_marc_a"><i
+                                    class="material-icons small">delete</i></a>
+                           </td>
+                           <td data-target="Editar: ">
+                              <a class="btn-flat boton_editar_tabl modal-trigger" href="#modal_editar_marc_a"><i
+                                    class="material-icons small">edit</i></a>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <!--Modal eliminar marca-->
+            <div id="modal_eliminar_marc_a" class="modal">
+               <div class="modal-content">
+                  <div class="row contorno">
+                     <h5 class="center-align">Eliminar</h5>
+                     >
+                     <div class="col s12 m12 l12 imagen_categ">
+                        <img src="../../../recursos/img/privado/admin/modals/cancel_120px.png" class="materialboxed" />
+                     </div>
+                     <h6 class="center-align">
+                        ¿Está seguro de eliminar esta marca?
+                     </h6>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Aceptar</a>
+               </div>
+            </div>
+            <!--Modal editar marca-->
+            <div id="modal_editar_marc_a" class="modal">
+               <form action="">
+                  <div class="modal-content">
+                     <div class="row contorno">
+                        <div class="col s12 m12 l12">
+                           <h5 class="center-align">Editar marca</h5>
+                           <div class="col s12 m12 l1"></div>
+                           <div class="col s12 m12 l6 nombre_catee">
+                              <h6>Nombre marca:</h6>
+                              <div class="input-field col s12 m12 l12">
+                                 <input placeholder="Nombre" id="nombre_producto" type="text" />
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                     <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
+                     <button href="#!"
+                        class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Modificar</button>
+                  </div>
+               </form>
+            </div>
+            <!--Modal agregar marca-->
+            <div id="modal_agregar_marc_a" class="modal">
+               <div class="modal-content">
+                  <div class="row contorno">
+                     <div class="col s12 m12 l12">
+                        <!--Priemra columna-->
+                        <div class="col s12 m12 l12">
+                           <h5 class="center-align">Agregar marca</h5>
+                           <div class="row">
+                              <div class="col s12 m12 l12">
+                                 <div class="col s12 m12 l12">
+                                    <h6>Nombre marca:</h6>
+                                    <div class="input-field col s12 m12 l12 nombre_field">
+                                       <input placeholder="Nombre" id="nombre_producto" type="text" />
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <a class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Agregar</a>
+               </div>
+            </div>
+            <!--Boton agregar-->
+            <div class="fixed-action-btn hide-on-large-only show-on-small botones_accion">
+               <a class="btn-floating btn-medium red">
+                  <i class="large material-icons">mode_edit</i>
+               </a>
+               <ul>
+                  <li><a class=" btn-floating right boton_color tooltipped" data-position="left"
+                        data-tooltip="Categorías" href="admin_categoria.html"><i
+                           class="material-icons">format_list_bulleted</i></a></li>
+                  <li><a class="btn-floating right boton_color modal-trigger tooltipped" data-position="left"
+                        data-tooltip="Agregar" href="#modal_agregar_marc_a"><i class="material-icons left">add</i></a>
+                  </li>
+               </ul>
+            </div>
+         </main>
+      </div>
+   </div>
+
+   <!--Footer-->
+   <footer class="page-footer">
+      <!--Contenedor para el mapa y el copyright-->
+      <div class="footer_otros">
+         <div class="col l12 m12 s12 logo_copy_footer">
+            <img src="../../../recursos/img/privado/admin/modals/logo.png" alt="" />
+            <h6>© 2022 DeliverySystem</h6>
+         </div>
+      </div>
+   </footer>
+   <!--Importar archivos JavaScrip-->
+   <script type="text/javascript" src="../../../js/materialize.min.js"></script>
+   <script type="text/javascript" src="../../../controladores/privado/activation.js"></script>
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <script src="../../../controladores/componentes.js"></script>
+</body>
+
+</html>
+
+</html>
