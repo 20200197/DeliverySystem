@@ -99,16 +99,18 @@ document.getElementById("dui").addEventListener("input", function (evt) {
     }
   });
 
-  document.getElementById('search-form').addEventListener('submit', function(){
+  document.getElementById('search').addEventListener('keyup', function(){
+    const parameter = new FormData();
+    parameter.append('search', document.getElementById('search').value); 
+
     event.preventDefault();
     fetch(API_ADMIN + 'search', {
         method: 'post',
-        body: new FormData(document.getElementById('search-form'))
+        body: parameter
     }).then(function (request) {
         if (request.ok) {
             request.json().then(function (response) {
                 if (response.status) {
-                    sweetAlert(1, response.message, null);
                     fillTable(response.dataset);
                 } else {
                     sweetAlert(2, response.exception, null);
