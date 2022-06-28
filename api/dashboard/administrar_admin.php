@@ -60,7 +60,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }
                     break;
-            case 'readAdminsAll':
+            case 'readAll':
                 if ($result['dataset'] = $admin->readAdminsAll()) {
                     $result['status'] = 1;
                     $result['message'] = 'Administradores encontrados';
@@ -95,6 +95,8 @@ if (isset($_GET['action'])) {
             case 'checkStatus':
                 $_POST = $admin->validateForm($_POST);
                 if ($admin->getStatus($_POST['id'])) {
+                    $result['status'] = 1;
+                } else {
                     $result['status'] = 1;
                 }
                 break;

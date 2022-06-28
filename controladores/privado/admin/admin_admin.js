@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     M.Modal.init(document.querySelectorAll(".modal"), options);
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
 
-    fetch(API_ADMIN + 'readAdminsAll', {
+    fetch(API_ADMIN + 'readAll', {
         method: 'get'
     }).then(function (request) {
         if(request.ok){
@@ -27,12 +27,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function fillTable(dataset){
     let content = '';
+    let estado = '';
 
     dataset.map(function (row) {
         if (row.status_admin) {
-            estado = 'Activo';
+            estado = `checked`;
         } else {
-            estado = 'Inactivo';
+            estado = ` `;
         }
 
         content += `
@@ -44,11 +45,13 @@ function fillTable(dataset){
             <td>${row.correo_admin}</td>
             <td>${row.fecha_registro_admin}</td>
             <td>${row.telefono_admin}</td>
-            <td class='${estado}'>${estado}</td>
             <td>
-                <button class="btn-floating waves-effect red tooltipped" data-tooltip="Dar de baja" onClick="update(${row.id_admin})">
-                    <i class="material-icons">delete</i>
-                </button>
+                <div class="switch">
+                    <label>
+                    <input type="checkbox" name="switch_estado" onclick="update(${row.id_admin})" ${estado}>
+                    <span class="lever"></span>
+                    </label>
+                </div>
             </td>
         </tr>`;
     });
@@ -112,8 +115,6 @@ document.getElementById("dui").addEventListener("input", function (evt) {
             request.json().then(function (response) {
                 if (response.status) {
                     fillTable(response.dataset);
-                } else {
-                    sweetAlert(2, response.exception, null);
                 }
             });
         } else {
@@ -135,77 +136,25 @@ document.getElementById("dui").addEventListener("input", function (evt) {
         if (request.ok) {
             request.json().then(function (response) {
                 if (response.status) {
-                    Swal.fire({
-                        title: '¿Quieres dar de baja este administrador?',
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Confirmar',
-                        allowOutsideClick: false,
-                        allowEscapeKey: false
-                    }).then(function (value) {
-                        // Se verifica si fue cliqueado el botón Sí para hacer la petición de cerrar sesión, de lo contrario se muestra un mensaje.
-                        if (value.isConfirmed) {
-                            fetch(API_ADMIN + 'updateStatus', {
-                                method: 'post',
-                                body: data
-                            }).then(function (request) {
-                                if (request.ok) {
-                                    request.json().then(function (response) {
-                                        if (response.status) {
-                                            sweetAlert(1, response.message, 'admin_admin.html');
-                                        } else {
-                                            sweetAlert(2, response.exception, null);
-                                        }
-                                    });
+                    fetch(API_ADMIN + 'updateStatus', {
+                        method: 'post',
+                        body: data
+                    }).then(function (request) {
+                        if (request.ok) {
+                            request.json().then(function (response) {
+                                if (response.status) {
+                                    readRows(API_ADMIN);
+                                    sweetAlert(1, response.message, null);
                                 } else {
-                                    console.log(request.status + ' ' + request.statusText);
+                                    sweetAlert(2, response.exception, null);
                                 }
                             });
                         } else {
-                            sweetAlert(4, 'Acción cancelada', null);
-                        }
-                    });
-                } else {
-                    Swal.fire({
-                        title: '¿Quieres activar este administrador?',
-                        icon: 'info',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Confirmar',
-                        allowOutsideClick: false,
-                        allowEscapeKey: false
-                    }).then(function (value) {
-                        // Se verifica si fue cliqueado el botón Sí para hacer la petición de cerrar sesión, de lo contrario se muestra un mensaje.
-                        if (value.isConfirmed) {
-                            fetch(API_ADMIN + 'updateStatus', {
-                                method: 'post',
-                                body: data
-                            }).then(function (request) {
-                                if (request.ok) {
-                                    request.json().then(function (response) {
-                                        if (response.status) {
-                                            sweetAlert(1, response.message, 'admin_admin.html');
-                                        } else {
-                                            sweetAlert(2, response.exception, null);
-                                        }
-                                    });
-                                } else {
-                                    console.log(request.status + ' ' + request.statusText);
-                                }
-                            });
-                        } else {
-                            sweetAlert(4, 'Acción cancelada', null);
+                            console.log(request.status + ' ' + request.statusText);
                         }
                     });
                 }
             });
-        } else {
-            console.log(request.status + ' ' + request.statusText)
         }
     });
-
-    
-  }
+}
