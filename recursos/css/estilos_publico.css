@@ -2092,6 +2092,11 @@ tbody tr {
 /*-------------------Perfil vendedor---------------------*/
 /*----------------------------------------------*/
 
+.centrar_boton_mis_productos{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .main_vendedor h5 {
   text-align: center;

@@ -78,8 +78,7 @@
                                 <form method="post" id="search-form">
                                     <div class="input-field col s9 m7 l4">
                                         <i class="material-icons prefix">search</i>
-                                        <input id="search" type="text" name="search"
-                                            placeholder="Busque por categoría..." required>
+                                        <input id="search" type="text" name="search" placeholder="Busque por nombre, correo o usuario..." onkeyup="buscar()">
                                         <label for="search">Buscador</label>
                                     </div>
                                     <div class="input-field col s1 m1 l1">
@@ -96,8 +95,7 @@
                                 <thead>
                                     <tr>
                                         <!--Columnas-->
-                                        <th>Nombre:</th>
-                                        <th>Apellido:</th>
+                                        <th>Nombre completo:</th>
                                         <th>Dui:</th>
                                         <th>Correo:</th>
                                         <th>Usuario:</th>
@@ -107,86 +105,9 @@
                                 </thead>
                                 <!--Datos de tabla-->
                                 <tbody id="contenido">
-                                    <tr>
-                                        <td data-target="Nombre vendedor: ">Nombre 1</td>
-                                        <td data-target="Apellido vendedor: ">Apellido 1</td>
-                                        <td data-target="Dui vendedor: ">Dui 1</td>
-                                        <td data-target="Correo vendedor: ">Correo 1</td>
-                                        <td data-target="Usuario vendedor: ">Usuario 1</td>
-                                        <td data-target="Solvencia pnc: "><img
-                                                src="../../../recursos/img/privado/admin/modals/descarga (2).png"
-                                                class="materialboxed imagen_standar"></td>
-                                        <td data-target="Ver más: "><a class=" btn-flat modal-trigger"
-                                                href="#modal_info"><i class="material-icons">remove_red_eye</i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-target="Nombre vendedor: ">Nombre 1</td>
-                                        <td data-target="Apellido vendedor: ">Apellido 1</td>
-                                        <td data-target="Dui vendedor: ">Dui 1</td>
-                                        <td data-target="Correo vendedor: ">Correo 1</td>
-                                        <td data-target="Usuario vendedor: ">Usuario 1</td>
-                                        <td data-target="Solvencia pnc: "><img
-                                                src="../../../recursos/img/privado/admin/modals/descarga (2).png"
-                                                class="materialboxed imagen_standar"></td>
-                                        <td data-target="Ver más: "><a class=" btn-flat modal-trigger"
-                                                href="#modal_info"><i class="material-icons">remove_red_eye</i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-target="Nombre vendedor: ">Nombre 1</td>
-                                        <td data-target="Apellido vendedor: ">Apellido 1</td>
-                                        <td data-target="Dui vendedor: ">Dui 1</td>
-                                        <td data-target="Correo vendedor: ">Correo 1</td>
-                                        <td data-target="Usuario vendedor: ">Usuario 1</td>
-                                        <td data-target="Solvencia pnc: "><img
-                                                src="../../../recursos/img/privado/admin/modals/descarga (2).png"
-                                                class="materialboxed imagen_standar"></td>
-                                        <td data-target="Ver más: "><a class=" btn-flat modal-trigger"
-                                                href="#modal_info"><i class="material-icons">remove_red_eye</i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-target="Nombre vendedor: ">Nombre 1</td>
-                                        <td data-target="Apellido vendedor: ">Apellido 1</td>
-                                        <td data-target="Dui vendedor: ">Dui 1</td>
-                                        <td data-target="Correo vendedor: ">Correo 1</td>
-                                        <td data-target="Usuario vendedor: ">Usuario 1</td>
-                                        <td data-target="Solvencia pnc: "><img
-                                                src="../../../recursos/img/privado/admin/modals/descarga (2).png"
-                                                class="materialboxed imagen_standar"></td>
-                                        <td data-target="Ver más: "><a class=" btn-flat modal-trigger"
-                                                href="#modal_info"><i class="material-icons">remove_red_eye</i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-target="Nombre vendedor: ">Nombre 1</td>
-                                        <td data-target="Apellido vendedor: ">Apellido 1</td>
-                                        <td data-target="Dui vendedor: ">Dui 1</td>
-                                        <td data-target="Correo vendedor: ">Correo 1</td>
-                                        <td data-target="Usuario vendedor: ">Usuario 1</td>
-                                        <td data-target="Solvencia pnc: "><img
-                                                src="../../../recursos/img/privado/admin/modals/descarga (2).png"
-                                                class="materialboxed imagen_standar"></td>
-                                        <td data-target="Ver más: "><a class=" btn-flat modal-trigger"
-                                                href="#modal_info"><i class="material-icons">remove_red_eye</i></a></td>
-                                    </tr>
+                                
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                    <!--Modal dar de baj  vendedor-->
-                    <div id="modal_eliminar_vendedor" class="modal">
-                        <div class="modal-content">
-                            <div class="row contorno">
-                                <h5 class="center-align">Dar de baja</h5>
-                                <div class="col s12 m12 l12 imagen_categ">
-                                    <img src="../../../recursos/img/privado/admin/modals/cancel_120px.png">
-                                </div>
-                                <h6 class="center-align">¿Está seguro que quiere dar de baja este vendedor?</h6>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#!"
-                                class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
-                            <a href="#!"
-                                class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Aceptar</a>
                         </div>
                     </div>
                     <!--Modal de la informacion-->
@@ -196,7 +117,7 @@
                                 <h5 class="center-align">Información</h5>
                                 <div class="row">
                                     <div class="col s12 m12 l12">
-                                        <table class="default">
+                                        <table class="default" id="contenidoInfoModal">
                                             <tr>
                                                 <th>Nombre:</th>
                                                 <td>Nombre 1</td>
@@ -286,7 +207,9 @@
     </footer>
     <!--Importar archivos JavaScrip-->
     <script type="text/javascript" src="../../../js/materialize.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript" src="../../../controladores/privado/activation.js"></script>
+    <script type="text/javascript" src="../../../controladores/componentes.js"></script>
     <script type="text/javascript" src="../../../controladores/privado/admin/admin_vendedor.js"></script>
 </body>
 

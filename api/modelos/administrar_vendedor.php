@@ -3,7 +3,7 @@
 *	Clase para manejar la tabla usuarios de la base de datos.
 *   Es clase hija de Validator.
 */
-class AdministrarCliente extends Validator
+class AdministrarVendedor extends Validator
 {
     // Declaración de atributos (propiedades).
     private $identificador = null;
@@ -38,7 +38,7 @@ class AdministrarCliente extends Validator
     public function setBuscador($value)
     {
         if ($this->validateString($value, 0, 50)) {
-            $this->buscador = '%'.$value.'%';
+            $this->buscador = '%' . $value . '%';
             return true;
         } else {
             return false;
@@ -51,10 +51,10 @@ class AdministrarCliente extends Validator
 
     //Función para obtener todos los datos de los cliente
 
-    public function obtenerClientes()
+    public function obtenerVendedores()
     {
-        $sql = "SELECT id_cliente, CONCAT(nombre_cliente,' ', apellido_cliente) AS nombre_completo,
-         dui_cliente, correo_cliente, usuario_cliente, status_cliente, fecha_registro_cliente, telefono_cliente FROM cliente";
+        $sql = "SELECT id_vendedor, CONCAT(nombre_vendedor, ' ',apellido_vendedor) as nombre_completo, dui_vendedor, correo_vendedor,
+        usuario_vendedor, solvencia_pnc FROM vendedor WHERE status = true";
         $params = null;
         return Database::getRows($sql, $params);
     }
@@ -68,12 +68,31 @@ class AdministrarCliente extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    //Función para buscar vendedores
+
     public function buscar()
     {
-        $sql = "SELECT id_cliente, CONCAT(nombre_cliente,' ', apellido_cliente) AS nombre_completo,
-         dui_cliente, correo_cliente, usuario_cliente, status_cliente, fecha_registro_cliente, telefono_cliente FROM cliente
-         WHERE CONCAT(nombre_cliente,' ', apellido_cliente) ILIKE ? OR correo_cliente ILIKE ? OR usuario_cliente ILIKE ?";
+        $sql = "SELECT id_vendedor, CONCAT(nombre_vendedor, ' ',apellido_vendedor) as nombre_completo, dui_vendedor, correo_vendedor,
+        usuario_vendedor, solvencia_pnc FROM vendedor
+         WHERE (CONCAT(nombre_vendedor, ' ',apellido_vendedor) ILIKE ? OR correo_vendedor ILIKE ? OR usuario_vendedor ILIKE ?) AND status = true";
         $params = array($this->buscador, $this->buscador, $this->buscador);
         return Database::getRows($sql, $params);
+    }
+
+    //Función para obtener todos los datos de un vendedor
+    public function detalles()
+    {
+        $sql = 'SELECT * FROM vendedor WHERE id_vendedor = ?';
+        $params = array($this->identificador);
+        return Database::getRow($sql, $params);
+    }
+
+    //Función para eliminar un vendedor
+
+    public function eliminar()
+    {
+        $sql = 'UPDATE vendedor SET status = false WHERE id_vendedor = ?';
+        $params = array($this->identificador);
+        return Database::executeRow($sql, $params);
     }
 }
