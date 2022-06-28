@@ -4,6 +4,7 @@
 <html>
 
 <head>
+    <meta charset="uft=8">
     <!--Importar fuentes de Google-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Importar iconos-->
@@ -14,7 +15,6 @@
 
     <!--Optimización para mobiles-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="utf-8">
 </head>
 
 <body>
@@ -56,6 +56,7 @@
                 </div>
                 <!--Contenedor-->
                 <div class="row">
+                    <div class="row">
                         <!--Card de producto-->
                         <div class="col s12 m12 l12">
                             <div class="card  ">
@@ -98,6 +99,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                     <div class="row">
                         <!--Card de producto-->
                         <div class="col s12 m12 l12">
@@ -311,6 +313,26 @@
                         </div>
                     </form>
                 </div>
+                <!--Modal eliminar producto-->
+                <div id="modal_eliminar_produ" class="modal">
+                    <form action="">
+                        <div class="modal-content">
+                            <div class="row contorno">
+                                <h5 class="center-align">Eliminar</h5>>
+                                <div class="col s12 m12 l12 imagen_cancelar_produ">
+                                    <img src="../../../recursos/img/publico/clientes/modals/cancel_120px.png">
+                                </div>
+                                <h6 class="center-align">¿Está seguro de eliminar este producto?</h6>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!"
+                                class="modal-close waves-effect waves-green btn-flat boton_cancelar_modi">Cancelar</a>
+                            <button href="#!"
+                                class="modal-close waves-effect waves-green btn-flat boton_aceptar_produ">Aceptar</button>
+                        </div>
+                    </form>
+                </div>
             </main>
         </div>
     </div>
@@ -359,8 +381,6 @@
     <!--Importar archivos JavaScrip-->
     <script type="text/javascript" src="../../../js/materialize.min.js"></script>
     <script type="text/javascript" src="../../../controladores/publico/activation.js"></script>
-    <script type="text/javascript" src="../../../controladores/componentes.js"></script>
-    <script type="text/javascript" src="../../../controladores/publico/publico_vendedor/mis_productos.js"></script>
 </body>
 
 </html>

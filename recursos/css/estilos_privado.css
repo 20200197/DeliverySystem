@@ -166,6 +166,15 @@ body{
   color: #3f79ff;
 }
 
+.logout{
+  background: transparent;
+  border: transparent;
+}
+
+.logout:hover{
+  cursor: pointer;
+}
+
 /*----------------------------------------------*/
 /*-------------------Footer---------------------*/
 /*----------------------------------------------*/
@@ -304,6 +313,14 @@ body{
   background-color: #699af6;
   color: white;
   border-radius: 15px;
+}
+
+.Activo {
+  color: #549954;
+}
+
+.Inactivo {
+  color: #9c4747;
 }
 
 .boton_a_gregar {
@@ -606,7 +623,6 @@ th {
   justify-content: center;
 }
 
-label:hover,
 label:hover~label>.estrella {
   color: rgb(255, 238, 0);
 }
@@ -622,6 +638,8 @@ input[type="radio"]:checked~label>.estrella {
 .grafica_pastel_vendedor img {
   width: 50%;
 }
+
+
 
 /*----------------------------------------------*/
 /*-----------Estadística - admin----------------*/
@@ -1920,6 +1938,7 @@ a {
 .modal {
   border: 1px solid white;
   border-radius: 20px;
+  overflow-y: hidden;
 }
 
 /*titulo y botones general*/
@@ -2009,6 +2028,17 @@ th{
   font-family:  'Fira Sans Condensed', sans-serif;
   font-weight: bold;
 }
+
+
+/*----------------------------------------------*/
+/*-------------------Mapa---------------------*/
+/*----------------------------------------------*/
+
+#mapa{
+  height: 300px;
+  width: 1600px;
+}
+
 /*----------------------------------------------*/
 /*-------------------Responsive---------------------*/
 /*----------------------------------------------*/
