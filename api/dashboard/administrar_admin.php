@@ -144,13 +144,15 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ingrese un usuario válido';
                 } elseif (!$admin->checkUser()) {
                     $result['exception'] = 'El usuario es incorrecto';
-                } elseif ($admin->checkPass($_POST['password'])) {
+                } elseif (!$admin->checkStatus()) {
+                    $result['exception'] = 'Lo sentimos, usted se encuentra desactivado';
+                } elseif ($admin->checkPass($_POST['password']) && $admin->checkStatus()) {
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
                     $_SESSION['id_admin'] = $admin->getId();
-                } else {
-                    $result['exception'] = 'La contraseña es incorrecta';
-                }
+                } elseif(!$admin->checkPass($_POST['password'])) {
+                    $result['exception'] = 'Contraseña incorrecta';
+                } 
                 break;
             default:
                 $result['exception'] = 'Acción no disponible fuera de la sesión';

@@ -444,12 +444,13 @@ function pieGraph(canvas, legends, values, title) {
 // Función para mostrar un mensaje de confirmación al momento de cerrar sesión.
 function logOut(type) {
     Swal.fire({
-        title: 'Estas seguro de cerrar sesión?',
+        title: '¿Estas seguro de cerrar sesión?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Cerrar sesión',
+        cancelButtonText: 'Cancelar',
         allowOutsideClick: false,
         allowEscapeKey: false
     }).then(function (value) {

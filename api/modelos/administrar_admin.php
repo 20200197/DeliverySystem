@@ -157,6 +157,10 @@ class Administrador extends Validator{
         $sql = 'SELECT id_admin FROM administrador WHERE usuario_admin = ?';
         $params = array($this->usuario);
 
+        $data = Database::getRow($sql, $params);
+
+        $this->id = $data['id_admin'];
+
         return Database::getRow($sql, $params);
     }
 
@@ -170,7 +174,6 @@ class Administrador extends Validator{
         } elseif (!password_verify($pass, $data['clave_admin'])) {
             return false;
         } else {
-            $this->id = $data['id_admin'];
             return true;
         }
     }
@@ -223,5 +226,12 @@ class Administrador extends Validator{
         $params = array($id);
 
         return Database::executeRow($sql, $params);
+    }
+
+    public function checkStatus(){
+        $sql = 'SELECT status_admin FROM administrador WHERE id_admin = ? AND status_admin = true';
+        $params = array($this->id);
+
+        return Database::getRow($sql, $params);
     }
 }
