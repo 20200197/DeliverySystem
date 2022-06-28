@@ -26,7 +26,7 @@
     <div class="row contenedor-general">
         <!--Barra lateral, opciones para los usuarios-->
         <ul id="slide-out" class="sidenav sidenav-fixed">
-            <li><a href="dashboard.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
+            <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
                         class="material-icons medium ">home</i></a></li>
             <li><a href="perfil.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
                         class="material-icons medium">account_circle</i></a></li>
@@ -72,9 +72,13 @@
             </header>
             <!--Información de la página-->
             <main>
-                <p>Click the button to get your coordinates.</p>
-                <button onclick="getLocation()">Try It</button>
-                <div id="mapa"></div>
+                <div class="row mapa_contenedor">
+                    <div class="col s12 m12 l12">
+                        <p>Click the button to get your coordinates.</p>
+                        <button onclick="getLocation()">Try It</button>
+                        <div id="mapa"></div>
+                    </div>
+                </div>
             </main>
         </div>
     </div>
