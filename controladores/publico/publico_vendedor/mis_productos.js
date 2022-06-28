@@ -140,13 +140,9 @@ function cargar_editar(id) {
 document.getElementById("editarProducto").addEventListener("submit", function (event) {
     //Se previene la recarga de la página
     event.preventDefault();
-    //Se obtiene el valor
-    let decision = verificarCantidad(
+    if (document.querySelector("input[name=opciones]:checked").value == "2" && verificarCantidad(
         document.getElementById("identificador").value,
-        document.getElementById("cantidad_productoM").value
-    );
-    console.log(decision);
-    if (document.querySelector("input[name=opciones]:checked").value == "2" && decision) {
+        document.getElementById("cantidad_productoM").value)) {
         sweetAlert(3, "La cantidad restada debe ser inferior", null);
     } else {
         //Se procede a ejecutar el método que creará el nuevo registro
@@ -174,12 +170,12 @@ function verificarCantidad(id, valor) {
                 // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     //Se compara si lo obtenido es posible restarlo
-                    if (response.dataset.cantidad_producto - valor <= 0) {
+                    if (response.dataset.cantidad_producto - valor >= 0) {
                         console.log("todo bien" + response.dataset.cantidad_producto);
-                        return true;
+                        return 1;
                     } else {
                         console.log("Estafa" + response.dataset.cantidad_producto);
-                        return false;
+                        return 0;
                     }
                 } else {
                     sweetAlert(2, response.exception, null);
