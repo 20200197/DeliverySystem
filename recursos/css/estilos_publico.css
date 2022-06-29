@@ -1304,6 +1304,35 @@ input[type="radio"]:checked ~ label > .estrella {
   align-items: center;
   align-self: center;
 }
+
+#mapa {
+  height: 350px;
+  width: 450px;
+  z-index: 0;
+}
+
+.mapa_oscuro .leaflet-routing-alternatives-container {
+  color: black;
+}
+
+/*Responsive tablet*/
+@media (max-width:1050.98px) and (min-width:699.98px) {
+  #mapa {
+    height: 300px;
+    width: 300px;
+    z-index: 0;
+  }
+}
+
+/*response telefono*/
+@media (max-width:698.97px) and (min-width:100.20px) {
+  #mapa {
+    height: 200px;
+    width: 450px;
+    z-index: 0;
+  }
+}
+
 /*----------------------------------------------*/
 /*-------------------registrar_admin---------------------*/
 /*----------------------------------------------*/
