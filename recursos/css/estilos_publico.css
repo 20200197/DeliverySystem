@@ -984,7 +984,6 @@ main .center-align {
   justify-content: center;
 }
 
-label:hover,
 label:hover ~ label > .estrella {
   color: rgb(255, 238, 0);
 }
@@ -1303,6 +1302,7 @@ input[type="radio"]:checked ~ label > .estrella {
   display: flex;
   flex-direction: column;
   align-items: center;
+  align-self: center;
 }
 /*----------------------------------------------*/
 /*-------------------registrar_admin---------------------*/
