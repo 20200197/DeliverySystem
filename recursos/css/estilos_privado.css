@@ -166,6 +166,15 @@ body {
   color: #3f79ff;
 }
 
+.logout{
+  background: transparent;
+  border: transparent;
+}
+
+.logout:hover{
+  cursor: pointer;
+}
+
 /*----------------------------------------------*/
 /*-------------------Footer---------------------*/
 /*----------------------------------------------*/
@@ -306,6 +315,14 @@ body {
   border-radius: 15px;
 }
 
+.Activo {
+  color: #549954;
+}
+
+.Inactivo {
+  color: #9c4747;
+}
+
 .boton_a_gregar {
   background-color: #699af6;
   color: white;
@@ -417,6 +434,11 @@ td,
 th {
   width: 180px;
   word-wrap: break-word;
+  
+}
+
+th{
+  background-color: #8dc5ff;
 }
 
 /*----------------------------------------------*/
@@ -606,7 +628,6 @@ th {
   justify-content: center;
 }
 
-label:hover,
 label:hover~label>.estrella {
   color: rgb(255, 238, 0);
 }
@@ -622,6 +643,8 @@ input[type="radio"]:checked~label>.estrella {
 .grafica_pastel_vendedor img {
   width: 50%;
 }
+
+
 
 /*----------------------------------------------*/
 /*-----------Estadística - admin----------------*/
@@ -716,6 +739,7 @@ input[type="radio"]:checked~label>.estrella {
   width: 330px;
   height: 300px;
   padding-left: 229%;
+  
 }
 
 .n_l {
@@ -742,6 +766,7 @@ input[type="radio"]:checked~label>.estrella {
 .card-login {
   background-color: #e3f2fd;
   margin: 0px !important;
+  border-radius: 25px;
 }
 
 #texto-card-login-2 {
@@ -1928,6 +1953,7 @@ a {
 .modal {
   border: 1px solid white;
   border-radius: 20px;
+  overflow-y: hidden;
 }
 
 /*titulo y botones general*/
@@ -1994,8 +2020,17 @@ a {
   color: white;
 }
 
+/*Modo oscuro de login ya que tiene otros colores*/
+.login_oscuro .login_modo_oscuro{
+  background-color: #053A80;
+}
+
+.inputs_password input[type="password"]{
+  color: white;
+}
+
 /*
-Fuentes de tablas
+Fuentes de tablas y también modo oscuro
 */
 
 .th_oscuro th {
@@ -2009,7 +2044,7 @@ Fuentes de tablas
 }
 
 .boton_oscuro button {
-  background-color: #999e9e;
+  background-color: #053A80;
 }
 
 

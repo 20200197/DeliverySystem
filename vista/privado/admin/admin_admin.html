@@ -57,15 +57,13 @@
                         class="material-icons">menu</i></a>
                 <img src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
                 <!--Switch de cambiar color-->
-                <div class="col s12 m12 l12 right-align">
-                    <div class="switch switch_colorr hide-on-small-and-down right-align">
-                        <label >
-                            🌕
-                            <input type="checkbox" id="switch_color" onclick="modoOscuro()">
-                            <span class="lever" ></span>
-                            🌙
-                        </label>
-                    </div>
+                <div class="switch switch_colorr hide-on-small-and-down">
+                    <label >
+                        🌕
+                        <input type="checkbox" id="switch_color" onclick="modoOscuro()">
+                        <span class="lever" ></span>
+                        🌙
+                    </label>
                 </div>
                 <a class="waves-effect waves-light btn boton_iniciar_sesion">Log In</a>
             </header>
@@ -77,14 +75,14 @@
                         <div class="col s12 m12 l12 titulo_pega">
                             <!--Titulo-->
                             <div class="row ">
-                                <h5 class="center-align titulo_admin">Administrar producto</h5>
+                                <h5 class="center-align titulo_admin">Administradores</h5>
                             </div>
                             <!-- Formulario de búsqueda -->
                             <form method="post" id="search-form">
                                 <div class="input-field col s9 m7 l4">
                                     <i class="material-icons prefix">search</i>
                                     <input id="search" type="text" name="search"
-                                        placeholder="Busque por producto, categoria, marca o vendedor..." required>
+                                        placeholder="Busque por nombre, apellido, usuario, dui o correo...">
                                     <label for="search">Buscador</label>
                                 </div>
                                 <div class="input-field col s1 m1 l1">
@@ -94,6 +92,12 @@
                                     </button>
                                 </div>
                             </form>
+                            <div class="input-field col s2 m3 l4 right-align">
+                                <button class="btn-floating waves-effect blue tooltipped"
+                                    data-tooltip="Añadir" onclick="openSave()">
+                                    <i class="material-icons">add</i>
+                                </button>
+                            </div>
                         </div>
                         <form class="row" id="updatee-form" method="post" enctype="multipart/form-data">
                             <div class="col s12 l12 m12 contenido_apar">
@@ -102,51 +106,23 @@
                                     <thead>
                                         <!--Columnas-->
                                         <tr>
-                                            <th>Nombre producto:</th>
-                                            <th>Cantidad:</th>
-                                            <th>Descripción:</th>
-                                            <th>Precio:</th>
-                                            <th>Imagen:</th>
+                                            <th>Nombre:</th>
+                                            <th>Apellido:</th>
+                                            <th>Usuario:</th>
+                                            <th>Dui:</th>
+                                            <th>Correo:</th>
+                                            <th>Fecha:</th>
+                                            <th>Teléfono:</th>
                                             <th>Estado: </th>
-                                            <th>Categoria: </th>
-                                            <th>Vendedor:</th>
-                                            <th>Marca: </th>
-                                            <th>Dar de baja: </th>
+                                            <th>Dar de baja:</th>
                                         </tr>
                                     </thead>
                                     <!--Datos de tabla-->
-                                    <tbody id="tbody-productos">
+                                    <tbody id="tbody-admins">
 
                                     </tbody>
                                 </table>
                             </div>
-                        </form>
-                    </div>
-                    <!--Modal eliminar producto-->
-                    <div id="update-modal" class="modal">
-                        <div class="modal-content">
-                            <div class="row contorno">
-                                <h5 class="center-align" id="titulo_E"></h5>
-                                <form id="update-form" method="post">
-                                    <!--Campo ocultos-->
-                                    <input type="text" class="hide" id="id" name="id">
-                                    <!-- <div class="switch">
-                                        <label>
-                                            <input id="estado_producto" type="checkbox" name="estado_producto" >
-                                            <span class="lever hide "></span>
-                                        </label>
-                                    </div>-->
-                                    <div class="col s12 m12 l12 imagen_categ">
-                                        <img id="imagen_E">
-                                    </div>
-                                    <h6 class="center-align" id="texto_E"></h6>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#!"
-                                class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
-                            <button class="waves-effect waves-green btn-flat boton_a_gregar">Aceptar</button>
-                        </div>
                         </form>
                     </div>
                 </div>
@@ -154,6 +130,60 @@
         </div>
     </div>
 
+    <!--modal para crear un nuevo administrador-->
+    <div id="save-modal" class="modal">
+        <div class="modal-content">
+            <form class="row" method="post" id="save-form" enctype="multipart/form-data">
+                <div class="row" id="contorno">
+                    <div class="col s12 m12 center-align">
+                        <h5 id="titulo">Añadir empleado</h5>
+                        <div class="input-field col s6 m6 l6">
+                            <input id="name" type="text" name="name" class="validate" pattern="[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{1,30}" 
+                                required>
+                            <label for="name">Nombre</label>
+                        </div>
+                        <div class="input-field col s6 m6 l6">
+                            <input id="lastname" type="text" name="lastname" class="validate" pattern="[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{1,30}" 
+                                required>
+                            <label for="lastname">Apellido</label>
+                        </div>
+                        <div class="input-field col s6 m6 l6">
+                            <input id="dui" type="text" name="dui" class="validate" pattern="[0-9]{8}[-]{1}[0-9]{1}"
+                                maxlength="10" required>
+                            <label for="dui">DUI</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="phone" type="text" class="validate" name="phone" required>
+                            <label for="phone">Telefono</label>
+                        </div>
+                        <div class="input-field col s12 m12 l12">
+                            <input id="email" type="email" name="email" class="validate"
+                                required>
+                            <label for="email">Correo eléctronico</label>
+                        </div>
+                        <div class="input-field col s12 m12 l12">
+                            <input id="user" type="text" name="user" class="validate" pattern="[/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\,\;\.\-]{]{1,50}"
+                                required>
+                            <label for="user">Usuario</label>
+                        </div>
+                        <div class="input-field col s6 m6 l6">
+                            <input id="password1" type="password" name="pass1"
+                                class="validate" required>
+                            <label for="password1">Contraseña</label>
+                        </div>
+                        <div class="input-field col s6 m6 l6">
+                            <input id="password2" type="password" name="pass2" class="validate" required>
+                            <label for="password2">Confirmar contraseña</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-flat" type="submit">Guardar</button>
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
     <!--Footer-->
     <footer class="page-footer">
         <!--Contenedor para el mapa y el copyright-->
@@ -169,9 +199,8 @@
     <!--Importar archivos JavaScrip-->
     <script src="../../../recursos/js/materialize.min.js "></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../../../recursos/js/sweetalert2.all.min.js"></script>
     <script src="../../../controladores/componentes.js"></script>
-    <script src="../../../controladores/privado/admin/admin_producto.js"></script>
+    <script src="../../../controladores/privado/admin/admin_admin.js"></script>
     <script src="../../../controladores/privado/admin/modo_oscuro.js"></script>
 
 </body>

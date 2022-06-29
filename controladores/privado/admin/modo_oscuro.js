@@ -24,6 +24,8 @@ function modo_oscuro() {
         element.classList.toggle("i_oscuro");
         element.classList.toggle("boton_oscuro");
         element.classList.toggle("mapa_oscuro");
+        element.classList.toggle("login_oscuro");
+        element.classList.toggle("inputs_password");
         //Guardamnos item en la sesion
         data = sessionStorage.setItem('oc', '1');
     } else {
@@ -47,6 +49,8 @@ function modoOscuro() {
         element.classList.toggle("i_oscuro");
         element.classList.toggle("boton_oscuro");
         element.classList.toggle("mapa_oscuro");
+        element.classList.toggle("login_oscuro");
+        element.classList.toggle("inputs_password");
         //Guardamos item en la sesion
         data = sessionStorage.setItem('oc', '1');
      }else{

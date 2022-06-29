@@ -19,6 +19,7 @@ if (isset($_GET['action'])) {
             case 'readAdmin':
                 $result['exception'] = 'Ya está logueado, cierre sesión para acceder al login';
                 break;
+                //Cerrar sesión
             case 'logOut':
                 if (session_destroy()) {
                     $result['status'] = 1;
@@ -27,6 +28,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
                 }
                 break;
+                //Registrar admin
             case 'registerAdmin':
                 $_POST = $admin->validateForm($_POST);
                 if (!$admin->setNombre($_POST['name'])) {
@@ -59,7 +61,8 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = Database::getException();
                 }
-                    break;
+                break;
+                //Leer todos los admins
             case 'readAdminsAll':
                 if ($result['dataset'] = $admin->readAdminsAll()) {
                     $result['status'] = 1;
@@ -69,7 +72,8 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = Database::getException();
                 }
-                    break;
+                break;
+                //Buscador
             case 'search':
                 $_POST = $admin->validateForm($_POST);
                 if ($result['dataset'] = $admin->searchAdmins($_POST['search'])) {
@@ -78,20 +82,22 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'No se han encontrado datos';
                 }
-                    break;
+                break;
+                //Actualizar estatus
             case 'updateStatus':
                 $_POST = $admin->validateForm($_POST);
-                if ($admin->changeStatus($_POST['id'])){
+                if ($admin->changeStatus($_POST['id'])) {
                     $result['status'] = 1;
                     if ($admin->getStatus($_POST['id'])) {
                         $result['message'] = 'Se ha activado correctamente';
                     } else {
                         $result['message'] = 'Se ha dado de baja correctamente';
                     }
-                }else {
+                } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
+                //Checar status
             case 'checkStatus':
                 $_POST = $admin->validateForm($_POST);
                 if ($admin->getStatus($_POST['id'])) {
@@ -102,17 +108,18 @@ if (isset($_GET['action'])) {
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
                 break;
         }
-        
     } else {
         switch ($_GET['action']) {
+                //Leer admin
             case 'readAdmin':
                 if ($admin->readAdmins()) {
                     $result['status'] = 1;
                     $result['message'] = 'Inicie sesión para comenzar';
-                } else{
+                } else {
                     $result['exception'] = 'Bienvenido, cree el primer usuario para empezar';
                 }
                 break;
+                //Registrar admin
             case 'registerAdmin':
                 $_POST = $admin->validateForm($_POST);
                 if (!$admin->setNombre($_POST['name'])) {
@@ -138,9 +145,10 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }
                 break;
+                //Iniciar sesión en admin
             case 'loginAdmin':
                 $_POST = $admin->validateForm($_POST);
-                if(!$admin->setUsuario($_POST['user'])){
+                if (!$admin->setUsuario($_POST['user'])) {
                     $result['exception'] = 'Ingrese un usuario válido';
                 } elseif (!$admin->checkUser()) {
                     $result['exception'] = 'El usuario es incorrecto';
