@@ -140,54 +140,58 @@ function cargar_editar(id) {
 document.getElementById("editarProducto").addEventListener("submit", function (event) {
     //Se previene la recarga de la página
     event.preventDefault();
-    if (document.querySelector("input[name=opciones]:checked").value == "2" && verificarCantidad(
-        document.getElementById("identificador").value,
-        document.getElementById("cantidad_productoM").value)) {
-        sweetAlert(3, "La cantidad restada debe ser inferior", null);
+    //Se crea una variable de tipo formulario
+    let datos = new FormData();
+    //Se verifica si se está sumando o restando
+    if (document.querySelector("input[name=opciones]:checked").value == "2") {
+        //Se agrega el id del producto
+        datos.append("identificador", document.getElementById("identificador").value);
+        //Se realiza la petición para saber la cantidad actual
+        fetch(API_PRODUCTOS + "cantidadActual", {
+            method: "post",
+            body: datos,
+        }).then(function (request) {
+            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+            if (request.ok) {
+                // Se obtiene la respuesta en formato JSON.
+                request.json().then(function (response) {
+                    let data = [];
+                    // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
+                    if (response.status) {
+                        //Se compara si lo obtenido es posible restarlo
+                        if (
+                            response.dataset.cantidad_producto -
+                                document.getElementById("cantidad_productoM").value >=
+                            0
+                        ) {
+                            //Se procede a ejecutar el método que actualizará el registro
+                            saveRow(
+                                API_PRODUCTOS,
+                                "actualizarProducto",
+                                "editarProducto",
+                                "modal_editar_producto"
+                            );
+                            //Se limpian los campos del formulario
+                            document.getElementById("guardarProducto").reset();
+                        } else {
+                            sweetAlert(3, "La cantidad a disminuir debe ser inferior", null);
+                        }
+                    } else {
+                        sweetAlert(2, response.exception, null);
+                        return "problema";
+                    }
+                });
+            } else {
+                console.log(request.status + " " + request.statusText);
+            }
+        });
     } else {
-        //Se procede a ejecutar el método que creará el nuevo registro
+        //Se procede a ejecutar el método que actualizará el registro
         saveRow(API_PRODUCTOS, "actualizarProducto", "editarProducto", "modal_editar_producto");
         //Se limpian los campos del formulario
         document.getElementById("guardarProducto").reset();
     }
 });
-
-//Función que verificará si la cantidad actual es posible disminuirla, devuelve la verificación
-function verificarCantidad(id, valor) {
-    //Se crea una variable de tipo formulario
-    let datos = new FormData();
-    datos.append("identificador", id);
-    //Se realiza la petición para saber la cantidad actual
-    fetch(API_PRODUCTOS + "cantidadActual", {
-        method: "post",
-        body: datos,
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-        if (request.ok) {
-            // Se obtiene la respuesta en formato JSON.
-            request.json().then(function (response) {
-                let data = [];
-                // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
-                if (response.status) {
-                    //Se compara si lo obtenido es posible restarlo
-                    if (response.dataset.cantidad_producto - valor >= 0) {
-                        console.log("todo bien" + response.dataset.cantidad_producto);
-                        return 1;
-                    } else {
-                        console.log("Estafa" + response.dataset.cantidad_producto);
-                        return 0;
-                    }
-                } else {
-                    sweetAlert(2, response.exception, null);
-                    return 'problema';
-                }
-            });
-        } else {
-            console.log(request.status + " " + request.statusText);
-        }
-    });
-}
-
 
 //Función que elimina los productos
 function eliminar(id) {
