@@ -434,6 +434,11 @@ td,
 th {
   width: 180px;
   word-wrap: break-word;
+  
+}
+
+th{
+  background-color: #8dc5ff;
 }
 
 /*----------------------------------------------*/
@@ -734,6 +739,7 @@ input[type="radio"]:checked~label>.estrella {
   width: 330px;
   height: 300px;
   padding-left: 229%;
+  
 }
 
 .n_l {
@@ -760,6 +766,7 @@ input[type="radio"]:checked~label>.estrella {
 .card-login {
   background-color: #e3f2fd;
   margin: 0px !important;
+  border-radius: 25px;
 }
 
 #texto-card-login-2 {
@@ -2013,8 +2020,17 @@ a {
   color: white;
 }
 
+/*Modo oscuro de login ya que tiene otros colores*/
+.login_oscuro .login_modo_oscuro{
+  background-color: #053A80;
+}
+
+.inputs_password input[type="password"]{
+  color: white;
+}
+
 /*
-Fuentes de tablas
+Fuentes de tablas y también modo oscuro
 */
 
 .th_oscuro th {
@@ -2028,7 +2044,7 @@ Fuentes de tablas
 }
 
 .boton_oscuro button {
-  background-color: #999e9e;
+  background-color: #053A80;
 }
 
 

@@ -277,11 +277,15 @@ function sweetAlert(type, text, url) {
     // Si existe una ruta definida, se muestra el mensaje y se direcciona a dicha ubicación, de lo contrario solo se muestra el mensaje.
     if (url) {
         Swal.fire({
+            toast:true,
+            position: 'top-end',
             title: title,
             text: text,
             icon: icon,
             button: 'Aceptar',
+            timer: 2000,
             closeOnClickOutside: false,
+            showConfirmButton:false,
             closeOnEsc: false
         }).then(function () {
             location.href = url
@@ -296,7 +300,7 @@ function sweetAlert(type, text, url) {
             button: 'Aceptar',
             closeOnClickOutside: false,
             showConfirmButton: false,
-            timer: 3000,
+            timer: 2000,
             closeOnEsc: false
         });
     }
@@ -444,13 +448,12 @@ function pieGraph(canvas, legends, values, title) {
 // Función para mostrar un mensaje de confirmación al momento de cerrar sesión.
 function logOut(type) {
     Swal.fire({
-        title: '¿Estas seguro de cerrar sesión?',
+        title: '¿Éstas seguro de cerrar sesión?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Cerrar sesión',
-        cancelButtonText: 'Cancelar',
         allowOutsideClick: false,
         allowEscapeKey: false
     }).then(function (value) {
