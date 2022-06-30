@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function (){
         if(request.ok){
             request.json().then(function (response) {
                 if(response.session){
-                    sweetAlert(3, 'ya hay una sesión abierta', 'estadistica.html');
+                    sweetAlert(3, 'Ya hay una sesión abierta', 'estadistica.html');
                 }
             })
         }else{
