@@ -8,6 +8,7 @@ document.getElementById('profile-file').onchange=function(e){
         let preview = document.getElementById('preview-profile');
         imagen = document.createElement('img');
         imagen.src = reader.result;
+        imagen.id = 'profile-pic';
         imagen.width = 200;
         imagen.height = 200;
         preview.append(imagen);
@@ -22,6 +23,7 @@ document.getElementById('antecedente-file').onchange=function(e){
         let preview = document.getElementById('preview-antecedente');
         imagen = document.createElement('img');
         imagen.src = reader.result;
+        imagen.id = 'antecedente-pic';
         imagen.width = 100;
         imagen.height = 100;
         preview.append(imagen);
@@ -36,6 +38,7 @@ document.getElementById('solvencia-file').onchange=function(e){
         let preview = document.getElementById('preview-solvencia');
         imagen = document.createElement('img');
         imagen.src = reader.result;
+        imagen.id = 'solvencia-pic';
         imagen.width = 100;
         imagen.height = 100;
         preview.append(imagen);
