@@ -206,3 +206,15 @@ function eliminar(id) {
     //Se ejecuta el método para eliminar, está en componentes.js
     confirmDelete(API_PRODUCTOS, datos);
 }
+
+//Función para previsualizar un producto
+function leerImg(input, img_destino)
+{
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            img_destino.attr("src", e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
