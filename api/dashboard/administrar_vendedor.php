@@ -10,9 +10,10 @@ if (isset($_GET['action'])) {
     // Se instancia la clase correspondiente.
     $administrar_vendedor = new AdministrarVendedor;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
-    $result = array('status' => 0, 'message' => null, 'exception' => null);
+    $result = array('status' => 0, 'message' => null, 'exception' => null, 'session' => 0);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
     if (isset($_SESSION['id_vendedor'])) { // Se cambiará por isset($_SESSION['id_usuario'])
+        $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':

@@ -302,11 +302,11 @@ class AdministrarVendedor extends Validator
         $sql = 'SELECT id_vendedor FROM vendedor WHERE usuario_vendedor = ?';
         $params = array($this->usuario);
 
-        $data = Database::getRow($sql, $params);
+        if ($data = Database::getRow($sql, $params)) {
+            $this->identificador = $data['id_vendedor'];
+        }
 
-        $this->identificador = $data['id_vendedor'];
-
-        return Database::getRow($sql, $params);
+        return $data;
     }
 
     public function checkPass($pass)

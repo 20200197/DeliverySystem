@@ -10,8 +10,8 @@ document.getElementById('login-form').addEventListener('submit', function() {
             request.json().then(function (response) {
                 if(response.status){
                     sweetAlert(1, response.message, 'estadistica.html');
-                } else {
-                    sweetAlert(2, response.exception, null)
+                }else{
+                    sweetAlert(2, response.exception, null);
                 }
             });
         } else {
@@ -19,3 +19,19 @@ document.getElementById('login-form').addEventListener('submit', function() {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', function (){
+    fetch(API_VENDEDOR + 'session', {
+        method: 'get'
+    }).then(function (request) {
+        if(request.ok){
+            request.json().then(function (response) {
+                if(response.session){
+                    sweetAlert(3, 'ya hay una sesión abierta', 'estadistica.html');
+                }
+            })
+        }else{
+            console.log(request.status + ' ' + request.statusText);
+        }
+    })
+})

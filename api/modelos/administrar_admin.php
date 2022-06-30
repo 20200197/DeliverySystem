@@ -157,11 +157,10 @@ class Administrador extends Validator{
         $sql = 'SELECT id_admin FROM administrador WHERE usuario_admin = ?';
         $params = array($this->usuario);
 
-        $data = Database::getRow($sql, $params);
-
-        $this->id = $data['id_admin'];
-
-        return Database::getRow($sql, $params);
+        if  ($data = Database::getRow($sql, $params)) {
+            $this->id = $data['id_admin'];
+        }
+        return $data;
     }
 
     public function checkPass($pass)
