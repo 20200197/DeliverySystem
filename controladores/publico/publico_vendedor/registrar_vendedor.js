@@ -1,4 +1,7 @@
+const API_VENDEDOR = SERVER + 'dashboard/administrar_vendedor.php?action=';
+
 document.getElementById('profile-file').onchange=function(e){
+    document.getElementById('profile-pic').remove();
     let reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     reader.onload=function(){
@@ -12,6 +15,7 @@ document.getElementById('profile-file').onchange=function(e){
 }
 
 document.getElementById('antecedente-file').onchange=function(e){
+    document.getElementById('antecedente-pic').remove();
     let reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     reader.onload=function(){
@@ -25,6 +29,7 @@ document.getElementById('antecedente-file').onchange=function(e){
 }
 
 document.getElementById('solvencia-file').onchange=function(e){
+    document.getElementById('solvencia-pic').remove();
     let reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     reader.onload=function(){
@@ -47,12 +52,13 @@ var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 Layer = null;
+let cords = null;
 
 function onMapClick(e) {
     if(Layer == null){
         Layer = L.marker(e.latlng);
         cords = Layer.getLatLng().lat + ', ' + Layer.getLatLng().lng;
-    } else {
+    }else{
         Layer.remove();
         Layer = L.marker(e.latlng);
         cords = Layer.getLatLng().lat + ', ' + Layer.getLatLng().lng;
@@ -64,3 +70,28 @@ function onMapClick(e) {
 
 map.on('click', onMapClick);
 
+document.getElementById('save-form').addEventListener('submit', function() {
+    event.preventDefault();
+    if(cords == null){
+        sweetAlert(3, 'Selecciona una dirección en el mapa', null)
+    }else{
+        const data = new FormData(document.getElementById('save-form'));
+        data.append('cords', cords);
+        fetch(API_VENDEDOR + 'register', {
+            method: 'post',
+            body: data
+        }).then(function (request) {
+            if(request.ok){
+                request.json().then(function (response) {
+                    if(response.status){
+                        sweetAlert(1, response.message, 'index.html');
+                    } else {
+                        sweetAlert(2, response.exception, null);
+                    }
+                });
+            }else{
+                console.log(request.status + ' ' + request.statusText);
+            }
+        });
+    }
+});

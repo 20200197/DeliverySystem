@@ -190,6 +190,36 @@ class AdministrarVendedor extends Validator
         }
     }
 
+    public function getRutaAntecedente()
+    {
+        return $this->ruta_antecedente;
+    }
+
+    public function getRutaSolvencia()
+    {
+        return $this->ruta_solvencia;
+    }
+
+    public function getRutaFoto()
+    {
+        return $this->ruta_foto;
+    }
+
+    public function getAntecedente()
+    {
+        return $this->antecedentes;
+    }
+
+    public function getSolvencia()
+    {
+        return $this->solvencia;
+    }
+
+    public function getFoto()
+    {
+        return $this->foto;
+    }
+
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
@@ -238,6 +268,18 @@ class AdministrarVendedor extends Validator
     {
         $sql = 'UPDATE vendedor SET status = false WHERE id_vendedor = ?';
         $params = array($this->identificador);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function registrar()
+    {
+        // Se establece la zona horaria local para obtener la fecha del servidor.
+        date_default_timezone_set('America/El_Salvador');
+        $date = date('Y-m-d');
+        $sql = 'INSERT INTO vendedor(nombre_vendedor, apellido_vendedor, dui_vendedor, correo_vendedor, telefono_vendedor, usuario_vendedor, clave_vendedor, solvencia_pnc, antecedente_penal, direccion_domicilio_vendedor, status_vendedor, foto_vendedor, fecha_registro_vendedor, coordenadas_vendedor)
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, true, ?, ?, ?)';
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->telefono, $this->usuario, $this->clave, $this->solvencia, $this->antecedentes, $this->direccion, $this->foto, $date, $this->coordenadas);
+
         return Database::executeRow($sql, $params);
     }
 }

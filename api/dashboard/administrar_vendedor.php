@@ -65,6 +65,55 @@ if (true) { // Se cambiará por isset($_SESSION['id_usuario'])
                     $result['exception'] = Database::getException();
                 }
                 break;
+            case 'register':
+                $_POST = $administrar_vendedor->validateForm($_POST);
+                if (!$administrar_vendedor->setNombre($_POST['name'])) {
+                    $result['exception'] = 'Nombre inválido';
+                } elseif (!$administrar_vendedor->setApellido($_POST['lastname'])) {
+                    $result['exception'] = 'Apellido inválido';
+                } elseif (!$administrar_vendedor->setDui($_POST['dui'])) {
+                    $result['exception'] = 'DUI Invalido';
+                } elseif (!$administrar_vendedor->setCorreo($_POST['email'])) {
+                    $result['exception'] = 'Correo inválido';
+                } elseif (!$administrar_vendedor->setTelefono($_POST['phone'])) {
+                    $result['exception'] = 'Teléfono inválido';
+                } elseif (!$administrar_vendedor->setUsuario($_POST['user'])) {
+                    $result['exception'] = 'Usuario inválido';
+                } elseif ($_POST['pass1'] != $_POST['pass2']) {
+                    $result['exception'] = 'Las contraseñas no coinciden';
+                } elseif (!$administrar_vendedor->setClave($_POST['pass1'])) {
+                    $result['exception'] = 'Contraseña inválida';
+                } elseif (!is_uploaded_file($_FILES['solvencia-file']['tmp_name'])) {
+                    $result['exception'] = 'Seleccione una imagen para la solvencia';
+                } elseif (!$administrar_vendedor->setSolvencia($_FILES['solvencia-file'])) {
+                    $result['exception'] = $administrar_vendedor->getFileError();
+                } elseif (!is_uploaded_file($_FILES['antecedente-file']['tmp_name'])) {
+                    $result['exception'] = 'Seleccione una imagen para los antecedentes';
+                } elseif (!$administrar_vendedor->setAntecedentes($_FILES['antecedente-file'])) {
+                    $result['exception'] = $administrar_vendedor->getFileError();
+                } elseif (!$administrar_vendedor->setDireccion($_POST['direction'])) {
+                    $result['exception'] = 'Dirección inválida';
+                } elseif (!is_uploaded_file($_FILES['profile-file']['tmp_name'])) {
+                    $result['exception'] = 'Seleccione una foto';
+                } elseif (!$administrar_vendedor->setFoto($_FILES['profile-file'])) {
+                    $result['exception'] = $administrar_vendedor->getFileError();
+                } elseif (!$administrar_vendedor->setCoordenadas($_POST['cords'])) {
+                    $result['exception'] = 'coordenadas invalidas';
+                } elseif ($administrar_vendedor->registrar()) {
+                    if (!$administrar_vendedor->saveFile($_FILES['solvencia-file'], $administrar_vendedor->getRutaSolvencia(), $administrar_vendedor->getSolvencia())) {
+                        $result['message'] = 'Usuario creado pero no se guardó la solvencia';
+                    } elseif (!$administrar_vendedor->saveFile($_FILES['antecedente-file'], $administrar_vendedor->getRutaAntecedente(), $administrar_vendedor->getAntecedente())) {
+                        $result['message'] = 'Usuario creado pero no se guardó el antecedente';
+                    } elseif (!$administrar_vendedor->saveFile($_FILES['profile-file'], $administrar_vendedor->getRutaFoto(), $administrar_vendedor->getFoto())) {
+                        $result['message'] = 'Usuario creado pero no se guardó la foto personal';
+                    } else {
+                        $result['status'] = 1;
+                        $result['message'] = 'Usuario creado correctamente';
+                    }
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

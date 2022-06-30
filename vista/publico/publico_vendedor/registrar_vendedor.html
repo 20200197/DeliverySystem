@@ -52,10 +52,12 @@
                         <div class="col l5 m5 s12 foto_de_vendedor">
                             <h6>Foto personal</h6>
                             <div id="preview-profile" class="styleImage">
+                                <img src="../../../recursos/img/publico/default-profile.jpg" id="profile-pic" width="200px" height="200px">
                             </div>
                                 <div class="file-field input-field">
                                     <div class="btn blue">
                                         <span>Agregar foto</span>
+                                        <input type="file">
                                     </div>
                                     <div class="file-path-wrapper">
                                         <input class="file-path validate" type="file" name="profile-file" id="profile-file" required>
@@ -66,6 +68,7 @@
                                     <div class="col l6 m6 s6">
                                         <h6>Antecendente penal</h6>
                                         <div id="preview-antecedente" class="styleImage">
+                                            <img src="../../../recursos/img/publico/default-img.jpg" id="antecedente-pic" width="100px" height="100px">
                                         </div>
                                             <div class="file-field input-field">
                                                 <div class="btn blue">
@@ -73,13 +76,14 @@
                                                     <input type="file">
                                                 </div>
                                                 <div class="file-path-wrapper">
-                                                    <input class="file-path validate" type="file" name="antecendente-file" id="antecedente-file" required>
+                                                    <input class="file-path validate" type="file" name="antecedente-file" id="antecedente-file" required>
                                                 </div>
                                             </div>
                                     </div>
                                     <div class="col l6 m6 s6">
                                         <h6>Solvencia PNC</h6>
                                         <div id="preview-solvencia" class="styleImage">
+                                            <img src="../../../recursos/img/publico/default-img.jpg" id="solvencia-pic" width="100px" height="100px">
                                         </div>
                                             <div class="file-field input-field">
                                                 <div class="btn blue">
@@ -121,28 +125,28 @@
                             <h6>Datos del vendedor</h6>
                             <div class="datos_perfil_cliente">
                                     <div class="input-field col s6">
-                                        <input id="name" type="text" class="validate">
+                                        <input id="name" type="text" name="name" class="validate" required>
                                         <label for="name">Nombre</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="lastname" type="text" class="validate">
+                                        <input id="lastname" type="text" name="lastname" class="validate" required>
                                         <label for="lastname">Apellido</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="dui" type="text" class="validate">
+                                        <input id="dui" type="text" name="dui" class="validate" required>
                                         <label for="dui">DUI</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="email" type="email" class="validate">
+                                        <input id="email" type="email" name="email" class="validate" required>
                                         <label for="email">Correo</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="direction" type="text"
-                                            class="validate">
+                                        <input id="direction" type="text" name="direction"
+                                            class="validate" required>
                                         <label for="direction">Dirección</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="phone" type="tel" class="validate">
+                                        <input id="phone" type="tel" name="phone" class="validate" required>
                                         <label for="phone">Teléfono</label>
                                     </div>
                             </div>
@@ -150,21 +154,21 @@
                             <div class="contenedor_datos_repartidor">
                                     <div class="">
                                         <div class="input-field col s12 l12">
-                                            <input id="usuario" type="text"
-                                                class="validate">
+                                            <input id="usuario" type="text" name="user"
+                                                class="validate" required>
                                             <label for="usuario">Usuario</label>
                                         </div>
                                         <div class="input-field col s6">
-                                            <input id="password1" type="password" class="validate" name="pass1">
+                                            <input id="password1" type="password" class="validate" name="pass1" required>
                                             <label for="password1">Contraseña</label>
                                         </div>
                                         <div class="input-field col s6">
-                                            <input id="password2" type="password" class="validate" name="pass2">
-                                            <label for="password2">Contraseña</label>
+                                            <input id="password2" type="password" class="validate" name="pass2" required>
+                                            <label for="password2">Confirmar contraseña</label>
                                         </div>
                                     </div>
                                     <div class="center-align">
-                                        <button class="btn blue" type="submit">Guardar</button>
+                                        <button class="btn blue" type="submit">¡Ser un vendedor!</button>
                                     </div>
                             </div>
                         </div>
@@ -195,7 +199,7 @@
             <!--Contenedor para el mapa y el copyright-->
             <div class="footer_otros">
                 <div class="col l6 m9 s12 logo_copy_footer">
-                    <img src="../../../recursos/img/publico/clientes/modals/logo.png" alt="">icons8_Check_Circle_500px
+                    <img src="../../../recursos/img/publico/clientes/modals/logo.png" alt="">
                     <h6>© 2022 DeliverySystem</h6>
                 </div>
                 <div class="col l6 m9 s12 mapa-footer">
@@ -217,6 +221,8 @@
     <!--Importar archivos JavaScrip-->
     <script type="text/javascript" src="../../../js/materialize.min.js"></script>
     <script type="text/javascript" src="../../../controladores/publico/activation.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../../controladores/componentes.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
     <script src="../../../controladores/publico/publico_vendedor/registrar_vendedor.js"></script>
