@@ -210,11 +210,15 @@ function eliminar(id) {
 //Función para previsualizar un producto
 function leerImg(input, img_destino)
 {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            img_destino.attr("src", e.target.result);
-        };
-        reader.readAsDataURL(input.files[0]);
+    //Se obtiene los archivos del input
+    let archivos = input.files;
+    //Se verifica si está vacío
+    if (!archivos || !archivos.length) { 
+        img_destino.src = "../../recursos/img/publico/sin.png";
+        return;
     }
+    //
+    const visualizar = archivos[0];
+    const url = URL.createObjectURL(visualizar);
+    img_destino.src = url;
 }
