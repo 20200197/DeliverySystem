@@ -73,12 +73,20 @@ if (true) { // Se cambiará por isset($_SESSION['id_usuario'])
                     $result['exception'] = 'Apellido inválido';
                 } elseif (!$administrar_vendedor->setDui($_POST['dui'])) {
                     $result['exception'] = 'DUI Invalido';
+                } elseif ($administrar_vendedor->validateExist('dui_vendedor', $_POST['dui'])) {
+                    $result['exception'] = 'Ese dui ya se encuentra registrado';
                 } elseif (!$administrar_vendedor->setCorreo($_POST['email'])) {
                     $result['exception'] = 'Correo inválido';
+                } elseif ($administrar_vendedor->validateExist('correo_vendedor', $_POST['email'])) {
+                    $result['exception'] = 'Ese correo ya se encuentra registrado';
                 } elseif (!$administrar_vendedor->setTelefono($_POST['phone'])) {
                     $result['exception'] = 'Teléfono inválido';
+                } elseif ($administrar_vendedor->validateExist('telefono_vendedor', $_POST['phone'])) {
+                    $result['exception'] = 'Ese numero de telefono ya se encuentra registrado';
                 } elseif (!$administrar_vendedor->setUsuario($_POST['user'])) {
                     $result['exception'] = 'Usuario inválido';
+                } elseif ($administrar_vendedor->validateExist('usuario_vendedor', $_POST['user'])) {
+                    $result['exception'] = 'Ese usuario ya se encuentra en uso';
                 } elseif ($_POST['pass1'] != $_POST['pass2']) {
                     $result['exception'] = 'Las contraseñas no coinciden';
                 } elseif (!$administrar_vendedor->setClave($_POST['pass1'])) {
@@ -101,10 +109,13 @@ if (true) { // Se cambiará por isset($_SESSION['id_usuario'])
                     $result['exception'] = 'coordenadas invalidas';
                 } elseif ($administrar_vendedor->registrar()) {
                     if (!$administrar_vendedor->saveFile($_FILES['solvencia-file'], $administrar_vendedor->getRutaSolvencia(), $administrar_vendedor->getSolvencia())) {
+                        $result['status'] = 1;
                         $result['message'] = 'Usuario creado pero no se guardó la solvencia';
                     } elseif (!$administrar_vendedor->saveFile($_FILES['antecedente-file'], $administrar_vendedor->getRutaAntecedente(), $administrar_vendedor->getAntecedente())) {
+                        $result['status'] = 1;
                         $result['message'] = 'Usuario creado pero no se guardó el antecedente';
                     } elseif (!$administrar_vendedor->saveFile($_FILES['profile-file'], $administrar_vendedor->getRutaFoto(), $administrar_vendedor->getFoto())) {
+                        $result['status'] = 1;
                         $result['message'] = 'Usuario creado pero no se guardó la foto personal';
                     } else {
                         $result['status'] = 1;

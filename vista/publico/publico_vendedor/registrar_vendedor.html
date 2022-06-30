@@ -125,15 +125,15 @@
                             <h6>Datos del vendedor</h6>
                             <div class="datos_perfil_cliente">
                                     <div class="input-field col s6">
-                                        <input id="name" type="text" name="name" class="validate" required>
+                                        <input id="name" type="text" name="name" class="validate" pattern="[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{3,30}" required>
                                         <label for="name">Nombre</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="lastname" type="text" name="lastname" class="validate" required>
+                                        <input id="lastname" type="text" name="lastname" class="validate" pattern="[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{3,30}" required>
                                         <label for="lastname">Apellido</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="dui" type="text" name="dui" class="validate" required>
+                                        <input id="dui" type="text" name="dui" class="validate" maxlength="10" pattern="[0-9]{8}[-]{1}[0-9]{1}" required>
                                         <label for="dui">DUI</label>
                                     </div>
                                     <div class="input-field col s6">
@@ -146,7 +146,7 @@
                                         <label for="direction">Dirección</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="phone" type="tel" name="phone" class="validate" required>
+                                        <input id="phone" type="tel" name="phone" class="validate" maxlength="9" required>
                                         <label for="phone">Teléfono</label>
                                     </div>
                             </div>
@@ -154,7 +154,7 @@
                             <div class="contenedor_datos_repartidor">
                                     <div class="">
                                         <div class="input-field col s12 l12">
-                                            <input id="usuario" type="text" name="user"
+                                            <input id="usuario" type="text" name="user" pattern="[/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\,\;\.\-]{]{1,65}"
                                                 class="validate" required>
                                             <label for="usuario">Usuario</label>
                                         </div>

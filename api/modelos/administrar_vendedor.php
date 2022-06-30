@@ -282,4 +282,13 @@ class AdministrarVendedor extends Validator
 
         return Database::executeRow($sql, $params);
     }
+
+    public function validateExist($column, $data)
+    {
+        $sql = "SELECT * FROM vendedor
+                WHERE $column = ?";
+        $params = array($data);
+
+        return Database::getRow($sql, $params);
+    }
 }
