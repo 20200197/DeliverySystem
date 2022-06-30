@@ -190,6 +190,11 @@ class AdministrarVendedor extends Validator
         }
     }
 
+    public function getId()
+    {
+        return $this->identificador;
+    }
+
     public function getRutaAntecedente()
     {
         return $this->ruta_antecedente;
@@ -288,6 +293,39 @@ class AdministrarVendedor extends Validator
         $sql = "SELECT * FROM vendedor
                 WHERE $column = ?";
         $params = array($data);
+
+        return Database::getRow($sql, $params);
+    }
+
+    public function checkUser()
+    {
+        $sql = 'SELECT id_vendedor FROM vendedor WHERE usuario_vendedor = ?';
+        $params = array($this->usuario);
+
+        $data = Database::getRow($sql, $params);
+
+        $this->identificador = $data['id_vendedor'];
+
+        return Database::getRow($sql, $params);
+    }
+
+    public function checkPass($pass)
+    {
+        $sql = 'SELECT id_vendedor, clave_vendedor FROM vendedor WHERE usuario_vendedor = ?';
+        $params = array($this->usuario);
+
+        if (!$data = Database::getRow($sql, $params)) {
+            return false;
+        } elseif (!password_verify($pass, $data['clave_vendedor'])) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public function checkStatus(){
+        $sql = 'SELECT status_vendedor FROM vendedor WHERE id_vendedor = ? AND status_vendedor = true';
+        $params = array($this->identificador);
 
         return Database::getRow($sql, $params);
     }

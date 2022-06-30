@@ -460,6 +460,9 @@ function logOut(type) {
                 case 'Admin':
                 API = SERVER + 'dashboard/administrar_admin.php?action=logOut'
                 break;
+                case 'Vendedor':
+                API = SERVER + 'publico/dashboard_vendedor.php?action=logOut'
+                break;
             }
             fetch(API, {
                 method: 'get'
