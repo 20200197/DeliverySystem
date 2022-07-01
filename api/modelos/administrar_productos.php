@@ -206,7 +206,7 @@ class Producto extends Validator
     */
     public function searchRows($value)
     {
-        $sql = "SELECT id_producto, nombre_producto, cantidad_producto, descripcion_producto, precio_producto, imagen, categoria.categoria,CONCAT(nombre_vendedor,' ',apellido_vendedor) as nombre_vendedor, nombre_marca, estado_producto
+        $sql = "SELECT id_producto, nombre_producto, cantidad_producto, descripcion_producto, precio_producto, imagen, categoria.categoria,CONCAT(nombre_vendedor,' ',apellido_vendedor) as nombre_vendedor, nombre_marca, status_producto
 		from producto producto
 		inner join categoria categoria on producto.id_categoria = categoria.id_categoria_producto
 		inner join vendedor using (id_vendedor)
@@ -220,7 +220,7 @@ class Producto extends Validator
     //Función para leer todos los datos
     public function readAll()
     {
-        $sql = "SELECT id_producto, nombre_producto, cantidad_producto, descripcion_producto, precio_producto, imagen, categoria.categoria,CONCAT(nombre_vendedor,' ',apellido_vendedor) as nombre_vendedor, nombre_marca, estado_producto
+        $sql = "SELECT id_producto, nombre_producto, cantidad_producto, descripcion_producto, precio_producto, imagen, categoria.categoria,CONCAT(nombre_vendedor,' ',apellido_vendedor) as nombre_vendedor, nombre_marca, status_producto
 		from producto producto
 		inner join categoria categoria on producto.id_categoria = categoria.id_categoria_producto
 		inner join vendedor using (id_vendedor)
@@ -233,7 +233,7 @@ class Producto extends Validator
     //Funcion para leer producto individual
     public function readOne()
     {
-        $sql = 'SELECT id_producto, estado_producto
+        $sql = 'SELECT id_producto, status_producto
                 FROM producto
                 WHERE id_producto = ?';
         $params = array($this->id);
@@ -244,7 +244,7 @@ class Producto extends Validator
     {
         
         $sql = 'UPDATE producto
-                SET estado_producto=?
+                SET status_producto=?
                 WHERE id_producto = ?';
         $params = array($this->estado_producto,$this->id);
         return Database::executeRow($sql, $params);

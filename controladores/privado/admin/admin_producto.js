@@ -23,14 +23,14 @@ function fillTable(dataset) {
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
         //Colocamos el swicth checked o no checked dependiendo de el estado
-        if (row.estado_producto == true) {
+        if (row.status_producto == true) {
             estado_produc = `checked`;
-        } else if (row.estado_producto == false) {
+        } else if (row.status_producto == false) {
             estado_produc = ` `;
         }
         //Establecemos texto para el estado
         var estado_producto;
-        (row.estado_producto) ? estado_producto = 'Activo' : estado_producto = 'Inactivo';
+        (row.status_producto) ? estado_producto = 'Activo' : estado_producto = 'Inactivo';
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         //<td><img src="${SERVER}imagenes/administrar_empleados/${row.imagen_perfil_empleado}" class="materialboxed" height="100" width="100"></td>
         content += `

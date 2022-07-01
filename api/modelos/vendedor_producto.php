@@ -139,7 +139,7 @@ class VendedorProducto extends Validator
     public function cargarProductos()
     {
         $sql = 'SELECT id_producto, nombre_producto, descripcion_producto, cantidad_producto, precio_producto, 
-        imagen FROM producto WHERE id_vendedor = ? AND estado_producto NOT IN (false)';
+        imagen FROM producto WHERE id_vendedor = ? AND status_producto NOT IN (false)';
         $params = array($this->identificador);
         return Database::getRows($sql, $params);
     }
@@ -165,7 +165,7 @@ class VendedorProducto extends Validator
     public function guardarProducto()
     {
         $sql = 'INSERT INTO producto(
-        nombre_producto, cantidad_producto, descripcion_producto, precio_producto, imagen, estado_producto,
+        nombre_producto, cantidad_producto, descripcion_producto, precio_producto, imagen, status_producto,
          id_categoria, id_vendedor, id_marca) VALUES (?,?,?,?,?,?,?,?,?)';
         $params = array(
             $this->nombre, $this->cantidad, $this->descripcion, $this->precio, $this->imagen,
@@ -215,7 +215,7 @@ class VendedorProducto extends Validator
     //Función que elimina el producto seleccionado
     public function eliminarProducto()
     {
-        $sql = 'UPDATE producto SET estado_producto = false WHERE id_producto = ?';
+        $sql = 'UPDATE producto SET status_producto = false WHERE id_producto = ?';
         $params = array($this->identificador);
         return Database::executeRow($sql, $params);
     }
