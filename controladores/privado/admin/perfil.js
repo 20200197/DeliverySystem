@@ -23,11 +23,11 @@ function fillTable(data) {
                         <div class="datos_perfil_cliente">
                             <form method="post" id="datos-usuario">
                                 <div class="input-field col s6 m12 l12">
-                                    <input placeholder="Nombre" id="name" type="text" class="validate" value="${data.nombre_admin}"/>
+                                    <input placeholder="Nombre" id="name" type="text" class="validate" value="${data.nombre_admin}" disabled/>
                                     <label class='active' for="name">Nombre</label>
                                 </div>
                                 <div class="input-field col s6 m12 l12">
-                                    <input placeholder="Apellido" id="lastname" type="text" class="validate" value="${data.apellido_admin}" />
+                                    <input placeholder="Apellido" id="lastname" type="text" class="validate" value="${data.apellido_admin}"disabled />
                                     <label class='active' for="lastname">Apellido</label>
                                 </div>
                                 <div class="input-field col s6 m12 l12">
@@ -35,11 +35,11 @@ function fillTable(data) {
                                     <label class='active' for="dui">DUI</label>
                                 </div>
                                 <div class="input-field col s6 m12 l12">
-                                    <input placeholder="Correo" id="email" type="email" class="validate" value="${data.correo_admin}"/>
+                                    <input placeholder="Correo" id="email" type="email" class="validate" value="${data.correo_admin}" disabled/>
                                     <label class='active' for="email">Correo</label>
                                 </div>
                                 <div class="input-field col s6 m12 l12">
-                                    <input placeholder="Teléfono" id="telefono" type="tel" class="validate" value="${data.telefono_admin}"/>
+                                    <input placeholder="Teléfono" id="telefono" type="tel" class="validate" value="${data.telefono_admin}" disabled/>
                                     <label class='active' for="telefono">Teléfono</label>
                                 </div>
                                     <a class="waves-effect waves-light btn modal-trigger" href="#modal_info" onclick="cargarUsuario(${data.id_admin})">Editar</a>
@@ -50,7 +50,7 @@ function fillTable(data) {
                         <h6>Datos de tu cuenta</h6>
                         <div class="contenedor_datos_usuario_perfil_cliente">
                             <div class="input-field col s6 m12 l12">
-                                <input disabled id="usuario" type="text" name="usuario" class="validate" value="${data.usuario_admin}"/>
+                                <input disabled id="usuario" type="text" name="usuario" class="validate" value="${data.usuario_admin}" disabled/>
                                 <label class='active' for="usuario">Usuario</label>
                             </div>
                             <div class="input-field col s6 m12 l12">

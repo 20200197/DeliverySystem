@@ -153,23 +153,29 @@
                     <h5 class="center-align">Datos del usuario</h5>
                     <div class="row">
                         <div class="input-field col l6 m12 s12">
-                            <input placeholder="Escribe tu nombre" id="nombre" type="text" name="nombre" class="validate">
+                            <input placeholder="Escribe tu nombre" id="nombre" type="text" name="nombre"
+                                class="validate" onkeypress="return soloLetras(event)">
                             <label for="nombre">Nombre</label>
                         </div>
                         <div class="input-field col l6 m12 s12">
-                            <input placeholder="Escribe tu apellido" id="Apellido" type="text" name="apellido" class="validate">
+                            <input placeholder="Escribe tu apellido" id="Apellido" type="text" name="apellido"
+                                class="validate" onkeypress="return soloLetras(event)">
                             <label for="Apellido">Apellido</label>
                         </div>
                         <div class="input-field col l6 m12 s12">
-                            <input placeholder="Escribe tu DUI" id="duiM" type="text" name="dui" class="validate">
+                            <input placeholder="Escribe tu DUI" id="duiM" type="text" name="dui" class="validate"
+                                onkeypress="return verificarDUI(event, 'duiM')">
                             <label for="dui">DUI</label>
                         </div>
                         <div class="input-field col l6 m12 s12">
-                            <input placeholder="Escribe tu teléfono" id="telefonoM" type="text" name="telefono" class="validate">
+                            <input placeholder="Escribe tu teléfono" id="telefonoM" type="text" name="telefono"
+                                class="validate" [Ayer 20:41] Erazo Reyes
+                                onkeypress="return verificarTel(event, 'telefonoM')">
                             <label for="telefono">Teléfono</label>
                         </div>
                         <div class="input-field col l6 m8 s12 offset-l3 offset-m2">
-                            <input placeholder="Escribe tu correo" id="correo" type="text" name="correo" class="validate">
+                            <input placeholder="Escribe tu correo" id="correo" type="text" name="correo"
+                                class="validate">
                             <label for="correo">Correo</label>
                         </div>
                     </div>
@@ -185,38 +191,43 @@
     </div>
     <!--Datos de la cuenta -->
     <div id="datos-cuenta" class="modal">
-    <form action="post" id="cuentaF">
-        <input type="text" id="idC" name="id" class="hide">
-        <div class="modal-content">
-            <div class="row contorno">
-                <h5 class="center-align">Datos de la cuenta</h5>
-                <div class="row">
-                    <div class="input-field col l6 m12 s12">
-                        <input placeholder="Escribe tu nombre de usuario" name="usuario" id="usuarioM" type="text" class="validate">
-                        <label for="usuario">Nombre de usuario</label>
-                    </div>
-                    <div class="input-field col l6 m12 s12">
-                        <input placeholder="Escribe tu contraseña" id="pass" name="pass" type="text" class="validate">
-                        <label for="pass">Contraseña</label>
-                    </div>
-                    <div class="input-field col l6 m8 s12 offset-l3 offset-m2">
-                        <input placeholder="Escribe nuevamente la contraseña" id="pass2" type="text" class="validate">
-                        <label for="pass2">Confirmación de contraseña</label>
+        <form action="post" id="cuentaF">
+            <input type="text" id="idC" name="id" class="hide">
+            <div class="modal-content">
+                <div class="row contorno">
+                    <h5 class="center-align">Datos de la cuenta</h5>
+                    <div class="row">
+                        <div class="input-field col l6 m12 s12">
+                            <input placeholder="Escribe tu nombre de usuario" name="usuario" id="usuarioM" type="text"
+                                class="validate" onkeypress="return revisarTexto(event)">
+                            <label for="usuario">Nombre de usuario</label>
+                        </div>
+                        <div class="input-field col l6 m12 s12">
+                            <input placeholder="Escribe tu contraseña" id="pass" name="pass" type="password"
+                                class="validate" onkeypress="return revisarTexto(event)">
+                            <label for="pass">Contraseña</label>
+                        </div>
+                        <div class="input-field col l6 m8 s12 offset-l3 offset-m2">
+                            <input placeholder="Escribe nuevamente la contraseña" id="pass2" type="password"
+                                class="validate" onkeypress="return revisarTexto(event)">
+                            <label for="pass2">Confirmación de contraseña</label>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="modal-footer">
-            <button type="submit" class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Actualizar</button>
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Cerrar</a>
-        </div>
-    </form>
+            <div class="modal-footer">
+                <button type="submit"
+                    class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Actualizar</button>
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Cerrar</a>
+            </div>
+        </form>
     </div>
 
     <!--Importar archivos JavaScrip-->
     <script type="text/javascript" src="../../../js/materialize.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript" src="../../../controladores/componentes.js"></script>
+    <script type="text/javascript" src="../../../controladores/validator.js"></script>
     <script type="text/javascript" src="../../../controladores/privado/admin/perfil.js"></script>
 </body>
 
