@@ -24,7 +24,7 @@ function fillTable(dataset) {
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-        if(row.estado_marca){
+        if(row.status_marca){
             estado_re = 'checked';
         } else {
             estado_re = '';

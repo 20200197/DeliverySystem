@@ -77,7 +77,7 @@ class Marca extends Validator
     */
     public function searchRows($value)
     {
-        $sql = 'SELECT id_marca, nombre_marca,estado_marca
+        $sql = 'SELECT id_marca, nombre_marca,status_marca
                 FROM marca 
                 WHERE  nombre_marca ILIKE ? 
                 ORDER BY nombre_marca';
@@ -88,7 +88,7 @@ class Marca extends Validator
     //Función para crear filas
     public function createRow()
     {
-        $sql = 'INSERT INTO marca(nombre_marca,estado_marca)
+        $sql = 'INSERT INTO marca(nombre_marca,status_marca)
                 VALUES(?,?)';
         $params = array($this->nombre_marca,true);
         return Database::executeRow($sql, $params);
@@ -97,7 +97,7 @@ class Marca extends Validator
     //Función para leer todos los datos
     public function readAll()
     {
-        $sql = 'SELECT id_marca, nombre_marca,estado_marca
+        $sql = 'SELECT id_marca, nombre_marca,status_marca
                 FROM marca
                 ORDER BY nombre_marca';
         $params = null;
@@ -107,7 +107,7 @@ class Marca extends Validator
 
     public function readOne()
     {
-        $sql = 'SELECT id_marca,nombre_marca,estado_marca
+        $sql = 'SELECT id_marca,nombre_marca,status_marca
                 FROM marca
                 WHERE id_marca = ?
                 ORDER BY nombre_marca';
@@ -129,11 +129,11 @@ class Marca extends Validator
     
     public function getStatus()
     {
-        $sql = 'SELECT estado_marca FROM marca WHERE id_marca = ?';
+        $sql = 'SELECT status_marca FROM marca WHERE id_marca = ?';
         $params = array($this->id);
 
         if ($data = Database::getRow($sql, $params)) {
-            $this->estado_marca = $data['estado_marca'];
+            $this->estado_marca = $data['status_marca'];
             return true;
         } else {
             return false;
@@ -142,7 +142,7 @@ class Marca extends Validator
 
     public function changeStatus()
     {
-        $sql = 'UPDATE marca SET estado_marca = ? WHERE id_marca = ?';
+        $sql = 'UPDATE marca SET status_marca = ? WHERE id_marca = ?';
         if ($this->estado_marca) {
             $params = array(0, $this->id);
         } else {
