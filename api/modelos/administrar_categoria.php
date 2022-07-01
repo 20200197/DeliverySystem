@@ -94,7 +94,7 @@ class Categoria extends Validator
     */
     public function searchRows($value)
     {
-        $sql = 'SELECT id_categoria_producto, categoria, imagen_categoria
+        $sql = 'SELECT id_categoria_producto, categoria, imagen_categoria, status_categoria
                 FROM categoria
                 WHERE  categoria ILIKE ? 
                 ORDER BY categoria';
@@ -170,7 +170,7 @@ class Categoria extends Validator
     public function updateEstado()
     {
         $sql = 'UPDATE categoria
-        SET estado_categoria = ?
+        SET status_categoria = ?
         WHERE id_categoria_producto = ?';
         $params = array($this->estado_categoria, $this->id);
         return Database::executeRow($sql, $params);

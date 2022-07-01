@@ -57,7 +57,7 @@ function fillTable(dataset) {
     dataset.map(function (row) {
       // Se establece un estado para el estado de la categoria.
       var estadoo;
-      row.estado_categoria ? (estadoo = "checked") : (estadoo = " ");
+      row.status_categoria ? (estadoo = "checked") : (estadoo = " ");
       // Se crean y concatenan las filas de la tabla con los datos de cada registro.
       content += `
         <tr>
