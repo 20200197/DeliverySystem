@@ -1311,6 +1311,14 @@ input[type="radio"]:checked ~ label > .estrella {
   z-index: 0;
 }
 
+.logout{
+  background: transparent;
+  border: transparent;
+}
+
+.logout:hover{
+  cursor: pointer;
+}
 .mapa_oscuro .leaflet-routing-alternatives-container {
   color: black;
 }
