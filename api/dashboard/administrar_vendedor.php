@@ -25,6 +25,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos de momento';
                 }
                 break;
+                //Cerrar sesión
             case 'logOut':
                 if (session_destroy()) {
                     $result['status'] = 1;
@@ -32,7 +33,7 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
                 }
-                    break;
+                break;
             case 'cambiarEstado':
                 if (!$administrar_vendedor->setEstado($_POST['estado'])) {
                     $result['exception'] = 'Estado no valido';
@@ -56,21 +57,21 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'detalles':
-                if(!$administrar_vendedor->setIdentificador($_POST['identificador'])) {
+                if (!$administrar_vendedor->setIdentificador($_POST['identificador'])) {
                     $result['exception'] = 'Identificador no valido';
-                }elseif($result['dataset'] = $administrar_vendedor->detalles()) {
+                } elseif ($result['dataset'] = $administrar_vendedor->detalles()) {
                     $result['status'] = 1;
-                }else{
+                } else {
                     $result['exception'] = Database::getException();
                 }
-            break;
+                break;
             case 'delete':
-                if(!$administrar_vendedor->setIdentificador($_POST['identificador'])) {
+                if (!$administrar_vendedor->setIdentificador($_POST['identificador'])) {
                     $result['exception'] = 'Identificador no valido';
-                }elseif($administrar_vendedor->eliminar()) {
+                } elseif ($administrar_vendedor->eliminar()) {
                     $result['status'] = 1;
                     $result['message'] = 'Vendedor eliminado correctamente';
-                }else{
+                } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
@@ -80,72 +81,72 @@ if (isset($_GET['action'])) {
         // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
         header('content-type: application/json; charset=utf-8');
         // Se imprime el resultado en formato JSON y se retorna al controlador.
-        
+
     } else {
-        switch ($_GET['action']){
-        case 'register':
-            $_POST = $administrar_vendedor->validateForm($_POST);
-            if (!$administrar_vendedor->setNombre($_POST['name'])) {
-                $result['exception'] = 'Nombre inválido';
-            } elseif (!$administrar_vendedor->setApellido($_POST['lastname'])) {
-                $result['exception'] = 'Apellido inválido';
-            } elseif (!$administrar_vendedor->setDui($_POST['dui'])) {
-                $result['exception'] = 'DUI Invalido';
-            } elseif ($administrar_vendedor->validateExist('dui_vendedor', $_POST['dui'])) {
-                $result['exception'] = 'Ese dui ya se encuentra registrado';
-            } elseif (!$administrar_vendedor->setCorreo($_POST['email'])) {
-                $result['exception'] = 'Correo inválido';
-            } elseif ($administrar_vendedor->validateExist('correo_vendedor', $_POST['email'])) {
-                $result['exception'] = 'Ese correo ya se encuentra registrado';
-            } elseif (!$administrar_vendedor->setTelefono($_POST['phone'])) {
-                $result['exception'] = 'Teléfono inválido';
-            } elseif ($administrar_vendedor->validateExist('telefono_vendedor', $_POST['phone'])) {
-                $result['exception'] = 'Ese numero de telefono ya se encuentra registrado';
-            } elseif (!$administrar_vendedor->setUsuario($_POST['user'])) {
-                $result['exception'] = 'Usuario inválido';
-            } elseif ($administrar_vendedor->validateExist('usuario_vendedor', $_POST['user'])) {
-                $result['exception'] = 'Ese usuario ya se encuentra en uso';
-            } elseif ($_POST['pass1'] != $_POST['pass2']) {
-                $result['exception'] = 'Las contraseñas no coinciden';
-            } elseif (!$administrar_vendedor->setClave($_POST['pass1'])) {
-                $result['exception'] = 'Contraseña inválida';
-            } elseif (!is_uploaded_file($_FILES['solvencia-file']['tmp_name'])) {
-                $result['exception'] = 'Seleccione una imagen para la solvencia';
-            } elseif (!$administrar_vendedor->setSolvencia($_FILES['solvencia-file'])) {
-                $result['exception'] = $administrar_vendedor->getFileError();
-            } elseif (!is_uploaded_file($_FILES['antecedente-file']['tmp_name'])) {
-                $result['exception'] = 'Seleccione una imagen para los antecedentes';
-            } elseif (!$administrar_vendedor->setAntecedentes($_FILES['antecedente-file'])) {
-                $result['exception'] = $administrar_vendedor->getFileError();
-            } elseif (!$administrar_vendedor->setDireccion($_POST['direction'])) {
-                $result['exception'] = 'Dirección inválida';
-            } elseif (!is_uploaded_file($_FILES['profile-file']['tmp_name'])) {
-                $result['exception'] = 'Seleccione una foto';
-            } elseif (!$administrar_vendedor->setFoto($_FILES['profile-file'])) {
-                $result['exception'] = $administrar_vendedor->getFileError();
-            } elseif (!$administrar_vendedor->setCoordenadas($_POST['cords'])) {
-                $result['exception'] = 'coordenadas invalidas';
-            } elseif ($administrar_vendedor->registrar()) {
-                if (!$administrar_vendedor->saveFile($_FILES['solvencia-file'], $administrar_vendedor->getRutaSolvencia(), $administrar_vendedor->getSolvencia())) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Usuario creado pero no se guardó la solvencia';
-                } elseif (!$administrar_vendedor->saveFile($_FILES['antecedente-file'], $administrar_vendedor->getRutaAntecedente(), $administrar_vendedor->getAntecedente())) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Usuario creado pero no se guardó el antecedente';
-                } elseif (!$administrar_vendedor->saveFile($_FILES['profile-file'], $administrar_vendedor->getRutaFoto(), $administrar_vendedor->getFoto())) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Usuario creado pero no se guardó la foto personal';
+        switch ($_GET['action']) {
+            case 'register':
+                $_POST = $administrar_vendedor->validateForm($_POST);
+                if (!$administrar_vendedor->setNombre($_POST['name'])) {
+                    $result['exception'] = 'Nombre inválido';
+                } elseif (!$administrar_vendedor->setApellido($_POST['lastname'])) {
+                    $result['exception'] = 'Apellido inválido';
+                } elseif (!$administrar_vendedor->setDui($_POST['dui'])) {
+                    $result['exception'] = 'DUI Invalido';
+                } elseif ($administrar_vendedor->validateExist('dui_vendedor', $_POST['dui'])) {
+                    $result['exception'] = 'Ese dui ya se encuentra registrado';
+                } elseif (!$administrar_vendedor->setCorreo($_POST['email'])) {
+                    $result['exception'] = 'Correo inválido';
+                } elseif ($administrar_vendedor->validateExist('correo_vendedor', $_POST['email'])) {
+                    $result['exception'] = 'Ese correo ya se encuentra registrado';
+                } elseif (!$administrar_vendedor->setTelefono($_POST['phone'])) {
+                    $result['exception'] = 'Teléfono inválido';
+                } elseif ($administrar_vendedor->validateExist('telefono_vendedor', $_POST['phone'])) {
+                    $result['exception'] = 'Ese numero de telefono ya se encuentra registrado';
+                } elseif (!$administrar_vendedor->setUsuario($_POST['user'])) {
+                    $result['exception'] = 'Usuario inválido';
+                } elseif ($administrar_vendedor->validateExist('usuario_vendedor', $_POST['user'])) {
+                    $result['exception'] = 'Ese usuario ya se encuentra en uso';
+                } elseif ($_POST['pass1'] != $_POST['pass2']) {
+                    $result['exception'] = 'Las contraseñas no coinciden';
+                } elseif (!$administrar_vendedor->setClave($_POST['pass1'])) {
+                    $result['exception'] = 'Contraseña inválida';
+                } elseif (!is_uploaded_file($_FILES['solvencia-file']['tmp_name'])) {
+                    $result['exception'] = 'Seleccione una imagen para la solvencia';
+                } elseif (!$administrar_vendedor->setSolvencia($_FILES['solvencia-file'])) {
+                    $result['exception'] = $administrar_vendedor->getFileError();
+                } elseif (!is_uploaded_file($_FILES['antecedente-file']['tmp_name'])) {
+                    $result['exception'] = 'Seleccione una imagen para los antecedentes';
+                } elseif (!$administrar_vendedor->setAntecedentes($_FILES['antecedente-file'])) {
+                    $result['exception'] = $administrar_vendedor->getFileError();
+                } elseif (!$administrar_vendedor->setDireccion($_POST['direction'])) {
+                    $result['exception'] = 'Dirección inválida';
+                } elseif (!is_uploaded_file($_FILES['profile-file']['tmp_name'])) {
+                    $result['exception'] = 'Seleccione una foto';
+                } elseif (!$administrar_vendedor->setFoto($_FILES['profile-file'])) {
+                    $result['exception'] = $administrar_vendedor->getFileError();
+                } elseif (!$administrar_vendedor->setCoordenadas($_POST['cords'])) {
+                    $result['exception'] = 'coordenadas invalidas';
+                } elseif ($administrar_vendedor->registrar()) {
+                    if (!$administrar_vendedor->saveFile($_FILES['solvencia-file'], $administrar_vendedor->getRutaSolvencia(), $administrar_vendedor->getSolvencia())) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Usuario creado pero no se guardó la solvencia';
+                    } elseif (!$administrar_vendedor->saveFile($_FILES['antecedente-file'], $administrar_vendedor->getRutaAntecedente(), $administrar_vendedor->getAntecedente())) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Usuario creado pero no se guardó el antecedente';
+                    } elseif (!$administrar_vendedor->saveFile($_FILES['profile-file'], $administrar_vendedor->getRutaFoto(), $administrar_vendedor->getFoto())) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Usuario creado pero no se guardó la foto personal';
+                    } else {
+                        $result['status'] = 1;
+                        $result['message'] = 'Usuario creado correctamente';
+                    }
                 } else {
-                    $result['status'] = 1;
-                    $result['message'] = 'Usuario creado correctamente';
+                    $result['exception'] = Database::getException();
                 }
-            } else {
-                $result['exception'] = Database::getException();
-            }
-            break;
-        case 'login':
-            $_POST = $administrar_vendedor->validateForm($_POST);
-                if(!$administrar_vendedor->setUsuario($_POST['user'])){
+                break;
+            case 'login':
+                $_POST = $administrar_vendedor->validateForm($_POST);
+                if (!$administrar_vendedor->setUsuario($_POST['user'])) {
                     $result['exception'] = 'Ingrese un usuario válido';
                 } elseif (!$administrar_vendedor->checkUser()) {
                     $result['exception'] = 'El usuario es incorrecto';
@@ -155,14 +156,15 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
                     $_SESSION['id_vendedor'] = $administrar_vendedor->getId();
-                } elseif(!$administrar_vendedor->checkPass($_POST['password'])) {
+                } elseif (!$administrar_vendedor->checkPass($_POST['password'])) {
                     $result['exception'] = 'Contraseña incorrecta';
-                } 
-            break;
-        default:
-            $result['exception'] = 'Acción no disponible fuera de la sesión';
+                }
+                break;
+            default:
+                $result['exception'] = 'Acción no disponible fuera de la sesión';
         }
     }
+    // Se imprime el resultado en formato JSON y se retorna al controlador.
     print(json_encode($result));
 } else {
     print(json_encode('Recurso no disponible'));

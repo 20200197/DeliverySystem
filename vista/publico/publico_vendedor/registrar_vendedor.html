@@ -32,10 +32,20 @@
             <!--Encabezado-->
             <header class="encabezado">
                 <a href="#" data-target="slide-out"
-                    class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
-                        class="material-icons">menu</i></a>
-                <img src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png" alt="">
-                <a class="waves-effect waves-light btn boton_iniciar_sesion" href="index.html">Log In</a>
+                class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
+                    class="material-icons">menu</i></a>
+            <img src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
+            <div class="col s12 m12 l12 right-align">
+                <!--Switch de cambiar color-->
+                <div class="switch switch_colorr hide-on-small-and-down right-align">
+                    <label>
+                        🌕
+                        <input type="checkbox" id="switch_color" onclick="modoOscuro()">
+                        <span class="lever"></span>
+                        🌙
+                    </label>
+                </div>
+            </div>
             </header>
             <!--Información de la página vendedor-->
             <main class="main_vendedor">
@@ -218,6 +228,7 @@
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
     <script src="../../../controladores/publico/publico_vendedor/registrar_vendedor.js"></script>
+    <script src="../../../controladores/privado/admin/modo_oscuro.js"></script>
 </body>
 
 </html>
