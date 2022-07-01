@@ -1,5 +1,6 @@
 const API_VENDEDOR = SERVER + 'dashboard/administrar_vendedor.php?action=';
 
+/*Functiones que sirven para reemplazar las imagenes por defecto del formulario por las seleccionadas*/
 document.getElementById('profile-file').onchange=function(e){
     document.getElementById('profile-pic').remove();
     let reader = new FileReader();
@@ -46,24 +47,31 @@ document.getElementById('solvencia-file').onchange=function(e){
 }
 
 
-
+//Se inicializa el mapa con la vista y nivel de zoom
 var map = L.map('mapa').setView([13.683767546575941, -88.93569946289064], 8);
 
+//se añaden agrega el mapa
 var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
+//Variables para manejar las coordenadas seleccionadas en el mapa
 Layer = null;
 let cords = null;
 
+//función que se ejecuta cuando se clickea en el mapa
 function onMapClick(e) {
+
+    //Comprobamos si layer es null para crear un marcador nuevo que captura la latitud y longitud
     if(Layer == null){
         Layer = L.marker(e.latlng);
+        //Se concatena la latitud con la longitud separados por coma para usar guardarlo en una variable
         cords = Layer.getLatLng().lat + ', ' + Layer.getLatLng().lng;
-    }else{
+    }else{//<-- si ya existe un marcador se remueve el que ya existe para poner uno nuevo
         Layer.remove();
         Layer = L.marker(e.latlng);
+        //Se concatena la latitud con la longitud separados por coma para usar guardarlo en una variable
         cords = Layer.getLatLng().lat + ', ' + Layer.getLatLng().lng;
     }
 
@@ -71,8 +79,10 @@ function onMapClick(e) {
     Layer.addTo(map);
 }
 
+//Se crea el evento click y se llama a la función ya creada
 map.on('click', onMapClick);
 
+//funcionamiento del formulario de registro
 document.getElementById('save-form').addEventListener('submit', function() {
     event.preventDefault();
     if(cords == null){
@@ -99,6 +109,7 @@ document.getElementById('save-form').addEventListener('submit', function() {
     }
 });
 
+//Validaciones
 document.getElementById("dui").addEventListener("input", function (evt) {
     let value = this.value.replace("-", "");
     //comienzo de linea  Digito numerico   Final de linea
