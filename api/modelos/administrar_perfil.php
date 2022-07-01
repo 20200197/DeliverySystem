@@ -23,7 +23,7 @@ class AdministrarPerfil extends Validator
 
     public function setNombre($valor)
     {
-        if ($this->validateAlphabetic($valor, 5, 30)) {
+        if ($this->validateAlphabetic($valor, 3, 30)) {
             $this->nombre = $valor;
             return true;
         } else {
@@ -33,7 +33,7 @@ class AdministrarPerfil extends Validator
 
     public function setApellido($valor)
     {
-        if ($this->validateAlphabetic($valor,5,30)) {
+        if ($this->validateAlphabetic($valor,3,30)) {
             $this->apellido = $valor;
             return true;
         } else {
