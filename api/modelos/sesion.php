@@ -8,5 +8,12 @@ class Sesion extends Validator
         $params = array($id);
         return Database::getRow($sql, $params);
     }
+
+    public function sesionV($id)
+    {
+        $sql = "SELECT CONCAT(nombre_vendedor, ' ',apellido_vendedor) as nombre FROM vendedor WHERE id_vendedor = ?";
+        $params = array($id);
+        return Database::getRow($sql, $params);
+    }
  
 }
