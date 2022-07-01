@@ -15,7 +15,7 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['id_admin'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
-            case 'readRegistro':
+            case 'readAll':
                 if(!$perfil->setIdentificador($_SESSION['id_admin'])) {
                     $result['exception'] = 'No se logró identificar tu perfil';
                 }elseif ($result['dataset'] = $perfil->cargarPerfil()) {
@@ -26,7 +26,71 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos registrados';
                 }
                 break;
-
+            case 'actualizarUsuario':
+                $_POST = $perfil->validateForm($_POST);
+                if(!$perfil->setIdentificador($_POST['id'])) {
+                    $result['exception'] = 'No se logró identificar tu usuario';
+                }elseif(!$perfil->setNombre($_POST['nombre'])) {
+                    $result['exception'] = 'Nombre invalido';
+                }elseif(!$perfil->setApellido($_POST['apellido'])) {
+                    $result['exception'] = 'Apellido invalido';
+                }elseif(!$perfil->setCorreo($_POST['correo'])) {
+                    $result['exception'] = 'Correo invalido';
+                }elseif(!$perfil->setTelefono($_POST['telefono'])) {
+                    $result['exception'] = 'Teléfono invalido';
+                }elseif(!$perfil->setDui($_POST['dui'])) {
+                    $result['exception'] = 'DUI invalido';
+                }elseif($perfil->actualizarUsuario()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Datos de usuario correctamente modificados';
+                }else{
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            case 'actualizarCuenta':
+                $_POST = $perfil->validateForm($_POST);
+                if (!$perfil->setIdentificador($_POST['id'])) {
+                    $result['exception'] = 'No se logró identificar tu usuario';
+                } elseif (!$perfil->setUsuario($_POST['usuario'])) {
+                    $result['exception'] = 'Usuario invalido';
+                } elseif($_POST['pass'] == null) {
+                    if(!$data = $perfil->cargarPass()) {
+                        $result['exception'] = 'Error al reconocer datos';
+                    }elseif(!$perfil->setPass($data['clave_admin'])) {
+                        $result['exception'] = 'Error al reconocer esenciales';
+                    } elseif ($perfil->actualizarCuenta()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Datos de la cuenta correctamente modificados';
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                }elseif (!$perfil->setPass($_POST['pass'])) {
+                    $result['exception'] = 'Contraseña invalido';
+                } elseif ($perfil->actualizarCuenta()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Datos de la cuenta correctamente modificados';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            case 'cargarCuenta':
+                if (!$perfil->setIdentificador($_POST['id'])) {
+                    $result['exception'] = 'No se logró identificar tu usuario';
+                } elseif ($result['dataset'] = $perfil->cargarCuenta()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            case 'cargarUsuario':
+                if (!$perfil->setIdentificador($_POST['id'])) {
+                    $result['exception'] = 'No se logró identificar tu usuario';
+                } elseif ($result['dataset'] = $perfil->cargarUsuario()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

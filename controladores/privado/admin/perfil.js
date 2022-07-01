@@ -4,7 +4,7 @@ const API_PERFIL = SERVER + "dashboard/administrar_perfil.php?action=";
 // Método que ejecuta la carga de de las tablas y la activación de componentes
 document.addEventListener("DOMContentLoaded", function () {
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
-    readRow(API_PERFIL);
+    readRows(API_PERFIL);
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
     M.Modal.init(document.querySelectorAll(".modal"), {dismissible: false});
     //se inicializan los tooltp
@@ -12,13 +12,14 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //Función que llena la tabla
-function fillTablee(data) {
+function fillTable(data) {
     //Se crea una variable donde se guardará el HTML a inyectar
     let contenido = [];
     //Se obtiene el contenido y se revisa fila por fila en el map
         contenido += `
                     <div class="col l7 m12 s12 datos_usuario_perfil_cliente center-align">
                         <h6>Tus datos personales</h6>
+                        <p>(Solo visualización)</p>
                         <div class="datos_perfil_cliente">
                             <form method="post" id="datos-usuario">
                                 <div class="input-field col s6 m12 l12">
@@ -41,8 +42,7 @@ function fillTablee(data) {
                                     <input placeholder="Teléfono" id="telefono" type="tel" class="validate" value="${data.telefono_admin}"/>
                                     <label class='active' for="telefono">Teléfono</label>
                                 </div>
-                                  <button class="btn waves-effect boton_agrega_r waves-light" type="submit" name="action">Actualizar
-                                    </button>
+                                    <a class="waves-effect waves-light btn modal-trigger" href="#modal_info" onclick="cargarUsuario(${data.id_admin})">Editar</a>
                             </form>
                         </div>
                     </div>
@@ -58,7 +58,7 @@ function fillTablee(data) {
                                 <label class='active' for="pass">Contraseña</label>
                             </div>
                             <div class="contenedor_boton_modificar_datos_cliente">
-                                <a href="#datos-cuenta" class="btn modal-trigger boton_cambiar_foto_cliente"><i
+                                <a href="#datos-cuenta" class="btn modal-trigger boton_cambiar_foto_cliente" onclick="cargarCuenta(${data.id_admin})"><i
                                         class="material-icons">edit</i></a>
                             </div>
                         </div>
@@ -67,3 +67,82 @@ function fillTablee(data) {
     //Se Inyecta el HTML en la página
     document.getElementById("contenedor").innerHTML = contenido;
 }
+
+//Función que carga los datos del usuario
+function cargarUsuario(id) {
+    //Se crea un dato de tipo formulario
+    let datos = new FormData();
+    //Se carga con el id
+    datos.append('id', id);
+    //Se empieza con la petición
+    fetch(API_PERFIL + "cargarUsuario", {
+        method: "post",
+        body: datos,
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    document.getElementById("nombre").value = response.dataset.nombre_admin;
+                    document.getElementById("Apellido").value = response.dataset.apellido_admin;
+                    document.getElementById("duiM").value = response.dataset.dui_admin;
+                    document.getElementById("telefonoM").value = response.dataset.telefono_admin;
+                    document.getElementById("correo").value = response.dataset.correo_admin;
+                    document.getElementById("idU").value = response.dataset.id_admin;
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + " " + request.statusText);
+        }
+    });
+}
+
+//Función que carga los datos de la cuenta
+function cargarCuenta(id) {
+    //Se crea un dato de tipo formulario
+    let datos = new FormData();
+    //Se carga con el id
+    datos.append('id', id);
+    //Se empieza con la petición
+    fetch(API_PERFIL + "cargarCuenta", {
+        method: "post",
+        body: datos,
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    document.getElementById("idC").value = response.dataset.id_admin;
+                    document.getElementById("usuarioM").value = response.dataset.usuario_admin;
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + " " + request.statusText);
+        }
+    });
+}
+
+
+//Método que actualiza los datos del usuario
+document.getElementById("usuarioF").addEventListener('submit', function (event) {
+    //Se previene la recarga automatica
+    event.preventDefault();
+    //Se ejecuatan los cambios
+    saveRow(API_PERFIL, "actualizarUsuario", "usuarioF", "modal_info");
+});
+
+//Método que actualiza los datos de la cuenta
+document.getElementById("cuentaF").addEventListener("submit", function (event) {
+    //Se previene la recarga automatica
+    event.preventDefault();
+    //Se ejecuatan los cambios
+    saveRow(API_PERFIL, "actualizarCuenta", "cuentaF", "datos-cuenta");
+});
