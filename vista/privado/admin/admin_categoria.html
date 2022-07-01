@@ -54,6 +54,15 @@
                     class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
                         class="material-icons">menu</i></a>
                 <img src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
+                <!--Switch de cambiar color-->
+                <div class="switch switch_colorr hide-on-small-and-down">
+                    <label >
+                        🌕
+                        <input type="checkbox" id="switch_color" onclick="modoOscuro()">
+                        <span class="lever" ></span>
+                        🌙
+                    </label>
+                </div>
                 <a class="waves-effect waves-light btn boton_iniciar_sesion">Log In</a>
             </header>
             <!--Información de la página-->
@@ -107,8 +116,8 @@
                                 </tr>
                             </thead>
                             <!--Datos de la tabla-->
-                            <tbody>
-                                <tr>
+                            <tbody id="tbody-catego">
+                                <!--<tr>
                                     <td data-target="Nombre categoría: ">Categoria 1</td>
                                     <td data-target="Imagen cliente: "><img
                                             src="../../../recursos/img/privado/admin/tabla/images (5).jpg"
@@ -153,37 +162,33 @@
                 </div>
                 <!--Modal editar categoria-->
                 <div id="modal_editar_categ_o" class="modal">
-                    <form action="">
+                    <form class="row" method="post" id="update-form" enctype="multipart/form-data">
                         <div class="modal-content">
                             <div class="row contorno">
                                 <div class="col s12 m12 l12">
                                     <h5 class="center-align">Editar categoria</h5>
                                     <div class="col s12 m12 l3 imagen_categ">
-                                        <img src="../../../recursos/img/privado/admin/tabla/images (5).jpg  "
-                                            class="imagen_edi_categoria ">
-                                        &nbsp;
                                         <div class="row">
                                             <div class="col s12 m12 l12">
-                                                <form action="#">
-                                                    <div class="file-field input-field">
-                                                        <div class="btn boton_agrega_imagen">
-                                                            <span>Agregar imagen</span>
-                                                            <input type="file">
+                                                <input type="text" id="id" class="hide" name="id">
+                                                    <!--Boton-->
+                                                    <div class="file-field input-field col s12 m12 l12">
+                                                        <div class="btn waves-effect tooltipped" data-tooltip="Elegir imagen de al menos 500x500 px">
+                                                            <i class="material-icons">image</i>
+                                                            <input id="archivo_cate" type="file" name="archivo_cate" accept=".jpg, .png">
                                                         </div>
-                                                        <div class="file-path-wrapper reducir_place">
-                                                            <input class="file-path validate" type="text">
+                                                        <div class="file-path-wrapper">
+                                                            <input type="text" class="file-path validate" placeholder="Formatos válidos: jpg y png">
                                                         </div>
                                                     </div>
-                                                </form>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col s12 m12 l1"></div>
                                     <div class="col s12 m12 l6 nombre_catee">
-
                                         <h6>Nombre categoria:</h6>
                                         <div class="input-field col s12 m12 l12">
-                                            <input placeholder="Nombre" id="nombre_producto" type="text">
+                                            <input placeholder="Nombre" id="nombre_cate" name="nombre_cate" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -193,12 +198,13 @@
                             <a href="#!"
                                 class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
                             <button href="#!"
-                                class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Modificar</button>
+                                class="waves-effect waves-green btn-flat boton_a_gregar" type="submit">Modificar</button>
                         </div>
                     </form>
                 </div>
                 <!--Modal editar categoria-->
                 <div id="modal_anadir_categ_oo" class="modal">
+<<<<<<< HEAD:vista/privado/admin/admin_categoria.html
                     <div class="modal-content">
                         <div class="row contorno">
                             <div class="col s12 m12 l12">
@@ -221,18 +227,56 @@
                                             <h6>Nombre categoria:</h6>
                                             <div class="input-field col s12 m12 l12 nombre_field">
                                                 <input placeholder="Nombre" id="nombre_producto" type="text">
+=======
+                    <form class="row" method="post" id="save-form" enctype="multipart/form-data">
+                        <div class="modal-content">
+                            <div class="row contorno">
+                                <div class="col s12 m12 l12">
+                                    <h5 class="center-align">Agregar categoria</h5>
+                                    <div class="row">
+                                        <div class="col s12 m12 l4">
+                                            <!--Boton-->
+                                            <div class="file-field input-field col s12 m12 l12">
+                                                <div class="btn waves-effect tooltipped"
+                                                    data-tooltip="Elegir imagen de al menos 500x500 px">
+                                                    <i class="material-icons">image</i>
+                                                    <input id="archivo_catego" type="file" name="archivo_catego" accept=".jpg, .png">
+                                                </div>
+                                                <div class="file-path-wrapper">
+                                                    <input type="text" class="file-path validate" required
+                                                        placeholder="Formatos válidos: jpg y png">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--Siguiente columna-->
+                                        <div class="col s12 m12 l4">
+                                            <div class="col s12 m12 l12">
+                                                <h6>Nombre categoria:</h6>
+                                                <div class="input-field col s12 m12 l12 nombre_field">
+                                                    <input placeholder="Nombre" id="nombre_catego" name="nombre_catego" type="text">
+                                                </div>
+>>>>>>> Giovanni:DeliverySystem/vista/privado/admin/admin_categoria.html
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD:vista/privado/admin/admin_categoria.html
                     </div>
                     <div class="modal-footer">
                         <a href="#!"
                             class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
                         <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Modificar</a>
                     </div>
+=======
+                        <div class="modal-footer">
+                            <a href="#!"
+                                class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
+                            <button class="waves-green btn-flat boton_a_gregar" type="submit">Añadir</button>
+                        </div>
+                    </form>
+>>>>>>> Giovanni:DeliverySystem/vista/privado/admin/admin_categoria.html
                 </div>
             </main>
         </div>

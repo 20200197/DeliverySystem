@@ -67,11 +67,15 @@
                                 <h5 class="center-align">Editar producto</h5>
                                 <div class="row">
                                     <div class="col l4 m6 s12">
-                                        <img id="imagenM" src="../../../recursos/img/publico/clientes/modals/images (5).jpg" class="imagen_prod_o">
+                                        <img id="imagenM"
+                                            src="../../../recursos/img/publico/clientes/modals/images (5).jpg"
+                                            class="imagen_prod_o">
                                         <div class="file-field input-field">
                                             <div class="btn">
                                                 <span>Imagen</span>
-                                                <input type="file" name="imagenM">
+                                                <input type="file"
+                                                    onchange="leerImg(this, document.getElementById('imagenM'))"
+                                                    name="imagenM">
                                             </div>
                                             <div class="file-path-wrapper">
                                                 <input class="file-path validate" type="text">
@@ -81,35 +85,39 @@
                                     <div class="col l8 m6 s12">
                                         <div class="input-field col s12 m12 l6">
                                             <label for="nombre_productoM">Nombre de producto:</label>
-                                            <input placeholder="Nombre" id="nombre_productoM" name="nombre_productoM" type="text"
-                                                required>
+                                            <input placeholder="Nombre" onkeypress="return soloLetras(event)"
+                                                id="nombre_productoM" name="nombre_productoM" type="text" required>
                                         </div>
                                         <div class="input-field col s12 m12 l6">
-                                            <label id="cantidad_actual" for="cantidad_productoM">Cantidad:</label>
-                                            <input class="validate" id="cantidad_productoM" name="cantidad_productoM" type="number"
-                                                placeholder="0" value="0">
-                                                <div class="col l12">
-                                                    <label>
-                                                        <input class="with-gap" type="radio" name="opciones" value="1" checked>
-                                                        <span>Agregar</span>
-                                                    </label>
-                                                    <label>
-                                                        <input class="with-gap" type="radio" name="opciones" value="2">
-                                                        <span>Eliminar</span>
-                                                    </label>
-                                                </div>  
-                                                    
-                                                
+                                            <label id="cantidad_actual" for="cantidad_productoM">Cantidad - </label>
+                                            <input class="validate" id="cantidad_productoM" name="cantidad_productoM"
+                                                type="number" placeholder="0" value="0"
+                                                onkeypress="return validarcantidad(event, 'cantidad_productoM')">
+                                            <div class="col l12">
+                                                <label>
+                                                    <input class="with-gap" type="radio" name="opciones" value="1"
+                                                        checked>
+                                                    <span>Agregar</span>
+                                                </label>
+                                                <label>
+                                                    <input class="with-gap" type="radio" name="opciones" value="2">
+                                                    <span>Eliminar</span>
+                                                </label>
+                                            </div>
+
+
                                         </div>
                                         <div class="input-field col s12 m12 l6">
                                             <label for="precio_productoM">Precio:</label>
-                                            <input placeholder="$00.00" id="precio_productoM" name="precio_productoM" type="text"
-                                                class="validate" required>
+                                            <input placeholder="$00.00" id="precio_productoM" name="precio_productoM"
+                                                type="text" class="validate" required
+                                                onkeypress="return verificarDinero(event, 'precio_productoA')">
                                         </div>
                                         <div class="input-field col s12 m12 l6">
                                             <label for="descripcion_productoM">Descripción:</label>
                                             <input id="descripcion_productoM" placeholder="DescripcióM" type="text"
-                                                name="descripcion_productoM" class="validate" required>
+                                                name="descripcion_productoM" class="validate" required
+                                                onkeypress="return revisarTexto(event)">
                                         </div>
                                         <div class="col s12 m12 l6">
                                             <label>Categoria:</label>
@@ -126,9 +134,10 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_cancelar_modi">Cancelar</a>
+                            <a href="#!"
+                                class="modal-close waves-effect waves-green btn-flat boton_cancelar_modi">Cancelar</a>
                             <button type="submit" href="#!"
-                                class="waves-effect waves-green btn-flat boton_agregar_modi">Agregar</button>
+                                class="waves-effect waves-green btn-flat boton_agregar_modi">Editar</button>
                         </div>
                     </form>
                 </div>
@@ -155,20 +164,26 @@
                                     <div class="col l8 m6 s12">
                                         <div class="input-field col s12 m12 l6">
                                             <label for="nombre_productoA">Nombre de producto:</label>
-                                            <input placeholder="Nombre" id="nombre_productoA" name="nombre_productoA" type="text" required>
+                                            <input placeholder="Nombre" id="nombre_productoA" name="nombre_productoA"
+                                                type="text" required onkeypress="return soloLetras(event)">
                                         </div>
                                         <div class="input-field col s12 m12 l6">
                                             <label for="cantidad_productoA">Cantidad:</label>
-                                            <input class="validate" id="cantidad_productoA" name="cantidad_productoA" type="number" placeholder="0" required>
+                                            <input class="validate" id="cantidad_productoA" name="cantidad_productoA"
+                                                type="number" placeholder="0" required
+                                                onkeypress="return validarcantidad(event, 'cantidad_productoA')">
                                         </div>
                                         <div class="input-field col s12 m12 l6">
                                             <label for="precio_productoA">Precio:</label>
-                                            <input placeholder="$00.00" id="precio_productoA" name="precio_productoA" type="text" class="validate" required>
+                                            <input placeholder="$00.00" id="precio_productoA" name="precio_productoA"
+                                                type="text" class="validate" required
+                                                onkeypress="return verificarDinero(event, 'precio_productoA')">
                                         </div>
                                         <div class="input-field col s12 m12 l6">
                                             <label for="descripcion_productoA">Descripción:</label>
-                                            <input id="descripcion_productoA"
-                                                placeholder="Descripción" type="text" name="descripcion_productoA" class="validate" required>
+                                            <input id="descripcion_productoA" placeholder="Descripción" type="text"
+                                                name="descripcion_productoA" class="validate"
+                                                onkeypress="return revisarTexto(event)">
                                         </div>
                                         <div class="col s12 m12 l6">
                                             <label>Categoria:</label>
@@ -242,6 +257,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript" src="../../../controladores/publico/activation.js"></script>
     <script type="text/javascript" src="../../../controladores/componentes.js"></script>
+    <script type="text/javascript" src="../../../controladores/validator.js"></script>
     <script type="text/javascript" src="../../../controladores/publico/publico_vendedor/mis_productos.js"></script>
 </body>
 

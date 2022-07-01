@@ -54,7 +54,8 @@ class AdministrarCliente extends Validator
     public function obtenerClientes()
     {
         $sql = "SELECT id_cliente, CONCAT(nombre_cliente,' ', apellido_cliente) AS nombre_completo,
-         dui_cliente, correo_cliente, usuario_cliente, status_cliente, fecha_registro_cliente, telefono_cliente FROM cliente";
+         dui_cliente, correo_cliente, usuario_cliente, status_cliente, fecha_registro_cliente, telefono_cliente FROM cliente
+         ORDER BY id_cliente";
         $params = null;
         return Database::getRows($sql, $params);
     }
@@ -72,7 +73,8 @@ class AdministrarCliente extends Validator
     {
         $sql = "SELECT id_cliente, CONCAT(nombre_cliente,' ', apellido_cliente) AS nombre_completo,
          dui_cliente, correo_cliente, usuario_cliente, status_cliente, fecha_registro_cliente, telefono_cliente FROM cliente
-         WHERE CONCAT(nombre_cliente,' ', apellido_cliente) ILIKE ? OR correo_cliente ILIKE ? OR usuario_cliente ILIKE ?";
+         WHERE CONCAT(nombre_cliente,' ', apellido_cliente) ILIKE ? OR correo_cliente ILIKE ? OR usuario_cliente ILIKE ?
+         ORDER BY id_cliente";
         $params = array($this->buscador, $this->buscador, $this->buscador);
         return Database::getRows($sql, $params);
     }

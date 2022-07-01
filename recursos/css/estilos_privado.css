@@ -297,6 +297,10 @@ body {
   margin-right: 100px;
 }
 
+#modal_info{
+  overflow-y: scroll;
+}
+
 .boton_agrega_r {
   background-color: #699af6;
   color: white;

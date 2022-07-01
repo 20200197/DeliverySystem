@@ -234,7 +234,7 @@ class AdministrarVendedor extends Validator
     public function obtenerVendedores()
     {
         $sql = "SELECT id_vendedor, CONCAT(nombre_vendedor, ' ',apellido_vendedor) as nombre_completo, dui_vendedor, correo_vendedor,
-        usuario_vendedor, solvencia_pnc FROM vendedor WHERE status = true";
+        usuario_vendedor, solvencia_pnc FROM vendedor WHERE status_vendedor = true";
         $params = null;
         return Database::getRows($sql, $params);
     }
@@ -254,7 +254,7 @@ class AdministrarVendedor extends Validator
     {
         $sql = "SELECT id_vendedor, CONCAT(nombre_vendedor, ' ',apellido_vendedor) as nombre_completo, dui_vendedor, correo_vendedor,
         usuario_vendedor, solvencia_pnc FROM vendedor
-         WHERE (CONCAT(nombre_vendedor, ' ',apellido_vendedor) ILIKE ? OR correo_vendedor ILIKE ? OR usuario_vendedor ILIKE ?) AND status = true";
+         WHERE (CONCAT(nombre_vendedor, ' ',apellido_vendedor) ILIKE ? OR correo_vendedor ILIKE ? OR usuario_vendedor ILIKE ?) AND status_vendedor = true";
         $params = array($this->buscador, $this->buscador, $this->buscador);
         return Database::getRows($sql, $params);
     }
@@ -271,7 +271,7 @@ class AdministrarVendedor extends Validator
 
     public function eliminar()
     {
-        $sql = 'UPDATE vendedor SET status = false WHERE id_vendedor = ?';
+        $sql = 'UPDATE vendedor SET status_vendedor = false WHERE id_vendedor = ?';
         $params = array($this->identificador);
         return Database::executeRow($sql, $params);
     }
