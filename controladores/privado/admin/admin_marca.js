@@ -13,7 +13,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
     M.Modal.init(document.querySelectorAll('.modal'), options);
 });
-
+document.getElementById('save-form').addEventListener('submit', function(event){
+    event.preventDefault();
+      saveRow(API_MARCAS,'create','save-form','save-modal');
+});
 
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
 function fillTable(dataset) {

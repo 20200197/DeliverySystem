@@ -27,10 +27,7 @@ if (isset($_GET['action'])) {
                 //Buscar empleado
                 case 'search':
                     $_POST = $administrar_marca->validateForm($_POST);
-                    if ($_POST['search'] == '') {
-                        $result['exception'] = 'Ingrese un valor para buscar';
-                        // $entrega->readAll();
-                    } elseif ($result['dataset'] = $administrar_marca->searchRows($_POST['search'])) {
+                    if ($result['dataset'] = $administrar_marca->searchRows($_POST['data'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Valor encontrado';
                     } elseif (Database::getException()) {
