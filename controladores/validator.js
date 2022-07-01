@@ -18,8 +18,6 @@ function soloNumeros(texto) {
     teclado = String.fromCharCode(key);
     // Valores permitidos
     valores = "0123456789";
-    // Si se permiten o no las teclas de control
-    permitido = false;
     //Se revisa si la tecla es parte de las especiales
     for (var i in especiales) {
         if (key == especiales[i]) {
@@ -103,7 +101,7 @@ function verificarDUI(presionar, texto) {
     //Se obtiene toda la cadena de texto
     ingresar = document.getElementById(texto);
     // Valores permitidos
-    valores = "0123456789-";
+    valores = "0123456789";
     //Se revisa si las tecla escrita se puede escribir
     if (ingresar.value.includes("-") && teclado == "-") {
         return false;
@@ -119,9 +117,8 @@ function verificarDUI(presionar, texto) {
 }
 
 /**
- * 
+ *
  */
-
 
 /**
  * Función para validar cantidades de dinero
@@ -173,8 +170,6 @@ function soloLetras(texto) {
     teclado = String.fromCharCode(key);
     // Valores permitidos
     valores = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZáéíóúÁÉÍÓÚ,.¡!¿? ";
-    // Teclas de control en codigo ASCII
-    especiales = "8-32";
     // Si se permiten o no las teclas de control
     permitido = false;
     //Se revisa si la tecla es parte de las especiales
@@ -253,4 +248,50 @@ function revisarTexto(texto) {
     if (valores.indexOf(teclado) == -1 && !permitido) {
         return false;
     }
+}
+
+/**
+ * Función para validar número de teléfono
+ *
+ *  Se permitirán:
+ *  - Digitos
+ *  - guión
+ *
+ */
+function verificarTel(presionar, texto) {
+    //Se obtiene el codigo ASCII de la tecla
+    key = presionar.keyCode;
+    //Se almacena
+    teclado = String.fromCharCode(key);
+    //Se obtiene toda la cadena de texto
+    ingresar = document.getElementById(texto);
+    // Valores permitidos
+    valores = "0123456789";
+    //Se revisa si las tecla escrita se puede escribir
+    if (ingresar.value.length == 4) {
+        ingresar.value = ingresar.value + "-";
+    } else if (ingresar.value.length > 8) {
+        return false;
+    } else if (valores.indexOf(teclado) == -1) {
+        return false;
+    }
+}
+
+/**
+ * Función para validar un correo eléctronico
+ *
+ * Se tratará de devolver si está correcto o no
+ */
+
+function verificarEmail(id) {
+    //Se obtiene el componente a evaluar
+     campo = document.getElementById(id);
+    //Parametros
+     emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+     //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+     if (emailRegex.test(campo.value)) {
+         return true;
+     } else {
+         return false;
+     }
 }

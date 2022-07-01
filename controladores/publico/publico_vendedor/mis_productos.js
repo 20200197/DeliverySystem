@@ -27,28 +27,33 @@ function fillTable(dataset) {
                                             <img src="../../../api/imagenes/productos/${row.imagen}"
                                                 id="imagen_producto_vende">
                                         </div>
-                                        <div class="col s12 m12 l8 center-align">
-                                            <h5>${row.nombre_producto}</h5>
+                                        <div class="col l8 m12 s12">
+                                            <div class="col s12 m12 l12 center-align">
+                                                <h5>${row.nombre_producto}</h5>
+                                            </div>
+                                            <div class="col s12 m12 l12 center-align">
+                                                <p>${row.descripcion_producto}.</p>
+                                            </div>
+                                            <div class="col s12 m12 l6 center-align">
+                                                <h6>Cantidad:</h6>
+                                                <p>${row.cantidad_producto}</p>
+                                            </div>
+                                            <div class="col s12 m12 l6 center-align">
+                                                <h6>Precio:</h6>
+                                                <p>${row.precio_producto}</p>
+                                            </div>
+                                            <div class="col s12 m6 l6 centrar_boton_mis_productos">
+                                                <a onclick="eliminar(${row.id_producto})" class="btn-large right modal-trigger" id="boton_elimi_pro"
+                                                href="#modal_eliminar_produ"><i
+                                                class="material-icons left">delete</i>Eliminar</a>
+                                            </div>
+                                            <div class="col s12 m6 l6 centrar_boton_mis_productos">
+                                                <a class="btn-large right modal-trigger" id="boton_edita_pro"
+                                                href="#modal_editar_producto" onclick="cargar_editar(${row.id_producto})"><i
+                                                class="material-icons left">edit</i>Editar</a>
+                                            </div>
                                         </div>
-                                        <div class="col s12 m12 l8 center-align">
-                                            <p>${row.descripcion_producto}.</p>
-                                        </div>
-                                        <div class="col s12 m12 l4 center-align">
-                                            <h6>${row.cantidad_producto}</h6>
-                                        </div>
-                                        <div class="col s12 m12 l4 center-align">
-                                             <h6>${row.precio_producto}</h6>
-                                        </div>
-                                        <div class="col s12 m6 l4 centrar_boton_mis_productos">
-                                            <a onclick="eliminar(${row.id_producto})" class="btn-large right modal-trigger" id="boton_elimi_pro"
-                                            href="#modal_eliminar_produ"><i
-                                            class="material-icons left">delete</i>Eliminar</a>
-                                        </div>
-                                        <div class="col s12 m6 l4 centrar_boton_mis_productos">
-                                            <a class="btn-large right modal-trigger" id="boton_edita_pro"
-                                            href="#modal_editar_producto" onclick="cargar_editar(${row.id_producto})"><i
-                                            class="material-icons left">edit</i>Editar</a>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -200,4 +205,20 @@ function eliminar(id) {
     datos.append("identificador", id);
     //Se ejecuta el método para eliminar, está en componentes.js
     confirmDelete(API_PRODUCTOS, datos);
+}
+
+//Función para previsualizar un producto
+function leerImg(input, img_destino)
+{
+    //Se obtiene los archivos del input
+    let archivos = input.files;
+    //Se verifica si está vacío
+    if (!archivos || !archivos.length) { 
+        img_destino.src = "../../recursos/img/publico/sin.png";
+        return;
+    }
+    //
+    const visualizar = archivos[0];
+    const url = URL.createObjectURL(visualizar);
+    img_destino.src = url;
 }
