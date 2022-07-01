@@ -61,11 +61,11 @@
             </li>
             <li>
                 <a href="admin_admin.html" class="tooltipped" data-position="right" data-tooltip="Administradores"><i
-                class="material-icons medium">folder_shared</i></a>
+                        class="material-icons medium">folder_shared</i></a>
             </li>
             <li>
-                <button onclick="logOut('Admin')" class="tooltipped logout" data-position="right" data-tooltip="Cerrar sesión"><i
-                        class="material-icons medium">arrow_back</i></button>
+                <button onclick="logOut('Admin')" class="tooltipped logout" data-position="right"
+                    data-tooltip="Cerrar sesión"><i class="material-icons medium">arrow_back</i></button>
             </li>
         </ul>
         <!--Contenedor de datos-->
@@ -76,32 +76,19 @@
                     class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
                         class="material-icons">menu</i></a>
                 <img src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png" alt="" />
-                <a class="waves-effect waves-light btn boton_iniciar_sesion">Log In</a>
+                <div id="opciones_navbar">
+                    
+                </div>
+                
             </header>
             <!--Información de la página-->
             <main>
                 <!--Contenedor general de los datos-->
-                <div class="row contenedor_perfil_cliente">
-                    <!--Datos del cliente Foto y direcciones registradas-->
-                    <div class="col l4 m12 s12 foto_direccion_cliente center-align">
-                        <i class="material-icons foto_cliente">account_circle</i>
-                        <form action="#">
-                            <div class="file-field input-field">
-                                <div class="btn boton_cambiar_foto_cliente">
-                                    <span>Cambiar foto</span>
-                                    <input type="file" />
-                                </div>
-                                <div class="file-path-wrapper reducir_place">
-                                    <input class="file-path validate" type="text" />
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!--Contenedor de las datos escritos del cliente-->
-                    <div class="col l8 m12 s12 datos_usuario_perfil_cliente">
+                <div class="row contenedor_perfil_cliente" id="contenedor">
+                    <div class="col l7 m12 s12 datos_usuario_perfil_cliente">
                         <h6>Tus datos personales</h6>
                         <div class="datos_perfil_cliente">
-                            <form action="">
+                            <form method="post" id="datos-usuario">
                                 <div class="input-field col s6 m12 l12">
                                     <input placeholder="Nombre" id="name" type="text" class="validate" />
                                     <label for="first_name">Nombre</label>
@@ -124,16 +111,17 @@
                                 </div>
                             </form>
                         </div>
-                        <!--Datos del usuario del cliente-->
+                    </div>
+                    <div class="col l5 m12 s12 center-align">
                         <h6>Datos de tu cuenta</h6>
                         <div class="contenedor_datos_usuario_perfil_cliente">
-                            <div class="dato_usuario_cliente">
-                                <h6>Nombre de usuario:</h6>
-                                <p>Tu_nombre_usuario123</p>
+                            <div class="input-field col s6 m12 l12">
+                                <input id="usuario" type="text" name="usuario" class="validate" />
+                                <label for="usuario">Usuario</label>
                             </div>
-                            <div class="dato_usuario_cliente">
-                                <h6>Contraseña:</h6>
-                                <p>***************</p>
+                            <div class="input-field col s6 m12 l12">
+                                <input id="pass" type="password" name="pass" class="validate" />
+                                <label for="pass">Contraseña</label>
                             </div>
                             <div class="contenedor_boton_modificar_datos_cliente">
                                 <a href="#datos-cuenta" class="btn modal-trigger boton_cambiar_foto_cliente"><i
@@ -158,95 +146,93 @@
             </div>
         </div>
     </footer>
-    >
     <!--Modals para modificar los datos del perfil-->
-    <!--Añadir nueva dirección-->
-    <div id="direccion_agregar" class="modal">
-        <div class="modal-content">
-            <div class="container center-align">
-                <h4>Escribe la dirección</h4>
-                <form class="col s12">
+    <!--Modal de la informacion-->
+    <div id="modal_info" class="modal">
+        <form action="post" id="usuarioF">
+            <input type="text" id="idU" name="id" class="hide">
+            <div class="modal-content">
+                <div class="row contorno">
+                    <h5 class="center-align">Datos del usuario</h5>
                     <div class="row">
-                        <div class="input-field col s12">
-                            <textarea id="textarea1" class="materialize-textarea"></textarea>
-                            <label for="textarea1">Dirección</label>
+                        <div class="input-field col l6 m12 s12">
+                            <input placeholder="Escribe tu nombre" id="nombre" type="text" name="nombre"
+                                class="validate" onkeypress="return soloLetras(event)">
+                            <label for="nombre">Nombre</label>
+                        </div>
+                        <div class="input-field col l6 m12 s12">
+                            <input placeholder="Escribe tu apellido" id="Apellido" type="text" name="apellido"
+                                class="validate" onkeypress="return soloLetras(event)">
+                            <label for="Apellido">Apellido</label>
+                        </div>
+                        <div class="input-field col l6 m12 s12">
+                            <input placeholder="Escribe tu DUI" id="duiM" type="text" name="dui" class="validate"
+                                onkeypress="return verificarDUI(event, 'duiM')">
+                            <label for="dui">DUI</label>
+                        </div>
+                        <div class="input-field col l6 m12 s12">
+                            <input placeholder="Escribe tu teléfono" id="telefonoM" type="text" name="telefono"
+                                class="validate" [Ayer 20:41] Erazo Reyes
+                                onkeypress="return verificarTel(event, 'telefonoM')">
+                            <label for="telefono">Teléfono</label>
+                        </div>
+                        <div class="input-field col l6 m8 s12 offset-l3 offset-m2">
+                            <input placeholder="Escribe tu correo" id="correo" type="text" name="correo"
+                                class="validate">
+                            <label for="correo">Correo</label>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
-        <div class="opciones_modal_perfil_cliente">
-            <a href="#!" class="btn green modal-close waves-effect waves-green btn-flat"><i
-                    class="material-icons">add_circle_outline</i> Agregar</a>
+            <div class="modal-footer">
+                <button type="submit"
+                    class=" waves-effect waves-green btn-flat boton_a_gregar">Actualizar</button>
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Cerrar</a>
+            </div>
+        </form>
 
-            <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat"><i
-                    class="material-icons">check_circle</i> Cancelar</a>
-        </div>
-    </div>
-    <!--Modificar dirección-->
-    <div id="direccion_modificar" class="modal">
-        <div class="modal-content">
-            <div class="container center-align">
-                <h4>Escribe la nueva dirección</h4>
-                <form class="col s12">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <textarea id="textarea1" class="materialize-textarea"></textarea>
-                            <label for="textarea1">Dirección</label>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="opciones_modal_perfil_cliente">
-            <a href="#!" class="btn green modal-close waves-effect waves-green btn-flat"><i
-                    class="material-icons left">edit</i> Modificar</a>
-            <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat"><i
-                    class="material-icons">check_circle</i> Cancelar</a>
-        </div>
-    </div>
-    <!--Eliminar dirección-->
-    <div id="eliminar_direccion" class="modal">
-        <div class="modal-content">
-            <div class="container center-align">
-                <h4>Eliminar dirección</h4>
-                <p>Estás a punto de eliminar una dirección de tu perfil</p>
-                <p>¿Eliminar?</p>
-            </div>
-            <div class="opciones_modal_perfil_cliente">
-                <a href="#!" class="btn red modal-close waves-effect waves-green btn-flat"><i
-                        class="material-icons">delete</i> Eliminar</a>
-                <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat"><i
-                        class="material-icons">check_circle</i> Cancelar</a>
-            </div>
-        </div>
     </div>
     <!--Datos de la cuenta -->
     <div id="datos-cuenta" class="modal">
-        <div class="modal-content center-align">
-            <h4>Modificar datos de la cuenta</h4>
-            <div class="row">
-                <div class="input-field col l6 m6 s12">
-                    <input placeholder="Nombre de usuario" id="usuario" type="text" class="validate" />
-                    <label for="first_name">Nombre de usuario</label>
-                </div>
-                <div class="input-field col l6 m6 s12">
-                    <input placeholder="***********" id="clave" type="password" class="validate" />
-                    <label for="last_name">Contraseña</label>
-                </div>
-                <div class="opciones_modal_perfil_cliente">
-                    <a href="#!" class="btn green modal-close waves-effect waves-green btn-flat"><i
-                            class="material-icons">edit</i> Modificar</a>
-                    <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat"><i
-                            class="material-icons">check_circle</i> Cancelar</a>
+        <form action="post" id="cuentaF">
+            <input type="text" id="idC" name="id" class="hide">
+            <div class="modal-content">
+                <div class="row contorno">
+                    <h5 class="center-align">Datos de la cuenta</h5>
+                    <div class="row">
+                        <div class="input-field col l6 m12 s12">
+                            <input placeholder="Escribe tu nombre de usuario" name="usuario" id="usuarioM" type="text"
+                                class="validate" onkeypress="return revisarTexto(event)">
+                            <label for="usuario">Nombre de usuario</label>
+                        </div>
+                        <div class="input-field col l6 m12 s12">
+                            <input placeholder="Escribe tu contraseña" id="passC" name="pass" type="password"
+                                class="validate" onkeypress="return revisarTexto(event)">
+                            <label for="pass">Contraseña</label>
+                        </div>
+                        <div class="input-field col l6 m8 s12 offset-l3 offset-m2">
+                            <input placeholder="Escribe nuevamente la contraseña" id="pass2C" type="password"
+                                class="validate" onkeypress="return revisarTexto(event)">
+                            <label for="pass2">Confirmación de contraseña</label>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="modal-footer">
+                <button type="submit"
+                    class=" waves-effect waves-green btn-flat boton_a_gregar">Actualizar</button>
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Cerrar</a>
+            </div>
+        </form>
     </div>
 
     <!--Importar archivos JavaScrip-->
     <script type="text/javascript" src="../../../js/materialize.min.js"></script>
-    <script type="text/javascript" src="../../../controladores/publico/activation.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="../../../controladores/componentes.js"></script>
+    <script type="text/javascript" src="../../../controladores/validator.js"></script>
+    <script type="text/javascript" src="../../../controladores/privado/admin/perfil.js"></script>
+    <script type="text/javascript" src="../../../controladores/privado/admin/opciones_sesion.js"></script>
 </body>
 
 </html>
