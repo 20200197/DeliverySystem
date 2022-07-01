@@ -71,7 +71,7 @@
                                 <div class="input-field col s9 m7 l4">
                                     <i class="material-icons prefix">search</i>
                                     <input id="search" type="text" name="search" placeholder="Busque por nombre, correo o usuario..."
-                                        onkeyup="buscar()" >
+                                        onkeyup="buscar()" onkeypress="return revisarTexto(event)">
                                     <label for="search">Buscador</label>
                                 </div>
                                 <div class="input-field col s1 m1 l1">

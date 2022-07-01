@@ -54,7 +54,7 @@ class AdministrarVendedor extends Validator
     public function obtenerVendedores()
     {
         $sql = "SELECT id_vendedor, CONCAT(nombre_vendedor, ' ',apellido_vendedor) as nombre_completo, dui_vendedor, correo_vendedor,
-        usuario_vendedor, solvencia_pnc FROM vendedor WHERE status = true";
+        usuario_vendedor, solvencia_pnc FROM vendedor WHERE status_vendedor = true";
         $params = null;
         return Database::getRows($sql, $params);
     }

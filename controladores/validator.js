@@ -11,36 +11,35 @@
  *  - Eliminar
  *
  */
-function soloNumeros(texto) {
+function validarcantidad(event, id) {
     //Se obtiene el codigo ASCII de la tecla
-    key = texto.keyCode;
+    key = event.keyCode;
+    //se obtiene el compoente
+    ingresar = document.getElementById(id);
     //Se almacena
     teclado = String.fromCharCode(key);
     // Valores permitidos
     valores = "0123456789";
-    //Se revisa si la tecla es parte de las especiales
-    for (var i in especiales) {
-        if (key == especiales[i]) {
-            permitido = true;
-        }
-    }
+    //Se sanea el campo
+    ingresar.value = ingresar.value.replace(/^(0+)/g, "");
     //Se revisa si las tecla escrita se puede escribir
-    if (valores.indexOf(teclado) == -1 && !permitido) {
+    if (valores.indexOf(teclado) == -1) {
         return false;
-    }
+    } 
+    
 }
 
 /**
  * Función que permite validad porcentajes
  */
 
-function validadPorcentajes(presionar, texto) {
+function validadPorcentajes(event, id) {
     //Se obtiene el codigo ASCII de la tecla
-    key = presionar.keyCode;
+    key = event.keyCode;
     //Se almacena
     teclado = String.fromCharCode(key);
     //Se obtiene toda la cadena de texto
-    ingresar = document.getElementById(texto);
+    ingresar = document.getElementById(id);
     // Valores permitidos
     valores = "0123456789.";
     //Se revisa si las tecla escrita se puede escribir
@@ -71,9 +70,9 @@ function validadPorcentajes(presionar, texto) {
  *  - Eliminar
  *
  */
-function soloNumerosC(presionar) {
+function soloNumerosC(event) {
     //Se obtiene el codigo ASCII de la tecla
-    key = presionar.keyCode;
+    key = event.keyCode;
     //Se almacena
     teclado = String.fromCharCode(key);
     // Valores permitidos
@@ -93,13 +92,13 @@ function soloNumerosC(presionar) {
  *  - Eliminar
  *
  */
-function verificarDUI(presionar, texto) {
+function verificarDUI(event, id) {
     //Se obtiene el codigo ASCII de la tecla
-    key = presionar.keyCode;
+    key = event.keyCode;
     //Se almacena
     teclado = String.fromCharCode(key);
     //Se obtiene toda la cadena de texto
-    ingresar = document.getElementById(texto);
+    ingresar = document.getElementById(id);
     // Valores permitidos
     valores = "0123456789";
     //Se revisa si las tecla escrita se puede escribir
@@ -128,13 +127,13 @@ function verificarDUI(presionar, texto) {
  * - Únicamente un punto (No obligatorio)
  */
 
-function verificarDinero(presionar, texto) {
+function verificarDinero(event, id) {
     //Se obtiene el codigo ASCII de la tecla
-    key = presionar.keyCode;
+    key = event.keyCode;
     //Se almacena
     teclado = String.fromCharCode(key);
     //Se obtiene toda la cadena de texto
-    ingresar = document.getElementById(texto);
+    ingresar = document.getElementById(id);
     // Valores permitidos
     valores = "0123456789.";
     //Se revisa si las tecla escrita se puede escribir
@@ -163,23 +162,16 @@ function verificarDinero(presionar, texto) {
  *  - Espacio en blanco
  *
  */
-function soloLetras(texto) {
+function soloLetras(event) {
     //Se obtiene el codigo ASCII de la tecla
-    key = texto.keyCode;
+    key = event.keyCode;
     //Se almacena
     teclado = String.fromCharCode(key);
     // Valores permitidos
     valores = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZáéíóúÁÉÍÓÚ,.¡!¿? ";
     // Si se permiten o no las teclas de control
-    permitido = false;
-    //Se revisa si la tecla es parte de las especiales
-    for (var i in especiales) {
-        if (key == especiales[i]) {
-            permitido = true;
-        }
-    }
     //Se revisa si las tecla escrita se puede escribir
-    if (valores.indexOf(teclado) == -1 && !permitido) {
+    if (valores.indexOf(teclado) == -1) {
         return false;
     }
 }
@@ -197,9 +189,9 @@ function soloLetras(texto) {
  *  - Espacio en blanco
  *
  */
-function letras_numeros(texto) {
+function letras_numeros(event) {
     //Se obtiene el codigo ASCII de la tecla
-    key = texto.keyCode;
+    key = event.keyCode;
     //Se almacena
     teclado = String.fromCharCode(key);
     // Valores permitidos
@@ -226,14 +218,14 @@ function letras_numeros(texto) {
  * - guión y guión bajo
  * - Espacios
  */
-function revisarTexto(texto) {
+function revisarTexto(event) {
     //Se obtiene el codigo ASCII de la tecla
-    key = texto.keyCode || texto.which;
+    key = event.keyCode;
     //Se almacena
     teclado = String.fromCharCode(key);
     // Valores permitidos
     valores =
-        '1234567890abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ áéíóúÁÉÍÓÚ,./"-_.,;:@';
+        '1234567890abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ áéíóúÁÉÍÓÚ,./-_.,;:@';
     // Teclas de control en codigo ASCII (Sin funcionar)
     especiales = "8-32-44-45-46-35-248-95";
     // Si se permiten o no las teclas de control
@@ -258,13 +250,13 @@ function revisarTexto(texto) {
  *  - guión
  *
  */
-function verificarTel(presionar, texto) {
+function verificarTel(event, id) {
     //Se obtiene el codigo ASCII de la tecla
-    key = presionar.keyCode;
+    key = event.keyCode;
     //Se almacena
     teclado = String.fromCharCode(key);
     //Se obtiene toda la cadena de texto
-    ingresar = document.getElementById(texto);
+    ingresar = document.getElementById(id);
     // Valores permitidos
     valores = "0123456789";
     //Se revisa si las tecla escrita se puede escribir
