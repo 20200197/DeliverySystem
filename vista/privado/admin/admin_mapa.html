@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
-  
+
     <!--Optimización para mobiles-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8">
@@ -48,8 +48,8 @@
                         class="material-icons medium">description</i></a></li>
             <li><a href="admin_admin.html" class="tooltipped" data-position="right" data-tooltip="Administradores"><i
                         class="material-icons medium">folder_shared</i></a></li>
-            <li><button onclick="logOut('Admin')" class="tooltipped logout" data-position="right" data-tooltip="Cerrar sesión"><i
-                        class="material-icons medium">arrow_back</i></button></li>
+            <li><button onclick="logOut('Admin')" class="tooltipped logout" data-position="right"
+                    data-tooltip="Cerrar sesión"><i class="material-icons medium">arrow_back</i></button></li>
         </ul>
         <!--Contenedor de datos-->
         <div class="contenedor-datos">
@@ -68,7 +68,10 @@
                         🌙
                     </label>
                 </div>
-                <a class="waves-effect waves-light btn boton_iniciar_sesion">Log In</a>
+                <div id="opciones_navbar">
+
+                </div>
+
             </header>
             <!--Información de la página-->
             <main>
@@ -101,10 +104,11 @@
     <script src="../../../controladores/componentes.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
 
-  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
 
     <script src="../../../controladores/privado/admin/admin_mapa.js"></script>
     <script src="../../../controladores/privado/admin/modo_oscuro.js"></script>
+    <script type="text/javascript" src="../../../controladores/privado/admin/opciones_sesion.js"></script>
 
 </body>
 
