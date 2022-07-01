@@ -43,8 +43,8 @@
                         class="material-icons medium">description</i></a></li>
             <li><a href="admin_admin.html" class="tooltipped" data-position="right" data-tooltip="Administradores"><i
                         class="material-icons medium">folder_shared</i></a></li>
-            <li><button onclick="logOut('Admin')" class="tooltipped logout" data-position="right" data-tooltip="Cerrar sesión"><i
-                        class="material-icons medium">arrow_back</i></button></li>
+            <li><button onclick="logOut('Admin')" class="tooltipped logout" data-position="right"
+                    data-tooltip="Cerrar sesión"><i class="material-icons medium">arrow_back</i></button></li>
         </ul>
         <!--Contenedor de datos-->
         <div class="contenedor-datos">
@@ -78,7 +78,9 @@
                                 <form method="post" id="search-form">
                                     <div class="input-field col s9 m7 l4">
                                         <i class="material-icons prefix">search</i>
-                                        <input id="search" type="text" name="search" placeholder="Busque por nombre, correo o usuario..." onkeyup="buscar()">
+                                        <input id="search" type="text" name="search"
+                                            onkeypress="return revisarTexto(event)"
+                                            placeholder="Busque por nombre, correo o usuario..." onkeyup="buscar()">
                                         <label for="search">Buscador</label>
                                     </div>
                                     <div class="input-field col s1 m1 l1">
@@ -105,7 +107,7 @@
                                 </thead>
                                 <!--Datos de tabla-->
                                 <tbody id="contenido">
-                                
+
                                 </tbody>
                             </table>
                         </div>
@@ -210,6 +212,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript" src="../../../controladores/privado/activation.js"></script>
     <script type="text/javascript" src="../../../controladores/componentes.js"></script>
+    <script type="text/javascript" src="../../../controladores/validator.js"></script>
     <script type="text/javascript" src="../../../controladores/privado/admin/admin_vendedor.js"></script>
 </body>
 

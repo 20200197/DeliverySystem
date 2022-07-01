@@ -139,7 +139,7 @@ class VendedorProducto extends Validator
     public function cargarProductos()
     {
         $sql = 'SELECT id_producto, nombre_producto, descripcion_producto, cantidad_producto, precio_producto, 
-        imagen FROM producto WHERE id_vendedor = ? AND status_producto NOT IN (false)';
+        imagen FROM producto WHERE id_vendedor = ? AND status_producto NOT IN (false) ORDER BY id_producto';
         $params = array($this->identificador);
         return Database::getRows($sql, $params);
     }
