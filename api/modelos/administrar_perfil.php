@@ -84,7 +84,7 @@ class AdministrarPerfil extends Validator
     public function setPass($valor)
     {
         if ($this->validateString($valor,4,100)) {
-            $this->pass = $valor;
+            $this->pass = password_hash($valor, PASSWORD_DEFAULT);
             return true;
         } else {
             return false;

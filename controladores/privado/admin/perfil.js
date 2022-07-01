@@ -19,7 +19,6 @@ function fillTable(data) {
         contenido += `
                     <div class="col l7 m12 s12 datos_usuario_perfil_cliente center-align">
                         <h6>Tus datos personales</h6>
-                        <p>(Solo visualización)</p>
                         <div class="datos_perfil_cliente">
                             <form method="post" id="datos-usuario">
                                 <div class="input-field col s6 m12 l12">
@@ -135,14 +134,29 @@ function cargarCuenta(id) {
 document.getElementById("usuarioF").addEventListener('submit', function (event) {
     //Se previene la recarga automatica
     event.preventDefault();
-    //Se ejecuatan los cambios
-    saveRow(API_PERFIL, "actualizarUsuario", "usuarioF", "modal_info");
+    if (verificarEmail("correo")) {
+        //Se ejecuatan los cambios
+        saveRow(API_PERFIL, "actualizarUsuario", "usuarioF", "modal_info");
+    } else {
+        sweetAlert(3, 'Formato de correo incorrecto', null);
+    }
+        
 });
 
 //Método que actualiza los datos de la cuenta
 document.getElementById("cuentaF").addEventListener("submit", function (event) {
     //Se previene la recarga automatica
     event.preventDefault();
-    //Se ejecuatan los cambios
-    saveRow(API_PERFIL, "actualizarCuenta", "cuentaF", "datos-cuenta");
+    //Se verifican si son iguales
+    if (document.getElementById("passC").value == document.getElementById("pass2C").value) {
+        //se mide la longitug
+        if (document.getElementById("passC").value.length < 8) {
+            sweetAlert(3, "Las contraseñas debe tener al menos 8 caracteres", null);
+        } else {
+            //Se ejecuatan los cambios
+            saveRow(API_PERFIL, "actualizarCuenta", "cuentaF", "datos-cuenta");
+        }
+    } else {
+        sweetAlert(3, "Las contraseñas no son iguales", null);
+    }
 });
