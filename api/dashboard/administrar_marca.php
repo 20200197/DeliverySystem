@@ -40,142 +40,59 @@ if (isset($_GET['action'])) {
                     }
                     break; 
                 //Crear fila
-            case 'create':
+                case 'create':
                 $_POST = $administrar_marca->validateForm($_POST);
-                if (!$administrar_marca->setNombreMarca($_POST['nombre_marca'])) {
+                if ($_POST['nombre_marca']==null) {
+                    $result['exception'] = 'Ingresar una marca ';
+                } elseif (!$administrar_marca->setNombreMarca($_POST['nombre_marca'])) {
                     $result['exception'] = 'Marca incorrecta';
-                } elseif ($administrar_marca->createRow()) {
+                   } elseif ($administrar_marca->createRow()) {
                     $result['status']=1;
-                        $result['message'] = 'Marca registrada correctamente';
-                   
-                
-            } else {
-                $result['exception'] = Database::getException();
-            }
+                    $result['message'] = 'Marca registrada correctamente';
+                   } else {
+                    $result['exception'] = Database::getException();
+                   }
                 break;
-            case 'readOne':
-                if (!$empleado->setId($_POST['id'])) {
-                    $result['exception'] = 'Empleado incorrecto';
-                } elseif ($result['dataset'] = $empleado->readOne()) {
+                case 'readOne':
+                if (!$administrar_marca->setId($_POST['id'])) {
+                    $result['exception'] = 'marca incorrecto';
+                } elseif ($result['dataset'] = $administrar_marca->readOne()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
-                    $result['exception'] = 'Empleado inexistente';
+                    $result['exception'] = 'marca inexistente';
                 }
                 break;
+                //Actualizar estados
+                case 'updateStatus':
+                    if (!$administrar_marca->setId($_POST['idP'])) {
+                        $result['exception'] = 'Ha ocurrido un error al ejecutar la acción';
+                    } elseif (!$administrar_marca->getStatus()) {
+                        $result['exception'] = 'Ha ocurrido un error al obtener el estado';
+                    } elseif ($administrar_marca->changeStatus()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Estado cambiado correctamente';
+                    } elseif (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'Ha ocurrido un error inseperado';
+                    }
+                    break;
                 //Actualizar fila
-            case 'update':
-                $_POST = $empleado->validateForm($_POST);
-                if (!$empleado->setId($_POST['id'])) {
-                    $result['exception'] = 'Empleado incorrecto';
-                } elseif (!$data = $empleado->readOne()) {
-                    $result['exception'] = 'Empleado inexistente';
-                } elseif (!$empleado->setNombre($_POST['nombre_em'])) {
-                    $result['exception'] = 'Nombre incorrecto';
-                } elseif (!$empleado->setApellido($_POST['apellido_em'])) {
-                    $result['exception'] = 'Apellido incorrecto';
-                } elseif (!$empleado->setCorreo($_POST['correo_em'])) {
-                    $result['exception'] = 'Correo incorrecto';
-                    //Vertficamos si hay Correo idéntico
-                } elseif ($empleado->read('correo_empleado', $empleado->getCorreo())) {
-                    $result['exception'] = 'El correo ingresado ya esta registrado';
-                } elseif (!$empleado->setUsuario($_POST['usuario_em'])) {
-                    $result['exception'] = 'Usuario incorrecto';
-                } elseif (!$empleado->setDui($_POST['dui_em'])) {
-                    $result['exception'] = 'Dui incorrecto';
-                } elseif (!$empleado->setEstado(isset($_POST['estado_em']) ? 1 : 0)) {
-                    $result['exception'] = 'Estado incorrecto';
-                } elseif (!isset($_POST['id_tipo_em'])) {
-                    $result['exception'] = 'Seleccione un tipo de empleado';
-                } elseif (!$empleado->setTipo($_POST['id_tipo_em'])) {
-                    $result['exception'] = 'Tipo de empleado incorrecto';
-                } elseif ($_POST['contrasenia_em'] != $_POST['confirmar_contra']) {
-                    $result['exception'] = 'Claves diferentes';
-                } elseif (!$empleado->setContrasenia($_POST['contrasenia_em'])) {
-                    $result['exception'] = $empleado->getPasswordError();
-                } elseif (!is_uploaded_file($_FILES['img_em']['tmp_name'])) {
-                    if ($empleado->updateRow($data['imagen_perfil_empleado'])) {
+                case 'update':
+                    $_POST = $administrar_marca->validateForm($_POST);
+                    if (!$administrar_marca->setId($_POST['editar_marca']))  {
+                        $result['exception'] = 'Producto incorrecto';
+                    } elseif (!$administrar_marca->setNombreMarca($_POST['nombre_marca'])) {
+                        $result['exception'] = 'nombre incorrecto';
+                    } elseif ($administrar_marca->updateRow()) {
                         $result['status'] = 1;
-                        $result['message'] = 'Empleado modificado correctamente';
+                        $result['message'] = 'Producto modificado correctamente';
                     } else {
                         $result['exception'] = Database::getException();
                     }
-                } elseif (!$empleado->setImagen($_FILES['img_em'])) {
-                    $result['exception'] = $empleado->getFileError();
-                } elseif ($empleado->updateRow($data['imagen_perfil_empleado'])) {
-                    $result['status'] = 1;
-                    if ($empleado->saveFile($_FILES['img_em'], $empleado->getRut(), $empleado->getImagen())) {
-                        $result['message'] = 'Empleado modificado correctamente';
-                    } else {
-                        $result['message'] = 'Empleado modificado pero no se guardó la imagen';
-                    }
-                } else {
-                    $result['exception'] = Database::getException();
-                }
-                break;
-                //Actualizar empleado 
-            case 'update_':
-                $_POST = $empleado->validateForm($_POST);
-                if (!$empleado->setId($_POST['id'])) {
-                    $result['exception'] = 'Empleado incorrecto';
-                } elseif (!$data = $empleado->readOne()) {
-                    $result['exception'] = 'Empleado inexistente';
-                } elseif (!$empleado->setNombre($_POST['nombre_em'])) {
-                    $result['exception'] = 'Nombre incorrecto';
-                } elseif (!$empleado->setApellido($_POST['apellido_em'])) {
-                    $result['exception'] = 'Apellido incorrecto';
-                } elseif (!$empleado->setCorreo($_POST['correo_em'])) {
-                    $result['exception'] = 'Correo incorrecto';
-                    //Evaluamos correo que no se repita
-                } elseif ($empleado->readD('correo_empleado', $empleado->getCorreo())) {
-                    $result['exception'] = 'Este correo ya esta registrado';
-                } elseif (!$empleado->setUsuario($_POST['usuario_em'])) {
-                    $result['exception'] = 'Usuario incorrecto';
-                } elseif (!$empleado->setDui($_POST['dui_em'])) {
-                    $result['exception'] = 'Dui incorrecto';
-                    //Evaluamos el dui que no se repita
-                } elseif ($empleado->readD('dui_empleado', $empleado->getDui())) {
-                    $result['exception'] = 'Este Dui ya esta registrado';
-                } elseif (!$empleado->setEstado(isset($_POST['estado_em']) ? 1 : 0)) {
-                    $result['exception'] = 'Estado incorrecto';
-                } elseif (!isset($_POST['id_tipo_em'])) {
-                    $result['exception'] = 'Seleccione un tipo de empleado';
-                } elseif (!$empleado->setTipo($_POST['id_tipo_em'])) {
-                    $result['exception'] = 'Tipo de empleado incorrecto';
-                } elseif (!is_uploaded_file($_FILES['img_em']['tmp_name'])) {
-                    if ($empleado->updateRow_($data['imagen_perfil_empleado'])) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Empleado modificado correctamente';
-                    } else {
-                        $result['exception'] = Database::getException();
-                    }
-                } elseif (!$empleado->setImagen($_FILES['img_em'])) {
-                    $result['exception'] = $empleado->getFileError();
-                } elseif ($empleado->updateRow_($data['imagen_perfil_empleado'])) {
-                    $result['status'] = 1;
-                    if ($empleado->saveFile($_FILES['img_em'], $empleado->getRut(), $empleado->getImagen())) {
-                        $result['message'] = 'Empleado modificado correctamente';
-                    } else {
-                        $result['message'] = 'Empleado modificado pero no se guardó la imagen';
-                    }
-                } else {
-                    $result['exception'] = Database::getException();
-                }
-                break;
-                //Eliminar fila
-            case 'delete':
-                if (!$administrar_marca->setId($_POST['id_marca'])) {
-                    $result['exception'] = 'Producto incorrecto';
-                } elseif (!$data = $administrar_marca->readOne()) {
-                    $result['exception'] = 'Producto inexistente';
-                } elseif ($administrar_marca->deleteRow()) {
-                    $result['status'] = 1;
-
-                } else {
-                    $result['exception'] = Database::getException();
-                }
-                break;
+                    break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

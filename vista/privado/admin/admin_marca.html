@@ -117,7 +117,7 @@
                         <tr>
                            <th>Nombre marca:</th>
                            <th>Editar</th>
-                           <th>Eliminar</th>
+                           <th>Estado</th>
                         </tr>
                      </thead>
                      <tbody id="tbody-rows">
@@ -147,18 +147,18 @@
             </div>
          </form>
             <!--Modal editar marca-->
-            <div id="modal_editar_marc_a" class="modal">
-               <form action="">
+            <div id="modal_editar_marca" class="modal">
                   <div class="modal-content">
                      <div class="row contorno">
                         <div class="col s12 m12 l12">
                            <form method="post" id="editar-form">
+                              <input type="text" class="hide" id="editar_marca" name="editar_marca">
                            <h5 class="center-align">Editar marca</h5>
                            <div class="col s12 m12 l1"></div>
                            <div class="col s12 m12 l6 nombre_catee">
-                              <h6>Nombre marca:</h6>
+                              <h6>Editar marca:</h6>
                               <div class="input-field col s12 m12 l12">
-                                 <input placeholder="Nombre" id="nombre_producto" type="text" />
+                                 <input placeholder="Nombre" id="nombre_marca"  name="nombre_marca" type="text" />
                               </div>
                            </div>
                         </div>
@@ -166,13 +166,11 @@
                   </div>
                   <div class="modal-footer">
                      <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
-                     <button href="#!"class="modal-close waves-effect waves-green btn-flat boton_a_gregar" type="submit">Modificar</button>
+                     <button class="modal-close waves-effect waves-green btn-flat boton_a_gregar" type="submit">Modificar</button>
                         </from>
                   </div>
                </form>
             </div>
-
-            
 
             <!--Boton agregar-->
             <div class="fixed-action-btn hide-on-large-only show-on-small botones_accion">

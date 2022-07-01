@@ -3,7 +3,7 @@
 *	Clase para manejar la tabla usuarios de la base de datos.
 *   Es clase hija de Validator.
 */
-class Marca extends Validator
+class Distribuidor extends Validator
 {
     // Declaración de atributos (propiedades).
     private $id = null;
@@ -25,7 +25,7 @@ class Marca extends Validator
     private $fecha_registro = null;
     private $id_admin = null;
 
-    private $ruta = '../imagenes/categoria_producto/';
+    private $ruta = '../imagenes/distribuidor/';
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -73,7 +73,7 @@ class Marca extends Validator
     public function setDuiRepartidor($value)
     {
         if ($this->validateNaturalNumber($value)) {
-            $this->$dui_repartidor = $value;
+            $this->dui_repartidor = $value;
             return true;
         } else {
             return false;
@@ -137,8 +137,8 @@ class Marca extends Validator
 
     public function setSolvenciaPnc($value)
     {
-        if ($this->validateImageFile($file, 500, 500)) {
-            $this->$solvencia_pnc = $this->getFileName();
+        if ($this->validateImageFile($value, 500, 500)) {
+            $this->solvencia_pnc = $this->getFileName();
             return true;
         } else {
             return false;
@@ -146,7 +146,7 @@ class Marca extends Validator
     }
     public function setAntecedentePenal($value)
     {
-        if ($this->validateImageFile($file, 500, 500)) {
+        if ($this->validateImageFile($value, 500, 500)) {
             $this->antecedente_penal = $this->getFileName();
             return true;
         } else {
@@ -181,7 +181,7 @@ class Marca extends Validator
 
     public function setFotoPlacaVehiculo($value)
     {
-        if ($this->validateImageFile($file, 500, 500)) {
+        if ($this->validateImageFile($value, 500, 500)) {
             $this->foto_placa_vehiculo = $this->getFileName();
             return true;
         } else {
@@ -191,7 +191,7 @@ class Marca extends Validator
 
     public function setFotoRepartidor($value)
     {
-        if ($this->validateImageFile($file, 500, 500)) {
+        if ($this->validateImageFile($value, 500, 500)) {
             $this->foto_repartidor = $this->getFileName();
             return true;
         } else {
@@ -201,7 +201,7 @@ class Marca extends Validator
 
     public function setFotoVehiculo($value)
     {
-        if ($this->validateImageFile($file, 500, 500)) {
+        if ($this->validateImageFile($value, 500, 500)) {
             $this->foto_vehiculo = $this->getFileName();
             return true;
         } else {
@@ -224,7 +224,7 @@ class Marca extends Validator
         }
     }
 
-    public function setFechaRegistro($value)
+    public function setFechaRegistro($date)
     {
         if($this->validateDate($date)){
             $this->fecha_registro = $date;
@@ -270,7 +270,7 @@ class Marca extends Validator
     public function getDuiRepartidor($value)
     {
         
-        return $this->$dui_repartidor;
+        return $this->dui_repartidor;
         
     }
 
@@ -305,59 +305,59 @@ class Marca extends Validator
     public function getSolvenciaPnc($value)
     {
         
-        return $this->$solvencia_pnc;
+        return $this->solvencia_pnc;
         
     }
-    public function setAntecedentePenal($value)
+    public function getAntecedentePenal($value)
     {
         
         return $this->antecedente_penal;
         
     }
 
-    public function setDireccionDomicilio($value)
+    public function getDireccionDomicilio($value)
     {
         
         return $this->direccion_domicilio;
         
     }
 
-    public function setPlacaVehiculo($value)
+    public function getPlacaVehiculo($value)
     {
         
         return $this->placa_vehiculo;
         
     }
 
-    public function setFotoPlacaVehiculo($value)
+    public function getFotoPlacaVehiculo($value)
     {
         
         return $this->foto_placa_vehiculo;
     
     }
 
-    public function setFotoRepartidor($value)
+    public function getFotoRepartidor($value)
     {
         
         return $this->foto_repartidor;
         
     }
 
-    public function setFotoVehiculo($value)
+    public function getFotoVehiculo($value)
     {
        
         return $this->foto_vehiculo;
         
     }
 
-    public function setStatusRepartidor($value)
+    public function getStatusRepartidor($value)
     {
         
         return $this->status_repartidor;
           
     }
 
-    public function setFechaRegistro($value)
+    public function getFechaRegistro($value)
     {
        
         return  $this->fecha_registro;
@@ -365,7 +365,7 @@ class Marca extends Validator
     }
 
 
-    public function setIdAdmin($value)
+    public function getIdAdmin($value)
     {
        
         return $this->id_admin;
@@ -377,11 +377,11 @@ class Marca extends Validator
     */
     public function searchRows($value)
     {
-        $sql = 'SELECT id_marca, nombre_marca
-                FROM marca 
-                WHERE  nombre_marca ILIKE ? 
-                ORDER BY nombre_marca';
-        $params = array("%$value%");
+        $sql = 'SELECT id_repartidor, nombre_repartidor,apellido_repartidor,dui_repartidor,correo_repartidor,usuario_repartidor,telefono_repartidor,clave_repartidor,solvencia_pnc,antecedente_penal,direccion_domicilio,placa_vehiculo,foto_placa_vehiculo,foto_repartidor,foto_vehiculo,status_repartidor,fecha_registro,id_admin
+                FROM repartidor
+                WHERE  nombre_repartidor ILIKE ? OR apellido_repartidor ILIKE ? OR dui_repartidor ILIKE ? OR correo_repartidor ILIKE ? OR usuario_repartidor ILIKE ?
+                ORDER BY nombre_repartidor';
+        $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
 
@@ -397,34 +397,26 @@ class Marca extends Validator
     //Función para leer todos los datos
     public function readAll()
     {
-        $sql = 'SELECT id_marca, nombre_marca
-                FROM marca
-                ORDER BY nombre_marca';
-        $params = null;
-        return Database::getRows($sql, $params);
+        $sql = 'SELECT id_repartidor, nombre_repartidor,apellido_repartidor,dui_repartidor,correo_repartidor,usuario_repartidor,telefono_repartidor,clave_repartidor,solvencia_pnc,antecedente_penal,direccion_domicilio,placa_vehiculo,foto_placa_vehiculo,foto_repartidor,foto_vehiculo,status_repartidor,fecha_registro,id_admin
+                FROM repartidor
+                ORDER BY nombre_repartidor';
+        return Database::getRows($sql, null);
     }
 
 
     public function readOne()
     {
-        $sql = 'SELECT id_marca,nombre_categoria
-                FROM marca
-                WHERE id_marca = ?';
+        $sql = 'SELECT id_repartidor, nombre_repartidor,apellido_repartidor,dui_repartidor,correo_repartidor,usuario_repartidor,telefono_repartidor,clave_repartidor,solvencia_pnc,antecedente_penal,direccion_domicilio,placa_vehiculo,foto_placa_vehiculo,foto_repartidor,foto_vehiculo,status_repartidor,fecha_registro,id_admin
+                FROM repartidor
+                WHERE id_repartidor = ?
+                ORDER BY nombre_repartidor';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
 
     //Función para actualizar fila
-    public function updateRow($current_image)
-    {
-        // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
-        $sql = 'UPDATE marca
-                SET nombre_marca=  ?
-                WHERE id_marca=?';
-        $params = array($this->nombre_marca,$this->id);
-        return Database::executeRow($sql, $params);
-    }
-    
+   
+
 
     //Función para eliminar fila
     public function deleteRow()
@@ -432,6 +424,32 @@ class Marca extends Validator
         $sql = 'DELETE FROM nombre_marca
                 WHERE id_marca= ?';
         $params = array($this->id);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function getStatus()
+    {
+        $sql = 'SELECT status_repartidor FROM repartidor WHERE id_repartidor = ?';
+        $params = array($this->id);
+
+        if ($data = Database::getRow($sql, $params)) {
+            $this->status_repartidor = $data['status_repartidor'];
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function changeStatus()
+    {
+        $sql = 'UPDATE repartidor SET status_repartidor = ? WHERE id_repartidor = ?';
+
+        if ($this->status_repartidor) {
+            $params = array(0, $this->id);
+        } else {
+            $params = array(1, $this->id);
+        }
+
         return Database::executeRow($sql, $params);
     }
 }
