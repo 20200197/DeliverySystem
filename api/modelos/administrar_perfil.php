@@ -59,9 +59,9 @@ class AdministrarPerfil extends Validator
 
     public function cargarPerfil()
     {
-        $sql = 'SELECT id_admin, nombre_admin, apellido_admin, dui_admin, correo_admin, telefono_admin 
+        $sql = 'SELECT id_admin, nombre_admin, apellido_admin, dui_admin, correo_admin, telefono_admin, usuario_admin
             FROM administrador WHERE id_admin = ?';
         $params = array($this->identificador);
-        return Database::getRow($)
+        return Database::getRow($sql, $params);
     }
 }

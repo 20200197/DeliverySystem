@@ -61,11 +61,11 @@
             </li>
             <li>
                 <a href="admin_admin.html" class="tooltipped" data-position="right" data-tooltip="Administradores"><i
-                class="material-icons medium">folder_shared</i></a>
+                        class="material-icons medium">folder_shared</i></a>
             </li>
             <li>
-                <button onclick="logOut('Admin')" class="tooltipped logout" data-position="right" data-tooltip="Cerrar sesión"><i
-                        class="material-icons medium">arrow_back</i></button>
+                <button onclick="logOut('Admin')" class="tooltipped logout" data-position="right"
+                    data-tooltip="Cerrar sesión"><i class="material-icons medium">arrow_back</i></button>
             </li>
         </ul>
         <!--Contenedor de datos-->
@@ -81,27 +81,11 @@
             <!--Información de la página-->
             <main>
                 <!--Contenedor general de los datos-->
-                <div class="row contenedor_perfil_cliente">
-                    <!--Datos del cliente Foto y direcciones registradas-->
-                    <div class="col l4 m12 s12 foto_direccion_cliente center-align">
-                        <i class="material-icons foto_cliente">account_circle</i>
-                        <form action="#">
-                            <div class="file-field input-field">
-                                <div class="btn boton_cambiar_foto_cliente">
-                                    <span>Cambiar foto</span>
-                                    <input type="file" />
-                                </div>
-                                <div class="file-path-wrapper reducir_place">
-                                    <input class="file-path validate" type="text" />
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!--Contenedor de las datos escritos del cliente-->
-                    <div class="col l8 m12 s12 datos_usuario_perfil_cliente">
+                <div class="row contenedor_perfil_cliente"  id="contenedor">
+                    <div class="col l7 m12 s12 datos_usuario_perfil_cliente">
                         <h6>Tus datos personales</h6>
                         <div class="datos_perfil_cliente">
-                            <form action="">
+                            <form method="post" id="datos-usuario">
                                 <div class="input-field col s6 m12 l12">
                                     <input placeholder="Nombre" id="name" type="text" class="validate" />
                                     <label for="first_name">Nombre</label>
@@ -124,16 +108,17 @@
                                 </div>
                             </form>
                         </div>
-                        <!--Datos del usuario del cliente-->
+                    </div>
+                    <div class="col l5 m12 s12 center-align">
                         <h6>Datos de tu cuenta</h6>
                         <div class="contenedor_datos_usuario_perfil_cliente">
-                            <div class="dato_usuario_cliente">
-                                <h6>Nombre de usuario:</h6>
-                                <p>Tu_nombre_usuario123</p>
+                            <div class="input-field col s6 m12 l12">
+                                <input id="usuario" type="text" name="usuario" class="validate" />
+                                <label for="usuario">Usuario</label>
                             </div>
-                            <div class="dato_usuario_cliente">
-                                <h6>Contraseña:</h6>
-                                <p>***************</p>
+                            <div class="input-field col s6 m12 l12">
+                                <input id="pass" type="password" name="pass" class="validate" />
+                                <label for="pass">Contraseña</label>
                             </div>
                             <div class="contenedor_boton_modificar_datos_cliente">
                                 <a href="#datos-cuenta" class="btn modal-trigger boton_cambiar_foto_cliente"><i
@@ -246,7 +231,9 @@
 
     <!--Importar archivos JavaScrip-->
     <script type="text/javascript" src="../../../js/materialize.min.js"></script>
-    <script type="text/javascript" src="../../../controladores/publico/activation.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="../../../controladores/componentes.js"></script>
+    <script type="text/javascript" src="../../../controladores/privado/admin/perfil.js"></script>
 </body>
 
 </html>
