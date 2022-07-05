@@ -18,7 +18,7 @@ class Database
         $server = 'localhost';
         $database = 'deliverysystem';
         $username = 'postgres';
-        $password = 'Firearcher.15';
+        $password = 'Firearcher15';
 
         // Se crea la conexión mediante la extensión PDO y el controlador para PostgreSQL.
         self::$connection = new PDO('pgsql:host=' . $server . ';dbname=' . $database . ';port=5432', $username, $password);

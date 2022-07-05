@@ -30,9 +30,39 @@ if (isset($_GET['action'])) {
                 //Actualizamos perfil
             case 'updatePerfil':
                 $_POST = $perfil->validateForm($_POST);
+                //Se obtienen los datos para verificación
                 if (!$data = $perfil->readOne()) {
                     $result['exception'] = 'Vendedor inexistente';
-                } elseif (!$perfil->setNombre($_POST['nombre_vendedor'])) {
+                }
+                //Se colocan las imagenes según sea necesario
+                if (is_uploaded_file($_FILES['solvencia-file']['tmp_name'])) {
+                    if (!$perfil->setSolvencia($_FILES['solvencia-file'])) {
+                        $result['exception'] = $perfil->getFileError();
+                        // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
+                        header('content-type: application/json; charset=utf-8');
+                        // Se imprime el resultado en formato JSON y se retorna al controlador.
+                        return print(json_encode($result));
+                    }
+                }
+                if (is_uploaded_file($_FILES['antecedente-file']['tmp_name'])) {
+                    if (!$perfil->setAntecedentes($_FILES['antecedente-file'])) {
+                        $result['exception'] = $perfil->getFileError();
+                        // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
+                        header('content-type: application/json; charset=utf-8');
+                        // Se imprime el resultado en formato JSON y se retorna al controlador.
+                        return print(json_encode($result));
+                    }
+                }
+                if (is_uploaded_file($_FILES['profile-file']['tmp_name'])) {
+                    if (!$perfil->setFoto($_FILES['profile-file'])) {
+                        $result['exception'] = $perfil->getFileError();
+                        // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
+                        header('content-type: application/json; charset=utf-8');
+                        // Se imprime el resultado en formato JSON y se retorna al controlador.
+                        return print(json_encode($result));
+                    }
+                }
+                if (!$perfil->setNombre($_POST['nombre_vendedor'])) {
                     $result['exception'] = 'Nombre incorrecto';
                 } elseif (!$perfil->setApellido($_POST['apellido_vendedor'])) {
                     $result['exception'] = 'Apellido incorrecto';
@@ -53,52 +83,70 @@ if (isset($_GET['action'])) {
                     //Evaluamos el dui que no se repita
                 } elseif ($perfil->readD('dui_vendedor', $perfil->getDui())) {
                     $result['exception'] = 'Este Dui ya esta registrado';
-                // } elseif (!is_uploaded_file($_FILES['solvencia-file']['tmp_name'])) {
-                //     if ($perfil->updatePerfil($data['imagen_perfil_empleado'])) {
-                //         $result['status'] = 1;
-                //         $result['message'] = 'Empleado modificado correctamente';
-                //     } else {
-                //         $result['exception'] = Database::getException();
-                //     }
-                // } elseif (!$perfil->setSolvencia($_FILES['img_em'])) {
-                //     $result['exception'] = $perfil->getFileError();
-                // } elseif ($perfil->updatePerfil($data['imagen_perfil_empleado'])) {
-                //     $result['status'] = 1;
-                //     if ($perfil->saveFile($_FILES['img_em'], $perfil->getRuta(), $empleado->getImagen())) {
-                //         $result['message'] = 'Perfil modificado correctamente';
-                //     } else {
-                //         $result['message'] = 'Perfil modificado pero no se guardó la imagen';
-                //     }
-                // }
-                } elseif (!is_uploaded_file($_FILES['solvencia-file']['tmp_name'])) {
-                    $result['exception'] = 'Seleccione una imagen para la solvencia';
-                } elseif (!$perfil->setSolvencia($_FILES['solvencia-file'])) {
-                    $result['exception'] = $perfil->getFileError();
-                } elseif (!is_uploaded_file($_FILES['antecedente-file']['tmp_name'])) {
-                    $result['exception'] = 'Seleccione una imagen para los antecedentes';
-                } elseif (!$perfil->setAntecedentes($_FILES['antecedente-file'])) {
-                    $result['exception'] = $perfil->getFileError();
+                    // } elseif (!is_uploaded_file($_FILES['solvencia-file']['tmp_name'])) {
+                    //     if ($perfil->updatePerfil($data['imagen_perfil_empleado'])) {
+                    //         $result['status'] = 1;
+                    //         $result['message'] = 'Empleado modificado correctamente';
+                    //     } else {
+                    //         $result['exception'] = Database::getException();
+                    //     }
+                    // } elseif (!$perfil->setSolvencia($_FILES['img_em'])) {
+                    //     $result['exception'] = $perfil->getFileError();
+                    // } elseif ($perfil->updatePerfil($data['imagen_perfil_empleado'])) {
+                    //     $result['status'] = 1;
+                    //     if ($perfil->saveFile($_FILES['img_em'], $perfil->getRuta(), $empleado->getImagen())) {
+                    //         $result['message'] = 'Perfil modificado correctamente';
+                    //     } else {
+                    //         $result['message'] = 'Perfil modificado pero no se guardó la imagen';
+                    //     }
+                    // }
                 } elseif (!$perfil->setDireccion($_POST['direccion_vendedor'])) {
                     $result['exception'] = 'Dirección inválida';
-                } elseif (!is_uploaded_file($_FILES['profile-file']['tmp_name'])) {
-                    $result['exception'] = 'Seleccione una foto';
-                } elseif (!$perfil->setFoto($_FILES['profile-file'])) {
-                    $result['exception'] = $perfil->getFileError();
                 } elseif (!$perfil->setCoordenadas($_POST['cords'])) {
                     $result['exception'] = 'coordenadas invalidas';
-                } elseif ($perfil->updatePerfil($data['antecedente_penal'],$data['solvencia_pnc'],$data['foto_vendedor'])) {
-                    if (!$perfil->saveFile($_FILES['solvencia-file'], $perfil->getRutaSolvencia(), $perfil->getSolvencia())) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Usuario creado pero no se guardó la solvencia';
-                    } elseif (!$perfil->saveFile($_FILES['antecedente-file'], $perfil->getRutaAntecedente(), $perfil->getAntecedente())) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Usuario creado pero no se guardó el antecedente';
-                    } elseif (!$perfil->saveFile($_FILES['profile-file'], $perfil->getRutaFoto(), $perfil->getFoto())) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Usuario creado pero no se guardó la foto personal';
-                    } else {
-                        $result['status'] = 1;
-                        $result['message'] = 'Usuario creado correctamente';
+                } elseif ($perfil->updatePerfil($data['antecedente_penal'], $data['solvencia_pnc'], $data['foto_vendedor'])) {
+                    $result['status'] = 1;
+                    $estado = '';
+                    if (is_uploaded_file($_FILES['solvencia-file']['tmp_name'])) {
+                        if (!$perfil->saveFile($_FILES['solvencia-file'], $perfil->getRutaSolvencia(), $perfil->getSolvencia())) {
+                            $estado = '1';
+                        }
+                    }
+                    if (is_uploaded_file($_FILES['antecedente-file']['tmp_name'])) {
+                        if (!$perfil->saveFile($_FILES['antecedente-file'], $perfil->getRutaAntecedente(), $perfil->getAntecedente())) {
+                            $estado = $estado . '2';
+                        }
+                    }
+                    if (is_uploaded_file($_FILES['profile-file']['tmp_name'])) {
+                        if (!$perfil->saveFile($_FILES['profile-file'], $perfil->getRutaFoto(), $perfil->getFoto())) {
+                            $estado = $estado . '3';
+                        }
+                    }
+                    switch ($estado) {
+                        case '1':
+                            $result['message'] = 'Usuario actualizado pero no se guardó el antecedente';
+                            break;
+                        case '2':
+                            $result['message'] = 'Usuario actualizado pero no se guardó la solvencia';
+                            break;
+                        case '3':
+                            $result['message'] = 'Usuario actualizado pero no se guardó la foto de perfil';
+                            break;
+                        case '12':
+                            $result['message'] = 'Usuario actualizado pero no se guardaron el antecedente y la solevencia';
+                            break;
+                        case '13':
+                            $result['message'] = 'Usuario actualizado pero no se guardaron el antecedente y la foto de perfil';
+                            break;
+                        case '23':
+                            $result['message'] = 'Usuario actualizado pero no se guardaron la solvencia y la foto de perfil';
+                            break;
+                        case '123':
+                            $result['message'] = 'Usuario actualizado pero no se guardó ninguna imagen';
+                            break;
+                        default:
+                            $result['message'] = 'Usuario actualizado con éxito';
+                            break;
                     }
                 } else {
                     $result['exception'] = Database::getException();
