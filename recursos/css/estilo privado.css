@@ -1,0 +1,117 @@
+header,
+main,
+footer {
+    padding-left: 6%;
+}
+
+@media only screen and (max-width: 992px) {
+    header,
+    main,
+    footer {
+        padding-left: 0 !important;
+    }
+
+    .sidenav {
+        width: 65% !important;
+        align-items: flex-start !important;
+    }
+
+    .sidenav li a i {
+        font-size: 5rem !important;
+        padding-right: 50px !important;
+    }
+
+    .sidenav li button i {
+        font-size: 5rem !important;
+        margin: 0 5px 0 0;
+    }
+
+    .sidenav li a span {
+        font-size: 16pt !important;
+    }
+
+    .sidenav li button span {
+        font-size: 16pt !important;
+        font-weight: 500 !important;
+    }
+
+    .sidenav li {
+        width: 100% !important;
+        padding: 10px 0px 10px 0px !important;
+    }
+
+    .sidenav li a {
+        padding-left: 10px !important;
+    }
+
+    .sidenav li button {
+        padding-left: 10px !important;
+        width: 100%;
+    }
+
+    .opciones-sidenav {
+        height: 100% !important;
+    }
+
+    .cerrar-sidenav {
+        height: 0% !important;
+    }
+}
+
+.sidenav {
+    width: 6%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: space-between;
+}
+
+.sidenav li {
+    padding: 2px 0px 2px 0px;
+}
+
+.sidenav li a i {
+    font-size: 3.5rem;
+}
+
+.sidenav li button i {
+    font-size: 3rem;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/*------------------Navbar---------------*/
+
+nav {
+    box-shadow: none !important;
+}
+
+nav div ul li a i {
+    font-size: 48px !important;
+}
+
+.logout {
+    border: transparent;
+}
+
+.logout:hover {
+    cursor: pointer;
+}
+
+/*-----------------Footer--------------*/
+
+.opciones-sidenav {
+    height: 90%;
+}
+
+.cerrar-sidenav {
+    height: 10%;
+}

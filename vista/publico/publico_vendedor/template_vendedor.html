@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="estilo publico.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-wrapper white">
+                <div class="row valign-wrapper">
+                    <div class="col m1 s1">
+                        <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                                class="material-icons large blue-text">menu</i></a>
+                    </div>
+                    <div class="col m5 s5 left valign-wrapper">
+
+                        <img class="responsive-img" src="logo_delivery_system.png" alt="">
+                    </div>
+                    <div class="col m6 s6">
+                        <ul class="right">
+                            <li><span class="black-text">Nombre del usuario</span></li>
+                            <li><a href="perfil.html" class="tooltipped " data-position="right" data-tooltip="Perfil"><i
+                                        class="material-icons medium black-text">account_circle</i></a></li>
+
+                        </ul>
+                    </div>
+                </div>
+        </nav>
+
+    </header>
+
+
+    <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2 left-align">
+        <div class="opciones-sidenav">
+            <li class="collection-item"><a href="index.html" class="tooltipped" data-position="right"
+                    data-tooltip="Hogar"><i class="material-icons  white-text">home</i><span
+                        class="white-text hide-on-large-only">Inicio</span></a>
+            </li>
+            <li><a href="perfil.html" class="tooltipped Hide-on-large-only " data-position="right"
+                    data-tooltip="Perfil"><i class="material-icons  white-text">account_circle</i><span
+                        class="white-text hide-on-large-only">Perfil</span></a></li>
+            <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Ventas"><i
+                        class="material-icons  white-text">shopping_basket</i><span
+                        class="white-text hide-on-large-only">Venta</span></a></li>
+            <li><a href="mis_productos.html" class="tooltipped" data-position="right" data-tooltip="Mis productos"><i
+                        class="material-icons  white-text">business_center</i><span
+                        class="white-text hide-on-large-only">Mis
+                        productos</span></a></li>
+            <li><a href="estadistica.html" class="tooltipped" data-position="right" data-tooltip="Gráficos"><i
+                        class="material-icons  white-text">pie_chart</i><span
+                        class="white-text hide-on-large-only">Gráficos</span></a></li>
+            <li class="hide-on-large-only"><button onclick="logOut('Vendedor')"
+                    class="tooltipped transparent logout valign-wrapper" data-position="right"
+                    data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
+                        class="white-text hide-on-large-only">Cerrar sesión</span></button></li>
+        </div>
+        <div class="cerrar-navbar hide-on-med-and-down ">
+            <li>
+                <button onclick="logOut('Vendedor')" class="tooltipped white-text transparent logout valign-wrapper"
+                    data-position="right" data-tooltip="Cerrar sesión"><i class="material-icons ">arrow_back</i><span
+                        class="white-text hide-on-large-only">Cerrar sesión</span></button>
+            </li>
+        </div>
+
+    </ul>
+
+    <main>
+
+    </main>
+    <footer class="page-footer blue accent-3">
+        <div class="row">
+            <div class="col l9 m6 s6">
+                <div class="col l6 m12 s12">
+                    <img src="logo.png" class="responsive-img" alt="">
+                    <h6 class="hide-on-med-and-down">Copyright 2022</h6>
+                </div>
+                <div class="col l6 m12 ">
+                    <!--Redes-->
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">facebook</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">facebook</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">facebook</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">facebook</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">whatsapp</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">whatsapp</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">email</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">email</i>
+                        </a>
+                    </div>
+                    <h6 class="hide-on-large-only">Copyright 2022</h6>
+                </div>
+            </div>
+            <div class="col l3 s6">
+                <div class="col l12 m12">
+                    <ul>
+                        <h5 class="">Información pública</h5>
+                        <li><a href="" class="white-text">Quienes somos</a></li>
+                        <li><a href="" class="white-text">Contáctanos</a></li>
+                        <li><a href="" class="white-text">Misión y visión</a></li>
+                        <li><a href="" class="white-text">Términos y condiciones</a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </footer>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="activador.js"></script>
+</body>
+
+</html>
