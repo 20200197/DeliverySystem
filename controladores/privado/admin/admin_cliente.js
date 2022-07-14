@@ -98,12 +98,15 @@ function buscar() {
                 //Se procede a pasarlo a JSON
                 request.json().then(function (response) {
                     //Se verifica el estado de la respuesta
-                    if (response.status) {
-                        //Se cargan los datos obtenidos
-                        fillTable(response.dataset);
-                    } else {
-                        //sweetAlert(1, response.exception, null);
-                    }
+                if (response.status) {
+                    //Se cargan los datos obtenidos
+                    fillTable(response.dataset);
+                    document.getElementById('notificacion').innerHTML = '';
+                } else {
+                     //Se cargan los datos obtenidos
+                     fillTable(response.dataset);
+                     document.getElementById('notificacion').innerHTML = 'No se encontraron datos según la busqueda solicitada';
+                }
                 });
             }
         });
