@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="../../../recursos/css/estilo privado.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-wrapper white">
+                <div class="row valign-wrapper">
+                    <div class="col m1 s1">
+                        <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                                class="material-icons large blue-text">menu</i></a>
+                    </div>
+                    <div class="col m5 s5 valign-wrapper">
+
+                        <img class="responsive-img" src="logo_delivery_system.png" alt="">
+                    </div>
+                    <div class="col m6 s6">
+                        <ul class="right">
+                            <li><span class="black-text">Nombre del usuario</span></li>
+                            <li><a href="perfil.html" class="tooltipped " data-position="right" data-tooltip="Perfil"><i
+                                        class="material-icons medium black-text">account_circle</i></a></li>
+
+                        </ul>
+                    </div>
+                </div>
+        </nav>
+
+    </header>
+
+    <div class="row">
+        <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
+            <div class="opciones-sidenav">
+                <li><a href="dashboard.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
+                            class="material-icons center white-text">home</i><span
+                            class="white-text hide-on-large-only">Hogar</span></a></li>
+                <li><a href="admin_producto.html" class="tooltipped" data-position="right" data-tooltip="Productos"><i
+                            class="material-icons  white-text">import_contacts</i><span
+                            class="white-text hide-on-large-only">Productos</span></a></li>
+                <li><a href="admin_categoria.html" class="tooltipped" data-position="right" data-tooltip="Categoria"><i
+                            class="material-icons  white-text">format_list_bulleted</i><span
+                            class="white-text hide-on-large-only">Categoria</span></a></li>
+                <li><a href="admin_rmarca.html" class="tooltipped" data-position="right" data-tooltip="Marcas"><i
+                            class="material-icons  white-text">style</i><span
+                            class="white-text hide-on-large-only">Marcas</span></a>
+                </li>
+                <li><a href="admin_vendedor.html" class="tooltipped" data-position="right" data-tooltip="Vendedores"><i
+                            class="material-icons  white-text">people</i><span
+                            class="white-text hide-on-large-only">Vendedores</span></a></li>
+                <li><a href="admin_distribuidor.html" class="tooltipped" data-position="right"
+                        data-tooltip="Repartidores"><i class="material-icons  white-text">motorcycle</i><span
+                            class="white-text hide-on-large-only">Repartidores</span></a></li>
+                <li><a href="admin_cliente.html" class="tooltipped" data-position="right" data-tooltip="Clientes"><i
+                            class="material-icons  white-text">wc</i><span
+                            class="white-text hide-on-large-only">Clientes</span></a>
+                </li>
+                <li><a href="admin_entrega.html" class="tooltipped" data-position="right" data-tooltip="Reparto"><i
+                            class="material-icons  white-text">description</i><span
+                            class="white-text hide-on-large-only">Reparto</span></a></li>
+                <li><a href="admin_admin.html" class="tooltipped" data-position="right"
+                        data-tooltip="Administradores"><i class="material-icons  white-text">folder_shared</i><span
+                            class="white-text hide-on-large-only">Administradores</span></a></li>
+                <li class="hide-on-large-only"><button onclick="logOut('Admin')"
+                        class="tooltipped transparent logout valign-wrapper" data-position="right"
+                        data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
+                            class="white-text hide-on-large-only">Cerrar sesión</span></button></li>
+            </div>
+            <div class="cerrar-navbar hide-on-med-and-down">
+                <li><button onclick="logOut('Admin')" class="tooltipped transparent logout" data-position="right"
+                        data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
+                            class="white-text hide-on-large-only">Cerrar sesión</span></button></li>
+            </div>
+
+
+        </ul>
+    </div>
+    <main>
+
+    </main>
+    <footer class="page-footer blue accent-3">
+        <div class="row">
+            <div class="col l2 m6 s12">
+                <div class="col offset-l1 offset-m1 offset-s1">
+                    <img class="responsive-img" src="logo.png" alt="">
+                    <h6>Copyright 2022</h6>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="activador.js"></script>
+</body>
+
+</html>

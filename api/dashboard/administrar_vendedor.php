@@ -52,8 +52,10 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Entrada de busqueda no valida';
                 } elseif ($result['dataset'] = $administrar_vendedor->buscar()) {
                     $result['status'] = 1;
-                } else {
+                } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No se encontraron registros con la busqueda solicitada';
                 }
                 break;
             case 'detalles':
