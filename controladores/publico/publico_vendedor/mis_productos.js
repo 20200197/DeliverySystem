@@ -22,8 +22,8 @@ function fillTable(dataset) {
         <div class="col s12 m12 l12">
         <div class="card  ">
             <div class="card-content ">
-                <div class="row">
-                    <div class="col s12 m12 l4">
+                <div class="row sin-margen">
+                    <div class="col s12 m12 l4 center">
                         <img src="../../../api/imagenes/productos/${row.imagen}"
                             class="responsive-img">
                     </div>
@@ -40,14 +40,14 @@ function fillTable(dataset) {
                         </div>
                         <div class="col s6 m6 l6 center-align">
                             <h6>Precio:</h6>
-                            <p>${row.precio_producto}</p>
+                            <p>$${row.precio_producto}</p>
                         </div>
-                        <div class="col s12 m6 l6 center-align">
+                        <div class="col s12 m6 l6 center-align input-field">
                             <a onclick="eliminar(${row.id_producto})" class="btn-small modal-trigger white black-text"
                             href="#modal_eliminar_produ"><i
                             class="material-icons left black-text">delete</i>Eliminar</a>
                         </div>
-                        <div class="col s12 m6 l6 center-align ">
+                        <div class="col s12 m6 l6 center-align input-field">
                             <a class="btn-small modal-trigger white black-text"
                             href="#modal_editar_producto"  onclick="cargar_editar(${row.id_producto})"><i
                             class="material-icons left black-text">edit</i>Editar</a>
