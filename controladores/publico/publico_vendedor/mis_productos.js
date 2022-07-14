@@ -20,44 +20,44 @@ function fillTable(dataset) {
         //<td><img src="${SERVER}imagenes/administrar_empleados/${row.imagen_perfil_empleado}" class="materialboxed" height="100" width="100"></td>
         content += `
         <div class="col s12 m12 l12">
-                            <div class="card  ">
-                                <div class="card-content ">
-                                    <div class="row">
-                                        <div class="col s12 m12 l4">
-                                            <img src="../../../api/imagenes/productos/${row.imagen}"
-                                                id="imagen_producto_vende">
-                                        </div>
-                                        <div class="col l8 m12 s12">
-                                            <div class="col s12 m12 l12 center-align">
-                                                <h5>${row.nombre_producto}</h5>
-                                            </div>
-                                            <div class="col s12 m12 l12 center-align">
-                                                <p>${row.descripcion_producto}.</p>
-                                            </div>
-                                            <div class="col s12 m12 l6 center-align">
-                                                <h6>Cantidad:</h6>
-                                                <p>${row.cantidad_producto}</p>
-                                            </div>
-                                            <div class="col s12 m12 l6 center-align">
-                                                <h6>Precio:</h6>
-                                                <p>${row.precio_producto}</p>
-                                            </div>
-                                            <div class="col s12 m6 l6 centrar_boton_mis_productos">
-                                                <a onclick="eliminar(${row.id_producto})" class="btn-large right modal-trigger" id="boton_elimi_pro"
-                                                href="#modal_eliminar_produ"><i
-                                                class="material-icons left">delete</i>Eliminar</a>
-                                            </div>
-                                            <div class="col s12 m6 l6 centrar_boton_mis_productos">
-                                                <a class="btn-large right modal-trigger" id="boton_edita_pro"
-                                                href="#modal_editar_producto" onclick="cargar_editar(${row.id_producto})"><i
-                                                class="material-icons left">edit</i>Editar</a>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+        <div class="card  ">
+            <div class="card-content ">
+                <div class="row">
+                    <div class="col s12 m12 l4">
+                        <img src="../../../api/imagenes/productos/${row.imagen}"
+                            class="responsive-img">
+                    </div>
+                    <div class="col l8 m12 s12">
+                        <div class="col s12 m12 l12 center-align">
+                            <h5>${row.nombre_producto}</h5>
                         </div>
+                        <div class="col s12 m12 l12 center-align">
+                            <p>${row.descripcion_producto}.</p>
+                        </div>
+                        <div class="col s6 m6 l6 center-align">
+                            <h6>Cantidad:</h6>
+                            <p>${row.cantidad_producto}</p>
+                        </div>
+                        <div class="col s6 m6 l6 center-align">
+                            <h6>Precio:</h6>
+                            <p>${row.precio_producto}</p>
+                        </div>
+                        <div class="col s12 m6 l6 center-align">
+                            <a onclick="eliminar(${row.id_producto})" class="btn-small modal-trigger white black-text"
+                            href="#modal_eliminar_produ"><i
+                            class="material-icons left black-text">delete</i>Eliminar</a>
+                        </div>
+                        <div class="col s12 m6 l6 center-align ">
+                            <a class="btn-small modal-trigger white black-text"
+                            href="#modal_editar_producto"  onclick="cargar_editar(${row.id_producto})"><i
+                            class="material-icons left black-text">edit</i>Editar</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
       `;
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.

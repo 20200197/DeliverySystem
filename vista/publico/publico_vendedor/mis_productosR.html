@@ -79,11 +79,12 @@
         <!--Boton agregar-->
         <div class="container">
             <div class="row right">
-                <a class="btn-large right modal-trigger btn-floating blue accent-2" href="#modal_agregar_producto"><i
-                        class="material-icons left">add</i>Agregar</a>
+                <a id="boton_agregar_producto" class="btn-large right modal-trigger btn-floating blue accent-2"
+                    href="#modal_agregar_producto"><i class="material-icons left">add</i>Agregar</a>
             </div>
             <div class="row" id="contenido">
                 <!--Card de producto-->
+
             </div>
         </div>
 
@@ -174,62 +175,32 @@
                 <div class="modal-content ">
                     <div class="row contorno">
                         <h5 class="center-align">Agregar producto</h5>
-                        <div class="row">
-                            <div class="col l4 m6 s12">
-                                <img src="../../../recursos/img/publico/clientes/modals/images (5).jpg"
-                                    class="imagen_prod_o">
-                                <div class="file-field input-field">
-                                    <div class="btn">
-                                        <span>Imagen</span>
-                                        <input type="file" name="imagenA" required>
+                        <div class="container">
+                            <div class="col l6 m6 s12">
+                                <img src="../../../recursos/img/publico/clientes/modals/images (5).jpg">
+                                    <div class="file-field input-field center ">
+                                        <div class="btn center">
+                                            <span>Imagen</span>
+                                            <input type="file" name="imagenA" required>
+                                        </div>
+                                        <div class="file-path-wrapper hide">
+                                            <input class="file-path validate" type="text">
+                                        </div>
                                     </div>
-                                    <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text">
-                                    </div>
-                                </div>
                             </div>
-                            <div class="col l8 m6 s12">
-                                <div class="input-field col s12 m12 l6">
-                                    <label for="nombre_productoA">Nombre de producto:</label>
-                                    <input placeholder="Nombre" id="nombre_productoA" name="nombre_productoA"
-                                        type="text" required onkeypress="return soloLetras(event)">
-                                </div>
-                                <div class="input-field col s12 m12 l6">
-                                    <label for="cantidad_productoA">Cantidad:</label>
-                                    <input class="validate" id="cantidad_productoA" name="cantidad_productoA"
-                                        type="number" placeholder="0" required
-                                        onkeypress="return validarcantidad(event, 'cantidad_productoA')">
-                                </div>
-                                <div class="input-field col s12 m12 l6">
-                                    <label for="precio_productoA">Precio:</label>
-                                    <input placeholder="$00.00" id="precio_productoA" name="precio_productoA"
-                                        type="text" class="validate" required
-                                        onkeypress="return verificarDinero(event, 'precio_productoA')">
-                                </div>
-                                <div class="input-field col s12 m12 l6">
-                                    <label for="descripcion_productoA">Descripción:</label>
-                                    <input id="descripcion_productoA" placeholder="Descripción" type="text"
-                                        name="descripcion_productoA" class="validate"
-                                        onkeypress="return revisarTexto(event)">
-                                </div>
-                                <div class="col s12 m12 l6">
-                                    <label>Categoria:</label>
-                                    <select id="categoriaA" class="browser-default" name="categoriaA" required>
-                                    </select>
-                                </div>
-                                <div class="col s12 m12 l6">
-                                    <label>Marca:</label>
-                                    <select id="marcaA" class="browser-default" name="marcaA" required>
-                                    </select>
-                                </div>
+                            <div class="col l6 m6 s12">
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_cancelar_modi">Cancelar</a>
+                    <a href="#!"
+                        class="modal-close waves-effect waves-green btn-flat blue accent-2 white-text valign-wrapper"><i
+                            class="material-icons white-text">cancel</i>Cancelar</a>
                     <button type="submit" href="#!"
-                        class="waves-effect waves-green btn-flat boton_agregar_modi">Agregar</button>
+                        class="waves-effect waves-green btn-flat blue accent-2 white-text valign-wrapper"><i
+                            class="material-icons white-text">add_circle_outline</i> Agregar</button>
                 </div>
             </form>
         </div>

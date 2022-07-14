@@ -106,3 +106,14 @@ nav div ul li a i {
 .cerrar-sidenav {
     height: 10%;
 }
+
+
+/*-------------Diseños de modal---------------*/
+
+.contorno {
+    border: #8dc5ff 3px solid;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+  }
