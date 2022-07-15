@@ -47,6 +47,39 @@ footer {
     .sidenav li button {
         padding-left: 10px !important;
     }
+    table {
+        width: 100%;
+      }
+    
+      table tr {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        border-radius: 11px;
+        padding: 1em;
+        margin-bottom: 1em;
+      }
+    
+      table thead {
+        display: none;
+      }
+    
+      /*Colocamos columnas*/
+      table td[data-target] {
+        display: flex;
+      }
+    
+      table td[data-target]::before {
+        content: attr(data-target);
+        width: 150px;
+      }
+    
+      /*Tamaño*/
+      td,
+      th {
+        width: 100%;
+        word-wrap: break-word;
+      }
 }
 
 .sidenav {

@@ -13,53 +13,67 @@ function fillTable(dataset) {
     dataset.map(function (row) {
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         content += `
-        <div class="row card hoverable valign-wrapper">
-                    <div class="col l2">
-                        <div class=" valign-wrapper container ">
-                            <i class="material-icons blue-text text-accent-2 ">account_box</i>
-                            <span>${row.nombre}</span>
-                        </div>
-                    </div>
-                    <div class="col l2">
-                        <div class="input-field l12 m12 s12 valign-wrapper container ">
-                            <i class="material-icons blue-text text-accent-2">local_phone</i>
-                            <span>${row.telefono_cliente}</span>
-                        </div>
-                        <div class="input-field l12 m12 s12 valign-wrapper container ">
-                            <i class="material-icons blue-text text-accent-2">email</i>
-                            <span>${row.correo_cliente}</span>
-                        </div>
-                    </div>
-                    <div class="col l4  ">
-                        <div class="input-field l12 m12 s12 valign-wrapper ">
-                            <i class="material-icons blue-text text-accent-2">location_on</i>
-                            <span>${row.descripcion_direccion}</span>
-                        </div>
-                        <div class="input-field l12 m12 s12 valign-wrapper ">
-                            <i class="material-icons blue-text text-accent-2">map</i>
-                            <span>${row.punto_referencia}</span>
-                        </div>
-                    </div>
-                    <div class="col l1">
-                        <a href=""><i class="material-icons blue-text text-accent-2">remove_red_eye</i></a>
-                    </div>
-                    <div class="col l1 ">
-                        <span>$${row.total}</span>
-                    </div>
-                    <div class="col l1 ">
-                        <a href="" class="btn ${row.id_status == 3 ? 'green accent-4' : row.id_status == 4 ? 'grey lighten-1' : ' blue accent-2'}" ${row.id_status > 2 ? `onclick="entregar(${row.id_})"` : ''}><i class="material-icons">assignment_turned_in</i></a>
-                    </div>
-                    <div class="col l1 ">
-                        <a href="" class="btn blue accent-2" ${row.id_status > 2 ? 'disabled' : ''}><i class="material-icons">assignment_returned</i></a>
-                    </div>
+        <tr>
+            <td data-target="Nombre del cliente:">
+            ${row.nombre}
+            </td>
+            <td data-target="Contacto: ">
+                <div class="input-field  col l12 m6 s12 valign-wrapper">
+                    <i class="material-icons blue-text text-accent-2">local_phone</i>
+                    <span>${row.telefono_cliente}</span>
                 </div>
+                <div class="input-field col l12 m6 s12 valign-wrapper">
+                    <i class="material-icons blue-text text-accent-2">email</i>
+                    <span>${row.correo_cliente}</span>
+                </div>
+            </td>
+            <td data-target="Dirección y punto de referencia: ">
+            <div class="input-field col l12 m6 s6 valign-wrapper ">
+            <i class="material-icons blue-text text-accent-2 tooltipped" data-position="right" data-tooltip="Dirección">location_on</i>
+            <span>${row.descripcion_direccion}</span>
+        </div>
+        <div class="input-field col l12 m6 s6 valign-wrapper ">
+            <i class="material-icons blue-text text-accent-2 tooltipped" data-position="right" data-tooltip="Punto de referencia">map</i>
+            <span>${row.punto_referencia}</span>
+        </div>
+            </td>
+            <td data-target="Productos: "> <a href=""><i class="material-icons blue-text text-accent-2 center-align">remove_red_eye</i></a></td>
+            <td data-target="Total: ">$${row.total}</td>
+            <td data-target="Opciones: ">
+                <a class="btn ${row.id_status == 3 ? 'green accent-4' : row.id_status == 4 ? 'grey lighten-1' : ' blue accent-2'} tooltipped" data-position="right" data-tooltip="Entregar" onClick="entregar(${row.id_factura},${row.id_status})"><i class="material-icons">assignment_turned_in</i></a>
+                <a class="btn ${row.id_status == 3 ? 'grey lighten-1' : row.id_status == 4 ? 'red darken-2' : ' blue accent-2'} tooltipped" data-position="right" data-tooltip="Cancelar" onClick="cancelar(${row.id_factura},${row.id_status})"><i class="material-icons">assignment_returned</i></a>
+            </td>
+        </tr>
         `;
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById("contenido").innerHTML = content;
-    // Se inicializa el componente Material Box para que funcione el efecto Lightbox.
-    M.Materialbox.init(document.querySelectorAll(".materialboxed"));
-    // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
-    M.Tooltip.init(document.querySelectorAll(".tooltipped"));
+    //Se reactiva los tooltiped
+    M.Tooltip.init(document.querySelectorAll('.tooltipped'));
+}
+
+
+//Función para cambiar el estado de los productos a entregado
+
+function entregar(id, estado) {
+    //Se verifica el estado del pedido
+    if (estado == 3) {
+        sweetAlert(3, 'Ya se ha entregado.', null);
+    } else if (estado == 4) {
+        sweetAlert(3, 'El pedido ha sido cancelado, no se puede entregar.', null);
+    } else {
+        sweetAlert(1, 'Procedencia', null);
+    }
+}
+
+function cancelar(id, estado) {
+    //Se verifica el estado del pedido
+    if (estado == 3) {
+        sweetAlert(3, 'El pedido ha sido entregado, no se puede cancelar.', null);
+    } else if (estado == 4) {
+        sweetAlert(3, 'Ya se ha cancelado.', null);
+    } else {
+        sweetAlert(1, 'Procedencia', null);
+    }
 }
 

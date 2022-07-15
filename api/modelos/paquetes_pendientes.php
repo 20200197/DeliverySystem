@@ -30,7 +30,7 @@ class PaquetesPendientes extends Validator
 
      public function cargarFacturas()
      {
-        $sql = "SELECT CONCAT(c.nombre_cliente, ' ',c.apellido_cliente) as nombre, c.correo_cliente, c.telefono_cliente, d.descripcion_direccion, d.punto_referencia, f.total, ef.id_status FROM factura f
+        $sql = "SELECT CONCAT(c.nombre_cliente, ' ',c.apellido_cliente) as nombre, c.correo_cliente, c.telefono_cliente, d.descripcion_direccion, d.punto_referencia, f.id_factura, f.total, ef.id_status FROM factura f
         INNER JOIN direccion d ON d.id_direccion = f.id_direccion
         INNER JOIN cliente c ON c.id_cliente = d.id_cliente
         INNER JOIN estado_factura ef ON ef.id_status = f.id_status
