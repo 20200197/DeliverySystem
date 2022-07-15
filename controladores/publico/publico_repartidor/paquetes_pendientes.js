@@ -37,7 +37,7 @@ function fillTable(dataset) {
             <span>${row.punto_referencia}</span>
         </div>
             </td>
-            <td data-target="Productos: "> <a href=""><i class="material-icons blue-text text-accent-2 center-align">remove_red_eye</i></a></td>
+            <td data-target="Productos: "> <a href="#modal_info" class="waves-effect waves-light modal-trigger" onClick="cargar_productos(${row.id_factura})"><i class="material-icons blue-text text-accent-2 center-align">remove_red_eye</i></a></td>
             <td data-target="Total: ">$${row.total}</td>
             <td data-target="Opciones: ">
                 <a class="btn ${row.id_status == 3 ? 'green accent-4' : row.id_status == 4 ? 'grey lighten-1' : ' blue accent-2'} tooltipped" data-position="right" data-tooltip="Entregar" onClick="entregar(${row.id_factura},${row.id_status})"><i class="material-icons">assignment_turned_in</i></a>
@@ -162,3 +162,8 @@ function cancelar(id, estado) {
     }
 }
 
+
+//Función para cargar el detalle de productos
+function cargar_productos(id) {
+
+}

@@ -50,6 +50,18 @@ if (isset($_GET['action'])) {
                         $result['exception'] = Database::getException();
                     }
                     break;
+             case 'cargarProductos':
+                $_POST = $paquetes->validateForm($_POST);
+                if (!$paquetes->setIdentificador($_POST['identificador'])) { 
+                    $result['exception'] = 'No se logró identificar el pedido a mostrar';
+                }elseif($result['dataset'] = $paquetes->cargarProductos()) {
+                    $result['status'] = 1;
+                }elseif (Database::getException()){
+                    $result['exception'] = Database::getException();
+                }else{
+                    $result['exception'] = 'El pedido no tiene datos registrados';
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

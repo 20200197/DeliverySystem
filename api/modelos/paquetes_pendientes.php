@@ -48,11 +48,19 @@ class PaquetesPendientes extends Validator
         return Database::executeRow($sql, $params);
      }
 
-        //Función para cambiar el estado a cancelado
-        public function cancelar()
-        {
-           $sql = 'UPDATE factura set id_status = 4 WHERE id_factura = ?';
-           $params = array($this->identificador);
-           return Database::executeRow($sql, $params);
-        }
+    //Función para cambiar el estado a cancelado
+    public function cancelar()
+    {
+        $sql = 'UPDATE factura set id_status = 4 WHERE id_factura = ?';
+        $params = array($this->identificador);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Función para cargar los productos de un pedido
+    public function cargarProductos()
+    {
+        $sql = 'SELECT * FROM detalle_factura df WHERE df.id_factura = ?';
+        $params = array($this->identificador);
+        return Database::getRows($sql, $params);
+    }
 }
