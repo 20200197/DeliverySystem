@@ -28,6 +28,17 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay paquetes pendientes';
                 }
                 break;
+            case 'entregar':
+                $_POST = $paquetes->validateForm($_POST);
+                if (!$paquetes->setIdentificador($_POST['identificador'])) { 
+                    $result['exception'] = 'No se logró identificar el pedido a modificar';
+                }elseif($paquetes->entregar()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Pedido modificado correctamente';
+                }else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

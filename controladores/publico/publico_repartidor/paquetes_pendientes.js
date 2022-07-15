@@ -2,8 +2,8 @@
 const API_PAQUETES = SERVER + "publico/paquetes_pendientes.php?action=";
 
 //Método que carga los datos cuando se inicia la página
-
 document.addEventListener("DOMContentLoaded", function () {
+    //Se cargan los datos en la vista
     readRows(API_PAQUETES);
 });
 
@@ -56,18 +56,46 @@ function fillTable(dataset) {
 //Función para cambiar el estado de los productos a entregado
 
 function entregar(id, estado) {
-    //Se verifica el estado del pedido
+    //Se verifica el estado del pedido y se notifica si es posible la acción o no
     if (estado == 3) {
         sweetAlert(3, 'Ya se ha entregado.', null);
     } else if (estado == 4) {
         sweetAlert(3, 'El pedido ha sido cancelado, no se puede entregar.', null);
     } else {
-        sweetAlert(1, 'Procedencia', null);
+        //Se crear una variable de tipo form
+        let datos = new FormData();
+        datos.append('identificador', id);
+        //Se crea la promesa
+        fetch(API_PAQUETES + 'entregar', {
+            method: 'post',
+            body: datos,
+        }).then(function (request) {
+            //Se verifica si se logró llegar a la api
+            if (request) {
+                //Se convierte a JSON
+                request.json().then(function (response) {
+                    //Se verifica el estado de la ejecución
+                    if (response.status) {
+                        //Se confirma el proceso completado
+                        sweetAlert(1, response.message, null);
+                        //Se cargan los datos en la vista
+                        readRows(API_PAQUETES);
+                    } else {
+                        //Se le indica el error
+                        sweetAlert(2, response.exception, null);
+                    }
+                })
+            } else {
+                //Se notifica por medio de la consola
+                console.log(request.status + " " + request.statusText);
+            }
+        })
+
     }
 }
 
 function cancelar(id, estado) {
-    //Se verifica el estado del pedido
+    //Se verifica el estado del pedido y se notifica si es posible la acción o no
     if (estado == 3) {
         sweetAlert(3, 'El pedido ha sido entregado, no se puede cancelar.', null);
     } else if (estado == 4) {
