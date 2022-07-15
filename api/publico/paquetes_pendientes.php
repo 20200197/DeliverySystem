@@ -39,6 +39,17 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }
                 break;
+            case 'cancelar':
+                    $_POST = $paquetes->validateForm($_POST);
+                    if (!$paquetes->setIdentificador($_POST['identificador'])) { 
+                        $result['exception'] = 'No se logró identificar el pedido a modificar';
+                    }elseif($paquetes->cancelar()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Pedido modificado correctamente';
+                    }else {
+                        $result['exception'] = Database::getException();
+                    }
+                    break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
