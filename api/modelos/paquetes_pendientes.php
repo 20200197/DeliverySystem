@@ -59,7 +59,11 @@ class PaquetesPendientes extends Validator
     //Función para cargar los productos de un pedido
     public function cargarProductos()
     {
-        $sql = 'SELECT * FROM detalle_factura df WHERE df.id_factura = ?';
+        $sql = 'SELECT df.precio, df.cantidad_pedido, (df.precio * df.cantidad_pedido) as subtotal, p.nombre_producto, p.imagen FROM detalle_factura df
+        INNER JOIN factura f ON df.id_factura = f.id_factura
+        INNER JOIN producto p ON df.id_producto = p.id_producto
+        WHERE f.id_factura = ? ORDER BY df.id_detalle
+        ';
         $params = array($this->identificador);
         return Database::getRows($sql, $params);
     }

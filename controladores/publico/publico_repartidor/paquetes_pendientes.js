@@ -165,5 +165,48 @@ function cancelar(id, estado) {
 
 //Función para cargar el detalle de productos
 function cargar_productos(id) {
+    //Se crea la variable de tipo form
+    let datos = new FormData();
+    datos.append('identificador', id);
+    //Se crea la petición
+    fetch(API_PAQUETES + 'cargarProductos',
+        {
+            method: 'post',
+            body: datos,
+        }).then(function (request) { 
+            //Se revisa si la ejecución 
+            if (request.ok) {
+                //Se crea el JSON
+                request.json().then(function (response) {
+                    //Se revisa el estado que devolvió la respuesta
+                    if (response.status) {
+                        //Se crea una tupla donde se guardará el html a inyectar
+                        let contenido = [];
+                        //Se crea un map del resultado
+                        response.dataset.map(function (row) {
+                            contenido += `
+                            <tr>
+                                    <td class="center">
+                                        <img src="../../../api/imagenes/productos/${row.imagen}" class="responsive-img" alt="">
+                                        <span>${row.nombre_producto}</span>
+                                    </td>
+                                    <td>$${row.precio}</td>
+                                    <td>${row.cantidad_pedido}</td>
+                                    <td>$${row.subtotal}</td>
+                                </tr>
+                            `;
+                        });
+                        //Se inyecta el html en el modal
+                        document.getElementById("contenido_modal").innerHTML = contenido;
+                    } else { 
+                        //Se le muestra el problema
+                        sweetAlert(2, response.exception, null);
+                    }
+                })
+            } else { 
+                //Se imprime la consola
+                console.log(request.status + ' ' + request.statusText);
+            }
+        })
 
 }
