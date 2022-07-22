@@ -151,6 +151,15 @@ nav div ul li a i {
     border-top-left-radius: 30px;
   }
 
+  .contorno-modal {
+    border: #8dc5ff 3px solid;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    padding: 20px;
+  }
+
   .file-path{
     width: 0px !important;
   }
@@ -158,3 +167,33 @@ nav div ul li a i {
   .sin-margen{
     margin: 0px !important;
   }
+
+
+ /*-------------Botón flotante para valorar repartidor----------------------- */
+
+.fixed-action-btn{
+    bottom: 25%;
+}
+
+/*------------------Valoraciones-------------------*/
+
+/*Valoraciones en estrellas*/
+.estrellas_contenedor {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-origin: 1px solid black;
+    height: auto;
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    justify-content: center;
+}
+
+label:hover,
+label:hover~label>.estrella {
+    color: orange;
+}
+
+input[type="radio"]:checked~label>.estrella {
+    color: orange;
+}

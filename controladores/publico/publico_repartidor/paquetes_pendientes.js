@@ -27,6 +27,7 @@ function fillTable(dataset) {
                     <span>${row.correo_cliente}</span>
                 </div>
             </td>
+            
             <td data-target="Dirección y punto de referencia: ">
             <div class="input-field col l12 m6 s6 valign-wrapper ">
             <i class="material-icons blue-text text-accent-2 tooltipped" data-position="right" data-tooltip="Dirección">location_on</i>
@@ -184,15 +185,17 @@ function cargar_productos(id) {
                         let contenido = [];
                         //Se crea un map del resultado
                         response.dataset.map(function (row) {
+                            sweetAlert(2, response.exception, null);
                             contenido += `
+
                             <tr>
-                                    <td class="center">
+                                    <td class="center" ata-target="Producto: ">
                                         <img src="../../../api/imagenes/productos/${row.imagen}" class="responsive-img" alt="">
                                         <span>${row.nombre_producto}</span>
                                     </td>
-                                    <td>$${row.precio}</td>
-                                    <td>${row.cantidad_pedido}</td>
-                                    <td>$${row.subtotal}</td>
+                                    <td data-target="Precio: ">$${row.precio}</td>
+                                    <td data-target="Cantidad: ">${row.cantidad_pedido}</td>
+                                    <td ata-target="Subtotal: ">$${row.subtotal}</td>
                                 </tr>
                             `;
                         });
