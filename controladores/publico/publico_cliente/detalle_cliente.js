@@ -42,13 +42,9 @@ function fillTable(dataset) {
         content += `
             <tr class="row valign-wrapper">
                 <td class="col l2 sin-margen">
-                    <img class="responsive-img" src="../../../api/imagenes/productos/${
-                        row.imagen
-                    }" alt="">
+                    <img class="responsive-img" src="../../../api/imagenes/productos/${row.imagen}" alt="">
                 </td>
-                <td data-target="Nombre producto: " class="col l3 sin-margen">${
-                    row.nombre_producto
-                }</td>
+                <td data-target="Nombre producto: " class="col l3 sin-margen">${row.nombre_producto}</td>
                 <td data-target="Precio: " class="col l1 sin-margen">$${row.precio}</td>
                 <td data-target="Cantidad: " class="col l1 sin-margen">${row.cantidad_pedido}</td>
                 <td data-target="Subtotal: " class="col l1 sin-margen">$${row.subtotal}</td>
@@ -69,7 +65,10 @@ function fillTable(dataset) {
 
 //método para valorar al vendedor
 document.getElementById("valorar_vendedor").addEventListener("click", function () {
-    //Se importa async
+
+});
+
+/**
     (async () => { 
         const { value: datos } = await Swal.fire({
             showCancelButton: true,
@@ -132,12 +131,4 @@ document.getElementById("valorar_vendedor").addEventListener("click", function (
             Swal.fire(JSON.stringify(datos));
         }
     })()
-    
-});
-
-/**
- * 
- *            ' ' +
-            ''+
-           ' '+,
  */
