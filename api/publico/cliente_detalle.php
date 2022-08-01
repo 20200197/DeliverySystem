@@ -17,15 +17,18 @@ if (isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'cargarDetalle':
                 $_POST = $detalle->validateForm($_POST);
-                if (!$detalle->setIdentificador($_POST['identificador'])) { 
+                if (!$detalle->setIdentificador($_POST['identificador'])) {
                     $result['exception'] = 'No se logró identificar el pedido a mostrar';
-                }elseif($result['dataset'] = $detalle->cargarProductos()) {
+                } elseif ($result['dataset'] = $detalle->cargarProductos()) {
                     $result['status'] = 1;
-                }elseif(Database::getException()) {
+                } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
-                }else{
+                } else {
                     $result['exception'] = 'No hay datos disponibles para este pedido';
                 }
+                break;
+            case 'valoracionRepartidor':
+                $_POST = $detalle->validateForm($_POST);
                 break;
 
             default:

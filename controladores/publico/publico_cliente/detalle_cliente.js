@@ -64,8 +64,11 @@ function fillTable(dataset) {
 }
 
 //método para valorar al vendedor
-document.getElementById("valorar_vendedor").addEventListener("click", function () {
-
+document.getElementById("valorar_repartidor").addEventListener("submit", function (event) {
+    //Se detiene la recarga de la página
+    event.preventDefault();
+    //Se envian los datos al componente para guardar la valoración
+    saveRow(API_DETALLE, "guardar", "guardarProducto", "modal_agregar_producto");
 });
 
 /**
