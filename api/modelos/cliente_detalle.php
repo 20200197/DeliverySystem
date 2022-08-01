@@ -38,4 +38,14 @@ class clienteDetalle extends Validator
         $params = array($this->identificador);
         return Database::getRows($sql, $params);
     }
+
+    //Función para obtener los datos del repartidor
+    public function datosRepartidor()
+    {
+        $sql = "SELECT CONCAT(r.nombre_repartidor, ' ', r.apellido_repartidor) AS nombre, r.foto_repartidor FROM repartidor r
+        INNER JOIN factura f ON f.id_repartidor = r.id_repartidor 
+        WHERE f.id_factura = ?";
+        $params = array($this->identificador);
+        return Database::getRow($sql, $params);
+    }
 }

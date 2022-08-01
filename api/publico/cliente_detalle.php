@@ -27,8 +27,17 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos disponibles para este pedido';
                 }
                 break;
-            case 'valoracionRepartidor':
+            case 'cargarRepartidor':
                 $_POST = $detalle->validateForm($_POST);
+                if (!$detalle->setIdentificador($_POST['identificador'])) {
+                    $result['exception'] = 'No se logró identificar el pedido a mostrar';
+                } elseif ($result['dataset'] = $detalle->datosRepartidor()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay datos disponibles para este pedido';
+                }
                 break;
 
             default:

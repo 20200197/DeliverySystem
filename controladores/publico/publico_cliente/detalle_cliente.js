@@ -6,10 +6,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Se busca en la URL las variables (parámetros) disponibles.
     let params = new URLSearchParams(location.search);
     // Se obtienen los datos localizados por medio de las variables.
-    const ID = params.get("id");
+    const ID = 1  //params.get("id");
     //Se crea y llena una variable de tipo formulario
     let datos = new FormData();
-    datos.append("identificador", 1); //datos.append("identificador", ID);
+    datos.append("identificador", ID); //datos.append("identificador", ID);
     //Se cargan los datos en la vista
     fetch(API_DETALLE + "cargarDetalle", {
         method: "post",
@@ -23,6 +23,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (response.status) {
                     //Se extrae el dataset y se envia a llenar
                     fillTable(response.dataset);
+                    //Se carga la opción para valorar al repartidor
+                    document.getElementById("contenedorValoracionRepartidor").innerHTML = `
+                    <a class="btn-floating btn-large red modal-trigger" href="#repartidor" id="valorar_repartidor"
+                    onclick="cargarRepartidor(${ID})">
+                        <i class="large material-icons">mode_edit</i>
+                    </a>
+                    `;
                 } else {
                     //Se le notifica al usuario del problema
                     sweetAlert(2, response.exception, null);
@@ -61,6 +68,38 @@ function fillTable(dataset) {
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById("contenido").innerHTML = content;
+}
+
+//Función para cargar los datos del repartidor
+function cargarRepartidor(id) { 
+    //Se crea una variable de tipo de form
+    let datos = new FormData();
+    datos.append("identificador", id);
+    //Se realiza la petición
+    fetch(API_DETALLE + "cargarRepartidor", {
+        method: 'post',
+        body: datos,
+    }).then(function (request) { 
+        //Se verifica si la ejecución fue existosa
+        if (request.ok) {
+            //Se pasa a JSON
+            request.json().then(function (response) { 
+                //Se verifica el estado obtenido por la api
+                if (response.status) {
+                    //Se colocan los datos en el modal
+                    document.getElementById("nombreRepartidor").innerHTML = response.dataset.nombre;
+                    document.getElementById("fotoRepartidor").src =
+                        "../../../api/imagenes/repartidor/foto_repartidor/" + response.dataset.foto_repartidor;
+                } else {
+                    //Se le muestra el error
+                    sweetAlert(2, response.exception, null);
+                }
+            })
+        } else { 
+            //Se imprime el error en la consola
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
 }
 
 //método para valorar al vendedor
