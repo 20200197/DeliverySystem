@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     fillTable(response.dataset);
                     //Se carga la opción para valorar al repartidor
                     document.getElementById("contenedorValoracionRepartidor").innerHTML = `
-                    <a class="btn-floating btn-large red modal-trigger" href="#repartidor" id="valorar_repartidor"
+                    <a class="btn-floating btn-large red" id="valorar_repartidor"
                     onclick="cargarRepartidor(${ID})">
                         <i class="large material-icons">mode_edit</i>
                     </a>
@@ -55,9 +55,8 @@ function fillTable(dataset) {
                 <td data-target="Precio: " class="col l1 sin-margen">$${row.precio}</td>
                 <td data-target="Cantidad: " class="col l1 sin-margen">${row.cantidad_pedido}</td>
                 <td data-target="Subtotal: " class="col l1 sin-margen">$${row.subtotal}</td>
-                <td data-target="Estado: " class="col l1 sin-margen">${
-                    row.status_producto ? "Disponible" : "No disponible"
-                }</td>
+                <td data-target="Estado: " class="col l1 sin-margen">${row.status_producto ? "Disponible" : "No disponible"
+            }</td>
                 <td data-target="Fecha: " class="col l1 sin-margen">${row.fecha_compra}</td>
                 <td data-target="Valoración: " class="col l2 sin-margen">
                     <a class="waves-effect waves-light btn white-text"><i class="material-icons left">stars</i>Valorar</a>
@@ -71,7 +70,7 @@ function fillTable(dataset) {
 }
 
 //Función para cargar los datos del repartidor
-function cargarRepartidor(id) { 
+function cargarRepartidor(id) {
     //Se crea una variable de tipo de form
     let datos = new FormData();
     datos.append("identificador", id);
@@ -79,23 +78,31 @@ function cargarRepartidor(id) {
     fetch(API_DETALLE + "cargarRepartidor", {
         method: 'post',
         body: datos,
-    }).then(function (request) { 
+    }).then(function (request) {
         //Se verifica si la ejecución fue existosa
         if (request.ok) {
             //Se pasa a JSON
-            request.json().then(function (response) { 
+            request.json().then(function (response) {
                 //Se verifica el estado obtenido por la api
-                if (response.status) {
+                if (response.status == 3) {
+                    //Se le muestra la advertencia
+                    sweetAlert(3, response.exception, null);
+                } else if (response.status) {
                     //Se colocan los datos en el modal
                     document.getElementById("nombreRepartidor").innerHTML = response.dataset.nombre;
                     document.getElementById("fotoRepartidor").src =
                         "../../../api/imagenes/repartidor/foto_repartidor/" + response.dataset.foto_repartidor;
+                    document.getElementById('identificador').value = response.dataset.id_repartidor;
+                    //Se abre el formulario con los datos ya cargados
+                    M.Modal.getInstance(document.getElementById('repartidor')).open();
                 } else {
                     //Se le muestra el error
                     sweetAlert(2, response.exception, null);
+                    //Se cierra el modal
+                    M.Modal.getInstance(document.getElementById('repartidor')).close();
                 }
             })
-        } else { 
+        } else {
             //Se imprime el error en la consola
             console.log(request.status + ' ' + request.statusText);
         }
@@ -106,8 +113,19 @@ function cargarRepartidor(id) {
 document.getElementById("valorar_repartidor").addEventListener("submit", function (event) {
     //Se detiene la recarga de la página
     event.preventDefault();
-    //Se envian los datos al componente para guardar la valoración
-    saveRow(API_DETALLE, "guardar", "guardarProducto", "modal_agregar_producto");
+    //Se revisa que los datos requeridos estén llenos
+    if (
+        document.querySelector(`input[name=estrellas]:checked`)
+            .value != 0 &&
+        document.getElementById(`valoracion`).value.trim().length != 0
+    ) {
+        //Se envian los datos al componente para guardar la valoración
+        saveRow(API_DETALLE, "valorarRepartidor", "valorar_repartidor", "repartidor");
+    } else {
+        //Se le notifica al usuario que debe llenar los campos
+        sweetAlert(3, 'Debes llenar todos los campos', null);
+    }
+
 });
 
 /**

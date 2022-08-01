@@ -28,18 +28,38 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'cargarRepartidor':
-                $_POST = $detalle->validateForm($_POST);
                 if (!$detalle->setIdentificador($_POST['identificador'])) {
                     $result['exception'] = 'No se logró identificar el pedido a mostrar';
                 } elseif ($result['dataset'] = $detalle->datosRepartidor()) {
-                    $result['status'] = 1;
+                    if($detalle->validarNoRepeticiones()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['status'] = 3;
+                        $result['exception'] = 'Ya has valorado al repartidor en esta entrega';
+                        $result['dataset'] = null;
+                    }
+                    
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
                     $result['exception'] = 'No hay datos disponibles para este pedido';
                 }
                 break;
-
+            case 'valorarRepartidor':
+                $_POST = $detalle->validateForm($_POST);
+                if(!$detalle->setIdentificadorRepartidor($_POST['identificador'])) {
+                    $result['exception'] = 'No se ha encontrado el repartidor a valorar';
+                } elseif(!$detalle->setValoracion($_POST['estrellas'])) {
+                    $result['exception'] = 'La valoración colocada no es valida';
+                } elseif(!$detalle->setComentario($_POST['valoracion'])) {
+                    $result['exception'] = 'El comentario colocado no es valido';
+                } elseif ($detalle->guardarRepartidor()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'El repartidor ha sido valorado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

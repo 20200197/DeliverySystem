@@ -117,7 +117,7 @@
             </div>
         </div>
         <div class="fixed-action-btn" id="contenedorValoracionRepartidor">
-            <a class="btn-floating btn-large red modal-trigger" href="#repartidor" id="valorar_vendedor">
+            <a class="btn-floating btn-large red " id="valorar_vendedor">
                 <i class="large material-icons">mode_edit</i>
             </a>
         </div>
@@ -131,6 +131,7 @@
     <div id="repartidor" class="modal">
         <div class="modal-content">
             <form id="valorar_repartidor" method="post">
+                <input type="text" id="identificador" class="hide" name="identificador">
                 <div class="row contorno carta-valoracion">
                     <h6 class="col l12 m12 s12 center-align">Valoración del repartidor</h6>
                     <div class="col l4 center centrador">
@@ -160,7 +161,8 @@
                             </div>
                         </div>
                         <div class="input-field col l12">
-                            <textarea id="valoracion" class="materialize-textarea" required></textarea>
+                            <textarea id="valoracion" class="materialize-textarea" name="valoracion"
+                                required></textarea>
                             <label for="valoracion">Tu valoración</label>
                         </div>
                     </div>
@@ -169,7 +171,7 @@
                     <button class="btn red darken-4" type="submit">Enviar</button>
                     <button class="btn blue lighten-1 modal-close">Cancelar</button>
                 </div>
-                
+
             </form>
         </div>
 
@@ -227,7 +229,7 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="../../../recursos/css/sweetalert2.all.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../../controladores/componentes.js"></script>
     <script src="../../../controladores/publico/publico_cliente/detalle_cliente.js"></script>
     <script src="../../../controladores/activador.js"></script>
