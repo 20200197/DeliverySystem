@@ -87,16 +87,16 @@ class clienteDetalle extends Validator
     {
         $sql = "INSERT INTO public.comentario_repartidor(
             valoracion, comentario, id_factura)
-            VALUES (?, ?, ?, ?);";
-        $params = array($this->valoracion, $this->comentario, $this->identificador);
+            VALUES ( ?, ?, ?)";
+        $params = array($this->valoracion, $this->comentario, $this->identificadorRepartidor);
         return Database::executeRow($sql, $params);
     }
 
     //Función para validar que no se repita más de una valoración por factura
     public function validarNoRepeticiones()
     {
-        $sql = 'SELECT id_factura FROM public.comentario_repartidor';
-        $params = null;
+        $sql = 'SELECT id_factura FROM public.comentario_repartidor WHERE id_factura = ?';
+        $params = array($this->identificador);
         $data = Database::getRow($sql, $params);
         //Se revisa si se encontró el mismo id ya registrador en una valoración
         if ($data['id_factura'] == $this->identificador) {

@@ -110,22 +110,41 @@ function cargarRepartidor(id) {
 }
 
 //método para valorar al vendedor
-document.getElementById("valorar_repartidor").addEventListener("submit", function (event) {
+document.getElementById("formularioRepartidor").addEventListener("submit", function (event) {
     //Se detiene la recarga de la página
     event.preventDefault();
     //Se revisa que los datos requeridos estén llenos
     if (
-        document.querySelector(`input[name=estrellas]:checked`)
-            .value != 0 &&
+        document.querySelector(`input[name=estrellas]:checked`).value != 0 &&
         document.getElementById(`valoracion`).value.trim().length != 0
     ) {
-        //Se envian los datos al componente para guardar la valoración
-        saveRow(API_DETALLE, "valorarRepartidor", "valorar_repartidor", "repartidor");
+        //Se realiza la petición
+            fetch(API_DETALLE + "valorarRepartidor", {
+                method: "post",
+                body: new FormData(document.getElementById("formularioRepartidor")),
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+                if (request.ok) {
+                    // Se obtiene la respuesta en formato JSON.
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status) {
+                            // Se cierra la caja de dialogo (modal) del formulario.
+                            M.Modal.getInstance(document.getElementById("repartidor")).close();
+                            // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
+                            sweetAlert(1, response.message, null);
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                        }
+                    });
+                } else {
+                    console.log(request.status + " " + request.statusText);
+                }
+            });
     } else {
         //Se le notifica al usuario que debe llenar los campos
-        sweetAlert(3, 'Debes llenar todos los campos', null);
+        sweetAlert(3, "Debes llenar todos los campos", null);
     }
-
 });
 
 /**
