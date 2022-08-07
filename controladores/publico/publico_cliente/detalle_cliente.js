@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Se busca en la URL las variables (parámetros) disponibles.
     let params = new URLSearchParams(location.search);
     // Se obtienen los datos localizados por medio de las variables.
-    const ID = 1  //params.get("id");
+    const ID = 1; //params.get("id");
     //Se crea y llena una variable de tipo formulario
     let datos = new FormData();
     datos.append("identificador", ID); //datos.append("identificador", ID);
@@ -55,12 +55,17 @@ function fillTable(dataset) {
                 <td data-target="Precio: " class="col l1 sin-margen">$${row.precio}</td>
                 <td data-target="Cantidad: " class="col l1 sin-margen">${row.cantidad_pedido}</td>
                 <td data-target="Subtotal: " class="col l1 sin-margen">$${row.subtotal}</td>
-                <td data-target="Estado: " class="col l1 sin-margen">${row.status_producto ? "Disponible" : "No disponible"
-            }</td>
+                <td data-target="Estado: " class="col l1 sin-margen">${
+                    row.status_producto ? "Disponible" : "No disponible"
+                }</td>
                 <td data-target="Fecha: " class="col l1 sin-margen">${row.fecha_compra}</td>
                 <td data-target="Valoración: " class="col l2 sin-margen">
-                    <a class="waves-effect waves-light btn white-text"><i class="material-icons left">stars</i>Valorar</a>
-                    <a class="waves-effect waves-light btn white-text"><i class="material-icons left">stars</i>Pedir</a>
+                    <a class="waves-effect waves-light btn white-text" onclick="cargarProducto(${
+                        row.id_detalle
+                    })"><i class="material-icons left">stars</i>Valorar</a>
+                    <a class="waves-effect waves-light btn white-text" onclick="pedir(${
+                        row.id_detalle
+                    })"><i class="material-icons left">stars</i>Pedir</a>
                 </td>
             </tr>
         `;
@@ -76,7 +81,7 @@ function cargarRepartidor(id) {
     datos.append("identificador", id);
     //Se realiza la petición
     fetch(API_DETALLE + "cargarRepartidor", {
-        method: 'post',
+        method: "post",
         body: datos,
     }).then(function (request) {
         //Se verifica si la ejecución fue existosa
@@ -92,19 +97,33 @@ function cargarRepartidor(id) {
                     document.getElementById("nombreRepartidor").innerHTML = response.dataset.nombre;
                     document.getElementById("fotoRepartidor").src =
                         "../../../api/imagenes/repartidor/foto_repartidor/" + response.dataset.foto_repartidor;
-                    document.getElementById('identificador').value = response.dataset.id_repartidor;
+                    document.getElementById("identificadorRepartidor").value = response.dataset.id_repartidor;
+                    //Se agrega las opciones de valoración por estrellas
+                    document.getElementById("estrellas_repartidor").innerHTML = ` 
+                    <input id="star1" name="estrellas" type="radio" value="5" />
+                                    <label for="star1"><i class="material-icons estrella">star</i></label>
+                                    <input id="star2" name="estrellas" type="radio" value="4" />
+                                    <label for="star2"><i class="material-icons estrella">star</i></label>
+                                    <input id="star3" name="estrellas" type="radio" value="3" />
+                                    <label for="star3"><i class="material-icons estrella">star</i></label>
+                                    <input id="star4" name="estrellas" type="radio" value="2" />
+                                    <label for="star4"><i class="material-icons estrella">star</i></label>
+                                    <input id="star5" name="estrellas" type="radio" value="1" />
+                                    <label for="star5"><i class="material-icons estrella">star</i></label>
+                                    <input id="star0" name="estrellas" type="radio" value="0" class="hide"
+                                        checked />`;
                     //Se abre el formulario con los datos ya cargados
-                    M.Modal.getInstance(document.getElementById('repartidor')).open();
+                    M.Modal.getInstance(document.getElementById("repartidor")).open();
                 } else {
                     //Se le muestra el error
                     sweetAlert(2, response.exception, null);
                     //Se cierra el modal
-                    M.Modal.getInstance(document.getElementById('repartidor')).close();
+                    M.Modal.getInstance(document.getElementById("repartidor")).close();
                 }
-            })
+            });
         } else {
             //Se imprime el error en la consola
-            console.log(request.status + ' ' + request.statusText);
+            console.log(request.status + " " + request.statusText);
         }
     });
 }
@@ -116,63 +135,102 @@ document.getElementById("formularioRepartidor").addEventListener("submit", funct
     //Se revisa que los datos requeridos estén llenos
     if (
         document.querySelector(`input[name=estrellas]:checked`).value != 0 &&
-        document.getElementById(`valoracion`).value.trim().length != 0
+        document.getElementById(`valoracionRepartidor`).value.trim().length != 0
     ) {
         //Se realiza la petición
-            fetch(API_DETALLE + "valorarRepartidor", {
-                method: "post",
-                body: new FormData(document.getElementById("formularioRepartidor")),
-            }).then(function (request) {
-                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-                if (request.ok) {
-                    // Se obtiene la respuesta en formato JSON.
-                    request.json().then(function (response) {
-                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                        if (response.status) {
-                            // Se cierra la caja de dialogo (modal) del formulario.
-                            M.Modal.getInstance(document.getElementById("repartidor")).close();
-                            // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
-                            sweetAlert(1, response.message, null);
-                        } else {
-                            sweetAlert(2, response.exception, null);
-                        }
-                    });
-                } else {
-                    console.log(request.status + " " + request.statusText);
-                }
-            });
+        fetch(API_DETALLE + "valorarRepartidor", {
+            method: "post",
+            body: new FormData(document.getElementById("formularioRepartidor")),
+        }).then(function (request) {
+            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+            if (request.ok) {
+                // Se obtiene la respuesta en formato JSON.
+                request.json().then(function (response) {
+                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                    if (response.status) {
+                        // Se cierra la caja de dialogo (modal) del formulario.
+                        M.Modal.getInstance(document.getElementById("repartidor")).close();
+                        // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
+                        sweetAlert(1, response.message, null);
+                        //Se elimina la opción para valorar
+                        document.getElementById("valoracionProducto").innerHTML = "";
+                    } else {
+                        sweetAlert(2, response.exception, null);
+                    }
+                });
+            } else {
+                console.log(request.status + " " + request.statusText);
+            }
+        });
     } else {
         //Se le notifica al usuario que debe llenar los campos
         sweetAlert(3, "Debes llenar todos los campos", null);
     }
 });
 
-/**
-    (async () => { 
-        const { value: datos } = await Swal.fire({
-            showCancelButton: true,
-            confirmButtonColor: "#699AF6",
-            cancelButtonColor: "#9A1635",
-            closeOnClickOutside: false,
-            closeOnEsc: false,
-            width: "50%",
-            confirmButtonText: "Enviar valoración",
-            html: `
-         
-        <div class="row contorno-modal contorno">
-           <h5>Valoración de repartidor</h5>
-           <div class="valign-wrapper">
-                <div class="center col l4">
-                        <img src="../../../api/imagenes/repartidor/foto_repartidor/repartidor.png" class="responsive-img">
-                        <span>Nombre del repartidor</span>
-                    </div>
-                    <div class="col l8 ">
-                        <div class="col l12 left-align">
-                            <div class="valign-wrapper">
-                                <!--Valoración-->
-                                <h6>Calificación: </h6>
-                                <div class="estrellas_contenedor">
-                                    <input id="star1" name="estrellas" type="radio" value="5" />
+//método para valorar al producto
+document.getElementById("formularioProducto").addEventListener("submit", function (event) {
+    //Se detiene la recarga de la página
+    event.preventDefault();
+    //Se revisa que los datos requeridos estén llenos
+    if (
+        document.querySelector('input[name=estrellas]:checked').value != 0 &&
+        document.getElementById('valoracionProducto').value.trim().length != 0
+    ) {
+        //Se realiza la petición
+        fetch(API_DETALLE + "valorarProducto", {
+            method: "post",
+            body: new FormData(document.getElementById("formularioProducto")),
+        }).then(function (request) {
+            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+            if (request.ok) {
+                // Se obtiene la respuesta en formato JSON.
+                request.json().then(function (response) {
+                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                    if (response.status) {
+                        // Se cierra la caja de dialogo (modal) del formulario.
+                        M.Modal.getInstance(document.getElementById("producto")).close();
+                        // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
+                        sweetAlert(1, response.message, null);
+                    } else {
+                        sweetAlert(2, response.exception, null);
+                    }
+                });
+            } else {
+                console.log(request.status + " " + request.statusText);
+            }
+        });
+    } else {
+        //Se le notifica al usuario que debe llenar los campos
+        sweetAlert(3, "Debes llenar todos los campos", null);
+    }
+});
+
+//Función para cargar los datos del producto a valorar
+
+function cargarProducto(id) {
+    //Se crea una variable para guardar el id
+    let datos = new FormData();
+    datos.append("identificador", id);
+    //Se realiza la petición
+    fetch(API_DETALLE + "cargarDatosProducto", {
+        method: "post",
+        body: datos,
+    }).then(function (request) {
+        //Se revisa el estado de la ejecución
+        if (request.ok) {
+            //Se pasa a json
+            request.json().then(function (response) {
+                //Se revisa el estado devuelto por la api
+                if (response.status) {
+                    //Se empiezan a cargar los datos en el modal
+                    document.getElementById("nombreProducto").innerHTML = response.dataset.nombre_producto;
+                    document.getElementById("fotoProducto").src =
+                        "../../../api/imagenes/productos/" + response.dataset.imagen;
+                     document.getElementById("identificadorDetalle").value = id;
+                    //Se agrega las opciones de valoración por estrellas
+                    document.getElementById("estrellas_producto").innerHTML = ` 
+                    <input id="star1" name="estrellas" type="radio" value="5" />
                                     <label for="star1"><i class="material-icons estrella">star</i></label>
                                     <input id="star2" name="estrellas" type="radio" value="4" />
                                     <label for="star2"><i class="material-icons estrella">star</i></label>
@@ -182,32 +240,22 @@ document.getElementById("formularioRepartidor").addEventListener("submit", funct
                                     <label for="star4"><i class="material-icons estrella">star</i></label>
                                     <input id="star5" name="estrellas" type="radio" value="1" />
                                     <label for="star5"><i class="material-icons estrella">star</i></label>
-                                    <input id="star0" name="estrellas" type="radio" value="0" class="hide" checked  /> 
-                                </div>
-                                                                            
-                            </div>
-                        </div>
-                    <div class="input-field col l12">
-                            <textarea id="valoracion" class="materialize-textarea" required ></textarea>
-                            <label for="valoracion">Tu valoración</label>
-                        </div>
-            </div>
-           </div>
-            
-        </div>
-        
-        `,
-            inputValidator: (Swal.getHtmlContainer().getElementById('valoracion'), Swal.getHtmlContainer().querySelector(`input[name=estrellas]:checked`)),
-            preConfirm: (value) => {
-                return [
-                    document.getElementById("valoracion").value,
-                    document.querySelector(`input[name=estrellas]:checked`).value,
-                ];
-            },
-        });
-        //Se revisa lo obtenido
-        if (datos) { 
-            Swal.fire(JSON.stringify(datos));
+                                    <input id="star0" name="estrellas" type="radio" value="0" class="hide"
+                                        checked />`;
+                    //Se abre el formulario con los datos ya cargados
+                    M.Modal.getInstance(document.getElementById("producto")).open();
+                } else {
+                    //Se muestra el error
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            //Se imprime el error en la consola
+            console.log(request.status + " " + request.statusText);
         }
-    })()
- */
+    });
+}
+
+//Función para cargar los datos del producto a pedir nuevamente
+
+function pedir(id) {}

@@ -984,6 +984,17 @@ main .center-align {
   justify-content: center;
 }
 
+.estrellas_contenedor_producto {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-origin: 1px solid black;
+  height: auto;
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  justify-content: center;
+}
+
 label:hover ~ label > .estrella {
   color: rgb(255, 238, 0);
 }

@@ -49,37 +49,37 @@ footer {
     }
     table {
         width: 100%;
-      }
-    
-      table tr {
+    }
+
+    table tr {
         display: flex;
         flex-direction: column;
         border: 1px solid black;
         border-radius: 11px;
         padding: 1em;
         margin-bottom: 1em;
-      }
-    
-      table thead {
+    }
+
+    table thead {
         display: none;
-      }
-    
-      /*Colocamos columnas*/
-      table td[data-target] {
+    }
+
+    /*Colocamos columnas*/
+    table td[data-target] {
         display: flex;
-      }
-    
-      table td[data-target]::before {
+    }
+
+    table td[data-target]::before {
         content: attr(data-target);
         width: 150px;
-      }
-    
-      /*Tamaño*/
-      td,
-      th {
+    }
+
+    /*Tamaño*/
+    td,
+    th {
         width: 100%;
         word-wrap: break-word;
-      }
+    }
 }
 
 .sidenav {
@@ -140,18 +140,16 @@ nav div ul li a i {
     height: 10%;
 }
 
-
 /*-------------Diseños de modal---------------*/
 
-.centrador{
+.centrador {
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 100%;
-    
 }
 
-.carta-valoracion{
+.carta-valoracion {
     width: 100%;
     height: 370px;
 }
@@ -162,29 +160,28 @@ nav div ul li a i {
     border-bottom-left-radius: 30px;
     border-top-right-radius: 30px;
     border-top-left-radius: 30px;
-  }
+}
 
-  .contorno-modal {
+.contorno-modal {
     border: #8dc5ff 3px solid;
     border-bottom-right-radius: 30px;
     border-bottom-left-radius: 30px;
     border-top-right-radius: 30px;
     border-top-left-radius: 30px;
     padding: 20px;
-  }
+}
 
-  .file-path{
+.file-path {
     width: 0px !important;
-  }
+}
 
-  .sin-margen{
+.sin-margen {
     margin: 0px !important;
-  }
+}
 
+/*-------------Botón flotante para valorar repartidor----------------------- */
 
- /*-------------Botón flotante para valorar repartidor----------------------- */
-
-.fixed-action-btn{
+.fixed-action-btn {
     bottom: 25%;
 }
 
@@ -203,10 +200,32 @@ nav div ul li a i {
 }
 
 label:hover,
-label:hover~label>.estrella {
+label:hover ~ label > .estrella {
     color: orange;
 }
 
-input[type="radio"]:checked~label>.estrella {
+input[type="radio"]:checked ~ label > .estrella {
     color: orange;
 }
+
+
+.estrellas_contenedor_producto {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-origin: 1px solid black;
+    height: auto;
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    justify-content: center;
+}
+
+label:hover,
+label:hover ~ label > .estrellaProducto {
+    color: orange;
+}
+
+input[type="radio"]:checked ~ label > .estrellaProducto {
+    color: orange;
+}
+

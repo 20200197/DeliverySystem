@@ -8,6 +8,7 @@ class clienteDetalle extends Validator
     // Declaración de atributos (propiedades).
     private $identificador = null;
     private $identificadorRepartidor = null;
+    private $identificadorDetalle = null;
     private $comentario = null;
     private $valoracion = null;
 
@@ -21,6 +22,16 @@ class clienteDetalle extends Validator
     {
         if ($this->validateNaturalNumber($value)) {
             $this->identificador = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setIdentificadorDetalle($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->identificadorDetalle = $value;
             return true;
         } else {
             return false;
@@ -63,7 +74,7 @@ class clienteDetalle extends Validator
 
     public function cargarProductos()
     {
-        $sql = 'SELECT df.precio, df.cantidad_pedido, (df.precio * df.cantidad_pedido) AS subtotal, f.fecha_compra::TIMESTAMP::DATE, p.nombre_producto, p.imagen,
+        $sql = 'SELECT df.id_detalle, df.precio, df.cantidad_pedido, (df.precio * df.cantidad_pedido) AS subtotal, f.fecha_compra::TIMESTAMP::DATE, p.nombre_producto, p.imagen,
         p.status_producto FROM detalle_factura df
         INNER JOIN factura f ON f.id_factura = df.id_factura
         INNER JOIN producto p ON p.id_producto = df.id_producto
@@ -99,10 +110,30 @@ class clienteDetalle extends Validator
         $params = array($this->identificador);
         $data = Database::getRow($sql, $params);
         //Se revisa si se encontró el mismo id ya registrador en una valoración
-        if ($data['id_factura'] == $this->identificador) {
+        if (isset($data['id_factura'])) {
             return false;
         } else {
             return true;
         }
     }
+
+    //Función para obtener los datos de los productos en los modales
+    public function cargarDatosProductos()
+    {
+        $sql = 'SELECT df.id_producto, p.nombre_producto, p.imagen FROM producto p
+        INNER JOIN detalle_factura df ON df.id_producto = p.id_producto
+        WHERE df.id_detalle = ?';
+        $params = array($this->identificador);
+        return Database::getRow($sql, $params);
+    }
+
+    //Función para guardar la valoración del producto
+    public function guardarProducto()
+    {
+        $sql = "INSERT INTO comentario_producto (valoracion, comentario, visible, id_detalle)
+        VALUES (?,?,?,?)";
+        $params = array($this->valoracion, $this->comentario, true,$this->identificadorDetalle);
+        return Database::executeRow($sql, $params);
+    }
+
 }

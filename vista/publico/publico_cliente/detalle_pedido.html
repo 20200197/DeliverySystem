@@ -131,7 +131,7 @@
     <div id="repartidor" class="modal">
         <div class="modal-content">
             <form method="post" id="formularioRepartidor" enctype="multipart/form-data" autocomplete="off">
-                <input type="text" id="identificador" class="hide" name="identificador">
+                <input type="text" id="identificadorRepartidor" class="hide" name="identificador">
                 <div class="row contorno carta-valoracion">
                     <h6 class="col l12 m12 s12 center-align">Valoración del repartidor</h6>
                     <div class="col l4 center centrador">
@@ -144,26 +144,15 @@
                             <div class="valign-wrapper">
                                 <!--Valoración-->
                                 <h6>Calificación: </h6>
-                                <div class="estrellas_contenedor">
-                                    <input id="star1" name="estrellas" type="radio" value="5" />
-                                    <label for="star1"><i class="material-icons estrella">star</i></label>
-                                    <input id="star2" name="estrellas" type="radio" value="4" />
-                                    <label for="star2"><i class="material-icons estrella">star</i></label>
-                                    <input id="star3" name="estrellas" type="radio" value="3" />
-                                    <label for="star3"><i class="material-icons estrella">star</i></label>
-                                    <input id="star4" name="estrellas" type="radio" value="2" />
-                                    <label for="star4"><i class="material-icons estrella">star</i></label>
-                                    <input id="star5" name="estrellas" type="radio" value="1" />
-                                    <label for="star5"><i class="material-icons estrella">star</i></label>
-                                    <input id="star0" name="estrellas" type="radio" value="0" class="hide" checked />
+                                <div id="estrellas_repartidor" class="estrellas_contenedor">
                                 </div>
 
                             </div>
                         </div>
                         <div class="input-field col l12">
-                            <textarea id="valoracion" class="materialize-textarea" name="valoracion"
+                            <textarea id="valoracionRepartidor" class="materialize-textarea" name="valoracionRepartidor"
                                 required></textarea>
-                            <label for="valoracion">Tu valoración</label>
+                            <label for="valoracionRepartidor">Tu valoración</label>
                         </div>
                     </div>
                 </div>
@@ -175,6 +164,47 @@
             </form>
         </div>
 
+    </div>
+
+    <!--Modal de valoración de productos-->
+    
+    <div id="producto" class="modal">
+        <div class="modal-content">
+            <form method="post" id="formularioProducto" enctype="multipart/form-data" autocomplete="off">
+                <input type="text" id="identificadorDetalle" class="hide" name="identificadorDetalle">
+                <div class="row contorno carta-valoracion">
+                    <h6 class="col l12 m12 s12 center-align">Valoración del producto</h6>
+                    <div class="col l4 center centrador">
+                        <img id="fotoProducto" src="../../../api/imagenes/repartidor/foto_repartidor/repartidor.png"
+                            class="responsive-img">
+                        <span id="nombreProducto">Nombre del repartidor</span>
+                    </div>
+                    <div class="col l8 centrador">
+                        <div class="col l12 left-align">
+                            <div class="valign-wrapper">
+                                <!--Valoración-->
+                                <h6>Calificación: </h6>
+                                <div id="estrellas_producto" class="estrellas_contenedor">
+                                   
+                                </div>
+    
+                            </div>
+                        </div>
+                        <div class="input-field col l12">
+                            <textarea id="valoracionProducto" class="materialize-textarea" name="valoracionProducto"
+                                required></textarea>
+                            <label for="valoracionProducto">Tu valoración</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn red darken-4" type="submit">Enviar</button>
+                    <button class="btn blue lighten-1 modal-close">Cancelar</button>
+                </div>
+    
+            </form>
+        </div>
+    
     </div>
 
     <footer class="page-footer blue accent-3">

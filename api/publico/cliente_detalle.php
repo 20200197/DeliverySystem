@@ -51,9 +51,36 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No se ha encontrado el repartidor a valorar';
                 } elseif(!$detalle->setValoracion($_POST['estrellas'])) {
                     $result['exception'] = 'La valoración colocada no es valida';
-                } elseif(!$detalle->setComentario($_POST['valoracion'])) {
+                } elseif(!$detalle->setComentario($_POST['valoracionRepartidor'])) {
                     $result['exception'] = 'El comentario colocado no es valido';
                 } elseif ($detalle->guardarRepartidor()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'El repartidor ha sido valorado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            case 'cargarDatosProducto':
+                $_POST = $detalle->validateForm($_POST);
+                if(!$detalle->setIdentificador($_POST['identificador'])) {
+                    $result['exception'] = 'No se logró identificar el producto';
+                } elseif($result['dataset'] = $detalle->cargarDatosProductos()) {
+                    $result['status'] = 1;
+                } elseif(Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'El producto no existe';
+                }
+                break;
+            case 'valorarProducto':
+                $_POST = $detalle->validateForm($_POST);
+                if (!$detalle->setIdentificadorDetalle($_POST['identificadorDetalle'])) {
+                    $result['exception'] = 'No se ha encontrado el repartidor a valorar';
+                } elseif (!$detalle->setValoracion($_POST['estrellas'])) {
+                    $result['exception'] = 'La valoración colocada no es valida';
+                } elseif (!$detalle->setComentario($_POST['valoracionProducto'])) {
+                    $result['exception'] = 'El comentario colocado no es valido';
+                } elseif ($detalle->guardarProducto()) {
                     $result['status'] = 1;
                     $result['message'] = 'El repartidor ha sido valorado correctamente';
                 } else {
