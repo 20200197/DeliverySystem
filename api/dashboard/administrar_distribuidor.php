@@ -17,6 +17,9 @@ if (isset($_GET['action'])) {
 =======
     if (isset($_SESSION['id_admin'])) {
         $result['session'] = 1;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
