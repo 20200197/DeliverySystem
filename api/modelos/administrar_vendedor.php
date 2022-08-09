@@ -112,7 +112,7 @@ class AdministrarVendedor extends Validator
 
     public function setSolvencia($file)
     {
-        if ($this->validateImageFile($file, 5000, 5000)) {
+        if ($this->validateImageFile($file, 8000, 8000)) {
             $this->solvencia = $this->getFileName();
             return true;
         } else {
@@ -162,7 +162,7 @@ class AdministrarVendedor extends Validator
 
     public function setFoto($file)
     {
-        if ($this->validateImageFile($file, 500, 500)) {
+        if ($this->validateImageFile($file, 8000, 8000)) {
             $this->foto = $this->getFileName();
             return true;
         } else {
@@ -224,6 +224,23 @@ class AdministrarVendedor extends Validator
     {
         return $this->foto;
     }
+
+    public function getCorreo()
+    {
+        return $this->correo;
+    }
+
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
+
+    public function getDui()
+    {
+        return $this->dui;
+    }
+
+
 
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
@@ -323,10 +340,58 @@ class AdministrarVendedor extends Validator
         }
     }
 
-    public function checkStatus(){
+    public function checkStatus()
+    {
         $sql = 'SELECT status_vendedor FROM vendedor WHERE id_vendedor = ? AND status_vendedor = true';
         $params = array($this->identificador);
 
+        return Database::getRow($sql, $params);
+    }
+
+    //Función para leer perfil
+    public function readProfile()
+    {
+
+        $sql = "SELECT id_vendedor,nombre_vendedor, apellido_vendedor,dui_vendedor,correo_vendedor,telefono_vendedor,usuario_vendedor,clave_vendedor,solvencia_pnc,antecedente_penal,direccion_domicilio_vendedor,descripcion_vendedor,status_vendedor,foto_vendedor,fecha_registro_vendedor,(CAST(split_part(coordenadas_vendedor,',',1) AS VARCHAR))as latitud_vendedor,(CAST(split_part(coordenadas_vendedor,', ',2) AS VARCHAR))as longitud_vendedor
+         from vendedor
+         where id_vendedor = ?";
+        $params = array($_SESSION['id_vendedor']);
+        return Database::getRow($sql, $params);
+    }
+
+    public function updatePerfil($antecedente, $solvencia, $foto)
+    {
+        // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
+        ($this->antecedentes) ? $this->deleteFile($this->getRutaAntecedente(), $antecedente) : $this->antecedentes = $antecedente;
+        ($this->solvencia) ? $this->deleteFile($this->getRutaSolvencia(), $solvencia) : $this->solvencia = $solvencia;
+        ($this->foto) ? $this->deleteFile($this->getRutaFoto(), $foto) : $this->foto = $foto;
+
+        $sql = 'UPDATE vendedor 
+        SET nombre_vendedor=?, apellido_vendedor=? ,dui_vendedor=?,correo_vendedor=?,telefono_vendedor=?,usuario_vendedor=?,solvencia_pnc=?,antecedente_penal=?,direccion_domicilio_vendedor=?,foto_vendedor=?,coordenadas_vendedor=?
+        WHERE id_vendedor=?';
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->telefono, $this->usuario, $this->solvencia, $this->antecedentes, $this->direccion, $this->foto, $this->coordenadas, $_SESSION['id_vendedor']);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Función que valida para que no se repitan datos
+    //$column es la columna sql que se validara, dui, telefono, etc
+    //$data el dato obtenido por get en Api
+    //Función que valida que no se repita el campo en update, donde se evaluan los otros duis menos el seleccionado por si le da aceptar y no cambia nada
+    public function readD($column, $data)
+    {
+        $sql = "SELECT * from vendedor where $column=?  except select * from vendedor where id_vendedor = ?";
+        $params = array($data, $_SESSION['id_vendedor']);
+
+        return Database::getRow($sql, $params);
+    }
+
+    //Función para leer un registro
+    public function readOne()
+    {
+        $sql = 'SELECT nombre_vendedor, apellido_vendedor,dui_vendedor,correo_vendedor,telefono_vendedor,usuario_vendedor,clave_vendedor,solvencia_pnc,antecedente_penal,direccion_domicilio_vendedor,descripcion_vendedor,status_vendedor,foto_vendedor,fecha_registro_vendedor,coordenadas_vendedor
+                FROM vendedor
+                WHERE id_vendedor = ?';
+        $params = array($_SESSION['id_vendedor']);
         return Database::getRow($sql, $params);
     }
 }

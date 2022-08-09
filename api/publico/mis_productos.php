@@ -12,11 +12,11 @@ if (isset($_GET['action'])) {
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (true) { //isset($_SESSION['id_usuario'])
+    if (isset($_SESSION['id_vendedor'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
-                if (!$productos->setIdentificador(1)) { //Se debería de colocar el id de la sesión
+                if (!$productos->setIdentificador($_SESSION['id_vendedor'])) { //Se debería de colocar el id de la sesión
                     $result['exception'] = 'No se logró identificar tu usuario';
                 } elseif ($result['dataset'] = $productos->cargarProductos()) {
                     $result['status'] = 1;
@@ -58,7 +58,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Categoria no válida';
                 } elseif (!$productos->setMarca($_POST['marcaA'])) {
                     $result['exception'] = 'Marca no válida';
-                } elseif (!$productos->setUsuario(1)) { //Se debería colocar el id de la sesión
+                } elseif (!$productos->setUsuario($_SESSION['id_vendedor'])) { //Se debería colocar el id de la sesión
                     $result['exception'] = 'Usuario no válido';
                 } elseif (!$productos->setImagen($_FILES['imagenA'])) {
                     $result['exception'] = $productos->getFileError();
@@ -105,7 +105,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Categoria no válida';
                 } elseif (!$productos->setMarca($_POST['marcaM'])) {
                     $result['exception'] = 'Marca no válida';
-                } elseif (!$productos->setIdentificador($_POST['identificador'])) { //Se debería colocar el id de la sesión
+                } elseif (!$productos->setIdentificador($_POST['identificador'])) {
                     $result['exception'] = 'Producto a actualizar no reconocido';
                 } elseif(!$data = $productos->productoIndividual()) {
                     $result['exception'] = 'El producto a actualizar no existe';

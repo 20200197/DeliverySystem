@@ -71,7 +71,9 @@
             <a href="#" data-target="slide-out" class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
                   class="material-icons">menu</i></a>
             <img src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="" />
-            <a class="waves-effect waves-light btn boton_iniciar_sesion">Log In</a>
+            <div id="opciones_navbar">
+            
+            </div>
          </header>
          <!--Información de la página-->
          <main>
@@ -99,13 +101,14 @@
                      </form>
                   </div>
                   <div class="col l2 m2 s12">
-
+                     
                      <div class="col s12 m12 l12 center-align centrar-horizontal">
                         <a class="  btn-floating right boton_color tooltipped" data-position="right"
                            data-tooltip="Categorías" href="admin_categoria.html"><i
                               class="material-icons">format_list_bulleted</i></a>
                         <a class="btn-floating right boton_color modal-trigger tooltipped" data-position="left"
                            data-tooltip="Agregar" onclick="openCreate()"><i class="material-icons left">add</i></a>
+                           
                      </div>
                   </div>
 
@@ -117,7 +120,7 @@
                         <tr>
                            <th>Nombre marca:</th>
                            <th>Editar</th>
-                           <th>Eliminar</th>
+                           <th>Estado</th>
                         </tr>
                      </thead>
                      <tbody id="tbody-rows">
@@ -147,18 +150,18 @@
             </div>
          </form>
             <!--Modal editar marca-->
-            <div id="modal_editar_marc_a" class="modal">
-               <form action="">
+            <div id="modal_editar_marca" class="modal">
                   <div class="modal-content">
                      <div class="row contorno">
                         <div class="col s12 m12 l12">
                            <form method="post" id="editar-form">
+                              <input type="text" class="hide" id="editar_marca" name="editar_marca">
                            <h5 class="center-align">Editar marca</h5>
                            <div class="col s12 m12 l1"></div>
                            <div class="col s12 m12 l6 nombre_catee">
-                              <h6>Nombre marca:</h6>
+                              <h6>Editar marca:</h6>
                               <div class="input-field col s12 m12 l12">
-                                 <input placeholder="Nombre" id="nombre_producto" type="text" />
+                                 <input placeholder="Nombre" id="nombre_marca"  name="nombre_marca" type="text" />
                               </div>
                            </div>
                         </div>
@@ -166,13 +169,11 @@
                   </div>
                   <div class="modal-footer">
                      <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
-                     <button href="#!"class="modal-close waves-effect waves-green btn-flat boton_a_gregar" type="submit">Modificar</button>
+                     <button class="modal-close waves-effect waves-green btn-flat boton_a_gregar" type="submit">Modificar</button>
                         </from>
                   </div>
                </form>
             </div>
-
-            
 
             <!--Boton agregar-->
             <div class="fixed-action-btn hide-on-large-only show-on-small botones_accion">
@@ -240,6 +241,7 @@
    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    <script type="text/javascript" src="../../../controladores/componentes.js"></script>
    <script type="text/javascript" src="../../../controladores/privado/admin/admin_marca.js"></script>
+   <script type="text/javascript" src="../../../controladores/privado/admin/opciones_sesion.js"></script>
 
 </body>
 
