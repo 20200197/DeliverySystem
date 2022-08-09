@@ -17,7 +17,10 @@ document.addEventListener('DOMContentLoaded', function () {
     M.Modal.init(document.querySelectorAll('.modal'), options);
 });
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 document.getElementById('save-form').addEventListener('submit', function (event) {
     event.preventDefault();
     saveRow(API_MARCAS, 'create', 'save-form', 'save-modal');
@@ -30,6 +33,7 @@ function fillTable(dataset) {
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
         content += `
             <tr>
@@ -44,6 +48,8 @@ function fillTable(dataset) {
                         <i class="material-icons">delete</i>
                     </a>
 =======
+=======
+>>>>>>> Stashed changes
         if (row.status_marca) {
             estado_re = 'checked';
         } else {
@@ -117,6 +123,10 @@ function openCreate() {
     // Se abre la caja de diálogo (modal) que contiene el formulario.
     M.Modal.getInstance(document.getElementById('save-modal')).open();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 =======
 
 >>>>>>> Stashed changes
@@ -144,6 +154,9 @@ function openUpdate(id) {
 
     // Se asigna el título para la caja de diálogo (modal).
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();

@@ -87,6 +87,9 @@ class Marca extends Validator
         $sql = 'INSERT INTO marca(nombre_marca,status_marca)
                 VALUES(?,?)';
         $params = array($this->nombre_marca, true);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         return Database::executeRow($sql, $params);
     }
@@ -123,11 +126,14 @@ class Marca extends Validator
         return Database::executeRow($sql, $params);
     }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     
 
     //Función para eliminar fila
     public function deleteRow()
 =======
+=======
+>>>>>>> Stashed changes
 
     //Obtener estado de marca
     public function getStatus()
@@ -155,6 +161,29 @@ class Marca extends Validator
 <<<<<<< Updated upstream
 =======
 
+    //Función que valida para que no se repitan datos
+    //$column es la columna sql que se validara, dui, telefono, etc
+    //$data el dato obtenido por get en Api
+    public function read($column, $data)
+    {
+        $sql = "SELECT * FROM marca
+                WHERE $column = ?";
+        $params = array($data);
+
+        return Database::getRow($sql, $params);
+    }
+
+<<<<<<< Updated upstream
+    //Función que valida que no se repita el dui en update, donde se evaluan los otros duis menos el seleccionado por si le da aceptar y no cambia nada
+    public function readD($column, $data)
+    {
+        $sql = "SELECT * from marca where $column=?  except select * from marca where id_marca = ?";
+        $params = array($data, $this->id);
+
+        return Database::getRow($sql, $params);
+    }
+>>>>>>> Stashed changes
+=======
     //Función que valida para que no se repitan datos
     //$column es la columna sql que se validara, dui, telefono, etc
     //$data el dato obtenido por get en Api

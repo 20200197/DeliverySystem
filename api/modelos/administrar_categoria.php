@@ -191,5 +191,8 @@ class Categoria extends Validator
 
         return Database::getRow($sql, $params);
     }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }

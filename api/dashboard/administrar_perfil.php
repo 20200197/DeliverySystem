@@ -127,6 +127,9 @@ if (isset($_GET['action'])) {
     } else {
         print(json_encode('Acceso denegado'));
     }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 } else {
     print(json_encode('Recurso no disponible'));

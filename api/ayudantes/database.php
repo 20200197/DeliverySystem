@@ -19,6 +19,7 @@ class Database
         $database = 'dbdeliverysystem';
         $username = 'postgres';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         $password = 'Academica20_21';
 =======
         $password = 'kukr';
