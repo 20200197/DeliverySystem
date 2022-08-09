@@ -18,15 +18,7 @@ class Database
         $server = 'localhost';
         $database = 'dbdeliverysystem';
         $username = 'postgres';
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
         $password = 'Academica20_21';
-=======
-        $password = 'kukr';
->>>>>>> Stashed changes
-=======
-        $password = 'Academica20_21';
->>>>>>> Stashed changes
 
         // Se crea la conexión mediante la extensión PDO y el controlador para PostgreSQL.
         self::$connection = new PDO('pgsql:host=' . $server . ';dbname=' . $database . ';port=5432', $username, $password);
