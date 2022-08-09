@@ -19,14 +19,14 @@ if (isset($_GET['action'])) {
     $result = array('status' => 0, 'message' => null, 'dataset' => null, 'exception' => null);
     //Se escoge el proceso que se ejecutará en el modelo
     switch ($_GET['action']) {
-         case 'obtenerSesion':
+        case 'obtenerSesion':
             if (isset($_SESSION['id_admin'])) {
-                if($result['dataset'] = $sesion->sesion($_SESSION['id_admin'])) {
+                if ($result['dataset'] = $sesion->sesion($_SESSION['id_admin'])) {
                     $result['status'] = 1;
-                }else{
+                } else {
                     $result['exception'] = Database::getException();
                 }
-            } 
+            }
             break;
     }
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.

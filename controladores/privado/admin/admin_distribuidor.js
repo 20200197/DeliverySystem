@@ -36,6 +36,8 @@ function fillTable(dataset) {
     document.getElementById('tbody-rows').innerHTML = content;
     // Se inicializa el componente Material Box para que funcione el efecto Lightbox.
     M.Materialbox.init(document.querySelectorAll('.materialboxed'));
+    // Se inicializa el componente Material Box para que funcione el efecto Lightbox.
+    M.Materialbox.init(document.querySelectorAll(".materialboxed"));
     // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
 }
@@ -77,14 +79,14 @@ function fillData(id) {
         method: 'post',
         body: parameter
     }).then(function (request) {
-        if(request.ok){
+        if (request.ok) {
             request.json().then(function (response) {
-                if(response.status){
-                if(response.dataset.status_repartidor){
-                    estado_re = 'checked';
-                } else {
-                    estado_re = '';
-                }
+                if (response.status) {
+                    if (response.dataset.status_repartidor) {
+                        estado_re = 'checked';
+                    } else {
+                        estado_re = '';
+                    }
                     content += `<tr>
                     <th>Nombre:</th>
                     <td>${response.dataset.nombre_repartidor}</td>
@@ -147,10 +149,8 @@ function fillData(id) {
                     <td>
                         <div class="switch">
                             <label>
-                            Inactivo
                             <input type="checkbox" id="switch_estado${response.dataset.id_repartidor}" onclick="updateEstado(${response.dataset.id_repartidor})" ${estado_re}>
                             <span class="lever"></span>
-                            Activo
                             </label>
                         </div>
                     </td>
@@ -158,8 +158,10 @@ function fillData(id) {
                 `;
                 }
                 document.getElementById('tdbody-info').innerHTML = content;
+                // Se inicializa el componente Material Box para que funcione el efecto Lightbox.
+                M.Materialbox.init(document.querySelectorAll(".materialboxed"));
             });
-        }else{
+        } else {
             console.log(request.status + ' ' + request.statusText);
         }
     });
@@ -171,10 +173,10 @@ function updateEstado(id) {
     data.append('idP', id);
 
     //Obtenemos valor de switch
-    if (document.getElementById('switch_estado'+id).checked){
-        data.append('estadoP',true);
-    }else{
-        data.append('estadoP',false)
+    if (document.getElementById('switch_estado' + id).checked) {
+        data.append('estadoP', true);
+    } else {
+        data.append('estadoP', false)
     }
     fetch(API_DISTRIBUIDOR + 'updateStatus', {
         method: 'post',
@@ -187,6 +189,7 @@ function updateEstado(id) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
+                    readRows(API_DISTRIBUIDOR);
                     sweetAlert(1, response.message, null);
                 } else {
                     sweetAlert(2, response.exception, null);

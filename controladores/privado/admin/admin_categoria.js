@@ -7,8 +7,13 @@ document.addEventListener('DOMContentLoaded', function () {
     readRows(API_CATEGORIA);
     // Se define una variable para establecer las opciones del componente Modal.
     let options = {
-        dismissible: false
-    }
+      dismissible: false,
+      onOpenStart: function () {
+        // Se restauran los elementos del formulario.
+        document.getElementById("save-form").reset();
+        document.getElementById("nombre_imagen").value = null;
+      },
+    };
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
     M.Modal.init(document.querySelectorAll('.modal'), options);
 });
@@ -117,8 +122,9 @@ function openUpdate(id) {
           if (response.status) {
             // Se inicializan los campos del formulario con los datos del registro seleccionado.
             document.getElementById("id").value = response.dataset.id_categoria_producto;
-            document.getElementById("nombre_cate").value =
-                  response.dataset.categoria;
+            document.getElementById("nombre_cate").value = response.dataset.categoria;
+            document.getElementById("categoria-picA").setAttribute('src', SERVER + 'imagenes/categoria/' +  response.dataset.imagen_categoria);
+
            
             // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
             M.updateTextFields();
@@ -171,4 +177,36 @@ function update_status(id) {
             console.log(request.status + ' ' + request.statusText);
         }
     });
+}
+
+//Función para previsualizar un producto (se ocupo solo para actualizar)
+function leerImg(input, img_destino)
+{
+    //Se obtiene los archivos del input
+    let archivos = input.files;
+    //Se verifica si está vacío
+    if (!archivos || !archivos.length) { 
+        img_destino.src = "../../recursos/img/publico/sin.png";
+        return;
+    }
+    //
+    const visualizar = archivos[0];
+    const url = URL.createObjectURL(visualizar);
+    img_destino.src = url;
+}
+
+//Función para previsualizar un producto (se ocupo solo para agregar)
+function leerImgCreate(input, img_destino)
+{
+    //Se obtiene los archivos del input
+    let archivos = input.files;
+    //Se verifica si está vacío
+    if (!archivos || !archivos.length) { 
+        img_destino.src = "../../recursos/img/publico/sin.png";
+        return;
+    }
+    //
+    const visualizar = archivos[0];
+    const url = URL.createObjectURL(visualizar);
+    img_destino.src = url;
 }

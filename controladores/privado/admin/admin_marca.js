@@ -7,15 +7,18 @@ document.addEventListener('DOMContentLoaded', function () {
     readRows(API_MARCAS);
     // Se define una variable para establecer las opciones del componente Modal.
     let options = {
-        dismissible: false
-
-    }
+        dismissible: false,
+        onOpenStart: function () {
+          // Se restauran los elementos del formulario.
+          document.getElementById("save-form").reset();
+        },
+      };
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
     M.Modal.init(document.querySelectorAll('.modal'), options);
 });
-document.getElementById('save-form').addEventListener('submit', function(event){
+document.getElementById('save-form').addEventListener('submit', function (event) {
     event.preventDefault();
-      saveRow(API_MARCAS,'create','save-form','save-modal');
+    saveRow(API_MARCAS, 'create', 'save-form', 'save-modal');
 });
 
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
@@ -24,29 +27,31 @@ function fillTable(dataset) {
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-        if(row.status_marca){
+        if (row.status_marca) {
             estado_re = 'checked';
         } else {
             estado_re = '';
         }
+        //Establecemos texto para el estado
+        var estado_marca;
+        (row.status_marca) ? estado_marca = 'Activo' : estado_marca = 'Inactivo';
         content += `
             <tr>
                 <td data-target="Nombre marca:">${row.nombre_marca}</td>
-                <td data-target="Editar">
-                    <button onclick="openUpdate(${row.id_marca})" class="btn-floating waves-effect blue tooltipped" data-tooltip="Actualizar">
-                        <i class="material-icons">mode_edit</i>
-                    </button>
-                    </td>
+                <td data-target="Estado:">${estado_marca}</td>
                     <td data-target="Eliminar">
                     <div class="switch">
                             <label>
-                            Inactivo
                             <input type="checkbox" id="switch_estado${row.id_marca}" onclick="updateEstado(${row.id_marca})" ${estado_re}>
                             <span class="lever"></span>
-                            Activo
                             </label>
                         </div>
                 </td>
+                <td data-target="Editar">
+                    <button onclick="openUpdate(${row.id_marca})" class="btn-flat waves-effect blue tooltipped" data-tooltip="Actualizar">
+                        <i class="material-icons white-text">mode_edit</i>
+                    </button>
+                    </td>
             </tr>
         `;
     });
@@ -73,11 +78,10 @@ document.getElementById('editar-form').addEventListener('submit', function (even
             request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
-                    
-                    sweetAlert(1 ,response.message, 'admin_marca.html')
+                    sweetAlert(1, response.message, 'admin_marca.html')
                     //Si no hay coincidencias se carga la tabla sin datos
-                }else{
-                    sweetAlert(1 ,response.exception ,null)
+                } else {
+                    sweetAlert(2, response.exception, null)
                 }
             });
         } else {
@@ -90,7 +94,7 @@ document.getElementById('editar-form').addEventListener('submit', function (even
 function openCreate() {
     // Se abre la caja de diálogo (modal) que contiene el formulario.
     M.Modal.getInstance(document.getElementById('save-modal')).open();
-   
+
 }
 
 // Función para abrir el reporte de productos.
@@ -105,9 +109,9 @@ function openReport() {
 function openUpdate(id) {
     // Se abre la caja de diálogo (modal) que contiene el formulario.
     M.Modal.getInstance(document.getElementById('modal_editar_marca')).open();
-    
+
     // Se asigna el título para la caja de diálogo (modal).
-    
+
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('id', id);
@@ -125,8 +129,8 @@ function openUpdate(id) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
                     document.getElementById('editar_marca').value = response.dataset.id_marca;
                     document.getElementById('nombre_marca').value = response.dataset.nombre_marca;
-  
-                   
+
+
                     // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
                     M.updateTextFields();
                 } else {
@@ -145,10 +149,10 @@ function updateEstado(id) {
     data.append('idP', id);
 
     //Obtenemos valor de switch
-    if (document.getElementById('switch_estado'+id)){
-        data.append('estadoP',true);
-    }else{
-        data.append('estadoP',false)
+    if (document.getElementById('switch_estado' + id)) {
+        data.append('estadoP', true);
+    } else {
+        data.append('estadoP', false)
     }
     fetch(API_MARCAS + 'updateStatus', {
         method: 'post',
@@ -161,6 +165,7 @@ function updateEstado(id) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
+                    readRows(API_MARCAS);
                     sweetAlert(1, response.message, null);
                 } else {
                     sweetAlert(2, response.exception, null);

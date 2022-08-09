@@ -41,7 +41,8 @@ function fillTable(data) {
                                     <input placeholder="Teléfono" id="telefono" type="tel" class="validate" value="${data.telefono_admin}" disabled/>
                                     <label class='active' for="telefono">Teléfono</label>
                                 </div>
-                                    <a class="waves-effect waves-light btn modal-trigger" href="#modal_info" onclick="cargarUsuario(${data.id_admin})">Editar</a>
+                                    <a class="btn waves-effect waves-light btn modal-trigger boton_cambiar_foto_cliente" href="#modal_info"  onclick="cargarUsuario(${data.id_admin})"><i
+                                    class="material-icons">edit</i></a>
                             </form>
                         </div>
                     </div>

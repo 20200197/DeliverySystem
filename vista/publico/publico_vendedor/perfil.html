@@ -67,124 +67,137 @@
                         <div class="col l5 m5 s12 foto_de_vendedor">
                             <h6>Foto personal</h6>
                             <div id="preview-profile" class="styleImage">
-                                <img src="../../../recursos/img/publico/default-profile.jpg" id="profile-pic" width="200px" height="200px">
+                                <img src="../../../recursos/img/publico/default-profile.jpg" id="profile-pic"
+                                    width="200px" height="200px">
                             </div>
-                                <div class="file-field input-field">
-                                    <div class="btn blue">
-                                        <span>Agregar foto</span>
-                                        <input type="file">
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="file" name="profile-file" id="profile-file" >
-                                    </div>
+                            <div class="file-field input-field">
+                                <div class="btn blue">
+                                    <span>Agregar foto</span>
+                                    <input type="file">
                                 </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="file" name="profile-file" id="profile-file">
+                                </div>
+                            </div>
                             <div class="contenedor_fotos_vendedor ">
                                 <div class="row ampliador_perfil_repartidor">
                                     <div class="col l6 m6 s6">
                                         <h6>Antecendente penal</h6>
                                         <div id="preview-antecedente" class="styleImage">
-                                            <img src="../../../recursos/img/publico/default-img.jpg" id="antecedente-pic" width="100px" height="100px" class="materialboxed">
+                                            <img src="../../../recursos/img/publico/default-img.jpg"
+                                                id="antecedente-pic" width="100px" height="100px" class="materialboxed">
                                         </div>
-                                            <div class="file-field input-field">
-                                                <div class="btn blue">
-                                                    <span>Agregar imagen</span>
-                                                    <input type="file">
-                                                </div>
-                                                <div class="file-path-wrapper">
-                                                    <input class="file-path validate" type="file" name="antecedente-file" id="antecedente-file" >
-                                                </div>
+                                        <div class="file-field input-field">
+                                            <div class="btn blue">
+                                                <span>Agregar imagen</span>
+                                                <input type="file">
                                             </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="file" name="antecedente-file"
+                                                    id="antecedente-file">
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col l6 m6 s6">
                                         <h6>Solvencia PNC</h6>
                                         <div id="preview-solvencia" class="styleImage">
-                                            <img src="../../../recursos/img/publico/default-img.jpg" id="solvencia-pic" width="100px" height="100px" class="materialboxed">
+                                            <img src="../../../recursos/img/publico/default-img.jpg" id="solvencia-pic"
+                                                width="100px" height="100px" class="materialboxed">
                                         </div>
-                                            <div class="file-field input-field">
-                                                <div class="btn blue">
-                                                    <span>Agregar imagen</span>
-                                                    <input type="file">
-                                                </div>
-                                                <div class="file-path-wrapper">
-                                                    <input class="file-path validate" type="file" name="solvencia-file" id="solvencia-file" >
-                                                </div>
+                                        <div class="file-field input-field">
+                                            <div class="btn blue">
+                                                <span>Agregar imagen</span>
+                                                <input type="file">
                                             </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text" name="solvencia-file"
+                                                    id="solvencia-file">
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col l6 m6 s6">
-                                            <div class="file-field input-field">
-                                                <div>
-                                                    <input type="file">
-                                                </div>
-                                                <div class="file-path-wrapper hide">
-                                                    <input class="file-path validate" type="text">
-                                                </div>
+                                        <div class="file-field input-field">
+                                            <div>
+                                                <input type="file">
                                             </div>
+                                            <div class="file-path-wrapper hide">
+                                                <input class="file-path validate" type="text">
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col l6 m6 s6">
-                                            <div class="file-field input-field hide">
-                                                <div>
-                                                    <input type="file">
-                                                </div>
-                                                <div class="file-path-wrapper reducir_place">
-                                                    <input class="file-path validate" type="text">
-                                                </div>
+                                        <div class="file-field input-field hide">
+                                            <div>
+                                                <input type="file">
                                             </div>
+                                            <div class="file-path-wrapper reducir_place">
+                                                <input class="file-path validate" type="text">
+                                            </div>
+                                        </div>
                                     </div>
-                                    
+
                                 </div>
                                 <h6>Seleccione la ubicación para retirar los productos</h6>
-                                    <div id="mapa" class="col s6 m6 l6"></div>
+                                <div id="mapa" class="col s6 m6 l6"></div>
                             </div>
                         </div>
                         <div class="col l7 m7 s12 datos_usuario_perfil_cliente">
                             <h6>Datos del vendedor</h6>
                             <div class="datos_perfil_cliente">
-                                    <div class="input-field col s6">
-                                        <input id="nombre_vendedor" type="text" name="nombre_vendedor" class="validate" pattern="[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{3,30}" required>
-                                        <label for="nombre_vendedor" class="active">Nombre</label>
-                                    </div>
-                                    <div class="input-field col s6">
-                                        <input id="apellido_vendedor" type="text" name="apellido_vendedor" class="validate" pattern="[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{3,30}" required>
-                                        <label for="apellido_vendedor" class="active">Apellido</label>
-                                    </div>
-                                    <div class="input-field col s6">
-                                        <input id="dui_vendedor" type="text" name="dui_vendedor" class="validate" maxlength="10" pattern="[0-9]{8}[-]{1}[0-9]{1}" required>
-                                        <label for="dui_vendedor" class="active">DUI</label>
-                                    </div>
-                                    <div class="input-field col s6">
-                                        <input id="correo_vendedor" type="email" name="correo_vendedor" class="validate" required>
-                                        <label for="correo_vendedor" class="active">Correo</label>
-                                    </div>
-                                    <div class="input-field col s6">
-                                        <input id="direccion_vendedor" type="text" name="direccion_vendedor"
-                                            class="validate" required>
-                                        <label for="direccion_vendedor" class="active">Dirección</label>
-                                    </div>
-                                    <div class="input-field col s6">
-                                        <input id="telefono_vendedor" type="tel" name="telefono_vendedor" class="validate" maxlength="9" required>
-                                        <label for="telefono_vendedor" class="active">Teléfono</label>
-                                    </div>
+                                <div class="input-field col s6">
+                                    <input id="nombre_vendedor" type="text" name="nombre_vendedor" class="validate"
+                                        pattern="[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{3,30}" required>
+                                    <label for="nombre_vendedor" class="active">Nombre</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="apellido_vendedor" type="text" name="apellido_vendedor" class="validate"
+                                        pattern="[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{3,30}" required>
+                                    <label for="apellido_vendedor" class="active">Apellido</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="dui_vendedor" type="text" name="dui_vendedor" class="validate"
+                                        maxlength="10" pattern="[0-9]{8}[-]{1}[0-9]{1}" required>
+                                    <label for="dui_vendedor" class="active">DUI</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="correo_vendedor" type="email" name="correo_vendedor" class="validate"
+                                        required>
+                                    <label for="correo_vendedor" class="active">Correo</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="direccion_vendedor" type="text" name="direccion_vendedor"
+                                        class="validate" required>
+                                    <label for="direccion_vendedor" class="active">Dirección</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="telefono_vendedor" type="tel" name="telefono_vendedor" class="validate"
+                                        maxlength="9" required>
+                                    <label for="telefono_vendedor" class="active">Teléfono</label>
+                                </div>
                             </div>
                             <h6>Datos del vendedor</h6>
                             <div class="contenedor_datos_repartidor">
-                                    <div class="">
-                                        <div class="input-field col s12 l12">
-                                            <input id="usuario_vendedor" type="text" name="usuario_vendedor" pattern="[/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\,\;\.\-]{]{1,65}"
-                                                class="validate" required>
-                                            <label for="usuario_vendedor" class="active">Usuario</label>
-                                        </div>
-                                        <div class="input-field col s6">
-                                            <input id="contrasenia_vendedor1" type="password" class="validate" name="contrasenia_vendedor1" >
-                                            <label for="contrasenia_vendedor1" class="active">Contraseña</label>
-                                        </div>
-                                        <div class="input-field col s6">
-                                            <input id="contrasenia_vendedor2" type="password" class="validate" name="contrasenia_vendedor2" >
-                                            <label for="contrasenia_vendedor2" class="active">Confirmar contraseña</label>
-                                        </div>
+                                <div class="">
+                                    <div class="input-field col s12 l12">
+                                        <input id="usuario_vendedor" type="text" name="usuario_vendedor"
+                                            pattern="[/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\,\;\.\-]{]{1,65}" class="validate"
+                                            required>
+                                        <label for="usuario_vendedor" class="active">Usuario</label>
                                     </div>
-                                    <div class="center-align">
-                                        <button class="btn blue" type="submit"><i class="material-icons">save</i></button>
+                                    <div class="input-field col s6">
+                                        <input id="contrasenia_vendedor1" type="password" class="validate"
+                                            name="contrasenia_vendedor1">
+                                        <label for="contrasenia_vendedor1" class="active">Contraseña</label>
                                     </div>
+                                    <div class="input-field col s6">
+                                        <input id="contrasenia_vendedor2" type="password" class="validate"
+                                            name="contrasenia_vendedor2">
+                                        <label for="contrasenia_vendedor2" class="active">Confirmar contraseña</label>
+                                    </div>
+                                </div>
+                                <div class="center-align">
+                                    <button class="btn blue" type="submit"><i class="material-icons">save</i></button>
+                                </div>
                             </div>
                         </div>
                     </form>
