@@ -30,7 +30,7 @@
                         <div class="col m6 s6">
                             <ul class="right">
                                 <li><span class="black-text">Registrarse</span></li>
-                                <li><a href="registrar_no_login.html" class="tooltipped " data-position="right" data-tooltip="Perfil"><i
+                                <li><a href="registrar_no_login.html"><i
                                         class="material-icons medium black-text">account_circle add</i></a></li>
                             </ul>
                         </div>
@@ -62,24 +62,6 @@
                             data-tooltip="Mis productos"><i
                                 class="material-icons white-text">format_list_bulleted</i><span
                                 class="white-text hide-on-large-only">Categoria</span></a></li>
-                    <li class="hide-on-large-only"><button
-                            onclick="logOut('Vendedor')"
-                            class="tooltipped transparent logout valign-wrapper"
-                            data-position="right"
-                            data-tooltip="Cerrar sesión"><i
-                                class="material-icons white-text">arrow_back</i><span
-                                class="white-text hide-on-large-only">Cerrar
-                                sesión</span></button></li>
-                </div>
-                <div class="cerrar-navbar hide-on-med-and-down">
-                    <li>
-                        <button onclick="logOut('Vendedor')" class="tooltipped
-                            white-text transparent logout valign-wrapper"
-                            data-position="right" data-tooltip="Cerrar sesión"><i
-                                class="material-icons ">arrow_back</i><span
-                                class="white-text hide-on-large-only">Cerrar
-                                sesión</span></button>
-                    </li>
                 </div>
             </ul>
         </div>
@@ -87,7 +69,7 @@
             <br><br>
             <div class="row">
                 <div class="col s12 m4 l4 offset-m4 offset-l4">
-                    <div class="card medium center center-align">
+                    <div class="card medium center center-align teal lighten-5">
                         <form action="" id="login-form">
                             <div class="row"></div>
                             <h5>¡Inicia sesión!</h5>
@@ -110,7 +92,7 @@
                             <br>
                             <br>
                             <button class="waves-effect waves-light btn
-                                blue">Iniciar sesión</button>
+                                blue" type="submit">Iniciar sesión</button>
                         </form>
                     </div>
                 </div>
@@ -180,7 +162,10 @@
 
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script src="activador.js"></script>
+        <script src="../../../recursos/js/sweetalert2.all.min.js"></script>
+        <script src="../../../controladores/componentes.js"></script>
+        <script
+            src="../../../controladores/publico/publico_cliente/login.js"></script>
     </body>
 
 </html>

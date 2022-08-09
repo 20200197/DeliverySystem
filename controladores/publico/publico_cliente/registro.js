@@ -1,5 +1,10 @@
 const API_CLIENTE = SERVER + 'publico/cliente.php?action=';
 
+document.addEventListener('DOMContentLoaded', function() {
+    M.Sidenav.init(document.querySelectorAll('.sidenav'));
+    M.Tooltip.init(document.querySelectorAll('.tooltipped'));
+});
+
 document.getElementById('save-form').addEventListener('submit', function() {
     event.preventDefault();
 

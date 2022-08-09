@@ -1,5 +1,7 @@
 <?php
 
+use JetBrains\PhpStorm\ArrayShape;
+
 class Cliente extends Validator {
     private $id = null;
     private $nombre = null;
@@ -132,6 +134,26 @@ class Cliente extends Validator {
         return $this->foto;
     }
 
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    public function getApellido()
+    {
+        return $this->apellido;
+    }
+
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
     //Metodos sobre la base de datos
 
     public function createRow()
@@ -144,6 +166,43 @@ class Cliente extends Validator {
         return Database::executeRow($sql, $params);
     }
 
+    //Metodo para obtener el id del usuario que quiere iniciar sesión
+    public function checkUser()
+    {
+        $sql = 'SELECT id_cliente, status_cliente, nombre_cliente, apellido_cliente, usuario_cliente
+                FROM cliente 
+                WHERE usuario_cliente = ?';
+        $params = array($this->usuario);
+        if ($data = Database::getRow($sql, $params)) {
+            $this->id = $data['id_cliente'];
+            $this->status = $data['status_cliente'];
+            $this->nombre = $data['nombre_cliente'];
+            $this->apellido = $data['apellido_cliente'];
+            $this->usuario = $data['usuario_cliente'];
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Metodo para verificar la contraseña
+    public function checkPass($pass)
+    {
+        $sql = 'SELECT clave_cliente, id_cliente
+                FROM cliente
+                WHERE id_cliente = ?';
+        $params = array($this->id);
+
+        if (!$data = Database::getRow($sql, $params)) {
+            return false;
+        } elseif (!password_verify($pass, $data['clave_cliente'])) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    //Metodo para validar campos repetidos
     public function getData($column, $data)
     {
         $sql = "SELECT $column 

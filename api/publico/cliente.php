@@ -7,6 +7,8 @@ if (isset($_GET['action'])) {
 
     $result = ['status' => 0, 'message' => null, 'exception' => null];
 
+    session_start();
+
     $cliente = new Cliente();
     //if (isset($_SESSION['id_cliente'])) {}
     switch ($_GET['action']) {
@@ -51,7 +53,25 @@ if (isset($_GET['action'])) {
             $result['exception'] ='Hubo un error inesperado';
         }
             break;
+        case 'login':
+            $_POST = $cliente->validateForm($_POST);
+            if (!$cliente->setUsuario($_POST['user'])) {
+                $result['exception'] = 'Usuario inválido';
+            } elseif (!$cliente->checkUser()){
+                $result['exception'] = 'Usuario incorrecto';
+            } elseif (!$cliente->getStatus()) {
+                $result['exception'] = 'Lo sentimos pero tu cuenta ha sido desactivada';
+            } elseif ($cliente->checkPass($_POST['password'])) {
+                
+                $result['status'] = 1;
+                $result['message'] = 'Sesión iniciada con éxito';
+
+                $_SESSION['id_cliente'] = $cliente->getId();
+                $_SESSION['usuario_cliente'] = $cliente->getUsuario();
+            }
+            break;
         default:
+            $result['exception'] ='Accion no disponible';
             break;
     }
     print(json_encode($result));
