@@ -62,12 +62,15 @@ if (isset($_GET['action'])) {
             } elseif (!$cliente->getStatus()) {
                 $result['exception'] = 'Lo sentimos pero tu cuenta ha sido desactivada';
             } elseif ($cliente->checkPass($_POST['password'])) {
-                
                 $result['status'] = 1;
                 $result['message'] = 'Sesión iniciada con éxito';
 
                 $_SESSION['id_cliente'] = $cliente->getId();
                 $_SESSION['usuario_cliente'] = $cliente->getUsuario();
+            } elseif (!$cliente->checkPass($_POST['password'])) {
+                $result['exception'] = 'Contraseña incorrecta';
+            } elseif (Database::getException()) {
+                $result['exception'] = Database::getException();
             }
             break;
         default:
