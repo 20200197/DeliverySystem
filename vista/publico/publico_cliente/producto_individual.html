@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<!--Lenguaje de la página-->
+<html lang="es">
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!--Importar iconos-->
+    <link href="../../../recursos/css/icons.css" rel="stylesheet" />
+    <!--Importar archivos CSS-->
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_publico.css" media="screen,projection" />
+
+    <!--Optimización para mobiles-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <header>
+        <nav>
+
+            <div class="nav-wrapper white">
+                <div class="row valign-wrapper">
+                    <div class="col m1 s1">
+                        <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                                class="material-icons large blue-text">menu</i></a>
+                    </div>
+                    <div class="col m5 s5 left valign-wrapper">
+
+                        <img class="responsive-img"
+                            src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png" alt="">
+                    </div>
+                    <div class="col m6 s6">
+                        <ul class="right">
+                            <li><span class="black-text">Nombre del usuario</span></li>
+                            <li><a href="perfil.html" class="tooltipped " data-position="right" data-tooltip="Perfil"><i
+                                        class="material-icons medium black-text">account_circle</i></a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+
+    </header>
+
+    <div class="row">
+        <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
+            <div class="opciones-sidenav">
+                <li class="collection-item"><a href="index.html" class="tooltipped" data-position="right"
+                        data-tooltip="Hogar"><i class="material-icons  white-text">home</i><span
+                            class="white-text hide-on-large-only">Inicio</span></a>
+                </li>
+                <li><a href="perfil_cliente.html" class="tooltipped Hide-on-large-only " data-position="right"
+                        data-tooltip="Perfil"><i class="material-icons  white-text">account_circle</i><span
+                            class="white-text hide-on-large-only">Perfil</span></a></li>
+                <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Ventas"><i
+                            class="material-icons  white-text">shopping_basket</i><span
+                            class="white-text hide-on-large-only">Compras</span></a></li>
+                <li><a href="favorito.html" class="tooltipped" data-position="right" data-tooltip="Favoritos"><i
+                            class="material-icons  white-text">star</i><span
+                            class="white-text hide-on-large-only">Favoritos</span></a></li>
+                <li class="hide-on-large-only"><button onclick="logOut('Vendedor')"
+                        class="tooltipped transparent logout valign-wrapper" data-position="right"
+                        data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
+                            class="white-text hide-on-large-only">Cerrar
+                            sesión</span></button></li>
+            </div>
+            <div class="cerrar-navbar hide-on-med-and-down">
+                <li>
+                    <button onclick="logOut('Vendedor')" class="tooltipped white-text transparent logout valign-wrapper"
+                        data-position="right" data-tooltip="Cerrar sesión"><i
+                            class="material-icons ">arrow_back</i><span class="white-text hide-on-large-only">Cerrar
+                            sesión</span></button>
+                </li>
+            </div>
+        </ul>
+    </div>
+    <!--Información de la página-->
+    <main>
+        <!--Información del producto-->
+        <div class="row">
+            <!-- Campo oculto para asignar el id del producto -->
+            <input type="hidden" id="id_producto" name="id_producto">
+            <div class="col s12 m3 l3 offset-m1 offset-l1">
+                <img src="" id="imagen_producto" class="responsive-img" alt="" width="420" height="430" />
+            </div>
+            <div class="col s12 m5 l5">
+                <h5 id="nombre_producto">
+
+                </h5>
+                <div class="row">
+                    <div class="col s12 m4 l4" id="contenedor_calidad">
+
+                    </div>
+                    <div class="col s12 m4 l4">
+                        <p id="marca_producto"></p>
+                    </div>
+                    <div class="col s12 m4 l4">
+                        <p>De: <a class="black-text" id="nombre_vendedor"></a></p>
+                    </div>
+                    <div class="s12 m12 l12">
+                        <p id="descripcion_producto">
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m3 l3 center-align">
+                <div class="detalle-producto-individual">
+                    <div class="row"></div>
+                    <p id="precio_producto"></p>
+                    <div class="row">
+                        <form action="">
+                            <div class="col l12 m12 s12">
+                                <p>Cantidad</p>
+                                <div class="contador_cantidad_carrito">
+                                    <a href=""><i class="material-icons">remove_circle_outline</i></a>
+                                    <input type="number" value="2" />
+                                    <a href=""><i class="material-icons">add_circle_outline</i></a>
+                                </div>
+                            </div>
+                            <div class="col s12 m12 l12">
+                                <p>Total: $31.98</p>
+                            </div>
+                            <div class="col s12 m12 l12">
+                                <button class="waves-effect blue lighten-2 waves-light btn-large boton_foto_admin"><i
+                                        class="material-icons left">add</i>añadir</button>
+                            </div>
+                            <div class="row"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="row">
+            <!--Comentarios de producto individual-->
+            <div class="col s12 m3 l3 offset-l1">
+                <p class="flow-text">Comentarios</p>
+            </div>
+        </div>
+        <div id="coment_texto">
+
+        </div>
+        <h5 id="title" class="col s12 m12 l12 offset-l1"></h5>
+    </main>
+
+    <footer class="page-footer blue accent-3">
+        <div class="row">
+            <div class="col l9 m6 s6">
+                <div class="col l6 m12 s12">
+                    <img src="logo.png" class="responsive-img" alt="">
+                    <h6 class="hide-on-med-and-down">Copyright 2022</h6>
+                </div>
+                <div class="col l6 m12 ">
+                    <!--Redes-->
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">facebook</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">facebook</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">facebook</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">facebook</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">whatsapp</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">whatsapp</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">email</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">email</i>
+                        </a>
+                    </div>
+                    <h6 class="hide-on-large-only">Copyright 2022</h6>
+                </div>
+            </div>
+            <div class="col l3 s6">
+                <div class="col l12 m12">
+                    <ul>
+                        <h5 class="">Información pública</h5>
+                        <li><a href="" class="white-text">Quienes somos</a></li>
+                        <li><a href="" class="white-text">Contáctanos</a></li>
+                        <li><a href="" class="white-text">Misión y visión</a></li>
+                        <li><a href="" class="white-text">Términos y condiciones</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!--Importar archivos JavaScrip-->
+    <script type="text/javascript" src="../../../js/materialize.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../../recursos/js/sweetalert2.all.min.js"></script>
+    <script src="../../../controladores/componentes.js"></script>
+    <script src="../../../controladores/publico/publico_cliente/producto_individual.js"></script>
+    <script src="../../../controladores/privado/modo_oscuro.js"></script>
+    <script type="text/javascript" src="../../../controladores/publico/opciones_sesion.js"></script>
+</body>
+
+</html>
+
+</html>

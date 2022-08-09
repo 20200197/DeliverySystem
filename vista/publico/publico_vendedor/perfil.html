@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!--Lenguaje de la página-->
+<html lang="es">
+<html>
+
+<head>
+    <!-- Codificación de caracteres para el documento -->
+    <meta charset="utf-8">
+    <!--Importar fuentes de Google-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Importar iconos-->
+    <link href="../../../recursos/css/icons.css" rel="stylesheet">
+    <!--Importar archivos CSS-->
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_publico.css" media="screen,projection" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+
+    <!--Optimización para mobiles-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+
+
+    <!--Marco general-->
+    <div class="row contenedor-general">
+        <!--Barra lateral, opciones para los usuarios-->
+
+        <ul id="slide-out" class="sidenav sidenav-fixed">
+            <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
+                        class="material-icons medium">home</i></a></li>
+            <li><a href="perfil.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
+                        class="material-icons medium">account_circle</i></a></li>
+            <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Compras"><i
+                        class="material-icons medium">shopping_basket</i></a></li>
+            <li><a href="estadistica.html" class="tooltipped" data-position="right" data-tooltip="Gráficos"><i
+                        class="material-icons medium">pie_chart</i></a></li>
+            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Cerrar sesión"><i
+                        class="material-icons medium">arrow_back</i></a></li>
+        </ul>
+
+        <!--Contenedor de datos-->
+        <div class="contenedor-datos">
+            <!--Encabezado-->
+            <header class="encabezado">
+                <a href="#" data-target="slide-out"
+                    class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
+                        class="material-icons">menu</i></a>
+                <img src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
+                <div class="col s12 m12 l12 right-align">
+                    <!--Switch de cambiar color-->
+                    <div class="switch switch_colorr hide-on-small-and-down right-align">
+                        <label>
+                            🌕
+                            <input type="checkbox" id="switch_color" onclick="modoOscuro()">
+                            <span class="lever"></span>
+                            🌙
+                        </label>
+                    </div>
+                </div>
+            </header>
+            <!--Información de la página vendedor-->
+            <main class="main_vendedor">
+                <div class="row contenedor_vendedor ">
+                    <form id="update-form">
+                        <div class="col l5 m5 s12 foto_de_vendedor">
+                            <h6>Foto personal</h6>
+                            <div id="preview-profile" class="styleImage">
+                                <img src="../../../recursos/img/publico/default-profile.jpg" id="profile-pic"
+                                    width="200px" height="200px">
+                            </div>
+                            <div class="file-field input-field">
+                                <div class="btn blue">
+                                    <span>Agregar foto</span>
+                                    <input type="file">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="file" name="profile-file" id="profile-file">
+                                </div>
+                            </div>
+                            <div class="contenedor_fotos_vendedor ">
+                                <div class="row ampliador_perfil_repartidor">
+                                    <div class="col l6 m6 s6">
+                                        <h6>Antecendente penal</h6>
+                                        <div id="preview-antecedente" class="styleImage">
+                                            <img src="../../../recursos/img/publico/default-img.jpg"
+                                                id="antecedente-pic" width="100px" height="100px" class="materialboxed">
+                                        </div>
+                                        <div class="file-field input-field">
+                                            <div class="btn blue">
+                                                <span>Agregar imagen</span>
+                                                <input type="file">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="file" name="antecedente-file"
+                                                    id="antecedente-file">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col l6 m6 s6">
+                                        <h6>Solvencia PNC</h6>
+                                        <div id="preview-solvencia" class="styleImage">
+                                            <img src="../../../recursos/img/publico/default-img.jpg" id="solvencia-pic"
+                                                width="100px" height="100px" class="materialboxed">
+                                        </div>
+                                        <div class="file-field input-field">
+                                            <div class="btn blue">
+                                                <span>Agregar imagen</span>
+                                                <input type="file">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text" name="solvencia-file"
+                                                    id="solvencia-file">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col l6 m6 s6">
+                                        <div class="file-field input-field">
+                                            <div>
+                                                <input type="file">
+                                            </div>
+                                            <div class="file-path-wrapper hide">
+                                                <input class="file-path validate" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col l6 m6 s6">
+                                        <div class="file-field input-field hide">
+                                            <div>
+                                                <input type="file">
+                                            </div>
+                                            <div class="file-path-wrapper reducir_place">
+                                                <input class="file-path validate" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <h6>Seleccione la ubicación para retirar los productos</h6>
+                                <div id="mapa" class="col s6 m6 l6"></div>
+                            </div>
+                        </div>
+                        <div class="col l7 m7 s12 datos_usuario_perfil_cliente">
+                            <h6>Datos del vendedor</h6>
+                            <div class="datos_perfil_cliente">
+                                <div class="input-field col s6">
+                                    <input id="nombre_vendedor" type="text" name="nombre_vendedor" class="validate"
+                                        pattern="[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{3,30}" required>
+                                    <label for="nombre_vendedor" class="active">Nombre</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="apellido_vendedor" type="text" name="apellido_vendedor" class="validate"
+                                        pattern="[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{3,30}" required>
+                                    <label for="apellido_vendedor" class="active">Apellido</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="dui_vendedor" type="text" name="dui_vendedor" class="validate"
+                                        maxlength="10" pattern="[0-9]{8}[-]{1}[0-9]{1}" required>
+                                    <label for="dui_vendedor" class="active">DUI</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="correo_vendedor" type="email" name="correo_vendedor" class="validate"
+                                        required>
+                                    <label for="correo_vendedor" class="active">Correo</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="direccion_vendedor" type="text" name="direccion_vendedor"
+                                        class="validate" required>
+                                    <label for="direccion_vendedor" class="active">Dirección</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="telefono_vendedor" type="tel" name="telefono_vendedor" class="validate"
+                                        maxlength="9" required>
+                                    <label for="telefono_vendedor" class="active">Teléfono</label>
+                                </div>
+                            </div>
+                            <h6>Datos del vendedor</h6>
+                            <div class="contenedor_datos_repartidor">
+                                <div class="">
+                                    <div class="input-field col s12 l12">
+                                        <input id="usuario_vendedor" type="text" name="usuario_vendedor"
+                                            pattern="[/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\,\;\.\-]{]{1,65}" class="validate"
+                                            required>
+                                        <label for="usuario_vendedor" class="active">Usuario</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="contrasenia_vendedor1" type="password" class="validate"
+                                            name="contrasenia_vendedor1">
+                                        <label for="contrasenia_vendedor1" class="active">Contraseña</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="contrasenia_vendedor2" type="password" class="validate"
+                                            name="contrasenia_vendedor2">
+                                        <label for="contrasenia_vendedor2" class="active">Confirmar contraseña</label>
+                                    </div>
+                                </div>
+                                <div class="center-align">
+                                    <button class="btn blue" type="submit"><i class="material-icons">save</i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!--Footer-->
+    <footer class="page-footer">
+        <div class="row">
+
+            <!--enlace de redes sociales-->
+            <div class="col l12 m6 s3 redes_footer center-align">
+                <ul>
+                    <li>
+                        <a href=""><i class="material-icons medium">facebook</i></a>
+                    </li>
+                    <li>
+                        <a href=""><img src="../../../recursos/img/publico/clientes/footer/instagram_old_50px.png"></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="material-icons medium">whatsapp</i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="material-icons medium">email</i></a>
+                    </li>
+                </ul>
+            </div>
+
+            <!--Contenedor para el mapa y el copyright-->
+            <div class="footer_otros">
+                <div class="col l6 m9 s12 logo_copy_footer">
+                    <img src="../../../recursos/img/publico/clientes/modals/logo.png" alt="">
+                    <h6>© 2022 DeliverySystem</h6>
+                </div>
+                <div class="col l6 m9 s12 mapa-footer">
+                    <ul>
+                        <li>
+                            <h5>Información pública</h5>
+                        </li>
+                        <li><a href="../publico_cliente/quienes somos.html ">Quiénes somos</a></li>
+                        <li><a href="../publico_cliente/contactenos.html">Contáctanos</a></li>
+                        <li><a href="../publico_cliente/mision_vision.html">Misión y visión</a></li>
+                        <li><a href="../publico_cliente/terminos.html">Términos y condiciones</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--ventana de guardado -->
+    <div id="datos-cuenta" class="modal">
+        <div class="modal-content center-align">
+            <h4>Guardado Exitoso</h4>
+            <div class="row">
+                <div class="input-field col l12 m6 s12">
+                    <img src="../../resources/public/repartidor/icons8_Check_Circle_350px.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!--Importar archivos JavaScrip-->
+    <script type="text/javascript" src="../../../js/materialize.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../../controladores/componentes.js"></script>
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <script src="../../../controladores/publico/publico_vendedor/perfil.js"></script>
+    <script src="../../../controladores/privado/admin/modo_oscuro.js"></script>
+</body>
+
+</html>
