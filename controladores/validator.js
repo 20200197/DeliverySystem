@@ -25,8 +25,8 @@ function validarcantidad(event, id) {
     //Se revisa si las tecla escrita se puede escribir
     if (valores.indexOf(teclado) == -1) {
         return false;
-    } 
-    
+    }
+
 }
 
 /**
@@ -277,13 +277,37 @@ function verificarTel(event, id) {
 
 function verificarEmail(id) {
     //Se obtiene el componente a evaluar
-     campo = document.getElementById(id);
+    campo = document.getElementById(id);
     //Parametros
-     emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
-     //Se muestra un texto a modo de ejemplo, luego va a ser un icono
-     if (emailRegex.test(campo.value)) {
-         return true;
-     } else {
-         return false;
-     }
+    emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+    if (emailRegex.test(campo.value)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function verificarPlaca(event, id) {
+    //Se obtiene el codigo ASCII de la tecla
+    key = event.keyCode;
+    //Se almacena
+    teclado = String.fromCharCode(key);
+    //Se obtiene toda la cadena de texto
+    ingresar = document.getElementById(id);
+    // Valores permitidos
+    valores = "01234567890mM";
+    patronPlaca = /^(M|m)+[0-9]{6}$/;
+    
+    
+    //Se revisa si las tecla escrita se puede escribir
+    if (ingresar.value.length == 0  ) {
+        return false;
+    }  else if (ingresar.value.length == 7) {
+        return false;
+    } else if (valores.indexOf(teclado) == -1) {
+        return false;
+    }
+
+
 }

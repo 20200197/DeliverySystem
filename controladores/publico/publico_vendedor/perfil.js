@@ -1,6 +1,6 @@
 const API_PERFIL = SERVER + 'publico/perfil.php?action=';
 
-/*Functiones que sirven para reemplazar las imagenes por defecto del formulario por las seleccionadas*/
+/*Funciones que sirven para reemplazar las imagenes por defecto del formulario por las seleccionadas*/
 document.getElementById('profile-file').onchange=function(e){
     document.getElementById('profile-pic').remove();
     let reader = new FileReader();

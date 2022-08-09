@@ -42,7 +42,7 @@ class Categoria extends Validator
 
     public function setImagen_categoria($file)
     {
-        if ($this->validateImageFile($file, 500, 500)) {
+        if ($this->validateImageFile($file, 2000, 2000)) {
             $this->imagen_categoria = $this->getFileName();
             return true;
         } else {
@@ -159,4 +159,37 @@ class Categoria extends Validator
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
+<<<<<<< Updated upstream
+=======
+
+    public function updateEstado()
+    {
+        $sql = 'UPDATE categoria
+        SET status_categoria = ?
+        WHERE id_categoria_producto = ?';
+        $params = array($this->estado_categoria, $this->id);
+        return Database::executeRow($sql, $params);
+    }
+
+     //Función que valida para que no se repitan datos
+    //$column es la columna sql que se validara, dui, telefono, etc
+    //$data el dato obtenido por get en Api
+    public function read($column, $data)
+    {
+        $sql = "SELECT * FROM categoria
+                WHERE $column = ?";
+        $params = array($data);
+
+        return Database::getRow($sql, $params);
+    }
+
+    //Función que valida que no se repita el dui en update, donde se evaluan los otros duis menos el seleccionado por si le da aceptar y no cambia nada
+    public function readD($column, $data)
+    {
+        $sql = "SELECT * from categoria where $column=?  except select * from categoria where id_categoria_producto = ?";
+        $params = array($data, $this->id);
+
+        return Database::getRow($sql, $params);
+    }
+>>>>>>> Stashed changes
 }

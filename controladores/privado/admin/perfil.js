@@ -18,6 +18,7 @@ function fillTable(data) {
     //Se obtiene el contenido y se revisa fila por fila en el map
     data.map(function (row) {
         contenido += `
+<<<<<<< Updated upstream
             <tr>
                 <td data-target="Apellido cliente: ">${row.nombre_completo}</td>
                 <td data-target="Dui cliente: ">${row.dui_cliente}</td>
@@ -36,6 +37,53 @@ function fillTable(data) {
                         <span class="lever"></span>
                         Activo
                         </label>
+=======
+                    <div class="col l7 m12 s12 datos_usuario_perfil_cliente center-align">
+                        <h6>Tus datos personales</h6>
+                        <div class="datos_perfil_cliente">
+                            <form method="post" id="datos-usuario">
+                                <div class="input-field col s6 m12 l12">
+                                    <input placeholder="Nombre" id="name" type="text" class="validate" value="${data.nombre_admin}" disabled/>
+                                    <label class='active' for="name">Nombre</label>
+                                </div>
+                                <div class="input-field col s6 m12 l12">
+                                    <input placeholder="Apellido" id="lastname" type="text" class="validate" value="${data.apellido_admin}"disabled />
+                                    <label class='active' for="lastname">Apellido</label>
+                                </div>
+                                <div class="input-field col s6 m12 l12">
+                                    <input placeholder="Número de DUI" id="dui" type="text" class="validate" value="${data.dui_admin}" disabled/>
+                                    <label class='active' for="dui">DUI</label>
+                                </div>
+                                <div class="input-field col s6 m12 l12">
+                                    <input placeholder="Correo" id="email" type="email" class="validate" value="${data.correo_admin}" disabled/>
+                                    <label class='active' for="email">Correo</label>
+                                </div>
+                                <div class="input-field col s6 m12 l12">
+                                    <input placeholder="Teléfono" id="telefono" type="tel" class="validate" value="${data.telefono_admin}" disabled/>
+                                    <label class='active' for="telefono">Teléfono</label>
+                                </div>
+                                    <a class="btn waves-effect waves-light btn modal-trigger boton_cambiar_foto_cliente" href="#modal_info"  onclick="cargarUsuario(${data.id_admin})"><i
+                                    class="material-icons">edit</i></a>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col l5 m12 s12 center-align">
+                        <h6>Datos de tu cuenta</h6>
+                        <div class="contenedor_datos_usuario_perfil_cliente">
+                            <div class="input-field col s6 m12 l12">
+                                <input disabled id="usuario" type="text" name="usuario" class="validate" value="${data.usuario_admin}" disabled/>
+                                <label class='active' for="usuario">Usuario</label>
+                            </div>
+                            <div class="input-field col s6 m12 l12">
+                                <input disabled id="pass" type="password" name="pass" class="validate" value="123456"/>
+                                <label class='active' for="pass">Contraseña</label>
+                            </div>
+                            <div class="contenedor_boton_modificar_datos_cliente">
+                                <a href="#datos-cuenta" class="btn modal-trigger boton_cambiar_foto_cliente" onclick="cargarCuenta(${data.id_admin})"><i
+                                        class="material-icons">edit</i></a>
+                            </div>
+                        </div>
+>>>>>>> Stashed changes
                     </div>
                 </td>
             </tr>

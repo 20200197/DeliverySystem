@@ -40,6 +40,8 @@ function fillTable(dataset) {
     document.getElementById('tbody-rows').innerHTML = content;
     // Se inicializa el componente Material Box para que funcione el efecto Lightbox.
     M.Materialbox.init(document.querySelectorAll('.materialboxed'));
+    // Se inicializa el componente Material Box para que funcione el efecto Lightbox.
+    M.Materialbox.init(document.querySelectorAll(".materialboxed"));
     // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
 }
@@ -66,6 +68,146 @@ function openReport() {
     window.open(url);
 }
 
+<<<<<<< Updated upstream
+=======
+function openInfo(id) {
+    console.log(id);
+    M.Modal.getInstance(document.getElementById('modal_info')).open();
+    fillData(id);
+}
+
+function fillData(id) {
+    let parameter = new FormData();
+    parameter.append('id', id);
+    let content = '';
+
+    fetch(API_DISTRIBUIDOR + 'readOne', {
+        method: 'post',
+        body: parameter
+    }).then(function (request) {
+        if (request.ok) {
+            request.json().then(function (response) {
+                if (response.status) {
+                    if (response.dataset.status_repartidor) {
+                        estado_re = 'checked';
+                    } else {
+                        estado_re = '';
+                    }
+                    content += `<tr>
+                    <th>Nombre:</th>
+                    <td>${response.dataset.nombre_repartidor}</td>
+                </tr>
+                <tr>
+                    <th>Apellido:</th>
+                    <td>${response.dataset.apellido_repartidor}</td>
+                </tr>
+                <tr>
+                    <th>Dui:</th>
+                    <td>${response.dataset.dui_repartidor}</td>
+                </tr>
+                <tr>
+                    <th>Correo:</th>
+                    <td>${response.dataset.correo_repartidor}</td>
+                </tr>
+                <tr>
+                    <th>Usuario:</th>
+                    <td>${response.dataset.usuario_repartidor}</td>
+                </tr>
+                <tr>
+                    <th>Solvencia pnc:</th>
+                    <td><img src="${SERVER}dasboard/imagenes/distribuidor/${response.dataset.solvencia_pnc}"
+                            class="materialboxed imagen_standar"></td>
+                </tr>
+                <tr>
+                    <th>Antecedente pnc:</th>
+                    <td><img src="${SERVER}dasboard/imagenes/distribuidor/${response.dataset.antecedente_pnc}"
+                            class="materialboxed imagen_standar"></td>
+                </tr>
+                <tr>
+                    <th>Dirección domicilio:</th>
+                    <td>${response.dataset.direccion_domicilio}</td>
+                </tr>
+                <tr>
+                    <th>Placa vehiculo:</th>
+                    <td>${response.dataset.placa_vehiculo}</td>
+                </tr>
+                <tr>
+                    <th>Foto placa:</th>
+                    <td><img src="${SERVER}dasboard/imagenes/distribuidor/${response.dataset.foto_placa_vehiculo}"
+                            class="materialboxed imagen_standar"></td>
+                </tr>
+                <tr>
+                    <th>Foto repartidor:</th>
+                    <td><img src="${SERVER}dasboard/imagenes/distribuidor/${response.dataset.foto_repartidor}"
+                            class="materialboxed imagen_standar"></td>
+                </tr>
+                <tr>
+                    <th>Foto vehiculo:</th>
+                    <td><img src="${SERVER}dasboard/imagenes/distribuidor/${response.dataset.foto_vehiculo}"
+                            class="materialboxed imagen_standar"></td>
+                </tr>
+                <tr>
+                    <th>Fecha registro:</th>
+                    <td>${response.dataset.fecha_registro}</td>
+                </tr>
+                <tr>
+                    <th>Estado:</th>
+                    <td>
+                        <div class="switch">
+                            <label>
+                            <input type="checkbox" id="switch_estado${response.dataset.id_repartidor}" onclick="updateEstado(${response.dataset.id_repartidor})" ${estado_re}>
+                            <span class="lever"></span>
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+                `;
+                }
+                document.getElementById('tdbody-info').innerHTML = content;
+                // Se inicializa el componente Material Box para que funcione el efecto Lightbox.
+                M.Materialbox.init(document.querySelectorAll(".materialboxed"));
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+function updateEstado(id) {
+    // Se define un objeto con los datos del registro seleccionado.
+    const data = new FormData();
+    data.append('idP', id);
+
+    //Obtenemos valor de switch
+    if (document.getElementById('switch_estado' + id).checked) {
+        data.append('estadoP', true);
+    } else {
+        data.append('estadoP', false)
+    }
+    fetch(API_DISTRIBUIDOR + 'updateStatus', {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
+                    readRows(API_DISTRIBUIDOR);
+                    sweetAlert(1, response.message, null);
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+>>>>>>> Stashed changes
 // Función para preparar el formulario al momento de modificar un registro.
 function openUpdate(id) {
     // Se abre la caja de diálogo (modal) que contiene el formulario.

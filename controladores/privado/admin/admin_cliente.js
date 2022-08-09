@@ -21,6 +21,9 @@ function fillTable(data) {
     let contenido = [];
     //Se obtiene el contenido y se revisa fila por fila en el map
     data.map(function (row) {
+        //Establecemos texto para el estado
+        var estado_cliente;
+        (row.status_cliente) ? estado_cliente = 'Activo' : estado_cliente = 'Inactivo';
         contenido += `
             <tr>
                 <td data-target="Apellido cliente: ">${row.nombre_completo}</td>
@@ -29,14 +32,13 @@ function fillTable(data) {
                 <td data-target="Usuario cliente: ">${row.usuario_cliente}</td>
                 <td data-target="Fecha registro: ">${row.fecha_registro_cliente}</td>
                 <td data-target="Telefono cliente: ">${row.telefono_cliente}</td>
-                <td data-target="Imagen cliente: ">
+                <td data-target="Estado: ">${estado_cliente}</td>
+                <td>
                     <div class="switch">
                         <label>
-                        Inactivo
                         <input type="checkbox" id="estado${row.id_cliente}" onclick="estado(${row.id_cliente})"
                         ${row.status_cliente == true ? 'checked' : ''}>
                         <span class="lever"></span>
-                        Activo
                         </label>
                     </div>
                 </td>
@@ -52,9 +54,7 @@ function estado(id) {
     //Se crea la variable de tipo formulario
     datos = new FormData();
     //Se verifica el estado al que se cambiará mediante el switch
-    document.getElementById("estado" + id).checked
-        ? datos.append("estado", true)
-        : datos.append("estado", false);
+    document.getElementById("estado" + id).checked ? datos.append("estado", true) : datos.append("estado", false);
     //Se guarda el identificador
     datos.append("identificador", id);
     //Se procese a realizar la promesa

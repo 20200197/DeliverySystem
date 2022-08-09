@@ -21,24 +21,17 @@
     <div class="row contenedor-general_perfil">
         <!--Barra lateral, opciones para los usuarios-->
         <ul id="slide-out" class="sidenav sidenav-fixed">
-            <li>
-                <a href="dashboard.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
-                        class="material-icons medium">home</i></a>
-            </li>
-            <li>
-                <a href="perfil.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
-                        class="material-icons medium">account_circle</i></a>
-            </li>
-            <li>
-                <a href="admin_producto.html" class="tooltipped" data-position="right" data-tooltip="Productos"><i
-                        class="material-icons medium">import_contacts</i></a>
-            </li>
-            <li>
-                <a href="admin_categoria.html" class="tooltipped" data-position="right" data-tooltip="Categoria"><i
-                        class="material-icons medium">format_list_bulleted</i></a>
-            </li>
-            <li><a href="admin_rmarca.html" class="tooltipped" data-position="right" data-tooltip="Marcas"><i
+            <li><a href="dashboard.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
+                        class="material-icons medium ">home</i></a></li>
+            <li><a href="perfil.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
+                        class="material-icons medium">account_circle</i></a></li>
+            <li><a href="admin_producto.html" class="tooltipped" data-position="right" data-tooltip="Productos"><i
+                        class="material-icons medium">import_contacts</i></a></li>
+            <li><a href="admin_categoria.html" class="tooltipped" data-position="right" data-tooltip="Categoria"><i
+                        class="material-icons medium">format_list_bulleted</i></a></li>
+            <li><a href="admin_marca.html" class="tooltipped" data-position="right" data-tooltip="Marcas"><i
                         class="material-icons medium">style</i></a></li>
+<<<<<<< Updated upstream
             <li>
                 <a href="admin_vendedor.html" class="tooltipped" data-position="right" data-tooltip="Vendedores"><i
                         class="material-icons medium">people</i></a>
@@ -67,6 +60,20 @@
                 <button onclick="logOut('Admin')" class="tooltipped logout" data-position="right" data-tooltip="Cerrar sesión"><i
                         class="material-icons medium">arrow_back</i></button>
             </li>
+=======
+            <li><a href="admin_vendedor.html" class="tooltipped" data-position="right" data-tooltip="Vendedores"><i
+                        class="material-icons medium">people</i></a></li>
+            <li><a href="admin_distribuidor.html" class="tooltipped" data-position="right"
+                    data-tooltip="Repartidores"><i class="material-icons medium">motorcycle</i></a></li>
+            <li><a href="admin_cliente.html" class="tooltipped" data-position="right" data-tooltip="Clientes"><i
+                        class="material-icons medium">wc</i></a></li>
+            <li><a href="admin_entrega.html" class="tooltipped" data-position="right" data-tooltip="Reparto"><i
+                        class="material-icons medium">description</i></a></li>
+            <li><a href="admin_admin.html" class="tooltipped" data-position="right" data-tooltip="Administradores"><i
+                        class="material-icons medium">folder_shared</i></a></li>
+            <li><button onclick="logOut('Admin')" class="tooltipped logout" data-position="right"
+                    data-tooltip="Cerrar sesión"><i class="material-icons medium">arrow_back</i></button></li>
+>>>>>>> Stashed changes
         </ul>
         <!--Contenedor de datos-->
         <div class="contenedor-datos_perfil">
@@ -75,8 +82,26 @@
                 <a href="#" data-target="slide-out"
                     class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
                         class="material-icons">menu</i></a>
+<<<<<<< Updated upstream
                 <img src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png" alt="" />
                 <a class="waves-effect waves-light btn boton_iniciar_sesion">Log In</a>
+=======
+                <img src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
+                <!--Switch de cambiar color-->
+                <div class="col s12 m12 l12 right-align">
+                    <div class="switch switch_colorr  right-align">
+                        <label>
+                            🌕
+                            <input type="checkbox" id="switch_color" onclick="modoOscuro()">
+                            <span class="lever"></span>
+                            🌙
+                        </label>
+                    </div>
+                </div>
+                <div id="opciones_navbar">
+
+                </div>
+>>>>>>> Stashed changes
             </header>
             <!--Información de la página-->
             <main>
@@ -172,6 +197,7 @@
                             <label for="textarea1">Dirección</label>
                         </div>
                     </div>
+<<<<<<< Updated upstream
                 </form>
             </div>
         </div>
@@ -182,6 +208,15 @@
             <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat"><i
                     class="material-icons">check_circle</i> Cancelar</a>
         </div>
+=======
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class=" waves-effect waves-green btn-flat boton_a_gregar">Actualizar</button>
+                <a class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Cerrar</a>
+            </div>
+        </form>
+>>>>>>> Stashed changes
     </div>
     <!--Modificar dirección-->
     <div id="direccion_modificar" class="modal">
@@ -219,6 +254,7 @@
                 <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat"><i
                         class="material-icons">check_circle</i> Cancelar</a>
             </div>
+<<<<<<< Updated upstream
         </div>
     </div>
     <!--Datos de la cuenta -->
@@ -240,13 +276,28 @@
                     <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat"><i
                             class="material-icons">check_circle</i> Cancelar</a>
                 </div>
+=======
+            <div class="modal-footer">
+                <button type="submit" class=" waves-effect waves-green btn-flat boton_a_gregar">Actualizar</button>
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Cerrar</a>
+>>>>>>> Stashed changes
             </div>
         </div>
     </div>
 
     <!--Importar archivos JavaScrip-->
     <script type="text/javascript" src="../../../js/materialize.min.js"></script>
+<<<<<<< Updated upstream
     <script type="text/javascript" src="../../../controladores/publico/activation.js"></script>
+=======
+    <script src="../../../recursos/js/sweetalert2.all.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="../../../controladores/componentes.js"></script>
+    <script type="text/javascript" src="../../../controladores/validator.js"></script>
+    <script type="text/javascript" src="../../../controladores/privado/admin/perfil.js"></script>
+    <script src="../../../controladores/privado/admin/modo_oscuro.js"></script>
+    <script type="text/javascript" src="../../../controladores/privado/admin/opciones_sesion.js"></script>
+>>>>>>> Stashed changes
 </body>
 
 </html>

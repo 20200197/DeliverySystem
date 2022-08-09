@@ -26,6 +26,14 @@ function modo_oscuro() {
         element.classList.toggle("mapa_oscuro");
         element.classList.toggle("login_oscuro");
         element.classList.toggle("inputs_password");
+        element.classList.toggle("labels");
+        element.classList.toggle("inputs_email");
+        element.classList.toggle("inputs_tel");
+        element.classList.toggle("modal_oscuro");
+        element.classList.toggle("modal_tabla");
+        element.classList.toggle("header_oscuro");
+        element.classList.toggle("opciones_navbar_oscuro");
+        
         //Guardamnos item en la sesion
         data = sessionStorage.setItem('oc', '1');
     } else {
@@ -51,6 +59,13 @@ function modoOscuro() {
         element.classList.toggle("mapa_oscuro");
         element.classList.toggle("login_oscuro");
         element.classList.toggle("inputs_password");
+        element.classList.toggle("labels");
+        element.classList.toggle("inputs_email");
+        element.classList.toggle("inputs_tel");
+        element.classList.toggle("modal_oscuro");
+        element.classList.toggle("modal_tabla");
+        element.classList.toggle("header_oscuro");
+        element.classList.toggle("opciones_navbar_oscuro");
         //Guardamos item en la sesion
         data = sessionStorage.setItem('oc', '1');
      }else{

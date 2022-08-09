@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
     M.Modal.init(document.querySelectorAll('.modal'), options);
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
+     // Se inicializa el componente Dropdown para que funcione la lista desplegable en los menús.
+     M.Dropdown.init(document.querySelectorAll(".dropdown-trigger"));
 
 });
 

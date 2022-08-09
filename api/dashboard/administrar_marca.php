@@ -12,7 +12,12 @@ if (isset($_GET['action'])) {
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
+<<<<<<< Updated upstream
     if (isset($_SESSION['id_marca'])) {
+=======
+    if (isset($_SESSION['id_admin'])) {
+        $result['session'] = 1;
+>>>>>>> Stashed changes
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
@@ -27,10 +32,14 @@ if (isset($_GET['action'])) {
                 //Buscar empleado
             case 'search':
                 $_POST = $administrar_marca->validateForm($_POST);
+<<<<<<< Updated upstream
                 if ($_POST['search'] == '') {
                     $result['exception'] = 'Ingrese un valor para buscar';
                     // $entrega->readAll();
                 } elseif ($result['dataset'] = $administrar_marca->searchRows($_POST['search'])) {
+=======
+                if ($result['dataset'] = $administrar_marca->searchRows($_POST['data'])) {
+>>>>>>> Stashed changes
                     $result['status'] = 1;
                     $result['message'] = 'Valor encontrado';
                 } elseif (Database::getException()) {
@@ -42,8 +51,18 @@ if (isset($_GET['action'])) {
                 //Crear fila
             case 'create':
                 $_POST = $administrar_marca->validateForm($_POST);
+<<<<<<< Updated upstream
                 if (!$administrar_marca->setNombreMarca($_POST['nombre_marca'])) {
                     $result['exception'] = 'Marca incorrecta';
+=======
+                if ($_POST['nombre_marca'] == null) {
+                    $result['exception'] = 'Ingresar una marca ';
+                } elseif (!$administrar_marca->setNombreMarca($_POST['nombre_marca'])) {
+                    $result['exception'] = 'Marca incorrecta';
+                    //Evaluamos que no se repita la marca
+                } elseif ($administrar_marca->read('nombre_marca', $administrar_marca->getNombreMarca())) {
+                    $result['exception'] = 'Esta marca ya esta registrada';
+>>>>>>> Stashed changes
                 } elseif ($administrar_marca->createRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Marca registrada correctamente';
@@ -52,9 +71,15 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
+<<<<<<< Updated upstream
                 if (!$empleado->setId($_POST['id'])) {
                     $result['exception'] = 'Empleado incorrecto';
                 } elseif ($result['dataset'] = $empleado->readOne()) {
+=======
+                if (!$administrar_marca->setId($_POST['id'])) {
+                    $result['exception'] = 'marca incorrecto';
+                } elseif ($result['dataset'] = $administrar_marca->readOne()) {
+>>>>>>> Stashed changes
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -62,6 +87,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Empleado inexistente';
                 }
                 break;
+<<<<<<< Updated upstream
                 //Actualizar fila
             case 'update':
                 $_POST = $empleado->validateForm($_POST);
@@ -169,6 +195,36 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Producto inexistente';
                 } elseif ($administrar_marca->deleteRow()) {
                     $result['status'] = 1;
+=======
+                //Actualizar estados
+            case 'updateStatus':
+                if (!$administrar_marca->setId($_POST['idP'])) {
+                    $result['exception'] = 'Ha ocurrido un error al ejecutar la acción';
+                } elseif (!$administrar_marca->getStatus()) {
+                    $result['exception'] = 'Ha ocurrido un error al obtener el estado';
+                } elseif ($administrar_marca->changeStatus()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Estado modificado con éxito';
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Ha ocurrido un error inseperado';
+                }
+                break;
+                //Actualizar fila
+            case 'update':
+                $_POST = $administrar_marca->validateForm($_POST);
+                if (!$administrar_marca->setId($_POST['editar_marca'])) {
+                    $result['exception'] = 'Producto incorrecto';
+                } elseif (!$administrar_marca->setNombreMarca($_POST['nombre_marca'])) {
+                    $result['exception'] = 'nombre incorrecto';
+                    //Comprobamos que no haya la misma marca
+                } elseif ($administrar_marca->readD('nombre_marca', $administrar_marca->getNombreMarca())) {
+                    $result['exception'] = 'Esta marca ya esta registrada';
+                } elseif ($administrar_marca->updateRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Producto modificado correctamente';
+>>>>>>> Stashed changes
                 } else {
                     $result['exception'] = Database::getException();
                 }
