@@ -1,0 +1,364 @@
+/* Clases generales del diseño*/
+
+
+/*Clases para quitar border y padding*/
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@200&display=swap');
+
+header,
+main,
+footer {
+    padding-left: 6%;
+}
+
+@media only screen and (max-width: 992px) {
+
+    header,
+    main,
+    footer {
+        padding-left: 0 !important;
+    }
+
+    .sidenav {
+        width: 65% !important;
+        align-items: flex-start !important;
+    }
+
+    .sidenav li a i {
+        font-size: 5rem !important;
+        padding-right: 50px !important;
+    }
+
+    .sidenav li button i {
+        font-size: 5rem !important;
+        margin: 0 5px 0 0;
+    }
+
+    .sidenav li a span {
+        font-size: 16pt !important;
+    }
+
+    .sidenav li button span {
+        font-size: 16pt !important;
+        font-weight: 500 !important;
+    }
+
+    .sidenav li {
+        width: 100% !important;
+        padding: 10px 0px 10px 0px !important;
+    }
+
+    .sidenav li a {
+        padding-left: 10px !important;
+    }
+
+    .sidenav li button {
+        padding-left: 10px !important;
+        width: 100%;
+    }
+
+    .opciones-sidenav {
+        height: 100% !important;
+    }
+
+    .cerrar-sidenav {
+        height: 0% !important;
+    }
+}
+
+.sidenav {
+    width: 6%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: space-between;
+}
+
+.sidenav li {
+    padding: 2px 0px 2px 0px;
+}
+
+.sidenav li a i {
+    font-size: 3.5rem;
+}
+
+.sidenav li button i {
+    font-size: 3rem;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/*------------------Navbar---------------*/
+
+nav {
+    box-shadow: none !important;
+}
+
+nav div ul li a i {
+    font-size: 48px !important;
+}
+
+.logout {
+    border: transparent;
+}
+
+.logout:hover {
+    cursor: pointer;
+}
+
+/*-----------------Footer--------------*/
+
+.opciones-sidenav {
+    height: 90%;
+}
+
+.cerrar-sidenav {
+    height: 10%;
+}
+
+/*-----------------Responsive de tabla -------------------*/
+@media (max-width:612px) {
+    table {
+        width: 100%;
+    }
+
+    table tr {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        border-radius: 11px;
+        padding: 1em;
+        margin-bottom: 1em;
+    }
+
+    table thead {
+        display: none;
+    }
+
+    /*Colocamos columnas*/
+    table td[data-target] {
+        display: flex;
+    }
+
+    table td[data-target]::before {
+        content: attr(data-target);
+        width: 150px;
+    }
+
+    /*Tamaño*/
+    td,
+    th {
+        width: 100%;
+        word-wrap: break-word;
+    }
+
+}
+
+
+/*----------------------------------------------*/
+/*-------------------Modo oscuro---------------------*/
+/*----------------------------------------------*/
+.sidenav_oscuro .sidenav {
+    background-color: #1A3F7C !important;
+    color: white !important;
+}
+
+.modo_oscuro {
+    background-color: #2D4273;
+    color: white;
+}
+
+.footer_oscuro .page-footer {
+    background-color: #0A2859 !important;
+    color: white;
+}
+
+.titulo_pegaa .titulo_pega {
+    background-color: #2D4273;
+    color: white;
+}
+
+.inputs input[type="text"] {
+    color: white !important;
+}
+
+.inputs_email input[type="email"] {
+    color: white !important;
+}
+
+.inputs_tel input[type="tel"] {
+    color: white !important;
+}
+
+.encabezado_oscuro .encabezado {
+    background-color: #053A80;
+    color: white;
+}
+
+.labels label {
+    color: white !important;
+}
+
+.modal_oscuro .modal {
+    background-color: #053A80 !important;
+}
+
+.modal_oscuro .modal-footer {
+    background-color: #053A80 !important;
+}
+
+/*Modo oscuro de login ya que tiene otros colores*/
+.login_oscuro .login_modo_oscuro {
+    background-color: #053A80;
+}
+
+.inputs_password input[type="password"] {
+    color: white !important;
+}
+
+
+/*
+  Fuentes de tablas y también modo oscuro
+  */
+
+.th_oscuro th {
+    background-color: #0A2859;
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-weight: bold;
+}
+
+.th_oscuro tr {
+    background-color: #053A80;
+}
+
+.i_oscuro i {
+    color: white;
+}
+
+.boton_oscuro button {
+    background-color: #053A80;
+    z-index: 0;
+    color: white !important;
+}
+
+.boton_oscuro a {
+    background-color: #053A80;
+    color: white !important;
+}
+
+th {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-weight: bold;
+}
+
+.tabla_oscuro th {
+    background-color: #fafafa;
+}
+
+/*Modo oscuro para las tablas de los modal*/
+
+.modal_tabla .tabla_oscuro th {
+    background-color: #0c458f !important;
+}
+
+.header_oscuro .nav-wrapper {
+    background-color: #1A3F7C !important;
+    color: white !important;
+}
+
+.opciones_navbar_oscuro #opciones_navbar {
+    color: white !important;
+}
+
+/*******************
+Fuentes generales 
+**************************/
+
+h5 {
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+
+
+/******************
+contorno modal
+**************/
+.modal{
+    border-radius: 25px !important;
+}
+
+th{
+    background-color: #8dc5ff;
+  }
+
+  /*----------------------------------------------*/
+/*-------------Carrito - clientes---------------*/
+/*----------------------------------------------*/
+
+.producto_carrito {
+    border: 1px solid black;
+    margin-top: 5px;
+    border-radius: 15px;
+    height: 200px;
+    width: 100%;
+  }
+  
+  .main_carrito .center-align {
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+  
+  .producto_carrito .row .col img {
+    height: 150px;
+    border-radius: 15px;
+  }
+  
+  .contador_cantidad_carrito {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .contador_cantidad_carrito input {
+    width: 30% !important;
+    border: 1px solid black !important;
+    border-radius: 15px;
+    background-color: #ececec !important;
+    height: 35px !important;
+    margin-right: 4px !important;
+    margin-left: 4px !important;
+    text-align: center;
+  }
+  
+  .contador_cantidad_carrito input:focus {
+    border: 1px solid black !important;
+    box-shadow: none !important;
+  }
+  
+  .titulo_producto_carrito {
+    font-size: 14pt;
+  }
+  
+  .descripcion_producto_carrito {
+    padding-right: 5% !important;
+    padding-left: 5% !important;
+    height: 100%;
+  }
+  
+  .descripcion_producto_carrito .row {
+    margin-bottom: -150px !important;
+  }
+  
+  .total_carrito {
+    height: 180px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-top: 3% !important;
+  }
