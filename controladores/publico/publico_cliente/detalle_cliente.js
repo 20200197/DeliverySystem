@@ -222,7 +222,10 @@ function cargarProducto(id) {
             //Se pasa a json
             request.json().then(function (response) {
                 //Se revisa el estado devuelto por la api
-                if (response.status) {
+                if (response.status == 3) { 
+                    //Se le muestra al usuario la advertencia
+                    sweetAlert(3, response.exception, null);
+                } else if (response.status) {
                     //Se empiezan a cargar los datos en el modal
                     document.getElementById("nombreProducto").innerHTML = response.dataset.nombre_producto;
                     document.getElementById("fotoProducto").src =

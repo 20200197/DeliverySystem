@@ -104,7 +104,7 @@ class clienteDetalle extends Validator
     }
 
     //Función para validar que no se repita más de una valoración por factura
-    public function validarNoRepeticiones()
+    public function validarNoRepeticionesRepartidor()
     {
         $sql = 'SELECT id_factura FROM public.comentario_repartidor WHERE id_factura = ?';
         $params = array($this->identificador);
@@ -116,6 +116,21 @@ class clienteDetalle extends Validator
             return true;
         }
     }
+
+    //Función para validad que no se pueda valorar el mismo producto en la misma factura
+    public function validarNoRepeticionesProducto()
+    {
+        $sql = 'SELECT id_detalle FROM comentario_producto WHERE id_detalle = ?';
+        $params = array($this->identificador);
+        $data = Database::getRow($sql, $params);
+        //Se revisa si se encontró el mismo id ya registrador en una valoración
+        if (isset($data['id_detalle'])) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 
     //Función para obtener los datos de los productos en los modales
     public function cargarDatosProductos()

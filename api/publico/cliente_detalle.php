@@ -31,7 +31,7 @@ if (isset($_GET['action'])) {
                 if (!$detalle->setIdentificador($_POST['identificador'])) {
                     $result['exception'] = 'No se logró identificar el pedido a mostrar';
                 } elseif ($result['dataset'] = $detalle->datosRepartidor()) {
-                    if($detalle->validarNoRepeticiones()) {
+                    if($detalle->validarNoRepeticionesRepartidor()) {
                         $result['status'] = 1;
                     } else {
                         $result['status'] = 3;
@@ -65,7 +65,13 @@ if (isset($_GET['action'])) {
                 if(!$detalle->setIdentificador($_POST['identificador'])) {
                     $result['exception'] = 'No se logró identificar el producto';
                 } elseif($result['dataset'] = $detalle->cargarDatosProductos()) {
-                    $result['status'] = 1;
+                    if ($detalle->validarNoRepeticionesProducto()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['status'] = 3;
+                        $result['exception'] = 'Ya has valorado el producto en esta entrega';
+                        $result['dataset'] = null;
+                    }
                 } elseif(Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
@@ -82,7 +88,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'El comentario colocado no es valido';
                 } elseif ($detalle->guardarProducto()) {
                     $result['status'] = 1;
-                    $result['message'] = 'El repartidor ha sido valorado correctamente';
+                    $result['message'] = 'El producto ha sido valorado correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }
