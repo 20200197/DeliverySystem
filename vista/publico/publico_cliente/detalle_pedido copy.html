@@ -4,291 +4,288 @@
 <html>
 
 <head>
-    <meta charset="uft=8">
+    <meta charset="UTF-8">
     <!--Importar iconos-->
-    <link href="../../../recursos/css/icons.css" rel="stylesheet">
+    <link href="../../../recursos/css/icons.css" rel="stylesheet" />
     <!--Importar archivos CSS-->
     <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
-    <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_publico.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilo publico.css" media="screen,projection" />
 
     <!--Optimización para mobiles-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body>
+    <!--Encabezado-->
+    <header>
+        <nav>
+            <div class="nav-wrapper white">
+                <div class="row valign-wrapper">
+                    <div class="col m1 s1">
+                        <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                                class="material-icons large blue-text">menu</i></a>
+                    </div>
+                    <div class="col m5 s5 left valign-wrapper">
 
+                        <img class="responsive-img" src="logo_delivery_system.png" alt="">
+                    </div>
+                    <div class="col m6 s6">
+                        <ul class="right">
+                            <li><span class="black-text">Nombre del usuario</span></li>
+                            <li><a href="perfil.html" class="tooltipped " data-position="right" data-tooltip="Perfil"><i
+                                        class="material-icons medium black-text">account_circle</i></a></li>
 
-    <!--Marco general-->
-    <div class="row contenedor-general">
-        <!--Barra lateral, opciones para los usuarios-->
-        <ul id="slide-out" class="sidenav sidenav-fixed">
-            <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
-                        class="material-icons medium">home</i></a></li>
-            <li><a href="perfil_cliente.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
-                        class="material-icons medium">account_circle</i></a></li>
-            <li><a href="pedidos_cliente.html" class="tooltipped" data-position="right" data-tooltip="Compras"><i
-                        class="material-icons medium">shopping_basket</i></a></li>
-            <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Categoria"><i
-                        class="material-icons medium">format_list_bulleted</i></a></li>
-            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Cerrar sesión"><i
-                        class="material-icons medium">arrow_back</i></a></li>
-        </ul>
-        <!--Contenedor de datos-->
-        <div class="contenedor-datos">
-            <!--Encabezado-->
-            <header class="encabezado">
-                <a href="#" data-target="slide-out"
-                    class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
-                        class="material-icons">menu</i></a>
-                <img src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png" alt="">
-                <a class="waves-effect waves-light btn boton_iniciar_sesion">Log In</a>
-            </header>
-            <!--Información de la página-->
-            <main class="pedido_detalle">
-                <div class="row">
-                    <div class="col s12 m12 l12 center-align">
-                        <p class="flow-text">Detalle</p>
+                        </ul>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col s12 m8 l8 offset-l2 offset-m2">
-                        <table class="responsive-table">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Precio</th>
-                                    <th>Nombre</th>
-                                    <th>Cantidad</th>
-                                    <th>Estado</th>
-                                    <th>Fecha</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="center-align"><img
-                                            src="../../../recursos/img/publico/clientes/modals/Termo-Stanley.jpg"
-                                            class="responsive-img"></td>
-                                    <td>$5.00</td>
-                                    <td>
-                                        <div class="wrap2">Termo para agua marca STANLEY</div>
-                                    </td>
-                                    <td>3</td>
-                                    <td class="texto-bool-verdad">Disponible</td>
-                                    <td>2020-02-10</td>
-                                    <td class="row">
-                                        <div class="col s6 m6 l4">
-                                            <a class="waves-effect waves-light blue lighten-2 black-text btn-large col s12 m12 l12 modal-trigger"
-                                                href="#calificar-producto"><i class="material-icons">star</i></a>
-                                        </div>
-                                        <div class="col s6 m6 l8">
-                                            <a class="waves-effect waves-light blue lighten-2 black-text btn-large col s12 m12 l12 modal-trigger"
-                                                href="#pedir"><i
-                                                    class="material-icons black-text hide-on-large-only">check</i><i
-                                                    class="material-icons left black-text hide-on-med-and-down">check</i>
-                                                <div class="hide-on-med-and-down">volver a pedir</div>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="center-align"><img
-                                            src="../../../recursos/img/publico/clientes/modals/chaqueta.jpg" alt=""
-                                            class="responsive-img"></td>
-                                    <td>$5.00</td>
-                                    <td>
-                                        <div class="wrap2">Termo para agua marca STANLEY</div>
-                                    </td>
-                                    <td>1</td>
-                                    <td class="texto-bool-falso">No disponible</td>
-                                    <td>2020-02-10</td>
-                                    <td class="row">
-                                        <div class="col s6 m6 l4">
-                                            <a class="waves-effect waves-light blue lighten-2 black-text btn-large col s12 m12 l12 modal-trigger"
-                                                href="#calificar-producto"><i class="material-icons">star</i></a>
-                                        </div>
-                                        <div class="col s6 m6 l8">
-                                            <a class="waves-effect waves-light blue lighten-2 black-text btn-large col s12 m12 l12 modal-trigger"
-                                                href="#pedir"><i
-                                                    class="material-icons black-text hide-on-large-only">check</i><i
-                                                    class="material-icons left black-text hide-on-med-and-down">check</i>
-                                                <div class="hide-on-med-and-down">volver a pedir</div>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!--Boton para calificar repartidor-->
-                    <div class="fixed-action-btn abajo-alineado">
-                        <a class="btn-floating btn-large waves-effect waves-light white tooltipped modal-trigger"
-                            href="#calificar-repartidor" data-position="top" data-tooltip="Calificar repartidor"><i
-                                class="material-icons blue-text">star</i></a>
-                    </div>
-                    <!--Modals-->
-                    <!--Modal para calificar un producto-->
-                    <div class="modal" id="calificar-producto">
-                        <div class="modal-content">
-                            <div class="row contorno">
-                                <div class="row center-align">
-                                    <p class="flow-text">Calificar producto</p>
-                                </div>
-                                <div class="col s12 m4 l4 center-align">
-                                    <img src="../../../recursos/img/publico/clientes/modals/images (5).jpg"
-                                        class="responsive-img imagen_product" alt="">
-                                </div>
-                                <form action="">
-                                    <div class="col s12 m7 l7 offset-l1 offset-m1">
-                                        <p>Calificación</p>
-                                        <i class="material-icons yellow-text small">star</i>
-                                        <i class="material-icons yellow-text small">star</i>
-                                        <i class="material-icons yellow-text small">star</i>
-                                        <i class="material-icons yellow-text small">star</i>
-                                        <i class="material-icons yellow-text small">star_half</i>
-                                        <div class="row">
-                                            <form class="col s12">
-                                                <div class="row">
-                                                    <div class="input-field col s12">
-                                                        <textarea id="comentario-repartidor"
-                                                            class="materialize-textarea"></textarea>
-                                                        <label for="comentario-repartidor">Comentario</label>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="" class="modal-close waves-effect waves-green btn red darken-3">Descartar</a>
-                                <a href="" class="modal-close waves-effect waves-green btn blue lighten-2">Calificar</a>
-                            </div>
+            </div>
+        </nav>
+
+    </header>
+
+    <!--Barra lateral-->
+    <div class="row">
+        <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
+            <div class="opciones-sidenav">
+                <li class="collection-item"><a href="index.html" class="tooltipped" data-position="right"
+                        data-tooltip="Hogar"><i class="material-icons  white-text">home</i><span
+                            class="white-text hide-on-large-only">Inicio</span></a>
+                </li>
+                <li><a href="perfil.html" class="tooltipped Hide-on-large-only " data-position="right"
+                        data-tooltip="Perfil"><i class="material-icons  white-text">account_circle</i><span
+                            class="white-text hide-on-large-only">Perfil</span></a></li>
+                <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Ventas"><i
+                            class="material-icons  white-text">shopping_basket</i><span
+                            class="white-text hide-on-large-only">Compras</span></a></li>
+                <li><a href="mis_productos.html" class="tooltipped" data-position="right"
+                        data-tooltip="Mis productos"><i class="material-icons  white-text">format_list_bulleted</i><span
+                            class="white-text hide-on-large-only">Categoria</span></a></li>
+                <li class="hide-on-large-only"><button onclick="logOut('Vendedor')"
+                        class="tooltipped transparent logout valign-wrapper" data-position="right"
+                        data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
+                            class="white-text hide-on-large-only">Cerrar
+                            sesión</span></button></li>
+            </div>
+            <div class="cerrar-navbar hide-on-med-and-down">
+                <li>
+                    <button onclick="logOut('Vendedor')" class="tooltipped white-text transparent logout valign-wrapper"
+                        data-position="right" data-tooltip="Cerrar sesión"><i
+                            class="material-icons ">arrow_back</i><span class="white-text hide-on-large-only">Cerrar
+                            sesión</span></button>
+                </li>
+            </div>
+
+
+        </ul>
+    </div>
+
+    <!--Datos de la página-->
+    <main>
+
+        <div class="row contenedor_perfil_cliente">
+            <!--Datos del cliente Foto y direcciones registradas-->
+            <div class="col l5 m5 s12 foto_direccion_cliente">
+                <i class="material-icons foto_cliente">account_circle</i>
+                <form action="#">
+                    <div class="file-field input-field">
+                        <div class="btn boton_cambiar_foto_cliente">
+                            <span>Cambiar foto</span>
+                            <input type="file" />
+                        </div>
+                        <div class="file-path-wrapper reducir_place">
+                            <input class="file-path validate" type="text" />
                         </div>
                     </div>
-                    <!--modal para calificar repartidor-->
-                    <div class="modal" id="calificar-repartidor">
-                        <div class="modal-content">
-                            <div class="row contorno">
-                                <div class="row center-align">
-                                    <p class="flow-text">Calificar repartidor</p>
-                                </div>
-                                <div class="col s12 m4 l4">
-                                    <img src="../../../recursos/img/publico/clientes/modals/repartidor.jpg"
-                                        class="responsive-img" alt="">
-                                    <p>Gerardo Hernández</p>
-                                </div>
-                                <form action="">
-                                    <div class="col s12 m7 l7 offset-l1 offset-m1">
-                                        <p>Calificación</p>
-                                        <i class="material-icons yellow-text small">star</i>
-                                        <i class="material-icons yellow-text small">star</i>
-                                        <i class="material-icons yellow-text small">star</i>
-                                        <i class="material-icons yellow-text small">star</i>
-                                        <i class="material-icons yellow-text small">star_half</i>
-                                        <div class="row">
-                                            <form class="col s12">
-                                                <div class="row">
-                                                    <div class="input-field col s12">
-                                                        <textarea id="comentario-repartidor"
-                                                            class="materialize-textarea"></textarea>
-                                                        <label for="comentario-repartidor">Comentario</label>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                </form>
+            </div>
+            <!--Contenedor de las datos escritos del cliente-->
+            <div class="col l7 m7 s12 datos_usuario_perfil_cliente">
+                <h6>Tus datos personales</h6>
+                <div class="datos_perfil_cliente">
+                    <form action="">
+                        <div class="input-field col s6">
+                            <input placeholder="Nombre" id="name" type="text" class="validate" />
+                            <label for="first_name">Nombre</label>
                         </div>
-                        <div class="modal-footer">
-                            <a href="" class="modal-close waves-effect waves-green btn red darken-3">Descartar</a>
-                            <a href="" class="modal-close waves-effect waves-green btn blue lighten-2">Calificar</a>
+                        <div class="input-field col s6">
+                            <input placeholder="Apellido" id="lastname" type="text" class="validate" />
+                            <label for="first_name">Apellido</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input placeholder="Número de DUI" id="dui" type="text" class="validate" />
+                            <label for="first_name">DUI</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input placeholder="Correo" id="email" type="email" class="validate" />
+                            <label for="first_name">Correo</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input placeholder="Teléfono" id="telefono" type="tel" class="validate" />
+                            <label for="first_name">Teléfono</label>
+                        </div>
+                    </form>
+                </div>
+                <!--Datos del usuario del cliente-->
+                <h6>Datos de tu cuenta</h6>
+                <div class="contenedor_datos_usuario_perfil_cliente">
+                    <div class="dato_usuario_cliente">
+                        <h6>Nombre de usuario:</h6>
+                        <p>Tu_nombre_usuario123</p>
+                    </div>
+                    <div class="dato_usuario_cliente">
+                        <h6>Contraseña:</h6>
+                        <p>***************</p>
+                    </div>
+                    <div class="contenedor_boton_modificar_datos_cliente">
+                        <a href="#datos-cuenta" class="btn modal-trigger boton_cambiar_foto_cliente"><i
+                                class="material-icons">edit</i> Modificar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <!--Modals para modificar los datos del perfil-->
+    <!--Añadir nueva dirección-->
+    <div id="direccion_agregar" class="modal">
+        <div class="modal-content">
+            <div class="container center-align">
+                <h4>Escribe la dirección</h4>
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="textarea1" class="materialize-textarea"></textarea>
+                            <label for="textarea1">Dirección</label>
                         </div>
                     </div>
-                    <!--Modal para volver a pedir-->
-                    <div class="modal" id="pedir">
-                        <div class="modal-content">
-                            <form action="">
-                                <div class="row center-align">
-                                    <p class="flow-text">Volver a pedir</p>
-                                </div>
-                                <div class="row">
-                                    <div class="col s12 m4 l4">
-                                        <img src="../../../recursos/img/publico/clientes/modals/chaqueta (1).jpg"
-                                            class="responsive-img" alt="">
-                                    </div>
-                                    <div class="col s12 m7 l7 offset-l1 offset-m1">
-                                        <h5>Termo para agua marca STANLEY</h5>
-                                        <p>Mantiene el agua fria o caliente segun tu elijas</p>
-                                        <div class="row">
-                                            <div class="col l6 m6 s12">
-                                                <p>Cantidad</p>
-                                                <div class="contador_cantidad_carrito">
-                                                    <a href=""><i class="material-icons">remove_circle_outline</i></a>
-                                                    <input type="number">
-                                                    <a href=""><i class="material-icons">add_circle_outline</i></a>
-                                                </div>
-                                            </div>
-                                            <div class="col l6 m6 s12 ">
-                                                <p>Precio</p>
-                                                <p>$12.54</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <a href=""
-                                        class="modal-close waves-effect waves-green btn red darken-3">Descartar</a>
-                                    <button href="" class="modal-close waves-effect waves-green btn blue lighten-2">Pedir</button>
-                                </div>
-                            </form>
+                </form>
+            </div>
+        </div>
+        <div class="opciones_modal_perfil_cliente">
+            <a href="#!" class="btn green modal-close waves-effect waves-green btn-flat"><i
+                    class="material-icons">add_circle_outline</i> Agregar</a>
+
+            <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat"><i
+                    class="material-icons">check_circle</i> Cancelar</a>
+        </div>
+    </div>
+    <!--Modificar dirección-->
+    <div id="direccion_modificar" class="modal">
+        <div class="modal-content">
+            <div class="container center-align">
+                <h4>Escribe la nueva dirección</h4>
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="textarea1" class="materialize-textarea"></textarea>
+                            <label for="textarea1">Dirección</label>
                         </div>
                     </div>
-            </main>
+                </form>
+            </div>
+        </div>
+        <div class="opciones_modal_perfil_cliente">
+            <a href="#!" class="btn green modal-close waves-effect waves-green btn-flat"><i
+                    class="material-icons left">edit</i> Modificar</a>
+            <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat"><i
+                    class="material-icons">check_circle</i> Cancelar</a>
+        </div>
+    </div>
+    <!--Eliminar dirección-->
+    <div id="eliminar_direccion" class="modal">
+        <div class="modal-content">
+            <div class="container center-align">
+                <h4>Eliminar dirección</h4>
+                <p>Estás a punto de eliminar una dirección de tu perfil</p>
+                <p>¿Eliminar?</p>
+            </div>
+            <div class="opciones_modal_perfil_cliente">
+                <a href="#!" class="btn red modal-close waves-effect waves-green btn-flat"><i
+                        class="material-icons">delete</i> Eliminar</a>
+                <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat"><i
+                        class="material-icons">check_circle</i> Cancelar</a>
+            </div>
+        </div>
+    </div>
+    <!--Datos de la cuenta -->
+    <div id="datos-cuenta" class="modal">
+        <div class="modal-content center-align">
+            <h4>Modificar datos de la cuenta</h4>
+            <div class="row">
+                <form action="">
+                    <div class="input-field col l6 m6 s12">
+                        <input placeholder="Nombre de usuario" id="usuario" type="text" class="validate" />
+                        <label for="first_name">Nombre de usuario</label>
+                    </div>
+                    <div class="input-field col l6 m6 s12">
+                        <input placeholder="***********" id="clave" type="password" class="validate" />
+                        <label for="last_name">Contraseña</label>
+                    </div>
+                    <div class="opciones_modal_perfil_cliente">
+                        <button href="#!" class="btn green modal-close waves-effect waves-green btn-flat"><i
+                                class="material-icons">edit</i> Modificar</button>
+                        <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat"><i
+                                class="material-icons">check_circle</i> Cancelar</a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
+
     <!--Footer-->
-    <footer class="page-footer">
+    <footer class="page-footer blue accent-3">
         <div class="row">
-            <!--enlace de redes sociales-->
-            <div class="col l12 m6 s3 redes_footer center-align">
-                <ul>
-                    <li>
-                        <a href=""><i class="material-icons medium">facebook</i></a>
-                    </li>
-                    <li>
-                        <a href=""><img src="../../../recursos/img/publico/clientes/footer/instagram_old_50px.png"></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="material-icons medium">whatsapp</i></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="material-icons medium">email</i></a>
-                    </li>
-                </ul>
-            </div>
-            <!--Contenedor para el mapa y el copyright-->
-            <div class="footer_otros">
-                <div class="col l6 m9 s12 logo_copy_footer">
-                    <img src="../../../recursos/img/publico/clientes/modals/logo.png" alt="">
-                    <h6>© 2022 DeliverySystem</h6>
+            <div class="col l9 m6 s6">
+                <div class="col l6 m12 s12">
+                    <img src="logo.png" class="responsive-img" alt="">
+                    <h6 class="hide-on-med-and-down">Copyright 2022</h6>
                 </div>
-                <div class="col l6 m9 s12 mapa-footer">
+                <div class="col l6 m12 ">
+                    <!--Redes-->
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">facebook</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">facebook</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">facebook</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">facebook</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">whatsapp</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">whatsapp</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">email</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">email</i>
+                        </a>
+                    </div>
+                    <h6 class="hide-on-large-only">Copyright 2022</h6>
+                </div>
+            </div>
+            <div class="col l3 s6">
+                <div class="col l12 m12">
                     <ul>
-                        <li>
-                            <h5>Información pública</h5>
-                        </li>
-                        <li><a href="quienes somos.html">Quiénes somos</a></li>
-                        <li><a href="contactenos.html">Contáctanos</a></li>
-                        <li><a href="mision_vision.html">Misión y visión</a></li>
-                        <li><a href="terminos.html">Términos y condiciones</a></li>
+                        <h5 class="">Información pública</h5>
+                        <li><a href="" class="white-text">Quienes somos</a></li>
+                        <li><a href="" class="white-text">Contáctanos</a></li>
+                        <li><a href="" class="white-text">Misión y visión</a></li>
+                        <li><a href="" class="white-text">Términos y condiciones</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </footer>
+
     <!--Importar archivos JavaScrip-->
     <script type="text/javascript" src="../../../js/materialize.min.js"></script>
     <script type="text/javascript" src="../../../controladores/publico/activation.js"></script>
