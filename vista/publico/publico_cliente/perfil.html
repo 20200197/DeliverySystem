@@ -84,17 +84,18 @@
 
         <div class="row">
             <div class="col l5 m6 s12">
-                <div class="col l6 m6 s12 offset-l3 offset-m3 center">
+                <div class="col l6 m6 s8 push-l3 push-m3 push-s2 center">
                     <img src="../../../recursos/img/publico/default-profile.jpg" class="responsive-img" alt="">
-                    <div class="file-field input-field">
-                        <div class="btn">
+                    <div class="file-field input-field col l12 m12 s12">
+                        <div class="btn col l12 m12 s8 push-s2">
                             <span>Cambiar foto</span>
                             <input type="file">
-                        </div>
-                        <div class="file-path-wrapper">
                             <input class="file-path validate" type="text">
                         </div>
+
                     </div>
+
+
                 </div>
 
             </div>
@@ -120,95 +121,71 @@
                     <input placeholder="Teléfono" id="telefono" type="tel" class="validate" />
                     <label for="first_name">Teléfono</label>
                 </div>
-                <h6 class="col l12 m12 s12">Datos de tu cuenta</h6>
-                div.col
+
+                <div class="col l12 m12 s12">
+                    <h6>Gestionar datos de la cuenta</h6>
+                    <a class="waves-effect waves-light btn modal-trigger" href="#autenticidad">Gestionar</a>
+                </div>
             </div>
         </div>
     </main>
 
-
-
-    <!--Modals para modificar los datos del perfil-->
-    <!--Añadir nueva dirección-->
-    <div id="direccion_agregar" class="modal">
-        <div class="modal-content">
-            <div class="container center-align">
-                <h4>Escribe la dirección</h4>
-                <form class="col s12">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <textarea id="textarea1" class="materialize-textarea"></textarea>
-                            <label for="textarea1">Dirección</label>
-                        </div>
+    <!--Modal de confirmación de autenticidad-->
+    <div id="autenticidad" class="modal">
+        <div class="modal-content center-align">
+            <div class="contorno row">
+                <h4>Confirmación de identidad</h4>
+                <form id="confirmacionAutenticidad" method="post">
+                    <p>Ingresa la contraseña actual</p>
+                    <div class="input-field col l6 m6 s12 push-l3 push-m3">
+                        <input placeholder="************" id="usuario" type="password" class="validate" required />
+                        <label for=" first_name">Contraseña</label>
+                    </div>
+                    <div class="distribuidor">
+                        <button href="#!"
+                            class="btn  green waves-effect waves-green btn-flat left  white-text"
+                            type="submit"><i class="material-icons left white-text">vpn_key</i>
+                            Comprobar</button>
+                        <a href="#!"
+                            class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat  white-text"><i
+                                class="material-icons left white-text">cancel</i> Cancelar</a>
                     </div>
                 </form>
-            </div>
-        </div>
-        <div class="opciones_modal_perfil_cliente">
-            <a href="#!" class="btn green modal-close waves-effect waves-green btn-flat"><i
-                    class="material-icons">add_circle_outline</i> Agregar</a>
 
-            <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat"><i
-                    class="material-icons">check_circle</i> Cancelar</a>
+            </div>
+
         </div>
     </div>
-    <!--Modificar dirección-->
-    <div id="direccion_modificar" class="modal">
-        <div class="modal-content">
-            <div class="container center-align">
-                <h4>Escribe la nueva dirección</h4>
-                <form class="col s12">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <textarea id="textarea1" class="materialize-textarea"></textarea>
-                            <label for="textarea1">Dirección</label>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="opciones_modal_perfil_cliente">
-            <a href="#!" class="btn green modal-close waves-effect waves-green btn-flat"><i
-                    class="material-icons left">edit</i> Modificar</a>
-            <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat"><i
-                    class="material-icons">check_circle</i> Cancelar</a>
-        </div>
     </div>
-    <!--Eliminar dirección-->
-    <div id="eliminar_direccion" class="modal">
-        <div class="modal-content">
-            <div class="container center-align">
-                <h4>Eliminar dirección</h4>
-                <p>Estás a punto de eliminar una dirección de tu perfil</p>
-                <p>¿Eliminar?</p>
-            </div>
-            <div class="opciones_modal_perfil_cliente">
-                <a href="#!" class="btn red modal-close waves-effect waves-green btn-flat"><i
-                        class="material-icons">delete</i> Eliminar</a>
-                <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat"><i
-                        class="material-icons">check_circle</i> Cancelar</a>
-            </div>
-        </div>
-    </div>
+
     <!--Datos de la cuenta -->
     <div id="datos-cuenta" class="modal">
         <div class="modal-content center-align">
             <h4>Modificar datos de la cuenta</h4>
             <div class="row">
-                <form action="">
-                    <div class="input-field col l6 m6 s12">
+                <form id="confirmacionAutenticidad" method="post">
+                    <div class="input-field col l8 m8 s12 push-l2 push-m2">
                         <input placeholder="Nombre de usuario" id="usuario" type="text" class="validate" />
-                        <label for="first_name">Nombre de usuario</label>
+                        <label for=" first_name">Nombre de usuario</label>
                     </div>
                     <div class="input-field col l6 m6 s12">
                         <input placeholder="***********" id="clave" type="password" class="validate" />
-                        <label for="last_name">Contraseña</label>
+                        <label for=" last_name">Contraseña</label>
+                        <div class="col left">
+                            <span class="light-blue-text accent-4-text"><small>El cambio de contraseña no es requerido</small></span>
+                        </div>
                     </div>
-                    <div class="opciones_modal_perfil_cliente">
-                        <button href="#!" class="btn green modal-close waves-effect waves-green btn-flat"><i
-                                class="material-icons">edit</i> Modificar</button>
-                        <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat"><i
-                                class="material-icons">check_circle</i> Cancelar</a>
+                    <div class="input-field col l6 m6 s12">
+                        <input placeholder="***********" id="clave" type="password" class="validate" />
+                        <label for=" last_name">Confirmar contraseña</label>
+                    </div>
+
+                    <div class="distribuidor">
+                        <button href="#!" class="btn green modal-close waves-effect waves-green btn-flat white-text"><i
+                                class="material-icons white-text left">edit</i>
+                            Modificar</button>
+                        <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat white-text"><i
+                                class="material-icons white-text left">check_circle</i> Cancelar</a>
                     </div>
                 </form>
             </div>
@@ -269,7 +246,9 @@
 
     <!--Importar archivos JavaScrip-->
     <script type="text/javascript" src="../../../js/materialize.min.js"></script>
-    <script type="text/javascript" src="../../../controladores/publico/activation.js"></script>
+    <script type="text/javascript" src="../../../controladores/componentes.js"></script>
+    <script type="text/javascript" src="../../../controladores/publico/publico_cliente/perfil.js"></script>
+    <script type="text/javascript" src="../../../controladores/activador.js"></script>
 </body>
 
 </html>

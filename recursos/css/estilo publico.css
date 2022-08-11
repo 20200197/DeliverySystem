@@ -154,12 +154,18 @@ nav div ul li a i {
     height: 370px;
 }
 
+.distribuidor{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
 .contorno {
     border: #8dc5ff 3px solid;
     border-bottom-right-radius: 30px;
     border-bottom-left-radius: 30px;
     border-top-right-radius: 30px;
     border-top-left-radius: 30px;
+    padding: 10px;
 }
 
 .contorno-modal {
