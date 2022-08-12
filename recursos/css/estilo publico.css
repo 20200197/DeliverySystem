@@ -191,6 +191,20 @@ nav div ul li a i {
     bottom: 25%;
 }
 
+/*--------------------Diseño de inputs---------------------------------------*/
+
+input:not(:focus) {
+        border-bottom: 1px solid #9e9e9e !important;
+        -webkit-box-shadow: 1px solid #9e9e9e !important;
+        box-shadow: none !important;
+}
+
+input:focus {
+     border-bottom: 1px solid #2979FF !important;
+     -webkit-box-shadow: 1px solid #2979FF !important;
+     box-shadow: 0 1px 0 0 #2979FF !important;
+}
+
 /*------------------Valoraciones-------------------*/
 
 /*Valoraciones en estrellas*/
