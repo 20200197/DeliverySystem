@@ -118,7 +118,8 @@ function guardarDatos() {
                     ) {
                         sweetAlert(3, 'Debes modificar datos para poder actualizar', null);
                     } else {
-                        sweetAlert(1, 'Actualizando', null);
+
+
                     }
 
 

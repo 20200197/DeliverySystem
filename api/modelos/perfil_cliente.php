@@ -108,4 +108,12 @@ class PerfilCliente extends Validator
         $params = array($this->identificador);
         return Database::getRow($sql, $params);
     }
+
+    //Actualizar los datos del perfil
+    public function actualizarPerfil()
+    {
+        $sql = 'UPDATE cliente SET nombre_cliente = ?, apellido_cliente = ?, correo_cliente = ?, telefono_cliente = ?, foto_cliente ';
+        $params = array($this->nombreCliente, $this->apellidoCliente, $this->correoCliente, $this->telefonoCliente, $this->fotoCliente);
+        return Database::executeRow($sql, $params);
+    }
 }

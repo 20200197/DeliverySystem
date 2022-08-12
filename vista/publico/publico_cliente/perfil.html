@@ -77,51 +77,55 @@
     <main>
 
         <div class="row">
-            <div class="col l5 m6 s12">
-                <div class="col l6 m6 s8 push-l3 push-m3 push-s2 center">
-                    <h6>Tu foto de perfil</h6>
-                    <img src="../../../recursos/img/publico/default-profile.jpg" id="fotoPerfil" class="responsive-img" alt="">
-                    <div class="file-field input-field col l12 m12 s12">
-                        <div class="btn col l12 m12 s8 push-s2" id="botonFoto">
-                            <span>Cambiar foto</span>
-                            <input type="file" onchange="leerImg(this, document.getElementById('fotoPerfil'))">
-                            <input class="file-path validate" type="text">
+            <form id="datosGenerales" method="post">
+                <div class="col l5 m6 s12">
+                    <div class="col l6 m6 s8 push-l3 push-m3 push-s2 center">
+                        <h6>Tu foto de perfil</h6>
+                        <img src="../../../recursos/img/publico/default-profile.jpg" id="fotoPerfil" class="responsive-img" alt="">
+                        <div class="file-field input-field col l12 m12 s12">
+                            <div class="btn col l12 m12 s8 push-s2" id="botonFoto">
+                                <span>Cambiar foto</span>
+                                <input type="file" name="perfil" onchange="leerImg(this, document.getElementById('fotoPerfil'))">
+                                <input class="file-path validate" type="text">
+                            </div>
+
                         </div>
+
 
                     </div>
 
+                </div>
+                <div class="col l7 m6 s12 center">
+                    <h6>Tus datos personales</h6>
+                    <div class="input-field col s6">
+                        <input placeholder="Nombre" id="nombre" name="nombre" type="text" class="validate" disabled />
+                        <label for="first_name">Nombre</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input placeholder="Apellido" id="apellido" name="apellido" type="text" class="validate" disabled/>
+                        <label for="first_name">Apellido</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input placeholder="Correo" id="correo" name="correo" type="email" class="validate" disabled/>
+                        <label for="first_name">Correo</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input placeholder="Teléfono" id="telefono" name="telefono" type="tel" class="validate" disabled/>
+                        <label for="first_name">Teléfono</label>
+                    </div>
+                    <div class="col l12 m12 s12">
+                        <a onclick="activar()" id="activar" class="waves-effect waves-light btn">Actualizar datos</a>
+                        <a onclick="guardarDatos()" id="guardar" class="waves-effect waves-light btn">Guardar</a>
+                        <a onclick="activar()" id="cancelar" class="waves-effect waves-light btn">Cancelar</a>
+                    </div>
+                    <div class="col l12 m12 s12">
+                        <h6>Gestionar datos de la cuenta</h6>
+                        <a class="waves-effect waves-light btn modal-trigger" href="#autenticidad">Gestionar</a>
+                    </div>
+                </div>
+            </form>
 
-                </div>
 
-            </div>
-            <div class="col l7 m6 s12 center">
-                <h6>Tus datos personales</h6>
-                <div class="input-field col s6">
-                    <input placeholder="Nombre" id="nombre" type="text" class="validate" disabled />
-                    <label for="first_name">Nombre</label>
-                </div>
-                <div class="input-field col s6">
-                    <input placeholder="Apellido" id="apellido" type="text" class="validate" disabled/>
-                    <label for="first_name">Apellido</label>
-                </div>
-                <div class="input-field col s6">
-                    <input placeholder="Correo" id="correo" type="email" class="validate" disabled/>
-                    <label for="first_name">Correo</label>
-                </div>
-                <div class="input-field col s6">
-                    <input placeholder="Teléfono" id="telefono" type="tel" class="validate" disabled/>
-                    <label for="first_name">Teléfono</label>
-                </div>
-                <div class="col l12 m12 s12">
-                    <a onclick="activar()" id="activar" class="waves-effect waves-light btn">Actualizar datos</a>
-                    <a onclick="guardarDatos()" id="guardar" class="waves-effect waves-light btn">Guardar</a>
-                    <a onclick="activar()" id="cancelar" class="waves-effect waves-light btn">Cancelar</a>
-                </div>
-                <div class="col l12 m12 s12">
-                    <h6>Gestionar datos de la cuenta</h6>
-                    <a class="waves-effect waves-light btn modal-trigger" href="#autenticidad">Gestionar</a>
-                </div>
-            </div>
         </div>
     </main>
 
@@ -179,6 +183,7 @@
                         <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat white-text"><i
                                 class="material-icons white-text left">check_circle</i> Cancelar</a>
                     </div>
+
                 </form>
             </div>
         </div>

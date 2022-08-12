@@ -28,6 +28,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'El perfil a buscar no existe';
                 }
                 break;
+
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
