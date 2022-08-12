@@ -28,7 +28,17 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'El perfil a buscar no existe';
                 }
                 break;
-
+            case 'ActualizarPerfil':
+                $_POST = $perfil->validateForm($_POST);
+                if (!$perfil->setIdentificador(1)) { //$_SESSION['id_cliente']
+                    $result['exception'] = "No se encontró la sesión de tu cuenta";
+                } elseif ($data != $perfil->datosPerfil()) {
+                    $result['exception'] = "Los datos de la cuenta no se encontraron";
+                } elseif (!$perfil->setNombreCliente($_POST['nombre'])) {
+                    $result['exception'] = 'Nombre no valido';
+                }
+                
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
