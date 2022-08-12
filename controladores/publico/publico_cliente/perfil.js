@@ -63,10 +63,12 @@ function activar() {
         document.getElementById('apellido').disabled = true;
         document.getElementById('correo').disabled = true;
         document.getElementById('telefono').disabled = true;
+        //Se agregan los estilos
         document.getElementById('nombre').style = 'border-bottom: 1px dotted rgba(0, 0, 0, 0.42); box-shadow: none;';
         document.getElementById('apellido').style = 'border-bottom: 1px dotted rgba(0, 0, 0, 0.42); box-shadow: none;';
         document.getElementById('correo').style = 'border-bottom: 1px dotted rgba(0, 0, 0, 0.42); box-shadow: none;';
         document.getElementById('telefono').style = 'border-bottom: 1px dotted rgba(0, 0, 0, 0.42); box-shadow: none;';
+        //Sw
         document.getElementById('botonFoto').setAttribute('disabled', true);
         //Se rellenan los campos con los datos actuales
         readRows(API_PERFIL);
@@ -81,6 +83,11 @@ function activar() {
         document.getElementById('apellido').disabled = false;
         document.getElementById('correo').disabled = false;
         document.getElementById('telefono').disabled = false;
+        //Se agregan los estilos
+        document.getElementById('nombre').style = '';
+        document.getElementById('apellido').style = '';
+        document.getElementById('correo').style = '';
+        document.getElementById('telefono').style = '';
         document.getElementById('botonFoto').removeAttribute('disabled');
 
 
