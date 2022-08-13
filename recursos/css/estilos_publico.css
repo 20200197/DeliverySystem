@@ -5,6 +5,7 @@ footer {
 }
 
 @media only screen and (max-width: 992px) {
+<<<<<<< HEAD
 
     header,
     main,
@@ -36,6 +37,38 @@ footer {
         font-weight: 500 !important;
     }
 
+=======
+    header,
+    main,
+    footer {
+        padding-left: 0 !important;
+    }
+
+    .sidenav {
+        width: 50% !important;
+        align-items: flex-start !important;
+    }
+
+    .sidenav li a i {
+        font-size: 5rem !important;
+        padding-right: 50px !important;
+    }
+
+    .sidenav li button i {
+        font-size: 5rem !important;
+        margin: 0 5px 0 0;
+    }
+
+    .sidenav li a span {
+        font-size: 16pt !important;
+    }
+
+    .sidenav li button span {
+        font-size: 16pt !important;
+        font-weight: 500 !important;
+    }
+
+>>>>>>> Bonilla1
     .sidenav li {
         width: 100% !important;
         padding: 10px 0px 10px 0px !important;
@@ -107,6 +140,7 @@ nav div ul li a i {
 .cerrar-sidenav {
     height: 10%;
 }
+<<<<<<< HEAD
 
 
 /**Producto individual y categoria**/
@@ -180,3 +214,5 @@ input[type="checkbox"]:checked~label{
 label {
     font-size: 50px;
 }
+=======
+>>>>>>> Bonilla1
