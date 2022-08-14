@@ -55,7 +55,7 @@
                 <li><a href="perfil_cliente.html" class="tooltipped Hide-on-large-only " data-position="right"
                         data-tooltip="Perfil"><i class="material-icons  white-text">account_circle</i><span
                             class="white-text hide-on-large-only">Perfil</span></a></li>
-                <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Ventas"><i
+                <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Carrito"><i
                             class="material-icons  white-text">shopping_basket</i><span
                             class="white-text hide-on-large-only">Compras</span></a></li>
                 <li><a href="favorito.html" class="tooltipped" data-position="right" data-tooltip="Favoritos"><i
@@ -112,20 +112,15 @@
                     <div class="row"></div>
                     <p id="precio_producto"></p>
                     <div class="row">
-                        <form action="">
+                        <form id="add-form">
                             <div class="col l12 m12 s12">
                                 <p>Cantidad</p>
                                 <div class="contador_cantidad_carrito">
-                                    <a href=""><i class="material-icons">remove_circle_outline</i></a>
-                                    <input type="number" value="2" />
-                                    <a href=""><i class="material-icons">add_circle_outline</i></a>
+                                    <input type="number" name="cantidad">
                                 </div>
                             </div>
                             <div class="col s12 m12 l12">
-                                <p>Total: $31.98</p>
-                            </div>
-                            <div class="col s12 m12 l12">
-                                <button class="waves-effect blue lighten-2 waves-light btn-large boton_foto_admin"><i
+                                <button type="submit" class="waves-effect blue lighten-2 waves-light btn-large boton_foto_admin"><i
                                         class="material-icons left">add</i>añadir</button>
                             </div>
                             <div class="row"></div>

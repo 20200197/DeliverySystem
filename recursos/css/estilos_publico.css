@@ -5,8 +5,6 @@ footer {
 }
 
 @media only screen and (max-width: 992px) {
-<<<<<<< HEAD
-
     header,
     main,
     footer {
@@ -36,39 +34,6 @@ footer {
         font-size: 16pt !important;
         font-weight: 500 !important;
     }
-
-=======
-    header,
-    main,
-    footer {
-        padding-left: 0 !important;
-    }
-
-    .sidenav {
-        width: 50% !important;
-        align-items: flex-start !important;
-    }
-
-    .sidenav li a i {
-        font-size: 5rem !important;
-        padding-right: 50px !important;
-    }
-
-    .sidenav li button i {
-        font-size: 5rem !important;
-        margin: 0 5px 0 0;
-    }
-
-    .sidenav li a span {
-        font-size: 16pt !important;
-    }
-
-    .sidenav li button span {
-        font-size: 16pt !important;
-        font-weight: 500 !important;
-    }
-
->>>>>>> Bonilla1
     .sidenav li {
         width: 100% !important;
         padding: 10px 0px 10px 0px !important;
@@ -80,6 +45,10 @@ footer {
 
     .sidenav li button {
         padding-left: 10px !important;
+    }
+
+    .margin-low-left{
+        margin-left: auto !important;
     }
 }
 
@@ -140,8 +109,6 @@ nav div ul li a i {
 .cerrar-sidenav {
     height: 10%;
 }
-<<<<<<< HEAD
-
 
 /**Producto individual y categoria**/
 .imagen-categoria {
@@ -165,7 +132,6 @@ nav div ul li a i {
 /*----------------------------------------------*/
 
 .contador_cantidad_carrito input {
-    width: 30% !important;
     border: 1px solid black !important;
     border-radius: 15px;
     background-color: #ececec !important;
@@ -214,5 +180,29 @@ input[type="checkbox"]:checked~label{
 label {
     font-size: 50px;
 }
-=======
->>>>>>> Bonilla1
+
+.bold {
+    font-weight: 500;
+}
+
+.tamaño-texto {
+    font-size: 18pt;
+}
+
+.margin-low-left{
+    margin-left: 20px;
+}
+
+.sin-boton::-webkit-inner-spin-button, 
+.sin-boton[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.sin-boton {
+    -moz-appearance:textfield; 
+}
+
+.click-hand:hover {
+    cursor: pointer;
+}

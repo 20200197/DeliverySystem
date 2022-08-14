@@ -810,3 +810,7 @@ function readInfoSinLogueado() {
   // Se inicializa el componente Sidenav para que funcione la navegación lateral.
   M.Sidenav.init(document.querySelectorAll(".sidenav"));
 }
+
+document.getElementById('add-form').addEventListener('submit', function() {
+
+});
