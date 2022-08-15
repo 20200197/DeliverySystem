@@ -466,6 +466,9 @@ function logOut(type) {
                 case 'Vendedor':
                 API = SERVER + 'dashboard/administrar_vendedor.php?action=logOut'
                 break;
+                case 'Cliente':
+                API = SERVER + 'publico/cliente.php?action=logOut'
+                break;
             }
             fetch(API, {
                 method: 'get'
@@ -490,3 +493,4 @@ function logOut(type) {
         }
     });
 }
+

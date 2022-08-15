@@ -150,7 +150,8 @@ class Factura extends Validator
 
     //Creamos metodos principales
 
-    public function checkOrder(){
+    public function checkOrder()
+    {
         $this->estado_factura = 1;
 
         $sql = 'SELECT id_factura
@@ -164,9 +165,9 @@ class Factura extends Validator
             $this->id_factura = $data['id_factura'];
             return true;
         }else{
-            $sql = 'INSERT INTO factura(id_status, (SELECT id_direccion FROM direccion WHERE id_cliente = ? LIMIT 1))
-                    VALUES(?, ?)';
-            $params = array($_SESSION['id_cliente'] ,$this->estado_factura, $_SESSION['id_cliente']);
+            $sql = 'INSERT INTO factura(id_status, id_direccion)
+                    VALUES(?, (SELECT id_direccion FROM direccion WHERE id_cliente = ? LIMIT 1))';
+            $params = array($this->estado_factura, $_SESSION['id_cliente']);
 
             if($this->id_factura = Database::getLastRow($sql, $params)){
                 return true;
@@ -176,24 +177,35 @@ class Factura extends Validator
         }
     }
 
-    public function createDetail(){
-        $sql = 'INSERT INTO detalle_factura(precio, cantidad_pedido, id_factura, id_producto)
-                VALUES((SELECT precio_producto FROM productos WHERE id_producto = ?), ?, ?, ?)';
-        $params = array($this->id_producto, $this->cantidad_producto, $this->id_factura, $this->id_producto);
+    public function createDetail()
+    {
+        $sql = 'INSERT INTO detalle_factura(precio, status, cantidad_pedido, id_factura, id_producto)
+                VALUES((SELECT precio_producto FROM producto WHERE id_producto = ?), ?, ?, ?, ?)';
+        $params = array($this->id_producto, true, $this->cantidad_producto, $this->id_factura, $this->id_producto);
         return Database::executeRow($sql, $params);
     }
 
-    public function readDetail(){
-        $sql = 'SELECT id_detalle_factura, id_factura, id_producto, imagen_producto, nombre_producto, precio_unitario, cantidad_producto, precio_unitario * cantidad_producto as "subtotal"
-                FROM detalle_factura INNER JOIN factura USING(id_factura) INNER JOIN productos USING(id_producto)
-                WHERE id_factura = ? AND estado_factura = ?';
-        $params = array($this->id_factura, 'En proceso');
+    public function readDetail()
+    {
+        $sql = 'SELECT id_detalle, id_factura, id_producto, imagen, nombre_producto, precio, cantidad_pedido, precio * cantidad_pedido as "subtotal"
+                FROM detalle_factura INNER JOIN factura USING(id_factura) INNER JOIN producto USING(id_producto)
+                WHERE id_factura = ? AND id_status = ?';
+        $params = array($this->id_factura, 1);
         return Database::getRows($sql, $params);
     }
 
-    public function total(){
-        $sql = 'SELECT sum(precio_unitario * cantidad_producto)Suma
-                FROM detalle_factura INNER JOIN factura USING(id_factura) INNER JOIN productos USING(id_producto)
+    public function getNProd(){
+        $sql = 'SELECT count(id_detalle) as n_productos
+                FROM detalle_factura
+                WHERE id_factura = ?';
+        $params = array($this->id_factura);
+        return Database::getRow($sql, $params);
+    }
+
+    public function total()
+    {
+        $sql = 'SELECT sum(precio * cantidad_pedido)Suma
+                FROM detalle_factura INNER JOIN factura USING(id_factura) INNER JOIN producto USING(id_producto)
                 WHERE id_factura = ?';
         $params = array($this->id_factura);
         return Database::getRow($sql, $params);
@@ -214,28 +226,70 @@ class Factura extends Validator
         return Database::executeRow($sql, $params);
     }
 
-    public function deleteRow(){
+    public function deleteRow()
+    {
         $sql = 'DELETE FROM detalle_factura WHERE id_producto = ? AND id_factura = ?';
-        $params = array($this->id_producto, $_SESSION['id_factura']);
+        $params = array($this->id_producto, $this->id_factura);
         return Database::executeRow($sql, $params);
+    }
+
+    public function checkDirection()
+    {
+        $sql = 'SELECT id_direccion FROM direccion WHERE id_cliente = ?';
+        $params = array($_SESSION['id_cliente']);
+
+        return Database::getRows($sql, $params);
     }
 
     //Chequeamos si existe el producto dentro del carrito
-    public function checkProductExist(){
-        $sql = 'SELECT id_producto, cantidad_producto FROM detalle_factura
-                INNER JOIN factura USING(id_factura)
+    public function checkProductExist()
+    {
+        $sql = 'SELECT id_producto FROM detalle_factura
                 WHERE id_producto = ? AND id_factura = ?';
         $params = array($this->id_producto, $this->id_factura);
+
         return Database::getRow($sql, $params);
     }
 
+    public function checkStock(){
+        $sql = 'SELECT cantidad_producto FROM producto WHERE id_producto = ?';
+        $params = array($this->id_producto);
 
-    //Añadimos cantidad al producto ya existente en el carrito
-    public function addToDetail(){
-        $sql = 'UPDATE detalle_factura SET cantidad_producto = ?
+        $data = Database::getRow($sql, $params);
+
+        if ($data['cantidad_producto'] >= $this->cantidad_producto) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function sumarCant()
+    {
+        $sql = 'UPDATE detalle_factura SET cantidad_pedido = (SELECT cantidad_pedido FROM detalle_factura WHERE id_producto = ? AND id_factura = ?) + 1
                 WHERE id_producto = ? AND id_factura = ?';
-        $params = array($this->cantidad_producto, $this->id_producto, $_SESSION['id_factura']);
+        $params = array($this->id_producto, $this->id_factura, $this->id_producto, $this->id_factura);
 
         return Database::executeRow($sql, $params);
+    }
+
+    public function restarCant()
+    {
+        $sql = 'UPDATE detalle_factura SET cantidad_pedido = (SELECT cantidad_pedido FROM detalle_factura WHERE id_producto = ? AND id_factura = ?) - 1
+                WHERE id_producto = ? AND id_factura = ?';
+        $params = array($this->id_producto, $this->id_factura, $this->id_producto, $this->id_factura);
+
+        return Database::executeRow($sql, $params);
+    }
+
+    public function subTotal()
+    {
+        $sql = 'SELECT id_producto, precio_producto * cantidad_pedido as "subtotal"
+                FROM detalle_factura
+                INNER JOIN producto USING(id_producto)
+                WHERE id_factura = ? AND id_producto = ?';
+        $params = array($this->id_factura, $this->id_producto);
+
+        return Database::getRow($sql, $params);
     }
 }

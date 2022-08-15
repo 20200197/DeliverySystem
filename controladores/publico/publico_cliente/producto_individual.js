@@ -1,244 +1,245 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
 const API_PRODUCTOS = SERVER + "publico/productos.php?action=";
+const API_FACTURA = SERVER + "publico/factura.php?action=";
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener("DOMContentLoaded", function () {
-  // Se busca en la URL las variables (parámetros) disponibles.
-  let params = new URLSearchParams(location.search);
-  // Se obtienen los datos localizados por medio de las variables.
-  const ID = params.get("id_producto");
-  const IDDETALLE = params.get("id_detalle");
-  // Se llama a la función que muestra el detalle del producto seleccionado previamente.
-  readOneProducto(ID);
-  readComent(ID);
-  readCali(IDDETALLE);
-  // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
-  M.Tooltip.init(document.querySelectorAll(".tooltipped"));
+    // Se busca en la URL las variables (parámetros) disponibles.
+    let params = new URLSearchParams(location.search);
+    // Se obtienen los datos localizados por medio de las variables.
+    const ID = params.get("id_producto");
+    const IDDETALLE = params.get("id_detalle");
+    // Se llama a la función que muestra el detalle del producto seleccionado previamente.
+    readOneProducto(ID);
+    readComent(ID);
+    readCali(IDDETALLE);
+    // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
+    M.Tooltip.init(document.querySelectorAll(".tooltipped"));
 });
 
 // Función para obtener y mostrar los datos del producto seleccionado.
 function readOneProducto(id) {
-  // Se define un objeto con los datos del producto seleccionado.
-  const data = new FormData();
-  data.append("id_producto", id);
-  // Petición para obtener los datos del producto solicitado.
-  fetch(API_PRODUCTOS + "readOneProducto", {
-    method: "post",
-    body: data,
-  }).then(function (request) {
-    // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-    if (request.ok) {
-      // Se obtiene la respuesta en formato JSON.
-      request.json().then(function (response) {
-        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-        if (response.status) {
-          // Se colocan los datos en la tarjeta de acuerdo al producto seleccionado previamente.
-          document.getElementById("imagen_producto").setAttribute("src", SERVER + "imagenes/productos/" + response.dataset.imagen);
-          document.getElementById("nombre_producto").textContent = response.dataset.nombre_producto;
-          document.getElementById("marca_producto").textContent = "Marca: " + response.dataset.nombre_marca;
-          document.getElementById("nombre_vendedor").textContent = response.dataset.nombre_vendedor;
-          document.getElementById("descripcion_producto").textContent = response.dataset.descripcion_producto;
-          document.getElementById("precio_producto").textContent = "Precio: $" + response.dataset.precio_producto;
-          // Se asigna el valor del id del producto al campo oculto del formulario.
-          document.getElementById("id_producto").value = response.dataset.id_producto;
+    // Se define un objeto con los datos del producto seleccionado.
+    const data = new FormData();
+    data.append("id_producto", id);
+    // Petición para obtener los datos del producto solicitado.
+    fetch(API_PRODUCTOS + "readOneProducto", {
+        method: "post",
+        body: data,
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se colocan los datos en la tarjeta de acuerdo al producto seleccionado previamente.
+                    document.getElementById("imagen_producto").setAttribute("src", SERVER + "imagenes/productos/" + response.dataset.imagen);
+                    document.getElementById("nombre_producto").textContent = response.dataset.nombre_producto;
+                    document.getElementById("marca_producto").textContent = "Marca: " + response.dataset.nombre_marca;
+                    document.getElementById("nombre_vendedor").textContent = response.dataset.nombre_vendedor;
+                    document.getElementById("descripcion_producto").textContent = response.dataset.descripcion_producto;
+                    document.getElementById("precio_producto").textContent = "Precio: $" + response.dataset.precio_producto;
+                    // Se asigna el valor del id del producto al campo oculto del formulario.
+                    document.getElementById("id_producto").value = response.dataset.id_producto;
+                } else {
+                    // Se presenta un mensaje de error cuando no existen datos para mostrar.
+                    document.getElementById("title").innerHTML = `<i class="material-icons small">cloud_off</i><span class="red-text">${response.exception}</span>`;
+                    // Se limpia el contenido cuando no hay datos para mostrar.
+                    document.getElementById("descripcion_producto").innerHTML = "";
+                }
+            });
         } else {
-          // Se presenta un mensaje de error cuando no existen datos para mostrar.
-          document.getElementById("title").innerHTML = `<i class="material-icons small">cloud_off</i><span class="red-text">${response.exception}</span>`;
-          // Se limpia el contenido cuando no hay datos para mostrar.
-          document.getElementById("descripcion_producto").innerHTML = "";
+            console.log(request.status + " " + request.statusText);
         }
-      });
-    } else {
-      console.log(request.status + " " + request.statusText);
-    }
-  });
+    });
 }
 
 //Leemos calidad de producto individual
 function readCali(id_detalle) {
-  // Se define un objeto con los datos del producto seleccionado.
-  const data = new FormData();
-  data.append("id_detalle", id_detalle);
-  fetch(API_PRODUCTOS + 'readCali', {
-    method: "post",
-    body: data,
-  }).then(function (request) {
-    if (request.ok) {
-      request.json().then(function (response) {
-        if (response.status) {
-          //Definimos variables
-          let content_estrellas = '';
-          // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
-          response.dataset.map(function (row) {
-            //Compramos la calidad para colocarle las estrellas
-            if (row.calidad <= 1 && row.calidad > 0) {
-              //Para 0.5
-              if (row.calidad < 1) {
-                content_estrellas += `
+    // Se define un objeto con los datos del producto seleccionado.
+    const data = new FormData();
+    data.append("id_detalle", id_detalle);
+    fetch(API_PRODUCTOS + 'readCali', {
+        method: "post",
+        body: data,
+    }).then(function (request) {
+        if (request.ok) {
+            request.json().then(function (response) {
+                if (response.status) {
+                    //Definimos variables
+                    let content_estrellas = '';
+                    // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+                    response.dataset.map(function (row) {
+                        //Compramos la calidad para colocarle las estrellas
+                        if (row.calidad <= 1 && row.calidad > 0) {
+                            //Para 0.5
+                            if (row.calidad < 1) {
+                                content_estrellas += `
                                 <i class="material-icons yellow-text">star_half</i>
                                 <i class="material-icons yellow-text">star_border</i>
                                 <i class="material-icons yellow-text">star_border</i>
                                 <i class="material-icons yellow-text">star_border</i>
                                 <i class="material-icons yellow-text">star_border</i>`;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-              } else {
-                //Para 1
-                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                content_estrellas += `
+                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+                            } else {
+                                //Para 1
+                                // Se crean y concatenan las tarjetas con los datos de cada producto.
+                                content_estrellas += `
                                 <i class="material-icons yellow-text">star</i>
                                 <i class="material-icons yellow-text">star_border</i>
                                 <i class="material-icons yellow-text">star_border</i>
                                 <i class="material-icons yellow-text">star_border</i>
                                 <i class="material-icons yellow-text">star_border</i>  `;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-              }
-              //Para 1.5
-            } else if (row.calidad <= 2 && row.calidad > 1) {
-              if (row.calidad < 2 && row.calidad > 1) {
-                content_estrellas += `                            
+                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+                            }
+                            //Para 1.5
+                        } else if (row.calidad <= 2 && row.calidad > 1) {
+                            if (row.calidad < 2 && row.calidad > 1) {
+                                content_estrellas += `                            
                                 <i class="material-icons yellow-text">star</i>
                                 <i class="material-icons yellow-text">star_half</i>
                                 <i class="material-icons yellow-text">star_border</i>
                                 <i class="material-icons yellow-text">star_border</i>
                                 <i class="material-icons yellow-text">star_border</i>  `;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-              } else {
-                //Para 2
-                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                content_estrellas += `
+                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+                            } else {
+                                //Para 2
+                                // Se crean y concatenan las tarjetas con los datos de cada producto.
+                                content_estrellas += `
                                 <i class="material-icons yellow-text">star</i>
                                 <i class="material-icons yellow-text">star</i>
                                 <i class="material-icons yellow-text">star_border</i>
                                 <i class="material-icons yellow-text">star_border</i>
                                 <i class="material-icons yellow-text">star_border</i>`;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-              }
-            } else if (row.calidad <= 3 && row.calidad > 2) {
-              //Para 2.5
-              if (row.calidad < 3 && row.calidad > 2) {
-                content_estrellas += `
+                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+                            }
+                        } else if (row.calidad <= 3 && row.calidad > 2) {
+                            //Para 2.5
+                            if (row.calidad < 3 && row.calidad > 2) {
+                                content_estrellas += `
                                 <i class="material-icons yellow-text">star</i>
                                 <i class="material-icons yellow-text">star</i>
                                 <i class="material-icons yellow-text">star_half</i>
                                 <i class="material-icons yellow-text">star_border</i>
                                 <i class="material-icons yellow-text">star_border</i>`;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-              } else {
-                //Para 3
-                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                content_estrellas += `
+                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+                            } else {
+                                //Para 3
+                                // Se crean y concatenan las tarjetas con los datos de cada producto.
+                                content_estrellas += `
                                  <i class="material-icons yellow-text">star</i>
                                  <i class="material-icons yellow-text">star</i>
                                  <i class="material-icons yellow-text">star</i>
                                  <i class="material-icons yellow-text">star_border</i>
                                  <i class="material-icons yellow-text">star_border</i> `;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-              }
-            } else if (row.calidad <= 4 && row.calidad > 3) {
-              //Para 3.5
-              if (row.calidad < 4 && row.calidad > 3) {
-                content_estrellas += `
+                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+                            }
+                        } else if (row.calidad <= 4 && row.calidad > 3) {
+                            //Para 3.5
+                            if (row.calidad < 4 && row.calidad > 3) {
+                                content_estrellas += `
                                     <i class="material-icons yellow-text">star</i>
                                     <i class="material-icons yellow-text">star</i>
                                     <i class="material-icons yellow-text">star</i>
                                     <i class="material-icons yellow-text">star_half</i>
                                     <i class="material-icons yellow-text">star_border</i> `;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-              } else {
-                //Para 4
-                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                content_estrellas += `
+                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+                            } else {
+                                //Para 4
+                                // Se crean y concatenan las tarjetas con los datos de cada producto.
+                                content_estrellas += `
                                  <i class="material-icons yellow-text">star</i>
                                  <i class="material-icons yellow-text">star</i>
                                  <i class="material-icons yellow-text">star</i>
                                  <i class="material-icons yellow-text">star</i>
                                  <i class="material-icons yellow-text">star_border</i>`;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                content_estrellas.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-              }
-            } else if (row.calidad <= 5 && row.calidad > 4) {
-              //Para 4.5
-              if (row.calidad < 5 && row.calidad > 4) {
-                content_estrellas += `
+                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                                content_estrellas.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+                            }
+                        } else if (row.calidad <= 5 && row.calidad > 4) {
+                            //Para 4.5
+                            if (row.calidad < 5 && row.calidad > 4) {
+                                content_estrellas += `
                                     <i class="material-icons yellow-text">star</i>
                                     <i class="material-icons yellow-text">star</i>
                                     <i class="material-icons yellow-text">star</i>
                                     <i class="material-icons yellow-text">star</i>
                                     <i class="material-icons yellow-text">star_half</i>`;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-              } else {
-                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                content_estrellas += `
+                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+                            } else {
+                                // Se crean y concatenan las tarjetas con los datos de cada producto.
+                                content_estrellas += `
                                   <i class="material-icons yellow-text">star</i>
                                   <i class="material-icons yellow-text">star</i>
                                   <i class="material-icons yellow-text">star</i>
                                   <i class="material-icons yellow-text">star</i>
                                   <i class="material-icons yellow-text">star</i>`;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-              }
-            } else if (row.calidad == null ) {
-              content_estrellas += `
+                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+                            }
+                        } else if (row.calidad == null) {
+                            content_estrellas += `
                                 <p class"black-text">No hay calificación para este producto</p> `;
-              // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-              document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-            } else {
-              content_estrellas += `
+                            // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                            document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+                        } else {
+                            content_estrellas += `
                                 <p class="black-text">No hay calificación para este producto</p>`;
-              // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-              document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-            }
-          });
-          // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
-          document.getElementById('contenedor_calidad').innerHTML = content_estrellas;
-          // Se inicializa el componente Material Box para que funcione el efecto Lightbox.
-          M.Materialbox.init(document.querySelectorAll(".materialboxed"));
+                            // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                            document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+                        }
+                    });
+                    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
+                    document.getElementById('contenedor_calidad').innerHTML = content_estrellas;
+                    // Se inicializa el componente Material Box para que funcione el efecto Lightbox.
+                    M.Materialbox.init(document.querySelectorAll(".materialboxed"));
+                } else {
+                    // Se presenta un mensaje de error cuando no existen datos para mostrar.
+                    document.getElementById(
+                        "contenedor_calidad"
+                    ).innerHTML = `<p class"black-text">No hay calificación para este producto</p>`;
+                }
+            });
         } else {
-          // Se presenta un mensaje de error cuando no existen datos para mostrar.
-          document.getElementById(
-            "contenedor_calidad"
-          ).innerHTML = `<p class"black-text">No hay calificación para este producto</p>`;
+            console.log(request.status + ' ' + request.statusText);
         }
-      });
-    } else {
-      console.log(request.status + ' ' + request.statusText);
-    }
-  });
+    });
 }
 
 // Función para obtener y mostrar los datos del producto seleccionado.
 function readComent(id) {
-  // Se define un objeto con los datos del producto seleccionado.
-  const data = new FormData();
-  data.append("id_producto", id);
-  // Petición para obtener los datos del producto solicitado.
-  fetch(API_PRODUCTOS + "readComent", {
-    method: "post",
-    body: data,
-  }).then(function (request) {
-    // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-    if (request.ok) {
-      // Se obtiene la respuesta en formato JSON.
-      request.json().then(function (response) {
-        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-        if (response.status) {
-          let content = "";
-          // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
-          response.dataset.map(function (row) {
-            //Compramos la calidad para colocarle las estrellas
-            if (row.calidad <= 1 && row.calidad > 0) {
-              //Para 0.5
-              if (row.calidad < 1) {
-                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                content += `
+    // Se define un objeto con los datos del producto seleccionado.
+    const data = new FormData();
+    data.append("id_producto", id);
+    // Petición para obtener los datos del producto solicitado.
+    fetch(API_PRODUCTOS + "readComent", {
+        method: "post",
+        body: data,
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    let content = "";
+                    // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+                    response.dataset.map(function (row) {
+                        //Compramos la calidad para colocarle las estrellas
+                        if (row.calidad <= 1 && row.calidad > 0) {
+                            //Para 0.5
+                            if (row.calidad < 1) {
+                                // Se crean y concatenan las tarjetas con los datos de cada producto.
+                                content += `
                 <div>
                 <div class="row valign-wrapper">
                 <div class="col s2 m1 l1 offset-l1 offset-m1">
@@ -263,12 +264,12 @@ function readComent(id) {
                 </div>
                 </div>
                             `;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("coment_texto").innerHTML = content;
-              } else {
-                //Para 1
-                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                content += `
+                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                                document.getElementById("coment_texto").innerHTML = content;
+                            } else {
+                                //Para 1
+                                // Se crean y concatenan las tarjetas con los datos de cada producto.
+                                content += `
                 <div>
                 <div class="row valign-wrapper">
                 <div class="col s2 m1 l1 offset-l1 offset-m1">
@@ -294,14 +295,14 @@ function readComent(id) {
                 </div>
 
                             `;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("coment_texto").innerHTML = content;
-              }
-              //Para 1.5
-            } else if (row.calidad <= 2 && row.calidad > 1) {
-              if (row.calidad < 2 && row.calidad > 1) {
-                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                content += `
+                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                                document.getElementById("coment_texto").innerHTML = content;
+                            }
+                            //Para 1.5
+                        } else if (row.calidad <= 2 && row.calidad > 1) {
+                            if (row.calidad < 2 && row.calidad > 1) {
+                                // Se crean y concatenan las tarjetas con los datos de cada producto.
+                                content += `
                 <div>
                 <div class="row valign-wrapper">
                 <div class="col s2 m1 l1 offset-l1 offset-m1">
@@ -327,12 +328,12 @@ function readComent(id) {
                 </div>
 
                             `;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("coment_texto").innerHTML = content;
-              } else {
-                //Para 2
-                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                content += `
+                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                                document.getElementById("coment_texto").innerHTML = content;
+                            } else {
+                                //Para 2
+                                // Se crean y concatenan las tarjetas con los datos de cada producto.
+                                content += `
                 <div>
                 <div class="row valign-wrapper">
                 <div class="col s2 m1 l1 offset-l1 offset-m1">
@@ -358,14 +359,14 @@ function readComent(id) {
                 </div>
 
                             `;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("coment_texto").innerHTML = content;
-              }
-            } else if (row.calidad <= 3 && row.calidad > 2) {
-              //Para 2.5
-              if (row.calidad < 3 && row.calidad > 2) {
-                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                content += `
+                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                                document.getElementById("coment_texto").innerHTML = content;
+                            }
+                        } else if (row.calidad <= 3 && row.calidad > 2) {
+                            //Para 2.5
+                            if (row.calidad < 3 && row.calidad > 2) {
+                                // Se crean y concatenan las tarjetas con los datos de cada producto.
+                                content += `
                 <div>
                 <div class="row valign-wrapper">
                 <div class="col s2 m1 l1 offset-l1 offset-m1">
@@ -391,12 +392,12 @@ function readComent(id) {
                 </div>
 
                             `;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("coment_texto").innerHTML = content;
-              } else {
-                //Para 3
-                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                content += `
+                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                                document.getElementById("coment_texto").innerHTML = content;
+                            } else {
+                                //Para 3
+                                // Se crean y concatenan las tarjetas con los datos de cada producto.
+                                content += `
                 <div>
                 <div class="row valign-wrapper">
                 <div class="col s2 m1 l1 offset-l1 offset-m1">
@@ -422,14 +423,14 @@ function readComent(id) {
                 </div>
 
                             `;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("coment_texto").innerHTML = content;
-              }
-            } else if (row.calidad <= 4 && row.calidad > 3) {
-              //Para 3.5
-              if (row.calidad < 4 && row.calidad > 3) {
-                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                content += `
+                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                                document.getElementById("coment_texto").innerHTML = content;
+                            }
+                        } else if (row.calidad <= 4 && row.calidad > 3) {
+                            //Para 3.5
+                            if (row.calidad < 4 && row.calidad > 3) {
+                                // Se crean y concatenan las tarjetas con los datos de cada producto.
+                                content += `
                 <div>
                 <div class="row valign-wrapper">
                 <div class="col s2 m1 l1 offset-l1 offset-m1">
@@ -454,12 +455,12 @@ function readComent(id) {
                 </div>
                 </div>
                             `;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("coment_texto").innerHTML = content;
-              } else {
-                //Para 4
-                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                content += `
+                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                                document.getElementById("coment_texto").innerHTML = content;
+                            } else {
+                                //Para 4
+                                // Se crean y concatenan las tarjetas con los datos de cada producto.
+                                content += `
                 <div>
                 <div class="row valign-wrapper">
                 <div class="col s2 m1 l1 offset-l1 offset-m1">
@@ -485,14 +486,14 @@ function readComent(id) {
                 </div>
 
                             `;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("coment_texto").innerHTML = content;
-              }
-            } else if (row.calidad <= 5 && row.calidad > 4) {
-              //Para 4.5
-              if (row.calidad < 5 && row.calidad > 4) {
-                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                content += `
+                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                                document.getElementById("coment_texto").innerHTML = content;
+                            }
+                        } else if (row.calidad <= 5 && row.calidad > 4) {
+                            //Para 4.5
+                            if (row.calidad < 5 && row.calidad > 4) {
+                                // Se crean y concatenan las tarjetas con los datos de cada producto.
+                                content += `
                 <div>
                 <div class="row valign-wrapper">
                 <div class="col s2 m1 l1 offset-l1 offset-m1">
@@ -518,11 +519,11 @@ function readComent(id) {
                 </div>
 
                               `;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("coment_texto").innerHTML = content;
-              } else {
-                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                content += `
+                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                                document.getElementById("coment_texto").innerHTML = content;
+                            } else {
+                                // Se crean y concatenan las tarjetas con los datos de cada producto.
+                                content += `
                 <div>
                 <div class="row valign-wrapper">
                 <div class="col s2 m1 l1 offset-l1 offset-m1">
@@ -548,90 +549,59 @@ function readComent(id) {
                 </div>
 
                     `;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("coment_texto").innerHTML = content;
-              }
-            } else if (row.calidad == null) {
-              // Se crean y concatenan las tarjetas con los datos de cada producto.
-              content += `
+                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                                document.getElementById("coment_texto").innerHTML = content;
+                            }
+                        } else if (row.calidad == null) {
+                            // Se crean y concatenan las tarjetas con los datos de cada producto.
+                            content += `
               <div class="col s12 m8 l8 offset-l1 offset-m1">
               <p class"black-text">No hay comentarios para este producto</p>
               </div>
                     `;
-              // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-              document.getElementById("coment_texto").innerHTML = content;
-            } else {
-              // Se crean y concatenan las tarjetas con los datos de cada producto.
-              content += `
+                            // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                            document.getElementById("coment_texto").innerHTML = content;
+                        } else {
+                            // Se crean y concatenan las tarjetas con los datos de cada producto.
+                            content += `
               <div class="col s12 m8 l8 offset-l1 offset-m1">
               <p class"black-text">No hay comentarios para este producto</p>
               </div>
                             `;
-              // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-              document.getElementById("coment_texto").innerHTML = content;
-            }
-          });
-          // Se colocan los datos en la tarjeta de acuerdo al producto seleccionado previamente.
-          document.getElementById("coment_texto").innerHTML = content;
+                            // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+                            document.getElementById("coment_texto").innerHTML = content;
+                        }
+                    });
+                    // Se colocan los datos en la tarjeta de acuerdo al producto seleccionado previamente.
+                    document.getElementById("coment_texto").innerHTML = content;
+                } else {
+                    // Se presenta un mensaje de error cuando no existen datos para mostrar.
+                    document.getElementById(
+                        "title"
+                    ).innerHTML = `<i class="material-icons small">cloud_off</i><span class="red-text">${response.exception}</span>`;
+                }
+            });
         } else {
-          // Se presenta un mensaje de error cuando no existen datos para mostrar.
-          document.getElementById(
-            "title"
-          ).innerHTML = `<i class="material-icons small">cloud_off</i><span class="red-text">${response.exception}</span>`;
+            console.log(request.status + " " + request.statusText);
         }
-      });
-    } else {
-      console.log(request.status + " " + request.statusText);
-    }
-  });
-}
-
-// Método manejador de eventos que se ejecuta cuando se envía el formulario de agregar un producto al carrito.
-document.getElementById("shopping-form").addEventListener("submit", function (event) {
-    // Se evita recargar la página web después de enviar el formulario.
-    event.preventDefault();
-    // Petición para agregar un producto al pedido.
-    fetch(API_PEDIDOS + "createDetail", {
-      method: "post",
-      body: new FormData(document.getElementById("shopping-form")),
-    }).then(function (request) {
-      // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-      if (request.ok) {
-        // Se obtiene la respuesta en formato JSON.
-        request.json().then(function (response) {
-          // Se comprueba si la respuesta es satisfactoria, de lo contrario se constata si el cliente ha iniciado sesión.
-          if (response.status) {
-            sweetAlert(1, response.message, "carrito.html");
-          } else {
-            // Se verifica si el cliente ha iniciado sesión para mostrar la excepción, de lo contrario se direcciona para que se autentique.
-            if (response.session) {
-              sweetAlert(2, response.exception, null);
-            } else {
-              sweetAlert(3, response.exception, "login.html");
-            }
-          }
-        });
-      } else {
-        console.log(request.status + " " + request.statusText);
-      }
     });
-  });
+}
 
 //Función para leer info
 function readInfo() {
-  // Petición para obtener en nombre del usuario que ha iniciado sesión.
-  fetch(API + "fillInputs", {
-    method: "get",
-  }).then(function (request) {
-    // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-    if (request.ok) {
-      // Se obtiene la respuesta en formato JSON.
-      request.json().then(function (response) {
-        // Se revisa si el usuario está autenticado, de lo contrario se envía a iniciar sesión.
-        if (response.session) {
-          // Se comprueba si la respuesta es satisfactoria, de lo contrario se direcciona a la página web principal.
-          if (response.status) {
-            const header = `
+    // Petición para obtener en nombre del usuario que ha iniciado sesión.
+    fetch(API + "fillInputs", {
+        method: "get",
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se revisa si el usuario está autenticado, de lo contrario se envía a iniciar sesión.
+                if (response.session) {
+                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se direcciona a la página web principal.
+                    if (response.status) {
+                        const header = `
                       <!--Colocamos encabezado-->
                       <nav class="nav-extended" id="encabezado">
                           <div class="col s12 m12">
@@ -712,34 +682,34 @@ function readInfo() {
                       </ul>
                       `;
 
-            document.querySelector("header").innerHTML = header;
-            //Opciones del dropdwon-trigger
-            let options = {
-              alignment: "right",
-            };
-            // Se inicializa el componente Dropdown para que funcione la lista desplegable en los menús.
-            M.Dropdown.init(
-              document.querySelectorAll(".dropdown-trigger"),
-              options
-            );
-            // Se inicializa el componente Sidenav para que funcione la navegación lateral.
-            M.Sidenav.init(document.querySelectorAll(".sidenav"));
-          } else {
-            sweetAlert(3, response.exception, "index.html");
-          }
+                        document.querySelector("header").innerHTML = header;
+                        //Opciones del dropdwon-trigger
+                        let options = {
+                            alignment: "right",
+                        };
+                        // Se inicializa el componente Dropdown para que funcione la lista desplegable en los menús.
+                        M.Dropdown.init(
+                            document.querySelectorAll(".dropdown-trigger"),
+                            options
+                        );
+                        // Se inicializa el componente Sidenav para que funcione la navegación lateral.
+                        M.Sidenav.init(document.querySelectorAll(".sidenav"));
+                    } else {
+                        sweetAlert(3, response.exception, "index.html");
+                    }
+                } else {
+                    readInfoSinLogueado();
+                }
+            });
         } else {
-          readInfoSinLogueado();
+            console.log(request.status + " " + request.statusText);
         }
-      });
-    } else {
-      console.log(request.status + " " + request.statusText);
-    }
-  });
+    });
 }
 
 //Función de si no se ha logueado
 function readInfoSinLogueado() {
-  const header = `
+    const header = `
                       <!--Colocamos encabezado-->
                       <nav class="nav-extended" id="encabezado">
                           <div class="col s12 m12">
@@ -802,15 +772,31 @@ function readInfoSinLogueado() {
                       </ul>
                       </div>
                       `;
-  document.querySelector("header").innerHTML = header;
-  //Opciones del dropdwon-trigger
-  let options = {
-    alignment: "right",
-  };
-  // Se inicializa el componente Sidenav para que funcione la navegación lateral.
-  M.Sidenav.init(document.querySelectorAll(".sidenav"));
+    document.querySelector("header").innerHTML = header;
+    //Opciones del dropdwon-trigger
+    let options = {
+        alignment: "right",
+    };
+    // Se inicializa el componente Sidenav para que funcione la navegación lateral.
+    M.Sidenav.init(document.querySelectorAll(".sidenav"));
 }
 
-document.getElementById('add-form').addEventListener('submit', function() {
-
+document.getElementById('add-form').addEventListener('submit', function () {
+    event.preventDefault();
+    fetch(API_FACTURA + 'addCart', {
+        method: 'post',
+        body: new FormData(document.getElementById('add-form')),
+    }).then(function (request) {
+        if(request.ok){
+            request.json().then(function (response) {
+                if(response.status){
+                    sweetAlert(1, response.message, 'carrito.html');
+                }else{
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        }else{
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
 });
