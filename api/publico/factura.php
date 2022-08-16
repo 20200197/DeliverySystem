@@ -114,7 +114,34 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Ha ocurrido un error inesperado';
                 }
-            
+                break;
+            case 'cargarMetodos':
+                if ($result['dataset'] = $factura->loadMethod()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            case 'cargarDireccion':
+                if ($result['dataset'] = $factura->loadDirections()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                }
+                    break;
+            case 'cargarDatos':
+                if (!$factura->checkOrder()){
+                    $result['exception'] = 'Ha ocurrido un error obteniendo el pedido';
+                } elseif ($result['dataset'] = $factura->getDataUser()) {
+                    $result['total'] = $factura->total();
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                }
+                    break;
+            default:
+                $result['exception'] = 'Acción no disponible dentro de la sesión';
+                break;
         }
     } else {
         switch ($_GET['action']) {

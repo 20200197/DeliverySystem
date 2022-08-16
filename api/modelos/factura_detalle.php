@@ -292,4 +292,31 @@ class Factura extends Validator
 
         return Database::getRow($sql, $params);
     }
+
+    public function loadMethod()
+    {
+        $sql = 'SELECT id_metodo_pago, metodo_pago
+                FROM metodo_pago';
+        return Database::getRows($sql, null);
+    }
+
+    public function loadDirections()
+    {
+        $sql = 'SELECT id_direccion, SUBSTRING(descripcion_direccion, 1, 10) as descripcion_direccion
+                FROM direccion
+                WHERE id_cliente = ?';
+        $params = array($_SESSION['id_cliente']);
+
+        return Database::getRows($sql, $params);
+    }
+
+    public function getDataUser()
+    {
+        $sql = 'SELECT nombre_cliente, apellido_cliente, correo_cliente, telefono_cliente
+                FROM cliente
+                WHERE id_cliente = ?';
+        $params = array($_SESSION['id_cliente']);
+
+        return Database::getRow($sql, $params);
+    }
 }

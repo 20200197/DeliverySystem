@@ -152,13 +152,13 @@ function cargarCarrito() {
                             <div class="col s12 m4 l4 center-align">
                                 <br>
                                 <h6>Precio</h6>
-                                <span>${row.precio}</span>
+                                <span>$${row.precio}</span>
                             </div>
                             <!--Subtotal-->
                             <div class="col s12 m4 l4 center-align">
                                 <br>
                                 <h6>Subtotal</h6>
-                                <span id="subtotal${row.id_producto}">${row.subtotal}</span>
+                                <span id="subtotal${row.id_producto}">$${row.subtotal}</span>
                             </div>
                         </div>
                     </div>

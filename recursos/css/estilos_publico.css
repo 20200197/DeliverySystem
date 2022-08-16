@@ -50,6 +50,15 @@ footer {
     .margin-low-left{
         margin-left: auto !important;
     }
+
+    #direccion-select{
+        margin-left: 25px !important;
+    }
+
+    
+    .half-quarter-fifteen-reduct{
+        width: 90% !important;
+    }
 }
 
 .sidenav {
@@ -205,4 +214,16 @@ label {
 
 .click-hand:hover {
     cursor: pointer;
+}
+
+.half-quarter-reduct{
+    width: 75%;
+}
+
+.margin-half-left{
+    margin-left: 48px;
+}
+
+.half-quarter-fifteen-reduct{
+    width: 90%;
 }
