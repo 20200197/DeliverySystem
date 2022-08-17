@@ -154,12 +154,18 @@ nav div ul li a i {
     height: 370px;
 }
 
+.distribuidor{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
 .contorno {
     border: #8dc5ff 3px solid;
     border-bottom-right-radius: 30px;
     border-bottom-left-radius: 30px;
     border-top-right-radius: 30px;
     border-top-left-radius: 30px;
+    padding: 10px;
 }
 
 .contorno-modal {
@@ -183,6 +189,20 @@ nav div ul li a i {
 
 .fixed-action-btn {
     bottom: 25%;
+}
+
+/*--------------------Diseño de inputs---------------------------------------*/
+
+input:not(:focus) {
+        border-bottom: 1px solid #9e9e9e !important;
+        -webkit-box-shadow: 1px solid #9e9e9e !important;
+        box-shadow: none !important;
+}
+
+input:focus {
+     border-bottom: 1px solid #2979FF !important;
+     -webkit-box-shadow: 1px solid #2979FF !important;
+     box-shadow: 0 1px 0 0 #2979FF !important;
 }
 
 /*------------------Valoraciones-------------------*/

@@ -3,7 +3,7 @@ const API_PRODUCTOS = SERVER + "publico/mis_productos.php?action=";
 
 //Método que carga los datos cuando se inicia la página
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     readRows(API_PRODUCTOS);
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
     M.Modal.init(document.querySelectorAll(".modal"), { dismissible: false });
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function fillTable(dataset) {
     let content = [];
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
-    dataset.map(function (row) {
+    dataset.map(function(row) {
         // Se establece un estado para el estado del producto.
         var estadoo;
         row.estado_empleado ? (estadoo = "Activo") : (estadoo = "Inactivo");
@@ -69,14 +69,14 @@ function fillTable(dataset) {
 }
 
 //Método que preparará los datos para agregar los productos
-document.getElementById("boton_agregar_producto").addEventListener("click", function () {
+document.getElementById("boton_agregar_producto").addEventListener("click", function() {
     //Se cargan los datos en los select
     fillSelect(API_PRODUCTOS + "categoria", "categoriaA", null);
     fillSelect(API_PRODUCTOS + "marca", "marcaA", null);
 });
 
 //Método que ejecutará el guardado de productos
-document.getElementById("guardarProducto").addEventListener("submit", function (event) {
+document.getElementById("guardarProducto").addEventListener("submit", function(event) {
     //Se previene la recarga de la página
     event.preventDefault();
     //Se revisa que los select y la imagen hayan sido cargados
@@ -102,11 +102,11 @@ function cargar_editar(id) {
     fetch(API_PRODUCTOS + "individual", {
         method: "post",
         body: datos,
-    }).then(function (request) {
+    }).then(function(request) {
         //Se revisa si se ejecutó la sentencia
         if (request.ok) {
             //Se pasa a formato JSON
-            request.json().then(function (response) {
+            request.json().then(function(response) {
                 //Se verifica el estado de la respuesta
                 if (response.status) {
                     //Se llenan los campos del modal para editar
@@ -142,7 +142,7 @@ function cargar_editar(id) {
 }
 
 //Método que ejecutará la edición de producto de productos
-document.getElementById("editarProducto").addEventListener("submit", function (event) {
+document.getElementById("editarProducto").addEventListener("submit", function(event) {
     //Se previene la recarga de la página
     event.preventDefault();
     //Se crea una variable de tipo formulario
@@ -155,18 +155,18 @@ document.getElementById("editarProducto").addEventListener("submit", function (e
         fetch(API_PRODUCTOS + "cantidadActual", {
             method: "post",
             body: datos,
-        }).then(function (request) {
+        }).then(function(request) {
             // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
             if (request.ok) {
                 // Se obtiene la respuesta en formato JSON.
-                request.json().then(function (response) {
+                request.json().then(function(response) {
                     let data = [];
                     // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
                     if (response.status) {
                         //Se compara si lo obtenido es posible restarlo
                         if (
                             response.dataset.cantidad_producto -
-                                document.getElementById("cantidad_productoM").value >=
+                            document.getElementById("cantidad_productoM").value >=
                             0
                         ) {
                             //Se procede a ejecutar el método que actualizará el registro
@@ -208,16 +208,15 @@ function eliminar(id) {
 }
 
 //Función para previsualizar un producto
-function leerImg(input, img_destino)
-{
+function leerImg(input, img_destino) {
     //Se obtiene los archivos del input
     let archivos = input.files;
     //Se verifica si está vacío
-    if (!archivos || !archivos.length) { 
+    if (!archivos || !archivos.length) {
         img_destino.src = "../../recursos/img/publico/sin.png";
         return;
     }
-    //
+    //Carga la imagen
     const visualizar = archivos[0];
     const url = URL.createObjectURL(visualizar);
     img_destino.src = url;
