@@ -209,6 +209,42 @@
 
 
     <!--Modal de petición para más-->
+    <div id="pedir" class="modal">
+        <div class="modal-content">
+            <form method="post" id="formularioProductoPedir" enctype="multipart/form-data" autocomplete="off">
+                <input type="text" id="identificadorPedir" name="id_producto" class="hide">
+                <input type="text" id="identificadorDetalle" class="hide" name="identificadorDetalle">
+                <div class="row contorno carta-valoracion">
+                    <h6 class="col l12 m12 s12 center-align">Petición de productos</h6>
+                    <div class="col l4 m12 s12 center centrador">
+                        <img id="fotoProductoPedir"
+                            src="../../../api/imagenes/repartidor/foto_repartidor/repartidor.png"
+                            class="responsive-img">
+                        <span id="nombreProductoPedir">Nombre del repartidor</span>
+                    </div>
+                    <div class="col l8 m12 s12 centrador">
+                        <div class="col l12 m12 s12 left-align">
+                            <div class="valign-wrapper">
+                                <!--Valoración-->
+
+                                <div class="input-field col l12 m12 s10 push-s1">
+                                    <input placeholder="Placeholder" id="cantidadPeticion" name="cantidad"
+                                        type="text" class="validate" value="0">
+                                    <label for="first_name">Cantidad</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn red darken-4" type="submit">Pedir</button>
+                    <button class="btn blue lighten-1 modal-close">Cancelar</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
 
     <footer class="page-footer blue accent-3">
         <div class="row">

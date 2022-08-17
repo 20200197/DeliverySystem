@@ -63,9 +63,7 @@ function fillTable(dataset) {
                     <a class="waves-effect waves-light btn white-text" onclick="cargarProducto(${
                         row.id_detalle
                     })"><i class="material-icons left">stars</i>Valorar</a>
-                    <a class="waves-effect waves-light btn white-text" onclick="pedir(${
-                        row.id_detalle
-                    })"><i class="material-icons left">stars</i>Pedir</a>
+                    <a class="waves-effect waves-light btn white-text" onclick="pedir(${row.id_detalle})"><i class="material-icons left">stars</i>Pedir</a>
                 </td>
             </tr>
         `;
@@ -259,6 +257,75 @@ function cargarProducto(id) {
     });
 }
 
-//Función para cargar los datos del producto a pedir nuevamente
+//Función para cargar los datos del producto para volver a pedir
+function pedir(id) { 
+    //Se crea una variable para guardar el id del producto
+    let datos = new FormData();
+    datos.append("identificador", id);
+    //Se realiza la petición para obtener los datos
+    fetch(API_DETALLE + "cargarDatosProductoPedir", {
+        method: 'post',
+        body: datos,
+    }).then(function (request) { 
+        //Se revisa la ejecución 
+        if (request.ok) {
+            //Se pasa a formato JSON
+            request.json().then(function (response) { 
+                //Se revisa el estado devuelto por la API
+                if (response.status) {
+                    //Se cargan los datos en el modal
+                    document.getElementById("identificadorPedir").value = id;
+                     document.getElementById("nombreProductoPedir").innerHTML = response.dataset.nombre_producto;
+                     document.getElementById("fotoProductoPedir").src =
+                         "../../../api/imagenes/productos/" + response.dataset.imagen;
+                    //Se abre el formulario con los datos ya cargados
+                    M.Modal.getInstance(document.getElementById("pedir")).open();
+                } else { 
+                    //Se muestra el error
+                    sweetAlert(2, response.exception, null);
+                }
+            })
+        } else { 
+            //Se imprime el error en la consola
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
 
-function pedir(id) {}
+//Método para pedir productos
+document.getElementById("formularioProductoPedir").addEventListener('submit', function (event) { 
+    //Se previene la recarga de la página
+    event.preventDefault();
+    //Se verifica que la cantidad sea mayor a 0
+    if (document.getElementById("cantidadPeticion").value <= 0) {
+        //Se notifica del problema
+        sweetAlert(3, 'La cantidad debe ser mayor a 0', null);
+    } else {
+        //Se realiza la petición
+        fetch(API_DETALLE + "addCart", {
+            method: "post",
+            body: new FormData(document.getElementById("formularioProductoPedir")),
+        }).then(function (request) {
+            //Se revisa el estado de la ejecución
+            if (request.ok) {
+                //Se pasa a JSON
+                request.json().then(function (response) {
+                    //Se verifica el estado devuelto de la API
+                    if (response.status) {
+                        //Se muestra la confirmación
+                        sweetAlert(1, response.message, null);
+                        //Se cierra el modal
+                        M.Modal.getInstance(document.getElementById("pedir")).close();
+                    } else {
+                        //Se muestra el error
+                        sweetAlert(2, response.exception, null);
+                    }
+                });
+            } else {
+                //Se imprime el error en la consola
+                console.log(request.status + " " + request.statusText);
+            }
+        });
+    }
+
+});

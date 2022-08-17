@@ -31,14 +31,13 @@ if (isset($_GET['action'])) {
                 if (!$detalle->setIdentificador($_POST['identificador'])) {
                     $result['exception'] = 'No se logró identificar el pedido a mostrar';
                 } elseif ($result['dataset'] = $detalle->datosRepartidor()) {
-                    if($detalle->validarNoRepeticionesRepartidor()) {
+                    if ($detalle->validarNoRepeticionesRepartidor()) {
                         $result['status'] = 1;
                     } else {
                         $result['status'] = 3;
                         $result['exception'] = 'Ya has valorado al repartidor en esta entrega';
                         $result['dataset'] = null;
                     }
-                    
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
@@ -47,11 +46,11 @@ if (isset($_GET['action'])) {
                 break;
             case 'valorarRepartidor':
                 $_POST = $detalle->validateForm($_POST);
-                if(!$detalle->setIdentificadorRepartidor($_POST['identificador'])) {
+                if (!$detalle->setIdentificadorRepartidor($_POST['identificador'])) {
                     $result['exception'] = 'No se ha encontrado el repartidor a valorar';
-                } elseif(!$detalle->setValoracion($_POST['estrellas'])) {
+                } elseif (!$detalle->setValoracion($_POST['estrellas'])) {
                     $result['exception'] = 'La valoración colocada no es valida';
-                } elseif(!$detalle->setComentario($_POST['valoracionRepartidor'])) {
+                } elseif (!$detalle->setComentario($_POST['valoracionRepartidor'])) {
                     $result['exception'] = 'El comentario colocado no es valido';
                 } elseif ($detalle->guardarRepartidor()) {
                     $result['status'] = 1;
@@ -62,9 +61,9 @@ if (isset($_GET['action'])) {
                 break;
             case 'cargarDatosProducto':
                 $_POST = $detalle->validateForm($_POST);
-                if(!$detalle->setIdentificador($_POST['identificador'])) {
+                if (!$detalle->setIdentificador($_POST['identificador'])) {
                     $result['exception'] = 'No se logró identificar el producto';
-                } elseif($result['dataset'] = $detalle->cargarDatosProductos()) {
+                } elseif ($result['dataset'] = $detalle->cargarDatosProductos()) {
                     if ($detalle->validarNoRepeticionesProducto()) {
                         $result['status'] = 1;
                     } else {
@@ -72,7 +71,19 @@ if (isset($_GET['action'])) {
                         $result['exception'] = 'Ya has valorado el producto en esta entrega';
                         $result['dataset'] = null;
                     }
-                } elseif(Database::getException()) {
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'El producto no existe';
+                }
+                break;
+            case 'cargarDatosProductoPedir':
+                $_POST = $detalle->validateForm($_POST);
+                if (!$detalle->setIdentificador($_POST['identificador'])) {
+                    $result['exception'] = 'No se logró identificar el producto';
+                } elseif ($result['dataset'] = $detalle->cargarDatosProductos()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
                     $result['exception'] = 'El producto no existe';
