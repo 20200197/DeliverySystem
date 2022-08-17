@@ -128,7 +128,7 @@ if (isset($_GET['action'])) {
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 }
-                    break;
+                break;
             case 'cargarDatos':
                 if (!$factura->checkOrder()){
                     $result['exception'] = 'Ha ocurrido un error obteniendo el pedido';
@@ -138,7 +138,27 @@ if (isset($_GET['action'])) {
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 }
-                    break;
+                break;
+            case 'finishOrder':
+                $_POST = $factura->validateForm($_POST);
+                if (!isset($_POST['pay-method'])) {
+                    $result['exception'] = 'Seleccione un método de pago por favor';
+                } elseif (!$factura->setIdDirection($_POST['direction'])) {
+                    $result['exception'] = 'Ha sucedido un error con la direccion';
+                } elseif (!$factura->setIdMetodo($_POST['pay-method'])) {
+                    $result['exception'] = 'Ha sucedido un error con el método de pago';
+                } elseif ($factura->finishOrder()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Compra realizada con éxito';
+                    if (!$factura->minusStock()) {
+                        $result['exception'] = 'Ha ocurrido un error inesperado con el inventario';
+                    }
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Ha ocurrido un error inesperado';
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
                 break;

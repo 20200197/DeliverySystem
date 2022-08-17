@@ -23,9 +23,29 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log(request.status + ' ' + request.statusText);
         }
     });
-
     fillSelect(ENDPOINT_METODO, 'metodo-select', null);
-    fillSelect(ENDPOINT_DIRECCION, 'direccion-select', null);
+    fillSelectDirection(ENDPOINT_DIRECCION, 'direccion-select', null);
+});
+
+document.getElementById('comprar-form').addEventListener('submit', function () {
+    event.preventDefault();
+
+    fetch(API_FACTURA + 'finishOrder', {
+        method: 'post',
+        body: new FormData(document.getElementById('comprar-form')),
+    }).then(function (request) {
+        if(request.ok){
+            request.json().then(function (response) {
+                if(response.status){
+                    sweetAlert(1, response.message, 'index.html');
+                }else{
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        }else{
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
 });
 
 function fillData(value){
@@ -34,19 +54,19 @@ function fillData(value){
     if(value != 1){
         content += `<h6>Datos de tarjeta</h6>
         <div class="input-field col s6">
-            <input id="nombre-titular" type="text" class="validate">
+            <input id="nombre-titular" type="text" class="validate" required>
             <label for="nombre-titular">Nombre del titular</label>
         </div>
         <div class="input-field col s6">
-            <input id="ccv" type="number" class="validate">
+            <input id="ccv" type="number" class="validate" required>
             <label for="ccv">CCV</label>
         </div>
         <div class="input-field col s6">
-            <input id="Ntarjeta" type="number" class="validate">
+            <input id="Ntarjeta" type="number" class="validate" required>
             <label for="Ntarjeta">Numero de tarjeta</label>
         </div>
         <div class="input-field col s6">
-            <input id="exp" type="text" class="validate">
+            <input id="exp" type="text" class="validate" required>
             <label for="exp">Fecha</label>
         </div>`;
     }

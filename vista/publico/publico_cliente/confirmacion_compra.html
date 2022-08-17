@@ -71,44 +71,45 @@
     </div>
     <main>
         <div class="row">
-            <div class="col s12 m12 l12 center-align">
-                <h5>Confirmación de compra</h5>
-            </div>
-            <div class="col s12 m5 l5 center-align">
-                <h6>Datos del cliente</h6>
-                <div class="col s12 m8 l8 offset-m2 offset-l2">
-                    <div class="card small blue accent-2 left-align white-text">
-                        <br>
-                        <span class="bold margin-low-left">Nombre del cliente: </span> 
-                        <span id="nombre-cliente"></span>
-                        <br><br><br>
-                        <span class="bold margin-low-left">Correo: </span> 
-                        <span id="correo-cliente"></span>
-                        <br><br><br>
-                        <span class="bold margin-low-left">Teléfono: </span> 
-                        <span id="telefono-cliente"></span>
-                        <br><br><br>
-                        <Span class="bold margin-low-left">Selecciona una dirección de envío</Span>
-                        <select class="browser-default col s10 offset-l1 offset-m1 offset-s1" id="direccion-select">
-                        </select>
-                        <br>
+            <form id="comprar-form">
+                <div class="col s12 m12 l12 center-align">
+                    <h5>Confirmación de compra</h5>
+                </div>
+                <div class="col s12 m5 l5 center-align">
+                    <h6>Datos del cliente</h6>
+                    <div class="col s12 m8 l8 offset-m2 offset-l2">
+                        <div class="card small blue accent-2 left-align white-text">
+                            <br>
+                            <span class="bold margin-low-left">Nombre del cliente: </span> 
+                            <span id="nombre-cliente"></span>
+                            <br><br><br>
+                            <span class="bold margin-low-left">Correo: </span> 
+                            <span id="correo-cliente"></span>
+                            <br><br><br>
+                            <span class="bold margin-low-left">Teléfono: </span> 
+                            <span id="telefono-cliente"></span>
+                            <br><br><br>
+                            <Span class="bold margin-low-left">Selecciona una dirección de envío</Span>
+                            <select name="direction" required class="browser-default col s10 offset-l1 offset-m1 offset-s1" id="direccion-select">
+                            </select>
+                            <br>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col s12 m7 l7 center-align">
-                <h6>Método de pago</h6>
-                <select class="browser-default" id="metodo-select" onchange="fillData(this.value)">
-                </select>
-                <div id="contenedor-inputs">
-                    
-                </div>
-                <div>
+                <div class="col s12 m7 l7 center-align">
+                    <h6>Método de pago</h6>
+                    <select name="pay-method" class="browser-default" id="metodo-select" onchange="fillData(this.value)" required>
+                    </select>
+                    <div id="contenedor-inputs">
+                    </div>
+                    <div>
+                        <br>
+                    </div>
+                    <h6 id="total">Total a pagar: </h6>
                     <br>
+                    <Button type="submit" class="waves-effect waves-light btn blue">Comprar</Button>
                 </div>
-                <h6 id="total">Total a pagar: </h6>
-                <br>
-                <a class="waves-effect waves-light btn blue">Comprar</a>
-            </div>
+            </form>
         </div>
     </main>
     <footer class="page-footer blue accent-3">

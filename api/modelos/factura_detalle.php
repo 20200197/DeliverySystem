@@ -11,8 +11,9 @@ class Factura extends Validator
     private $fecha = null;
     private $total = null;
     private $estado_factura = null;
-    private $direccion = null;
+    private $id_direccion = null;
     private $id_cliente = null;
+    private $id_metodo = null;
     
     //creamos metodos set
 
@@ -21,6 +22,26 @@ class Factura extends Validator
             $this->id_detalle = $valor;
             return true;
         }else{
+            return false;
+        }
+    }
+
+    public function setIdDirection($valor)
+    {
+        if ($this->validateNaturalNumber($valor)) {
+            $this->id_direccion = $valor;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setIdMetodo($valor)
+    {
+        if ($this->validateNaturalNumber($valor)) {
+            $this->id_metodo = $valor;
+            return true;
+        } else {
             return false;
         }
     }
@@ -82,15 +103,6 @@ class Factura extends Validator
     public function setEstadoFactura($valor){
         if($this->validateAlphabetic($valor, 1, 20)){
             $this->estado_factura = $valor;
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    public function setDireccion($valor){
-        if($this->validateDirection($valor)){
-            $this->direccion = $valor;
             return true;
         }else{
             return false;
@@ -215,14 +227,22 @@ class Factura extends Validator
     {
         // Se establece la zona horaria local para obtener la fecha del servidor.
         date_default_timezone_set('America/El_Salvador');
-        $date = date('Y-m-d');
-        $this->estado_factura = 'Cancelado';
+        $date = date('Y-m-d H:i:s');
+        $this->estado_factura = 2;
         $sql = 'UPDATE factura
-                SET estado_factura = ?, fecha = ?, direccion = ?, total = (SELECT sum(precio_unitario * cantidad_producto)Suma
-                FROM detalle_factura INNER JOIN factura USING(id_factura) INNER JOIN productos USING(id_producto)
-                WHERE id_factura = ?)
+                SET id_status = ?, fecha_compra = ?, id_direccion = ?, total = (SELECT sum(precio * cantidad_pedido)Suma
+                FROM detalle_factura INNER JOIN factura USING(id_factura) INNER JOIN producto USING(id_producto)
+                WHERE id_factura = ?), id_metodo_pago = ?
                 WHERE id_factura = ?';
-        $params = array($this->estado_factura, $date, $this->direccion, $_SESSION['id_factura'], $_SESSION['id_factura']);
+        $params = array($this->estado_factura, $date, $this->id_direccion, $_SESSION['id_factura'], $this->id_metodo, $_SESSION['id_factura']);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function minusStock()
+    {
+        $sql = 'CALL actualizarinventario(?)';
+        $params = array($_SESSION['id_factura']);
+
         return Database::executeRow($sql, $params);
     }
 
