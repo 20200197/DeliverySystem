@@ -274,7 +274,7 @@ function pedir(id) {
                 //Se revisa el estado devuelto por la API
                 if (response.status) {
                     //Se cargan los datos en el modal
-                    document.getElementById("identificadorPedir").value = id;
+                    document.getElementById("identificadorPedir").value = response.dataset.id_producto;
                      document.getElementById("nombreProductoPedir").innerHTML = response.dataset.nombre_producto;
                      document.getElementById("fotoProductoPedir").src =
                          "../../../api/imagenes/productos/" + response.dataset.imagen;
