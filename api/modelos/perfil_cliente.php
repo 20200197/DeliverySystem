@@ -113,9 +113,9 @@ class PerfilCliente extends Validator
     public function actualizarPerfil($foto)
     {
         
-        $sql = 'UPDATE cliente SET nombre_cliente = ?, apellido_cliente = ?, correo_cliente = ?, telefono_cliente = ?, foto_cliente = ? ';
-        $params = array($this->nombreCliente, $this->apellidoCliente, $this->correoCliente, $this->telefonoCliente, $foto);
-        print_r($params);
+        $sql = 'UPDATE cliente SET nombre_cliente = ?, apellido_cliente = ?, correo_cliente = ?, telefono_cliente = ?, foto_cliente = ? WHERE id_cliente = ?';
+        $params = array($this->nombreCliente, $this->apellidoCliente, $this->correoCliente, $this->telefonoCliente, $foto, 1);
+        //$params = array($this->nombreCliente, $this->apellidoCliente, $this->correoCliente, $this->telefonoCliente, $foto, $_SESSION['id_cliente']);
         return Database::executeRow($sql, $params);
     }
 }

@@ -130,7 +130,7 @@ function guardarDatos() {
                                 request.json().then(function (response) { 
                                     //Se verifica el estado devuelto por la API
                                     if (response.status) {
-                                        sweetAlert(1, response.messagem, null);
+                                        sweetAlert(1, response.message, null);
                                     } else { 
                                         //Se notifica el problema
                                         sweetAlert(2, response.exception, null);
