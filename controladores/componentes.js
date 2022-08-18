@@ -17,11 +17,11 @@ const SERVER = 'http://localhost/DeliverySystem/api/';
 function readRows(api) {
     fetch(api + 'readAll', {
         method: 'get'
-    }).then(function(request) {
+    }).then(function (request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
         if (request.ok) {
             // Se obtiene la respuesta en formato JSON.
-            request.json().then(function(response) {
+            request.json().then(function (response) {
                 let data = [];
                 // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
@@ -42,11 +42,11 @@ function readRows(api) {
 function readRowsMisPedidos(api) {
     fetch(api + 'readAll', {
         method: 'get'
-    }).then(function(request) {
+    }).then(function (request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
         if (request.ok) {
             // Se obtiene la respuesta en formato JSON.
-            request.json().then(function(response) {
+            request.json().then(function (response) {
                 let data = [];
                 // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
@@ -67,11 +67,11 @@ function readRowsMisPedidos(api) {
 function readRow(api) {
     fetch(api + 'readRegistro', {
         method: 'get'
-    }).then(function(request) {
+    }).then(function (request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
         if (request.ok) {
             // Se obtiene la respuesta en formato JSON.
-            request.json().then(function(response) {
+            request.json().then(function (response) {
                 let data = [];
                 // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
@@ -99,11 +99,11 @@ function searchRows(api, form) {
     fetch(api + 'search', {
         method: 'post',
         body: new FormData(document.getElementById(form))
-    }).then(function(request) {
+    }).then(function (request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
         if (request.ok) {
             // Se obtiene la respuesta en formato JSON.
-            request.json().then(function(response) {
+            request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
@@ -124,11 +124,11 @@ function searchRowsProductos(api, form) {
     fetch(api + 'search', {
         method: 'post',
         body: new FormData(document.getElementById(form))
-    }).then(function(request) {
+    }).then(function (request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
         if (request.ok) {
             // Se obtiene la respuesta en formato JSON.
-            request.json().then(function(response) {
+            request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
@@ -155,11 +155,11 @@ function saveRow(api, action, form, modal) {
     fetch(api + action, {
         method: 'post',
         body: new FormData(document.getElementById(form))
-    }).then(function(request) {
+    }).then(function (request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
         if (request.ok) {
             // Se obtiene la respuesta en formato JSON.
-            request.json().then(function(response) {
+            request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se cierra la caja de dialogo (modal) del formulario.
@@ -181,11 +181,11 @@ function saveRowS(api, action, form) {
     fetch(api + action, {
         method: 'post',
         body: new FormData(document.getElementById(form))
-    }).then(function(request) {
+    }).then(function (request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
         if (request.ok) {
             // Se obtiene la respuesta en formato JSON.
-            request.json().then(function(response) {
+            request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
@@ -225,11 +225,11 @@ function confirmDelete(api, data) {
             fetch(api + "delete", {
                 method: "post",
                 body: data,
-            }).then(function(request) {
+            }).then(function (request) {
                 // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
                 if (request.ok) {
                     // Se obtiene la respuesta en formato JSON.
-                    request.json().then(function(response) {
+                    request.json().then(function (response) {
                         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                         if (response.status) {
                             // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro y se muestra un mensaje de éxito.
@@ -287,7 +287,7 @@ function sweetAlert(type, text, url) {
             closeOnClickOutside: false,
             showConfirmButton: false,
             closeOnEsc: false
-        }).then(function() {
+        }).then(function () {
             location.href = url;
         });
     } else {
@@ -316,11 +316,11 @@ function sweetAlert(type, text, url) {
 function fillSelect(endpoint, select, selected) {
     fetch(endpoint, {
         method: 'get'
-    }).then(function(request) {
+    }).then(function (request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
         if (request.ok) {
             // Se obtiene la respuesta en formato JSON.
-            request.json().then(function(response) {
+            request.json().then(function (response) {
                 let content = '';
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
@@ -329,7 +329,7 @@ function fillSelect(endpoint, select, selected) {
                         content += '<option disabled selected>Seleccione una opción</option>';
                     }
                     // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
-                    response.dataset.map(function(row) {
+                    response.dataset.map(function (row) {
                         // Se obtiene el dato del primer campo de la sentencia SQL (valor para cada opción).
                         value = Object.values(row)[0];
                         // Se obtiene el dato del segundo campo de la sentencia SQL (texto para cada opción).
@@ -399,7 +399,100 @@ function barras(CLASS, cabeceras, datos) {
 }
 
 /**
- *  Función para generar gráficas de tipo: barras
+ *  Función para generar gráficas de tipo: Dona
+ *  Los parámetros de la función son:
+ * 
+ *  - CLASS: Nombre de la clase donde se colocará la función, debe ser ".NombreClase"
+ * 
+ *  - cabeceras: Vector con los titulos de la gráfica, debe ir ['Nombre 1', 'Nombre 2', 'Nombre 3',...]
+ * 
+ *  - datos: Vector con los datos por cada titulo de la gráfica
+ * 
+ *      -Solo admite una linea, por lo que está es la única opción
+ *      [{
+ *          meta: "Nombre",
+ *          Valor: dato
+ *      }, {
+ *          meta: "Nombre",
+ *          Valor: dato
+ *      }, {
+ *          meta: "Nombre",
+ *          Valor: dato
+ *      }]
+ *      + meta: Titulo del dato, se debería de colocar un String.
+ *      + Valor: Cantidad númerica que representa el meta (titulo), debe ser INT
+ * 
+ * 
+ *  Para que funcione se deben agregar Chartist.js y Chartist-tooltip.min.js en Script
+ * 
+ *  CDN en css
+ *  < rel = "stylesheet" href = "//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css" >
+ * 
+ */
+function semiPastel(CLASS, titulos, datos) {
+    var chart = new Chartist.Pie(CLASS, {
+        series: datos,
+        labels: titulos
+    }, {
+        donut: true,
+        showLabel: false,
+        plugins: [
+            Chartist.plugins.tooltip()
+        ],
+        height: 300,
+    });
+
+    chart.on('draw', function (data) {
+        if (data.type === 'slice') {
+            // Se obtiene el total de elementos 
+            var pathLength = data.element._node.getTotalLength();
+
+            // Se utiliza para calcular con el porcentaje de cada dato
+            data.element.attr({
+                'stroke-dasharray': pathLength + 'px ' + pathLength + 'px'
+            });
+
+            //Se crean los datos para crear la animación
+            var animationDefinition = {
+                'stroke-dashoffset': {
+                    id: 'anim' + data.index,
+                    dur: 1000,
+                    from: -pathLength + 'px',
+                    to: '0px',
+                    easing: Chartist.Svg.Easing.easeOutQuint,
+                    // Es para parar durante un tiempo antes que se reanime
+                    fill: 'freeze'
+                }
+            };
+
+            //Se utiliza para llevar la secuencia entre cada parte de la gráfica
+            if (data.index !== 0) {
+                animationDefinition['stroke-dashoffset'].begin = 'anim' + (data.index - 1) + '.end';
+            }
+
+            data.element.attr({
+                'stroke-dashoffset': -pathLength + 'px'
+            });
+
+            data.element.animate(animationDefinition, false);
+        }
+    });
+
+    // Tiempo en que se tardará en animarse por completo
+    chart.on('created', function () {
+        if (window.__anim21278907124) {
+            clearTimeout(window.__anim21278907124);
+            window.__anim21278907124 = null;
+        }
+        window.__anim21278907124 = setTimeout(chart.update.bind(chart), 10000);
+    });
+}
+
+
+
+
+/**
+ *  Función para generar gráficas de tipo: Linea
  *  Los parámetros de la función son:
  * 
  *  - CLASS: Nombre de la clase donde se colocará la función, debe ser ".NombreClase"
@@ -414,85 +507,14 @@ function barras(CLASS, cabeceras, datos) {
  *      -Para una gráfica con multiples datos por titulo
  *      [[Dato, Dato, Dato,...], [Dato, Dato, Dato,...], [Dato, Dato, Dato,..],...]
  * 
- *  Las librerías extras a usar son
+ *  Para que funcione se deben agregar Chartist.js y Chartist-tooltip.min.js en Script
+ * 
+ *  CDN en css
+ *  < rel = "stylesheet" href = "//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css" >
+ * 
  */
-function semiPastel(CLASS, titulos, datos) {
-    //Se crea un arreglo donde guardar todos los datos
-    var data = {
-        labels: titulos,
-        series: datos,
-    };
-
-    //Se crean los datos
-    var chart = new Chartist.Pie(CLASS, data, {
-        donut: true,
-        showLabel: true,
-    });
-    chart.on("draw", function(data) {
-        if (data.type === "slice") {
-            //Se obtiene la ruta
-            var pathLength = data.element._node.getTotalLength();
-
-            //Se toman las coordenadas y limites de dónde puede llegar
-            data.element.attr({
-                "stroke-dasharray": pathLength + "px " + pathLength + "px",
-            });
-
-            //Preferencias de animación
-            var animationDefinition = {
-                "stroke-dashoffset": {
-                    id: "anim" + data.index,
-                    dur: 450,
-                    from: -pathLength + "px",
-                    to: "0px",
-                    easing: Chartist.Svg.Easing.easeOutQuint,
-                    fill: "freeze",
-                },
-            };
-
-            //Tiempo de animación entre cambios
-            if (data.index !== 0) {
-                animationDefinition["stroke-dashoffset"].begin = "anim" + (data.index - 1) + ".end";
-            }
-
-            data.element.attr({
-                "stroke-dashoffset": -pathLength + "px",
-            });
-
-            //Animaciones
-            data.element.animate(animationDefinition, false);
-        }
-    });
-
-    //Repetición de la animación
-    chart.on("created", function() {
-        if (window.__anim21278907124) {
-            clearTimeout(window.__anim21278907124);
-            window.__anim21278907124 = null;
-        }
-        window.__anim21278907124 = setTimeout(chart.update.bind(chart), 18000);
-    });
-}
-
 
 function lineaI(CLASS, cabeceras, datos) {
-    new Chartist.Line(CLASS, {
-        labels: cabeceras,
-        series: datos
-    }, {
-        fullWidth: true,
-        chartPadding: {
-            right: 40
-        },
-        plugins: [
-            Chartist.plugins.tooltip()
-        ]
-    });
-
-}
-
-//Función para crear una gráfica líneal con puntos interpolados
-function lineaI2(CLASS, cabeceras, datos) {
     //Se crea la gráfica a base de la clase y los datos
     var chart = new Chartist.Line(
         CLASS, {
@@ -514,12 +536,12 @@ function lineaI2(CLASS, cabeceras, datos) {
         durations = 500;
 
     //Se reinicia la animación
-    chart.on("created", function() {
+    chart.on("created", function () {
         seq = 0;
     });
 
     //Se dibuja los elementos usando la API de Chartist
-    chart.on("draw", function(data) {
+    chart.on("draw", function (data) {
         seq++;
 
         if (data.type === "line") {
@@ -614,7 +636,7 @@ function lineaI2(CLASS, cabeceras, datos) {
     });
 
     //Reanimación de la gráfica
-    chart.on("created", function() {
+    chart.on("created", function () {
         if (window.__exampleAnimateTimeout) {
             clearTimeout(window.__exampleAnimateTimeout);
             window.__exampleAnimateTimeout = null;
@@ -635,7 +657,7 @@ function logOut(type) {
         confirmButtonText: 'Cerrar sesión',
         allowOutsideClick: false,
         allowEscapeKey: false
-    }).then(function(value) {
+    }).then(function (value) {
         // Se verifica si fue cliqueado el botón Sí para hacer la petición de cerrar sesión, de lo contrario se muestra un mensaje.
         if (value.isConfirmed) {
             switch (type) {
@@ -648,11 +670,11 @@ function logOut(type) {
             }
             fetch(API, {
                 method: 'get'
-            }).then(function(request) {
+            }).then(function (request) {
                 // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
                 if (request.ok) {
                     // Se obtiene la respuesta en formato JSON.
-                    request.json().then(function(response) {
+                    request.json().then(function (response) {
                         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                         if (response.status) {
                             sweetAlert(1, response.message, 'index.html');
