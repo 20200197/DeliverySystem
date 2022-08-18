@@ -147,7 +147,7 @@
                 <form id="confirmacionAutenticidad" method="post">
                     <p>Ingresa la contraseña actual</p>
                     <div class="input-field col l6 m6 s12 push-l3 push-m3">
-                        <input placeholder="************" id="usuario" type="password" class="validate" required />
+                        <input placeholder="************" id="usuario" type="password" name="passwordV" class="validate" required />
                         <label for=" first_name">Contraseña</label>
                     </div>
                     <div class="distribuidor">
@@ -173,11 +173,11 @@
             <div class="row">
                 <form id="cambioPass" method="post">
                     <div class="input-field col l8 m8 s12 push-l2 push-m2">
-                        <input placeholder="Nombre de usuario" id="CambiarUsuario" type="text" class="validate" />
+                        <input placeholder="Nombre de usuario" id="CambiarUsuario" name="user" type="text" class="validate" />
                         <label for=" first_name">Nombre de usuario</label>
                     </div>
                     <div class="input-field col l6 m6 s12">
-                        <input placeholder="***********" id="clave" type="password" class="validate" />
+                        <input placeholder="***********" id="clave" type="password" name="password" class="validate" />
                         <label for=" last_name">Contraseña</label>
                         <div class="col left">
                             <span class="light-blue-text accent-4-text"><small>El cambio de contraseña no es

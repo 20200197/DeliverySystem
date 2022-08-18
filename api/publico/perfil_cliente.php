@@ -43,7 +43,7 @@ if (isset($_GET['action'])) {
                 } elseif (!$perfil->setTelefonoCliente($_POST['telefono'])) {
                     $result['exception'] = 'Teléfono no valido';
                 } elseif (!is_uploaded_file($_FILES['foto']['tmp_name'])) {
-                  if($perfil->actualizarPerfil($data['foto_cliente'])) {
+                    if ($perfil->actualizarPerfil($data['foto_cliente'])) {
                         $result['message'] = 'Perfil actualizado con éxito';
                         $result['status'] = 1;
                     } else {
@@ -61,7 +61,40 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = Database::getException();
                 }
-                
+
+                break;
+            case 'verificarPass':
+                $_POST = $perfil->validateForm($_POST);
+                if ($perfil->verificarPass($_POST['passwordV'])) {
+                    $result['status'] = 1;
+                    $_SESSION['verificar'] = true;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Contraseña incorrecta';
+                }
+                break;
+            case 'actualizarPass':
+                $_POST = $perfil->validateForm($_POST);
+                if(!$perfil->setUserCliente($_POST['user'])) {
+                    $result['exception'] = 'Nombre de usuario invalido';
+                } elseif (empty($_POST['password'])) {
+                    if (!$data = $perfil->datosCuenta()) {
+                        $result['exception'] = 'No se encontró tu cuenta';
+                    } elseif ($perfil->actualizarCuenta($perfil->getUser(), $data['clave_cliente'])) {
+                        $result['message'] = 'Cuenta actualizada con éxito';
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                } elseif (!$perfil->setPassCliente($_POST['password'])) {
+                    $result['exception'] = 'Contraseña invalida';
+                } elseif ($perfil->actualizarCuenta($perfil->getUser(), $perfil->getPass())) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Cuenta actualizada con éxito';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
                 break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';

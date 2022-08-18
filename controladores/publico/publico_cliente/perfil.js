@@ -21,20 +21,6 @@ function fillTable(datos) {
     document.getElementById('fotoPerfil').src = SERVER + '/imagenes/cliente/foto/' + datos.foto_cliente;
 }
 
-//Se crea el método que verificará la autentidad del usuario
-document.getElementById('confirmacionAutenticidad').addEventListener("submit", function(event) {
-    //Se previene la recarga de la página
-    event.preventDefault();
-    //Comprueba la contraseña
-    //Se cierra el formulario
-    M.Modal.getInstance(document.getElementById("autenticidad")).close();
-    //Se reinicia el contenido del formulario
-    document.getElementById('confirmacionAutenticidad').reset();
-    //Se abre el formulario
-    M.Modal.getInstance(document.getElementById("datos-cuenta")).open();
-});
-
-
 //Función para previsualizar la foto de perfil
 function leerImg(input, img_destino) {
     //Se obtiene los archivos del input
@@ -154,3 +140,63 @@ function guardarDatos() {
         }
     });
 }
+
+//Método para verificar contraseña
+document.getElementById("confirmacionAutenticidad").addEventListener('submit', function (event) { 
+    //Se evita la recarga de la página
+    event.preventDefault();
+    //Se realiza la petición
+    fetch(API_PERFIL + "verificarPass", {
+        method: "post",
+        body: new FormData(document.getElementById("confirmacionAutenticidad")),
+    }).then(function (request) { 
+        //Se verifica el estado de la ejecución
+        if (request.ok) {
+            //Se pasa a json
+            request.json().then(function (response) { 
+                //Se verifica el estado devuelto por la API
+                if (response.status) {
+                    //Se cierra el formulario
+                    M.Modal.getInstance(document.getElementById("autenticidad")).close();
+                    //Se reinicia el contenido del formulario
+                    document.getElementById("confirmacionAutenticidad").reset();
+                    //Se abre el nuevo fórmulario
+                    M.Modal.getInstance(document.getElementById("datos-cuenta")).open();
+                } else { 
+                    //Se notifica del error
+                    sweetAlert(2, response.exception, null);
+                }
+            })
+        } else { 
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+});
+
+//Método para actualizar la contraseña
+document.getElementById("cambioPass").addEventListener("submit", function (event) {
+    //Se evita la recarga de la página
+    event.preventDefault();
+    //Se realiza la petición
+    fetch(API_PERFIL + "actualizarPass", {
+        method: "post",
+        body: new FormData(document.getElementById("cambioPass")),
+    }).then(function (request) {
+        //Se verifica el estado de la ejecución
+        if (request.ok) {
+            //Se pasa a json
+            request.json().then(function (response) {
+                //Se verifica el estado devuelto por la API
+                if (response.status) {
+                    //Se muestra el mensaje
+                     sweetAlert(1, response.message, null);
+                } else {
+                    //Se notifica del error
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + " " + request.statusText);
+        }
+    });
+});

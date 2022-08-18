@@ -13,6 +13,7 @@ class PerfilCliente extends Validator
     private $telefonoCliente = null;
     private $fotoCliente = null;
     private $passCliente = null;
+    private $UserCliente = null;
     private $ruta = '../imagenes/cliente/foto/';
 
     //Se crean los constructores para colocar los datos
@@ -40,6 +41,16 @@ class PerfilCliente extends Validator
     {
         if ($this->validateAlphabetic($value, 2, 30)) {
             $this->apellidoCliente = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setUserCliente($value)
+    {
+        if ($this->validateString($value, 2, 30)) {
+            $this->UserCliente = $value;
             return true;
         } else {
             return false;
@@ -98,6 +109,16 @@ class PerfilCliente extends Validator
         return $this->fotoCliente;
     }
 
+    public function getUser()
+    {
+        return $this->UserCliente;
+    }
+
+    public function getPass()
+    {
+        return $this->passCliente;
+    }
+
     //Funciones para realizar los mantenimientos en la DB
 
     //Obtener los datos del perfil
@@ -116,6 +137,35 @@ class PerfilCliente extends Validator
         $sql = 'UPDATE cliente SET nombre_cliente = ?, apellido_cliente = ?, correo_cliente = ?, telefono_cliente = ?, foto_cliente = ? WHERE id_cliente = ?';
         $params = array($this->nombreCliente, $this->apellidoCliente, $this->correoCliente, $this->telefonoCliente, $foto, 1);
         //$params = array($this->nombreCliente, $this->apellidoCliente, $this->correoCliente, $this->telefonoCliente, $foto, $_SESSION['id_cliente']);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Verificar contraseña
+    public function verificarPass($pass)
+    {
+        $sql = 'SELECT clave_cliente FROM cliente WHERE id_cliente = ?';
+        $params = array(1); //$_SESSION['id_cliente']
+        if (!$data = Database::getRow($sql, $params)) {
+            return false;
+        } elseif (!password_verify($pass, $data['clave_cliente'])) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    //Obtener datos de la cuenta
+    public function datosCuenta()
+    {
+        $sql = 'SELECT clave_cliente FROM cliente WHERE id_cliente = ?';
+        $params = array(1); //$_SESSION['id_cliente']
+        return Database::getRow($sql, $params);
+    }
+    //Actualizar datos de la cuenta
+    public function actualizarCuenta($user, $pass)
+    {
+        $sql = 'UPDATE cliente SET usuario_cliente = ?, clave_cliente = ? WHERE id_cliente = ?';
+        $params = array($user, $pass, 1); //$_SESSION['id_cliente']
         return Database::executeRow($sql, $params);
     }
 }
