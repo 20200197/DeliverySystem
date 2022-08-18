@@ -154,6 +154,14 @@ class PerfilCliente extends Validator
         }
     }
 
+    //obtener nombre de usuario
+    public function nombreUsuario()
+    {
+        $sql = 'SELECT usuario_cliente FROM cliente WHERE id_cliente = ?';
+        $params = array(1); //$_SESSION['id_cliente']
+        return Database::getRow($sql, $params);
+    }
+
     //Obtener datos de la cuenta
     public function datosCuenta()
     {
