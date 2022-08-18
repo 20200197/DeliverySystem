@@ -210,19 +210,21 @@ function saveRowS(api, action, form) {
 *   Retorno: ninguno.
 */
 function confirmDelete(api, data) {
-    swal({
-        title: 'Advertencia',
-        text: '¿Desea eliminar el registro?',
-        icon: 'warning',
-        buttons: ['No', 'Sí'],
+    Swal.fire({
+        title: "Advertencia",
+        text: "¿Desea eliminar el registro?",
+        icon: "warning",
+        confirmButtonText: "Aceptar",
+        denyButtonText: "Cancelar",
+        showDenyButton: true,
         closeOnClickOutside: false,
-        closeOnEsc: false
-    }).then(function (value) {
+        closeOnEsc: false,
+    }).then((result) => {
         // Se comprueba si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
-        if (value) {
-            fetch(api + 'delete', {
-                method: 'post',
-                body: data
+        if (result.isConfirmed) {
+            fetch(api + "delete", {
+                method: "post",
+                body: data,
             }).then(function (request) {
                 // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
                 if (request.ok) {
@@ -238,7 +240,7 @@ function confirmDelete(api, data) {
                         }
                     });
                 } else {
-                    console.log(request.status + ' ' + request.statusText);
+                    console.log(request.status + " " + request.statusText);
                 }
             });
         }
@@ -275,11 +277,15 @@ function sweetAlert(type, text, url) {
     // Si existe una ruta definida, se muestra el mensaje y se direcciona a dicha ubicación, de lo contrario solo se muestra el mensaje.
     if (url) {
         Swal.fire({
+            toast:true,
+            position: 'top-end',
             title: title,
             text: text,
             icon: icon,
             button: 'Aceptar',
+            timer: 2000,
             closeOnClickOutside: false,
+            showConfirmButton:false,
             closeOnEsc: false
         }).then(function () {
             location.href = url
@@ -294,7 +300,7 @@ function sweetAlert(type, text, url) {
             button: 'Aceptar',
             closeOnClickOutside: false,
             showConfirmButton: false,
-            timer: 3000,
+            timer: 2000,
             closeOnEsc: false
         });
     }
@@ -440,18 +446,28 @@ function pieGraph(canvas, legends, values, title) {
 }
 
 // Función para mostrar un mensaje de confirmación al momento de cerrar sesión.
-function logOut() {
-    swal({
-        title: 'Advertencia',
-        text: '¿Está seguro de cerrar la sesión?',
+function logOut(type) {
+    Swal.fire({
+        title: '¿Éstas seguro de cerrar sesión?',
         icon: 'warning',
-        buttons: ['No', 'Sí'],
-        closeOnClickOutside: false,
-        closeOnEsc: false
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Cerrar sesión',
+        allowOutsideClick: false,
+        allowEscapeKey: false
     }).then(function (value) {
         // Se verifica si fue cliqueado el botón Sí para hacer la petición de cerrar sesión, de lo contrario se muestra un mensaje.
-        if (value) {
-            fetch(API + 'logOut', {
+        if (value.isConfirmed) {
+            switch(type){
+                case 'Admin':
+                API = SERVER + 'dashboard/administrar_admin.php?action=logOut'
+                break;
+                case 'Vendedor':
+                API = SERVER + 'dashboard/administrar_vendedor.php?action=logOut'
+                break;
+            }
+            fetch(API, {
                 method: 'get'
             }).then(function (request) {
                 // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
@@ -474,4 +490,3 @@ function logOut() {
         }
     });
 }
-
