@@ -115,7 +115,6 @@
             -moz-transition: opacity .2s linear;
             -o-transition: opacity .2s linear;
             transition: opacity .2s linear;
-            transform: translate(275px, 75px) !important;
         }
         
         .chartist-tooltip:before {
