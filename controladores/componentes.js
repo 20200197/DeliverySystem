@@ -456,7 +456,7 @@ function semiPastel(CLASS, titulos, datos) {
             var animationDefinition = {
                 'stroke-dashoffset': {
                     id: 'anim' + data.index,
-                    dur: 1000,
+                    dur: 700,
                     from: -pathLength + 'px',
                     to: '0px',
                     easing: Chartist.Svg.Easing.easeOutQuint,
@@ -484,7 +484,7 @@ function semiPastel(CLASS, titulos, datos) {
             clearTimeout(window.__anim21278907124);
             window.__anim21278907124 = null;
         }
-        window.__anim21278907124 = setTimeout(chart.update.bind(chart), 10000);
+        window.__anim21278907124 = setTimeout(chart.update.bind(chart), 20000);
     });
 }
 
