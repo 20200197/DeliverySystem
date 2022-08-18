@@ -984,7 +984,6 @@ main .center-align {
   justify-content: center;
 }
 
-label:hover,
 label:hover ~ label > .estrella {
   color: rgb(255, 238, 0);
 }
@@ -1303,7 +1302,45 @@ input[type="radio"]:checked ~ label > .estrella {
   display: flex;
   flex-direction: column;
   align-items: center;
+  align-self: center;
 }
+
+#mapa {
+  height: 350px;
+  width: 450px;
+  z-index: 0;
+}
+
+.logout{
+  background: transparent;
+  border: transparent;
+}
+
+.logout:hover{
+  cursor: pointer;
+}
+.mapa_oscuro .leaflet-routing-alternatives-container {
+  color: black;
+}
+
+/*Responsive tablet*/
+@media (max-width:1050.98px) and (min-width:699.98px) {
+  #mapa {
+    height: 300px;
+    width: 300px;
+    z-index: 0;
+  }
+}
+
+/*response telefono*/
+@media (max-width:698.97px) and (min-width:100.20px) {
+  #mapa {
+    height: 200px;
+    width: 450px;
+    z-index: 0;
+  }
+}
+
 /*----------------------------------------------*/
 /*-------------------registrar_admin---------------------*/
 /*----------------------------------------------*/
@@ -1413,7 +1450,7 @@ a {
 /*---------------------------------------------------*/
 
 .texto-bool-verdad {
-  color: #255e11;
+  color: #255e11; 
 }
 
 .texto-bool-falso {
@@ -2092,6 +2129,11 @@ tbody tr {
 /*-------------------Perfil vendedor---------------------*/
 /*----------------------------------------------*/
 
+.centrar_boton_mis_productos{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .main_vendedor h5 {
   text-align: center;
@@ -2220,6 +2262,104 @@ tbody tr {
   color: white;
   border-radius: 15px;
 }
+
+/*Boton de ver mas*/
+#boton_datos{
+z-index: 0;
+}
+
+#filtrado{
+  height: 100%;
+}
+
+/*----------------------------------------------*/
+/*-------------------radio---------------------*/
+/*----------------------------------------------*/
+
+#contenedor_calidad .option-input{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relative;
+  top: 13.33333px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  width: 40px;
+  transition: all 0.15s ease-out 0s;
+  background: #cbd1d8;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0.5rem;
+  outline: none;
+  position: relative;
+  z-index: 1000;
+}
+
+#contenedor_calidad .option-input:hover {
+  background: #3111F4;
+}
+
+#contenedor_calidad .option-input:checked {
+  background: #40e0d0;
+}
+
+#contenedor_calidad .option-input:checked::before{
+  width: 40px;
+  height: 40px;
+  display:flex;
+  content: '\f00c';
+  font-size: 25px;
+  font-weight:bold;
+  position: absolute;
+  align-items:center;
+  justify-content:center;
+  font-family:'Font Awesome 5 Free';
+}
+
+#contenedor_calidad .option-input:checked::after{
+  -webkit-animation: click-wave 0.65s;
+  -moz-animation: click-wave 0.65s;
+  animation: click-wave 0.65s;
+  background: #40e0d0;
+  content: '';
+  display: block;
+  position: relative;
+  z-index: 100;
+}
+
+#contenedor_calidad .option-input.radio{
+  border-radius: 50%;
+}
+
+#contenedor_calidad .option-input.radio::after{
+  border-radius: 50%;
+}
+
+
+@keyframes click-wave {
+  0% {
+    height: 40px;
+    width: 40px;
+    opacity: 0.35;
+    position: relative;
+  }
+  100% {
+    height: 200px;
+    width: 200px;
+    margin-left: -80px;
+    margin-top: -80px;
+    opacity: 0;
+  }
+}
+
+
+
 
 /*----------------------------------------------*/
 /*-------------------Modal general---------------------*/
