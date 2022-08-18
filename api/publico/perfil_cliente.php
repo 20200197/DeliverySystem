@@ -32,10 +32,34 @@ if (isset($_GET['action'])) {
                 $_POST = $perfil->validateForm($_POST);
                 if (!$perfil->setIdentificador(1)) { //$_SESSION['id_cliente']
                     $result['exception'] = "No se encontró la sesión de tu cuenta";
-                } elseif ($data != $perfil->datosPerfil()) {
+                } elseif (!$data = $perfil->datosPerfil()) {
                     $result['exception'] = "Los datos de la cuenta no se encontraron";
                 } elseif (!$perfil->setNombreCliente($_POST['nombre'])) {
                     $result['exception'] = 'Nombre no valido';
+                } elseif (!$perfil->setApellidoCliente($_POST['apellido'])) {
+                    $result['exception'] = 'Apellido no valido';
+                } elseif (!$perfil->setCorreoCliente($_POST['correo'])) {
+                    $result['exception'] = 'Correo no valido';
+                } elseif (!$perfil->setTelefonoCliente($_POST['telefono'])) {
+                    $result['exception'] = 'Teléfono no valido';
+                } elseif (!is_uploaded_file($_FILES['foto']['tmp_name'])) {
+                  if($perfil->actualizarPerfil($data['foto_cliente'])) {
+                        $result['message'] = 'Perfil actualizado con éxito';
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                } elseif (!$perfil->setFotoCliente($_FILES['foto'])) {
+                    $result['exception'] = 'Dimensiones o formato de imagen incorrectos';
+                } elseif ($perfil->actualizarPerfil($perfil->getFotoCliente())) {
+                    $result['status'] = 1;
+                    if ($perfil->saveFile($_FILES['foto'], $perfil->getRuta(), $perfil->getFotoCliente())) {
+                        $result['message'] = 'Perfil actualizado con éxito';
+                    } else {
+                        $result['message'] = 'Perfil actualizado pero no se cargó la nueva imagen';
+                    }
+                } else {
+                    $result['exception'] = Database::getException();
                 }
                 
                 break;

@@ -110,21 +110,43 @@ function guardarDatos() {
                     //Se revisan los datos para validar si han sido modificados
                     imagen = document.getElementById('fotoPerfil').src.split('/');
                     if (
-                        imagen[imagen.length - 1] == response.dataset.foto_cliente ||
-                        document.getElementById('nombre').value == response.dataset.nombre_cliente ||
-                        document.getElementById('apellido').value == response.dataset.apellido_cliente ||
-                        document.getElementById('correo').value == response.dataset.correo_cliente ||
+                        imagen[imagen.length - 1] == response.dataset.foto_cliente &&
+                        document.getElementById('nombre').value == response.dataset.nombre_cliente &&
+                        document.getElementById('apellido').value == response.dataset.apellido_cliente &&
+                        document.getElementById('correo').value == response.dataset.correo_cliente &&
                         document.getElementById('telefono').value == response.dataset.telefono_cliente
                     ) {
+                        //Se notifica el problema
                         sweetAlert(3, 'Debes modificar datos para poder actualizar', null);
                     } else {
-
-
+                        //Se procede a actualizar el registro
+                        fetch(API_PERFIL + "ActualizarPerfil", {
+                            method: "post",
+                            body: new FormData(document.getElementById("datosGenerales")),
+                        }).then(function (request) { 
+                            //Se verifica el estado de la ejecución
+                            if (request.ok) {
+                                //Se convierte a formato JSON
+                                request.json().then(function (response) { 
+                                    //Se verifica el estado devuelto por la API
+                                    if (response.status) {
+                                        sweetAlert(1, response.messagem, null);
+                                    } else { 
+                                        //Se notifica el problema
+                                        sweetAlert(2, response.exception, null);
+                                    }
+                                })
+                            } else { 
+                                //Se imprime el error en la consola
+                                console.log(request.status + ' ' + request.statusText);
+                            }
+                        });
                     }
 
 
                 } else {
-
+                    //Se notifica el problema
+                    sweetAlert(2, response.exception, null);
                 }
             });
         } else {

@@ -47,23 +47,29 @@
     <div class="row">
         <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
             <div class="opciones-sidenav">
-                <li class="collection-item"><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i class="material-icons  white-text">home</i><span
+                <li class="collection-item"><a href="index.html" class="tooltipped" data-position="right"
+                        data-tooltip="Hogar"><i class="material-icons  white-text">home</i><span
                             class="white-text hide-on-large-only">Inicio</span></a>
                 </li>
-                <li><a href="perfil.html" class="tooltipped Hide-on-large-only " data-position="right" data-tooltip="Perfil"><i class="material-icons  white-text">account_circle</i><span
+                <li><a href="perfil.html" class="tooltipped Hide-on-large-only " data-position="right"
+                        data-tooltip="Perfil"><i class="material-icons  white-text">account_circle</i><span
                             class="white-text hide-on-large-only">Perfil</span></a></li>
                 <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Ventas"><i
                             class="material-icons  white-text">shopping_basket</i><span
                             class="white-text hide-on-large-only">Compras</span></a></li>
-                <li><a href="mis_productos.html" class="tooltipped" data-position="right" data-tooltip="Mis productos"><i class="material-icons  white-text">format_list_bulleted</i><span
+                <li><a href="mis_productos.html" class="tooltipped" data-position="right"
+                        data-tooltip="Mis productos"><i class="material-icons  white-text">format_list_bulleted</i><span
                             class="white-text hide-on-large-only">Categoria</span></a></li>
-                <li class="hide-on-large-only"><button onclick="logOut('Vendedor')" class="tooltipped transparent logout valign-wrapper" data-position="right" data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
+                <li class="hide-on-large-only"><button onclick="logOut('Vendedor')"
+                        class="tooltipped transparent logout valign-wrapper" data-position="right"
+                        data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
                             class="white-text hide-on-large-only">Cerrar
                             sesión</span></button></li>
             </div>
             <div class="cerrar-navbar hide-on-med-and-down">
                 <li>
-                    <button onclick="logOut('Vendedor')" class="tooltipped white-text transparent logout valign-wrapper" data-position="right" data-tooltip="Cerrar sesión"><i
+                    <button onclick="logOut('Vendedor')" class="tooltipped white-text transparent logout valign-wrapper"
+                        data-position="right" data-tooltip="Cerrar sesión"><i
                             class="material-icons ">arrow_back</i><span class="white-text hide-on-large-only">Cerrar
                             sesión</span></button>
                 </li>
@@ -81,11 +87,13 @@
                 <div class="col l5 m6 s12">
                     <div class="col l6 m6 s8 push-l3 push-m3 push-s2 center">
                         <h6>Tu foto de perfil</h6>
-                        <img src="../../../recursos/img/publico/default-profile.jpg" id="fotoPerfil" class="responsive-img" alt="">
+                        <img src="../../../recursos/img/publico/default-profile.jpg" id="fotoPerfil"
+                            class="responsive-img" alt="">
                         <div class="file-field input-field col l12 m12 s12">
                             <div class="btn col l12 m12 s8 push-s2" id="botonFoto">
                                 <span>Cambiar foto</span>
-                                <input type="file" name="perfil" onchange="leerImg(this, document.getElementById('fotoPerfil'))">
+                                <input type="file" name="foto"
+                                    onchange="leerImg(this, document.getElementById('fotoPerfil'))">
                                 <input class="file-path validate" type="text">
                             </div>
 
@@ -102,15 +110,17 @@
                         <label for="first_name">Nombre</label>
                     </div>
                     <div class="input-field col s6">
-                        <input placeholder="Apellido" id="apellido" name="apellido" type="text" class="validate" disabled/>
+                        <input placeholder="Apellido" id="apellido" name="apellido" type="text" class="validate"
+                            disabled />
                         <label for="first_name">Apellido</label>
                     </div>
                     <div class="input-field col s6">
-                        <input placeholder="Correo" id="correo" name="correo" type="email" class="validate" disabled/>
+                        <input placeholder="Correo" id="correo" name="correo" type="email" class="validate" disabled />
                         <label for="first_name">Correo</label>
                     </div>
                     <div class="input-field col s6">
-                        <input placeholder="Teléfono" id="telefono" name="telefono" type="tel" class="validate" disabled/>
+                        <input placeholder="Teléfono" id="telefono" name="telefono" type="tel" class="validate"
+                            disabled />
                         <label for="first_name">Teléfono</label>
                     </div>
                     <div class="col l12 m12 s12">
@@ -141,9 +151,11 @@
                         <label for=" first_name">Contraseña</label>
                     </div>
                     <div class="distribuidor">
-                        <button href="#!" class="btn  green waves-effect waves-green btn-flat left  white-text" type="submit"><i class="material-icons left white-text">vpn_key</i>
+                        <button href="#!" class="btn  green waves-effect waves-green btn-flat left  white-text"
+                            type="submit"><i class="material-icons left white-text">vpn_key</i>
                             Comprobar</button>
-                        <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat  white-text"><i
+                        <a href="#!"
+                            class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat  white-text"><i
                                 class="material-icons left white-text">cancel</i> Cancelar</a>
                     </div>
                 </form>
@@ -168,7 +180,8 @@
                         <input placeholder="***********" id="clave" type="password" class="validate" />
                         <label for=" last_name">Contraseña</label>
                         <div class="col left">
-                            <span class="light-blue-text accent-4-text"><small>El cambio de contraseña no es requerido</small></span>
+                            <span class="light-blue-text accent-4-text"><small>El cambio de contraseña no es
+                                    requerido</small></span>
                         </div>
                     </div>
                     <div class="input-field col l6 m6 s12">
@@ -180,7 +193,8 @@
                         <button href="#!" class="btn green modal-close waves-effect waves-green btn-flat white-text"><i
                                 class="material-icons white-text left">edit</i>
                             Modificar</button>
-                        <a href="#!" class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat white-text"><i
+                        <a href="#!"
+                            class="btn light-blue accent-4 modal-close waves-effect waves-green btn-flat white-text"><i
                                 class="material-icons white-text left">check_circle</i> Cancelar</a>
                     </div>
 
