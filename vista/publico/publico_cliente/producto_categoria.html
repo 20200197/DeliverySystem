@@ -56,9 +56,9 @@
                 <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Ventas"><i
                             class="material-icons  white-text">shopping_basket</i><span
                             class="white-text hide-on-large-only">Compras</span></a></li>
-                            <li><a href="favorito.html" class="tooltipped" data-position="right"
-                                data-tooltip="Favorito"><i class="material-icons  white-text">star</i><span
-                                    class="white-text hide-on-large-only">Favorito</span></a></li>
+                <li><a href="favorito.html" class="tooltipped" data-position="right" data-tooltip="Favorito"><i
+                            class="material-icons  white-text">star</i><span
+                            class="white-text hide-on-large-only">Favorito</span></a></li>
                 <li class="hide-on-large-only"><button onclick="logOut('Vendedor')"
                         class="tooltipped transparent logout valign-wrapper" data-position="right"
                         data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
@@ -87,6 +87,19 @@
             <div class="col s12 m12 l12">
                 <!--Filtrado de busqueda-->
                 <div class="col s12 m3 l3" id="filtrado">
+                    <div class="row">
+                        <form method="post" id="search-form" class="col s12">
+                            <div class="row">
+                                <div class="input-field col s10 m9 l9">
+                                    <input placeholder="Busca por producto, categoría..." id="buscador" name="search"
+                                        type="text" class="validate grey lighten-3" required>
+                                    <i class="material-icons prefix">search</i>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
                     <h6>Filtrar por</h6>
                     <p>Precio</p>
                     <form id="search-productoprecio" action="submit" method="post">
@@ -204,12 +217,12 @@
             </div>
         </div>
     </main>
-    
+
     <footer class="page-footer blue accent-3">
         <div class="row">
             <div class="col l9 m6 s6">
                 <div class="col l6 m12 s12">
-                    <img src="logo.png" class="responsive-img" alt="">
+                    <img src="../../../recursos/img/publico/clientes/modals/logo.png" class="responsive-img" alt="">
                     <h6 class="hide-on-med-and-down">Copyright 2022</h6>
                 </div>
                 <div class="col l6 m12 ">

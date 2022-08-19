@@ -176,6 +176,9 @@ input[type="checkbox"]:checked~label{
     font-size: 50px;
 }
 
+.true {
+    color: orange;
+}
 
 label {
     font-size: 50px;

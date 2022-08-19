@@ -36,6 +36,29 @@ if (isset($_GET['action'])) {
                 $result['exception'] = 'Producto favorito inexistente';
             }
             break;
+        case 'readOneCategoria':
+            $_POST = $favorito->validateForm($_POST);
+            if ($result['dataset'] = $favorito->readActiveCategoria($_POST['id_cate'])) {
+                $result['status'] = 1;
+            } elseif (Database::getException()) {
+                $result['exception'] = Database::getException();
+            } else {
+                $result['exception'] = 'Producto favorito inexistente';
+            }
+            break;
+            //Comprobamos si hay algun producto en favoritos de cliente logueado
+        case 'readCheckFavoOfClient':
+            $_POST = $favorito->validateForm($_POST);
+            if (!$favorito->setIdProducto($_POST['idP'])) {
+                $result['exception'] = 'Producto incorrecto';
+            } else if ($result['dataset'] = $favorito->readCheckFavoOfClientCategori()) {
+                $result['status'] = 1;
+            } elseif (Database::getException()) {
+                $result['exception'] = Database::getException();
+            } else {
+                $result['exception'] = 'No tiene agregados aún productos favoritos';
+            }
+            break;
             //Creamos favo
         case 'create':
             $_POST = $favorito->validateForm($_POST);
@@ -49,6 +72,18 @@ if (isset($_GET['action'])) {
             }
             break;
         case 'delete':
+            if (!$favorito->setIdProducto($_POST['idP'])) {
+                $result['exception'] = 'Producto incorrecto';
+            } elseif (!$data = $favorito->readActive()) {
+                $result['exception'] = 'Producto inexistente';
+            } elseif ($favorito->deleteFavorito()) {
+                $result['status'] = 1;
+                $result['message'] = 'Favorito eliminado correctamente';
+            } else {
+                $result['exception'] = Database::getException();
+            }
+            break;
+        case 'deleteCheckCategoria':
             if (!$favorito->setIdProducto($_POST['idP'])) {
                 $result['exception'] = 'Producto incorrecto';
             } elseif (!$data = $favorito->readActive()) {

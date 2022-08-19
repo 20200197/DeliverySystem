@@ -22,27 +22,27 @@
         <!--Barra lateral, opciones para los usuarios-->
         <ul id="slide-out" class="sidenav sidenav-fixed">
             <li><a href="dashboard.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
-                class="material-icons medium ">home</i></a></li>
-       <li><a href="perfil.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
-                class="material-icons medium">account_circle</i></a></li>
-       <li><a href="admin_producto.html" class="tooltipped" data-position="right" data-tooltip="Productos"><i
-                class="material-icons medium">import_contacts</i></a></li>
-       <li><a href="admin_categoria.html" class="tooltipped" data-position="right" data-tooltip="Categoria"><i
-                class="material-icons medium">format_list_bulleted</i></a></li>
-       <li><a href="admin_marca.html" class="tooltipped" data-position="right" data-tooltip="Marcas"><i
-                class="material-icons medium">style</i></a></li>
-       <li><a href="admin_vendedor.html" class="tooltipped" data-position="right" data-tooltip="Vendedores"><i
-                class="material-icons medium">people</i></a></li>
-       <li><a href="admin_distribuidor.html" class="tooltipped" data-position="right" data-tooltip="Repartidores"><i
-                class="material-icons medium">motorcycle</i></a></li>
-       <li><a href="admin_cliente.html" class="tooltipped" data-position="right" data-tooltip="Clientes"><i
-                class="material-icons medium">wc</i></a></li>
-       <li><a href="admin_entrega.html" class="tooltipped" data-position="right" data-tooltip="Reparto"><i
-                class="material-icons medium">description</i></a></li>
-       <li><a href="admin_admin.html" class="tooltipped" data-position="right" data-tooltip="Administradores"><i
-                class="material-icons medium">folder_shared</i></a></li>
-       <li><button onclick="logOut('Admin')" class="tooltipped logout" data-position="right"
-             data-tooltip="Cerrar sesión"><i class="material-icons medium">arrow_back</i></button></li>
+                        class="material-icons medium ">home</i></a></li>
+            <li><a href="perfil.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
+                        class="material-icons medium">account_circle</i></a></li>
+            <li><a href="admin_producto.html" class="tooltipped" data-position="right" data-tooltip="Productos"><i
+                        class="material-icons medium">import_contacts</i></a></li>
+            <li><a href="admin_categoria.html" class="tooltipped" data-position="right" data-tooltip="Categoria"><i
+                        class="material-icons medium">format_list_bulleted</i></a></li>
+            <li><a href="admin_marca.html" class="tooltipped" data-position="right" data-tooltip="Marcas"><i
+                        class="material-icons medium">style</i></a></li>
+            <li><a href="admin_vendedor.html" class="tooltipped" data-position="right" data-tooltip="Vendedores"><i
+                        class="material-icons medium">people</i></a></li>
+            <li><a href="admin_distribuidor.html" class="tooltipped" data-position="right"
+                    data-tooltip="Repartidores"><i class="material-icons medium">motorcycle</i></a></li>
+            <li><a href="admin_cliente.html" class="tooltipped" data-position="right" data-tooltip="Clientes"><i
+                        class="material-icons medium">wc</i></a></li>
+            <li><a href="admin_entrega.html" class="tooltipped" data-position="right" data-tooltip="Reparto"><i
+                        class="material-icons medium">description</i></a></li>
+            <li><a href="admin_admin.html" class="tooltipped" data-position="right" data-tooltip="Administradores"><i
+                        class="material-icons medium">folder_shared</i></a></li>
+            <li><button onclick="logOut('Admin')" class="tooltipped logout" data-position="right"
+                    data-tooltip="Cerrar sesión"><i class="material-icons medium">arrow_back</i></button></li>
         </ul>
         <!--Contenedor de datos-->
         <div class="contenedor-datos">
@@ -91,14 +91,19 @@
                                 </form>
                             </div>
                             <!-- Opciones de administración-->
-                            <div class="col l2 m2 s12">
+                            <div class="col l3 m2 s12">
                                 <a class=" btn-floating right boton_color tooltipped" data-position="right"
                                     data-tooltip="Marcas" href="admin_rmarca.html"><i
                                         class="material-icons">style</i></a>
                                 <a class="btn-floating right boton_color modal-trigger tooltipped" data-position="left"
                                     data-tooltip="Agregar" href="#modal_anadir_categ_oo"><i
                                         class="material-icons left">add</i></a>
+                                <!-- Enlace para generar un reporte en formato PDF -->
+                                <a onclick="openOpciones()" class="btn-floating waves-effect amber tooltipped right"
+                                    data-tooltip="Reporte">
+                                    <i class="material-icons">assignment</i></a>
                             </div>
+
                         </div>
                     </div>
                     <!--Columna siguiente-->
@@ -160,7 +165,8 @@
                                                                 id="archivo_cate" name="archivo_cate">
                                                         </div>
                                                         <div class="file-path-wrapper col s14 m4 l4">
-                                                            <input class="file-path validate" type="text" id="nombre_imagen" >
+                                                            <input class="file-path validate" type="text"
+                                                                id="nombre_imagen">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -195,7 +201,7 @@
                                         <div class="col s12 m12 l4">
                                             <!--Boton-->
                                             <div class="col l12 m12 s12 center-align" id="preview-categoria">
-                                                <img id="categoria-pic" 
+                                                <img id="categoria-pic"
                                                     src="../../../recursos/img/privado/admin/default-img.jpg"
                                                     width="100" height="100" class="imagen_prod_o">
                                                 <div class="file-field input-field col s12 m12 l12 center-align">

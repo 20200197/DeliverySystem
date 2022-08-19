@@ -101,14 +101,46 @@ class Favorito extends Validator
         return Database::getRows($sql, $params);
     }
 
+     //Leemos dato individual, comprobamos que haya productos en favoritos del cliente logueado
+     public function readCheckFavoOfClient()
+     {
+         $sql = "SELECT id_favoritos, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,estado_favorito
+                 FROM favoritos 
+                 inner join producto using (id_producto)
+                 WHERE estado_favorito=true and id_producto = ? and id_cliente = ?";
+         $params = array($this->id_producto,2);//SESSION[id_cliente]
+         return Database::getRows($sql, $params);
+     }
+
+     public function readCheckFavoOfClientCategori()
+     {
+         $sql = "SELECT id_favoritos, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,estado_favorito
+                 FROM favoritos 
+                 inner join producto using (id_producto)
+                 WHERE estado_favorito=true and id_producto = ? and id_cliente = ?";
+         $params = array($this->id_producto,2);//SESSION[id_cliente]
+         return Database::getRows($sql, $params);
+     }
+
+
+     public function readActive()
+     {
+         $sql = "SELECT id_favoritos, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,estado_favorito
+                 FROM favoritos 
+                 inner join producto using (id_producto)
+                 WHERE id_cliente = ?";
+         $params = array(2);//SESSION[id_cliente]
+         return Database::getRows($sql, $params);
+     }
+
     //Leemos datos
-    public function readActive()
+    public function readActiveCategoria($id_categoria)
     {
-        $sql = "SELECT id_favoritos, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,estado_favorito
+        $sql = "SELECT id_favoritos, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,estado_favorito,id_categoria
                 FROM favoritos 
                 inner join producto using (id_producto)
-                WHERE id_cliente = ?";
-        $params = array(2);//SESSION[id_cliente]
+                WHERE id_categoria = ? and id_cliente = ?";
+        $params = array($id_categoria,2);//SESSION[id_cliente]
         return Database::getRows($sql, $params);
     }
 

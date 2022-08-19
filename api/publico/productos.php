@@ -100,9 +100,65 @@ if (isset($_GET['action'])) {
                 $result['exception'] = 'No hay coincidencias';
             }
             break;
+        case 'search':
+            $_POST = $producto->validateForm($_POST);
+            if ($_POST['search'] == '') {
+                $result['exception'] = 'Ingrese un valor para buscar';
+                // $entrega->readAll();
+            } elseif ($result['dataset'] = $producto->searchRows($_POST['search'])) {
+                $result['status'] = 1;
+                $result['message'] = 'Valor encontrado';
+            } elseif (Database::getException()) {
+                $result['exception'] = Database::getException();
+            } else {
+                $result['exception'] = 'No hay coincidencias';
+            }
+            break;
+        case 'searchProductoCategoria':
+            $_POST = $producto->validateForm($_POST);
+            if ($_POST['search'] == '') {
+                $result['exception'] = 'Ingrese un valor para buscar';
+                // $entrega->readAll();
+            } elseif ($result['dataset'] = $producto->searchRowsProductoCategoria($_POST['search'],$_POST['id_categoria'])) {
+                $result['status'] = 1;
+                $result['message'] = 'Valor encontrado';
+            } elseif (Database::getException()) {
+                $result['exception'] = Database::getException();
+            } else {
+                $result['exception'] = 'No hay coincidencias';
+            }
+            break;
+            //Buscar producto
+        case 'searchProductoPrecioCategoria':
+            $_POST = $producto->validateForm($_POST);
+            if (!$producto->setBuscadorI($_POST['data1'])) {
+                $result['exception'] = 'Entrada de búsqueda no válida';
+            } elseif (!$producto->setBuscadorL($_POST['data2'])) {
+                $result['exception'] = 'Entrada de búsqueda no válida';
+            } elseif ($result['dataset'] = $producto->searchProductoPrecioCategoria($_POST['idC'])) {
+                $result['status'] = 1;
+                $result['message'] = 'Valor encontrado';
+            } elseif (Database::getException()) {
+                $result['exception'] = Database::getException();
+            } else {
+                $result['exception'] = 'No hay coincidencias';
+            }
+            break;
         case 'searchProductoCalidad':
             $_POST = $producto->validateForm($_POST);
             if ($result['dataset'] = $producto->searchProductoCalidad($_POST['dataU'], $_POST['dataD'], $_POST['dataT'], $_POST['dataC'], $_POST['dataCi'])) {
+                $result['status'] = 1;
+                $result['message'] = 'Valor encontrado';
+            } elseif (Database::getException()) {
+                $result['exception'] = Database::getException();
+            } else {
+                $result['exception'] = 'No hay coincidencias';
+            }
+            break;
+            //Buscar productos
+        case 'searchProductoCalidadCategoria':
+            $_POST = $producto->validateForm($_POST);
+            if ($result['dataset'] = $producto->searchProductoCalidadCategoria($_POST['data'], $_POST['id_categoria'])) {
                 $result['status'] = 1;
                 $result['message'] = 'Valor encontrado';
             } elseif (Database::getException()) {
