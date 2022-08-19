@@ -15,7 +15,7 @@ if (isset($_GET['action'])) {
     if (true) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
-            case 'PromedioTotal':
+            case 'promedioTotal':
                 $_POST = $estadistica->validateForm($_POST);
                 if (!$estadistica->setFechaInicial($_POST['fechaInicial'])) {
                     $result['exception'] = 'La fecha inicial no es correcta';
@@ -24,6 +24,7 @@ if (isset($_GET['action'])) {
                 } elseif ($result['dataset'] = $estadistica->totalPromedio()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
+                    $result['status'] = 2;
                     $result['exception'] = Database::getException();
                 } else {
                     $result['exception'] = 'No hay datos en el rango de fechas';

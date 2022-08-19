@@ -18,7 +18,7 @@ class Database
         $server = 'localhost';
         $database = 'deliverysystem';
         $username = 'postgres';
-        $password = '1234';
+        $password = 'admin';
 
         // Se crea la conexión mediante la extensión PDO y el controlador para PostgreSQL.
         self::$connection = new PDO('pgsql:host=' . $server . ';dbname=' . $database . ';port=5432', $username, $password);
@@ -149,7 +149,7 @@ class Database
                 self::$error = 'Registro ocupado, no se puede eliminar';
                 break;
             default:
-                self::$error = 'Ocurrió un problema en la base de datos';
+                //self::$error = 'Ocurrió un problema en la base de datos';
         }
     }
 
