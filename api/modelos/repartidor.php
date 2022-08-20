@@ -340,7 +340,7 @@ class Repartidor extends Validator
     public function checkPassword($password)
     {
         $sql = 'SELECT clave_repartidor FROM repartidor WHERE id_repartidor = ?';
-        $params = array(2);//creo que es SESION[id_reprtidor] sino le dejo this id
+        $params = array(2); //creo que es SESION[id_reprtidor] sino le dejo this id
         $data = Database::getRow($sql, $params);
         // Se verifica si la contraseña coincide con el hash almacenado en la base de datos.
         if (password_verify($password, $data['clave_repartidor'])) {
@@ -471,5 +471,56 @@ class Repartidor extends Validator
                 WHERE id_repartidor = ?';
         $params = array(2); //SESSION[id_repartidor]
         return Database::getRow($sql, $params);
+    }
+
+    /**Reportes */
+    public function readComentarioRepartidorMejoreSemana()
+    {
+        $sql = "  SELECT comentario, valoracion,departamento.nombre_departamento, municipio.nombre_municipio
+                  FROM comentario_repartidor
+                  inner join factura factura using(id_factura)
+                  INNER JOIN direccion direccion ON direccion.id_direccion = factura.id_direccion
+                  inner join municipio municipio on direccion.id_municipio = municipio.id_municipio
+                  inner join departamento departamento on municipio.id_departamento = departamento.id_departamento
+                  where valoracion >= 4 and (factura.fecha_compra >= current_date or factura.fecha_compra >= current_date -7 ) and id_repartidor = ?
+                  order by valoracion";
+        $params = array(2); //$SESSION[id_repartidor]
+        return Database::getRows($sql, $params);
+    }
+
+    //Función para leer todos los datos
+    public function readAllComentRepartidor()
+    {
+        $sql = "SELECT id_comentario_repartidor, valoracion, comentario
+		from comentario_repartidor comentario_repartidor
+        order by valoracion";
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    /** Producto mas vendidos por departamento **/
+    public function readProductosMasVendidosDepartamento($nombre_departamento)
+    {
+        $sql = "SELECT nombre_producto, nombre_departamento, cantidad_pedido
+            from detalle_factura 
+            inner join factura using(id_factura)
+            inner join producto using(id_producto)
+            inner join direccion using(id_direccion)
+            inner join municipio using(id_municipio)
+            inner join departamento using(id_departamento)
+            where nombre_departamento = ?
+            order by cantidad_pedido desc limit 5";
+        $params = array($nombre_departamento);
+        return Database::getRows($sql, $params);
+    }
+
+
+    public function readAllDepartamento()
+    {
+        $sql = " SELECT id_departamento, nombre_departamento
+        from departamento
+        order by nombre_departamento";
+        $params = null;
+        return Database::getRows($sql, $params);
     }
 }

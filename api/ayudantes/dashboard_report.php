@@ -51,12 +51,15 @@ class Report extends FPDF
         $this->image('../../imagenes/logo_gaab_black_png.png', 15, 15, 20);
         // Se ubica el título.
         $this->cell(20);
+        $this->SetFillColor(52, 152, 247);
+        $this->SetTextColor(255,255,255);
         $this->setFont('Arial', 'B', 15);
-        $this->cell(166, 10, utf8_decode($this->title), 0, 1, 'C');
+        $this->cell(166, 10, utf8_decode($this->title), 0, 1, 'C',1);
         // Se ubica la fecha y hora del servidor.
         $this->cell(20);
         $this->setFont('Arial', '', 10);
-        $this->cell(166, 10, 'Fecha/Hora: '.date('d-m-Y H:i:s'), 0, 1, 'C');
+        $this->SetFillColor(44, 134, 218);
+        $this->cell(166, 10, 'Fecha/Hora: '.date('d-m-Y H:i:s'), 0, 1, 'C',1);
         // Se agrega un salto de línea para mostrar el contenido principal del documento.
         $this->ln(10);
     }

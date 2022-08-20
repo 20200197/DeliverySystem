@@ -588,12 +588,12 @@ class Producto extends Validator
 
     public function readTop10ClientesMasEntregas()
     {
-        $sql = "SELECT CONCAT(cliente.nombre_cliente,' ',cliente.apellido_cliente) as nombre_cliente,cliente.dui_cliente,cliente.correo_cliente, factura.id_direccion, SUM(total) AS total, departamento.nombre_departamento, municipio.nombre_municipio FROM factura factura
+        $sql = "SELECT CONCAT(cliente.nombre_cliente,' ',cliente.apellido_cliente) as nombre_cliente,cliente.dui_cliente,cliente.correo_cliente, factura.id_direccion, SUM(total) AS total_factura, departamento.nombre_departamento, municipio.nombre_municipio FROM factura factura
                 INNER JOIN direccion direccion ON direccion.id_direccion = factura.id_direccion
                 INNER JOIN cliente cliente ON cliente.id_cliente = direccion.id_cliente
                 inner join municipio municipio on direccion.id_municipio = municipio.id_municipio
                 inner join departamento departamento on municipio.id_departamento = departamento.id_departamento
-                GROUP BY direccion.id_direccion, cliente.nombre_cliente, factura.id_direccion, cliente.apellido_cliente,cliente.dui_cliente,cliente.correo_cliente, departamento.nombre_departamento, municipio.nombre_municipio
+                GROUP BY direccion.id_direccion, cliente.nombre_cliente, factura.id_direccion, cliente.apellido_cliente,cliente.dui_cliente,cliente.correo_cliente, departamento.nombre_departamento, municipio.nombre_municipio,factura.total
                 order by total desc limit 10";
         $params = null;
         return Database::getRows($sql, $params);
