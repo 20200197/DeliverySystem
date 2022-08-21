@@ -110,7 +110,7 @@ function openOpciones() {
 //Función para abriri parametro para reporte
 function openParametro() {
     Swal.fire({
-        title: 'Selecciona el departamento',
+        title: 'Selecciona el departamento0',
         html: '<div class="input-field"><select class="browser-default" id="opciones_departamento" name="opciones_departamento" required> </select></div>',
         showCancelButton: true,
         allowOutsideClick: false, 
