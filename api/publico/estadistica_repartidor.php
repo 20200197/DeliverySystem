@@ -12,29 +12,21 @@ if (isset($_GET['action'])) {
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if ($_SESSION['id_vendedor']) {
+    if (true) { //$_SESSION['id_repartidor']
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
-            case 'promedioTotal':
-                $_POST = $estadistica->validateForm($_POST);
-                $resultado = array();
-                foreach ($_POST['opciones'] AS $valor) {
-                    if (!$estadistica->setDepartamento($valor)) {
-                        $result['exception'] = 'Los valores de elección no son correctos';
-                        $resultado = array();
-                        break;
-                    }  elseif ($data = $estadistica->topCliente()) {
-                        $resultado = array_push($resultado, $data);
-                    } elseif (Database::getException()) {
-                        $result['exception'] = Database::getException();
-                        break;
-                    } else {
-                        if ($data = $estadistica->nombreDepartamento()) {
-                            $resultado = array_push($resultado, $data);
-                        }
-                    }
+            case 'TopClientes':
+                if (!$estadistica->setDepartamento($_POST['departamentos'])) {
+                    $result['exception'] = 'Existen datos no validos dentro de las opciones';
+                } elseif ($result['dataset'] = $estadistica->topCliente()) {
+                    $result['status'] = 1;
+                    //if ()
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                    $result['message'] = 'Hubieron problemas';
+                } else {
+                    $result['exception'] = 'No hay datos dentro de la selección';
                 }
-                $result['dataset'] = $resultado;
                 break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
