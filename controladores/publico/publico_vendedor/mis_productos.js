@@ -1,5 +1,6 @@
 //Se crea la constante de la api
 const API_PRODUCTOS = SERVER + "publico/mis_productos.php?action=";
+const API_CATEGORIA = SERVER + 'publico/categoria.php?action=';
 
 //Método que carga los datos cuando se inicia la página
 
@@ -222,3 +223,75 @@ function leerImg(input, img_destino)
     const url = URL.createObjectURL(visualizar);
     img_destino.src = url;
 }
+
+
+//Cargmo opciones de las categorias en el select para los reportes
+function openOpciones() {
+    // M.Modal.getInstance(document.getElementById("parametro-modal")).open();
+    //Cargamos el select
+    fetch(API_CATEGORIA + 'readAll', {
+      method: 'get'
+    }).then(function (request) {
+      // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+      if (request.ok) {
+        // Se obtiene la respuesta en formato JSON.
+        request.json().then(function (response) {
+          let content = '';
+          // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+          if (response.status) {
+            // Si no existe un valor para seleccionar, se muestra una opción para indicarlo.
+            if (!null) {
+              content += '<option disabled selected>Seleccione una opción</option>';
+            }
+            // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+            response.dataset.map(function (row) {
+              // Se obtiene el dato del primer campo de la sentencia SQL (valor para cada opción).
+              value = Object.values(row)[0];
+              // Se obtiene el dato del segundo campo de la sentencia SQL (texto para cada opción).
+              text = Object.values(row)[1];
+              // Se verifica si el valor de la API es diferente al valor seleccionado para enlistar una opción, de lo contrario se establece la opción como seleccionada.
+              if (value != null) {
+                content += `<option value="${value}">${text}</option>`;
+              } else {
+                content += `<option value="${value}" selected>${text}</option>`;
+              }
+            });
+          } else {
+            content += '<option>No hay opciones disponibles</option>';
+          }
+          // Se agregan las opciones a la etiqueta select mediante su id.
+          document.getElementById("opciones_categoriaa").innerHTML = content;
+        });
+      } else {
+        console.log(request.status + ' ' + request.statusText);
+      }
+    });
+    openParametro();
+  }
+  
+  //Función para abriri parametro para reporte
+  function openParametro() {
+    Swal.fire({
+      title: 'Selecciona la categoria',
+      html: '<div class="input-field"><select class="browser-default" id="opciones_categoriaa" name="opciones_categoriaa" required> </select></div>',
+      showCancelButton: true,
+    }).then(function () {
+      //Obtenemos la opcion seleccinada
+      var selectedOption = document.getElementById("opciones_categoriaa").options[document.getElementById("opciones_categoriaa").selectedIndex];
+      console.log(selectedOption.text);
+      openReport(selectedOption.text);
+    });
+  }
+  
+    // Función para abrir reporte de gastos por cliente
+    function openReport(categoria) {
+      // Se establece la ruta del reporte en el servidor.
+      let url = SERVER + `reportes/publico/productos_categoria.php?categoria=${categoria}`;
+      // Se abre el reporte en una nueva pestaña del navegador web.
+      window.open(url);
+      // Se define un objeto con los datos del registro seleccionado.
+      // const data = new FormData();
+      // data.append("categoriaN", categoria);
+      // request.send(data);
+    
+    }

@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
     M.Modal.init(document.querySelectorAll('.modal'), options);
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
-     // Se inicializa el componente Dropdown para que funcione la lista desplegable en los menús.
-     M.Dropdown.init(document.querySelectorAll(".dropdown-trigger"));
+    // Se inicializa el componente Dropdown para que funcione la lista desplegable en los menús.
+    M.Dropdown.init(document.querySelectorAll(".dropdown-trigger"));
 
 });
 
@@ -106,10 +106,10 @@ function updateEstado(id) {
     data.append('idP', id);
 
     //Obtenemos valor de switch
-    if (document.getElementById('switch_estado'+id).checked){
-        data.append('estadoP',true);
-    }else{
-        data.append('estadoP',false)
+    if (document.getElementById('switch_estado' + id).checked) {
+        data.append('estadoP', true);
+    } else {
+        data.append('estadoP', false)
     }
     fetch(API_PRODUCTOS + 'update', {
         method: 'post',
@@ -134,4 +134,11 @@ function updateEstado(id) {
     });
 }
 
+/** Top 5 productos mas vendidos y menos vendidos**/
+function openReportProductosMasMenosVendidos() {
+    // Se establece la ruta del reporte en el servidor.
+    let url = SERVER + `reportes/dashboard/productos_mas_menos_vendidos.php`;
+    // Se abre el reporte en una nueva pestaña del navegador web.
+    window.open(url);  
+  }
 

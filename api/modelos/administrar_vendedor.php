@@ -394,4 +394,38 @@ class AdministrarVendedor extends Validator
         $params = array($_SESSION['id_vendedor']);
         return Database::getRow($sql, $params);
     }
+
+     /** Porcentaje de ventas por categoria de sus productos **/ 
+     public function readPorcentajeVentaCategoria()
+     {
+         $sql = " SELECT categoria, SUM(ROUND((cantidad_pedido * 100.0 / 
+         (
+             SELECT sum(cantidad_pedido)
+             FROM detalle_factura
+             INNER JOIN factura USING (id_factura)
+ 
+         )
+         ), 2)) porcentaje_categoria
+         FROM detalle_factura
+         INNER JOIN factura USING (id_factura)
+         INNER JOIN producto USING (id_producto)
+         INNER JOIN categoria categoria on producto.id_categoria = categoria.id_categoria_producto
+         GROUP BY categoria ";
+         $params = null;
+         return Database::getRows($sql, $params);
+     }
+
+      /** Top 5 productos mas vendidos con sus valoraciones **/
+      public function readProductosMasVendidosValorados()
+      {
+          $sql = "SELECT producto.nombre_producto, sum(detalle_factura.cantidad_pedido) as cantidad_pedido, (sum(detalle_factura.cantidad_pedido) * (detalle_factura.precio + detalle_factura.costo_envio)) as total  
+             from producto 
+             inner join detalle_factura detalle_factura on detalle_factura.id_producto = producto.id_producto 
+             inner join factura factura on factura.id_factura = detalle_factura.id_factura 
+             inner join comentario_producto comentario_producto on comentario_producto.id_detalle = detalle_factura.id_detalle 
+             group by producto.nombre_producto, detalle_factura.precio, detalle_factura.costo_envio, cantidad_pedido 
+             order by cantidad_pedido desc limit 5";
+          $params = null;
+          return Database::getRows($sql, $params);
+      }
 }
