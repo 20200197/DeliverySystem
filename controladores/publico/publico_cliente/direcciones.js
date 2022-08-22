@@ -52,15 +52,15 @@ function fillTable(dataset) {
     dataset.map(function (row) {
         content += `
             <tr>
-                <td>
+                <td data-target="">
                     <div class="img-simulada"></div>
                 </td>
-                <td>${row.nombre_municipio}</td>
-                <td class="wrap2">
+                <td data-target="Municipio:">${row.nombre_municipio}</td>
+                <td class="wrap2" data-target="Descripción">
                     ${row.descripcion_direccion}
                 </td>
-                <td>${row.punto_referencia}</td>
-                <td class="row">
+                <td data-target="Punto referencia:">${row.punto_referencia}</td>
+                <td data-target="Opciones:">
                     <div class="col s6 m6 l4">
                         <a class="waves-effect waves-light red darken-4 white-text btn-large col s12 m12 l12 modal-trigger"
                             onclick="openDelete(${row.id_direccion})"><i class="material-icons">delete</i></a>

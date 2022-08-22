@@ -7,7 +7,7 @@ require('../../modelos/administrar_cliente.php');
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
 // Se inicia el reporte con el encabezado del documento.
-$pdf->startReport('Top 10 clientes que se le han hecho más entregas');
+$pdf->startReport('Top 10 clientes que se le han hecho más entregas','usuario');
 
 // Se instancia el módelo Producto para obtener los datos.
 $producto = new Producto;
@@ -18,6 +18,7 @@ if ($dataProductos = $producto->readAll()) {
     if ($dataClientes = $cliente->obtenerClientes()) {
     // Se establece un color de relleno para los encabezados.
     $pdf->SetFillColor(44, 134, 218);
+    //Color de texto
     $pdf->SetTextColor(255, 255, 255);
     // Se establece la fuente para los encabezados.
     $pdf->setFont('Times', 'B', 11);
@@ -25,12 +26,13 @@ if ($dataProductos = $producto->readAll()) {
     $pdf->cell(55, 10, utf8_decode('Nombre'), 1, 0, 'C', 1);
     $pdf->cell(55, 10, utf8_decode('Correo'), 1, 0, 'C', 1);
     $pdf->cell(55, 10, utf8_decode('Departamento/Municipio'), 1, 0, 'C', 1);
-    $pdf->cell(20, 10, utf8_decode('Total'), 1, 1, 'C', 1);
+    $pdf->cell(20, 10, utf8_decode('N entregas'), 1, 1, 'C', 1);
 
-    // Se establece un color de relleno para mostrar el nombre de la categoría.
+    // Se establece un color de relleno para mostrar lo datos.
     $pdf->setFillColor(225);
     // Se establece la fuente para los datos de los productos.
     $pdf->setFont('Times', '', 11);
+    //Color de letras de datos
     $pdf->SetTextColor(0, 0, 0);
     // Se verifica si existen registros (productos) para mostrar, de lo contrario se imprime un mensaje.
     if ($dataProductos = $producto->readTop10ClientesMasEntregas()) {
@@ -48,7 +50,7 @@ if ($dataProductos = $producto->readAll()) {
             $pdf->SetXY($x + 110,$y); /** Eje y y xen el que comenzara esta cell**/
             $pdf->multicell(55, 10, utf8_decode($rowProducto['nombre_departamento'].', '.$rowProducto['nombre_municipio']), 1, 0);
             $pdf->SetXY($x + 165,$y); /** Eje y y x en el que comenzara esta cell**/
-            $pdf->multicell(20, 10, ('$'.$rowProducto['total_factura']), 1, 1);
+            $pdf->multicell(20, 10, ($rowProducto['veces_pedido']), 1, 1);
         }
     } else {
         $pdf->cell(0, 10, utf8_decode('No hay productos'), 1, 1);

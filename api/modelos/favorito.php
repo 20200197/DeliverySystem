@@ -74,8 +74,8 @@ class Favorito extends Validator
     //Leer municipios
     public function readAllFavo()
     {
-        $sql = "SELECT id_favoritos, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,estado_favorito
-         from favoritos
+        $sql = "SELECT id_favorito, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,status_favorito
+         from favorito
          inner join producto using (id_producto)
          order by nombre_producto";
         $params = null;
@@ -85,7 +85,7 @@ class Favorito extends Validator
     // Insertar direccion
     public function createFavorito()
     {
-        $sql = 'INSERT INTO favoritos(id_producto,id_cliente,estado_favorito) values (?,?,?)';
+        $sql = 'INSERT INTO favorito(id_producto,id_cliente,status_favorito) values (?,?,?)';
         $params = array($this->id_producto, 2,true);//SESSION[id_cliente]
         return Database::executeRow($sql, $params);
     }
@@ -93,10 +93,10 @@ class Favorito extends Validator
     //Leemos dato individual
     public function readAll()
     {
-        $sql = "SELECT id_favoritos, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,estado_favorito
-                FROM favoritos 
+        $sql = "SELECT id_favorito, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,status_favorito
+                FROM favorito
                 inner join producto using (id_producto)
-                WHERE estado_favorito=true and id_cliente = ?";
+                WHERE status_favorito=true and id_cliente = ?";
         $params = array(2);//SESSION[id_cliente]
         return Database::getRows($sql, $params);
     }
@@ -104,20 +104,20 @@ class Favorito extends Validator
      //Leemos dato individual, comprobamos que haya productos en favoritos del cliente logueado
      public function readCheckFavoOfClient()
      {
-         $sql = "SELECT id_favoritos, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,estado_favorito
-                 FROM favoritos 
+         $sql = "SELECT id_favorito, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,status_favorito
+                 FROM favorito
                  inner join producto using (id_producto)
-                 WHERE estado_favorito=true and id_producto = ? and id_cliente = ?";
+                 WHERE status_favorito=true and id_producto = ? and id_cliente = ?";
          $params = array($this->id_producto,2);//SESSION[id_cliente]
          return Database::getRows($sql, $params);
      }
 
      public function readCheckFavoOfClientCategori()
      {
-         $sql = "SELECT id_favoritos, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,estado_favorito
-                 FROM favoritos 
+         $sql = "SELECT id_favorito, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,status_favorito
+                 FROM favorito
                  inner join producto using (id_producto)
-                 WHERE estado_favorito=true and id_producto = ? and id_cliente = ?";
+                 WHERE status_favorito=true and id_producto = ? and id_cliente = ?";
          $params = array($this->id_producto,2);//SESSION[id_cliente]
          return Database::getRows($sql, $params);
      }
@@ -125,8 +125,8 @@ class Favorito extends Validator
 
      public function readActive()
      {
-         $sql = "SELECT id_favoritos, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,estado_favorito
-                 FROM favoritos 
+         $sql = "SELECT id_favorito, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,status_favorito
+                 FROM favorito
                  inner join producto using (id_producto)
                  WHERE id_cliente = ?";
          $params = array(2);//SESSION[id_cliente]
@@ -136,8 +136,8 @@ class Favorito extends Validator
     //Leemos datos
     public function readActiveCategoria($id_categoria)
     {
-        $sql = "SELECT id_favoritos, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,estado_favorito,id_categoria
-                FROM favoritos 
+        $sql = "SELECT id_favorito, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,status_favorito,id_categoria
+                FROM favorito
                 inner join producto using (id_producto)
                 WHERE id_categoria = ? and id_cliente = ?";
         $params = array($id_categoria,2);//SESSION[id_cliente]
@@ -147,7 +147,7 @@ class Favorito extends Validator
     //Actualizamos direccion
     public function updateFavorito()
     {
-        $sql = 'UPDATE favoritos SET id_producto = ? where id_favoritos=?';
+        $sql = 'UPDATE favorito SET id_producto = ? where id_favorito=?';
         $params = array($this->id_producto, $this->id);
         return Database::executeRow($sql, $params);
     }
@@ -155,7 +155,7 @@ class Favorito extends Validator
     //Eliminamos direccion
     public function deleteFavorito()
     {
-        $sql = 'DELETE from favoritos  where id_producto = ? and id_cliente = ?';
+        $sql = 'DELETE from favorito  where id_producto = ? and id_cliente = ?';
         $params = array($this->id_producto,2);//SESSION[id_cliente]
         return Database::executeRow($sql, $params);
     }

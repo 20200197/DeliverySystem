@@ -164,6 +164,7 @@ if (isset($_GET['action'])) {
                 $result['exception'] = Database::getException();
             }
             break;
+            /**Productos mas vendidos segun departamento seleccionado */
         case 'readProductosMasVendidosDepartamento':
             if ($result['dataset'] = $repartidor->readProductosMasVendidosDepartamento($_POST['nombre_departamento'])) {
                 $result['status'] = 1;
@@ -173,15 +174,16 @@ if (isset($_GET['action'])) {
                 $result['exception'] = 'No hay datos registrados';
             }
             break;
-            case 'readAllDepartamento':
-                if ($result['dataset'] = $repartidor->readAllDepartamento()) {
-                    $result['status'] = 1;
-                } elseif (Database::getException()) {
-                    $result['exception'] = Database::getException();
-                } else {
-                    $result['exception'] = 'No hay datos registrados';
-                }
-                break;
+            //Leemos todos los departamentos
+        case 'readAllDepartamento':
+            if ($result['dataset'] = $repartidor->readAllDepartamento()) {
+                $result['status'] = 1;
+            } elseif (Database::getException()) {
+                $result['exception'] = Database::getException();
+            } else {
+                $result['exception'] = 'No hay datos registrados';
+            }
+            break;
         default:
             $result['exception'] = 'Acción no disponible dentro de la sesión';
     }

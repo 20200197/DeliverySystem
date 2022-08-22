@@ -1,4 +1,3 @@
-
 header,
 main,
 footer {
@@ -195,7 +194,7 @@ input[type="radio"]:checked+label {
     color: orange;
 }
 
-input[type="checkbox"]:checked~label{
+input[type="checkbox"]:checked~label {
     color: orange;
 }
 
@@ -498,4 +497,166 @@ label {
 .ct-series-e .ct-slice-donut {
     stroke: #01579b;
 }
- 
+
+
+/*-----------------Responsive de tabla -------------------*/
+@media (max-width:612px) {
+    table {
+        width: 100%;
+    }
+
+    table tr {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        border-radius: 11px;
+        padding: 1em;
+        margin-bottom: 1em;
+    }
+
+    table thead {
+        display: none;
+    }
+
+    /*Colocamos columnas*/
+    table td[data-target] {
+        display: flex;
+    }
+
+    table td[data-target]::before {
+        content: attr(data-target);
+        width: 150px;
+    }
+
+    /*Tamaño*/
+    td,
+    th {
+        width: 100%;
+        word-wrap: break-word;
+    }
+
+}
+
+
+/*----------------------------------------------*/
+/*-------------------Modo oscuro---------------------*/
+/*----------------------------------------------*/
+.sidenav_oscuro .sidenav {
+    background-color: #1A3F7C !important;
+    color: white !important;
+}
+
+.modo_oscuro {
+    background-color: #2D4273;
+    color: white;
+}
+
+.footer_oscuro .page-footer {
+    background-color: #0A2859 !important;
+    color: white;
+}
+
+.titulo_pegaa .titulo_pega {
+    background-color: #2D4273;
+    color: white;
+}
+
+.inputs input[type="text"] {
+    color: white !important;
+}
+
+.inputs_email input[type="email"] {
+    color: white !important;
+}
+
+.inputs_tel input[type="tel"] {
+    color: white !important;
+}
+
+.encabezado_oscuro .encabezado {
+    background-color: #053A80;
+    color: white;
+}
+
+.labels label {
+    color: white !important;
+}
+
+.modal_oscuro .modal {
+    background-color: #053A80 !important;
+}
+
+.modal_oscuro .modal-footer {
+    background-color: #053A80 !important;
+}
+
+/*Modo oscuro de login ya que tiene otros colores*/
+.login_oscuro .login_modo_oscuro {
+    background-color: #053A80;
+}
+
+.inputs_password input[type="password"] {
+    color: white !important;
+}
+
+
+/*
+  Fuentes de tablas y también modo oscuro
+  */
+
+.th_oscuro th {
+    background-color: #0A2859;
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-weight: bold;
+}
+
+.th_oscuro tr {
+    background-color: #053A80;
+}
+
+.i_oscuro i {
+    color: white;
+}
+
+.boton_oscuro button {
+    background-color: #053A80;
+    z-index: 0;
+    color: white !important;
+}
+
+.boton_oscuro a {
+    background-color: #053A80;
+    color: white !important;
+}
+
+th {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-weight: bold;
+}
+
+.tabla_oscuro th {
+    background-color: #fafafa;
+}
+
+/*Modo oscuro para las tablas de los modal*/
+
+.modal_tabla .tabla_oscuro th {
+    background-color: #0c458f !important;
+}
+
+.header_oscuro .nav-wrapper {
+    background-color: #1A3F7C !important;
+    color: white !important;
+}
+
+.opciones_navbar_oscuro #opciones_navbar {
+    color: white !important;
+}
+
+/*******************
+Fuentes generales 
+**************************/
+
+h5 {
+    font-family: 'Fira Sans Condensed', sans-serif;
+}

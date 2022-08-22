@@ -82,7 +82,7 @@ function fillData(id) {
         if (request.ok) {
             request.json().then(function (response) {
                 if (response.status) {
-                    if (response.dataset.status_repartidor) {
+                    if (response.dataset.status_repartidor == 'Aceptado') {
                         estado_re = 'checked';
                     } else {
                         estado_re = '';
@@ -174,9 +174,9 @@ function updateEstado(id) {
 
     //Obtenemos valor de switch
     if (document.getElementById('switch_estado' + id).checked) {
-        data.append('estadoP', true);
+        data.append('estadoP', 2);
     } else {
-        data.append('estadoP', false)
+        data.append('estadoP', 4)
     }
     fetch(API_DISTRIBUIDOR + 'updateStatus', {
         method: 'post',

@@ -18,7 +18,7 @@ class Database
         $server = 'localhost';
         $database = 'dbdeliverysystemm';
         $username = 'postgres';
-        $password = 'admina';
+        $password = 'Academica20_21';
 
         // Se crea la conexión mediante la extensión PDO y el controlador para PostgreSQL.
         self::$connection = new PDO('pgsql:host=' . $server . ';dbname=' . $database . ';port=5432', $username, $password);

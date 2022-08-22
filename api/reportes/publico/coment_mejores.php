@@ -6,7 +6,7 @@ require('../../modelos/repartidor.php');
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
 // Se inicia el reporte con el encabezado del documento.
-$pdf->startReport('Sus mejores comentarios por semana');
+$pdf->startReport('Sus mejores comentarios por semana','usuario');
 
 // Se instancia el módelo Producto para obtener los datos.
 $repartidor = new Repartidor;
@@ -15,7 +15,8 @@ $repartidor = new Repartidor;
 if ($dataRepartidor = $repartidor->readAllComentRepartidor()) {
    
     // Se establece un color de relleno para los encabezados.
-    $pdf->setFillColor(175);
+    $pdf->SetFillColor(44, 134, 218);
+    $pdf->SetTextColor(255, 255, 255);
     // Se establece la fuente para los encabezados.
     $pdf->setFont('Times', 'B', 11);
     // Se imprimen las celdas con los encabezados.
@@ -28,7 +29,8 @@ if ($dataRepartidor = $repartidor->readAllComentRepartidor()) {
     $pdf->setFillColor(225);
     // Se establece la fuente para los datos de los productos.
     $pdf->setFont('Times', '', 11);
-
+    //Color de letra de datos
+    $pdf->SetTextColor(0, 0, 0);
     // Se verifica si existen registros (productos) para mostrar, de lo contrario se imprime un mensaje.
     if ($dataRepartidor = $repartidor->readComentarioRepartidorMejoreSemana()) {
         // Se recorren los registros ($dataProductos) fila por fila ($rowProducto).

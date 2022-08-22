@@ -50,13 +50,13 @@ function fillTable(dataset) {
     dataset.map(function (row) {
         content += `
         <tr>
-            <td>${row.nombre_producto}</td>
-            <td><i class=" material-icons prefix" id="icono_reparto">person</i><br> ${row.nombre_vendedor}
+            <td data-target="Producto:">${row.nombre_producto}</td>
+            <td data-target="Vendedor:"><i class=" material-icons prefix" id="icono_reparto">person</i><br> ${row.nombre_vendedor}
             </td>
-            <td><i class=" material-icons prefix" id="icono_reparto">person</i><br> ${row.nombre_cliente}</td>
-            <td>${row.descripcion_direccion}</td>
-            <td>${row.fecha_compra}</td>
-            <td>${row.costo_envio}</td>
+            <td data-target="Cliente:"><i class=" material-icons prefix" id="icono_reparto">person</i><br> ${row.nombre_cliente}</td>
+            <td data-target="Dirección:">${row.descripcion_direccion}</td>
+            <td data-target="Fecha:">${row.fecha_compra}</td>
+            <td data-target="Costo de envío:">${row.costo_envio}</td>
          </tr>
         `;
 

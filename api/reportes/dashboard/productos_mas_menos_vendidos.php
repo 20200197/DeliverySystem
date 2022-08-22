@@ -6,14 +6,16 @@ require('../../modelos/administrar_productos.php');
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
 // Se inicia el reporte con el encabezado del documento.
-$pdf->startReport('Top 5 productos más vendidos y menos vendidos');
+$pdf->startReport('Top 5 productos más vendidos y menos vendidos', 'usuario');
 
 // Se instancia el módelo Producto para obtener los datos.
 $producto = new Producto;
 // Se verifica si existen registros (productos) para mostrar, de lo contrario se imprime un mensaje.
 if ($dataProductos = $producto->readAll()) {
     // Se establece un color de relleno para los encabezados.
-    $pdf->setFillColor(175);
+    $pdf->SetFillColor(44, 134, 218);
+    //Color de texto
+    $pdf->SetTextColor(255, 255, 255);
     // Se establece la fuente para los encabezados.
     $pdf->setFont('Times', 'B', 11);
     // Se imprimen las celdas con los encabezados.
@@ -26,7 +28,8 @@ if ($dataProductos = $producto->readAll()) {
     $pdf->setFillColor(225);
     // Se establece la fuente para los datos de los productos.
     $pdf->setFont('Times', '', 11);
-
+    //Color de letras de datos
+    $pdf->SetTextColor(0, 0, 0);
     $pdf->cell(184, 10, utf8_decode('Más vendidos: '), 1, 1, 'C', 1);
     // Se instancia el módelo Productos para procesar los datos.
     $producto = new Producto;

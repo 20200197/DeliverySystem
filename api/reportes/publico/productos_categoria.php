@@ -13,12 +13,14 @@ $_GET = $producto->validateForm($_GET);
 //Se inicia la sesión
 session_start();
 // Se inicia el reporte con el encabezado del documento.
-$pdf->startReport('Top 5 productos de' . ' ' . $_GET['categoria']);
+$pdf->startReport('Top 5 productos de' . ' ' . $_GET['categoria'], 'usuario');
 
 // Se verifica si existen registros (productos) para mostrar, de lo contrario se imprime un mensaje.
 if ($dataProductos = $producto->readAll()) {
     // Se establece un color de relleno para los encabezados.
-    $pdf->setFillColor(47, 116, 181);
+    $pdf->SetFillColor(44, 134, 218);
+    //Color de texto
+    $pdf->SetTextColor(255, 255, 255);
     // Se establece la fuente para los encabezados.
     $pdf->setFont('Times', 'B', 11);
     //Color de texto
