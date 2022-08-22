@@ -61,11 +61,13 @@ class EstadisticaRepartidor extends Validator
     }
 
     //Obtener el nombre del departamento
-    public function nombreDepartamento($arreglo)
+    public function Departamentos()
     {
 
-        $sql = "SELECT nombre_departamento, 0 AS total, 'Ninguno' AS cliente FROM departamento WHERE id_departamento = ?";
-        $params = array($this->departamento);
-        return Database::getRows($sql, $params);
+        $sql = "SELECT id_departamento, nombre_departamento FROM departamento
+        ORDER BY id_departamento";
+        return Database::getRows($sql, null);
     }
+
+
 }

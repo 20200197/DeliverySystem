@@ -16,13 +16,25 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'TopClientes':
-                if (!$estadistica->setDepartamento($_POST['departamentos'])) {
+                if (empty($_POST['departamentos'])) {
+                    $result['status'] = 2;
+                    $result['message'] = 'Selecciona un departamento para comenzar a gráficar';
+                } elseif (!$estadistica->setDepartamento($_POST['departamentos'])) {
                     $result['exception'] = 'Existen datos no validos dentro de las opciones';
                 } elseif ($result['dataset'] = $estadistica->topCliente()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                     $result['message'] = 'Hubieron problemas';
+                }
+                break;
+            case 'Departamento':
+                if ($result['dataset'] = $estadistica->Departamentos()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = "No se encontraron departamentos";
                 }
                 break;
             default:
