@@ -20,14 +20,9 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Existen datos no validos dentro de las opciones';
                 } elseif ($result['dataset'] = $estadistica->topCliente()) {
                     $result['status'] = 1;
-                    if ($result['dataset']) {
-                        
-                    }
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                     $result['message'] = 'Hubieron problemas';
-                } else {
-                    $result['exception'] = 'No hay datos dentro de la selección';
                 }
                 break;
             default:

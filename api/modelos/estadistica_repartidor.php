@@ -27,14 +27,12 @@ class EstadisticaRepartidor extends Validator
             if ($this->validateNaturalNumber($valor)) {
                 array_push($this->departamento, intval($valor));
             } else {
-                echo "dato Erroneo".$valor;
                 $this->departamento = array();
                 $respuesta = false;
                 return $respuesta;
                 break;
             }
         }
-        print_r($this->departamento);
         return $respuesta;
         
     }
@@ -59,7 +57,7 @@ class EstadisticaRepartidor extends Validator
             (SELECT * FROM calcular_top(?))";
         }
         //Se obtienen los datos
-        return Database::getRow($sql, $this->departamento);
+        return Database::getRows($sql, $this->departamento);
     }
 
     //Obtener el nombre del departamento
