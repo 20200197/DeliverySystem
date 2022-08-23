@@ -5,10 +5,6 @@ footer {
 }
 
 @media only screen and (max-width: 992px) {
-
-
-
-
  
     header,
     main,
@@ -170,14 +166,6 @@ nav div ul li a i {
     border-radius: 15px;
 
     object-fit: cover;
-}
-
-.detalle-producto-individual {
-    background-color: #faf7f7;
-    border-radius: 15px;
-
-    width: 200px;
-    height: auto;
 }
 
 /*----------------------------------------------*/
@@ -456,8 +444,13 @@ input[type="checkbox"]:checked~label {
     color: orange;
 }
 
+/* Sey, ¿Lo borro?*/
 label {
     font-size: 50px;
+}
+
+.switch_colorr label {
+    font-size: 20px !important;
 }
 
 
@@ -504,6 +497,7 @@ label {
 .ct-line {
     pointer-events: none;
 }
+
 
 /*------Diseño de la gráfica-----*/
 .ct-label {
@@ -717,4 +711,150 @@ Fuentes generales
 h5 {
     font-family: 'Fira Sans Condensed', sans-serif;
  
+}
+
+/*-------------Diseños de modal---------------*/
+
+.centrador {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.carta-valoracion {
+    width: 100%;
+}
+
+.distribuidor{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.contorno {
+    border: #8dc5ff 3px solid;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    padding: 10px;
+}
+
+.contorno-modal {
+    border: #8dc5ff 3px solid;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    padding: 20px;
+}
+
+.file-path {
+    width: 0px !important;
+}
+
+.sin-margen {
+    margin: 0px !important;
+}
+
+/*-------------Botón flotante para valorar repartidor----------------------- */
+
+.fixed-action-btn {
+    bottom: 25%;
+}
+
+/*--------------------Diseño de inputs---------------------------------------*/
+
+input:not(:focus) {
+        border-bottom: 1px solid #9e9e9e !important;
+        -webkit-box-shadow: 1px solid #9e9e9e !important;
+        box-shadow: none !important;
+}
+
+input:focus {
+     border-bottom: 1px solid #2979FF !important;
+     -webkit-box-shadow: 1px solid #2979FF !important;
+     box-shadow: 0 1px 0 0 #2979FF !important;
+}
+
+/*------------------Valoraciones-------------------*/
+
+/*Valoraciones en estrellas*/
+.estrellas_contenedor {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-origin: 1px solid black;
+    height: auto;
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    justify-content: center;
+}
+
+label:hover,
+label:hover ~ label > .estrella {
+    color: orange;
+}
+
+input[type="radio"]:checked ~ label > .estrella {
+    color: orange;
+}
+
+
+.estrellas_contenedor_producto {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-origin: 1px solid black;
+    height: auto;
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    justify-content: center;
+}
+
+label:hover,
+label:hover ~ label > .estrellaProducto {
+    color: orange;
+}
+
+input[type="radio"]:checked ~ label > .estrellaProducto {
+    color: orange;
+}
+
+
+/*---------------Estilos para nouSlider----------------*/
+.slider-round {
+    height: 1px;
+}
+
+.slider-round .noUi-connect {
+    background: #42a5f5;
+}
+
+.slider-round .noUi-handle {
+    height: 10px;
+    width: 10px;
+    top: -5px;
+    right: -9px;
+    /* half the width */
+    border-radius: 20px;
+}
+
+.noUi-horizontal {
+    height: 12px !important;
+}
+
+.noUi-horizontal .noUi-handle {
+    width: 20px !important;
+    height: 22px !important;
+    right: -17px !important;
+    top: -6px !important;
+}
+
+.noUi-target {
+    margin-top: 10px !important;
+    background: #FAFAFA;
+    border-radius: 4px;
+    border: 1px solid #D3D3D3;
+    box-shadow: inset 0 1px 1px #f0f0f0, 0 3px 6px -5px #bbb;
 }

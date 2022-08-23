@@ -1,224 +1,229 @@
 <!DOCTYPE html>
-<!--Lenguaje de la página-->
-<html lang="es">
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="uft=8">
-    <!--Importar iconos-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../../../recursos/css/icons.css" rel="stylesheet">
-    <!--Importar archivos CSS-->
-    <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
-    <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_privado.css" media="screen,projection" />
-
-    <!--Optimización para mobiles-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="../../../recursos/css/estilos_privado.css">
 </head>
 
 <body>
-    <!--Marco general-->
-    <div class="row contenedor-general">
-        <!--Barra lateral, opciones para los usuarios-->
-        <ul id="slide-out" class="sidenav sidenav-fixed">
-            <li><a href="dashboard.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
-                        class="material-icons medium ">home</i></a></li>
-            <li><a href="perfil.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
-                        class="material-icons medium">account_circle</i></a></li>
-            <li><a href="admin_producto.html" class="tooltipped" data-position="right" data-tooltip="Productos"><i
-                        class="material-icons medium">import_contacts</i></a></li>
-            <li><a href="admin_categoria.html" class="tooltipped" data-position="right" data-tooltip="Categoria"><i
-                        class="material-icons medium">format_list_bulleted</i></a></li>
-            <li><a href="admin_marca.html" class="tooltipped" data-position="right" data-tooltip="Marcas"><i
-                        class="material-icons medium">style</i></a></li>
-            <li><a href="admin_vendedor.html" class="tooltipped" data-position="right" data-tooltip="Vendedores"><i
-                        class="material-icons medium">people</i></a></li>
-            <li><a href="admin_distribuidor.html" class="tooltipped" data-position="right"
-                    data-tooltip="Repartidores"><i class="material-icons medium">motorcycle</i></a></li>
-            <li><a href="admin_cliente.html" class="tooltipped" data-position="right" data-tooltip="Clientes"><i
-                        class="material-icons medium">wc</i></a></li>
-            <li><a href="admin_producto.html" class="tooltipped" data-position="right" data-tooltip="Productos"><i
-                        class="material-icons medium">import_contacts</i></a></li>
-            <li><a href="admin_entrega.html" class="tooltipped" data-position="right" data-tooltip="Reparto"><i
-                        class="material-icons medium">description</i></a></li>
-            <li><a href="admin_admin.html" class="tooltipped" data-position="right" data-tooltip="Administradores"><i
-                        class="material-icons medium">folder_shared</i></a></li>
-            <li><button onclick="logOut('Admin')" class="tooltipped logout" data-position="right"
-                    data-tooltip="Cerrar sesión"><i class="material-icons medium">arrow_back</i></button></li>
+    <header>
+        <nav>
+            <div class="nav-wrapper white">
+                <div class="row valign-wrapper">
+                    <div class="col m1 s1">
+                        <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                                class="material-icons large blue-text">menu</i></a>
+                    </div>
+                    <div class="col m5 s5 valign-wrapper">
+    
+                        <img src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
+                    </div>
+                    <div class="col m6 s6">
+                        <div class="col s6 m8 l8 right-align">
+                            <div class="switch switch_colorr  right-align">
+                                <label>
+                                    🌕
+                                    <input type="checkbox" id="switch_color" onclick="modoOscuro()">
+                                    <span class="lever"></span>
+                                    🌙
+                                </label>
+                            </div>
+                        </div>
+                        <ul class="right valign-wrapper">
+                            <li><span class="black-text" id="opciones_navbar">Nombre del usuario</span></li>
+                            <li><a href="perfil.html" class="tooltipped " data-position="right" data-tooltip="Perfil"><i
+                                        class="material-icons medium black-text">account_circle</i></a></li>
+    
+                        </ul>
+                    </div>
+                </div>
+        </nav>
+    
+    </header>
+
+    <div class="row">
+        <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
+            <div class="opciones-sidenav">
+                <li><a href="dashboard.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
+                            class="material-icons center white-text">home</i><span
+                            class="white-text hide-on-large-only">Hogar</span></a></li>
+                <li><a href="admin_producto.html" class="tooltipped" data-position="right" data-tooltip="Productos"><i
+                            class="material-icons  white-text">import_contacts</i><span
+                            class="white-text hide-on-large-only">Productos</span></a></li>
+                <li><a href="admin_categoria.html" class="tooltipped" data-position="right" data-tooltip="Categoria"><i
+                            class="material-icons  white-text">format_list_bulleted</i><span
+                            class="white-text hide-on-large-only">Categoria</span></a></li>
+                <li><a href="admin_rmarca.html" class="tooltipped" data-position="right" data-tooltip="Marcas"><i
+                            class="material-icons  white-text">style</i><span
+                            class="white-text hide-on-large-only">Marcas</span></a>
+                </li>
+                <li><a href="admin_vendedor.html" class="tooltipped" data-position="right" data-tooltip="Vendedores"><i
+                            class="material-icons  white-text">people</i><span
+                            class="white-text hide-on-large-only">Vendedores</span></a></li>
+                <li><a href="admin_distribuidor.html" class="tooltipped" data-position="right"
+                        data-tooltip="Repartidores"><i class="material-icons  white-text">motorcycle</i><span
+                            class="white-text hide-on-large-only">Repartidores</span></a></li>
+                <li><a href="admin_cliente.html" class="tooltipped" data-position="right" data-tooltip="Clientes"><i
+                            class="material-icons  white-text">wc</i><span
+                            class="white-text hide-on-large-only">Clientes</span></a>
+                </li>
+                <li><a href="admin_entrega.html" class="tooltipped" data-position="right" data-tooltip="Reparto"><i
+                            class="material-icons  white-text">description</i><span
+                            class="white-text hide-on-large-only">Reparto</span></a></li>
+                <li><a href="admin_admin.html" class="tooltipped" data-position="right"
+                        data-tooltip="Administradores"><i class="material-icons  white-text">folder_shared</i><span
+                            class="white-text hide-on-large-only">Administradores</span></a></li>
+                <li class="hide-on-large-only"><button onclick="logOut('Admin')"
+                        class="tooltipped transparent logout valign-wrapper" data-position="right"
+                        data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
+                            class="white-text hide-on-large-only">Cerrar sesión</span></button></li>
+            </div>
+            <div class="cerrar-navbar hide-on-med-and-down">
+                <li><button onclick="logOut('Admin')" class="tooltipped transparent logout" data-position="right"
+                        data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
+                            class="white-text hide-on-large-only">Cerrar sesión</span></button></li>
+            </div>
+
+
         </ul>
-        <!--Contenedor de datos-->
-        <div class="contenedor-datos">
-            <!--Encabezado-->
-            <header class="encabezado">
-                <a href="#" data-target="slide-out"
-                    class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
-                        class="material-icons">menu</i></a>
-                <img src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
-                <!--Switch de cambiar color-->
-                <div class="col s12 m12 l12 right-align">
-                    <div class="switch switch_colorr hide-on-small-and-down right-align">
-                        <label>
-                            🌕
-                            <input type="checkbox" id="switch_color" onclick="modoOscuro()">
-                            <span class="lever"></span>
-                            🌙
-                        </label>
-                    </div>
-                </div>
-                <div id="opciones_navbar">
 
-                </div>
-            </header>
-            <!--Información de la página-->
-            <main>
-                <!--Contenedor-->
-                <div class="row">
-                    <div class="row administrar_cate_o ">
-                        <div class="col s12 m12 l12">
-                            <div class="row">
-                            </div>
-                            <div class="row">
-                            </div>
-                            <div class="row"></div>
-                        </div>
-                        <div class="col s12 m12 l12 titulo_pega">
-                            <!--Titulo-->
-                            <div class="row ">
-                                <h5 class="center-align titulo_admin">Administrar vendedor</h5>
-                            </div>
-                            <div class="row">
-                                <!-- Formulario de búsqueda -->
-                                <form method="post" id="search-form">
-                                    <div class="input-field col s9 m7 l4">
-                                        <i class="material-icons prefix">search</i>
-                                        <input id="search" type="text" name="search"
-                                            onkeypress="return revisarTexto(event)"
-                                            placeholder="Busque por nombre, correo o usuario..." onkeyup="buscar()">
-                                        <label for="search">Buscador</label>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col s12 l12 m12 contenido_apar">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <!--Columnas-->
-                                        <th>Nombre completo:</th>
-                                        <th>Dui:</th>
-                                        <th>Correo:</th>
-                                        <th>Usuario:</th>
-                                        <th>Solvencia pnc:</th>
-                                        <th>Ver más: </th>
-                                    </tr>
-                                </thead>
-                                <!--Datos de tabla-->
-                                <tbody id="contenido">
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!--Modal de la informacion-->
-                    <div id="modal_info" class="modal">
-                        <div class="modal-content">
-                            <div class="row contorno">
-                                <h5 class="center-align">Información</h5>
-                                <div class="row">
-                                    <div class="col s12 m12 l12">
-                                        <table class="default tabla_oscuro" id="contenidoInfoModal">
-                                            <tr>
-                                                <th>Nombre:</th>
-                                                <td>Nombre 1</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Apellido:</th>
-                                                <td>Apellido 1</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Dui:</th>
-                                                <td>Dui 1|</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Correo:</th>
-                                                <td>Correo 1</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Usuario:</th>
-                                                <td>Usuario 1</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Solvencia pnc:</th>
-                                                <td><img src="../../../recursos/img/privado/admin/modals/descarga (2).png "
-                                                        class="materialboxed imagen_standar"></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Antecedente pnc:</th>
-                                                <td><img src="../../../recursos/img/privado/admin/modals/descarga (2).png "
-                                                        class="materialboxed imagen_standar"></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Dirección domicilio:</th>
-                                                <td>Dirección 1</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Descripción vendedor:</th>
-                                                <td>Descripción </td>
-                                            </tr>
-                                            <tr>
-                                                <th>Status:</th>
-                                                <td>Status 1</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Foto:</th>
-                                                <td><img src="../../../recursos/img/privado/admin/modals/descarga (2).png "
-                                                        class="materialboxed imagen_standar"></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Fecha registro:</th>
-                                                <td>Fecha registro 1</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Coordenadas:</th>
-                                                <td>Coordenadas 1</td>
-                                            </tr>
-                                            <tr>
-                                                <th></th>
-                                                <td><a class="btn-flat boton_eliminar_tabl modal-trigger"
-                                                        href="#modal_eliminar_vendedor"><i
-                                                            class=" material-icons small ">delete</i></a></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <a class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Aceptar</a>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
     </div>
+    <main>
+        <div class="row  center">
+            <h5>Administrar vendedor</h5>
+            <div class="row valign-wrapper">
+                <div class="input-field col l4 m5 s10 offset-l1 offset-m2 offset-s1">
+                    <i class="material-icons small prefix blue-text">search</i>
+                    <input type="text" id="search" onkeyup="buscar()"
+                        placeholder="Buscar por nombre, usuario y correo...">
+                    <span id="notificacion"></span>
+                </div>
 
-    <!--Footer-->
-    <footer class="page-footer">
-        <!--Contenedor para el mapa y el copyright-->
-        <div class="footer_otros">
-            <div class="col l12 m12 s12 logo_copy_footer">
-                <img src="../../../recursos/img/privado/admin/modals/logo.png" alt="">
-                <h6>© 2022 DeliverySystem</h6>
+            </div>
+            <div class="col l10 m10 s12 offset-l1 offset-m1">
+                <table id="table">
+                    <thead>
+                        <tr>
+                            <!--Columnas-->
+                            <th>Nombre completo:</th>
+                            <th>Dui:</th>
+                            <th>Correo:</th>
+                            <th>Usuario:</th>
+                            <th>Solvencia pnc:</th>
+                            <th>Ver más: </th>
+                        </tr>
+                    </thead>
+                    <!--Datos de tabla-->
+                    <tbody id="contenido">
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+    <!--Modal de la informacion-->
+    <div id="modal_info" class="modal">
+        <div class="modal-content">
+            <div class="row contorno">
+                <h5 class="center-align">Información</h5>
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <table class="default" id="contenidoInfoModal">
+                            <tr>
+                                <th>Nombre:</th>
+                                <td>Nombre 1</td>
+                            </tr>
+                            <tr>
+                                <th>Apellido:</th>
+                                <td>Apellido 1</td>
+                            </tr>
+                            <tr>
+                                <th>Dui:</th>
+                                <td>Dui 1|</td>
+                            </tr>
+                            <tr>
+                                <th>Correo:</th>
+                                <td>Correo 1</td>
+                            </tr>
+                            <tr>
+                                <th>Usuario:</th>
+                                <td>Usuario 1</td>
+                            </tr>
+                            <tr>
+                                <th>Solvencia pnc:</th>
+                                <td><img src="../../../recursos/img/privado/admin/modals/descarga (2).png "
+                                        class="responsive-img"></td>
+                            </tr>
+                            <tr>
+                                <th>Antecedente pnc:</th>
+                                <td><img src="../../../recursos/img/privado/admin/modals/descarga (2).png "
+                                        class="responsive-img"></td>
+                            </tr>
+                            <tr>
+                                <th>Dirección domicilio:</th>
+                                <td>Dirección 1</td>
+                            </tr>
+                            <tr>
+                                <th>Descripción vendedor:</th>
+                                <td>Descripción </td>
+                            </tr>
+                            <tr>
+                                <th>Status:</th>
+                                <td>Status 1</td>
+                            </tr>
+                            <tr>
+                                <th>Foto:</th>
+                                <td><img src="../../../recursos/img/privado/admin/modals/descarga (2).png "
+                                        class="responsive-img"></td>
+                            </tr>
+                            <tr>
+                                <th>Fecha registro:</th>
+                                <td>Fecha registro 1</td>
+                            </tr>
+                            <tr>
+                                <th>Coordenadas:</th>
+                                <td>Coordenadas 1</td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td><a class="btn-flat boton_eliminar_tabl modal-trigger"
+                                        href="#modal_eliminar_vendedor"><i class=" material-icons small ">delete</i></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Aceptar</a>
+        </div>
+    </div>
+    </div>
+    <footer class="page-footer blue accent-3">
+        <div class="row">
+            <div class="col l2 m6 s12">
+                <div class="col offset-l1 offset-m1 offset-s1">
+                    <img class="responsive-img" src="logo.png" alt="">
+                    <h6>Copyright 2022</h6>
+                </div>
+            </div>
         </div>
     </footer>
-    <!--Importar archivos JavaScrip-->
+
+
     <script type="text/javascript" src="../../../js/materialize.min.js"></script>
     <script src="../../../recursos/js/sweetalert2.all.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript" src="../../../controladores/privado/activation.js"></script>
     <script type="text/javascript" src="../../../controladores/componentes.js"></script>
+    <script type="text/javascript" src="../../../controladores/activador.js"></script>
     <script type="text/javascript" src="../../../controladores/validator.js"></script>
     <script type="text/javascript" src="../../../controladores/privado/admin/admin_vendedor.js"></script>
     <script src="../../../controladores/privado/admin/modo_oscuro.js"></script>

@@ -9,7 +9,7 @@ if (isset($_GET['action'])) {
 
     session_start();
 
-    $factura = New Factura();
+    $factura = new Factura();
 
     if (isset($_SESSION['id_cliente'])) {
         switch ($_GET['action']) {
@@ -23,7 +23,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ocurrió un problema al obtener la cantidad del producto';
                 } elseif (!$factura->setIdProducto($_POST['id_producto'])) {
                     $result['exception'] = 'Ocurrió un problema al obtener el id del producto';
-                } elseif($factura->checkProductExist()) {
+                } elseif ($factura->checkProductExist()) {
                     $result['exception'] = 'Ya existe este producto en el carrito de compra';
                 } elseif (!$factura->checkStock()) {
                     $result['exception'] = 'Lo sentimos, no contamos con el inventario suficiente para agregar este producto al carrito';
@@ -102,7 +102,7 @@ if (isset($_GET['action'])) {
                 break;
             case 'deleteRow':
                 $_POST = $factura->validateForm($_POST);
-                if (!$factura->checkOrder()){
+                if (!$factura->checkOrder()) {
                     $result['exception'] = 'Ha ocurrido un error obteniendo el pedido';
                 } elseif (!$factura->setIdProducto($_POST['id'])) {
                     $result['exception'] = 'Ha ocurrido un error con el id del producto';
@@ -129,8 +129,9 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }
                 break;
+
             case 'cargarDatos':
-                if (!$factura->checkOrder()){
+                if (!$factura->checkOrder()) {
                     $result['exception'] = 'Ha ocurrido un error obteniendo el pedido';
                 } elseif ($result['dataset'] = $factura->getDataUser()) {
                     $result['total'] = $factura->total();
@@ -172,6 +173,5 @@ if (isset($_GET['action'])) {
     }
     print(json_encode($result));
 } else {
-print(json_encode('Recurso no disponible'));
+    print(json_encode('Recurso no disponible'));
 }
-

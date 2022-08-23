@@ -16,9 +16,10 @@ class Database
     {
         // Credenciales para establecer la conexión con la base de datos.
         $server = 'localhost';
-        $database = 'delivery';
+        $database = 'deliverysystem';
         $username = 'postgres';
-        $password = 'admin';
+        $password = 'Firearcher15';
+
 
         // Se crea la conexión mediante la extensión PDO y el controlador para PostgreSQL.
         self::$connection = new PDO('pgsql:host=' . $server . ';dbname=' . $database . ';port=5432', $username, $password);
@@ -137,7 +138,7 @@ class Database
                 //self::$error = 'Existe un problema al conectar con el servidor';
                 break;
             case '42703':
-                //self::$error = 'Nombre de campo desconocido';
+                self::$error = 'Nombre de campo desconocido';
                 break;
             case '23505':
                 self::$error = 'Dato duplicado, no se puede guardar';
@@ -149,7 +150,7 @@ class Database
                 //self::$error = 'Registro ocupado, no se puede eliminar';
                 break;
             default:
-               // self::$error = 'Ocurrió un problema en la base de datos';
+                self::$error = 'Ocurrió un problema en la base de datos';
         }
     }
 

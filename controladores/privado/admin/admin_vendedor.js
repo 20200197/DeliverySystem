@@ -24,7 +24,7 @@ function fillTable(data) {
                     <td data-target="Usuario vendedor: ">${row.usuario_vendedor}</td>
                     <td data-target="Solvencia pnc: ">
                         <img src="../../../api/imagenes/privado/admin/modals/${row.solvencia_pnc}" 
-                        class="materialboxed imagen_standar">
+                        class="responsive-img">
                     </td>
                     <td data-target="Ver más: ">
                         <a class="btn-flat modal-trigger"
@@ -52,14 +52,14 @@ function cargarInfo(id) {
         //Se revisa si la petición fue ejecutada
         request.ok
             ? //Se obtiene en Json
-            request.json().then(function (response) {
-                //Se revisa el estado de la respuesta
-                response.status
-                    ? //Se envía al método que cargará los datos
-                    cargarModal(response.dataset)
-                    : //Se imprime el problema
-                    sweetAlert(3, response.exception, null);
-            })
+              request.json().then(function (response) {
+                  //Se revisa el estado de la respuesta
+                  response.status
+                      ? //Se envía al método que cargará los datos
+                        cargarModal(response.dataset)
+                      : //Se imprime el problema
+                        sweetAlert(3, response.exception, null);
+              })
             : console.log(); //Se imprime el error en la consola
     });
 }
@@ -92,14 +92,14 @@ function cargarModal(data) {
             <th>Solvencia pnc:</th>
             <td>
                 <img src="../../../api/imagenes/vendedor/solvencia/${data.antecedente_penal}"
-                class="materialboxed imagen_standar">
+                class="responsive-img">
             </td>
         </tr>
         <tr>
             <th>Antecedente pnc:</th>
             <td>
                 <img src="../../../api/imagenes/vendedor/antecedentes/${data.antecedente_penal}"
-                class="materialboxed imagen_standar">
+                class="responsive-img">
             </td>
         </tr>
         <tr>
@@ -118,7 +118,7 @@ function cargarModal(data) {
             <th>Foto:</th>
             <td>
                 <img src="../../../api/imagenes/vendedor/foto/${data.foto_vendedor}"
-                class="materialboxed imagen_standar">
+                class="responsive-img">
             </td>
         </tr>
         <tr>
@@ -133,14 +133,13 @@ function cargarModal(data) {
             <th></th>
             <td>
                 <a class="btn-flat boton_eliminar_tabl modal-trigger"
-                  onclick="eliminar(${data.id_vendedor})">
+                 href="#modal_eliminar_vendedor" onclick="eliminar(${data.id_vendedor})">
                     <i class=" material-icons small ">delete</i>
                 </a>
             </td>
         </tr>
     `;
-    // Se inicializa el componente Material Box para que funcione el efecto Lightbox.
-    M.Materialbox.init(document.querySelectorAll('.materialboxed'));
+
 }
 
 //Función que realiza busquedas en los clientes
@@ -163,8 +162,11 @@ function buscar() {
                 if (response.status) {
                     //Se cargan los datos obtenidos
                     fillTable(response.dataset);
+                    document.getElementById('notificacion').innerHTML = '';
                 } else {
-                    sweetAlert(1, response.exception, null);
+                     //Se cargan los datos obtenidos
+                     fillTable(response.dataset);
+                     document.getElementById('notificacion').innerHTML = 'No se encontraron datos según la busqueda solicitada';
                 }
             });
         } else {

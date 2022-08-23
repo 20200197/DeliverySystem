@@ -14,6 +14,7 @@ class Factura extends Validator
     private $id_direccion = null;
     private $id_cliente = null;
     private $id_metodo = null;
+
     
     //creamos metodos set
 
@@ -25,6 +26,7 @@ class Factura extends Validator
             return false;
         }
     }
+
 
     public function setIdDirection($valor)
     {
@@ -103,6 +105,15 @@ class Factura extends Validator
     public function setEstadoFactura($valor){
         if($this->validateAlphabetic($valor, 1, 20)){
             $this->estado_factura = $valor;
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function setDireccion($valor){
+        if($this->validateDirection($valor)){
+            $this->direccion = $valor;
             return true;
         }else{
             return false;
@@ -242,7 +253,6 @@ class Factura extends Validator
     {
         $sql = 'CALL actualizarinventario(?)';
         $params = array($_SESSION['id_factura']);
-
         return Database::executeRow($sql, $params);
     }
 

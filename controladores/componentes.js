@@ -355,6 +355,7 @@ function fillSelect(endpoint, select, selected) {
     });
 }
 
+
 function fillSelectDirection(endpoint, select, selected) {
     fetch(endpoint, {
         method: 'get'
@@ -393,14 +394,6 @@ function fillSelectDirection(endpoint, select, selected) {
     });
 }
 
-/*
-*   Función para generar un gráfico de barras verticales. Requiere el archivo chart.js. Para más información https://www.chartjs.org/
-*
-*   Parámetros: canvas (identificador de la etiqueta canvas), xAxis (datos para el eje X), yAxis (datos para el eje Y), legend (etiqueta para los datos) y title (título del gráfico).
-*
-*   Retorno: ninguno.
-*/
-
 /**
  *  Función para generar gráficas de tipo: barras
  *  Los parámetros de la función son:
@@ -420,7 +413,8 @@ function fillSelectDirection(endpoint, select, selected) {
  *  Las librerías extras a usar son
  */
 
- function barras(CLASS, cabeceras, datos) {
+function barras(CLASS, cabeceras, datos) {
+
     //Se crea el gráfico
     new Chartist.Bar(CLASS, {
         labels: cabeceras,
@@ -991,6 +985,7 @@ function logOut(type) {
                     API = SERVER + 'dashboard/administrar_admin.php?action=logOut';
                     break;
                 case 'Vendedor':
+
                 API = SERVER + 'dashboard/administrar_vendedor.php?action=logOut'
                 break;
                 case 'Cliente':

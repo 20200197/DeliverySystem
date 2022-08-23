@@ -1,4 +1,4 @@
-const API_REPARTIDOR = SERVER + 'publico/repartidor.php?action='
+const API_REPARTIDOR = SERVER + "publico/repartidor.php?action=";
 
 document.addEventListener("DOMContentLoaded", function () {
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
@@ -6,16 +6,15 @@ document.addEventListener("DOMContentLoaded", function () {
     readBarraProductosMasVendidosDepartamento();
 });
 
-
 //Función que cargar las graficas de barra donde se mueestra producto mas vendido por departamento
 function readBarraProductosMasVendidosDepartamento(nombre_departamento) {
     let data = new FormData();
-    data.append('nombre_departamento', nombre_departamento);
+    data.append("nombre_departamento", nombre_departamento);
     //Se realiza la petición para cargar los datos
     //Se realiza la petición para cargar los datos
     fetch(API_REPARTIDOR + "readProductosMasVendidosDepartamento", {
         method: "post",
-        body: data
+        body: data,
     }).then(function (request) {
         //Se revisa si se ejecutó la sentencia
         if (request.ok) {
@@ -27,8 +26,8 @@ function readBarraProductosMasVendidosDepartamento(nombre_departamento) {
                 let general = []; //Vector donde se guardarán los datos por toda la gráfica (Es un contenedor nada más)
                 if (response.status) {
                     /*
-                    * Se se desean agregar más lineas de la gráfica se deben de crear un vector más
-                    */
+                     * Se se desean agregar más lineas de la gráfica se deben de crear un vector más
+                     */
                     let fila = []; //Vector donde se guardarán los datos por cada titulo de la gráfica (1 Línea)
                     // let fila2 = []; //Vector donde se guardarán los datos por el mismo titulo de la gráfica (1 Línea)
                     //let fila3 = []; //Vector donde se guardarán los datos por el mismo titulo de la gráfica (1 Línea)
@@ -40,7 +39,6 @@ function readBarraProductosMasVendidosDepartamento(nombre_departamento) {
                         fila.push(row.cantidad_pedido); //Se agrega un dato para el titulo
                         //fila2.push(row.cantidad); //Si se desea agregar más de un datos por titulo se agregan aquí
                         //fila3.push(row.cantidad); //Si se desea agregar más de un datos por titulo se agregan aquí
-
                     });
                     //Se cargan los datos dentro del contenedor
                     general.push(fila);
@@ -67,19 +65,19 @@ function readBarraProductosMasVendidosDepartamento(nombre_departamento) {
 function openOpciones() {
     // M.Modal.getInstance(document.getElementById("parametro-modal")).open();
     //Cargamos el select
-    fetch(API_REPARTIDOR + 'readAllDepartamento', {
-        method: 'get'
+    fetch(API_REPARTIDOR + "readAllDepartamento", {
+        method: "get",
     }).then(function (request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
         if (request.ok) {
             // Se obtiene la respuesta en formato JSON.
             request.json().then(function (response) {
-                let content = '';
+                let content = "";
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Si no existe un valor para seleccionar, se muestra una opción para indicarlo.
                     if (!null) {
-                        content += '<option disabled selected>Seleccione una opción</option>';
+                        content += "<option disabled selected>Seleccione una opción</option>";
                     }
                     // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
                     response.dataset.map(function (row) {
@@ -95,13 +93,13 @@ function openOpciones() {
                         }
                     });
                 } else {
-                    content += '<option>No hay opciones disponibles</option>';
+                    content += "<option>No hay opciones disponibles</option>";
                 }
                 // Se agregan las opciones a la etiqueta select mediante su id.
                 document.getElementById("opciones_departamento").innerHTML = content;
             });
         } else {
-            console.log(request.status + ' ' + request.statusText);
+            console.log(request.status + " " + request.statusText);
         }
     });
     openParametro();
@@ -110,16 +108,18 @@ function openOpciones() {
 //Función para abriri parametro para reporte
 function openParametro() {
     Swal.fire({
-        title: 'Selecciona el departamentoa',
+        title: "Selecciona el departamentoa",
         html: '<div class="input-field"><select class="browser-default" id="opciones_departamento" name="opciones_departamento" required> </select></div>',
         showCancelButton: true,
-        allowOutsideClick: false, 
+        allowOutsideClick: false,
     }).then((result) => {
         if (result.isDismissed) {
-
         } else {
             //Obtenemos la opcion seleccinada
-            var selectedOption = document.getElementById("opciones_departamento").options[document.getElementById("opciones_departamento").selectedIndex];
+            var selectedOption =
+                document.getElementById("opciones_departamento").options[
+                    document.getElementById("opciones_departamento").selectedIndex
+                ];
             console.log(selectedOption.text);
             readBarraProductosMasVendidosDepartamento(selectedOption.text);
         }
@@ -136,5 +136,4 @@ function openReport(categoria) {
     // const data = new FormData();
     // data.append("categoriaN", categoria);
     // request.send(data);
-
 }

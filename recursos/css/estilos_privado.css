@@ -1,3 +1,4 @@
+
 /* Clases generales del diseño*/
 
 
@@ -8,6 +9,10 @@ header,
 main,
 footer {
     padding-left: 6%;
+}
+
+.switch_colorr label {
+    font-size: 20px !important;
 }
 
 @media only screen and (max-width: 992px) {
@@ -361,4 +366,22 @@ th{
     flex-direction: column;
     justify-content: space-around;
     padding-top: 3% !important;
+  }
+
+/*-------------Diseños de modal---------------*/
+
+.contorno {
+    border: #8dc5ff 3px solid;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+  }
+
+  .file-path{
+    width: 0px !important;
+  }
+
+  .sin-margen{
+    margin: 0px !important;
   }
