@@ -167,7 +167,7 @@ class Entrega extends Validator
 
     public function readHistorialRepartidor()
     {
-        $sql = "SELECT nombre_producto, CONCAT(nombre_vendedor, ' ' , apellido_vendedor ) as nombre_vendedo, CONCAT(nombre_cliente, ' ' , apellido_cliente) as nombre_cliente, descripcion_direccion, fecha_compra, costo_envio
+        $sql = "SELECT nombre_producto, CONCAT(nombre_vendedor, ' ' , apellido_vendedor ) as nombre_vendedor, CONCAT(nombre_cliente, ' ' , apellido_cliente) as nombre_cliente, descripcion_direccion, fecha_compra, costo_envio
         from detalle_factura
         inner join factura using (id_factura)
         inner join producto using (id_producto)

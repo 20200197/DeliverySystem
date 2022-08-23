@@ -2,7 +2,7 @@
 require_once('../ayudantes/database.php');
 require_once('../ayudantes/validator.php');
 require_once('../modelos/administrar_categoria.php');
-require_once('../modelos/productos.php');
+require_once('../modelos/administrar_productos.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {

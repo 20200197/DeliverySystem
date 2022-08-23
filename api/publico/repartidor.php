@@ -157,7 +157,7 @@ if (isset($_GET['action'])) {
             //Cambiar contraseña 
         case 'changePassword':
             $_POST = $repartidor->validateForm($_POST);
-            if  (!$repartidor->checkPassword($_POST['actual'])) {
+            if (!$repartidor->checkPassword($_POST['actual'])) {
                 $result['exception'] = 'Contraseña actual incorrecta';
             } elseif ($_POST['nueva'] != $_POST['confirmar']) {
                 $result['exception'] = 'Contraseñas nuevas diferentes';
@@ -168,6 +168,26 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'Contraseña cambiada correctamente';
             } else {
                 $result['exception'] = Database::getException();
+            }
+            break;
+            /**Productos mas vendidos segun departamento seleccionado */
+        case 'readProductosMasVendidosDepartamento':
+            if ($result['dataset'] = $repartidor->readProductosMasVendidosDepartamento($_POST['nombre_departamento'])) {
+                $result['status'] = 1;
+            } elseif (Database::getException()) {
+                $result['exception'] = Database::getException();
+            } else {
+                $result['exception'] = 'No hay datos registrados';
+            }
+            break;
+            //Leemos todos los departamentos
+        case 'readAllDepartamento':
+            if ($result['dataset'] = $repartidor->readAllDepartamento()) {
+                $result['status'] = 1;
+            } elseif (Database::getException()) {
+                $result['exception'] = Database::getException();
+            } else {
+                $result['exception'] = 'No hay datos registrados';
             }
             break;
         default:

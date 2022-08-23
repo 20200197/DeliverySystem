@@ -1,5 +1,6 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
 const API_PRODUCTOS = SERVER + "publico/productos.php?action=";
+<<<<<<< HEAD
 const API_FACTURA = SERVER + "publico/factura.php?action=";
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
@@ -15,6 +16,24 @@ document.addEventListener("DOMContentLoaded", function () {
     readCali(IDDETALLE);
     // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
     M.Tooltip.init(document.querySelectorAll(".tooltipped"));
+=======
+const API_FAVORITO = SERVER + "publico/favorito.php?action=";
+
+// Método manejador de eventos que se ejecuta cuando el documento ha cargado.
+document.addEventListener("DOMContentLoaded", function () {
+  // Se busca en la URL las variables (parámetros) disponibles.
+  let params = new URLSearchParams(location.search);
+  // Se obtienen los datos localizados por medio de las variables.
+  const ID = params.get("id_producto");
+  const IDDETALLE = params.get("id_detalle");
+  // Se llama a la función que muestra el detalle del producto seleccionado previamente.
+  readOneProducto(ID);
+  readComent(ID);
+  readCali(IDDETALLE);
+  // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
+  M.Tooltip.init(document.querySelectorAll(".tooltipped"));
+  readCheckFavoOfClient(ID);
+>>>>>>> 269bf2a2e4dc212ced5f623eb1040935bc977878
 });
 
 // Función para obtener y mostrar los datos del producto seleccionado.
@@ -210,7 +229,10 @@ function readCali(id_detalle) {
                 }
             });
         } else {
-            console.log(request.status + ' ' + request.statusText);
+          // Se presenta un mensaje de error cuando no existen datos para mostrar.
+          document.getElementById(
+            "contenedor_calidad"
+          ).innerHTML = `<p class"black-text">Sin calificación</p>`;
         }
     });
 }
@@ -781,6 +803,7 @@ function readInfoSinLogueado() {
     M.Sidenav.init(document.querySelectorAll(".sidenav"));
 }
 
+<<<<<<< HEAD
 document.getElementById('add-form').addEventListener('submit', function () {
     event.preventDefault();
     fetch(API_FACTURA + 'addCart', {
@@ -800,3 +823,126 @@ document.getElementById('add-form').addEventListener('submit', function () {
         }
     });
 });
+=======
+//Mostrar los favoritos activos, las estrellas cuando esten agregados
+function readCheckFavoOfClient(id) {
+  const data = new FormData();
+  data.append('idP', id);
+  fetch(API_FAVORITO + 'readCheckFavoOfClient', {
+      method: 'post',
+      body: data
+  }).then(function (request) {
+      // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+      if (request.ok) {
+          // Se obtiene la respuesta en formato JSON.
+          request.json().then(function (response) {
+              // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+              if (response.status) {
+                  // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+                  response.dataset.map(function (row) {
+
+                      document.getElementById("cali_favo").checked = true;
+                      document.getElementById("label").style.color = "orange";
+                      document.getElementById("lever").style.display = "none";
+
+                  });
+              } else {
+                  document.getElementById("lever").style.display = "none";
+                  console.log(response.exception);
+              }
+          });
+      } else {
+          console.log(request.status + ' ' + request.statusText);
+      }
+  });
+}
+
+//Agregar productos a favorito
+function createFavo(id) {
+// Se busca en la URL las variables (parámetros) disponibles.
+let params = new URLSearchParams(location.search);
+// Se obtienen los datos localizados por medio de las variables.
+const ID = params.get("id_producto");
+const IDDETALLE = params.get("id_detalle");
+id = ID;
+  //Comprobamos si el radio esta chequeado
+  if (document.getElementById("cali_favo").checked) {
+      console.log("no");
+      // Se define un objeto con los datos del registro seleccionado.
+      const data = new FormData();
+      data.append('idP', id);
+      fetch(API_FAVORITO + 'create', {
+          method: 'post',
+          body: data
+      }).then(function (request) {
+          // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+          if (request.ok) {
+              // Se obtiene la respuesta en formato JSON.
+              request.json().then(function (response) {
+                  // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                  if (response.status) {
+                      sweetAlert(1, response.message, null);
+                  } else {
+                      sweetAlert(2, response.exception, null);
+                  }
+              });
+          } else {
+              console.log(request.status + ' ' + request.statusText);
+          }
+      });
+
+
+  } else {
+      console.log("act");
+      // Se define un objeto con los datos del registro seleccionado.
+      const data = new FormData();
+      data.append('idP', id);
+
+      fetch(API_FAVORITO + 'delete', {
+          method: 'post',
+          body: data
+      }).then(function (request) {
+          // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+          if (request.ok) {
+              // Se obtiene la respuesta en formato JSON.
+              request.json().then(function (response) {
+                  // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                  if (response.status) {
+                      sweetAlert(1, response.message, null);
+                  } else {
+                      sweetAlert(2, response.exception, null);
+                  }
+              });
+          } else {
+              console.log(request.status + ' ' + request.statusText);
+          }
+      });
+  }
+
+}
+
+// Método manejador de eventos que se ejecuta cuando se envía el formulario de buscar.
+document.getElementById('cali_favo').addEventListener('onclick', function (event) {
+  // Se busca en la URL las variables (parámetros) disponibles.
+  let params = new URLSearchParams(location.search);
+  // Se obtienen los datos localizados por medio de las variables.
+  const ID = params.get("id_producto");
+  const IDDETALLE = params.get("id_detalle");
+  createFavo(ID);
+  console.log('akdak');
+});
+
+
+
+function changeColorActive(label, camb) {
+  if (document.getElementById(camb).checked) {
+      document.getElementById(label).style.color = "orange";
+
+  } else {
+      document.getElementById(label).style.color = "";
+  }
+}
+
+
+
+>>>>>>> 269bf2a2e4dc212ced5f623eb1040935bc977878
