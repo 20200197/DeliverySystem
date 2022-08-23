@@ -36,3 +36,22 @@ document.getElementById('save-form').addEventListener('submit', function () {
         }
     });
 });
+
+//Validaciones
+document.getElementById("dui").addEventListener("input", function (evt) {
+    let value = this.value.replace("-", "");
+    //comienzo de linea  Digito numerico   Final de linea
+    if (value.match(/^(\d{2})(\d{3}){2}(\w{1})$/)) {
+      value = value.replace(/^(\d{2})(\d{3})(\d{3})(\w{1})$/, "$1$2$3-$4");
+    }
+    this.value = value;
+});
+
+document.getElementById("phone").addEventListener("keyup", function (evt) {
+    var telefono = document.getElementById("phone").value.length;
+    var valor = document.getElementById("phone").value;
+    if(telefono == 4){
+      document.getElementById("phone").value = valor + "-";
+    }
+    
+});
