@@ -16,7 +16,7 @@ class Database
     {
         // Credenciales para establecer la conexión con la base de datos.
         $server = 'localhost';
-        $database = 'dbDelivery_System';
+        $database = 'dbdeliverysystemm';
         $username = 'postgres';
         $password = 'Academica20_21';
 
@@ -134,7 +134,7 @@ class Database
         // Se compara el código del error para establecer un error personalizado.
         switch ($code) {
             case '7':
-                self::$error = 'Existe un problema al conectar con el servidor';
+                //self::$error = 'Existe un problema al conectar con el servidor';
                 break;
             case '42703':
                 //self::$error = 'Nombre de campo desconocido';

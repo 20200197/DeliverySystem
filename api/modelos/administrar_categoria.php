@@ -9,8 +9,9 @@ class Categoria extends Validator
     private $id = null;
     private $nombre_categoria = null;
     private $imagen_categoria = null;
+    private $estado_categoria = null;
 
-    private $ruta = '../imagenes/categoria_producto/';
+    private $ruta = '../imagenes/categoria/';
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -42,7 +43,7 @@ class Categoria extends Validator
 
     public function setImagen_categoria($file)
     {
-        if ($this->validateImageFile($file, 500, 500)) {
+        if ($this->validateImageFile($file, 2000, 2000)) {
             $this->imagen_categoria = $this->getFileName();
             return true;
         } else {
@@ -50,7 +51,15 @@ class Categoria extends Validator
         }
     }
 
-
+    public function setEstado_categoria($value)
+    {
+        if ($this->validateBoolean($value)) {
+            $this->estado_categoria = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /*
     *   Métodos para obtener valores de los atributos.
@@ -70,6 +79,10 @@ class Categoria extends Validator
         return $this->imagen_categoria;
     }
 
+    public function getEstado_categoria()
+    {
+        return $this->estado_categoria;
+    }
 
     public function getRuta()
     {
@@ -81,10 +94,10 @@ class Categoria extends Validator
     */
     public function searchRows($value)
     {
-        $sql = 'SELECT id_categoria_producto, nombre_categoria, imagen_categoria
-                FROM categoria_producto 
-                WHERE  nombre_categoria ILIKE ? 
-                ORDER BY nombre_categoria';
+        $sql = 'SELECT id_categoria_producto, categoria, imagen_categoria, status_categoria
+                FROM categoria
+                WHERE  categoria ILIKE ? 
+                ORDER BY categoria';
         $params = array("%$value%");
         return Database::getRows($sql, $params);
     }
@@ -92,18 +105,18 @@ class Categoria extends Validator
     //Función para crear filas
     public function createRow()
     {
-        $sql = 'INSERT INTO categoria_producto(nombre_categoria, imagen_categoria)
-                VALUES(?, ?)';
-        $params = array($this->nombre_categoria, $this->imagen_categoria);
+        $sql = 'INSERT INTO categoria(categoria, imagen_categoria, status_categoria)
+                VALUES(?, ?, ?)';
+        $params = array($this->nombre_categoria, $this->imagen_categoria, true);
         return Database::executeRow($sql, $params);
     }
 
     //Función para leer todos los datos
     public function readAll()
     {
-        $sql = 'SELECT id_categoria_producto, nombre_categoria, imagen_categoria
-                FROM categoria_producto
-                ORDER BY nombre_categoria';
+        $sql = 'SELECT id_categoria_producto, categoria, imagen_categoria, status_categoria
+                FROM categoria
+                ORDER BY categoria';
         $params = null;
         return Database::getRows($sql, $params);
     }
@@ -113,7 +126,7 @@ class Categoria extends Validator
     {
         $sql = 'SELECT id_producto, nombre_producto, descripcion, cant_producto, imagen_producto, precio_producto, nombre_categoria, estado_producto, tipo_auto, nombre_empleado
         from productos
-        INNER JOIN categoria_producto USING (id_categoria_producto)
+        INNER JOIN categoria USING (id_categoria_producto)
         INNER JOIN estado_producto USING (id_estado_producto)
         INNER JOIN tipo_auto USING (id_tipo_auto)
         INNER JOIN empleado USING (id_empleado)
@@ -123,19 +136,14 @@ class Categoria extends Validator
         return Database::getRows($sql, $params);
     }
 
-
-
     public function readOne()
     {
-        $sql = 'SELECT id_categoria_producto,nombre_categoria,imagen_categoria
-                FROM categoria_producto
+        $sql = 'SELECT id_categoria_producto, categoria, imagen_categoria, status_categoria
+                FROM categoria
                 WHERE id_categoria_producto = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
-
-
-
 
     //Función para actualizar fila
     public function updateRow($current_image)
@@ -143,20 +151,49 @@ class Categoria extends Validator
         // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
         ($this->imagen_categoria) ? $this->deleteFile($this->getRuta(), $current_image) : $this->imagen_categoria = $current_image;
 
-        $sql = 'UPDATE categoria_producto 
-                SET nombre_categoria=  ?, imagen_categoria=?
+        $sql = 'UPDATE categoria
+                SET categoria=  ?, imagen_categoria=?
                 WHERE id_categoria_producto=?';
-        $params = array($this->nombre_categoria,$this->imagen_categoria,$this->id);
+        $params = array($this->nombre_categoria,$this->imagen_categoria, $this->id);
         return Database::executeRow($sql, $params);
     }
     
-
     //Función para eliminar fila
     public function deleteRow()
     {
-        $sql = 'DELETE FROM categoria_producto
+        $sql = 'DELETE FROM categoria
                 WHERE id_categoria_producto= ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
+    }
+
+    public function updateEstado()
+    {
+        $sql = 'UPDATE categoria
+        SET status_categoria = ?
+        WHERE id_categoria_producto = ?';
+        $params = array($this->estado_categoria, $this->id);
+        return Database::executeRow($sql, $params);
+    }
+
+     //Función que valida para que no se repitan datos
+    //$column es la columna sql que se validara, dui, telefono, etc
+    //$data el dato obtenido por get en Api
+    public function read($column, $data)
+    {
+        $sql = "SELECT * FROM categoria
+                WHERE $column = ?";
+        $params = array($data);
+
+        return Database::getRow($sql, $params);
+    }
+
+    //Función que valida que no se repita el dui en update, donde se evaluan los otros duis menos el seleccionado por si le da aceptar y no cambia nada
+    public function readD($column, $data)
+    {
+        $sql = "SELECT * from categoria where $column=?  except select * from categoria where id_categoria_producto = ?";
+        $params = array($data, $this->id);
+
+        return Database::getRow($sql, $params);
     }
 }

@@ -4,7 +4,7 @@
 <html>
 
 <head>
-    <meta charset="uft=8">
+    <meta charset="utf-8">
     <!--Importar iconos-->
     <link href="../../../recursos/css/icons.css" rel="stylesheet" />
     <!--Importar archivos CSS-->
@@ -16,185 +16,211 @@
 </head>
 
 <body>
-    <!--Marco general-->
-    <div class="row contenedor-general">
-        <!--Barra lateral, opciones para los usuarios-->
-        <ul id="slide-out" class="sidenav sidenav-fixed">
-            <li>
-                <a href="index.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
-                        class="material-icons medium">home</i></a>
-            </li>
-            <li>
-                <a href="perfil_cliente.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
-                        class="material-icons medium">account_circle</i></a>
-            </li>
-            <li>
-                <a href="pedidos_cliente.html" class="tooltipped" data-position="right" data-tooltip="Compras"><i
-                        class="material-icons medium">shopping_basket</i></a>
-            </li>
-            <li>
-                <a href="index.html" class="tooltipped" data-position="right" data-tooltip="Categoria"><i
-                        class="material-icons medium">format_list_bulleted</i></a>
-            </li>
-            <li>
-                <a href="" class="tooltipped" data-position="right" data-tooltip="Cerrar sesión"><i
-                        class="material-icons medium">arrow_back</i></a>
-            </li>
-        </ul>
-        <!--Contenedor de datos-->
-        <div class="contenedor-datos">
-            <!--Encabezado-->
-            <header class="encabezado">
-                <a href="#" data-target="slide-out"
-                    class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
-                        class="material-icons">menu</i></a>
-                <img src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png" alt="" />
-                <a class="waves-effect waves-light btn boton_iniciar_sesion">Log In</a>
-            </header>
-            <!--Información de la página-->
-            <main>
-                <!--Información del producto-->
-                <div class="row">
-                    <div class="col s12 m3 l3 offset-m1 offset-l1">
-                        <img src="../../../recursos/img/publico/clientes/modals/focos.jpg" class="responsive-img"
-                            alt="" />
-                    </div>
-                    <div class="col s12 m5 l5">
-                        <h5>
-                            Sengled - Foco inteligente WiFi, foco que cambia de color,
-                            focos inteligentes que funcionan con Alexa y Google Assistant
-                        </h5>
-                        <div class="row">
-                            <div class="col s12 m4 l4">
-                                <i class="material-icons yellow-text small">star</i>
-                                <i class="material-icons yellow-text small">star</i>
-                                <i class="material-icons yellow-text small">star</i>
-                                <i class="material-icons yellow-text small">star</i>
-                            </div>
-                            <div class="col s12 m4 l4">
-                                <p>Marca: Sengled</p>
-                            </div>
-                            <div class="col s12 m4 l4">
-                                <p>De: <a href="">María Rodríguez</a></p>
-                            </div>
-                            <div class="s12 m12 l12">
-                                <p>
-                                    【Nuevo diseño 2020】 Este anillo de luz de 10.0 in cuenta
-                                    con un panel táctil en la parte delantera para opciones de
-                                    brillo y color, mucho más fácil de maniobrar que los
-                                    paneles de control de sus predecesores. Ofrece ajuste de
-                                    luminancia de 1 a 100%, y temperatura de color de 3000 K a
-                                    6000 K (cálido a frío), por lo que es una solución de
-                                    iluminación ideal para YouTubers, fotógrafos y amantes de
-                                    selfies.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 m3 l3 center-align">
-                        <div class="detalle-producto-individual">
-                            <div class="row"></div>
-                            <p>Precio: $15.99</p>
-                            <div class="row">
-                                <form action="">
-                                    <div class="col l12 m12 s12">
-                                        <p>Cantidad</p>
-                                        <div class="contador_cantidad_carrito">
-                                            <a href=""><i class="material-icons">remove_circle_outline</i></a>
-                                            <input type="number" value="2" />
-                                            <a href=""><i class="material-icons">add_circle_outline</i></a>
-                                        </div>
-                                    </div>
-                                    <div class="col s12 m12 l12">
-                                        <p>Total: $31.98</p>
-                                    </div>
-                                    <div class="col s12 m12 l12">
-                                        <button
-                                            class="waves-effect blue lighten-2 waves-light btn-large boton_foto_admin"><i
-                                                class="material-icons left">add</i>añadir</button>
-                                    </div>
-                                    <div class="row"></div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="divider"></div>
-                <div class="row">
-                    <!--Comentarios de producto individual-->
-                    <div class="col s12 m3 l3 offset-l1">
-                        <p class="flow-text">Comentarios</p>
-                    </div>
-                </div>
+    <header>
+        <nav>
+
+            <div class="nav-wrapper white">
                 <div class="row valign-wrapper">
-                    <div class="col s2 m1 l1 offset-l1 offset-m1">
-                        <img class="responsive-img circle"
-                            src="../../../recursos/img/publico/clientes/modals/comentario_producto.png" />
+                    <div class="col m1 s1">
+                        <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                                class="material-icons large blue-text">menu</i></a>
                     </div>
-                    <div class="col s10 m10 l10">
-                        <p>Cristian parada</p>
-                        <i class="material-icons yellow-text small">star</i>
-                        <i class="material-icons yellow-text small">star</i>
+                    <div class="col m5 s5 left valign-wrapper">
+
+                        <img class="responsive-img"
+                            src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png" alt="">
+                    </div>
+                    <div class="col m6 s6">
+                        <ul class="right">
+                            <li><span class="black-text">Nombre del usuario</span></li>
+                            <li><a href="perfil.html" class="tooltipped " data-position="right" data-tooltip="Perfil"><i
+                                        class="material-icons medium black-text">account_circle</i></a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+
+    </header>
+
+    <div class="row">
+        <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
+            <div class="opciones-sidenav">
+                <li class="collection-item"><a href="index.html" class="tooltipped" data-position="right"
+                        data-tooltip="Hogar"><i class="material-icons  white-text">home</i><span
+                            class="white-text hide-on-large-only">Inicio</span></a>
+                </li>
+                <li><a href="perfil_cliente.html" class="tooltipped Hide-on-large-only " data-position="right"
+                        data-tooltip="Perfil"><i class="material-icons  white-text">account_circle</i><span
+                            class="white-text hide-on-large-only">Perfil</span></a></li>
+                <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Ventas"><i
+                            class="material-icons  white-text">shopping_basket</i><span
+                            class="white-text hide-on-large-only">Compras</span></a></li>
+                <li><a href="favorito.html" class="tooltipped" data-position="right" data-tooltip="Favoritos"><i
+                            class="material-icons  white-text">star</i><span
+                            class="white-text hide-on-large-only">Favoritos</span></a></li>
+                <li class="hide-on-large-only"><button onclick="logOut('Vendedor')"
+                        class="tooltipped transparent logout valign-wrapper" data-position="right"
+                        data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
+                            class="white-text hide-on-large-only">Cerrar
+                            sesión</span></button></li>
+            </div>
+            <div class="cerrar-navbar hide-on-med-and-down">
+                <li>
+                    <button onclick="logOut('Vendedor')" class="tooltipped white-text transparent logout valign-wrapper"
+                        data-position="right" data-tooltip="Cerrar sesión"><i
+                            class="material-icons ">arrow_back</i><span class="white-text hide-on-large-only">Cerrar
+                            sesión</span></button>
+                </li>
+            </div>
+        </ul>
+    </div>
+    <!--Información de la página-->
+    <main>
+        <!--Información del producto-->
+        <div class="row">
+            <!-- Campo oculto para asignar el id del producto -->
+            <input type="hidden" id="id_producto" name="id_producto">
+            <div class="col s12 m3 l3 offset-m1 offset-l1">
+                <img src="" id="imagen_producto" class="responsive-img" alt="" width="420" height="430" />
+            </div>
+
+            <div class="col s12 m5 l5">
+                <div class="row">
+                    <div class="col s4 m4 l4">
+                        <h5 id="nombre_producto">
+
+                        </h5>
+                    </div>
+                    <div class="col s4 m2 l2 right">
+                        <div class="switch">
+                            <label id="label">
+                                <input type="checkbox" id="cali_favo" name="cali_favo" onchange="createFavo()"
+                                    onclick="changeColorActive('label','cali_favo')">
+                                <span class="lever" id="lever"></span>
+                                <span>★</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s12 m8 l8 offset-l1 offset-m1">
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius
-                            adipisci repellendus numquam nihil exercitationem voluptates
-                            repudiandae beatae eaque rem ratione ipsum laudantium eligendi
-                            consequatur, perspiciatis iure quibusdam culpa nostrum autem!
+                    <div class="col s12 m4 l4" id="contenedor_calidad">
+
+                    </div>
+                    <div class="col s12 m4 l4">
+                        <p id="marca_producto"></p>
+                    </div>
+                    <div class="col s12 m4 l4">
+                        <p>De: <a class="black-text" id="nombre_vendedor"></a></p>
+                    </div>
+                    <div class="s12 m12 l12">
+                        <p id="descripcion_producto">
+
                         </p>
                     </div>
                 </div>
-            </main>
-        </div>
-    </div>
-
-    <!--Footer-->
-    <footer class="page-footer">
-        <div class="row">
-            <!--enlace de redes sociales-->
-            <div class="col l12 m6 s3 redes_footer center-align">
-                <ul>
-                    <li>
-                        <a href=""><i class="material-icons medium">facebook</i></a>
-                    </li>
-                    <li>
-                        <a href=""><img
-                                src="../../../recursos/img/publico/clientes/footer/instagram_old_50px.png" /></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="material-icons medium">whatsapp</i></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="material-icons medium">email</i></a>
-                    </li>
-                </ul>
             </div>
-            <!--Contenedor para el mapa y el copyright-->
-            <div class="footer_otros">
-                <div class="col l6 m9 s12 logo_copy_footer">
-                    <img src="../../../recursos/img/publico/clientes/modals/logo.png" alt="" />
-                    <h6>© 2022 DeliverySystem</h6>
+            <div class="col s12 m3 l3 center-align">
+                <div class="detalle-producto-individual">
+                    <div class="row"></div>
+                    <p id="precio_producto"></p>
+                    <div class="row">
+                        <form action="">
+                            <div class="col l12 m12 s12">
+                                <p>Cantidad</p>
+                                <div class="contador_cantidad_carrito">
+                                    <a href=""><i class="material-icons">remove_circle_outline</i></a>
+                                    <input type="number" value="2" />
+                                    <a href=""><i class="material-icons">add_circle_outline</i></a>
+                                </div>
+                            </div>
+                            <div class="col s12 m12 l12">
+                                <p>Total: $31.98</p>
+                            </div>
+                            <div class="col s12 m12 l12">
+                                <button class="waves-effect blue lighten-2 waves-light btn-large boton_foto_admin"><i
+                                        class="material-icons left">add</i>añadir</button>
+                            </div>
+                            <div class="row"></div>
+                        </form>
+                    </div>
                 </div>
-                <div class="col l6 m9 s12 mapa-footer">
+            </div>
+
+        </div>
+        <div class="divider"></div>
+        <div class="row">
+            <!--Comentarios de producto individual-->
+            <div class="col s12 m3 l3 offset-l1">
+                <p class="flow-text">Comentarios</p>
+            </div>
+        </div>
+        <div id="coment_texto">
+
+        </div>
+        <h5 id="title" class="col s12 m12 l12 offset-l1"></h5>
+    </main>
+
+    <footer class="page-footer blue accent-3">
+        <div class="row">
+            <div class="col l9 m6 s6">
+                <div class="col l6 m12 s12">
+                    <img src="logo.png" class="responsive-img" alt="">
+                    <h6 class="hide-on-med-and-down">Copyright 2022</h6>
+                </div>
+                <div class="col l6 m12 ">
+                    <!--Redes-->
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">facebook</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">facebook</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">facebook</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">facebook</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">whatsapp</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">whatsapp</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">email</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">email</i>
+                        </a>
+                    </div>
+                    <h6 class="hide-on-large-only">Copyright 2022</h6>
+                </div>
+            </div>
+            <div class="col l3 s6">
+                <div class="col l12 m12">
                     <ul>
-                        <li>
-                            <h5>Información pública</h5>
-                        </li>
-                        <li><a href="quienes somos.html">Quiénes somos</a></li>
-                        <li><a href="contactenos.html">Contáctanos</a></li>
-                        <li><a href="mision_vision.html">Misión y visión</a></li>
-                        <li><a href="terminos.html">Términos y condiciones</a></li>
+                        <h5 class="">Información pública</h5>
+                        <li><a href="" class="white-text">Quienes somos</a></li>
+                        <li><a href="" class="white-text">Contáctanos</a></li>
+                        <li><a href="" class="white-text">Misión y visión</a></li>
+                        <li><a href="" class="white-text">Términos y condiciones</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </footer>
+
     <!--Importar archivos JavaScrip-->
     <script type="text/javascript" src="../../../js/materialize.min.js"></script>
-    <script type="text/javascript" src="../../../controladores/publico/activation.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../../recursos/js/sweetalert2.all.min.js"></script>
+    <script src="../../../controladores/componentes.js"></script>
+    <script src="../../../controladores/publico/publico_cliente/producto_individual.js"></script>
+    <script src="../../../controladores/privado/modo_oscuro.js"></script>
+    <script type="text/javascript" src="../../../controladores/publico/opciones_sesion.js"></script>
 </body>
 
 </html>

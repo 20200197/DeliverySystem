@@ -11,6 +11,7 @@
     <link href="../../../recursos/css/icons.css" rel="stylesheet">
     <!--Importar archivos CSS-->
     <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
     <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_publico.css" media="screen,projection" />
     <!--Optimización para mobiles-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,8 +31,8 @@
                         class="material-icons medium">shopping_basket</i></a></li>
             <li><a href="estadistica.html" class="tooltipped" data-position="right" data-tooltip="Gráficos"><i
                         class="material-icons medium">pie_chart</i></a></li>
-            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Cerrar sesión"><i
-                        class="material-icons medium">arrow_back</i></a></li>
+            <li><button onclick="logOut('Vendedor')" class="tooltipped logout" data-position="right" data-tooltip="Cerrar sesión"><i
+                        class="material-icons medium">arrow_back</i></button></li>
         </ul>
         <!--Contenedor de datos-->
         <div class="contenedor-datos estadistica">
@@ -50,109 +51,16 @@
                 <!--Contenedor de la lista-->
                 <div class="row">
                     <!--Articulos de la lista-->
-                    <div class="col l6 m12 s12">
-                        <div class="row">
-                            <div class="col l5 m12 s12 ventas_estadistica_admin">
-                                <h6>Ventas semanales</h6>
-                                <p>$345.89</p>
-                            </div>
-                            <div class="col l5 m12 s12 ventas_estadistica_admin">
-                                <h6>Ventas semanales</h6>
-                                <p>$345.89</p>
-                            </div>
-                        </div>
-                        <div class="titulos_valoracion_estadistica_vendedor">
-                            <h6 class="nombre_estadistica_admin">Nombre del vendedor</h6>
-                            <h6 class="promedio_estadistica_admin">Promedio ventas</h6>
-                            <h6 class="venta_estadistica_admin">Venta semanal</h6>
-                        </div>
-                        <div class="contenedor_producto_estadistica_vendedor">
-                            <div class="row">
-                                <div class="col l6 m12 s12">
-                                    <p>Nombre del producto</p>
-                                </div>
-                                <div class="col l4 m4 s4">
-                                    <p>5000</p>
-                                </div>
-                                <div class="col l3 m3 s3">
-                                    <p>$67.99</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col l6 m12 s12">
-                                    <p>Nombre del producto</p>
-                                </div>
-                                <div class="col l4 m4 s4">
-                                    <p>5000</p>
-                                </div>
-                                <div class="col l3 m3 s3">
-                                    <p>$67.99</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col l5 m5 s5">
-                                    <p>Nombre del producto</p>
-                                </div>
-                                <div class="col l4 m4 s4">
-                                    <p>5000</p>
-                                </div>
-                                <div class="col l3 m3 s3">
-                                    <p>$67.99</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col l5 m5 s5">
-                                    <p>Nombre del producto</p>
-                                </div>
-                                <div class="col l4 m4 s4">
-                                    <p>5000</p>
-                                </div>
-                                <div class="col l3 m3 s3">
-                                    <p>$67.99</p>
-                                </div>
-                            </div>
+                    <div class="col l12 m12 s12">
+                        <h6>Porcentaje de ventas por categoría generales</h6>
+                        <div class="dona_porcentaje_producto_categoria">
+
                         </div>
                     </div>
-                    <div class="col l6 m12 s12">
-                        <div class="grafica_pastel_vendedor">
-                            <h6>Categorias con más ventas</h6>
-                            <img src="../../../recursos/img/privado/admin/estadistica/pastel.png" alt="">
-                        </div>
-                        <div class="titulos_valoracion_estadistica_vendedor">
-                            <h6 class="cliente_estadistica_admin">Nombre del cliente</h6>
-                            <h6 class="correo_estadistica_admin">Correo</h6>
-                            <h6 class="factura_estadistica_admin">N° facturas</h6>
-                            <h6 class="promedio_cliente_estadistica_admin">Promedio</h6>
-                        </div>
-                        <div class="contenedor_cliente_estadistica_admin">
-                            <div class="row">
-                                <div class="col l4 m4 s4">
-                                    <p>Nombre del producto</p>
-                                </div>
-                                <div class="col l3 m3 s3">
-                                    <p>5000</p>
-                                </div>
-                                <div class="col l2 m2 s2">
-                                    <p>5</p>
-                                </div>
-                                <div class="col l3 m3 s3">
-                                    <p>$67.99</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col l4 m4 s4">
-                                    <p>Nombre del producto</p>
-                                </div>
-                                <div class="col l3 m3 s3">
-                                    <p>5000</p>
-                                </div>
-                                <div class="col l2 m2 s2">
-                                    <p>5</p>
-                                </div>
-                                <div class="col l3 m3 s3">
-                                    <p>$67.99</p>
-                                </div>
-                            </div>
+                    <div class="col l12 m12 s12">
+                        <h6>Top 5 productos valorados más pedidos</h6>
+                        <div class="barras_productos_valoracion">
+
                         </div>
                     </div>
                 </div>
@@ -205,6 +113,11 @@
     <!--Importar archivos JavaScrip-->
     <script type="text/javascript" src="../../../js/materialize.min.js"></script>
     <script type="text/javascript" src="../../../controladores/privado/activation.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../../js/chartist.js"></script>
+    <script src="../../../js/chartist-plugin-tooltip.min.js"></script>
+    <script src="../../../controladores/componentes.js"></script>
+    <script src="../../../controladores/publico/publico_vendedor/estadistica.js"></script>
 </body>
 
 </html>

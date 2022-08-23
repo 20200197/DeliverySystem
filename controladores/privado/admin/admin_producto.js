@@ -11,7 +11,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
     M.Modal.init(document.querySelectorAll('.modal'), options);
-
+    M.Sidenav.init(document.querySelectorAll('.sidenav'));
+    // Se inicializa el componente Dropdown para que funcione la lista desplegable en los menús.
+    M.Dropdown.init(document.querySelectorAll(".dropdown-trigger"));
 
 });
 
@@ -23,14 +25,14 @@ function fillTable(dataset) {
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
         //Colocamos el swicth checked o no checked dependiendo de el estado
-        if (row.estado_producto == true) {
+        if (row.status_producto == true) {
             estado_produc = `checked`;
-        } else if (row.estado_producto == false) {
+        } else if (row.status_producto == false) {
             estado_produc = ` `;
         }
         //Establecemos texto para el estado
         var estado_producto;
-        (row.estado_producto) ? estado_producto = 'Activo' : estado_producto = 'Inactivo';
+        (row.status_producto) ? estado_producto = 'Activo' : estado_producto = 'Inactivo';
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         //<td><img src="${SERVER}imagenes/administrar_empleados/${row.imagen_perfil_empleado}" class="materialboxed" height="100" width="100"></td>
         content += `
@@ -104,10 +106,10 @@ function updateEstado(id) {
     data.append('idP', id);
 
     //Obtenemos valor de switch
-    if (document.getElementById('switch_estado'+id).checked){
-        data.append('estadoP',true);
-    }else{
-        data.append('estadoP',false)
+    if (document.getElementById('switch_estado' + id).checked) {
+        data.append('estadoP', true);
+    } else {
+        data.append('estadoP', false)
     }
     fetch(API_PRODUCTOS + 'update', {
         method: 'post',
@@ -132,4 +134,11 @@ function updateEstado(id) {
     });
 }
 
+/** Top 5 productos mas vendidos y menos vendidos**/
+function openReportProductosMasMenosVendidos() {
+    // Se establece la ruta del reporte en el servidor.
+    let url = SERVER + `reportes/dashboard/productos_mas_menos_vendidos.php`;
+    // Se abre el reporte en una nueva pestaña del navegador web.
+    window.open(url);  
+  }
 

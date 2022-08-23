@@ -1,0 +1,191 @@
+        header,
+        main,
+        footer {
+            padding-left: 6%;
+        }
+        
+        @media only screen and (max-width: 992px) {
+            header,
+            main,
+            footer {
+                padding-left: 0 !important;
+            }
+            .sidenav {
+                width: 50% !important;
+                align-items: flex-start !important;
+            }
+            .sidenav li a i {
+                font-size: 5rem !important;
+                padding-right: 50px !important;
+            }
+            .sidenav li button i {
+                font-size: 5rem !important;
+                margin: 0 5px 0 0;
+            }
+            .sidenav li a span {
+                font-size: 16pt !important;
+            }
+            .sidenav li button span {
+                font-size: 16pt !important;
+                font-weight: 500 !important;
+            }
+            .sidenav li {
+                width: 100% !important;
+                padding: 10px 0px 10px 0px !important;
+            }
+            .sidenav li a {
+                padding-left: 10px !important;
+            }
+            .sidenav li button {
+                padding-left: 10px !important;
+            }
+        }
+        
+        .sidenav {
+            width: 6%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            align-content: space-between;
+        }
+        
+        .sidenav li {
+            padding: 2px 0px 2px 0px;
+        }
+        
+        .sidenav li a i {
+            font-size: 3.5rem;
+        }
+        
+        .sidenav li button i {
+            font-size: 3rem;
+        }
+        
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        
+        main {
+            flex: 1 0 auto;
+        }
+        /*-------------------Navbar---------------------*/
+        
+        nav {
+            box-shadow: none !important;
+        }
+        
+        nav div ul li a i {
+            font-size: 48px !important;
+        }
+        
+        .logout {
+            border: transparent;
+        }
+        
+        .logout:hover {
+            cursor: pointer;
+        }
+        /*-----------------Footer--------------*/
+        
+        .opciones-sidenav {
+            height: 90%;
+        }
+        
+        .cerrar-sidenav {
+            height: 10%;
+        }
+        /* ------------Estilos para chartist-----------------*/
+        
+        /*----Tooltip----*/
+        .chartist-tooltip {
+            position: absolute;
+            display: inline-block;
+            opacity: 0;
+            min-width: 5em;
+            padding: .5em;
+            background: #2979FF;
+            color: #fff;
+            font-family: Oxygen, Helvetica, Arial, sans-serif;
+            font-weight: 700;
+            text-align: center;
+            pointer-events: none;
+            z-index: 1;
+            -webkit-transition: opacity .2s linear;
+            -moz-transition: opacity .2s linear;
+            -o-transition: opacity .2s linear;
+            transition: opacity .2s linear;
+            border-radius: 12px;
+        }
+        
+        .chartist-tooltip:before {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            margin-left: -15px;
+            border: 15px solid transparent;
+            border-top-color: #2979FF;
+        }
+        
+        .chartist-tooltip.tooltip-show {
+            opacity: 1;
+        }
+        
+        .ct-area,
+        .ct-line {
+            pointer-events: none;
+        }
+
+        /*------Diseño de la gráfica-----*/
+        .ct-label {
+            fill: #0d47a1 !important;
+            color: #0d47a1 !important;
+            font-size: 0.75rem;
+            line-height: 1;
+        }
+
+        .ct-grid {
+            stroke: #1a237e !important;
+            stroke-width: 1px;
+            stroke-dasharray: 2px;
+        }
+
+
+        .ct-series-a .ct-bar,
+        .ct-series-a .ct-line,
+        .ct-series-a .ct-point,
+        .ct-series-a .ct-slice-donut {
+            stroke: #03a9f4 !important;
+        }
+
+        .ct-series-c .ct-bar,
+        .ct-series-c .ct-line,
+        .ct-series-c .ct-point,
+        .ct-series-c .ct-slice-donut {
+            stroke: #039be5 !important;
+        }
+
+        .ct-series-b .ct-bar,
+        .ct-series-b .ct-line,
+        .ct-series-b .ct-point,
+        .ct-series-b .ct-slice-donut {
+            stroke: #0288d1 !important;
+        }
+
+        .ct-series-d .ct-bar,
+        .ct-series-d .ct-line,
+        .ct-series-d .ct-point,
+        .ct-series-d .ct-slice-donut {
+            stroke: #0277bd !important;
+        }
+
+        .ct-series-e .ct-bar,
+        .ct-series-e .ct-line,
+        .ct-series-e .ct-point,
+        .ct-series-e .ct-slice-donut {
+            stroke: #01579b;
+        }

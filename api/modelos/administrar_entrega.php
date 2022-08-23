@@ -11,6 +11,8 @@ class Entrega extends Validator
     private $nombre_cliente = null;
     private $nombre_repartidor = null;
     private $fecha_reparto = null;
+    //Repartidor
+    private $id_repartidor = null;
 
 
     /*
@@ -81,6 +83,16 @@ class Entrega extends Validator
         }
     }
 
+    public function setIdRepartidor($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->id_repartidor = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /*
     *   Métodos para obtener valores de los atributos.
     */
@@ -108,6 +120,11 @@ class Entrega extends Validator
     public function getFechaReparto()
     {
         return $this->fecha_reparto;
+    }
+
+    public function getIdRepartidor()
+    {
+        return $this->id_repartidor;
     }
 
 
@@ -145,6 +162,21 @@ class Entrega extends Validator
         inner join cliente cliente on direccion.id_cliente = cliente.id_cliente
         inner join repartidor on factura.id_repartidor = repartidor.id_repartidor";
         $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    public function readHistorialRepartidor()
+    {
+        $sql = "SELECT nombre_producto, CONCAT(nombre_vendedor, ' ' , apellido_vendedor ) as nombre_vendedor, CONCAT(nombre_cliente, ' ' , apellido_cliente) as nombre_cliente, descripcion_direccion, fecha_compra, costo_envio
+        from detalle_factura
+        inner join factura using (id_factura)
+        inner join producto using (id_producto)
+        inner join repartidor repartidor on factura.id_repartidor = repartidor.id_repartidor
+        inner join direccion on factura.id_direccion = direccion.id_direccion
+        inner join vendedor on producto.id_vendedor = vendedor.id_vendedor
+        inner join cliente on direccion.id_cliente = cliente.id_cliente
+        where factura.id_repartidor = ?";
+        $params = array(2); //SESSION[id_repartidor]
         return Database::getRows($sql, $params);
     }
 

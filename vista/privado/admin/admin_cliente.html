@@ -21,7 +21,7 @@
     <div class="row contenedor-general">
         <!--Barra lateral, opciones para los usuarios-->
         <ul id="slide-out" class="sidenav sidenav-fixed">
-            <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
+            <li><a href="dashboard.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
                         class="material-icons medium ">home</i></a></li>
             <li><a href="perfil.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
                         class="material-icons medium">account_circle</i></a></li>
@@ -29,7 +29,7 @@
                         class="material-icons medium">import_contacts</i></a></li>
             <li><a href="admin_categoria.html" class="tooltipped" data-position="right" data-tooltip="Categoria"><i
                         class="material-icons medium">format_list_bulleted</i></a></li>
-            <li><a href="admin_rmarca.html" class="tooltipped" data-position="right" data-tooltip="Marcas"><i
+            <li><a href="admin_marca.html" class="tooltipped" data-position="right" data-tooltip="Marcas"><i
                         class="material-icons medium">style</i></a></li>
             <li><a href="admin_vendedor.html" class="tooltipped" data-position="right" data-tooltip="Vendedores"><i
                         class="material-icons medium">people</i></a></li>
@@ -37,12 +37,12 @@
                     data-tooltip="Repartidores"><i class="material-icons medium">motorcycle</i></a></li>
             <li><a href="admin_cliente.html" class="tooltipped" data-position="right" data-tooltip="Clientes"><i
                         class="material-icons medium">wc</i></a></li>
-            <li><a href="admin_producto.html" class="tooltipped" data-position="right" data-tooltip="Productos"><i
-                        class="material-icons medium">import_contacts</i></a></li>
             <li><a href="admin_entrega.html" class="tooltipped" data-position="right" data-tooltip="Reparto"><i
                         class="material-icons medium">description</i></a></li>
-            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Cerrar sesión"><i
-                        class="material-icons medium">arrow_back</i></a></li>
+            <li><a href="admin_admin.html" class="tooltipped" data-position="right" data-tooltip="Administradores"><i
+                        class="material-icons medium">folder_shared</i></a></li>
+            <li><button onclick="logOut('Admin')" class="tooltipped logout" data-position="right"
+                    data-tooltip="Cerrar sesión"><i class="material-icons medium">arrow_back</i></button></li>
         </ul>
         <!--Contenedor de datos-->
         <div class="contenedor-datos">
@@ -52,7 +52,20 @@
                     class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
                         class="material-icons">menu</i></a>
                 <img src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
-                <a class="waves-effect waves-light btn boton_iniciar_sesion">Log In</a>
+                <!--Switch de cambiar color-->
+                <div class="col s12 m12 l12 right-align">
+                    <div class="switch switch_colorr  right-align">
+                        <label>
+                            🌕
+                            <input type="checkbox" id="switch_color" onclick="modoOscuro()">
+                            <span class="lever"></span>
+                            🌙
+                        </label>
+                    </div>
+                </div>
+                <div id="opciones_navbar">
+
+                </div>
             </header>
             <!--Información de la página-->
             <main>
@@ -68,15 +81,10 @@
                             <form method="post" id="search-form">
                                 <div class="input-field col s9 m7 l4">
                                     <i class="material-icons prefix">search</i>
-                                    <input id="search" type="text" name="search" placeholder="Busque por categoría..."
-                                        required>
+                                    <input id="search" type="text" name="search"
+                                        placeholder="Busque por nombre, correo o usuario..." onkeyup="buscar()"
+                                        onkeypress="return revisarTexto(event)">
                                     <label for="search">Buscador</label>
-                                </div>
-                                <div class="input-field col s1 m1 l1">
-                                    <button type="submit" class="btn-floating waves-effect blue tooltipped"
-                                        data-tooltip="Buscar">
-                                        <i class="material-icons">check</i>
-                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -86,89 +94,19 @@
                                 <thead>
                                     <tr>
                                         <!--Columnas-->
-                                        <th>Nombre:</th>
-                                        <th>Apellido:</th>
+                                        <th>Nombre completo:</th>
                                         <th>Dui:</th>
                                         <th>Correo:</th>
                                         <th>Usuario:</th>
-                                        <th>Status:</th>
                                         <th>Fecha registro: </th>
                                         <th>Télefono:</th>
-                                        <th></th>
+                                        <th>Estado:</th>
+                                        <th>Dar de baja:</th>
                                     </tr>
                                 </thead>
                                 <!--Datos de tabla-->
-                                <tbody>
-                                    <tr>
-                                        <td data-target="Nombre cliente: ">Cliente 1</td>
-                                        <td data-target="Apellido cliente: ">Apellido 1</td>
-                                        <td data-target="Dui cliente: ">Cliente 1</td>
-                                        <td data-target="Correo cliente: ">Cliente 1</td>
-                                        <td data-target="Usuario cliente: ">Cliente 1</td>
-                                        <td data-target="Status cliente: ">Cliente 1</td>
-                                        <td data-target="Fecha registro: ">Cliente 1</td>
-                                        <td data-target="Telefono cliente: ">Cliente 1</td>
-                                        <td data-target="Imagen cliente: "><a
-                                                class="btn-flat boton_eliminar_tabl modal-trigger"
-                                                href="#modal_eliminar_cliente"><i
-                                                    class=" material-icons small ">delete</i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-target="Nombre cliente: ">Cliente 1</td>
-                                        <td data-target="Apellido cliente: ">Apellido 1</td>
-                                        <td data-target="Dui cliente: ">Cliente 1</td>
-                                        <td data-target="Correo cliente: ">Cliente 1</td>
-                                        <td data-target="Usuario cliente: ">Cliente 1</td>
-                                        <td data-target="Status cliente: ">Cliente 1</td>
-                                        <td data-target="Fecha registro: ">Cliente 1</td>
-                                        <td data-target="Telefono cliente: ">Cliente 1</td>
-                                        <td data-target="Imagen cliente: "><a
-                                                class="btn-flat boton_eliminar_tabl modal-trigger"
-                                                href="#modal_eliminar_cliente"><i
-                                                    class=" material-icons small ">delete</i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-target="Nombre cliente: ">Cliente 1</td>
-                                        <td data-target="Apellido cliente: ">Apellido 1</td>
-                                        <td data-target="Dui cliente: ">Cliente 1</td>
-                                        <td data-target="Correo cliente: ">Cliente 1</td>
-                                        <td data-target="Usuario cliente: ">Cliente 1</td>
-                                        <td data-target="Status cliente: ">Cliente 1</td>
-                                        <td data-target="Fecha registro: ">Cliente 1</td>
-                                        <td data-target="Telefono cliente: ">Cliente 1</td>
-                                        <td data-target="Imagen cliente: "><a
-                                                class="btn-flat boton_eliminar_tabl modal-trigger"
-                                                href="#modal_eliminar_cliente"><i
-                                                    class=" material-icons small ">delete</i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-target="Nombre cliente: ">Cliente 1</td>
-                                        <td data-target="Apellido cliente: ">Apellido 1</td>
-                                        <td data-target="Dui cliente: ">Cliente 1</td>
-                                        <td data-target="Correo cliente: ">Cliente 1</td>
-                                        <td data-target="Usuario cliente: ">Cliente 1</td>
-                                        <td data-target="Status cliente: ">Cliente 1</td>
-                                        <td data-target="Fecha registro: ">Cliente 1</td>
-                                        <td data-target="Telefono cliente: ">Cliente 1</td>
-                                        <td data-target="Imagen cliente: "><a
-                                                class="btn-flat boton_eliminar_tabl modal-trigger"
-                                                href="#modal_eliminar_cliente"><i
-                                                    class=" material-icons small ">delete</i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-target="Nombre cliente: ">Cliente 1</td>
-                                        <td data-target="Apellido cliente: ">Apellido 1</td>
-                                        <td data-target="Dui cliente: ">Cliente 1</td>
-                                        <td data-target="Correo cliente: ">Cliente 1</td>
-                                        <td data-target="Usuario cliente: ">Cliente 1</td>
-                                        <td data-target="Status cliente: ">Cliente 1</td>
-                                        <td data-target="Fecha registro: ">Cliente 1</td>
-                                        <td data-target="Telefono cliente: ">Cliente 1</td>
-                                        <td data-target="Imagen cliente: "><a
-                                                class="btn-flat boton_eliminar_tabl modal-trigger"
-                                                href="#modal_eliminar_cliente"><i
-                                                    class=" material-icons small ">delete</i></a></td>
-                                    </tr>
+                                <tbody id="contenido">
+
                                 </tbody>
                             </table>
                         </div>
@@ -209,7 +147,14 @@
     </footer>
     <!--Importar archivos JavaScrip-->
     <script type="text/javascript" src="../../../js/materialize.min.js"></script>
-    <script type="text/javascript" src="../../../controladores/privado/activation.js"></script>
+    <script src="../../../recursos/js/sweetalert2.all.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="../../../controladores/componentes.js"></script>
+    <script type="text/javascript" src="../../../controladores/validator.js"></script>
+    <script type="text/javascript" src="../../../controladores/privado/admin/admin_cliente.js"></script>
+    <script src="../../../controladores/privado/admin/modo_oscuro.js"></script>
+    <script type="text/javascript" src="../../../controladores/privado/admin/opciones_sesion.js"></script>
+
 </body>
 
 </html>
