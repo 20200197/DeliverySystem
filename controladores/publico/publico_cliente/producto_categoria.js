@@ -1888,6 +1888,7 @@ function searchProductosCalidad() {
                                 // Se presenta un mensaje de error cuando no existen datos para mostrar.
                                 document.getElementById("title").innerHTML = `<i class="material-icons small black-text">cloud_off</i><span class="red-text">No hay coincidencias</span><p><i class="material-icons medium black-text">home</i></p>`;
                             }
+                            document.getElementById("title").textContent = '';
                         });
                         // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
                         document.getElementById('contenedor_productos').innerHTML = content_estrellas;
@@ -2041,7 +2042,7 @@ function searchProductosCalidad() {
                                 // Se presenta un mensaje de error cuando no existen datos para mostrar.
                                 document.getElementById("title").innerHTML = `<i class="material-icons small black-text">cloud_off</i><span class="red-text">No hay coincidencias</span><p><i class="material-icons medium black-text">home</i></p>`;
                             }
-
+                            document.getElementById("title").textContent = '';
                         });
                         // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
                         document.getElementById('contenedor_productos').innerHTML = content_estrellas;
@@ -2199,6 +2200,7 @@ function searchProductosCalidad() {
                                 // Se presenta un mensaje de error cuando no existen datos para mostrar.
                                 document.getElementById("title").innerHTML = `<i class="material-icons small black-text">cloud_off</i><span class="red-text">No hay coincidencias</span><p><i class="material-icons medium black-text">home</i></p>`;
                             }
+                            document.getElementById("title").textContent = '';
                         });
                         // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
                         document.getElementById('contenedor_productos').innerHTML = content_estrellas;
@@ -2358,11 +2360,11 @@ function searchProductosCalidad() {
                                 // Se presenta un mensaje de error cuando no existen datos para mostrar.
                                 document.getElementById("title").innerHTML = `<i class="material-icons small black-text">cloud_off</i><span class="red-text">No hay coincidencias</span><p><i class="material-icons medium black-text">home</i></p>`;
                             }
+                            document.getElementById("title").textContent = '';
                         });
                         //readCheckFavoOfClient(row.id_producto);
                         //showOp();
                         // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
-                        document.getElementById('contenedor_productos').innerHTML = content_estrellas;
                         // Se inicializa el componente Material Box para que funcione el efecto Lightbox.
                         M.Materialbox.init(document.querySelectorAll('.materialboxed'));
                         // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
@@ -2463,9 +2465,9 @@ function searchProductosCalidad() {
                                 // Se presenta un mensaje de error cuando no existen datos para mostrar.
                                 document.getElementById("title").innerHTML = `<i class="material-icons small black-text">cloud_off</i><span class="red-text">No hay coincidencias</span><p><i class="material-icons medium black-text">home</i></p>`;
                             }
+                            document.getElementById("title").textContent = '';
                         });
                         // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
-                        document.getElementById('contenedor_productos').innerHTML = content_estrellas;
                         //showFavo();
                         //showOp();
                         // Se inicializa el componente Material Box para que funcione el efecto Lightbox.

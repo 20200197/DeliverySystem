@@ -1,22 +1,6 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
 const API_PRODUCTOS = SERVER + "publico/productos.php?action=";
-<<<<<<< HEAD
 const API_FACTURA = SERVER + "publico/factura.php?action=";
-
-// Método manejador de eventos que se ejecuta cuando el documento ha cargado.
-document.addEventListener("DOMContentLoaded", function () {
-    // Se busca en la URL las variables (parámetros) disponibles.
-    let params = new URLSearchParams(location.search);
-    // Se obtienen los datos localizados por medio de las variables.
-    const ID = params.get("id_producto");
-    const IDDETALLE = params.get("id_detalle");
-    // Se llama a la función que muestra el detalle del producto seleccionado previamente.
-    readOneProducto(ID);
-    readComent(ID);
-    readCali(IDDETALLE);
-    // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
-    M.Tooltip.init(document.querySelectorAll(".tooltipped"));
-=======
 const API_FAVORITO = SERVER + "publico/favorito.php?action=";
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
@@ -33,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
   M.Tooltip.init(document.querySelectorAll(".tooltipped"));
   readCheckFavoOfClient(ID);
->>>>>>> 269bf2a2e4dc212ced5f623eb1040935bc977878
 });
 
 // Función para obtener y mostrar los datos del producto seleccionado.
@@ -803,7 +786,7 @@ function readInfoSinLogueado() {
     M.Sidenav.init(document.querySelectorAll(".sidenav"));
 }
 
-<<<<<<< HEAD
+
 document.getElementById('add-form').addEventListener('submit', function () {
     event.preventDefault();
     fetch(API_FACTURA + 'addCart', {
@@ -823,7 +806,6 @@ document.getElementById('add-form').addEventListener('submit', function () {
         }
     });
 });
-=======
 //Mostrar los favoritos activos, las estrellas cuando esten agregados
 function readCheckFavoOfClient(id) {
   const data = new FormData();
@@ -942,7 +924,3 @@ function changeColorActive(label, camb) {
       document.getElementById(label).style.color = "";
   }
 }
-
-
-
->>>>>>> 269bf2a2e4dc212ced5f623eb1040935bc977878
