@@ -2,7 +2,8 @@
 const API_ESTADISTICA = SERVER + 'publico/estadistica_vendedor.php?action=';
 
 //Método que se ejecutará cuando se carga la página
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
+    crearReporte();
     //Se carga la internacionalización de day.js
     dayjs.locale("es");
 
@@ -123,4 +124,13 @@ function totalPromedio() {
         }
     })
 
+}
+
+//Se crea la función para crear el reporte
+function crearReporte() { 
+    let arreglo = 0.0 + ',' + 1000.0;
+    // Se establece la ruta del reporte en el servidor.
+      let url = SERVER + `reportes/publico/vendedor/facturas_cliente.php?rangos=${arreglo}`;
+      // Se abre el reporte en una nueva pestaña del navegador web.
+      window.open(url);
 }
