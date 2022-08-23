@@ -5,20 +5,23 @@ require('../../modelos/estadistica_vendedor.php');
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
 
-// Se instancia el módelo de estadística para obtener los datos.
-$estadistica = new EstadisticaVendedor;
-
-// Se inicia el reporte con el encabezado del documento.
-$pdf->startReport('Compras por cliente');
-
 //Se obtienen y sanean los datos obtenidos
 $_GET = $estadistica->validateForm($_GET);
 
-$arreglo = explode(",",$_GET['rangos']);
+$arreglo = explode(",", $_GET['rangos']);
+
+// Se instancia el módelo de estadística para obtener los datos.
+$estadistica = new EstadisticaVendedor;
+
 //Se reinicia la sesion
 session_start();
+
 //Se revisa si hay una sesión 
 if (isset($_SESSION['id_vendedor'])) {
+
+    // Se inicia el reporte con el encabezado del documento.
+    $pdf->startReport('Compras por cliente', $_SESSION['nombre_vendedor']);
+
     if (!$estadistica->setInicial($arreglo[0])) {
         $pdf->cell(0, 10, utf8_decode('La cantidad inicial es incorrecta'), 1, 1);
     } elseif (!$estadistica->setFinal($arreglo[1])) {
