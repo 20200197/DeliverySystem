@@ -23,7 +23,7 @@
                                 class="material-icons large blue-text">menu</i></a>
                     </div>
                     <div class="col m5 s5 left valign-wrapper">
-    
+
                         <img class="responsive-img" src="logo_delivery_system.png" alt="">
                     </div>
                     <div class="col m6 s8">
@@ -31,12 +31,12 @@
                             <li><span class="black-text" id="opciones_navbar">Nombre del usuario</span></li>
                             <li><a href="perfil.html" class="tooltipped " data-position="right" data-tooltip="Perfil"><i
                                         class="material-icons medium black-text">account_circle</i></a></li>
-    
+
                         </ul>
                     </div>
                 </div>
         </nav>
-    
+
     </header>
 
 
@@ -46,8 +46,8 @@
                     data-tooltip="Hogar"><i class="material-icons  white-text">home</i><span
                         class="white-text hide-on-large-only">Inicio</span></a>
             </li>
-            <li><a href="perfil.html" class="tooltipped Hide-on-large-only " data-position="right" data-tooltip="Perfil"><i
-                        class="material-icons  white-text">account_circle</i><span
+            <li><a href="perfil.html" class="tooltipped Hide-on-large-only " data-position="right"
+                    data-tooltip="Perfil"><i class="material-icons  white-text">account_circle</i><span
                         class="white-text hide-on-large-only">Perfil</span></a></li>
             <li><a href="historial.html" class="tooltipped" data-position="right" data-tooltip="Historial"><i
                         class="material-icons  white-text">description</i><span
@@ -91,6 +91,29 @@
 
                 </div>
             </div>
+        </div>
+        <div class="container row center">
+            <h6 id="tituloGraficaTotalPromedio">Total y promedio de compra por rango de fecha</h6>
+            <span id="comentarioTotalPromedio"></span>
+            <div class="col l12 m12 s12 center" id="graficaTotalPromedio">
+
+                <div class="TotalPromedio col l12 m12 s12"></div>
+                <div class="col l10 m10 s10 push-l1 push-m1 push-s1 slider-styled slider-round"
+                    id="sliderTotalPromedio"></div>
+                <div class="col l10 m10 s10 push-l1 push-m1 push-s1">
+                    <div class="col l6 m6 s12 center">
+                        <span id="fechaInicial"></span>
+                        <span id="fechaInicialDato" class="hide"></span>
+                    </div>
+                    <div class="col l6 m6 s12 center">
+                        <span id="fechaFinal"></span>
+                        <span id="fechaFinalDato" class="hide"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <a onclick="crearReporte()" class="btn">Generar reporte</a>
         </div>
         <div class="container row center">
             <h6 id="tituloGraficaTotalPromedio">Total y promedio de compra por rango de fecha</h6>

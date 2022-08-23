@@ -57,6 +57,7 @@ if (isset($_SESSION['id_vendedor'])) {
          *      C- Centrado
          *      R- Alinación a la derecha
          *  7- Verifica si el color de la celda se pintará o no (true o false)
+         * 
          */
         $pdf->cell(81, 10, utf8_decode('Cliente'), 1, 0, 'C', 1);
         $pdf->cell(35, 10, utf8_decode('Mínimo ($)'), 1, 0, 'C', 1);
