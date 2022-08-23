@@ -12,11 +12,17 @@ if (isset($_GET['action'])) {
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    //if (isset($_SESSION['id_admin'])) {
+    if (isset($_SESSION['id_repartidor'])) {
     $result['session'] = 1;
     // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
     switch ($_GET['action']) {
             //Leer direcciones del cliente  
+        case 'logOut':
+            if (session_destroy()) {
+                $result['status'] = 1;
+                $result['message'] = 'Sesión cerrada con éxito';
+            }
+                break; 
         case 'readAll':
             if ($result['dataset'] = $direcciones->readDirecciones()) {
                 $result['status'] = 1;
@@ -174,6 +180,117 @@ if (isset($_GET['action'])) {
     // } else {
     //   print(json_encode('Acceso denegado'));
     // }
+    } else {
+        switch ($_GET['action']) {
+        //cambios Bonilla1
+        case 'request':
+            $_POST = $repartidor->validateForm($_POST);
+            if (!$repartidor->setNombre($_POST['name'])) {
+                $result['exception'] = 'Nombre incorrecto';
+            } elseif (!$repartidor->setApellido($_POST['lastname'])) {
+                $result['exception'] = 'Apellido incorrecto';
+            } elseif (!$repartidor->setDireccion($_POST['direccion'])) {
+                $result['exception'] = 'Dirección inválida';
+            } elseif (!$repartidor->setPlaca($_POST['placa'])) {
+                $result['exception'] = 'Placa inválida';
+            } elseif (!$repartidor->setCorreo($_POST['email'])) {
+                $result['exception'] = 'Correo incorrecto';
+                //Evaluamos correo que no se repita
+            } elseif ($repartidor->readD('correo_repartidor', $repartidor->getCorreo())) {
+                $result['exception'] = 'Este correo ya esta registrado';
+            } elseif (!$repartidor->setUsuario($_POST['user'])) {
+                $result['exception'] = 'Usuario incorrecto';
+            } elseif ($repartidor->readD('usuario_repartidor', $repartidor->getUsuario())) {
+                $result['exception'] = 'Este usuario ya esta registrado';
+            } elseif (!$repartidor->setTelefono($_POST['phone'])) {
+                $result['exception'] = 'Teléfono incorrecto';
+                //Evaluamos telefono que no se repita
+            } elseif ($repartidor->readD('telefono_repartidor', $repartidor->getTelefono())) {
+                $result['exception'] = 'Este teléfono ya esta registrado';
+            } elseif (!$repartidor->setDui($_POST['dui'])) {
+                $result['exception'] = 'DUI incorrecto';
+            } elseif ($repartidor->readD('dui_repartidor', $repartidor->getDui())) {
+                $result['exception'] = 'Este DUI ya se encuentra en uso';
+            } elseif ($_POST['pass1'] != $_POST['pass2']) {
+                $result['exception'] = 'Las contraseñas no coinciden';
+            } elseif (!$repartidor->setClave($_POST['pass1'])) {
+                $result['exception'] = 'Contraseña incorrecta';
+            } elseif (!is_uploaded_file($_FILES['foto-file']['tmp_name'])) {
+                $result['exception'] = 'Seleccione su foto personal por favor';
+            } elseif (!$repartidor->setFoto($_FILES['foto-file'])) {
+                $result['exception'] = $repartidor->getFileError();
+            } elseif (!is_uploaded_file($_FILES['solvencia-file']['tmp_name'])) {
+                $result['exception'] = 'Seleccione su solvencia en formato jpg por favor';
+            } elseif (!$repartidor->setSolvencia($_FILES['solvencia-file'])) {
+                $result['exception'] = $repartidor->getFileError();
+            } elseif (!is_uploaded_file($_FILES['antecedente-file']['tmp_name'])) {
+                $result['exception'] = 'Seleccione su antecedente en formato jpg por favor';
+            } elseif (!$repartidor->setAntecedentes($_FILES['antecedente-file'])) {
+                $result['exception'] = $repartidor->getFileError();
+            } elseif (!is_uploaded_file($_FILES['carro-file']['tmp_name'])) {
+                $result['exception'] = 'Seleccione una foto de su carro en formato jpg por favor';
+            } elseif (!$repartidor->setFotoVehiculo($_FILES['carro-file'])) {
+                $result['exception'] = $repartidor->getFileError();
+            } elseif (!is_uploaded_file($_FILES['placa-file']['tmp_name'])) {
+                $result['exception'] = 'Seleccione una foto de su placa en formato jpg por favor';
+            } elseif (!$repartidor->setFotoPlaca($_FILES['placa-file'])) {
+                $result['exception'] = $repartidor->getFileError();
+            } elseif ($repartidor->requestRep()) {
+                if (!$repartidor->saveFile($_FILES['foto-file'], $repartidor->getRutaFoto(), $repartidor->getFoto())) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Su solicitud ha sido recibida sin su foto personal, le enviaremos un correo electronico cuando le evaluemos';
+                } elseif (!$repartidor->saveFile($_FILES['solvencia-file'], $repartidor->getRutaSolvencia(), $repartidor->getSolvencia())) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Su solicitud ha sido recibida sin la solvencia, le enviaremos un correo electronico cuando le evaluemos';
+                } elseif (!$repartidor->saveFile($_FILES['antecedente-file'], $repartidor->getRutaAntecedente(), $repartidor->getAntecedente())) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Su solicitud ha sido recibida sin los antecedentes, le enviaremos un correo electronico cuando le evaluemos';
+                } elseif (!$repartidor->saveFile($_FILES['carro-file'], $repartidor->getRutaVehiculo(), $repartidor->getFotoVehiculo())) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Su solicitud ha sido recibida sin la foto del carro, le enviaremos un correo electronico cuando le evaluemos';
+                } elseif (!$repartidor->saveFile($_FILES['placa-file'], $repartidor->getRutaPlaca(), $repartidor->getFotoPlaca())) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Su solicitud ha sido recibida sin la foto de la placa, le enviaremos un correo electronico cuando le evaluemos';
+                } else {
+                    $result['status'] = 1;
+                    $result['message'] = 'Su solicitud ha sido recibida, le enviaremos un correo electronico cuando le evaluemos';
+                }
+            } else {
+                $result['exception'] = Database::getException();
+            }
+            break;
+            //cambios Bonilla1
+        case 'login':
+            $_POST = $repartidor->validateForm($_POST);
+            if (!$repartidor->setUsuario($_POST['user'])) {
+                $result['exception'] = 'Usuario inválido';
+            } elseif (!$repartidor->checkUser()){
+                $result['exception'] = 'Usuario incorrecto';
+            } elseif (!$repartidor->getEstado() == 1) {
+                $result['exception'] = 'Tu solicitud aún no ha sido evaluada, mantente pendiente al correo electronico';
+            } elseif (!$repartidor->getEstado() == 3) {
+                $result['exception'] = 'Tu solicitud ha sido denegada';
+            } elseif (!$repartidor->getEstado() == 4) {
+                $result['exception'] = 'Tu cuenta se encuentra suspendida actualmente';
+            } elseif ($repartidor->checkPass($_POST['password'])) {
+                $result['status'] = 1;
+                $result['message'] = 'Sesión iniciada con éxito';
+
+                $_SESSION['id_repartidor'] = $repartidor->getId();
+                $_SESSION['usuario_repartidor'] = $repartidor->getUsuario();
+            } elseif (!$repartidor->checkPass($_POST['password'])) {
+                $result['exception'] = 'Contraseña incorrecta';
+            } elseif (Database::getException()) {
+                $result['exception'] = Database::getException();
+            }
+                break;
+        default:
+            $result['exception'] = 'Accion no disponible fuera de la sesión';
+            break;
+        }
+        //cambios Bonilla1
+        print(json_encode($result));
+    }
 } else {
     print(json_encode('Recurso no disponible'));
 }

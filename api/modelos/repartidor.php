@@ -331,7 +331,11 @@ class Repartidor extends Validator
         return $this->dui;
     }
 
-
+    //Cambios Bonilla1
+    public function getEstado()
+    {
+        return $this->estado;
+    }
 
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
@@ -471,5 +475,56 @@ class Repartidor extends Validator
                 WHERE id_repartidor = ?';
         $params = array(2); //SESSION[id_repartidor]
         return Database::getRow($sql, $params);
+    }
+
+    //Cambios Bonilla1
+    public function checkUser()
+    {
+        $sql = 'SELECT id_repartidor, id_status_repartidor, nombre_repartidor, apellido_repartidor, usuario_repartidor
+                FROM repartidor
+                WHERE usuario_repartidor = ?';
+        $params = array($this->usuario);
+        if ($data = Database::getRow($sql, $params)) {
+            $this->id = $data['id_repartidor'];
+            $this->estado = $data['id_status_repartidor'];
+            $this->nombre = $data['nombre_repartidor'];
+            $this->apellido = $data['apellido_repartidor'];
+            $this->usuario = $data['usuario_repartidor'];
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Bonilla1 modificaciones
+    public function requestRep()
+    {
+        date_default_timezone_set('America/El_Salvador');
+        $date = date('Y-m-d');
+
+        $this->estado = 1;
+        $sql = 'INSERT INTO repartidor(nombre_repartidor, apellido_repartidor, dui_repartidor, correo_repartidor, usuario_repartidor, telefono_repartidor, clave_repartidor, solvencia_pnc, antecedente_penal, direccion_domicilio, placa_vehiculo, foto_placa_vehiculo, foto_repartidor, foto_vehiculo, id_status_repartidor, fecha_registro)
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->usuario, $this->telefono, $this->clave, $this->solvencia, $this->antecedentes, $this->direccion, $this->placa, $this->foto_placa, $this->foto, $this->foto_vehiculo, $this->estado, $date);
+
+        return Database::executeRow($sql, $params);
+    }
+    
+    //Cambios Bonilla1
+    //Metodo para verificar la contraseña
+    public function checkPass($pass)
+    {
+        $sql = 'SELECT clave_repartidor, id_repartidor
+                FROM repartidor
+                WHERE id_repartidor = ?';
+        $params = array($this->id);
+
+        if (!$data = Database::getRow($sql, $params)) {
+            return false;
+        } elseif (!password_verify($pass, $data['clave_repartidor'])) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
