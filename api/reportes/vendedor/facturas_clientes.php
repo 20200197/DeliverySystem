@@ -1,6 +1,6 @@
 <?php
-require('../../../ayudantes/dashboard_report.php');
-require('../../../modelos/estadistica_vendedor.php');
+require('../../ayudantes/dashboard_report.php');
+require('../../modelos/estadistica_vendedor.php');
 
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
@@ -14,21 +14,23 @@ $pdf->startReport('Compras por cliente');
 //Se obtienen y sanean los datos obtenidos
 $_GET = $estadistica->validateForm($_GET);
 
-$cantidadInicial = explode(",",$_GET['rangos']);
-print_r($cantidadInicial);
-
+$arreglo = explode(",",$_GET['rangos']);
 //Se reinicia la sesion
 session_start();
-
 //Se validan si los datos son correctos
-if (!$estadistica->setInicial($_POST['inicial'])) {
+if (!$estadistica->setInicial($arreglo[0])) {
     $pdf->cell(0, 10, utf8_decode('La cantidad inicial es incorrecta'), 1, 1);
-} elseif (!$estadistica->setFinal($_POST['final'])) {
+} elseif (!$estadistica->setFinal($arreglo[1])) {
+    
     $pdf->cell(0, 10, utf8_decode('La cantidad final es incorrecta'), 1, 1);
-} elseif (!$estadistica->setIdVendedor($_SESSION['id_vendedor'])) {
+} elseif (!$estadistica->setIdVendedor(2)) {
+    
     $pdf->cell(0, 10, utf8_decode('No se ha encontrado la sesión de tu cuenta'), 1, 1);
 } elseif ($datos = $estadistica->facturasClientes()) {
     /*------Programación del documento PDF------*/
+
+    //Estilos para los encabezados
+
     // Se establece un color de relleno para los encabezados.
     $pdf->SetFillColor(44, 134, 218);
     //Color de texto
@@ -52,18 +54,24 @@ if (!$estadistica->setInicial($_POST['inicial'])) {
      *      R- Alinación a la derecha
      *  7- Verifica si el color de la celda se pintará o no (true o false)
      */
-    $pdf->cell(111, 10, utf8_decode('Cliente'), 1, 0, 'C', 1);
-    $pdf->cell(25, 10, utf8_decode('Mínimo de compras ($)'), 1, 0, 'C', 1);
-    $pdf->cell(25, 10, utf8_decode('Máximo de compras ($)'), 1, 1, 'C', 1);
-    $pdf->cell(25, 10, utf8_decode('Promedio de compras ($)'), 1, 1, 'C', 1);
+    $pdf->cell(81, 10, utf8_decode('Cliente'), 1, 0, 'C', 1);
+    $pdf->cell(35, 10, utf8_decode('Mínimo ($)'), 1, 0, 'C', 1);
+    $pdf->cell(35, 10, utf8_decode('Máximo ($)'), 1, 0, 'C', 1);
+    $pdf->cell(35, 10, utf8_decode('Promedio ($)'), 1, 1, 'C', 1);
 
+    //Se establecen los estilos para los datos
+    
+    // Se establece la fuente para los datos de los productos.
+    $pdf->setFont('Times', '', 11);
+    //Color de letras de datos
+    $pdf->SetTextColor(0, 0, 0);
     //Se recorren los registros que se obtuvieron fila por fila para llenar las filas
     foreach ($datos as $fila) {
         // Se imprimen las celdas con los datos de los productos.
-        $pdf->cell(111, 10, utf8_decode($fila['nombre']), 1, 0);
-        $pdf->cell(25, 10, utf8_decode('$'.$fila['minimo']), 1, 0);
-        $pdf->cell(25, 10, utf8_decode('$' . $fila['maximo']), 1, 0);
-        $pdf->cell(25, 10, utf8_decode('$' . $fila['promedio']), 1, 0);
+        $pdf->cell(81, 10, utf8_decode($fila['nombre']), 1, 0);
+        $pdf->cell(35, 10, utf8_decode('$'.$fila['minimo']), 1, 0);
+        $pdf->cell(35, 10, utf8_decode('$' . $fila['maximo']), 1, 0);
+        $pdf->cell(35, 10, utf8_decode('$' . $fila['promedio']), 1, 1);
     }
 } elseif (Database::getException()) {
     $pdf->cell(0, 10, utf8_decode('Error en la base de datos: '+ Database::getException()), 1, 1);
@@ -72,7 +80,7 @@ if (!$estadistica->setInicial($_POST['inicial'])) {
 }
 
 // Se envía el documento al navegador y se llama al método footer()
-$pdf->output('I', 'Compras cliente.pdf');
+$pdf->output('I', 'Compras_cliente.pdf');
 
 
 /*

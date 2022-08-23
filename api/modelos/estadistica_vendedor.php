@@ -93,8 +93,11 @@ class EstadisticaVendedor extends Validator
             INNER JOIN direccion d ON d.id_direccion = f.id_direccion
             INNER JOIN cliente c ON c.id_cliente = d.id_direccion
             WHERE p.id_vendedor = ? AND
-            promedio BETWEEN ? AND ?
+            (SELECT ROUND(AVG(df.precio * df.cantidad_pedido),2) FROM detalle_factura df 
+            INNER JOIN factura fa ON df.id_factura = fa.id_factura
+            WHERE fa.id_factura = f.id_factura) BETWEEN ? AND ?
             GROUP BY nombre";
+            
         $params = array($this->idVendedor, $this->inicial, $this->final);
         return Database::getRows($sql, $params);
     }
