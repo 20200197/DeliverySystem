@@ -61,15 +61,15 @@ function fillTable(dataset) {
                 </td>
                 <td data-target="Punto referencia:">${row.punto_referencia}</td>
                 <td data-target="Opciones:">
-                    <div class="col s6 m6 l4">
+                    <div class="col s6 m6 l6">
                         <a class="waves-effect waves-light red darken-4 white-text btn-large col s12 m12 l12 modal-trigger"
                             onclick="openDelete(${row.id_direccion})"><i class="material-icons">delete</i></a>
                     </div>
-                    <div class="col s6 m6 l8">
-                        <a class="waves-effect waves-light blue lighten-2 black-text btn-large col s12 m12 l12 modal-trigger"
+                    <div class="col s6 m6 l6">
+                        <a class="waves-effect waves-light blue lighten-2 black-text btn-large col s12 m12 l12 modal-trigger center-align"
                             onclick="openUpdate(${row.id_direccion})"><i class="material-icons black-text hide-on-large-only">edit</i>
-                            <i class="material-icons left black-text hide-on-med-and-down">edit</i>
-                            <div class="hide-on-med-and-down">Editar</div>
+                            <i class="material-icons  black-text hide-on-med-and-down">edit</i>
+                            <div class="hide-on-med-and-down ">Editar</div>
                         </a>
                     </div>
                 </td>

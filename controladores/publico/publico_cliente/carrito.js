@@ -142,7 +142,7 @@ function cargarCarrito() {
                             <div class="col s12 m4 l4 center-align">
                                 <br>
                                 <Span>Cantidad</Span>
-                                <div class="validate contador_cantidad_carrito valign-wrapper">
+                                <div class="validate contador_cantidad_carrito ">
                                     <a onclick="restarCant(${row.id_producto})" class="click-hand"><i class="small material-icons">remove_circle_outline</i></a>
                                     <input disabled id="cantidad${row.id_producto}" type="number" value="${row.cantidad_pedido}" pattern="[1-9]{1}" class="validate sin-boton">
                                     <a onclick="sumarCant(${row.id_producto})" class="click-hand"><i class="small material-icons">add_circle_outline</i></a>

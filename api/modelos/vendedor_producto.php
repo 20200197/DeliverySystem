@@ -147,7 +147,7 @@ class VendedorProducto extends Validator
     //Función para cargar las categorias disponibles
     public function categorias()
     {
-        $sql = 'SELECT id_categoria_producto, categoria FROM categoria';
+        $sql = 'SELECT id_categoria, categoria FROM categoria';
         $params = null;
         return Database::getRows($sql, $params);
     }

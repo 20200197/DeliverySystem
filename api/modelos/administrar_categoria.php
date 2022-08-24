@@ -94,7 +94,7 @@ class Categoria extends Validator
     */
     public function searchRows($value)
     {
-        $sql = 'SELECT id_categoria_producto, categoria, imagen_categoria, status_categoria
+        $sql = 'SELECT id_categoria, categoria, imagen_categoria, status_categoria
                 FROM categoria
                 WHERE  categoria ILIKE ? 
                 ORDER BY categoria';
@@ -114,7 +114,7 @@ class Categoria extends Validator
     //Función para leer todos los datos
     public function readAll()
     {
-        $sql = 'SELECT id_categoria_producto, categoria, imagen_categoria, status_categoria
+        $sql = 'SELECT id_categoria, categoria, imagen_categoria, status_categoria
                 FROM categoria
                 ORDER BY categoria';
         $params = null;
@@ -126,11 +126,11 @@ class Categoria extends Validator
     {
         $sql = 'SELECT id_producto, nombre_producto, descripcion, cant_producto, imagen_producto, precio_producto, nombre_categoria, estado_producto, tipo_auto, nombre_empleado
         from productos
-        INNER JOIN categoria USING (id_categoria_producto)
+        INNER JOIN categoria USING (id_categoria)
         INNER JOIN estado_producto USING (id_estado_producto)
         INNER JOIN tipo_auto USING (id_tipo_auto)
         INNER JOIN empleado USING (id_empleado)
-        WHERE id_categoria_producto = ? AND id_estado_producto = 1
+        WHERE id_categoria = ? AND id_estado_producto = 1
         ORDER BY nombre_producto';
         $params = array($this->id);
         return Database::getRows($sql, $params);
@@ -138,9 +138,9 @@ class Categoria extends Validator
 
     public function readOne()
     {
-        $sql = 'SELECT id_categoria_producto, categoria, imagen_categoria, status_categoria
+        $sql = 'SELECT id_categoria, categoria, imagen_categoria, status_categoria
                 FROM categoria
-                WHERE id_categoria_producto = ?';
+                WHERE id_categoria = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -153,7 +153,7 @@ class Categoria extends Validator
 
         $sql = 'UPDATE categoria
                 SET categoria=  ?, imagen_categoria=?
-                WHERE id_categoria_producto=?';
+                WHERE id_categoria=?';
         $params = array($this->nombre_categoria,$this->imagen_categoria, $this->id);
         return Database::executeRow($sql, $params);
     }
@@ -162,7 +162,7 @@ class Categoria extends Validator
     public function deleteRow()
     {
         $sql = 'DELETE FROM categoria
-                WHERE id_categoria_producto= ?';
+                WHERE id_categoria= ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
@@ -171,7 +171,7 @@ class Categoria extends Validator
     {
         $sql = 'UPDATE categoria
         SET status_categoria = ?
-        WHERE id_categoria_producto = ?';
+        WHERE id_categoria = ?';
         $params = array($this->estado_categoria, $this->id);
         return Database::executeRow($sql, $params);
     }
@@ -191,7 +191,7 @@ class Categoria extends Validator
     //Función que valida que no se repita el dui en update, donde se evaluan los otros duis menos el seleccionado por si le da aceptar y no cambia nada
     public function readD($column, $data)
     {
-        $sql = "SELECT * from categoria where $column=?  except select * from categoria where id_categoria_producto = ?";
+        $sql = "SELECT * from categoria where $column=?  except select * from categoria where id_categoria = ?";
         $params = array($data, $this->id);
 
         return Database::getRow($sql, $params);

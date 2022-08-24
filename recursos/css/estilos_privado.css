@@ -1,4 +1,3 @@
-
 /* Clases generales del diseño*/
 
 
@@ -9,10 +8,6 @@ header,
 main,
 footer {
     padding-left: 6%;
-}
-
-.switch_colorr label {
-    font-size: 20px !important;
 }
 
 @media only screen and (max-width: 992px) {

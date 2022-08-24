@@ -4,7 +4,7 @@ const API_perfil = SERVER + "publico/sesion.php?action=";
 //Método que se ejecuta cuando se carga la página
 document.addEventListener("DOMContentLoaded", function () {
     //Se busca si se ha iniciado sesión o no
-    fetch(API_perfil + "obtenerSesionV", {
+    fetch(API_perfil + "obtenerSesionC", {
         method: "get",
     }).then(function (request) {
         //Se verifica que la sentencia se haya ejecutado

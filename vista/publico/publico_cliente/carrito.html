@@ -5,15 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="../../../recursos/css/icons.css" rel="stylesheet" />
+    <!--Importar archivos CSS-->
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.23/dist/sweetalert2.min.css">
+
     <link rel="stylesheet" href="../../../recursos/css/estilos_publico.css">
 </head>
 
 <body>
     <header>
         <nav>
-
             <div class="nav-wrapper white">
                 <div class="row valign-wrapper">
                     <div class="col m1 s1">
@@ -25,18 +27,14 @@
                         <img class="responsive-img" src="logo_delivery_system.png" alt="">
                     </div>
                     <div class="col m6 s6">
-                        <ul class="right">
-                            <li><span class="black-text">Nombre del usuario</span></li>
+                        <ul class="right valign-wrapper">
+                            <li><span class="black-text" id="opciones_navbar">Nombre del usuario</span></li>
                             <li><a href="perfil.html" class="tooltipped " data-position="right" data-tooltip="Perfil"><i
                                         class="material-icons medium black-text">account_circle</i></a></li>
 
                         </ul>
                     </div>
                 </div>
-
-
-
-
             </div>
         </nav>
 
@@ -85,7 +83,7 @@
             <!--Contenedor de los productos-->
             <div class="col s10 m7 l8 offset-m1 offset-l1 offset-s1" id="productos-contenedor">
                 <!--Card para cada producto-->
-                
+
             </div>
             <!--Información relevante del carrito-->
             <div class="col s10 m3 l2 center-align offset-s1">
@@ -172,6 +170,7 @@
     <script src="../../../recursos/js/sweetalert2.all.min.js"></script>
     <script src="../../../controladores/componentes.js"></script>
     <script src="../../../controladores/publico/publico_cliente/carrito.js"></script>
+    <script type="text/javascript" src="../../../controladores/publico/opciones_sesion.js"></script>
 </body>
 
 </html>

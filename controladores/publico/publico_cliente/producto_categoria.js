@@ -1322,7 +1322,7 @@ function fillTableC(dataset) {
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
         // Se define una dirección con los datos de cada categoría para mostrar sus productos en otra página web.
-        url = `producto_categoria.html?id_categoria=${row.id_categoria_producto}&nombre=${row.categoria}`;
+        url = `producto_categoria.html?id_categoria=${row.id_categoria}&nombre=${row.categoria}`;
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         //<td><img src="${SERVER}imagenes/administrar_empleados/${row.imagen_perfil_empleado}" class="materialboxed" height="100" width="100"></td>
         //Categoria

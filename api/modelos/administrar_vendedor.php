@@ -409,7 +409,7 @@ class AdministrarVendedor extends Validator
          FROM detalle_factura
          INNER JOIN factura USING (id_factura)
          INNER JOIN producto USING (id_producto)
-         INNER JOIN categoria categoria on producto.id_categoria = categoria.id_categoria_producto
+         INNER JOIN categoria categoria on producto.id_categoria = categoria.id_categoria
          GROUP BY categoria ";
          $params = null;
          return Database::getRows($sql, $params);
