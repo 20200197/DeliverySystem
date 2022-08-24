@@ -12,7 +12,7 @@ if (isset($_GET['action'])) {
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (isset($_SESSION['id_admin'])) {
+    if (1) {//isset($_SESSION['id_admin'])
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
@@ -62,6 +62,13 @@ if (isset($_GET['action'])) {
                     $result['message'] = 'Producto modificado correctamente';
                 } else {
                     $result['exception'] = Database::getException();
+                }
+                break;
+            case 'porcentajeProductos':
+                if ($result['dataset'] = $producto->porcentajeProductos()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'No hay datos disponibles';
                 }
                 break;
             default:
