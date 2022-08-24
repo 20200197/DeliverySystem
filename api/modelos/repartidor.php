@@ -357,7 +357,7 @@ class Repartidor extends Validator
 
     public function getProfile()
     {
-        $sql = "SELECT id_repartidor,nombre_repartidor, apellido_repartidor,dui_repartidor,correo_repartidor,usuario_repartidor,telefono_repartidor,clave_repartidor,solvencia_pnc,antecedente_penal,direccion_domicilio,placa_vehiculo,foto_placa_vehiculo,foto_repartidor,foto_vehiculo,status_repartidor,fecha_registro
+        $sql = "SELECT id_repartidor,nombre_repartidor, apellido_repartidor,dui_repartidor,correo_repartidor,usuario_repartidor,telefono_repartidor,clave_repartidor,solvencia_pnc,antecedente_penal,direccion_domicilio,placa_vehiculo,foto_placa_vehiculo,foto_repartidor,foto_vehiculo,fecha_registro
         from repartidor
         where id_repartidor = ?";
         $params = array(2); //SESSION[id_repartidor]
@@ -380,6 +380,7 @@ class Repartidor extends Validator
         SET nombre_repartidor = ?, apellido_repartidor = ?,correo_repartidor = ?,usuario_repartidor = ?,telefono_repartidor = ?,solvencia_pnc = ?,antecedente_penal = ?,direccion_domicilio = ?,placa_vehiculo = ?,foto_placa_vehiculo = ?,foto_repartidor = ?,foto_vehiculo = ?
         WHERE id_repartidor=?';
         $params = array($this->nombre, $this->apellido, $this->correo, $this->usuario, $this->telefono, $this->solvencia, $this->antecedentes, $this->direccion, $this->placa, $this->foto_placa, $this->foto, $this->foto_vehiculo, 2); //SESSION[id_repartidor]
+        print_r($params);
         return Database::executeRow($sql, $params);
     }
 
@@ -470,7 +471,7 @@ class Repartidor extends Validator
     //Función para leer un registro
     public function readOne()
     {
-        $sql = 'SELECT id_repartidor,nombre_repartidor, apellido_repartidor,dui_repartidor,correo_repartidor,usuario_repartidor,telefono_repartidor,clave_repartidor,solvencia_pnc,antecedente_penal,direccion_domicilio,placa_vehiculo,foto_placa_vehiculo,foto_repartidor,foto_vehiculo,status_repartidor,fecha_registro
+        $sql = 'SELECT id_repartidor,nombre_repartidor, apellido_repartidor,dui_repartidor,correo_repartidor,usuario_repartidor,telefono_repartidor,clave_repartidor,solvencia_pnc,antecedente_penal,direccion_domicilio,placa_vehiculo,foto_placa_vehiculo,foto_repartidor,foto_vehiculo,fecha_registro
                 FROM repartidor
                 WHERE id_repartidor = ?';
         $params = array(2); //SESSION[id_repartidor]

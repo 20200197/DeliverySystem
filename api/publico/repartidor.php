@@ -56,7 +56,7 @@ if (isset($_GET['action'])) {
                 $result['exception'] = 'Placa inválida';
             } elseif (!$repartidor->setCorreo($_POST['correo_repartidor'])) {
                 $result['exception'] = 'Correo incorrecto';
-                //Evaluamos correo que no se repita
+                    //Evaluamos correo que no se repita
             } elseif ($repartidor->readD('correo_repartidor', $repartidor->getCorreo())) {
                 $result['exception'] = 'Este correo ya esta registrado';
             } elseif (!$repartidor->setUsuario($_POST['usuario_repartidor'])) {

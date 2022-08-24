@@ -859,6 +859,22 @@ input[type="radio"]:checked~label>.estrellaProducto {
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
 
-.contenedorDepartamentos {
-    max-height: 200px !important;
+.contenedorDepartamentos tr td{
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.contenedorDepartamentos tr td p label{
+    display: flex;
+    align-items: center;
+}
+
+
+
+.contenedorDepartamentos tr td p{
+    flex-direction: row;
+    margin-top: 8px !important;
+    margin-bottom: 8px !important;
+
+  
 }

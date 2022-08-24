@@ -1,6 +1,8 @@
 const API_REPARTIDOR = SERVER + "publico/repartidor.php?action=";
 //Se crea la ruta a la API
 const API_ESTADISTICA = SERVER + "publico/estadistica_repartidor.php?action=";
+
+const API_VENDEDOR = SERVER + "publico/vendedor.php?action=";
 //Se crea un arreglo donde se guardarán los id de los departamentos seleccionados
 var identificadores = [];
 document.addEventListener("DOMContentLoaded", function() {
@@ -168,7 +170,7 @@ function departamentos() {
                                     <p>
                                         <label>
                                             <input type="checkbox" id="departamento${row.id_departamento}" onclick="comprobar(${row.id_departamento})" />
-                                            <span id="span${row.id_departamento}">Sin mostrar</span>
+                                            <span id="span${row.id_departamento}">No visible</span>
                                         </label>
                                     </p>
                                 </td>
@@ -215,14 +217,14 @@ function comprobar(iden) {
         //Se notifica del problema
         sweetAlert(3, "Solo se permiten 8 departamentos seleccionados a la vez", null);
         //Cambiamos el span
-        document.getElementById("span" + iden).innerHTML = "Sin mostrar";
+        document.getElementById("span" + iden).innerHTML = "No visible";
     } else {
         if (document.getElementById("departamento" + iden).checked == true) {
             //Cambiamos el span
-            document.getElementById("span" + iden).innerHTML = "Mostrado";
+            document.getElementById("span" + iden).innerHTML = "Visible";
         } else {
             //Cambiamos el span
-            document.getElementById("span" + iden).innerHTML = "Sin mostrar";
+            document.getElementById("span" + iden).innerHTML = "No visible";
         }
         generar(id);
     }
