@@ -2,12 +2,13 @@
 const API_ESTADISTICA = SERVER + 'publico/estadistica_vendedor.php?action=';
 
 //Método que se ejecutará cuando se carga la página
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     //Se carga la internacionalización de day.js
     dayjs.locale("es");
 
     //Obtiene el componente donde se cargará el slider
     var slider = document.getElementById('sliderTotalPromedio');
+    var sliderRango = document.getElementById('sliderRango');
 
     //Se crea la función para obtener la fecha a colocar
     function timestamp(str) {
@@ -35,10 +36,37 @@ document.addEventListener("DOMContentLoaded", function () {
         })
     });
 
+    //Se crea el slider y su configuración
+    noUiSlider.create(sliderRango, {
+        //Se define el rango de fechas
+        range: {
+            min: 0,
+            max: 5000
+        },
+        connect: true, //Habilitación de la línea entre las manijas (Estilo)
+
+        // Velocidad y opciones que dispondrá el slider
+        step: 1,
+
+        // Posiciones iniciales las manijas
+        start: [300, 500],
+
+        // Permite o no los decimales, en este caso solo fechas completas
+        format: wNumb({
+            decimals: 0
+        })
+    });
+
     //Componentes que cargarán las fechas seleccionadas para mostrar al usuario
     var dateValues = [
         document.getElementById('fechaInicial'),
         document.getElementById('fechaFinal')
+    ];
+
+    //Componentes que cargarán los rangos seleccionados para mostrar al usuario
+    var dateValuesRango = [
+        document.getElementById('RangoInicial'),
+        document.getElementById('RangoFinal')
     ];
 
     //Componentes que cargarán las fechas seleccionadas para enviar como parámetros
@@ -46,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('fechaInicialDato'),
         document.getElementById('fechaFinalDato')
     ];
+
 
     //Actualización de los componentes cuando se mueven las manijas
     slider.noUiSlider.on('update', function(values, handle) {
@@ -55,6 +84,12 @@ document.addEventListener("DOMContentLoaded", function () {
         dateValuesDato[handle].innerHTML = dayjs(new Date(+values[handle])).format('YYYY-MM-DD');
         //Se ejecuta nuevamente la función para generar la gráfica
         totalPromedio();
+    });
+
+    //Actualización de los componentes cuando se mueven las manijas
+    sliderRango.noUiSlider.on('update', function(values, handle) {
+        //Se colocan las fechas en los componentes para el usuario (Visible)
+        dateValuesRango[handle].innerHTML = +values[handle];
     });
 
     //Se ejecuta la función para generar la gráfica
@@ -115,7 +150,7 @@ function totalPromedio() {
                     let titulos = ['No hay datos']; //Contenedor de los titulos de la gráfica
                     //Se llama la función para generar la gráfica
                     lineaI(".TotalPromedio", titulos, general);
-                    
+
                 }
             })
         } else {
@@ -127,10 +162,10 @@ function totalPromedio() {
 }
 
 //Se crea la función para crear el reporte
-function crearReporte() { 
-    let arreglo = 0.0 + ',' + 1000.0;
+function crearReporte() {
+    let arreglo = document.getElementById('RangoInicial').innerHTML + ',' + document.getElementById('RangoFinal').innerHTML;
     // Se establece la ruta del reporte en el servidor.
-      let url = SERVER + `reportes/vendedor/facturas_clientes.php?rangos=${arreglo}`;
-      // Se abre el reporte en una nueva pestaña del navegador web.
-      window.open(url);
+    let url = SERVER + `reportes/vendedor/facturas_clientes.php?rangos=${arreglo}`;
+    // Se abre el reporte en una nueva pestaña del navegador web.
+    window.open(url);
 }
