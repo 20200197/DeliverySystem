@@ -3,12 +3,12 @@ const API_REPARTIDOR = SERVER + "publico/repartidor.php?action=";
 const API_ESTADISTICA = SERVER + "publico/estadistica_repartidor.php?action=";
 //Se crea un arreglo donde se guardarán los id de los departamentos seleccionados
 var identificadores = [];
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
     M.Modal.init(document.querySelectorAll(".modal"), { dismissible: false });
     readBarraProductosMasVendidosDepartamento();
-        departamentos();
-        generar([]);
+    departamentos();
+    generar([]);
 });
 
 //Función que cargar las graficas de barra donde se mueestra producto mas vendido por departamento
@@ -20,11 +20,11 @@ function readBarraProductosMasVendidosDepartamento(nombre_departamento) {
     fetch(API_REPARTIDOR + "readProductosMasVendidosDepartamento", {
         method: "post",
         body: data,
-    }).then(function (request) {
+    }).then(function(request) {
         //Se revisa si se ejecutó la sentencia
         if (request.ok) {
             //Se pasa a formato JSON
-            request.json().then(function (response) {
+            request.json().then(function(response) {
                 //Se verifica el estado de la respuesta
                 /** Se crean los vectores generales donde se guardarán los datos*/
                 let cabeceras = []; //Vector donde se guardarán los titulos de la gráfica
@@ -38,7 +38,7 @@ function readBarraProductosMasVendidosDepartamento(nombre_departamento) {
                     //let fila3 = []; //Vector donde se guardarán los datos por el mismo titulo de la gráfica (1 Línea)
 
                     //Se explorar fila por fila
-                    response.dataset.map(function (row) {
+                    response.dataset.map(function(row) {
                         //Se llenan los datos en los vectores generales
                         cabeceras.push(row.nombre_producto); //Se agrega un titulo
                         fila.push(row.cantidad_pedido); //Se agrega un dato para el titulo
@@ -72,11 +72,11 @@ function openOpciones() {
     //Cargamos el select
     fetch(API_REPARTIDOR + "readAllDepartamento", {
         method: "get",
-    }).then(function (request) {
+    }).then(function(request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
         if (request.ok) {
             // Se obtiene la respuesta en formato JSON.
-            request.json().then(function (response) {
+            request.json().then(function(response) {
                 let content = "";
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
@@ -85,7 +85,7 @@ function openOpciones() {
                         content += "<option disabled selected>Seleccione una opción</option>";
                     }
                     // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
-                    response.dataset.map(function (row) {
+                    response.dataset.map(function(row) {
                         // Se obtiene el dato del primer campo de la sentencia SQL (valor para cada opción).
                         value = Object.values(row)[0];
                         // Se obtiene el dato del segundo campo de la sentencia SQL (texto para cada opción).
@@ -118,8 +118,7 @@ function openParametro() {
         showCancelButton: true,
         allowOutsideClick: false,
     }).then((result) => {
-        if (result.isDismissed) {
-        } else {
+        if (result.isDismissed) {} else {
             //Obtenemos la opcion seleccinada
             var selectedOption =
                 document.getElementById("opciones_departamento").options[
@@ -148,17 +147,17 @@ function departamentos() {
     //Se realiza la petición
     fetch(API_ESTADISTICA + "Departamento", {
         method: "get",
-    }).then(function (request) {
+    }).then(function(request) {
         //Se verifica el resultado de la API
         if (request.ok) {
             //Se pasa a JSON
-            request.json().then(function (response) {
+            request.json().then(function(response) {
                 //Se verifica el estado devuelto de la API
                 if (response.status) {
                     //Se crea una variable donde se colocará el HTML
                     let contenido = [];
                     //Se obtienen los datos desde el map
-                    response.dataset.map(function (row) {
+                    response.dataset.map(function(row) {
                         //Se llenar el vector con el HTML
                         contenido += `
                             <tr>
@@ -193,6 +192,8 @@ function departamentos() {
         }
     });
 }
+
+
 
 //Función para generar la gráfica
 function comprobar(iden) {
@@ -243,25 +244,29 @@ function generar(arreglo) {
     fetch(API_ESTADISTICA + "TopClientes", {
         method: "post",
         body: datos,
-    }).then(function (request) {
+    }).then(function(request) {
         //Se revisa el estado
         if (request.ok) {
             //Se pasa a JSON
-            request.json().then(function (response) {
+            request.json().then(function(response) {
                 //Se revisa el estado devuelto por la API
                 //verificación para saber si no se han seleccionados departamentos
                 if (response.status == 2) {
                     //Se recrea la gráfica
                     //Se ejecuta el método que generará la gráfica, está en componentes.js
-                    barras(".TotalPromedio", [response.message], [[0]]);
+                    barras(".TotalPromedio", [response.message], [
+                        [0]
+                    ]);
                 } else if (response.status == 1) {
                     //Se limpia el mensaje
                     document.getElementById("ComentariograficaTop").innerHTML = "";
                     //Se crean los vectores donde se guardarán los datos para generar la gráfica
                     let titulos = []; //Titulos para la gráfica
-                    let general = [[]]; //Contenedor de todos los datos
+                    let general = [
+                        []
+                    ]; //Contenedor de todos los datos
                     let controlador = {}; //Verificador para crear o posicionar datos según la cantidad de ID que provengan
-                    response.dataset.map(function (departamento) {
+                    response.dataset.map(function(departamento) {
                         //Se guardan los datos para cargarlos a un meta
                         let llave = departamento.cliente;
                         let valor = departamento.total;
@@ -330,4 +335,116 @@ function completar(diccionario, titulos) {
         }
     }
     return diccionario;
+}
+
+//Función para completar los espacios vacíos
+function completar(diccionario, titulos) {
+    //Recorre la rama principal de vectores
+    for (let index = 0; index < diccionario.length; index++) {
+        //Se revisa si le faltan datos para llegar a 5
+        if (diccionario[index].length < 5) {
+            //Si le falta se rellena recorriendo el espacio
+            for (let contador = diccionario[index].length; contador < titulos.length; contador++) {
+                diccionario[index].push({
+                    meta: "Ninguno",
+                    value: 0,
+                });
+            }
+        }
+    }
+    return diccionario;
+}
+
+//cambios Bonilla1 24-08-2022
+function opcionesCategoria() {
+    fetch(API_VENDEDOR + "readAllCategoria", {
+        method: "get",
+    }).then(function(request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function(response) {
+                let content = "";
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Si no existe un valor para seleccionar, se muestra una opción para indicarlo.
+                    if (!null) {
+                        content += "<option disabled selected>Seleccione una opción</option>";
+                    }
+                    // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+                    response.dataset.map(function(row) {
+                        // Se obtiene el dato del primer campo de la sentencia SQL (valor para cada opción).
+                        value = Object.values(row)[0];
+                        // Se obtiene el dato del segundo campo de la sentencia SQL (texto para cada opción).
+                        text = Object.values(row)[1];
+                        // Se verifica si el valor de la API es diferente al valor seleccionado para enlistar una opción, de lo contrario se establece la opción como seleccionada.
+                        if (value != null) {
+                            content += `<option value="${value}">${text}</option>`;
+                        } else {
+                            content += `<option value="${value}" selected>${text}</option>`;
+                        }
+                    });
+                } else {
+                    content += "<option>No hay opciones disponibles</option>";
+                }
+                // Se agregan las opciones a la etiqueta select mediante su id.
+                document.getElementById("opciones_departamento").innerHTML = content;
+            });
+        } else {
+            console.log(request.status + " " + request.statusText);
+        }
+    });
+    openParametro();
+}
+
+//Función para abriri parametro para reporte
+function openParametro() {
+    Swal.fire({
+        title: "Selecciona una categoria",
+        html: '<div class="input-field"><select class="browser-default" id="opciones_departamento" name="opciones_departamento" required> </select></div>',
+        showCancelButton: true,
+        allowOutsideClick: false,
+    }).then((result) => {
+        if (result.isDismissed) {} else {
+            //Obtenemos la opcion seleccinada
+            var selectedOption =
+                document.getElementById("opciones_departamento").options[
+                    document.getElementById("opciones_departamento").selectedIndex
+                ];
+            console.log(selectedOption.text);
+            readLineaVentas(selectedOption.text);
+        }
+    });
+}
+
+function readLineaVentas(categoria) {
+    let parameter = new FormData();
+    parameter.append('nombre_categoria', categoria);
+
+    fetch(API_VENDEDOR + 'readSellCategory', {
+        method: 'post',
+        body: parameter
+    }).then(function(request) {
+        if (request.ok) {
+            request.json().then(function(response) {
+                let cabeceras = [];
+                let general = [];
+                if (response.status) {
+                    let datos = [];
+                    response.dataset.map(function(row) {
+                        cabeceras.push(row.categoria);
+                        datos.push(row.total);
+                    });
+
+                    general.push(datos);
+
+                    lineaI('.recaudado_categoria_linea', cabeceras, general);
+                } else {
+                    lineaI('.recaudado_categoria_linea', null, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
 }
