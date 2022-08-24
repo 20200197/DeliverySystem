@@ -183,6 +183,24 @@ if (isset($_GET['action'])) {
                 $result['exception'] = 'No hay datos para mostrar';
             }
             break;
+        case 'readAllCategoria':
+            if ($result['dataset'] = $vendedor->readCategorias()) {
+                $result['status'] = 1;
+            } elseif (Database::getException()) {
+                $result['exception'] = Database::getException();
+            } else {
+                $result['exception'] = 'No hay datos para mostrar';
+            }
+            break;
+        case 'readSellCategory':
+            if ($result['dataset'] = $vendedor->readSellsCategory($_POST['nombre_categoria'])) {
+                $result['status'] = 1;
+            } elseif (Database::getException()) {
+                $result['exception'] = Database::getException();
+            } else {
+                $result['exception'] = 'No hay datos para mostrar';
+            }
+            break;
         default:
             $result['exception'] = 'Acción no disponible dentro de la sesión';
     }

@@ -428,4 +428,25 @@ class AdministrarVendedor extends Validator
           $params = null;
           return Database::getRows($sql, $params);
       }
+
+      public function readCategorias()
+      {
+        $sql = 'SELECT id_categoria, categoria FROM categoria';
+ 
+        return Database::getRows($sql, null);
+      }
+ 
+      public function readSellsCategory($nombre_categoria)
+      {
+        $sql = "SELECT sum(total) as total, TO_CHAR(fecha_compra, 'YYYY-MM-DD') as fecha
+                FROM factura
+                INNER JOIN detalle_factura USING (id_factura)
+                INNER JOIN producto USING (id_producto)
+                INNER JOIN categoria USING (id_categoria)
+                WHERE categoria = ? and id_vendedor = ?
+                GROUP BY fecha";
+        $params = array($nombre_categoria, $_SESSION['id_vendedor']);
+ 
+        return Database::getRows($sql, $params);
+      }
 }
