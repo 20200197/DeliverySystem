@@ -13,7 +13,7 @@ $_GET = $producto->validateForm($_GET);
 //Se inicia la sesión
 session_start();
 // Se inicia el reporte con el encabezado del documento.
-$pdf->startReport('Top 5 productos de' . ' ' . $_GET['categoria'], 'usuario');
+$pdf->startReport('Top 5 productos de' . ' ' . $_GET['categoria'], $_SESSION['nombre_vendedor']);
 
 // Se verifica si existen registros (productos) para mostrar, de lo contrario se imprime un mensaje.
 if ($dataProductos = $producto->readAll()) {

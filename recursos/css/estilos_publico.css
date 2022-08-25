@@ -4,6 +4,19 @@ footer {
     padding-left: 6%;
 }
 
+
+/*******************
+Fuentes generales 
+**************************/
+
+h5 {
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+
+h6 {
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+
 @media only screen and (max-width: 992px) {
     header,
     main,
@@ -104,6 +117,7 @@ main {
     flex: 1 0 auto;
 }
 
+
 /*-------------------Navbar---------------------*/
 
 nav {
@@ -122,6 +136,7 @@ nav div ul li a i {
     cursor: pointer;
 }
 
+
 /*-----------------Footer--------------*/
 
 .opciones-sidenav {
@@ -132,6 +147,7 @@ nav div ul li a i {
     height: 10%;
 }
 
+
 /**Producto individual y categoria**/
 
 .imagen-categoria {
@@ -141,9 +157,12 @@ nav div ul li a i {
     object-fit: cover;
 }
 
+
 /*----------------------------------------------*/
 
+
 /*-------------Carrito - clientes---------------*/
+
 
 /*----------------------------------------------*/
 
@@ -167,17 +186,18 @@ nav div ul li a i {
     width: 550px;
 }
 
+
 /*Para favo*/
 
 label:hover {
     color: orange;
 }
 
-input[type="radio"]:checked + label {
+input[type="radio"]:checked+label {
     color: orange;
 }
 
-input[type="checkbox"]:checked ~ label {
+input[type="checkbox"]:checked~label {
     color: orange;
 }
 
@@ -284,6 +304,7 @@ footer {
     flex-direction: column;
     align-items: center;
     align-content: space-between;
+    flex-wrap: nowrap;
 }
 
 .sidenav li {
@@ -308,6 +329,7 @@ main {
     flex: 1 0 auto;
 }
 
+
 /*-------------------Navbar---------------------*/
 
 nav {
@@ -326,6 +348,7 @@ nav div ul li a i {
     cursor: pointer;
 }
 
+
 /*-----------------Footer--------------*/
 
 .opciones-sidenav {
@@ -335,6 +358,7 @@ nav div ul li a i {
 .cerrar-sidenav {
     height: 10%;
 }
+
 
 /**Producto individual y categoria**/
 
@@ -352,9 +376,12 @@ nav div ul li a i {
     height: auto;
 }
 
+
 /*----------------------------------------------*/
 
+
 /*-------------Carrito - clientes---------------*/
+
 
 /*----------------------------------------------*/
 
@@ -379,17 +406,18 @@ nav div ul li a i {
     width: 550px;
 }
 
+
 /*Para favo*/
 
 label:hover {
     color: orange;
 }
 
-input[type="radio"]:checked + label {
+input[type="radio"]:checked+label {
     color: orange;
 }
 
-input[type="checkbox"]:checked ~ label {
+input[type="checkbox"]:checked~label {
     color: orange;
 }
 
@@ -409,6 +437,7 @@ input[type="checkbox"]:checked ~ label {
     color: orange;
 }
 
+
 /* Sey, ¿Lo borro?*/
 
 label {
@@ -419,7 +448,9 @@ label {
     font-size: 20px !important;
 }
 
+
 /* ------------Estilos para chartist-----------------*/
+
 
 /*----Tooltip----*/
 
@@ -463,6 +494,7 @@ label {
 .ct-line {
     pointer-events: none;
 }
+
 
 /*------Diseño de la gráfica-----*/
 
@@ -514,6 +546,7 @@ label {
     stroke: #01579b;
 }
 
+
 /*-----------------Responsive de tabla -------------------*/
 
 @media (max-width: 612px) {
@@ -547,9 +580,12 @@ label {
     }
 }
 
+
 /*----------------------------------------------*/
 
+
 /*-------------------Modo oscuro---------------------*/
+
 
 /*----------------------------------------------*/
 
@@ -602,6 +638,7 @@ label {
     background-color: #053a80 !important;
 }
 
+
 /*Modo oscuro de login ya que tiene otros colores*/
 
 .login_oscuro .login_modo_oscuro {
@@ -611,6 +648,7 @@ label {
 .inputs_password input[type="password"] {
     color: white !important;
 }
+
 
 /*
   Fuentes de tablas y también modo oscuro
@@ -650,6 +688,7 @@ th {
     background-color: #fafafa;
 }
 
+
 /*Modo oscuro para las tablas de los modal*/
 
 .modal_tabla .tabla_oscuro th {
@@ -665,6 +704,7 @@ th {
     color: white !important;
 }
 
+
 /*******************
 Fuentes generales 
 **************************/
@@ -672,6 +712,7 @@ Fuentes generales
 h5 {
     font-family: "Fira Sans Condensed", sans-serif;
 }
+
 
 /*-------------Diseños de modal---------------*/
 
@@ -718,11 +759,13 @@ h5 {
     margin: 0px !important;
 }
 
+
 /*-------------Botón flotante para valorar repartidor----------------------- */
 
 .fixed-action-btn {
     bottom: 25%;
 }
+
 
 /*--------------------Diseño de inputs---------------------------------------*/
 
@@ -738,7 +781,9 @@ input:focus {
     box-shadow: 0 1px 0 0 #2979ff !important;
 }
 
+
 /*------------------Valoraciones-------------------*/
+
 
 /*Valoraciones en estrellas*/
 
@@ -754,11 +799,11 @@ input:focus {
 }
 
 label:hover,
-label:hover ~ label > .estrella {
+label:hover~label>.estrella {
     color: orange;
 }
 
-input[type="radio"]:checked ~ label > .estrella {
+input[type="radio"]:checked~label>.estrella {
     color: orange;
 }
 
@@ -774,13 +819,14 @@ input[type="radio"]:checked ~ label > .estrella {
 }
 
 label:hover,
-label:hover ~ label > .estrellaProducto {
+label:hover~label>.estrellaProducto {
     color: orange;
 }
 
-input[type="radio"]:checked ~ label > .estrellaProducto {
+input[type="radio"]:checked~label>.estrellaProducto {
     color: orange;
 }
+
 
 /*---------------Estilos para nouSlider----------------*/
 

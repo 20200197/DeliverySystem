@@ -3,7 +3,7 @@ const API_ESTADISTICA = SERVER + "dashboard/administrar_cliente.php?action=";
 const API_ESTADISTICA2 = SERVER + "dashboard/administrar_producto.php?action=";
 
 // Método que ejecuta la carga de de las tablas y la activación de componentes
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     // Se define una variable para establecer las opciones del componente Modal.
     let options = {
         dismissible: false,
@@ -23,22 +23,22 @@ function graficoTopClientesDestacados() {
     // Petición para obtener los datos del gráfico.
     fetch(API_ESTADISTICA + 'topClientesDestacados', {
         method: 'get'
-    }).then(function (request) {
+    }).then(function(request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
         if (request.ok) {
-            request.json().then(function (response) {
+            request.json().then(function(response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
                 if (response.status) {
                     let nombre = []; //Vector donde se guardarán los titulos de la gráfica
                     let total = []; //Vector donde se guardarán los datos por toda la gráfica (Es un contenedor nada más)
                     /*
-                    * Se se desean agregar más lineas de la gráfica se deben de crear un vector más
-                    */
+                     * Se se desean agregar más lineas de la gráfica se deben de crear un vector más
+                     */
                     let dato = []; //Vector donde se guardarán los datos por cada titulo de la gráfica (1 Línea)
                     //Se explorar fila por fila
-                    response.dataset.map(function (row) {
+                    response.dataset.map(function(row) {
                         //Se llenan los datos en los vectores generales
-                        nombre.push(row.nombre_cliente); //Se agrega un titulo
+                        nombre.push(row.nombre_clientes); //Se agrega un titulo
                         //Se agregan variables para guardar el nombre y el valor de la llave
                         let llave = 'Total ($)';
                         let valor = row.total;
@@ -68,22 +68,22 @@ function graficoPorcentajeProductos() {
     // Petición para obtener los datos del gráfico.
     fetch(API_ESTADISTICA2 + 'porcentajeProductos', {
         method: 'get'
-    }).then(function (request) {
+    }).then(function(request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
         if (request.ok) {
-            request.json().then(function (response) {
+            request.json().then(function(response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
                 if (response.status) {
                     //Pasos anteriores del fetch
                     /*Se crean los vectores generales donde se guardarán los datos*/
                     let categoria = []; //Vector donde se guardarán los titulos de la gráfica
                     /*
-                    * La gráfica de pastel solo admite una línea, por lo que solo se permite una arreglo, 
-                    * el general no se utiliza en este caso
-                    */
+                     * La gráfica de pastel solo admite una línea, por lo que solo se permite una arreglo, 
+                     * el general no se utiliza en este caso
+                     */
                     let porcentaje = []; //Vector donde se guardarán los datos por cada titulo de la gráfica (1 Línea)
                     //Se explorar fila por fila
-                    response.dataset.map(function (row) {
+                    response.dataset.map(function(row) {
                         //Se llenan los datos en los vectores generales
                         categoria.push(row.producto); //Se agrega un titulo
                         //Se agregan variables para guardar el nombre y el valor de la llave

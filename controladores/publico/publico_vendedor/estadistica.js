@@ -9,14 +9,14 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 //cambios Bonilla1 24-08-2022
-function opcionesCategoria(){
+function opcionesCategoria() {
     fetch(API_VENDEDOR + "readAllCategoria", {
         method: "get",
-    }).then(function (request) {
+    }).then(function(request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
         if (request.ok) {
             // Se obtiene la respuesta en formato JSON.
-            request.json().then(function (response) {
+            request.json().then(function(response) {
                 let content = "";
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
@@ -25,7 +25,7 @@ function opcionesCategoria(){
                         content += "<option disabled selected>Seleccione una opción</option>";
                     }
                     // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
-                    response.dataset.map(function (row) {
+                    response.dataset.map(function(row) {
                         // Se obtiene el dato del primer campo de la sentencia SQL (valor para cada opción).
                         value = Object.values(row)[0];
                         // Se obtiene el dato del segundo campo de la sentencia SQL (texto para cada opción).
@@ -49,7 +49,7 @@ function opcionesCategoria(){
     });
     openParametro();
 }
- 
+
 //Función para abriri parametro para reporte
 function openParametro() {
     Swal.fire({
@@ -58,50 +58,47 @@ function openParametro() {
         showCancelButton: true,
         allowOutsideClick: false,
     }).then((result) => {
-        if (result.isDismissed) {
-        } else {
+        if (result.isDismissed) {} else {
             //Obtenemos la opcion seleccinada
             var selectedOption =
                 document.getElementById("opciones_departamento").options[
                     document.getElementById("opciones_departamento").selectedIndex
                 ];
-            console.log(selectedOption.text);
             readLineaVentas(selectedOption.text);
         }
     });
 }
- 
+
 function readLineaVentas(categoria) {
     let parameter = new FormData();
     parameter.append('nombre_categoria', categoria);
- 
+
     fetch(API_VENDEDOR + 'readSellCategory', {
         method: 'post',
         body: parameter
-    }).then(function (request){
-        if(request.ok){
-            request.json().then(function(response){
+    }).then(function(request) {
+        if (request.ok) {
+            request.json().then(function(response) {
                 let cabeceras = [];
                 let general = [];
-                if(response.status){
+                if (response.status) {
                     let datos = [];
-                    response.dataset.map(function(row){
+                    response.dataset.map(function(row) {
                         cabeceras.push(row.fecha);
                         datos.push({
                             meta: '($)',
                             value: row.total
                         });
-
-
                     });
 
                     general.push(datos);
                     lineaI('.recaudado_categoria_linea', cabeceras, general);
-                }else{
+                } else {
+                    sweetAlert(2, response.exception, null);
                     lineaI('.recaudado_categoria_linea', null, null);
                 }
             });
-        }else{
+        } else {
             console.log(request.status + ' ' + request.statusText);
         }
     });
@@ -138,7 +135,7 @@ function readbarrasProductosMasVendidosValorados() {
                         //fila2.push(row.cantidad); //Si se desea agregar más de un datos por titulo se agregan aquí
                         //fila3.push(row.cantidad); //Si se desea agregar más de un datos por titulo se agregan aquí
 
-                        
+
 
                     });
                     //Se cargan los datos dentro del contenedor

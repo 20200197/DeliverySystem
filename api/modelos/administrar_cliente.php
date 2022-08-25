@@ -344,10 +344,11 @@ class AdministrarCliente extends Validator
     //Grafico Top 5 clientes mas destacados, valor ventas en dinero
     public function topClientesDestacados()
     {
-        $sql = "SELECT total, CONCAT(nombre_cliente,' ', apellido_cliente) as nombre_cliente
+        $sql = "SELECT SUM(total) AS total, CONCAT(nombre_cliente,' ', apellido_cliente) as nombre_clientes
         FROM factura
         INNER JOIN direccion ON factura.id_direccion = direccion.id_direccion
         INNER JOIN cliente ON direccion.id_cliente = cliente.id_cliente
+		GROUP BY nombre_clientes
         ORDER BY total desc limit 5";
         $params = null;/*SESSION[id_cliente]*/
         return Database::getRows($sql, $params);

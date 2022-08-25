@@ -75,6 +75,12 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('fechaFinalDato')
     ];
 
+    //Componentes que cargarán las fechas seleccionadas para enviar como parámetros
+    var dateValuesRangoDato = [
+        document.getElementById('RangoInicialDato'),
+        document.getElementById('RangoFinalDato')
+    ];
+
 
     //Actualización de los componentes cuando se mueven las manijas
     slider.noUiSlider.on('update', function(values, handle) {
@@ -82,14 +88,21 @@ document.addEventListener("DOMContentLoaded", function() {
         dateValues[handle].innerHTML = dayjs(new Date(+values[handle])).format('DD, MMMM, YYYY');
         //Se colocan las fechas en los componetes para la consulta (Ocultos)
         dateValuesDato[handle].innerHTML = dayjs(new Date(+values[handle])).format('YYYY-MM-DD');
+
+    });
+
+    //Se ejecuta la recarga de la gráfica cuando pare de moverse las manijas
+    slider.noUiSlider.on('end', function() {
         //Se ejecuta nuevamente la función para generar la gráfica
         totalPromedio();
-    });
+    })
 
     //Actualización de los componentes cuando se mueven las manijas
     sliderRango.noUiSlider.on('update', function(values, handle) {
         //Se colocan las fechas en los componentes para el usuario (Visible)
-        dateValuesRango[handle].innerHTML = +values[handle];
+        dateValuesRango[handle].innerHTML = "$" + +values[handle];
+        //Se colocan las cantidades en los componentes para enviar como parámetros
+        dateValuesRangoDato[handle].innerHTML = +values[handle];
     });
 
     //Se ejecuta la función para generar la gráfica
@@ -125,8 +138,17 @@ function totalPromedio() {
                     response.dataset.map(function(row) {
                         //Se llena la fila y los titulos
                         titulos.push(row.fecha_compra);
-                        promedio.push(row.promedio);
-                        total.push(row.total);
+                        //Variables para almacenar los datos
+                        let prom = row.promedio;
+                        let totalidad = row.total;
+                        promedio.push({
+                            meta: 'Promedio de ventas ($)',
+                            value: prom
+                        });
+                        total.push({
+                            meta: 'Total de ventas ($)',
+                            value: totalidad
+                        });
                     });
                     //Se pasan los datos al contenedor principal
                     general.push(promedio);
@@ -163,7 +185,7 @@ function totalPromedio() {
 
 //Se crea la función para crear el reporte
 function crearReporte() {
-    let arreglo = document.getElementById('RangoInicial').innerHTML + ',' + document.getElementById('RangoFinal').innerHTML;
+    let arreglo = document.getElementById('RangoInicialDato').innerHTML + ',' + document.getElementById('RangoFinalDato').innerHTML;
     // Se establece la ruta del reporte en el servidor.
     let url = SERVER + `reportes/vendedor/facturas_clientes.php?rangos=${arreglo}`;
     // Se abre el reporte en una nueva pestaña del navegador web.

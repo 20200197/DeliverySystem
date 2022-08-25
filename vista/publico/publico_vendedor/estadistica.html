@@ -68,10 +68,9 @@
     </ul>
     <!--Información de la página-->
     <main class="center">
-        <!--Titulo de la página-->
-        <h5>Estadística</h5>
         <!--Contenedor de la lista-->
         <div class="row">
+            <h6>Zona de gráficas</h6>
             <!--Articulos de la lista-->
             <div class="col l6 m12 s12">
                 <h6>Porcentaje de ventas por categoría generales</h6>
@@ -86,46 +85,55 @@
 
                 </div>
             </div>
-            <div class="col l12 m12 s12">
+            <div class="col l10 m10 s12 push-l1 push-m1">
                 <h6>Top 5 productos valorados más pedidos</h6>
                 <div class="barras_productos_valoracion">
 
                 </div>
             </div>
         </div>
-        </div>
-        <div class="container row center" id="graficaTop">
-            <h6 id="tituloGraficaTotalPromedio">Total y promedio de compra por rango de fecha</h6>
-            <span id="comentarioTotalPromedio"></span>
-            <div class="col l12 m12 s12 center" id="graficaTotalPromedio">
+        <div class="row center" id="graficaTop">
+            <div class="col l10 m10 s12 push-l1 push-m1">
+                <h6 id="tituloGraficaTotalPromedio">Total y promedio de compra por rango de fecha</h6>
+                <span id="comentarioTotalPromedio"></span>
+                <div class="col l12 m12 s12 center" id="graficaTotalPromedio">
 
-                <div class="TotalPromedio col l12 m12 s12"></div>
-                <div class="col l10 m10 s10 push-l1 push-m1 push-s1 slider-styled slider-round" id="sliderTotalPromedio"></div>
-                <div class="col l10 m10 s10 push-l1 push-m1 push-s1">
-                    <div class="col l6 m6 s12 center">
-                        <span id="fechaInicial"></span>
-                        <span id="fechaInicialDato" class="hide"></span>
-                    </div>
-                    <div class="col l6 m6 s12 center">
-                        <span id="fechaFinal"></span>
-                        <span id="fechaFinalDato" class="hide"></span>
+                    <div class="TotalPromedio"></div>
+                    <div class="col l10 m10 s10 push-l1 push-m1 push-s1 slider-styled slider-round" id="sliderTotalPromedio"></div>
+                    <div class="col l10 m10 s10 push-l1 push-m1 push-s1">
+                        <div class="col l6 m6 s12 center">
+                            <span id="fechaInicial"></span>
+                            <span id="fechaInicialDato" class="hide"></span>
+                        </div>
+                        <div class="col l6 m6 s12 center">
+                            <span id="fechaFinal"></span>
+                            <span id="fechaFinalDato" class="hide"></span>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
-        <div class="container center">
+        <h5>Zona de reportes</h5>
+        <div class="row center">
             <h6>Compras de clientes entre un rango de fechas</h6>
-            <div class="col l10 m10 s10 push-l1 push-m1 push-s1 slider-styled slider-round" id="sliderRango"></div>
-            <div class="col l10 m10 s10 push-l1 push-m1 push-s1 row">
-                <div class="col l2 m6 s12 center push-l4">
-                    <span id="RangoInicial"></span>
-                </div>
-                <div class="col l2 m6 s12 push-l4 center">
-                    <span id="RangoFinal"></span>
-
+            <div class="col l10 m10 s10 push-l1 push-m1 push-s1">
+                <div class="col l10 m10 s12 push-l1 push-m1 slider-styled slider-round" id="sliderRango"></div>
+                <div class="col l10 m10 s10 push-l1 push-m1 push-s1 row">
+                    <div class="col l2 m6 s12 center push-l4">
+                        <span id="RangoInicial"></span>
+                        <span id="RangoInicialDato" class="hide"></span>
+                    </div>
+                    <div class="col l2 m6 s12 push-l4 center">
+                        <span id="RangoFinal"></span>
+                        <span id="RangoFinalDato" class="hide"></span>
+                    </div>
                 </div>
             </div>
-            <a onclick="crearReporte()" class="btn">Generar reporte</a>
+
+            <div class="col l10 m10 s10 push-l1 push-m1 push-s1 center">
+                <a onclick="crearReporte()" class="btn blue">Generar reporte</a>
+            </div>
         </div>
     </main>
     <footer class="page-footer blue accent-3">

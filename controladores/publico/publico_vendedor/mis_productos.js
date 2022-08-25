@@ -260,15 +260,22 @@ function openParametro() {
         title: "Selecciona la categoria",
         html: '<div class="input-field"><select class="browser-default" id="opciones_categoriaa" name="opciones_categoriaa" required> </select></div>',
         showCancelButton: true,
-    }).then(function() {
-        //Obtenemos la opcion seleccinada
-        var selectedOption =
-            document.getElementById("opciones_categoriaa").options[
-                document.getElementById("opciones_categoriaa").selectedIndex
-            ];
-        console.log(selectedOption.text);
-        openReport(selectedOption.text);
+    }).then(function(value) {
+        if (value.isDismissed) {
+
+        } else if (value == 'Seleccione una opción') {
+
+        } else {
+            //Obtenemos la opcion seleccinada
+            var selectedOption =
+                document.getElementById("opciones_categoriaa").options[
+                    document.getElementById("opciones_categoriaa").selectedIndex
+                ];
+            console.log(selectedOption.text);
+            openReport(selectedOption.text);
+        }
     });
+
 }
 
 // Función para abrir reporte de gastos por cliente
