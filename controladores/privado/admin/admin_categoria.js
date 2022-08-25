@@ -1,5 +1,5 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
-const API_CATEGORIA = SERVER + 'dashboard/administrar_categoria.php?action=';
+const API_CATEGORIA = SERVER + 'dashboard/administrar_categoria.php?action='; 
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
@@ -71,12 +71,12 @@ function fillTable(dataset) {
             <td>
                 <div class="switch">
                     <label>
-                        <input type="checkbox" id="switch_estado${row.id_categoria_producto}" name="switch_estado" ${estadoo} onclick="update_status(${row.id_categoria_producto})">
+                        <input type="checkbox" id="switch_estado${row.id_categoria}" name="switch_estado" ${estadoo} onclick="update_status(${row.id_categoria})">
                         <span class="lever"></span>
                     </label>
                 </div>
             </td>
-            <td data-target="Editar: "><a class="btn-flat boton_editar_tabl modal-trigger" href="#modal_editar_categ_o" onclick="openUpdate(${row.id_categoria_producto})"><i class=" material-icons small">edit</i></td>
+            <td data-target="Editar: "><a class="btn-flat boton_editar_tabl modal-trigger" href="#modal_editar_categ_o" onclick="openUpdate(${row.id_categoria})"><i class=" material-icons small">edit</i></td>
         </tr>
       `;
   });
@@ -121,7 +121,7 @@ function openUpdate(id) {
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
         if (response.status) {
           // Se inicializan los campos del formulario con los datos del registro seleccionado.
-          document.getElementById("id").value = response.dataset.id_categoria_producto;
+          document.getElementById("id_ca").value = response.dataset.id_categoria;
           document.getElementById("nombre_cate").value = response.dataset.categoria;
           document.getElementById("categoria-picA").setAttribute('src', SERVER + 'imagenes/categoria/' + response.dataset.imagen_categoria);
 
