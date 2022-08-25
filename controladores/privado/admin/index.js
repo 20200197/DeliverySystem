@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if(response.status){
                     sweetAlert(3, response.message, null);
                 } else if(response.session){
-                    sweetAlert(4, response.exception, 'dashboard.html');
+                    sweetAlert(4, response.exception, 'estadistica.html');
                 } else{
                     sweetAlert(4, response.exception, 'registrar_admin.html');
                 }
@@ -29,7 +29,7 @@ document.getElementById('login-form').addEventListener('submit', function() {
         if(request.ok){
             request.json().then(function (response) {
                 if(response.status){
-                    sweetAlert(1, response.message, 'dashboard.html');
+                    sweetAlert(1, response.message, "estadistica.html");
                 } else {
                     sweetAlert(2, response.exception, null)
                 }
