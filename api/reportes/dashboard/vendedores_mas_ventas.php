@@ -5,7 +5,7 @@ require('../../modelos/administrar_vendedor.php');
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
 // Se inicia el reporte con el encabezado del documento.
-$pdf->startReport('Top 5 vendedores con más ventas','hjh');
+$pdf->startReport('Top 5 vendedores con más ventas',$_SESSION['nombre_admin']);
 
 $administrar_vendedor = new AdministrarVendedor;
 // Se verifica si existen registros (categorías) para mostrar, de lo contrario se imprime un mensaje.

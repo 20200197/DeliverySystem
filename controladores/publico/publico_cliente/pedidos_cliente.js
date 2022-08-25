@@ -33,7 +33,7 @@ function fillTable(dataset) {
         <td>${row.apellido_repartidor}</td>
         <td>${row.estado}</td>
         <td>
-            <a class="waves-effect waves-light blue lighten-2 black-text btn-large col s12 l10" href="detalle_pedido_cliente.html" >
+            <a class="waves-effect waves-light blue lighten-2 black-text btn-large col s12 l10" href="detalle_pedido.html" >
                 <i class="material-icons left black-text">folder_open</i>Ver más
             </a>
         </td>
