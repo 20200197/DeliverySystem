@@ -710,12 +710,14 @@ function logOut(type) {
                     API = SERVER + 'dashboard/administrar_admin.php?action=logOut';
                     break;
                 case 'Vendedor':
-
                     API = SERVER + 'dashboard/administrar_vendedor.php?action=logOut'
                     break;
                 case 'Cliente':
                     API = SERVER + 'publico/cliente.php?action=logOut'
                     break;
+                    case 'Repartidor':
+                        API = SERVER + 'publico/repartidor.php?action=logOut'
+                        break;
             }
             fetch(API, {
                 method: 'get'

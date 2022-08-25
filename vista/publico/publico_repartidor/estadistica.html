@@ -21,26 +21,21 @@
 <body>
     <header>
         <nav>
-
             <div class="nav-wrapper white">
                 <div class="row valign-wrapper">
                     <div class="col m1 s1">
                         <a href="#" data-target="slide-out" class="sidenav-trigger"><i
                                 class="material-icons large blue-text">menu</i></a>
                     </div>
-                    <div class="col m5 s5 valign-wrapper">
+                    <div class="col m5 s5 left valign-wrapper">
 
-                        <img class="responsive-img" src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png" alt="">
+                        <img class="responsive-img" src="logo_delivery_system.png" alt="">
                     </div>
-                    <div class="col m6 s6">
-                        <ul class="right">
-                            <li><span class="black-text">Nombre del usuario</span></li>
-                            <li><a href="perfil.html" class="tooltipped " data-position="right" data-tooltip="Perfil"><i
-                                        class="material-icons medium black-text">account_circle</i></a></li>
+                    <div class="col m6 s6" id="opciones_navbar">
 
-                        </ul>
                     </div>
                 </div>
+            </div>
         </nav>
 
     </header>
@@ -61,13 +56,13 @@
             <li><a href="comentarios.html" class="tooltipped" data-position="right" data-tooltip="Comentarios"><i
                         class="material-icons  white-text">message</i><span
                         class="white-text hide-on-large-only">Comentarios</span></a></li>
-            <li class="hide-on-large-only"><button onclick="logOut('Vendedor')" class="tooltipped transparent logout valign-wrapper" data-position="right" data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
+            <li class="hide-on-large-only"><button onclick="logOut('Repartidor')" class="tooltipped transparent logout valign-wrapper" data-position="right" data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
                         class="white-text hide-on-large-only">Cerrar
                         sesión</span></button></li>
         </div>
         <div class="cerrar-navbar hide-on-med-and-down">
             <li>
-                <button onclick="logOut('Vendedor')" class="tooltipped white-text transparent logout valign-wrapper" data-position="right" data-tooltip="Cerrar sesión"><i class="material-icons ">arrow_back</i><span
+                <button onclick="logOut('Repartidor')" class="tooltipped white-text transparent logout valign-wrapper" data-position="right" data-tooltip="Cerrar sesión"><i class="material-icons ">arrow_back</i><span
                         class="white-text hide-on-large-only">Cerrar sesión</span></button>
             </li>
         </div>
@@ -180,6 +175,7 @@
     <script src="../../../js/chartist-plugin-tooltip.min.js"></script>
     <script src="../../../controladores/componentes.js"></script>
     <script src="../../../controladores/publico/publico_repartidor/estadistica.js"></script>
+    <script src="../../../controladores/publico/publico_repartidor/opciones_sesion.js"></script>
 </body>
 
 </html>

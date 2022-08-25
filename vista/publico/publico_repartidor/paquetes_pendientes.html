@@ -19,21 +19,42 @@
                         <a href="#" data-target="slide-out" class="sidenav-trigger"><i
                                 class="material-icons large blue-text">menu</i></a>
                     </div>
+                    <div class="col m5 s5 left valign-wrapper">
+
+                        <img class="responsive-img" src="logo_delivery_system.png" alt="">
+                    </div>
+                    <div class="col s6 m8 l8 right-align">
+                        <div class="switch switch_colorr  right-align">
+                            <label>
+                                🌕
+                                <input type="checkbox" id="switch_color" onclick="modoOscuro()">
+                                <span class="lever"></span>
+                                🌙
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col m6 s6" id="opciones_navbar">
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <header>
+        <nav>
+            <div class="nav-wrapper white">
+                <div class="row valign-wrapper">
+                    <div class="col m1 s1">
+                        <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                                class="material-icons large blue-text">menu</i></a>
+                    </div>
                     <div class="col m5 s5 valign-wrapper">
 
                         <img src="../../../recursos/img/logo_delivery_system.png" alt="">
                     </div>
                     <div class="col m6 s6">
-                        <div class="col s6 m8 l8 right-align">
-                            <div class="switch switch_colorr  right-align">
-                                <label>
-                                    🌕
-                                    <input type="checkbox" id="switch_color" onclick="modoOscuro()">
-                                    <span class="lever"></span>
-                                    🌙
-                                </label>
-                            </div>
-                        </div>
+                        
                         <ul class="right valign-wrapper">
                             <li><span class="black-text" id="opciones_navbar">Nombre del usuario</span></li>
                             <li><a href="perfil.html" class="tooltipped " data-position="right" data-tooltip="Perfil"><i
@@ -185,6 +206,7 @@
     <script src="../../../controladores/componentes.js"></script>
     <script src="../../../controladores/publico/publico_repartidor/paquetes_pendientes.js"></script>
     <script src="../../../controladores/activador.js"></script>
+    <script type="text/javascript" src="../../../controladores/publico/publico_repartidor/opciones_sesion.js"></script>
 </body>
 
 </html>
