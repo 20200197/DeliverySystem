@@ -30,7 +30,7 @@ if (isset($_GET['action'])) {
                 break;
             case 'ActualizarPerfil':
                 $_POST = $perfil->validateForm($_POST);
-                if (!$perfil->setIdentificador(1)) { //$_SESSION['id_cliente']
+                if (!$perfil->setIdentificador($_SESSION['id_cliente'])) { //$_SESSION['id_cliente']
                     $result['exception'] = "No se encontró la sesión de tu cuenta";
                 } elseif (!$data = $perfil->datosPerfil()) {
                     $result['exception'] = "Los datos de la cuenta no se encontraron";

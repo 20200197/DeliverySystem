@@ -284,7 +284,7 @@ class AdministrarCliente extends Validator
 		inner join cliente using (id_cliente)
 		inner join municipio using (id_municipio)
 		where id_cliente = ?";
-        $params = array(2);/*SESSION[id_cliente]*/
+        $params = array($_SESSION['id_cliente']);/*SESSION[id_cliente]*/
         return Database::getRows($sql, $params);
     }
 

@@ -144,7 +144,7 @@ class PerfilCliente extends Validator
     public function verificarPass($pass)
     {
         $sql = 'SELECT clave_cliente FROM cliente WHERE id_cliente = ?';
-        $params = array(1); //$_SESSION['id_cliente']
+        $params = array($_SESSION['id_cliente']); //$_SESSION['id_cliente']
         if (!$data = Database::getRow($sql, $params)) {
             return false;
         } elseif (!password_verify($pass, $data['clave_cliente'])) {
@@ -158,7 +158,7 @@ class PerfilCliente extends Validator
     public function nombreUsuario()
     {
         $sql = 'SELECT usuario_cliente FROM cliente WHERE id_cliente = ?';
-        $params = array(1); //$_SESSION['id_cliente']
+        $params = array($_SESSION['id_cliente']); //$_SESSION['id_cliente']
         return Database::getRow($sql, $params);
     }
 
@@ -166,14 +166,14 @@ class PerfilCliente extends Validator
     public function datosCuenta()
     {
         $sql = 'SELECT clave_cliente FROM cliente WHERE id_cliente = ?';
-        $params = array(1); //$_SESSION['id_cliente']
+        $params = array($_SESSION['id_cliente']); //$_SESSION['id_cliente']
         return Database::getRow($sql, $params);
     }
     //Actualizar datos de la cuenta
     public function actualizarCuenta($user, $pass)
     {
         $sql = 'UPDATE cliente SET usuario_cliente = ?, clave_cliente = ? WHERE id_cliente = ?';
-        $params = array($user, $pass, 1); //$_SESSION['id_cliente']
+        $params = array($user, $pass, $_SESSION['id_cliente']); //$_SESSION['id_cliente']
         return Database::executeRow($sql, $params);
     }
 }

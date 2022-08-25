@@ -177,7 +177,7 @@ class Entrega extends Validator
         inner join vendedor on producto.id_vendedor = vendedor.id_vendedor
         inner join cliente on direccion.id_cliente = cliente.id_cliente
         where factura.id_repartidor = ?";
-        $params = array(2); //SESSION[id_repartidor]
+        $params = array($_SESSION['id_repartidor']); //SESSION[id_repartidor]
         return Database::getRows($sql, $params);
     }
 

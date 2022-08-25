@@ -18,7 +18,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un repartidor ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
-                if (!$paquetes->setIdentificador(1)) { //$_SESSION['id_repartidor'] Se debería colocar
+                if (!$paquetes->setIdentificador($_SESSION['id_repartidor'])) { //$_SESSION['id_repartidor'] Se debería colocar
                     $result['exception'] = 'No se logró identificar tu usuario';
                 }elseif($result['dataset'] = $paquetes->cargarFacturas()) {
                     $result['status'] = 1;

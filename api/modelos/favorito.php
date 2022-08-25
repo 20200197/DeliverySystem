@@ -97,7 +97,7 @@ class Favorito extends Validator
                 FROM favorito
                 inner join producto using (id_producto)
                 WHERE status_favorito=true and id_cliente = ?";
-        $params = array(2);//SESSION[id_cliente]
+        $params = array($_SESSION['id_cliente']);//SESSION[id_cliente]
         return Database::getRows($sql, $params);
     }
 
@@ -129,7 +129,7 @@ class Favorito extends Validator
                  FROM favorito
                  inner join producto using (id_producto)
                  WHERE id_cliente = ?";
-         $params = array(2);//SESSION[id_cliente]
+         $params = array($_SESSION['id_cliente']);//SESSION[id_cliente]
          return Database::getRows($sql, $params);
      }
 

@@ -16,60 +16,54 @@
 </head>
 
 <body>
-<header>
-    <nav>
-        <div class="nav-wrapper white">
-            <div class="row valign-wrapper">
-                <div class="col m1 s1">
-                    <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+    <header>
+        <nav>
+            <div class="nav-wrapper white">
+                <div class="row valign-wrapper">
+                    <div class="col m1 s1">
+                        <a href="#" data-target="slide-out" class="sidenav-trigger"><i
                             class="material-icons large blue-text">menu</i></a>
-                </div>
-                <div class="col m5 s5 left valign-wrapper">
+                    </div>
+                    <div class="col m5 s5 left valign-wrapper">
 
-                    <img class="responsive-img" src="logo_delivery_system.png" alt="">
-                </div>
-                <div class="col m6 s8">
-                    <ul class="right">
-                        <li><span class="black-text" id="opciones_navbar">Nombre del usuario</span></li>
-                        <li><a href="perfil.html" class="tooltipped " data-position="right" data-tooltip="Perfil"><i
+                        <img class="responsive-img" src="logo_delivery_system.png" alt="">
+                    </div>
+                    <div class="col m6 s8">
+                        <ul class="right">
+                            <li><span class="black-text" id="opciones_navbar">Nombre del usuario</span></li>
+                            <li><a href="perfil.html" class="tooltipped " data-position="right" data-tooltip="Perfil"><i
                                     class="material-icons medium black-text">account_circle</i></a></li>
 
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-    </nav>
+        </nav>
 
-</header>
+    </header>
 
 
     <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2 left-align">
         <div class="opciones-sidenav">
-            <li class="collection-item"><a href="index.html" class="tooltipped" data-position="right"
-                    data-tooltip="Hogar"><i class="material-icons  white-text">home</i><span
+            <li class="collection-item"><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i class="material-icons  white-text">home</i><span
                         class="white-text hide-on-large-only">Inicio</span></a>
             </li>
-            <li><a href="perfil.html" class="tooltipped Hide-on-large-only " data-position="right"
-                    data-tooltip="Perfil"><i class="material-icons  white-text">account_circle</i><span
+            <li><a href="perfil.html" class="tooltipped Hide-on-large-only " data-position="right" data-tooltip="Perfil"><i class="material-icons  white-text">account_circle</i><span
                         class="white-text hide-on-large-only">Perfil</span></a></li>
             <li><a href="historial.html" class="tooltipped" data-position="right" data-tooltip="Historial"><i
                         class="material-icons  white-text">description</i><span
                         class="white-text hide-on-large-only">Historial</span></a></li>
-            <li><a href="paquetes_pendientes.html" class="tooltipped" data-position="right"
-                    data-tooltip="Paquetes pendientes"><i class="material-icons  white-text">alarm</i><span
+            <li><a href="paquetes_pendientes.html" class="tooltipped" data-position="right" data-tooltip="Paquetes pendientes"><i class="material-icons  white-text">alarm</i><span
                         class="white-text hide-on-large-only">Paquetes pendientes</span></a></li>
             <li><a href="comentarios.html" class="tooltipped" data-position="right" data-tooltip="Comentarios"><i
                         class="material-icons  white-text">message</i><span
                         class="white-text hide-on-large-only">Comentarios</span></a></li>
-            <li class="hide-on-large-only"><button onclick="logOut('Vendedor')"
-                    class="tooltipped transparent logout valign-wrapper" data-position="right"
-                    data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
+            <li class="hide-on-large-only"><button onclick="logOut('Vendedor')" class="tooltipped transparent logout valign-wrapper" data-position="right" data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
                         class="white-text hide-on-large-only">Cerrar
                         sesión</span></button></li>
         </div>
         <div class="cerrar-navbar hide-on-med-and-down">
             <li>
-                <button onclick="logOut('Vendedor')" class="tooltipped white-text transparent logout valign-wrapper"
-                    data-position="right" data-tooltip="Cerrar sesión"><i class="material-icons ">arrow_back</i><span
+                <button onclick="logOut('Vendedor')" class="tooltipped white-text transparent logout valign-wrapper" data-position="right" data-tooltip="Cerrar sesión"><i class="material-icons ">arrow_back</i><span
                         class="white-text hide-on-large-only">Cerrar sesión</span></button>
             </li>
         </div>
@@ -81,12 +75,10 @@
             <div class="col s1 m1 l8">
                 <div class="row">
                     <!-- Enlace para generar un reporte en formato PDF -->
-                    <a onclick="openReport()" class="btn-floating waves-effect blue tooltipped right"
-                        data-tooltip="Reporte">
+                    <a onclick="openReport()" class="btn-floating waves-effect blue tooltipped right" data-tooltip="Reporte: Top 10 clientes con más entregas">
                         <i class="material-icons">assignment</i></a>
-                        <a onclick="openReportComent()" class="btn-floating waves-effect blue tooltipped right"
-                    data-tooltip="Reporte">
-                    <i class="material-icons">assignment</i></a>
+                    <a onclick="openReportComent()" class="btn-floating waves-effect blue tooltipped right" data-tooltip="Reporte: Mejores comentarios de los últimos 7 días">
+                        <i class="material-icons">assignment</i></a>
                 </div>
             </div>
             <table>

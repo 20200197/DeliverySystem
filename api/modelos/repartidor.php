@@ -344,7 +344,7 @@ class Repartidor extends Validator
     public function checkPassword($password)
     {
         $sql = 'SELECT clave_repartidor FROM repartidor WHERE id_repartidor = ?';
-        $params = array(2); //creo que es SESION[id_reprtidor] sino le dejo this id
+        $params = array($_SESSION['id_repartidor']); //creo que es SESION[id_reprtidor] sino le dejo this id
         $data = Database::getRow($sql, $params);
         // Se verifica si la contraseña coincide con el hash almacenado en la base de datos.
         if (password_verify($password, $data['clave_repartidor'])) {
@@ -360,7 +360,7 @@ class Repartidor extends Validator
         $sql = "SELECT id_repartidor,nombre_repartidor, apellido_repartidor,dui_repartidor,correo_repartidor,usuario_repartidor,telefono_repartidor,clave_repartidor,solvencia_pnc,antecedente_penal,direccion_domicilio,placa_vehiculo,foto_placa_vehiculo,foto_repartidor,foto_vehiculo,fecha_registro
         from repartidor
         where id_repartidor = ?";
-        $params = array(2); //SESSION[id_repartidor]
+        $params = array($_SESSION['id_repartidor']); //SESSION[id_repartidor]
         return Database::getRow($sql, $params);
     }
 
@@ -474,7 +474,7 @@ class Repartidor extends Validator
         $sql = 'SELECT id_repartidor,nombre_repartidor, apellido_repartidor,dui_repartidor,correo_repartidor,usuario_repartidor,telefono_repartidor,clave_repartidor,solvencia_pnc,antecedente_penal,direccion_domicilio,placa_vehiculo,foto_placa_vehiculo,foto_repartidor,foto_vehiculo,fecha_registro
                 FROM repartidor
                 WHERE id_repartidor = ?';
-        $params = array(2); //SESSION[id_repartidor]
+        $params = array($_SESSION['id_repartidor']); //SESSION[id_repartidor]
         return Database::getRow($sql, $params);
     }
 
@@ -540,7 +540,7 @@ class Repartidor extends Validator
                   inner join departamento departamento on municipio.id_departamento = departamento.id_departamento
                   where valoracion >= 4 and (factura.fecha_compra >= current_date or factura.fecha_compra >= current_date -7 ) and id_repartidor = ?
                   order by valoracion";
-        $params = array(2); //$SESSION[id_repartidor]
+        $params = array($_SESSION('id_repartidor'));
         return Database::getRows($sql, $params);
     }
 
