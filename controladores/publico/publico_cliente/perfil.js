@@ -18,7 +18,7 @@ function fillTable(datos) {
     document.getElementById('apellido').value = datos.apellido_cliente;
     document.getElementById('correo').value = datos.correo_cliente;
     document.getElementById('telefono').value = datos.telefono_cliente;
-    document.getElementById('fotoPerfil').src = SERVER + '/imagenes/cliente/foto/' + datos.foto_cliente;
+    document.getElementById('fotoPerfil').src = SERVER + '/imagenes/cliente/' + datos.foto_cliente;
 }
 
 //Función para previsualizar la foto de perfil

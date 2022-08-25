@@ -14,7 +14,7 @@ class PerfilCliente extends Validator
     private $fotoCliente = null;
     private $passCliente = null;
     private $UserCliente = null;
-    private $ruta = '../imagenes/cliente/foto/';
+    private $ruta = '../imagenes/cliente/';
 
     //Se crean los constructores para colocar los datos
     public function setIdentificador($value)
