@@ -654,4 +654,16 @@ class Producto extends Validator
         return Database::getRows($sql, $params);
     }
 
+    public function getValoration($valoration)
+    {
+        $sql = 'SELECT COUNT(nombre_producto) as numero, nombre_producto, ROUND(avg(valoracion), 2) as valoracion
+                FROM producto
+                INNER JOIN detalle_factura USING (id_producto)
+                INNER JOIN comentario_producto USING (id_detalle)
+                WHERE id_vendedor = ? AND valoracion <= ? AND visible = true
+                GROUP BY nombre_producto';
+        $params = array($_SESSION['id_vendedor'], $valoration);
+
+        return Database::getRows($sql, $params);
+    }
 }
