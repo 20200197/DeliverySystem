@@ -6,7 +6,7 @@ require('../../models/administrar_categoria.php');
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
 // Se inicia el reporte con el encabezado del documento.
-$pdf->startReport('Productos por categoría','usuario');
+$pdf->startReport('Productos por categoría',$_SESSION['nombre_vendedior']);
 
 // Se instancia el módelo Categorías para obtener los datos.
 $categoria = new Categoria;

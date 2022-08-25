@@ -240,6 +240,11 @@ class AdministrarVendedor extends Validator
         return $this->dui;
     }
 
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
 
 
     /*
@@ -328,7 +333,7 @@ class AdministrarVendedor extends Validator
 
     public function checkPass($pass)
     {
-        $sql = 'SELECT id_vendedor, clave_vendedor FROM vendedor WHERE usuario_vendedor = ?';
+        $sql = "SELECT id_vendedor, clave_vendedor, CONCAT(nombre_vendedor, ' ',apellido_vendedor) AS nombre_vendedor FROM vendedor WHERE usuario_vendedor = ?";
         $params = array($this->usuario);
 
         if (!$data = Database::getRow($sql, $params)) {
@@ -336,6 +341,7 @@ class AdministrarVendedor extends Validator
         } elseif (!password_verify($pass, $data['clave_vendedor'])) {
             return false;
         } else {
+            $this->setUsuario($data['nombre_vendedor']);
             return true;
         }
     }

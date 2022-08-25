@@ -6,7 +6,7 @@ require('../../modelos/administrar_cliente.php');
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
 // Se inicia el reporte con el encabezado del documento.
-$pdf->startReport('Gastos por cliente');
+$pdf->startReport('Gastos por cliente', $_SESSION['']);
 
 // Se instancia el módelo Clientes para obtener los datos.
 $administrar_cliente = new Clientes;

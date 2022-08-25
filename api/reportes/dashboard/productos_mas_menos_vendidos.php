@@ -5,8 +5,10 @@ require('../../modelos/administrar_productos.php');
 
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
+//Se inicia la sesión
+session_start();
 // Se inicia el reporte con el encabezado del documento.
-$pdf->startReport('Top 5 productos más vendidos y menos vendidos', 'usuario');
+$pdf->startReport('Top 5 productos más vendidos y menos vendidos', $_SESSION['nombre_admin']);
 
 // Se instancia el módelo Producto para obtener los datos.
 $producto = new Producto;

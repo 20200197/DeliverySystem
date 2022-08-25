@@ -169,16 +169,16 @@ class Cliente extends Validator {
     //Metodo para obtener el id del usuario que quiere iniciar sesión
     public function checkUser()
     {
-        $sql = 'SELECT id_cliente, status_cliente, nombre_cliente, apellido_cliente, usuario_cliente
+        $sql = "SELECT id_cliente, status_cliente, nombre_cliente, apellido_cliente, usuario_cliente, CONCAT(nombre_cliente, ' ', apellido_cliente) AS nombre_cliente
                 FROM cliente 
-                WHERE usuario_cliente = ?';
+                WHERE usuario_cliente = ?";
         $params = array($this->usuario);
         if ($data = Database::getRow($sql, $params)) {
             $this->id = $data['id_cliente'];
             $this->status = $data['status_cliente'];
             $this->nombre = $data['nombre_cliente'];
             $this->apellido = $data['apellido_cliente'];
-            $this->usuario = $data['usuario_cliente'];
+            $this->usuario = $data['nombre_cliente'];
             return true;
         } else {
             return false;

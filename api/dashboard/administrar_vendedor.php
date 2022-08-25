@@ -158,6 +158,7 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
                     $_SESSION['id_vendedor'] = $administrar_vendedor->getId();
+                    $_SESSION['nombre_vendedor'] = $administrar_vendedor->getUsuario();
                 } elseif (!$administrar_vendedor->checkPass($_POST['password'])) {
                     $result['exception'] = 'Contraseña incorrecta';
                 }

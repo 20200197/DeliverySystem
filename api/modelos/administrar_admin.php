@@ -165,7 +165,7 @@ class Administrador extends Validator{
 
     public function checkPass($pass)
     {
-        $sql = 'SELECT id_admin, clave_admin FROM administrador WHERE usuario_admin = ?';
+        $sql = "SELECT id_admin, clave_admin, CONCAT(nombre_admin, ' ', apellido_admin) AS nombre_admin FROM administrador WHERE usuario_admin = ?";
         $params = array($this->usuario);
 
         if (!$data = Database::getRow($sql, $params)) {
@@ -173,6 +173,7 @@ class Administrador extends Validator{
         } elseif (!password_verify($pass, $data['clave_admin'])) {
             return false;
         } else {
+            $this->setUsuario($data['nombre_admin']);
             return true;
         }
     }

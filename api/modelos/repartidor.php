@@ -481,9 +481,9 @@ class Repartidor extends Validator
     //Cambios Bonilla1
     public function checkUser()
     {
-        $sql = 'SELECT id_repartidor, id_status_repartidor, nombre_repartidor, apellido_repartidor, usuario_repartidor
+        $sql = "SELECT id_repartidor, id_status_repartidor, nombre_repartidor, apellido_repartidor, usuario_repartidor, CONCAT(nombre_repartidor, ' ',apellido_repartidor) AS nombre_repartidor
                 FROM repartidor
-                WHERE usuario_repartidor = ?';
+                WHERE usuario_repartidor = ?";
         $params = array($this->usuario);
         if ($data = Database::getRow($sql, $params)) {
             $this->id = $data['id_repartidor'];
@@ -491,6 +491,7 @@ class Repartidor extends Validator
             $this->nombre = $data['nombre_repartidor'];
             $this->apellido = $data['apellido_repartidor'];
             $this->usuario = $data['usuario_repartidor'];
+            $this->setUsuario($data['nombre_repartidor']);
             return true;
         } else {
             return false;
@@ -515,9 +516,9 @@ class Repartidor extends Validator
     //Metodo para verificar la contraseña
     public function checkPass($pass)
     {
-        $sql = 'SELECT clave_repartidor, id_repartidor
+        $sql = "SELECT clave_repartidor, id_repartidor
                 FROM repartidor
-                WHERE id_repartidor = ?';
+                WHERE id_repartidor = ?";
         $params = array($this->id);
 
         if (!$data = Database::getRow($sql, $params)) {
