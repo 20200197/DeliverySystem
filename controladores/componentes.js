@@ -740,4 +740,3 @@ function logOut(type) {
         }
     });
 }
-

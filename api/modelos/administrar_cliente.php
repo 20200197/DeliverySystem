@@ -16,6 +16,13 @@ class AdministrarCliente extends Validator
     private $coordenadas = null;
     private $id_municipio = null;
 
+    //Grafico
+    private $total = null;
+    private $nombre = null;
+    private $apellido = null;
+    private $correo = null;
+    private $dui = null;
+
 
 
     /*
@@ -117,6 +124,60 @@ class AdministrarCliente extends Validator
         }
     }
 
+
+    public function setTotal($value)
+    {
+        if ($this->validateMoney($value)) {
+            $this->total = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setNombre($value)
+    {
+        if ($this->validateAlphanumeric($value, 1, 50)) {
+            $this->nombre = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setApellido($value)
+    {
+        if ($this->validateAlphanumeric($value, 1, 50)) {
+            $this->apellido = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setCorreo($value)
+    {
+        if ($this->validateEmail($value)) {
+            $this->correo = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setDUI($value)
+    {
+        if ($this->validateDUI($value)) {
+            $this->dui = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /*
+    *   Métodos para obtener valores de los atributos.
+    */
     public function getIdentificador()
     {
         return $this->identificador;
@@ -151,6 +212,33 @@ class AdministrarCliente extends Validator
     {
         return $this->id_direccion;
     }
+
+
+    public function getTotal()
+    {
+        return $this->total;
+    }
+
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    public function getApellido()
+    {
+        return $this->apellido;
+    }
+
+    public function getCorreo()
+    {
+        return $this->correo;
+    }
+
+    public function getDUI()
+    {
+        return $this->dui;
+    }
+
 
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
@@ -251,5 +339,17 @@ class AdministrarCliente extends Validator
         $sql = 'DELETE from direccion  where id_direccion = ?';
         $params = array($this->id_direccion);
         return Database::executeRow($sql, $params);
+    }
+
+    //Grafico Top 5 clientes mas destacados, valor ventas en dinero
+    public function topClientesDestacados()
+    {
+        $sql = "SELECT total, CONCAT(nombre_cliente,' ', apellido_cliente) as nombre_cliente
+        FROM factura
+        INNER JOIN direccion ON factura.id_direccion = direccion.id_direccion
+        INNER JOIN cliente ON direccion.id_cliente = cliente.id_cliente
+        ORDER BY total desc limit 5";
+        $params = null;/*SESSION[id_cliente]*/
+        return Database::getRows($sql, $params);
     }
 }

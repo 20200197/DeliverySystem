@@ -22,8 +22,12 @@ class Producto extends Validator
     private $buscadorL = null;
     private $id_categoria = null;
 
+
     private $id_departamento = null;
     private $nombre_categoria = null;
+
+
+  
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -203,6 +207,7 @@ class Producto extends Validator
         }
     }
 
+
     /*
     *   Métodos para obtener valores de los atributos.
     */
@@ -273,6 +278,7 @@ class Producto extends Validator
 
 
 
+
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
@@ -287,9 +293,11 @@ class Producto extends Validator
         inner join marca using (id_marca)
        where nombre_producto ILIKE ? or categoria ILIKE ? or nombre_vendedor ILIKE ? or nombre_marca ILIKE ?
         group by producto.id_producto,vendedor.nombre_vendedor,vendedor.apellido_vendedor,marca.nombre_marca, comentario_producto.id_detalle;";
+
         $params = array("%$value%", "%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
+
 
     public function searchRowsProductoCategoria($value, $id)
     {
@@ -307,12 +315,13 @@ class Producto extends Validator
     }
 
 
+
     //Función para leer todos los datos
     public function readAll()
     {
         $sql = "SELECT id_producto, nombre_producto, cantidad_producto, descripcion_producto, precio_producto, imagen, categoria.categoria,categoria.imagen_categoria,CONCAT(nombre_vendedor,' ',apellido_vendedor) as nombre_vendedor, nombre_marca, status_producto
 		from producto producto
-		inner join categoria categoria on producto.id_categoria = categoria.id_categoria
+    	inner join categoria categoria on producto.id_categoria = categoria.id_categoria
 		inner join vendedor using (id_vendedor)
 		inner join marca using (id_marca)
         order by nombre_producto";
@@ -360,6 +369,7 @@ class Producto extends Validator
     //Leemos categorias
     public function   readCategoria()
     {
+
         $sql = "SELECT id_categoria, categoria, imagen_categoria
 		from categoria
         where status_categoria = true
@@ -452,6 +462,7 @@ class Producto extends Validator
     }
 
     //Buscador por calidad
+
     public function searchProductoCalidad($valorU, $valorD, $valorT, $valorC, $valorCi)
     {
         $sql = "SELECT producto.id_producto, nombre_producto, cantidad_producto, descripcion_producto, precio_producto, imagen,CONCAT(nombre_vendedor,' ',apellido_vendedor) as nombre_vendedor, nombre_marca, status_producto,avg(comentario_producto.valoracion) as calidad
@@ -494,6 +505,7 @@ class Producto extends Validator
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
+
 
     /** Porcentaje de ventas por categoria de sus productos **/ 
     public function readPorcentajeVentaCategoria()
@@ -624,5 +636,22 @@ class Producto extends Validator
         return Database::getRows($sql, $params);
     }
 
+    //Grafico Porcentaje de productos por marca
+    public function porcentajeProductos()
+    {
+        $sql = "SELECT categoria, SUM(ROUND((cantidad_producto * 100.0 /
+            (SELECT sum(cantidad_producto)
+            FROM producto
+            )
+        ), 2))
+        porcentaje
+        FROM detalle_factura
+        INNER JOIN factura ON detalle_factura.id_factura = factura.id_factura
+        INNER JOIN producto ON detalle_factura.id_producto = producto.id_producto
+        INNER JOIN categoria ON producto.id_categoria = categoria.id_categoria
+        GROUP BY categoria;";
+        $params = null;/*SESSION[id_cliente]*/
+        return Database::getRows($sql, $params);
+    }
 
 }

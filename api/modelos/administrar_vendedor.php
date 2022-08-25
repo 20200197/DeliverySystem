@@ -395,6 +395,7 @@ class AdministrarVendedor extends Validator
         return Database::getRow($sql, $params);
     }
 
+
      /** Porcentaje de ventas por categoria de sus productos **/ 
      public function readPorcentajeVentaCategoria()
      {
@@ -449,4 +450,17 @@ class AdministrarVendedor extends Validator
  
         return Database::getRows($sql, $params);
       }
+    /** Top 5 vendedores con más ventas **/
+    public function readVendedoresVentas()
+    {
+        $sql = "SELECT  CONCAT(nombre_vendedor,' ', apellido_vendedor) AS nombre_vendedor,SUM(precio * cantidad_pedido) AS total, vendedor.id_vendedor,correo_vendedor, dui_vendedor, status_vendedor,SUM(cantidad_pedido) AS cantidad_total_vendida
+        FROM factura
+        inner join detalle_factura on detalle_factura.id_factura = factura.id_factura
+        INNER JOIN producto ON detalle_factura.id_producto = producto.id_producto
+        INNER JOIN vendedor ON producto.id_vendedor = vendedor.id_vendedor
+        GROUP BY vendedor.id_vendedor limit 5";
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
 }

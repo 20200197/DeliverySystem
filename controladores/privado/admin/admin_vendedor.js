@@ -184,4 +184,13 @@ function eliminar(id) {
     datos.append("identificador", id);
     //Se realiza la promesa
     confirmDelete(API_VENDEDOR, datos);
+
+}
+
+// Función para abrir el reporte de productos.
+function openReportVendedoresMasVentas() {
+    // Se establece la ruta del reporte en el servidor.
+    let url = SERVER + 'reportes/dashboard/vendedores_mas_ventas.php';
+    // Se abre el reporte en una nueva pestaña del navegador web.
+    window.open(url);
 }
