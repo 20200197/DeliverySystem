@@ -16,9 +16,9 @@ class Database
     {
         // Credenciales para establecer la conexión con la base de datos.
         $server = 'localhost';
-        $database = 'delivery';
+        $database = 'deliverysystem';
         $username = 'postgres';
-        $password = 'admin';
+        $password = 'Firearcher15';
 
 
         // Se crea la conexión mediante la extensión PDO y el controlador para PostgreSQL.

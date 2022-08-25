@@ -160,7 +160,8 @@ class Entrega extends Validator
         inner join metodo_pago on factura.id_metodo_pago = metodo_pago.id_metodo_pago
         inner join direccion direccion on factura.id_direccion = direccion.id_direccion
         inner join cliente cliente on direccion.id_cliente = cliente.id_cliente
-        inner join repartidor on factura.id_repartidor = repartidor.id_repartidor";
+        inner join repartidor on factura.id_repartidor = repartidor.id_repartidor
+        WHERE detalle_factura.status = true";
         $params = null;
         return Database::getRows($sql, $params);
     }
