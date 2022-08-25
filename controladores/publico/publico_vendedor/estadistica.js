@@ -8,6 +8,105 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
+//cambios Bonilla1 24-08-2022
+function opcionesCategoria(){
+    fetch(API_VENDEDOR + "readAllCategoria", {
+        method: "get",
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                let content = "";
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Si no existe un valor para seleccionar, se muestra una opción para indicarlo.
+                    if (!null) {
+                        content += "<option disabled selected>Seleccione una opción</option>";
+                    }
+                    // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+                    response.dataset.map(function (row) {
+                        // Se obtiene el dato del primer campo de la sentencia SQL (valor para cada opción).
+                        value = Object.values(row)[0];
+                        // Se obtiene el dato del segundo campo de la sentencia SQL (texto para cada opción).
+                        text = Object.values(row)[1];
+                        // Se verifica si el valor de la API es diferente al valor seleccionado para enlistar una opción, de lo contrario se establece la opción como seleccionada.
+                        if (value != null) {
+                            content += `<option value="${value}">${text}</option>`;
+                        } else {
+                            content += `<option value="${value}" selected>${text}</option>`;
+                        }
+                    });
+                } else {
+                    content += "<option>No hay opciones disponibles</option>";
+                }
+                // Se agregan las opciones a la etiqueta select mediante su id.
+                document.getElementById("opciones_departamento").innerHTML = content;
+            });
+        } else {
+            console.log(request.status + " " + request.statusText);
+        }
+    });
+    openParametro();
+}
+ 
+//Función para abriri parametro para reporte
+function openParametro() {
+    Swal.fire({
+        title: "Selecciona una categoria",
+        html: '<div class="input-field"><select class="browser-default" id="opciones_departamento" name="opciones_departamento" required> </select></div>',
+        showCancelButton: true,
+        allowOutsideClick: false,
+    }).then((result) => {
+        if (result.isDismissed) {
+        } else {
+            //Obtenemos la opcion seleccinada
+            var selectedOption =
+                document.getElementById("opciones_departamento").options[
+                    document.getElementById("opciones_departamento").selectedIndex
+                ];
+            console.log(selectedOption.text);
+            readLineaVentas(selectedOption.text);
+        }
+    });
+}
+ 
+function readLineaVentas(categoria) {
+    let parameter = new FormData();
+    parameter.append('nombre_categoria', categoria);
+ 
+    fetch(API_VENDEDOR + 'readSellCategory', {
+        method: 'post',
+        body: parameter
+    }).then(function (request){
+        if(request.ok){
+            request.json().then(function(response){
+                let cabeceras = [];
+                let general = [];
+                if(response.status){
+                    let datos = [];
+                    response.dataset.map(function(row){
+                        cabeceras.push(row.fecha);
+                        datos.push({
+                            meta: '($)',
+                            value: row.total
+                        });
+
+
+                    });
+
+                    general.push(datos);
+                    lineaI('.recaudado_categoria_linea', cabeceras, general);
+                }else{
+                    lineaI('.recaudado_categoria_linea', null, null);
+                }
+            });
+        }else{
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
 //Función que cargar las graficas de barra donde se mueestra top 5 productos mas vendidos con sus valoraciones
 function readbarrasProductosMasVendidosValorados() {
 
@@ -38,6 +137,8 @@ function readbarrasProductosMasVendidosValorados() {
                         fila.push(row.cantidad_pedido); //Se agrega un dato para el titulo
                         //fila2.push(row.cantidad); //Si se desea agregar más de un datos por titulo se agregan aquí
                         //fila3.push(row.cantidad); //Si se desea agregar más de un datos por titulo se agregan aquí
+
+                        
 
                     });
                     //Se cargan los datos dentro del contenedor
