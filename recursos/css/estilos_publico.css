@@ -21,6 +21,13 @@ h6 {
     font-size: 32pt !important;
 }
 
+.icono-registro {
+    font-size: 20pt !important;
+    height: auto !important;
+    line-height: 35px !important;
+}
+
+
 @media only screen and (max-width: 992px) {
     header,
     main,
