@@ -7,6 +7,7 @@ $producto = new Producto;
 
 session_start();
 
+$pdf->setFont('Times', 'B', 11);
 if (isset($_SESSION['nombre_vendedor'])) {
     $pdf->startReport('Top 10 productos segun valoración', $_SESSION['nombre_vendedor']);
     $pdf->setFillColor(52, 152, 247);
