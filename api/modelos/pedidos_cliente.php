@@ -113,12 +113,13 @@ class Pedidos_cliente extends Validator
     //Función para leer todos los datos
     public function readAll()
     {
-        $sql = 'SELECT imagen, total, nombre_repartidor, apellido_repartidor, estado
-                FROM detalle_factura
-                inner join factura on detalle_factura.id_factura = factura.id_factura
-                inner join producto on detalle_factura.id_producto = producto.id_producto
-                inner join repartidor on factura.id_repartidor = repartidor.id_repartidor
-                inner join estado_factura on factura.id_status = estado_factura.id_status';
+        $sql = 'SELECT id_factura, total, nombre_repartidor, apellido_repartidor, estado
+                FROM factura
+                inner join detalle_factura USING(id_factura)
+                inner join producto USING(id_producto)
+                inner join repartidor USING (id_repartidor)
+                inner join estado_factura USING (id_status)
+                GROUP BY id_factura, nombre_repartidor, apellido_repartidor, estado';
         $params = null;
         return Database::getRows($sql, $params);
     }
