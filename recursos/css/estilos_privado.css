@@ -10,6 +10,10 @@ footer {
     padding-left: 6%;
 }
 
+.icono-sesion {
+    font-size: 32pt !important;
+}
+
 @media only screen and (max-width: 992px) {
 
     header,

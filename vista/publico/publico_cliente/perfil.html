@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <!--Encabezado-->
+    <!--Encabezado y sesión-->
     <header>
         <nav>
             <div class="nav-wrapper white">
@@ -26,24 +26,18 @@
                                 class="material-icons large blue-text">menu</i></a>
                     </div>
                     <div class="col m5 s5 left valign-wrapper">
-    
+
                         <img class="responsive-img" src="logo_delivery_system.png" alt="">
                     </div>
-                    <div class="col m6 s6">
-                        <ul class="right valign-wrapper">
-                            <li><span class="black-text" id="opciones_navbar">Nombre del usuario</span></li>
-                            <li><a href="perfil.html" class="tooltipped " data-position="right" data-tooltip="Perfil"><i
-                                        class="material-icons medium black-text">account_circle</i></a></li>
-    
-                        </ul>
+                    <div class="col m6 s6" id="opciones_navbar">
+
                     </div>
                 </div>
             </div>
         </nav>
-    
-    </header>
 
-    <!--Barra lateral-->
+    </header>
+    <!--Menú lateral-->
     <div class="row">
         <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
             <div class="opciones-sidenav">
@@ -51,16 +45,13 @@
                         data-tooltip="Hogar"><i class="material-icons  white-text">home</i><span
                             class="white-text hide-on-large-only">Inicio</span></a>
                 </li>
-                <li><a href="perfil.html" class="tooltipped Hide-on-large-only " data-position="right"
+                <li><a href="perfil_cliente.html" class="tooltipped Hide-on-large-only " data-position="right"
                         data-tooltip="Perfil"><i class="material-icons  white-text">account_circle</i><span
                             class="white-text hide-on-large-only">Perfil</span></a></li>
-                <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Ventas"><i
+                <li><a href="carrito.html" class="tooltipped" data-position="right" data-tooltip="Carrito de compras"><i
                             class="material-icons  white-text">shopping_basket</i><span
                             class="white-text hide-on-large-only">Compras</span></a></li>
-                <li><a href="mis_productos.html" class="tooltipped" data-position="right"
-                        data-tooltip="Mis productos"><i class="material-icons  white-text">format_list_bulleted</i><span
-                            class="white-text hide-on-large-only">Categoria</span></a></li>
-                <li class="hide-on-large-only"><button onclick="logOut('Vendedor')"
+                <li class="hide-on-large-only"><button onclick="logOut('Cliente')"
                         class="tooltipped transparent logout valign-wrapper" data-position="right"
                         data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
                             class="white-text hide-on-large-only">Cerrar
@@ -68,7 +59,7 @@
             </div>
             <div class="cerrar-navbar hide-on-med-and-down">
                 <li>
-                    <button onclick="logOut('Vendedor')" class="tooltipped white-text transparent logout valign-wrapper"
+                    <button onclick="logOut('Cliente')" class="tooltipped white-text transparent logout valign-wrapper"
                         data-position="right" data-tooltip="Cerrar sesión"><i
                             class="material-icons ">arrow_back</i><span class="white-text hide-on-large-only">Cerrar
                             sesión</span></button>
@@ -208,9 +199,7 @@
             </div>
         </div>
     </div>
-
-
-    <!--Footer-->
+    <!--Footer con la página-->
     <footer class="page-footer blue accent-3">
         <div class="row">
             <div class="col l9 m6 s6">
@@ -250,11 +239,11 @@
             <div class="col l3 s6">
                 <div class="col l12 m12">
                     <ul>
-                        <h5 class="">Información pública</h5>
-                        <li><a href="" class="white-text">Quienes somos</a></li>
-                        <li><a href="" class="white-text">Contáctanos</a></li>
-                        <li><a href="" class="white-text">Misión y visión</a></li>
-                        <li><a href="" class="white-text">Términos y condiciones</a></li>
+                        <h5>Información pública</h5>
+                        <li><a href="quienes_somos.html" class="white-text">Quienes somos</a></li>
+                        <li><a href="contactenos.html" class="white-text">Contáctanos</a></li>
+                        <li><a href="mision_vision.html" class="white-text">Misión y visión</a></li>
+                        <li><a href="terminos.html" class="white-text">Términos y condiciones</a></li>
                     </ul>
                 </div>
             </div>
@@ -270,4 +259,5 @@
     <script type="text/javascript" src="../../../controladores/validator.js"></script>
     <script type="text/javascript" src="../../../controladores/activador.js"></script>
 </body>
+
 </html>

@@ -19,13 +19,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (response.status) {
                     data = response.dataset;
                     //Si hay sesión se reeemplazan las opciones
-                    contenido = `<h6>${data.nombre}</h6>`;
+                    contenido = `
+                    <div class="col l11 m8 s12 right-align">
+                        <span class="black-text">${data.nombre}</span>
+                    </div>
+                    <div class="col l1 m4 s12 left">
+                        <a href="perfil_cliente.html"><i class="icono-sesion material-icons black-text">account_circle</i></a>
+                    </div>`;
                     //se incrustan en el html
                     document.getElementById("opciones_navbar").innerHTML = contenido;
                 } else {
                     //si no hay sesión se coloca la opción para iniciar sesión
                     contenido = `
-                    <a href="index.html" class="waves-effect waves-light btn boton_iniciar_sesion">Log In</a>
+                    <div class="col l12 m12 s12 right-align">
+                        <a href="login.html" class="waves-effect waves-light btn blue accent-2 boton_iniciar_sesion">Iniciar sesion</a>
+                    </div>
                     `;
                     //se incrustan en el html
                     document.getElementById("opciones_navbar").innerHTML = contenido;
