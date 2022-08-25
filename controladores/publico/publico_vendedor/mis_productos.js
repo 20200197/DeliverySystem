@@ -289,3 +289,30 @@ function openReport(categoria) {
     // data.append("categoriaN", categoria);
     // request.send(data);
 }
+
+function cargarEstrellas() {
+    document.getElementById("estrellas_producto1").innerHTML = ` 
+                    <input id="star1-1" name="estrellas" type="radio" value="5" />
+                                    <label onclick="asignValue(5)" for="star1-1"><i class="material-icons medium estrella">star</i></label>
+                                    <input id="star2-1" name="estrellas" type="radio" value="4" />
+                                    <label onclick="asignValue(4)" for="star2-1"><i class="material-icons medium estrella">star</i></label>
+                                    <input id="star3-1" name="estrellas" type="radio" value="3" />
+                                    <label onclick="asignValue(3)" for="star3-1"><i class="material-icons medium estrella">star</i></label>
+                                    <input id="star4-1" name="estrellas" type="radio" value="2" />
+                                    <label onclick="asignValue(2)" for="star4-1"><i class="material-icons medium estrella">star</i></label>
+                                    <input id="star5-1" name="estrellas" type="radio" value="1" />
+                                    <label onclick="asignValue(1)" for="star5-1"><i class="material-icons medium estrella">star</i></label>
+                                    <input id="star0-1" name="estrellas" type="radio" value="0" class="hide"
+                                        checked />`;
+}
+
+var valueStar = 0;
+function asignValue(value) {
+    valueStar = value;
+}
+
+function openReportStar() {
+    let url = SERVER + `reportes/publico/top_valoracion.php?stars=${valueStar}`;
+
+    window.open(url);
+}

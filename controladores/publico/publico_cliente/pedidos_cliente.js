@@ -29,12 +29,16 @@ function fillTable(dataset) {
       <tr>
         <td>${row.id_factura}</td>
         <td>${row.total}</td>
-        <td>${row.nombre_repartidor}</td>
-        <td>${row.apellido_repartidor}</td>
+        <td>${row.fecha_compra}</td>
         <td>${row.estado}</td>
         <td>
-            <a class="waves-effect waves-light blue lighten-2 black-text btn-large col s12 l10" href="detalle_pedido.html" >
+            <a class="waves-effect waves-light blue lighten-2 black-text btn-large col s12 l8" href="detalle_pedido.html?id_factura=${row.id_factura}" >
                 <i class="material-icons left black-text">folder_open</i>Ver más
+            </a>
+        </td>
+        <td>
+            <a class="waves-effect waves-light blue lighten-2 black-text btn-large col s12 l8" onclick="openFactura(${row.id_factura})">
+                <i class="material-icons left black-text">local_printshop</i>Factura
             </a>
         </td>
     </tr>
@@ -47,3 +51,9 @@ function fillTable(dataset) {
     // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
     M.Tooltip.init(document.querySelectorAll(".tooltipped"));
   }
+
+function openFactura(id){
+  let url = SERVER + 'reportes/publico/factura.php?id=' + id;
+
+  window.open(url);
+}
