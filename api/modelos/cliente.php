@@ -2,7 +2,8 @@
 
 use JetBrains\PhpStorm\ArrayShape;
 
-class Cliente extends Validator {
+class Cliente extends Validator
+{
     private $id = null;
     private $nombre = null;
     private $apellido = null;

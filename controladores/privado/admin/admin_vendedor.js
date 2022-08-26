@@ -52,14 +52,14 @@ function cargarInfo(id) {
         //Se revisa si la petición fue ejecutada
         request.ok
             ? //Se obtiene en Json
-              request.json().then(function (response) {
-                  //Se revisa el estado de la respuesta
-                  response.status
-                      ? //Se envía al método que cargará los datos
-                        cargarModal(response.dataset)
-                      : //Se imprime el problema
-                        sweetAlert(3, response.exception, null);
-              })
+            request.json().then(function (response) {
+                //Se revisa el estado de la respuesta
+                response.status
+                    ? //Se envía al método que cargará los datos
+                    cargarModal(response.dataset)
+                    : //Se imprime el problema
+                    sweetAlert(3, response.exception, null);
+            })
             : console.log(); //Se imprime el error en la consola
     });
 }
@@ -164,9 +164,9 @@ function buscar() {
                     fillTable(response.dataset);
                     document.getElementById('notificacion').innerHTML = '';
                 } else {
-                     //Se cargan los datos obtenidos
-                     fillTable(response.dataset);
-                     document.getElementById('notificacion').innerHTML = 'No se encontraron datos según la busqueda solicitada';
+                    //Se cargan los datos obtenidos
+                    fillTable(response.dataset);
+                    document.getElementById('notificacion').innerHTML = 'No se encontraron datos según la busqueda solicitada';
                 }
             });
         } else {

@@ -27,7 +27,7 @@ class Producto extends Validator
     private $nombre_categoria = null;
 
 
-  
+
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -310,7 +310,7 @@ class Producto extends Validator
         inner join marca using (id_marca)
         where nombre_producto ILIKE ? or categoria ILIKE ? or nombre_vendedor ILIKE ? or nombre_marca ILIKE ? and id_categoria = ?
         group by producto.id_producto,vendedor.nombre_vendedor,vendedor.apellido_vendedor,marca.nombre_marca, comentario_producto.id_detalle;";
-        $params = array("%$value%", "%$value%", "%$value%", "%$value%",$id);
+        $params = array("%$value%", "%$value%", "%$value%", "%$value%", $id);
         return Database::getRows($sql, $params);
     }
 
@@ -507,7 +507,7 @@ class Producto extends Validator
     }
 
 
-    /** Porcentaje de ventas por categoria de sus productos **/ 
+    /** Porcentaje de ventas por categoria de sus productos **/
     public function readPorcentajeVentaCategoria()
     {
         $sql = " SELECT categoria, SUM(ROUND((cantidad_pedido * 100.0 / 
@@ -578,13 +578,13 @@ class Producto extends Validator
     public function readProductosMenosVendidos()
     {
         $sql = "SELECT producto.nombre_producto, sum(detalle_factura.cantidad_pedido) as cantidad_pedido,min(detalle_factura.cantidad_pedido) as cantidad_minima, (sum(detalle_factura.cantidad_pedido) * (detalle_factura.precio + detalle_factura.costo_envio)) as total, categoria.categoria  
-        from producto 
-        inner join detalle_factura detalle_factura on detalle_factura.id_producto = producto.id_producto 
-        inner join factura factura on factura.id_factura = detalle_factura.id_factura 
-        inner join comentario_producto comentario_producto on comentario_producto.id_detalle = detalle_factura.id_detalle 
-		inner join categoria categoria on producto.id_categoria = categoria.id_categoria
-        group by producto.nombre_producto, detalle_factura.precio, detalle_factura.costo_envio, cantidad_pedido, categoria.categoria
-        order by cantidad_pedido desc limit 5";
+                from producto 
+                inner join detalle_factura detalle_factura on detalle_factura.id_producto = producto.id_producto 
+                inner join factura factura on factura.id_factura = detalle_factura.id_factura 
+                inner join categoria categoria on producto.id_categoria = categoria.id_categoria
+                where cantidad_pedido<(select max(detalle_factura.cantidad_pedido) from detalle_factura)
+                group by producto.nombre_producto, detalle_factura.precio, detalle_factura.costo_envio, cantidad_pedido, categoria.categoria
+                order by total desc limit 5";
         $params = null;
         return Database::getRows($sql, $params);
     }

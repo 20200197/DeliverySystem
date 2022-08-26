@@ -208,7 +208,7 @@ function openUpdate(id) {
                     var latitude = response.dataset.latitude;
                     var longitud = response.dataset.longitud;
                     var coordenadas = response.dataset.coordenadas;
-                    Layers = L.marker([latitude,longitud], { draggable: false }).addTo(mapa);
+                    Layers = L.marker([latitude, longitud], { draggable: false }).addTo(mapa);
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -235,4 +235,3 @@ function openDelete(id) {
     // Se llama a la función que elimina un registro. Se encuentra en el archivo components.js
     confirmDelete(API_DIRECCIONES, data);
 }
- 

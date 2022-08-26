@@ -63,7 +63,7 @@ class Mapa extends Validator
             return true;
         }
     }
-   
+
     /*
     *   Métodos para obtener valores de los atributos.
     */
@@ -87,7 +87,7 @@ class Mapa extends Validator
         return $this->coordenadas_vendedor;
     }
 
-  
+
 
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
@@ -103,7 +103,7 @@ class Mapa extends Validator
         inner join cliente cliente on direccion.id_cliente = cliente.id_cliente
         inner join repartidor on factura.id_repartidor = repartidor.id_repartidor
         where nombre_producto ILIKE ?  or nombre_cliente ILIKE ? or nombre_repartidor ILIKE ? ";
-        $params = array("%$value%","%$value%","%$value%");
+        $params = array("%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
 
@@ -123,24 +123,24 @@ class Mapa extends Validator
         return Database::getRows($sql, $params);
     }
 
-     //Funcion para leer cliente individual
-     public function readOneCliente()
-     {
-         $sql = 'SELECT id_cliente, coordenadas
+    //Funcion para leer cliente individual
+    public function readOneCliente()
+    {
+        $sql = 'SELECT id_cliente, coordenadas
          from direccion
          inner join cliente using (id_cliente)
          where id_cliente = ?';
-         $params = array($this->id_cliente);
-         return Database::getRow($sql, $params);
-     }
+        $params = array($this->id_cliente);
+        return Database::getRow($sql, $params);
+    }
 
-     //Función que actualiza las coordenadas cuando se inciia sesión
+    //Función que actualiza las coordenadas cuando se inciia sesión
     public function updateCoordenadasCliente()
     {
         $sql = 'UPDATE direccion 
                 SET coordenadas = ?
                 WHERE id_cliente=?';
-        $params = array($this->coordenadas_cliente, $this->id_cliente);//Session id
+        $params = array($this->coordenadas_cliente, $this->id_cliente); //Session id
         return Database::executeRow($sql, $params);
     }
 }

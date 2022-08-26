@@ -55,14 +55,12 @@ function fillTable(dataset) {
                 <td data-target="Precio: " class="col l1 sin-margen">$${row.precio}</td>
                 <td data-target="Cantidad: " class="col l1 sin-margen">${row.cantidad_pedido}</td>
                 <td data-target="Subtotal: " class="col l1 sin-margen">$${row.subtotal}</td>
-                <td data-target="Estado: " class="col l1 sin-margen">${
-                    row.status_producto ? "Disponible" : "No disponible"
-                }</td>
+                <td data-target="Estado: " class="col l1 sin-margen">${row.status_producto ? "Disponible" : "No disponible"
+            }</td>
                 <td data-target="Fecha: " class="col l1 sin-margen">${row.fecha_compra}</td>
                 <td data-target="Valoración: " class="col l2 sin-margen">
-                    <a class="waves-effect waves-light btn white-text" onclick="cargarProducto(${
-                        row.id_detalle
-                    })"><i class="material-icons left">stars</i>Valorar</a>
+                    <a class="waves-effect waves-light btn white-text" onclick="cargarProducto(${row.id_detalle
+            })"><i class="material-icons left">stars</i>Valorar</a>
                     <a class="waves-effect waves-light btn white-text" onclick="pedir(${row.id_detalle})"><i class="material-icons left">stars</i>Pedir</a>
                 </td>
             </tr>
@@ -220,7 +218,7 @@ function cargarProducto(id) {
             //Se pasa a json
             request.json().then(function (response) {
                 //Se revisa el estado devuelto por la api
-                if (response.status == 3) { 
+                if (response.status == 3) {
                     //Se le muestra al usuario la advertencia
                     sweetAlert(3, response.exception, null);
                 } else if (response.status) {
@@ -228,7 +226,7 @@ function cargarProducto(id) {
                     document.getElementById("nombreProducto").innerHTML = response.dataset.nombre_producto;
                     document.getElementById("fotoProducto").src =
                         "../../../api/imagenes/productos/" + response.dataset.imagen;
-                     document.getElementById("identificadorDetalle").value = id;
+                    document.getElementById("identificadorDetalle").value = id;
                     //Se agrega las opciones de valoración por estrellas
                     document.getElementById("estrellas_producto").innerHTML = ` 
                     <input id="star1" name="estrellas" type="radio" value="5" />
@@ -258,7 +256,7 @@ function cargarProducto(id) {
 }
 
 //Función para cargar los datos del producto para volver a pedir
-function pedir(id) { 
+function pedir(id) {
     //Se crea una variable para guardar el id del producto
     let datos = new FormData();
     datos.append("identificador", id);
@@ -266,26 +264,26 @@ function pedir(id) {
     fetch(API_DETALLE + "cargarDatosProductoPedir", {
         method: 'post',
         body: datos,
-    }).then(function (request) { 
+    }).then(function (request) {
         //Se revisa la ejecución 
         if (request.ok) {
             //Se pasa a formato JSON
-            request.json().then(function (response) { 
+            request.json().then(function (response) {
                 //Se revisa el estado devuelto por la API
                 if (response.status) {
                     //Se cargan los datos en el modal
                     document.getElementById("identificadorPedir").value = response.dataset.id_producto;
-                     document.getElementById("nombreProductoPedir").innerHTML = response.dataset.nombre_producto;
-                     document.getElementById("fotoProductoPedir").src =
-                         "../../../api/imagenes/productos/" + response.dataset.imagen;
+                    document.getElementById("nombreProductoPedir").innerHTML = response.dataset.nombre_producto;
+                    document.getElementById("fotoProductoPedir").src =
+                        "../../../api/imagenes/productos/" + response.dataset.imagen;
                     //Se abre el formulario con los datos ya cargados
                     M.Modal.getInstance(document.getElementById("pedir")).open();
-                } else { 
+                } else {
                     //Se muestra el error
                     sweetAlert(2, response.exception, null);
                 }
             })
-        } else { 
+        } else {
             //Se imprime el error en la consola
             console.log(request.status + ' ' + request.statusText);
         }
@@ -293,7 +291,7 @@ function pedir(id) {
 }
 
 //Método para pedir productos
-document.getElementById("formularioProductoPedir").addEventListener('submit', function (event) { 
+document.getElementById("formularioProductoPedir").addEventListener('submit', function (event) {
     //Se previene la recarga de la página
     event.preventDefault();
     //Se verifica que la cantidad sea mayor a 0

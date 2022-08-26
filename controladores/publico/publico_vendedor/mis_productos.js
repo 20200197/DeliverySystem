@@ -4,7 +4,7 @@ const API_CATEGORIA = SERVER + 'publico/categoria.php?action=';
 
 //Método que carga los datos cuando se inicia la página
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     readRows(API_PRODUCTOS);
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
     M.Modal.init(document.querySelectorAll(".modal"), { dismissible: false });
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
 function fillTable(dataset) {
     let content = [];
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
-    dataset.map(function(row) {
+    dataset.map(function (row) {
         // Se establece un estado para el estado del producto.
         var estadoo;
         row.estado_empleado ? (estadoo = "Activo") : (estadoo = "Inactivo");
@@ -70,14 +70,14 @@ function fillTable(dataset) {
 }
 
 //Método que preparará los datos para agregar los productos
-document.getElementById("boton_agregar_producto").addEventListener("click", function() {
+document.getElementById("boton_agregar_producto").addEventListener("click", function () {
     //Se cargan los datos en los select
     fillSelect(API_PRODUCTOS + "categoria", "categoriaA", null);
     fillSelect(API_PRODUCTOS + "marca", "marcaA", null);
 });
 
 //Método que ejecutará el guardado de productos
-document.getElementById("guardarProducto").addEventListener("submit", function(event) {
+document.getElementById("guardarProducto").addEventListener("submit", function (event) {
     //Se previene la recarga de la página
     event.preventDefault();
     //Se revisa que los select y la imagen hayan sido cargados
@@ -103,11 +103,11 @@ function cargar_editar(id) {
     fetch(API_PRODUCTOS + "individual", {
         method: "post",
         body: datos,
-    }).then(function(request) {
+    }).then(function (request) {
         //Se revisa si se ejecutó la sentencia
         if (request.ok) {
             //Se pasa a formato JSON
-            request.json().then(function(response) {
+            request.json().then(function (response) {
                 //Se verifica el estado de la respuesta
                 if (response.status) {
                     //Se llenan los campos del modal para editar
@@ -136,7 +136,7 @@ function cargar_editar(id) {
 }
 
 //Método que ejecutará la edición de producto de productos
-document.getElementById("editarProducto").addEventListener("submit", function(event) {
+document.getElementById("editarProducto").addEventListener("submit", function (event) {
     //Se previene la recarga de la página
     event.preventDefault();
     //Se crea una variable de tipo formulario
@@ -149,11 +149,11 @@ document.getElementById("editarProducto").addEventListener("submit", function(ev
         fetch(API_PRODUCTOS + "cantidadActual", {
             method: "post",
             body: datos,
-        }).then(function(request) {
+        }).then(function (request) {
             // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
             if (request.ok) {
                 // Se obtiene la respuesta en formato JSON.
-                request.json().then(function(response) {
+                request.json().then(function (response) {
                     let data = [];
                     // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
                     if (response.status) {
@@ -216,11 +216,11 @@ function openOpciones() {
     //Cargamos el select
     fetch(API_CATEGORIA + "readAll", {
         method: "get",
-    }).then(function(request) {
+    }).then(function (request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
         if (request.ok) {
             // Se obtiene la respuesta en formato JSON.
-            request.json().then(function(response) {
+            request.json().then(function (response) {
                 let content = "";
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
@@ -229,7 +229,7 @@ function openOpciones() {
                         content += "<option disabled selected>Seleccione una opción</option>";
                     }
                     // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
-                    response.dataset.map(function(row) {
+                    response.dataset.map(function (row) {
                         // Se obtiene el dato del primer campo de la sentencia SQL (valor para cada opción).
                         value = Object.values(row)[0];
                         // Se obtiene el dato del segundo campo de la sentencia SQL (texto para cada opción).
@@ -260,7 +260,7 @@ function openParametro() {
         title: "Selecciona la categoria",
         html: '<div class="input-field"><select class="browser-default" id="opciones_categoriaa" name="opciones_categoriaa" required> </select></div>',
         showCancelButton: true,
-    }).then(function(value) {
+    }).then(function (value) {
         if (value.isDismissed) {
 
         } else if (value == 'Seleccione una opción') {
@@ -269,7 +269,7 @@ function openParametro() {
             //Obtenemos la opcion seleccinada
             var selectedOption =
                 document.getElementById("opciones_categoriaa").options[
-                    document.getElementById("opciones_categoriaa").selectedIndex
+                document.getElementById("opciones_categoriaa").selectedIndex
                 ];
             console.log(selectedOption.text);
             openReport(selectedOption.text);

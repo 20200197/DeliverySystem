@@ -1,6 +1,6 @@
 const API_FACTURA = SERVER + "publico/factura.php?action=";
 
-function actualizarDatos(id){
+function actualizarDatos(id) {
     let parameter = new FormData();
     parameter.append('id', id);
 
@@ -8,69 +8,69 @@ function actualizarDatos(id){
         method: 'post',
         body: parameter,
     }).then(function (request) {
-        if(request.ok){
+        if (request.ok) {
             request.json().then(function (response) {
-                if(response.status){
+                if (response.status) {
                     document.getElementById('subtotal' + response.subtotal.id_producto).innerHTML = response.subtotal.subtotal;
                     document.getElementById('total').innerHTML = '$' + response.total.suma;
                 }
             });
-        }else{
+        } else {
             console.log(request.status + ' ' + request.statusText);
         }
     });
 }
 
-function restarCant(id){
+function restarCant(id) {
     let parameter = new FormData();
-    if(document.getElementById('cantidad' + id).value != 1){
+    if (document.getElementById('cantidad' + id).value != 1) {
         parameter.append('cantidad', Math.floor(document.getElementById('cantidad' + id).value) - 1);
         parameter.append('id', id);
-        fetch(API_FACTURA + 'restarCant',{
+        fetch(API_FACTURA + 'restarCant', {
             method: 'post',
             body: parameter
         }).then(function (request) {
-            if(request.ok){
-                request.json().then(function (response){
-                    if(response.status){
+            if (request.ok) {
+                request.json().then(function (response) {
+                    if (response.status) {
                         document.getElementById('cantidad' + id).value = Math.floor(document.getElementById('cantidad' + id).value) - 1;
                         actualizarDatos(id);
-                    }else{
+                    } else {
                         sweetAlert(3, response.exception, null)
                     }
                 });
-            }else{
+            } else {
                 console.log(request.status + ' ' + request.statusText);
             }
         });
     }
 }
 
-function sumarCant(id){
+function sumarCant(id) {
     let parameter = new FormData();
     parameter.append('cantidad', Math.floor(document.getElementById('cantidad' + id).value) + 1);
     parameter.append('id', id)
 
-    fetch(API_FACTURA + 'sumarCant',{
+    fetch(API_FACTURA + 'sumarCant', {
         method: 'post',
         body: parameter
     }).then(function (request) {
-        if(request.ok){
-            request.json().then(function (response){
-                if(response.status){
+        if (request.ok) {
+            request.json().then(function (response) {
+                if (response.status) {
                     document.getElementById('cantidad' + id).value = Math.floor(document.getElementById('cantidad' + id).value) + 1;
                     actualizarDatos(id);
-                }else{
+                } else {
                     sweetAlert(3, response.exception, null)
                 }
             });
-        }else{
+        } else {
             console.log(request.status + ' ' + request.statusText);
         }
     });
 }
 
-function deleteCartRow(id){
+function deleteCartRow(id) {
     let parameter = new FormData();
     parameter.append('id', id);
 
@@ -84,21 +84,21 @@ function deleteCartRow(id){
         allowOutsideClick: false,
         allowEscapeKey: false
     }).then(function (value) {
-        if(value.isConfirmed){
+        if (value.isConfirmed) {
             fetch(API_FACTURA + 'deleteRow', {
                 method: 'post',
                 body: parameter,
             }).then(function (request) {
-                if(request.ok){
+                if (request.ok) {
                     request.json().then(function (response) {
-                        if(response.status){
+                        if (response.status) {
                             cargarCarrito();
                             sweetAlert(1, response.message, null);
-                        }else{
+                        } else {
                             sweetAlert(2, response.exception, null)
                         }
                     });
-                }else{
+                } else {
                     console.log(request.status + ' ' + request.statusText);
                 }
             });
@@ -108,7 +108,7 @@ function deleteCartRow(id){
     });
 }
 
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function () {
     cargarCarrito();
 });
 
@@ -116,11 +116,11 @@ function cargarCarrito() {
     fetch(API_FACTURA + 'loadCart', {
         method: 'get',
     }).then(function (request) {
-        if(request.ok){
-            request.json().then(function(response) {
+        if (request.ok) {
+            request.json().then(function (response) {
                 let content = '';
 
-                response.dataset.map(function(row){
+                response.dataset.map(function (row) {
                     content += `<div class="card panel black-text">
                     <div class="row">
                         <!--Imagen del producto-->
@@ -169,7 +169,7 @@ function cargarCarrito() {
                 document.getElementById('total').innerHTML = '$' + response.total.suma;
                 document.getElementById('productos-contenedor').innerHTML = content;
             });
-        }else{
+        } else {
             console.log(request.status + ' ' + request.statusText);
         }
     });

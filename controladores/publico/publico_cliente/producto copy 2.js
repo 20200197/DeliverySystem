@@ -1526,7 +1526,7 @@ function searchProductosCalidad() {
                         if (row.calidad <= 4 && row.calidad > 3) {
                             //Para 3.5
                             if (row.calidad < 4 && row.calidad > 3) {
-                                
+
                             } else {
                                 //Para 4
                                 // Se crean y concatenan las tarjetas con los datos de cada producto.
@@ -1624,9 +1624,9 @@ function searchProductosCalidad() {
                                 showOp();
                             } else {
 
-                            
+
                             }
-                        } 
+                        }
 
                     });
                     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
@@ -1677,7 +1677,7 @@ function searchProductosCalidad() {
                         if (row.calidad <= 5 && row.calidad > 4) {
                             //Para 4.5
                             if (row.calidad < 5 && row.calidad > 4) {
-                                
+
                             } else {
                                 // Se crean y concatenan las tarjetas con los datos de cada producto.
                                 content_estrellas += `
@@ -1724,9 +1724,9 @@ function searchProductosCalidad() {
                                 document.getElementById("contenedor_productos").innerHTML = content_estrellas;
                                 showFavo();
                                 showOp();
-                
+
                             }
-                        } 
+                        }
                     });
                     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
                     document.getElementById('contenedor_productos').innerHTML = content_estrellas;
@@ -1745,7 +1745,7 @@ function searchProductosCalidad() {
 
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
-    
+
 }
 
 //Agregar productos a favorito

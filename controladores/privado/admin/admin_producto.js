@@ -139,6 +139,6 @@ function openReportProductosMasMenosVendidos() {
     // Se establece la ruta del reporte en el servidor.
     let url = SERVER + `reportes/dashboard/productos_mas_menos_vendidos.php`;
     // Se abre el reporte en una nueva pestaña del navegador web.
-    window.open(url);  
-  }
+    window.open(url);
+}
 

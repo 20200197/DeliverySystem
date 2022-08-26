@@ -2,7 +2,7 @@
 const API_PERFIL = SERVER + 'publico/perfil_cliente.php?action=';
 
 //Se crea el método que se ejecutará cuando se ejecuta la página
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     //Se esconden los botones de modificación
     document.getElementById('guardar').style.display = "none";
     document.getElementById('cancelar').style.display = "none";
@@ -86,11 +86,11 @@ function guardarDatos() {
     //Se realiza una petición para validar que si se han realizado cambios a guardar
     fetch(API_PERFIL + 'readAll', {
         method: 'get',
-    }).then(function(request) {
+    }).then(function (request) {
         //Se verifica si se ha ejecutado la petición
         if (request.ok) {
             //Se pasa a formato JSOn
-            request.json().then(function(response) {
+            request.json().then(function (response) {
                 //Se revisa el estado devuelto por la API
                 if (response.status) {
                     //Se revisan los datos para validar si han sido modificados
@@ -109,11 +109,11 @@ function guardarDatos() {
                         fetch(API_PERFIL + "ActualizarPerfil", {
                             method: "post",
                             body: new FormData(document.getElementById("datosGenerales")),
-                        }).then(function(request) {
+                        }).then(function (request) {
                             //Se verifica el estado de la ejecución
                             if (request.ok) {
                                 //Se convierte a formato JSON
-                                request.json().then(function(response) {
+                                request.json().then(function (response) {
                                     //Se verifica el estado devuelto por la API
                                     if (response.status) {
                                         sweetAlert(1, response.message, null);
@@ -161,18 +161,18 @@ function guardarDatos() {
 }
 
 //Método para verificar contraseña
-document.getElementById("confirmacionAutenticidad").addEventListener('submit', function(event) {
+document.getElementById("confirmacionAutenticidad").addEventListener('submit', function (event) {
     //Se evita la recarga de la página
     event.preventDefault();
     //Se realiza la petición
     fetch(API_PERFIL + "verificarPass", {
         method: "post",
         body: new FormData(document.getElementById("confirmacionAutenticidad")),
-    }).then(function(request) {
+    }).then(function (request) {
         //Se verifica el estado de la ejecución
         if (request.ok) {
             //Se pasa a json
-            request.json().then(function(response) {
+            request.json().then(function (response) {
                 //Se verifica el estado devuelto por la API
                 if (response.status) {
                     //Se cierra el formulario
@@ -181,7 +181,7 @@ document.getElementById("confirmacionAutenticidad").addEventListener('submit', f
                     document.getElementById("confirmacionAutenticidad").reset();
                     //Se llena el campo del usuario
                     document.getElementById('CambiarUsuario').value = response.dataset.usuario_cliente
-                        //Se abre el nuevo fórmulario   
+                    //Se abre el nuevo fórmulario   
                     M.Modal.getInstance(document.getElementById("datos-cuenta")).open();
                 } else {
                     //Se notifica del error
@@ -195,18 +195,18 @@ document.getElementById("confirmacionAutenticidad").addEventListener('submit', f
 });
 
 //Método para actualizar la contraseña
-document.getElementById("cambioPass").addEventListener("submit", function(event) {
+document.getElementById("cambioPass").addEventListener("submit", function (event) {
     //Se evita la recarga de la página
     event.preventDefault();
     //Se realiza la petición
     fetch(API_PERFIL + "actualizarPass", {
         method: "post",
         body: new FormData(document.getElementById("cambioPass")),
-    }).then(function(request) {
+    }).then(function (request) {
         //Se verifica el estado de la ejecución
         if (request.ok) {
             //Se pasa a json
-            request.json().then(function(response) {
+            request.json().then(function (response) {
                 //Se verifica el estado devuelto por la API
                 if (response.status) {
                     //Se muestra el mensaje

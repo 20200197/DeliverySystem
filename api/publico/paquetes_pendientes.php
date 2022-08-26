@@ -20,45 +20,45 @@ if (isset($_GET['action'])) {
             case 'readAll':
                 if (!$paquetes->setIdentificador($_SESSION['id_repartidor'])) { //$_SESSION['id_repartidor'] Se debería colocar
                     $result['exception'] = 'No se logró identificar tu usuario';
-                }elseif($result['dataset'] = $paquetes->cargarFacturas()) {
+                } elseif ($result['dataset'] = $paquetes->cargarFacturas()) {
                     $result['status'] = 1;
-                }elseif (Database::getException()){
+                } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
-                }else{
+                } else {
                     $result['exception'] = 'No hay paquetes pendientes';
                 }
                 break;
             case 'entregar':
                 $_POST = $paquetes->validateForm($_POST);
-                if (!$paquetes->setIdentificador($_POST['identificador'])) { 
+                if (!$paquetes->setIdentificador($_POST['identificador'])) {
                     $result['exception'] = 'No se logró identificar el pedido a modificar';
-                }elseif($paquetes->entregar()) {
+                } elseif ($paquetes->entregar()) {
                     $result['status'] = 1;
                     $result['message'] = 'Pedido modificado correctamente';
-                }else {
+                } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
             case 'cancelar':
-                    $_POST = $paquetes->validateForm($_POST);
-                    if (!$paquetes->setIdentificador($_POST['identificador'])) { 
-                        $result['exception'] = 'No se logró identificar el pedido a modificar';
-                    }elseif($paquetes->cancelar()) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Pedido modificado correctamente';
-                    }else {
-                        $result['exception'] = Database::getException();
-                    }
-                    break;
-             case 'cargarProductos':
                 $_POST = $paquetes->validateForm($_POST);
-                if (!$paquetes->setIdentificador($_POST['identificador'])) { 
-                    $result['exception'] = 'No se logró identificar el pedido a mostrar';
-                }elseif($result['dataset'] = $paquetes->cargarProductos()) {
+                if (!$paquetes->setIdentificador($_POST['identificador'])) {
+                    $result['exception'] = 'No se logró identificar el pedido a modificar';
+                } elseif ($paquetes->cancelar()) {
                     $result['status'] = 1;
-                }elseif (Database::getException()){
+                    $result['message'] = 'Pedido modificado correctamente';
+                } else {
                     $result['exception'] = Database::getException();
-                }else{
+                }
+                break;
+            case 'cargarProductos':
+                $_POST = $paquetes->validateForm($_POST);
+                if (!$paquetes->setIdentificador($_POST['identificador'])) {
+                    $result['exception'] = 'No se logró identificar el pedido a mostrar';
+                } elseif ($result['dataset'] = $paquetes->cargarProductos()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
                     $result['exception'] = 'El pedido no tiene datos registrados';
                 }
                 break;

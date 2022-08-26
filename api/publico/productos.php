@@ -119,7 +119,7 @@ if (isset($_GET['action'])) {
             if ($_POST['search'] == '') {
                 $result['exception'] = 'Ingrese un valor para buscar';
                 // $entrega->readAll();
-            } elseif ($result['dataset'] = $producto->searchRowsProductoCategoria($_POST['search'],$_POST['id_categoria'])) {
+            } elseif ($result['dataset'] = $producto->searchRowsProductoCategoria($_POST['search'], $_POST['id_categoria'])) {
                 $result['status'] = 1;
                 $result['message'] = 'Valor encontrado';
             } elseif (Database::getException()) {

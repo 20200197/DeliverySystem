@@ -1,6 +1,6 @@
 const API_VENDEDOR = SERVER + 'publico/vendedor.php?action='
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
     M.Modal.init(document.querySelectorAll(".modal"), { dismissible: false });
     readbarrasProductosMasVendidosValorados();
@@ -12,11 +12,11 @@ document.addEventListener("DOMContentLoaded", function() {
 function opcionesCategoria() {
     fetch(API_VENDEDOR + "readAllCategoria", {
         method: "get",
-    }).then(function(request) {
+    }).then(function (request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
         if (request.ok) {
             // Se obtiene la respuesta en formato JSON.
-            request.json().then(function(response) {
+            request.json().then(function (response) {
                 let content = "";
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
@@ -25,7 +25,7 @@ function opcionesCategoria() {
                         content += "<option disabled selected>Seleccione una opción</option>";
                     }
                     // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
-                    response.dataset.map(function(row) {
+                    response.dataset.map(function (row) {
                         // Se obtiene el dato del primer campo de la sentencia SQL (valor para cada opción).
                         value = Object.values(row)[0];
                         // Se obtiene el dato del segundo campo de la sentencia SQL (texto para cada opción).
@@ -58,11 +58,11 @@ function openParametro() {
         showCancelButton: true,
         allowOutsideClick: false,
     }).then((result) => {
-        if (result.isDismissed) {} else {
+        if (result.isDismissed) { } else {
             //Obtenemos la opcion seleccinada
             var selectedOption =
                 document.getElementById("opciones_departamento").options[
-                    document.getElementById("opciones_departamento").selectedIndex
+                document.getElementById("opciones_departamento").selectedIndex
                 ];
             readLineaVentas(selectedOption.text);
         }
@@ -76,14 +76,14 @@ function readLineaVentas(categoria) {
     fetch(API_VENDEDOR + 'readSellCategory', {
         method: 'post',
         body: parameter
-    }).then(function(request) {
+    }).then(function (request) {
         if (request.ok) {
-            request.json().then(function(response) {
+            request.json().then(function (response) {
                 let cabeceras = [];
                 let general = [];
                 if (response.status) {
                     let datos = [];
-                    response.dataset.map(function(row) {
+                    response.dataset.map(function (row) {
                         cabeceras.push(row.fecha);
                         datos.push({
                             meta: '($)',
@@ -110,11 +110,11 @@ function readbarrasProductosMasVendidosValorados() {
     //Se realiza la petición para cargar los datos
     fetch(API_VENDEDOR + "readProductosMasVendidosValorados", {
         method: "get"
-    }).then(function(request) {
+    }).then(function (request) {
         //Se revisa si se ejecutó la sentencia
         if (request.ok) {
             //Se pasa a formato JSON
-            request.json().then(function(response) {
+            request.json().then(function (response) {
                 //Se verifica el estado de la respuesta
                 if (response.status) {
                     /** Se crean los vectores generales donde se guardarán los datos*/
@@ -128,7 +128,7 @@ function readbarrasProductosMasVendidosValorados() {
                     //let fila3 = []; //Vector donde se guardarán los datos por el mismo titulo de la gráfica (1 Línea)
 
                     //Se explorar fila por fila
-                    response.dataset.map(function(row) {
+                    response.dataset.map(function (row) {
                         //Se llenan los datos en los vectores generales
                         cabeceras.push(row.nombre_producto); //Se agrega un titulo
                         fila.push(row.cantidad_pedido); //Se agrega un dato para el titulo
@@ -165,11 +165,11 @@ function readDonaPorcentajeVentaCategoria() {
     //Se realiza la petición para cargar los datos
     fetch(API_VENDEDOR + "readPorcentajeVentaCategoria", {
         method: "get"
-    }).then(function(request) {
+    }).then(function (request) {
         //Se revisa si se ejecutó la sentencia
         if (request.ok) {
             //Se pasa a formato JSON
-            request.json().then(function(response) {
+            request.json().then(function (response) {
                 //Se verifica el estado de la respuesta
                 if (response.status) {
                     /*Se crean los vectores generales donde se guardarán los datos*/
@@ -180,7 +180,7 @@ function readDonaPorcentajeVentaCategoria() {
                      */
                     let fila = []; //Vector donde se guardarán los datos por cada titulo de la gráfica (1 Línea)
                     //Se explorar fila por fila
-                    response.dataset.map(function(row) {
+                    response.dataset.map(function (row) {
                         //Se llenan los datos en los vectores generales
                         cabeceras.push(row.producto); //Se agrega un titulo
                         //Se agregan variables para guardar el nombre y el valor de la llave

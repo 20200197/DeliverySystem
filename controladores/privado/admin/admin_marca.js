@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', function () {
     let options = {
         dismissible: false,
         onOpenStart: function () {
-          // Se restauran los elementos del formulario.
-          document.getElementById("save-form").reset();
+            // Se restauran los elementos del formulario.
+            document.getElementById("save-form").reset();
         },
-      };
+    };
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
     M.Modal.init(document.querySelectorAll('.modal'), options);
 });

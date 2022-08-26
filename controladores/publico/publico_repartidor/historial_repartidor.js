@@ -76,14 +76,14 @@ function openReport() {
     // Se establece la ruta del reporte en el servidor.
     let url = SERVER + `reportes/publico/clientes_mas_entregas.php`;
     // Se abre el reporte en una nueva pestaña del navegador web.
-    window.open(url);  
-  }
+    window.open(url);
+}
 
-  
-  /** Top 10 clientes que se le haya hecho mas entregas**/
+
+/** Top 10 clientes que se le haya hecho mas entregas**/
 function openReportComent() {
     // Se establece la ruta del reporte en el servidor.
     let url = SERVER + `reportes/publico/coment_mejores.php`;
     // Se abre el reporte en una nueva pestaña del navegador web.
-    window.open(url);  
-  }
+    window.open(url);
+}

@@ -44,7 +44,7 @@ class Favorito extends Validator
         }
     }
 
-   
+
 
     public function getId()
     {
@@ -61,7 +61,7 @@ class Favorito extends Validator
         return $this->id_cliente;
     }
 
-   
+
 
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
@@ -69,7 +69,7 @@ class Favorito extends Validator
 
     //Función para obtener todos los datos de los cliente
 
-   
+
 
     //Leer municipios
     public function readAllFavo()
@@ -86,7 +86,7 @@ class Favorito extends Validator
     public function createFavorito()
     {
         $sql = 'INSERT INTO favorito(id_producto,id_cliente,status_favorito) values (?,?,?)';
-        $params = array($this->id_producto, 2,true);//SESSION[id_cliente]
+        $params = array($this->id_producto, 2, true); //SESSION[id_cliente]
         return Database::executeRow($sql, $params);
     }
 
@@ -97,41 +97,41 @@ class Favorito extends Validator
                 FROM favorito
                 inner join producto using (id_producto)
                 WHERE status_favorito=true and id_cliente = ?";
-        $params = array($_SESSION['id_cliente']);//SESSION[id_cliente]
+        $params = array($_SESSION['id_cliente']); //SESSION[id_cliente]
         return Database::getRows($sql, $params);
     }
 
-     //Leemos dato individual, comprobamos que haya productos en favoritos del cliente logueado
-     public function readCheckFavoOfClient()
-     {
-         $sql = "SELECT id_favorito, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,status_favorito
+    //Leemos dato individual, comprobamos que haya productos en favoritos del cliente logueado
+    public function readCheckFavoOfClient()
+    {
+        $sql = "SELECT id_favorito, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,status_favorito
                  FROM favorito
                  inner join producto using (id_producto)
                  WHERE status_favorito=true and id_producto = ? and id_cliente = ?";
-         $params = array($this->id_producto,2);//SESSION[id_cliente]
-         return Database::getRows($sql, $params);
-     }
+        $params = array($this->id_producto, 2); //SESSION[id_cliente]
+        return Database::getRows($sql, $params);
+    }
 
-     public function readCheckFavoOfClientCategori()
-     {
-         $sql = "SELECT id_favorito, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,status_favorito
+    public function readCheckFavoOfClientCategori()
+    {
+        $sql = "SELECT id_favorito, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,status_favorito
                  FROM favorito
                  inner join producto using (id_producto)
                  WHERE status_favorito=true and id_producto = ? and id_cliente = ?";
-         $params = array($this->id_producto,2);//SESSION[id_cliente]
-         return Database::getRows($sql, $params);
-     }
+        $params = array($this->id_producto, 2); //SESSION[id_cliente]
+        return Database::getRows($sql, $params);
+    }
 
 
-     public function readActive()
-     {
-         $sql = "SELECT id_favorito, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,status_favorito
+    public function readActive()
+    {
+        $sql = "SELECT id_favorito, nombre_producto, descripcion_producto, precio_producto, imagen, id_producto,status_favorito
                  FROM favorito
                  inner join producto using (id_producto)
                  WHERE id_cliente = ?";
-         $params = array($_SESSION['id_cliente']);//SESSION[id_cliente]
-         return Database::getRows($sql, $params);
-     }
+        $params = array($_SESSION['id_cliente']); //SESSION[id_cliente]
+        return Database::getRows($sql, $params);
+    }
 
     //Leemos datos
     public function readActiveCategoria($id_categoria)
@@ -140,7 +140,7 @@ class Favorito extends Validator
                 FROM favorito
                 inner join producto using (id_producto)
                 WHERE id_categoria = ? and id_cliente = ?";
-        $params = array($id_categoria,2);//SESSION[id_cliente]
+        $params = array($id_categoria, 2); //SESSION[id_cliente]
         return Database::getRows($sql, $params);
     }
 
@@ -156,7 +156,7 @@ class Favorito extends Validator
     public function deleteFavorito()
     {
         $sql = 'DELETE from favorito  where id_producto = ? and id_cliente = ?';
-        $params = array($this->id_producto,2);//SESSION[id_cliente]
+        $params = array($this->id_producto, 2); //SESSION[id_cliente]
         return Database::executeRow($sql, $params);
     }
 }

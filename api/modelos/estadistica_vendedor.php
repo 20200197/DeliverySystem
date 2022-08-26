@@ -97,7 +97,7 @@ class EstadisticaVendedor extends Validator
             INNER JOIN factura fa ON df.id_factura = fa.id_factura
             WHERE fa.id_factura = f.id_factura) BETWEEN ? AND ?
             GROUP BY nombre";
-            
+
         $params = array($this->idVendedor, $this->inicial, $this->final);
         return Database::getRows($sql, $params);
     }

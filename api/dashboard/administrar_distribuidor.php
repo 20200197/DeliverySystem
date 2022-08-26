@@ -65,7 +65,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ha ocurrido un error al ejecutar la acción';
                 } elseif (!$administrar_distribuidor->setStatusRepartidor($_POST['estadoP'])) {
                     $result['exception'] = 'No se pudo obtener el estado';
-                }elseif ($administrar_distribuidor->changeStatus()) {
+                } elseif ($administrar_distribuidor->changeStatus()) {
                     $result['status'] = 1;
                     $result['message'] = 'Estado cambiado correctamente';
                 } elseif (Database::getException()) {

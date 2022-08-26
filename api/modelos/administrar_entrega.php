@@ -74,11 +74,12 @@ class Entrega extends Validator
         }
     }
 
-    public function setFechaReparto($date){
-        if($this->validateDate($date)){
+    public function setFechaReparto($date)
+    {
+        if ($this->validateDate($date)) {
             $this->fecha_reparto = $date;
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -129,7 +130,7 @@ class Entrega extends Validator
 
 
 
-  
+
 
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
@@ -145,7 +146,7 @@ class Entrega extends Validator
         inner join cliente cliente on direccion.id_cliente = cliente.id_cliente
         inner join repartidor on factura.id_repartidor = repartidor.id_repartidor
         where nombre_producto ILIKE ?  or nombre_cliente ILIKE ? or nombre_repartidor ILIKE ? ";
-        $params = array("%$value%","%$value%","%$value%");
+        $params = array("%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
 
@@ -180,6 +181,4 @@ class Entrega extends Validator
         $params = array($_SESSION['id_repartidor']); //SESSION[id_repartidor]
         return Database::getRows($sql, $params);
     }
-
-    
 }

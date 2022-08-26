@@ -99,7 +99,7 @@ document.getElementById('update-form').addEventListener('submit', function (even
 // Función para preparar el formulario al momento de modificar un registro.
 function passUpdate() {
     // Se abre la caja de diálogo (modal) que contiene el formulario.
-    M.Modal.getInstance(document.getElementById('pass-modal')).open();   
+    M.Modal.getInstance(document.getElementById('pass-modal')).open();
 }
 
 // Método manejador de eventos que se ejecuta cuando se envía el formulario de cambiar contraseña.
