@@ -157,13 +157,13 @@ class PedidosCliente extends Validator
 
     public function readDetail()
     {
-        $sql = 'SELECT id_factura, nombre_producto, fecha_compra, total, descripcion_direccion, cantidad_pedido, precio, nombre_cliente, apellido_cliente, telefono_cliente, usuario_cliente, correo_cliente, dui_cliente, precio * cantidad_pedido as subtotal_detalle
-                FROM factura 
-                inner join detalle_factura using (id_factura) 
-                inner join producto using (id_producto)
-                inner join direccion using (id_direccion)
-                inner join cliente using (id_cliente)
-                WHERE id_factura = ?';
+        $sql = "SELECT id_factura, nombre_producto,TO_CHAR(fecha_compra, 'DD-MM-YYYY HH12:MI:SS') AS fecha_compra, total, descripcion_direccion, cantidad_pedido, precio, nombre_cliente, apellido_cliente, telefono_cliente, usuario_cliente, correo_cliente, dui_cliente, precio * cantidad_pedido as subtotal_detalle
+            FROM factura 
+            inner join detalle_factura using (id_factura) 
+            inner join producto using (id_producto)
+            inner join direccion using (id_direccion)
+            inner join cliente using (id_cliente)
+            WHERE id_factura = ?";
         $params = array($this->id);
         if ($data = Database::getRows($sql, $params)) {
             foreach ($data as $row) {
