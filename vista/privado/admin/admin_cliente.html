@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    <!--Encabezado y sesión-->
     <header>
         <nav>
             <div class="nav-wrapper white">
@@ -19,46 +20,32 @@
                         <a href="#" data-target="slide-out" class="sidenav-trigger"><i
                                 class="material-icons large blue-text">menu</i></a>
                     </div>
-                    <div class="col m5 s5 valign-wrapper">
-
-                        <img src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
+                    <div class="col m5 s5 left valign-wrapper">
+    
+                        <img class="responsive-img" src="logo_delivery_system.png" alt="">
                     </div>
-                    <div class="col m6 s6">
-                        <div class="col s6 m8 l8 right-align">
-                            <div class="switch switch_colorr  right-align">
-                                <label>
-                                    🌕
-                                    <input type="checkbox" id="switch_color" onclick="modoOscuro()">
-                                    <span class="lever"></span>
-                                    🌙
-                                </label>
-                            </div>
-                        </div>
-                        <ul class="right valign-wrapper">
-                            <li><span class="black-text" id="opciones_navbar">Nombre del usuario</span></li>
-                            <li><a href="perfil.html" class="tooltipped " data-position="right" data-tooltip="Perfil"><i
-                                        class="material-icons medium black-text">account_circle</i></a></li>
-
-                        </ul>
+                    <div class="col m6 s6" id="opciones_navbar">
+    
                     </div>
                 </div>
+            </div>
         </nav>
-
+    
     </header>
 
     <div class="row">
         <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
             <div class="opciones-sidenav">
-                <li><a href="dashboard.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
-                            class="material-icons center white-text">home</i><span
-                            class="white-text hide-on-large-only">Hogar</span></a></li>
+                <li><a href="perfil.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
+                            class="material-icons center white-text">account_circle</i><span
+                            class="white-text hide-on-large-only">Perfil</span></a></li>
                 <li><a href="admin_producto.html" class="tooltipped" data-position="right" data-tooltip="Productos"><i
                             class="material-icons  white-text">import_contacts</i><span
                             class="white-text hide-on-large-only">Productos</span></a></li>
                 <li><a href="admin_categoria.html" class="tooltipped" data-position="right" data-tooltip="Categoria"><i
                             class="material-icons  white-text">format_list_bulleted</i><span
                             class="white-text hide-on-large-only">Categoria</span></a></li>
-                <li><a href="admin_rmarca.html" class="tooltipped" data-position="right" data-tooltip="Marcas"><i
+                <li><a href="admin_marca.html" class="tooltipped" data-position="right" data-tooltip="Marcas"><i
                             class="material-icons  white-text">style</i><span
                             class="white-text hide-on-large-only">Marcas</span></a>
                 </li>
@@ -78,6 +65,12 @@
                 <li><a href="admin_admin.html" class="tooltipped" data-position="right"
                         data-tooltip="Administradores"><i class="material-icons  white-text">folder_shared</i><span
                             class="white-text hide-on-large-only">Administradores</span></a></li>
+                <li><a href="admin_mapa.html" class="tooltipped" data-position="right" data-tooltip="Mapas"><i
+                            class="material-icons  white-text">map</i><span
+                            class="white-text hide-on-large-only">Mapas</span></a></li>
+                <li><a href="estadistica.html" class="tooltipped" data-position="right" data-tooltip="Estadísticas"><i
+                            class="material-icons  white-text">insert_chart</i><span
+                            class="white-text hide-on-large-only">Estadísticas</span></a></li>
                 <li class="hide-on-large-only"><button onclick="logOut('Admin')"
                         class="tooltipped transparent logout valign-wrapper" data-position="right"
                         data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
@@ -98,7 +91,8 @@
             <div class="row valign-wrapper">
                 <div class="input-field col l4 m5 s10 offset-l1 offset-m2 offset-s1">
                     <i class="material-icons small prefix blue-text">search</i>
-                    <input type="text" id="search" onkeyup="buscar()" placeholder="Buscar por nombre, usuario y correo...">
+                    <input type="text" id="search" onkeyup="buscar()"
+                        placeholder="Buscar por nombre, usuario y correo...">
                     <span id="notificacion"></span>
                 </div>
 
@@ -218,13 +212,13 @@
     </footer>
 
 
-<script type="text/javascript" src="../../../js/materialize.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script type="text/javascript" src="../../../controladores/componentes.js"></script>
-<script type="text/javascript" src="../../../controladores/validator.js"></script>
-<script type="text/javascript" src="../../../controladores/privado/admin/admin_cliente.js"></script>
-<script type="text/javascript" src="../../../controladores/privado/admin/opciones_sesion.js"></script>
- 
+    <script type="text/javascript" src="../../../js/materialize.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="../../../controladores/componentes.js"></script>
+    <script type="text/javascript" src="../../../controladores/validator.js"></script>
+    <script type="text/javascript" src="../../../controladores/privado/admin/admin_cliente.js"></script>
+    <script type="text/javascript" src="../../../controladores/privado/admin/opciones_sesion.js"></script>
+
 </body>
 
 </html>
