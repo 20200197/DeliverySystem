@@ -118,12 +118,12 @@ function readbarrasProductosMasVendidosValorados() {
                 //Se verifica el estado de la respuesta
                 if (response.status) {
                     /** Se crean los vectores generales donde se guardarán los datos*/
-                    let cabeceras = []; //Vector donde se guardarán los titulos de la gráfica
-                    let general = []; //Vector donde se guardarán los datos por toda la gráfica (Es un contenedor nada más)
+                    let cabeceras = [],  //Vector donde se guardarán los titulos de la gráfica
+                    general = [], //Vector donde se guardarán los datos por toda la gráfica (Es un contenedor nada más)
                     /*
                      * Se se desean agregar más lineas de la gráfica se deben de crear un vector más
                      */
-                    let fila = []; //Vector donde se guardarán los datos por cada titulo de la gráfica (1 Línea)
+                    fila = []; //Vector donde se guardarán los datos por cada titulo de la gráfica (1 Línea)
                     // let fila2 = []; //Vector donde se guardarán los datos por el mismo titulo de la gráfica (1 Línea)
                     //let fila3 = []; //Vector donde se guardarán los datos por el mismo titulo de la gráfica (1 Línea)
 
@@ -173,12 +173,12 @@ function readDonaPorcentajeVentaCategoria() {
                 //Se verifica el estado de la respuesta
                 if (response.status) {
                     /*Se crean los vectores generales donde se guardarán los datos*/
-                    let cabeceras = []; //Vector donde se guardarán los titulos de la gráfica
+                    let cabeceras = [], //Vector donde se guardarán los titulos de la gráfica
                     /*
                      * La gráfica de pastel solo admite una línea, por lo que solo se permite una arreglo, 
                      * el general no se utiliza en este caso
                      */
-                    let fila = []; //Vector donde se guardarán los datos por cada titulo de la gráfica (1 Línea)
+                    fila = []; //Vector donde se guardarán los datos por cada titulo de la gráfica (1 Línea)
                     //Se explorar fila por fila
                     response.dataset.map(function (row) {
                         //Se llenan los datos en los vectores generales

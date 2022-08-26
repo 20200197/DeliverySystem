@@ -29,8 +29,8 @@ function readBarraProductosMasVendidosDepartamento(nombre_departamento) {
             request.json().then(function (response) {
                 //Se verifica el estado de la respuesta
                 /** Se crean los vectores generales donde se guardarán los datos*/
-                let cabeceras = []; //Vector donde se guardarán los titulos de la gráfica
-                let general = []; //Vector donde se guardarán los datos por toda la gráfica (Es un contenedor nada más)
+                let cabeceras = [], //Vector donde se guardarán los titulos de la gráfica
+                general = []; //Vector donde se guardarán los datos por toda la gráfica (Es un contenedor nada más)
                 if (response.status) {
                     /*
                      * Se se desean agregar más lineas de la gráfica se deben de crear un vector más
@@ -263,11 +263,11 @@ function generar(arreglo) {
                     //Se limpia el mensaje
                     document.getElementById("ComentariograficaTop").innerHTML = "";
                     //Se crean los vectores donde se guardarán los datos para generar la gráfica
-                    let titulos = []; //Titulos para la gráfica
-                    let general = [
+                    let titulos = [], //Titulos para la gráfica
+                    general = [
                         []
-                    ]; //Contenedor de todos los datos
-                    let controlador = {}; //Verificador para crear o posicionar datos según la cantidad de ID que provengan
+                    ], //Contenedor de todos los datos
+                    controlador = {}; //Verificador para crear o posicionar datos según la cantidad de ID que provengan
                     response.dataset.map(function (departamento) {
                         //Se guardan los datos para cargarlos a un meta
                         let llave = departamento.cliente;

@@ -29,12 +29,12 @@ function graficoTopClientesDestacados() {
             request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
                 if (response.status) {
-                    let nombre = []; //Vector donde se guardarán los titulos de la gráfica
-                    let total = []; //Vector donde se guardarán los datos por toda la gráfica (Es un contenedor nada más)
+                    let nombre = [], //Vector donde se guardarán los titulos de la gráfica
+                    total = [], //Vector donde se guardarán los datos por toda la gráfica (Es un contenedor nada más)
                     /*
                      * Se se desean agregar más lineas de la gráfica se deben de crear un vector más
                      */
-                    let dato = []; //Vector donde se guardarán los datos por cada titulo de la gráfica (1 Línea)
+                    dato = []; //Vector donde se guardarán los datos por cada titulo de la gráfica (1 Línea)
                     //Se explorar fila por fila
                     response.dataset.map(function (row) {
                         //Se llenan los datos en los vectores generales
@@ -76,18 +76,18 @@ function graficoPorcentajeProductos() {
                 if (response.status) {
                     //Pasos anteriores del fetch
                     /*Se crean los vectores generales donde se guardarán los datos*/
-                    let categoria = []; //Vector donde se guardarán los titulos de la gráfica
+                    let categoria = [], //Vector donde se guardarán los titulos de la gráfica
                     /*
                      * La gráfica de pastel solo admite una línea, por lo que solo se permite una arreglo, 
                      * el general no se utiliza en este caso
                      */
-                    let porcentaje = []; //Vector donde se guardarán los datos por cada titulo de la gráfica (1 Línea)
+                    porcentaje = []; //Vector donde se guardarán los datos por cada titulo de la gráfica (1 Línea)
                     //Se explorar fila por fila
                     response.dataset.map(function (row) {
                         //Se llenan los datos en los vectores generales
                         categoria.push(row.producto); //Se agrega un titulo
                         //Se agregan variables para guardar el nombre y el valor de la llave
-                        let llave = row.categoria;
+                        let llave = row.categoria
                         let valor = row.porcentaje;
                         //Se crea la llave que se mostrará en el tooltip
                         porcentaje.push({

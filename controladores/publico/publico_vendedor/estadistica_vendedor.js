@@ -130,10 +130,10 @@ function totalPromedio() {
                     //Se limpia el problema
                     document.getElementById('comentarioTotalPromedio').innerHTML = "";
                     //Se crear arreglos para guardar los datos
-                    let general = []; //Contenedor de los datos de la gráfica
-                    let titulos = []; //Contenedor de los titulos de la gráfica
-                    let promedio = []; //Contenedor de los datos por 
-                    let total = []; //Contenedor de los datos por titulo
+                    let general = [], //Contenedor de los datos de la gráfica
+                    titulos = [], //Contenedor de los titulos de la gráfica
+                    promedio = [], //Contenedor de los datos por 
+                    total = []; //Contenedor de los datos por titulo
                     //Se buscan los datos fila por fila
                     response.dataset.map(function (row) {
                         //Se llena la fila y los titulos
