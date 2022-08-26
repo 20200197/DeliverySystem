@@ -16,13 +16,9 @@ class Database
     {
         // Credenciales para establecer la conexión con la base de datos.
         $server = 'localhost';
-<<<<<<< HEAD
         $database = 'deliverysystem';
-=======
-        $database = 'DeliverySystem';
->>>>>>> a1c5b16a0f8807af4e88170d26e88d61fa9c6d1e
         $username = 'postgres';
-        $password = '1234';
+        $password = 'Firearcher15';
 
 
         // Se crea la conexión mediante la extensión PDO y el controlador para PostgreSQL.
@@ -151,10 +147,10 @@ class Database
                 self::$error = 'Nombre de tabla desconocido';
                 break;
             case '23503':
-                //self::$error = 'Registro ocupado, no se puede eliminar';
+                self::$error = 'Registro ocupado, no se puede eliminar';
                 break;
             default:
-                //self::$error = 'Ocurrió un problema en la base de datos';
+                self::$error = 'Ocurrió un problema en la base de datos';
         }
     }
 
