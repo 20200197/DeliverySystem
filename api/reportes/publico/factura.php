@@ -12,7 +12,7 @@ $pdf->startReport('Factura #' . $_GET['id'], $_SESSION['usuario_cliente']);
 $pdf->SetTitle('Factura');
 
 
-$pdf->setFillColor(47, 116, 181);
+$pdf->setFillColor(52, 152, 247);
     // Se establece la fuente para los encabezados.
 $pdf->setFont('Arial', 'B', 11);
 
@@ -35,7 +35,7 @@ if ($_SESSION['id_cliente']) {
                 $pdf->Cell(59, 10, utf8_decode($factura->getCorreo()), 1, 1);
         
                 $pdf->Ln(10);
-                $pdf->setFillColor(47, 116, 181);
+                $pdf->setFillColor(52, 152, 247);
                 $pdf->setFont('Arial', 'B', 11);
                 $pdf->SetTextColor(255);
                 $pdf->Cell(143, 10, utf8_decode('DIRECCIÓN'), 1, 0, 'C', 1);
@@ -47,20 +47,20 @@ if ($_SESSION['id_cliente']) {
                 $pdf->Cell(42, 10, utf8_decode($factura->getFecha()), 1, 1);
         
                 $pdf->Ln(10);
-                $pdf->SetFillColor(47, 116, 181);
+                $pdf->SetFillColor(52, 152, 247);
                 $pdf->SetFont('Arial', 'B', 11);
                 $pdf->SetTextColor(255);
                 $pdf->Cell(15, 10, utf8_decode('CANT'), 1, 0, 'C', 1);
                 $pdf->Cell(128, 10, utf8_decode('PRODUCTO'), 1, 0, 'C', 1);
-                $pdf->Cell(21, 10, utf8_decode('P/U'), 1, 0, 'C', 1);
-                $pdf->Cell(21, 10, utf8_decode('TOTAL'), 1, 1, 'C', 1);
+                $pdf->Cell(16, 10, utf8_decode('P/U'), 1, 0, 'C', 1);
+                $pdf->Cell(26, 10, utf8_decode('SUBTOTAL'), 1, 1, 'C', 1);
                 foreach ($data as $row) {
                     $pdf->SetFont('Arial', '', 11);
                     $pdf->SetTextColor(0);
                     $pdf->Cell(15, 10, utf8_decode($row['cantidad_pedido']), 1, 0, 'C');
                     $pdf->Cell(128, 10, utf8_decode($row['nombre_producto']), 1, 0, '');
-                    $pdf->Cell(21, 10, utf8_decode('$' . $row['precio']), 1, 0, 'C');
-                    $pdf->Cell(21, 10, utf8_decode('$' . $row['subtotal_detalle']), 1, 1, 'C');
+                    $pdf->Cell(16, 10, utf8_decode('$' . $row['precio']), 1, 0, 'C');
+                    $pdf->Cell(26, 10, utf8_decode('$' . $row['subtotal_detalle']), 1, 1, 'C');
                 }
                 $pdf->SetFont('Arial', '', 11);
                 $pdf->Cell(143, 10, utf8_decode('TOTAL'), 1, 0, 'R');

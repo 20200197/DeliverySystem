@@ -18,6 +18,7 @@ if (isset($_SESSION['nombre_vendedor'])) {
         $pdf->cell(30, 10, utf8_decode('Valoración'), 1, 1, 'C', 1);
 
         $pdf->setTextColor(0);
+        $pdf->setFont('Times', '', 11);
         if ($data = $producto->getValoration($_GET['stars'])) {
             foreach ($data as $row) {
                 $pdf->cell(20, 10, utf8_decode($row['numero']), 1, 0, '', 0);

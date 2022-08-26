@@ -8,6 +8,8 @@ $pdf = new Report;
 // Se inicia el reporte con el encabezado del documento.
 $pdf->startReport('Sus mejores comentarios por semana','usuario');
 
+session_start();
+
 // Se instancia el módelo Producto para obtener los datos.
 $repartidor = new Repartidor;
 

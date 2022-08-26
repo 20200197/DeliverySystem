@@ -717,7 +717,7 @@ function logOut(type) {
                     break;
                     case 'Repartidor':
                         API = SERVER + 'publico/repartidor.php?action=logOut'
-                        break;
+                    break;
             }
             fetch(API, {
                 method: 'get'

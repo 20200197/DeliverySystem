@@ -540,7 +540,7 @@ class Repartidor extends Validator
                   inner join departamento departamento on municipio.id_departamento = departamento.id_departamento
                   where valoracion >= 4 and (factura.fecha_compra >= current_date or factura.fecha_compra >= current_date -7 ) and id_repartidor = ?
                   order by valoracion";
-        $params = array($_SESSION('id_repartidor'));
+        $params = array($_SESSION['id_repartidor']);
         return Database::getRows($sql, $params);
     }
 
