@@ -41,9 +41,9 @@ if (isset($_SESSION['id_vendedor'])) {
         //Estilos para los encabezados
 
         // Se establece un color de relleno para los encabezados.
-        $pdf->SetFillColor(44, 134, 218);
+        $pdf->setFillColor(44, 134, 218);
         //Color de texto
-        $pdf->SetTextColor(255, 255, 255);
+        $pdf->setTextColor(255, 255, 255);
         // Se establece la fuente para los encabezados.
         $pdf->setFont('Times', 'B', 11);
         // Se imprimen las celdas con los encabezados.
@@ -74,7 +74,7 @@ if (isset($_SESSION['id_vendedor'])) {
         // Se establece la fuente para los datos de los productos.
         $pdf->setFont('Times', '', 11);
         //Color de letras de datos
-        $pdf->SetTextColor(0, 0, 0);
+        $pdf->setTextColor(0, 0, 0);
         //Se recorren los registros que se obtuvieron fila por fila para llenar las filas
         foreach ($datos as $fila) {
             // Se imprimen las celdas con los datos de los productos.

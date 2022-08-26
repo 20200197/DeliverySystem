@@ -17,9 +17,9 @@ if ($dataProductos = $producto->readAll()) {
     //Comprobamos si tambien hay clientes
     if ($dataClientes = $cliente->obtenerClientes()) {
     // Se establece un color de relleno para los encabezados.
-    $pdf->SetFillColor(44, 134, 218);
+    $pdf->setFillColor(44, 134, 218);
     //Color de texto
-    $pdf->SetTextColor(255, 255, 255);
+    $pdf->setTextColor(255, 255, 255);
     // Se establece la fuente para los encabezados.
     $pdf->setFont('Times', 'B', 11);
     // Se imprimen las celdas con los encabezados.
@@ -38,18 +38,18 @@ if ($dataProductos = $producto->readAll()) {
     if ($dataProductos = $producto->readTop10ClientesMasEntregas()) {
         // Se recorren los registros ($dataProductos) fila por fila ($rowProducto).
         foreach ($dataProductos as $rowProducto) {;
-             $x = $pdf->GetX(); /** Obteiene eje x del documento**/
-             $y = $pdf->GetY(); /**Obtiene eje y de documento**/
+             $x = $pdf->getX(); /** Obteiene eje x del documento**/
+             $y = $pdf->getY(); /**Obtiene eje y de documento**/
 
           
             // Se imprimen las celdas con los datos de los productos.
             //$pdf->SetXY($x ,$y); /** Eje y en el que comenzara esta cell**/
             $pdf->multicell(55, 10, utf8_decode($rowProducto['nombre_cliente']), 1, 0);
-            $pdf->SetXY($x + 55,$y); /** Eje y y x en el que comenzara esta cell**/
+            $pdf->setXY($x + 55,$y); /** Eje y y x en el que comenzara esta cell**/
             $pdf->multicell(55  , 10, $rowProducto['correo_cliente'], 1, 0);
-            $pdf->SetXY($x + 110,$y); /** Eje y y xen el que comenzara esta cell**/
+            $pdf->setXY($x + 110,$y); /** Eje y y xen el que comenzara esta cell**/
             $pdf->multicell(55, 10, utf8_decode($rowProducto['nombre_departamento'].', '.$rowProducto['nombre_municipio']), 1, 0);
-            $pdf->SetXY($x + 165,$y); /** Eje y y x en el que comenzara esta cell**/
+            $pdf->setXY($x + 165,$y); /** Eje y y x en el que comenzara esta cell**/
             $pdf->multicell(20, 10, ($rowProducto['veces_pedido']), 1, 1);
         }
     } else {

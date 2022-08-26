@@ -33,7 +33,7 @@ if ($dataCategorias = $categoria->readAll()) {
         // Se instancia el módelo Productos para procesar los datos.
         $producto = new Producto;
         // Se establece la categoría para obtener sus productos, de lo contrario se imprime un mensaje de error.
-        if ($producto->setCategoria($rowCategoria['id_categoria'])) {
+        if ($producto->setCategoriaProducto($rowCategoria['id_categoria'])) {
             // Se verifica si existen registros (productos) para mostrar, de lo contrario se imprime un mensaje.
             if ($dataProductos = $producto->productosCategoria()) {
                 // Se recorren los registros ($dataProductos) fila por fila ($rowProducto).
