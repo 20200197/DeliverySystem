@@ -1,9 +1,4 @@
-<?php
-
-class Pass {
-
-    private $passwordError = null;
-   
+<?php   
     /**
      *  Función para validad la contraseña
      * 
@@ -25,27 +20,109 @@ class Pass {
      * 
      */
 
-        //Valor de entrada
+    /**
+     * Se pueden in_array() para validar si existe algo en especifico
+     */
 
-
-    public function validateSafePassword($clave) // ,$nombre, $apellido, $usuario, $fecha
+    function validateSafePassword($clave) // ,$nombre, $apellido, $usuario, $fecha
     {
+        //Se crea un arreglo donde se colocarán los datos que son parte de los resultados
         //Se procede a convertir la clave en un arreglo de carácteres diferentes
         $arregloPass = str_split($clave);
         //Se valida que la contraseña esté dentro de la longitud mínima
-        if (count($arregloPass) < 8) {
+        if (count($arregloPass) >= 8) {
             //Se verifica que la longitud esté dentro de la longitud máxima 
-            if (count($arregloPass) > 64) {
-                
+            if (count($arregloPass) <= 64) {
+                //Se filtra para saber si hay números dentro de la contraseña
+                $numero = array_filter($arregloPass,"numero");
+                if (count($numero) > 0) {
+                    //Se filtra para saber si hay letras dentro de la contraseña
+                    $letra = array_filter($arregloPass, "letra");
+                    if (count($letra) > 0) {
+                        //Se filtra para saber si hay simbolos dentro de la contraseña
+                        $simbolos = array_filter($arregloPass, "simbolo");
+                        if (count($simbolos) > 0) {
+                            //Se revisa que la contraseña no contenga datos dañinos para el sistema
+                            if (!preg_match('[a-bA-Ba-! #$%&()*+,-./:;<=>?@\^_{|}~]', $clave)) {
+                                echo "Nice";
+                            } else {
+                                echo "Hay, hacks";
+                            }
+                        } else {
+                            echo "No hay simbolos dentro de la contraseña";
+                        }
+                    } else {
+                        echo "No hay letras dentro de la contraseña";
+                    }
+                } else {
+                    echo "Lo sentimos, no hay números";
+                }
+
             } else {
-                //Se coloca el problema
-                $this->passwordError = 'La clave de contener un máximo de 64 caracteres';
-                return false;
+                //Se devuelve el problema
+                echo  'La clave debe contener un máximo de 64 caracteres';
             }
         } else {
-            //Se coloca el problema
-            $this->passwordError = 'La clave de contener al menos 8 caracteres';
-            return false;
+            echo 'La clave debe contener un mínimo de 8 caracteres';   
         }
-    }
-}
+    }   
+
+    validateSafePassword("1234#'5678s999");
+
+    /**
+     * Función para validar que sea un número
+     * 
+     */
+
+     function numero($valor) {
+        //Se revisa si el valor es númerico
+            return (is_numeric($valor));
+
+     }
+
+     /*
+     * Función para validar que sea una letra
+     * 
+     */
+
+     function letra($valor) {
+        //Se revisa si el valor es númerico
+            return (ctype_alpha($valor));
+
+     }
+
+     /**
+      * Función para validar que existan simbolos
+      */
+
+      function simbolo($valor) {
+        //Se revisa si el valor es númerico
+            return (ctype_punct($valor));
+
+     }
+
+
+
+    /**
+     * preg_match_all('/[a-z1-9$]/', $clave, $encuentros,PREG_OFFSET_CAPTURE);
+                $arrar = $encuentros[0];
+                foreach ($arrar AS $valor) {
+                    $conta = true;
+                    foreach ($valor AS $fila) {
+                        
+                        if ($conta) {
+                            echo "El valor es: ".$fila."<br>";
+                            $conta = false;
+                        } else {
+                            $conta = true;
+                        }
+                        
+                    }
+                    
+                    
+                }
+     */
+
+
+
+
