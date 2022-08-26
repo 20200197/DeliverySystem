@@ -107,9 +107,9 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Marca no válida';
                 } elseif (!$productos->setIdentificador($_POST['identificador'])) {
                     $result['exception'] = 'Producto a actualizar no reconocido';
-                } elseif(!$data = $productos->productoIndividual()) {
+                } elseif (!$data = $productos->productoIndividual()) {
                     $result['exception'] = 'El producto a actualizar no existe';
-                }elseif (!is_uploaded_file($_FILES['imagenM']['tmp_name'])) {
+                } elseif (!is_uploaded_file($_FILES['imagenM']['tmp_name'])) {
                     if ($productos->actualizar($_POST['opciones'], $data['imagen'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Producto modificado correctamente';
@@ -117,27 +117,26 @@ if (isset($_GET['action'])) {
                         $result['message'] = 'Errocillo del bueno';
                         $result['exception'] = Database::getException();
                     }
-                }elseif(!$productos->setImagen($_FILES['imagenM'])){
+                } elseif (!$productos->setImagen($_FILES['imagenM'])) {
                     $result['exception'] = $productos->getFileError();
-                }elseif($productos->actualizar($_POST['opciones'], $productos->getImagen())) {
+                } elseif ($productos->actualizar($_POST['opciones'], $productos->getImagen())) {
                     $result['status'] = 1;
                     if ($productos->saveFile($_FILES['imagenM'], $productos->getRuta(), $productos->getImagen())) {
                         $result['message'] = 'Producto modificado correctamente';
                     } else {
                         $result['message'] = 'Producto modificado pero no se guardó la imagen';
                     }
-
-                }else{
+                } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
             case 'delete':
-                if(!$productos->setIdentificador($_POST['identificador'])) {
+                if (!$productos->setIdentificador($_POST['identificador'])) {
                     $result['exception'] = 'No se logró identificar el producto';
-                }elseif($productos->eliminarProducto()) {
+                } elseif ($productos->eliminarProducto()) {
                     $result['status'] = 1;
                     $result['message'] = 'Producto eliminado correctamente';
-                }else{
+                } else {
                     $result['exception'] = Database::getException();
                 }
                 break;

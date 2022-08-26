@@ -66,46 +66,46 @@ function entregar(id, estado) {
         //Se crear una variable de tipo form
         let datos = new FormData();
         datos.append('identificador', id);
-                //Se realiza la confirmación antes de proceder
-                Swal.fire({
-                    title: "Advertencia",
-                    text: "¿Desea marcar como entregado el pedido?",
-                    icon: "warning",
-                    confirmButtonText: "Aceptar",
-                    denyButtonText: "Cancelar",
-                    showDenyButton: true,
-                    closeOnClickOutside: false,
-                    closeOnEsc: false,
-                }).then((result) => {
-                    // Se comprueba la elección del usuarios
-                    if (result.isConfirmed) {
-                        //Se crea la petición
-                        fetch(API_PAQUETES + 'entregar', {
-                            method: 'post',
-                            body: datos,
-                        }).then(function (request) {
-                            //Se verifica si se logró llegar a la api
-                            if (request) {
-                                //Se convierte a JSON
-                                request.json().then(function (response) {
-                                    //Se verifica el estado de la ejecución
-                                    if (response.status) {
-                                        //Se cargan los datos en la vista
-                                        readRows(API_PAQUETES);
-                                        //Se confirma el proceso completado
-                                        sweetAlert(1, response.message, null);
-                                    } else {
-                                        //Se le indica el error
-                                        sweetAlert(2, response.exception, null);
-                                    }
-                                })
+        //Se realiza la confirmación antes de proceder
+        Swal.fire({
+            title: "Advertencia",
+            text: "¿Desea marcar como entregado el pedido?",
+            icon: "warning",
+            confirmButtonText: "Aceptar",
+            denyButtonText: "Cancelar",
+            showDenyButton: true,
+            closeOnClickOutside: false,
+            closeOnEsc: false,
+        }).then((result) => {
+            // Se comprueba la elección del usuarios
+            if (result.isConfirmed) {
+                //Se crea la petición
+                fetch(API_PAQUETES + 'entregar', {
+                    method: 'post',
+                    body: datos,
+                }).then(function (request) {
+                    //Se verifica si se logró llegar a la api
+                    if (request) {
+                        //Se convierte a JSON
+                        request.json().then(function (response) {
+                            //Se verifica el estado de la ejecución
+                            if (response.status) {
+                                //Se cargan los datos en la vista
+                                readRows(API_PAQUETES);
+                                //Se confirma el proceso completado
+                                sweetAlert(1, response.message, null);
                             } else {
-                                //Se notifica por medio de la consola
-                                console.log(request.status + " " + request.statusText);
+                                //Se le indica el error
+                                sweetAlert(2, response.exception, null);
                             }
                         })
+                    } else {
+                        //Se notifica por medio de la consola
+                        console.log(request.status + " " + request.statusText);
                     }
                 })
+            }
+        })
     }
 }
 
@@ -159,7 +159,7 @@ function cancelar(id, estado) {
                 })
             }
         })
-        
+
     }
 }
 
@@ -174,7 +174,7 @@ function cargar_productos(id) {
         {
             method: 'post',
             body: datos,
-        }).then(function (request) { 
+        }).then(function (request) {
             //Se revisa si la ejecución 
             if (request.ok) {
                 //Se crea el JSON
@@ -201,12 +201,12 @@ function cargar_productos(id) {
                         });
                         //Se inyecta el html en el modal
                         document.getElementById("contenido_modal").innerHTML = contenido;
-                    } else { 
+                    } else {
                         //Se le muestra el problema
                         sweetAlert(2, response.exception, null);
                     }
                 })
-            } else { 
+            } else {
                 //Se imprime la consola
                 console.log(request.status + ' ' + request.statusText);
             }

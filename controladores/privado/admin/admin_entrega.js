@@ -69,8 +69,8 @@ document.getElementById('search-form').addEventListener('keyup', function (event
                     //Si no se busca nada se carga la tabla
                 } else if (response.exception == 'Ingrese un valor para buscar') {
                     readRows(API_ENTREGA);
-                }else{
-                    
+                } else {
+
                 }
             });
         } else {

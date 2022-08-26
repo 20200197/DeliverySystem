@@ -1212,8 +1212,8 @@ function readProductosCategoria(id, categoria) {
                             <div class="divider"></div>
                             <br>
                         </div> `
-                        readCheckFavoOfClient(row.id_producto);
-                        ;
+                            readCheckFavoOfClient(row.id_producto);
+                            ;
                             // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                             document.getElementById("contenedor_productos").innerHTML = content_estrellas;
                             //showFavo(idC);
@@ -1254,9 +1254,9 @@ function readProductosCategoria(id, categoria) {
                             <div class="divider"></div>
                             <br>
                         </div>`
-                        
-                        readCheckFavoOfClient(row.id_producto);
-                        ;
+
+                            readCheckFavoOfClient(row.id_producto);
+                            ;
                             // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                             document.getElementById("contenedor_productos").innerHTML = content_estrellas;
                             //showFavo(idC);

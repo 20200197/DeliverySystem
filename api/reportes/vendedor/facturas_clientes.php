@@ -91,7 +91,6 @@ if (isset($_SESSION['id_vendedor'])) {
 
     // Se envía el documento al navegador y se llama al método footer()
     $pdf->output('I', 'Compras_cliente.pdf');
-
 } else {
     echo utf8_decode("No se puede mostrar el reporte sin haber iniciado sesión");
 }

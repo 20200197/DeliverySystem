@@ -19,7 +19,7 @@ class EstadisticaRepartidor extends Validator
     public function setDepartamento($value)
     {
         //Se divide el string
-        $arreglo = explode(",",$value);
+        $arreglo = explode(",", $value);
         //Se crea una variable de confirmacion
         $respuesta = true;
         //Se recorren todos los datos
@@ -34,7 +34,6 @@ class EstadisticaRepartidor extends Validator
             }
         }
         return $respuesta;
-        
     }
 
 
@@ -53,7 +52,7 @@ class EstadisticaRepartidor extends Validator
         }
         //Se revisa la cantidad de departamentos para unir la sentencia
         for ($i = 1; $i < count($this->departamento); $i++) {
-            $sql = $sql. "UNION 
+            $sql = $sql . "UNION 
             (SELECT * FROM calcular_top(?))";
         }
         //Se obtienen los datos
@@ -68,6 +67,4 @@ class EstadisticaRepartidor extends Validator
         ORDER BY id_departamento";
         return Database::getRows($sql, null);
     }
-
-
 }

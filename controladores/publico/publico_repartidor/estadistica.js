@@ -5,7 +5,7 @@ const API_ESTADISTICA = SERVER + "publico/estadistica_repartidor.php?action=";
 const API_VENDEDOR = SERVER + "publico/vendedor.php?action=";
 //Se crea un arreglo donde se guardarán los id de los departamentos seleccionados
 var identificadores = [];
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
     M.Modal.init(document.querySelectorAll(".modal"), { dismissible: false });
     readBarraProductosMasVendidosDepartamento();
@@ -22,11 +22,11 @@ function readBarraProductosMasVendidosDepartamento(nombre_departamento) {
     fetch(API_REPARTIDOR + "readProductosMasVendidosDepartamento", {
         method: "post",
         body: data,
-    }).then(function(request) {
+    }).then(function (request) {
         //Se revisa si se ejecutó la sentencia
         if (request.ok) {
             //Se pasa a formato JSON
-            request.json().then(function(response) {
+            request.json().then(function (response) {
                 //Se verifica el estado de la respuesta
                 /** Se crean los vectores generales donde se guardarán los datos*/
                 let cabeceras = []; //Vector donde se guardarán los titulos de la gráfica
@@ -40,7 +40,7 @@ function readBarraProductosMasVendidosDepartamento(nombre_departamento) {
                     //let fila3 = []; //Vector donde se guardarán los datos por el mismo titulo de la gráfica (1 Línea)
 
                     //Se explorar fila por fila
-                    response.dataset.map(function(row) {
+                    response.dataset.map(function (row) {
                         //Se llenan los datos en los vectores generales
                         cabeceras.push(row.nombre_producto); //Se agrega un titulo
                         fila.push(row.cantidad_pedido); //Se agrega un dato para el titulo
@@ -74,11 +74,11 @@ function openOpciones() {
     //Cargamos el select
     fetch(API_REPARTIDOR + "readAllDepartamento", {
         method: "get",
-    }).then(function(request) {
+    }).then(function (request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
         if (request.ok) {
             // Se obtiene la respuesta en formato JSON.
-            request.json().then(function(response) {
+            request.json().then(function (response) {
                 let content = "";
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
@@ -87,7 +87,7 @@ function openOpciones() {
                         content += "<option disabled selected>Seleccione una opción</option>";
                     }
                     // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
-                    response.dataset.map(function(row) {
+                    response.dataset.map(function (row) {
                         // Se obtiene el dato del primer campo de la sentencia SQL (valor para cada opción).
                         value = Object.values(row)[0];
                         // Se obtiene el dato del segundo campo de la sentencia SQL (texto para cada opción).
@@ -120,11 +120,11 @@ function openParametro() {
         showCancelButton: true,
         allowOutsideClick: false,
     }).then((result) => {
-        if (result.isDismissed) {} else {
+        if (result.isDismissed) { } else {
             //Obtenemos la opcion seleccinada
             var selectedOption =
                 document.getElementById("opciones_departamento").options[
-                    document.getElementById("opciones_departamento").selectedIndex
+                document.getElementById("opciones_departamento").selectedIndex
                 ];
             console.log(selectedOption.text);
             readBarraProductosMasVendidosDepartamento(selectedOption.text);
@@ -149,17 +149,17 @@ function departamentos() {
     //Se realiza la petición
     fetch(API_ESTADISTICA + "Departamento", {
         method: "get",
-    }).then(function(request) {
+    }).then(function (request) {
         //Se verifica el resultado de la API
         if (request.ok) {
             //Se pasa a JSON
-            request.json().then(function(response) {
+            request.json().then(function (response) {
                 //Se verifica el estado devuelto de la API
                 if (response.status) {
                     //Se crea una variable donde se colocará el HTML
                     let contenido = [];
                     //Se obtienen los datos desde el map
-                    response.dataset.map(function(row) {
+                    response.dataset.map(function (row) {
                         //Se llenar el vector con el HTML
                         contenido += `
                             <tr>
@@ -246,11 +246,11 @@ function generar(arreglo) {
     fetch(API_ESTADISTICA + "TopClientes", {
         method: "post",
         body: datos,
-    }).then(function(request) {
+    }).then(function (request) {
         //Se revisa el estado
         if (request.ok) {
             //Se pasa a JSON
-            request.json().then(function(response) {
+            request.json().then(function (response) {
                 //Se revisa el estado devuelto por la API
                 //verificación para saber si no se han seleccionados departamentos
                 if (response.status == 2) {
@@ -268,7 +268,7 @@ function generar(arreglo) {
                         []
                     ]; //Contenedor de todos los datos
                     let controlador = {}; //Verificador para crear o posicionar datos según la cantidad de ID que provengan
-                    response.dataset.map(function(departamento) {
+                    response.dataset.map(function (departamento) {
                         //Se guardan los datos para cargarlos a un meta
                         let llave = departamento.cliente;
                         let valor = departamento.total;

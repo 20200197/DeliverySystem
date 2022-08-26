@@ -14,10 +14,10 @@ class PaquetesPendientes extends Validator
 
     public function setIdentificador($value)
     {
-        if($this->validateNaturalNumber($value)) {
+        if ($this->validateNaturalNumber($value)) {
             $this->identificador = $value;
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -28,9 +28,9 @@ class PaquetesPendientes extends Validator
      */
 
 
-     //Función para cargar las facturas
-     public function cargarFacturas()
-     {
+    //Función para cargar las facturas
+    public function cargarFacturas()
+    {
         $sql = "SELECT CONCAT(c.nombre_cliente, ' ',c.apellido_cliente) as nombre, c.correo_cliente, c.telefono_cliente, d.descripcion_direccion, d.punto_referencia, f.id_factura, f.total, ef.id_status FROM factura f
         INNER JOIN direccion d ON d.id_direccion = f.id_direccion
         INNER JOIN cliente c ON c.id_cliente = d.id_cliente
@@ -38,15 +38,15 @@ class PaquetesPendientes extends Validator
         WHERE id_repartidor = ? AND f.id_status NOT IN (1) ORDER BY id_factura";
         $params = array($this->identificador);
         return Database::getRows($sql, $params);
-     }
+    }
 
-     //Función para cambiar el estado a entregado
-     public function entregar()
-     {
+    //Función para cambiar el estado a entregado
+    public function entregar()
+    {
         $sql = 'UPDATE factura set id_status = 3 WHERE id_factura = ?';
         $params = array($this->identificador);
         return Database::executeRow($sql, $params);
-     }
+    }
 
     //Función para cambiar el estado a cancelado
     public function cancelar()

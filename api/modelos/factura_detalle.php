@@ -15,14 +15,15 @@ class Factura extends Validator
     private $id_cliente = null;
     private $id_metodo = null;
 
-    
+
     //creamos metodos set
 
-    public function setIdDetalle($valor){
-        if($this->validateNaturalNumber($valor)){
+    public function setIdDetalle($valor)
+    {
+        if ($this->validateNaturalNumber($valor)) {
             $this->id_detalle = $valor;
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -48,126 +49,145 @@ class Factura extends Validator
         }
     }
 
-    public function setCantidadPorducto($valor){
-        if($this->validateNaturalNumber($valor)){
+    public function setCantidadPorducto($valor)
+    {
+        if ($this->validateNaturalNumber($valor)) {
             $this->cantidad_producto = $valor;
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public function setPrecioUnitario($valor){
-        if($this->validateMoney($valor)){
+    public function setPrecioUnitario($valor)
+    {
+        if ($this->validateMoney($valor)) {
             $this->precio_unitario = $valor;
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public function setIdProducto($valor){
-        if($this->validateNaturalNumber($valor)){
+    public function setIdProducto($valor)
+    {
+        if ($this->validateNaturalNumber($valor)) {
             $this->id_producto = $valor;
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public function setIdFactura($valor){
-        if($this->validateNaturalNumber($valor)){
+    public function setIdFactura($valor)
+    {
+        if ($this->validateNaturalNumber($valor)) {
             $this->id_factura = $valor;
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public function setFecha($date){
-        if($this->validateDate($date)){
+    public function setFecha($date)
+    {
+        if ($this->validateDate($date)) {
             $this->fecha = $date;
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public function setTotal($valor){
-        if($this->validateMoney($valor)){
+    public function setTotal($valor)
+    {
+        if ($this->validateMoney($valor)) {
             $this->total = $valor;
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public function setEstadoFactura($valor){
-        if($this->validateAlphabetic($valor, 1, 20)){
+    public function setEstadoFactura($valor)
+    {
+        if ($this->validateAlphabetic($valor, 1, 20)) {
             $this->estado_factura = $valor;
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public function setDireccion($valor){
-        if($this->validateDirection($valor)){
+    public function setDireccion($valor)
+    {
+        if ($this->validateDirection($valor)) {
             $this->direccion = $valor;
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public function setIdCliente($valor){
-        if($this->validateNaturalNumber($valor)){
+    public function setIdCliente($valor)
+    {
+        if ($this->validateNaturalNumber($valor)) {
             $this->id_cliente = $valor;
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
     //creamos metodos get
 
-    public function getIdDetalle(){
+    public function getIdDetalle()
+    {
         return $this->id_detalle;
     }
 
-    public function getCantidadProducto(){
+    public function getCantidadProducto()
+    {
         return $this->cantidad_producto;
     }
 
-    public function getPrecioUnitario(){
+    public function getPrecioUnitario()
+    {
         return $this->precio_unitario;
     }
 
-    public function getIdProducto(){
+    public function getIdProducto()
+    {
         return $this->id_producto;
     }
 
-    public function getIdFactura(){
+    public function getIdFactura()
+    {
         return $this->id_factura;
     }
 
-    public function getFecha(){
+    public function getFecha()
+    {
         return $this->fecha;
     }
 
-    public function getTotal(){
+    public function getTotal()
+    {
         return $this->total;
     }
 
-    public function getEstadoFactura(){
+    public function getEstadoFactura()
+    {
         return $this->estado_factura;
     }
 
-    public function getDireccion(){
+    public function getDireccion()
+    {
         return $this->direccion;
     }
 
-    public function getIdCliente(){
+    public function getIdCliente()
+    {
         return $this->id_cliente;
     }
 
@@ -184,17 +204,17 @@ class Factura extends Validator
                 WHERE id_status = ? AND id_cliente = ?';
         $params = array($this->estado_factura, $_SESSION['id_cliente']);
 
-        if($data = Database::getRow($sql, $params)){
+        if ($data = Database::getRow($sql, $params)) {
             $this->id_factura = $data['id_factura'];
             return true;
-        }else{
+        } else {
             $sql = 'INSERT INTO factura(id_status, id_direccion)
                     VALUES(?, (SELECT id_direccion FROM direccion WHERE id_cliente = ? LIMIT 1))';
             $params = array($this->estado_factura, $_SESSION['id_cliente']);
 
-            if($this->id_factura = Database::getLastRow($sql, $params)){
+            if ($this->id_factura = Database::getLastRow($sql, $params)) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         }
@@ -217,7 +237,8 @@ class Factura extends Validator
         return Database::getRows($sql, $params);
     }
 
-    public function getNProd(){
+    public function getNProd()
+    {
         $sql = 'SELECT count(id_detalle) as n_productos
                 FROM detalle_factura
                 WHERE id_factura = ?';
@@ -281,7 +302,8 @@ class Factura extends Validator
         return Database::getRow($sql, $params);
     }
 
-    public function checkStock(){
+    public function checkStock()
+    {
         $sql = 'SELECT cantidad_producto FROM producto WHERE id_producto = ?';
         $params = array($this->id_producto);
 
@@ -289,7 +311,7 @@ class Factura extends Validator
 
         if ($data['cantidad_producto'] >= $this->cantidad_producto) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }

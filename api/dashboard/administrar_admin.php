@@ -61,7 +61,7 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = Database::getException();
                 }
-                    break;
+                break;
             case 'readAll':
                 if ($result['dataset'] = $admin->readAdminsAll()) {
                     $result['status'] = 1;
@@ -160,9 +160,9 @@ if (isset($_GET['action'])) {
                     $result['message'] = 'Autenticación correcta';
                     $_SESSION['id_admin'] = $admin->getId();
                     $_SESSION['nombre_admin'] = $admin->getUsuario();
-                } elseif(!$admin->checkPass($_POST['password'])) {
+                } elseif (!$admin->checkPass($_POST['password'])) {
                     $result['exception'] = 'Contraseña incorrecta';
-                } 
+                }
                 break;
             default:
                 $result['exception'] = 'Acción no disponible fuera de la sesión';

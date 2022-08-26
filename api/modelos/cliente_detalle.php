@@ -147,8 +147,7 @@ class clienteDetalle extends Validator
     {
         $sql = "INSERT INTO comentario_producto (valoracion, comentario, visible, id_detalle)
         VALUES (?,?,?,?)";
-        $params = array($this->valoracion, $this->comentario, true,$this->identificadorDetalle);
+        $params = array($this->valoracion, $this->comentario, true, $this->identificadorDetalle);
         return Database::executeRow($sql, $params);
     }
-
 }

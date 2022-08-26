@@ -154,10 +154,10 @@ class Categoria extends Validator
         $sql = 'UPDATE categoria
                 SET categoria=  ?, imagen_categoria=?
                 WHERE id_categoria=?';
-        $params = array($this->nombre_categoria,$this->imagen_categoria, $this->id);
+        $params = array($this->nombre_categoria, $this->imagen_categoria, $this->id);
         return Database::executeRow($sql, $params);
     }
-    
+
     //Función para eliminar fila
     public function deleteRow()
     {
@@ -176,7 +176,7 @@ class Categoria extends Validator
         return Database::executeRow($sql, $params);
     }
 
-     //Función que valida para que no se repitan datos
+    //Función que valida para que no se repitan datos
     //$column es la columna sql que se validara, dui, telefono, etc
     //$data el dato obtenido por get en Api
     public function read($column, $data)

@@ -1,5 +1,5 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
-const API_CATEGORIA = SERVER + 'dashboard/administrar_categoria.php?action='; 
+const API_CATEGORIA = SERVER + 'dashboard/administrar_categoria.php?action=';
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
@@ -267,15 +267,15 @@ function openParametro() {
   });
 }
 
-  // Función para abrir reporte de gastos por cliente
-  function openReport(categoria) {
-    // Se establece la ruta del reporte en el servidor.
-    let url = SERVER + `reportes/dashboard/productos_categoria.php?categoria=${categoria}`;
-    // Se abre el reporte en una nueva pestaña del navegador web.
-    window.open(url);
-    // Se define un objeto con los datos del registro seleccionado.
-    // const data = new FormData();
-    // data.append("categoriaN", categoria);
-    // request.send(data);
-  
-  }
+// Función para abrir reporte de gastos por cliente
+function openReport(categoria) {
+  // Se establece la ruta del reporte en el servidor.
+  let url = SERVER + `reportes/dashboard/productos_categoria.php?categoria=${categoria}`;
+  // Se abre el reporte en una nueva pestaña del navegador web.
+  window.open(url);
+  // Se define un objeto con los datos del registro seleccionado.
+  // const data = new FormData();
+  // data.append("categoriaN", categoria);
+  // request.send(data);
+
+}

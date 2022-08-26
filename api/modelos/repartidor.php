@@ -511,7 +511,7 @@ class Repartidor extends Validator
 
         return Database::executeRow($sql, $params);
     }
-    
+
     //Cambios Bonilla1
     //Metodo para verificar la contraseña
     public function checkPass($pass)

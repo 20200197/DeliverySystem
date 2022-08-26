@@ -12,13 +12,13 @@ class PedidosCliente extends Validator
     private $nombre = null;
     private $apellido = null;
     private $estado = null;
-    
+
     private $dui = null;
     private $telefono = null;
     private $correo = null;
     private $fecha_factura = null;
     private $direccion = null;
-    
+
     /*
     *   Métodos para validar y asignar valores de los atributos.
     */
@@ -43,11 +43,12 @@ class PedidosCliente extends Validator
         }
     }
 
-    public function setTotal($valor){
-        if($this->validateMoney($valor)){
+    public function setTotal($valor)
+    {
+        if ($this->validateMoney($valor)) {
             $this->total = $valor;
             return true;
-        }else{
+        } else {
             return false;
         }
     }

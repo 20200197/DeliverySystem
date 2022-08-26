@@ -133,7 +133,7 @@ class PerfilCliente extends Validator
     //Actualizar los datos del perfil
     public function actualizarPerfil($foto)
     {
-        
+
         $sql = 'UPDATE cliente SET nombre_cliente = ?, apellido_cliente = ?, correo_cliente = ?, telefono_cliente = ?, foto_cliente = ? WHERE id_cliente = ?';
         $params = array($this->nombreCliente, $this->apellidoCliente, $this->correoCliente, $this->telefonoCliente, $foto, 1);
         //$params = array($this->nombreCliente, $this->apellidoCliente, $this->correoCliente, $this->telefonoCliente, $foto, $_SESSION['id_cliente']);

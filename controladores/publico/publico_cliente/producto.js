@@ -1351,7 +1351,7 @@ function searchProductosCalidad() {
                                     //Para 3
 
                                 }
-                            }else{
+                            } else {
                                 // Se presenta un mensaje de error cuando no existen datos para mostrar.
                                 document.getElementById("title").innerHTML = `<i class="material-icons small black-text">cloud_off</i><span class="red-text">No hay coincidencias</span><p><i class="material-icons medium black-text">home</i></p>`;
                             }
@@ -1506,7 +1506,7 @@ function searchProductosCalidad() {
                                     //Para 4
 
                                 }
-                            }else{
+                            } else {
                                 // Se presenta un mensaje de error cuando no existen datos para mostrar.
                                 document.getElementById("title").innerHTML = `<i class="material-icons small black-text">cloud_off</i><span class="red-text">No hay coincidencias</span><p><i class="material-icons medium black-text">home</i></p>`;
                             }
@@ -1662,7 +1662,7 @@ function searchProductosCalidad() {
 
 
                                 }
-                            }else{
+                            } else {
                                 // Se presenta un mensaje de error cuando no existen datos para mostrar.
                                 document.getElementById("title").innerHTML = `<i class="material-icons small black-text">cloud_off</i><span class="red-text">No hay coincidencias</span><p><i class="material-icons medium black-text">home</i></p>`;
                             }
@@ -1764,7 +1764,7 @@ function searchProductosCalidad() {
                                     //showOp();
 
                                 }
-                            }else{
+                            } else {
                                 // Se presenta un mensaje de error cuando no existen datos para mostrar.
                                 document.getElementById("title").innerHTML = `<i class="material-icons small black-text">cloud_off</i><span class="red-text">No hay coincidencias</span><p><i class="material-icons medium black-text">home</i></p>`;
                             }

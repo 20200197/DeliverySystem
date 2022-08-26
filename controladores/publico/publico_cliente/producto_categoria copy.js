@@ -104,8 +104,8 @@ function fillTableProductosCategoria(dataset) {
                   `;
                 // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                 document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-              
-               
+
+
             } else {
                 //Para 1
                 // Se crean y concatenan las tarjetas con los datos de cada producto.
@@ -151,8 +151,8 @@ function fillTableProductosCategoria(dataset) {
                  `;
                 // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                 document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-               
-               
+
+
             }
             //Para 1.5
         } else if (row.calidad <= 2 && row.calidad > 1) {
@@ -199,8 +199,8 @@ function fillTableProductosCategoria(dataset) {
                   `;
                 // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                 document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-                
-             
+
+
             } else {
                 //Para 2
                 // Se crean y concatenan las tarjetas con los datos de cada producto.
@@ -246,8 +246,8 @@ function fillTableProductosCategoria(dataset) {
                  `;
                 // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                 document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-               
-                
+
+
             }
         } else if (row.calidad <= 3 && row.calidad > 2) {
             //Para 2.5
@@ -294,8 +294,8 @@ function fillTableProductosCategoria(dataset) {
                 `;
                 // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                 document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-                
-              
+
+
             } else {
                 //Para 3
                 // Se crean y concatenan las tarjetas con los datos de cada producto.
@@ -341,8 +341,8 @@ function fillTableProductosCategoria(dataset) {
                 `;
                 // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                 document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-              
-               
+
+
             }
         } else if (row.calidad <= 4 && row.calidad > 3) {
             //Para 3.5
@@ -389,7 +389,7 @@ function fillTableProductosCategoria(dataset) {
                      `;
                 // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                 document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-               
+
             } else {
                 //Para 4
                 // Se crean y concatenan las tarjetas con los datos de cada producto.
@@ -435,10 +435,10 @@ function fillTableProductosCategoria(dataset) {
                   `;
                 // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                 document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-              
+
                 showFavo(idC);
             }
-           
+
         } else if (row.calidad <= 5 && row.calidad > 4) {
             //Para 4.5
             if (row.calidad < 5 && row.calidad > 4) {
@@ -485,7 +485,7 @@ function fillTableProductosCategoria(dataset) {
                 // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                 document.getElementById("contenedor_productos").innerHTML = content_estrellas;
                 showFavo(idC);
-               
+
             } else {
 
                 // Se crean y concatenan las tarjetas con los datos de cada producto.
@@ -531,7 +531,7 @@ function fillTableProductosCategoria(dataset) {
                     `;
                 // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                 document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-          
+
                 showFavo(idC);
 
             }
@@ -572,8 +572,8 @@ function fillTableProductosCategoria(dataset) {
                     </div> `;
             // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
             document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-           
-            
+
+
         } else {
             content_estrellas += `
             <!--Catalogo-->
@@ -612,8 +612,8 @@ function fillTableProductosCategoria(dataset) {
                     </div>`;
             // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
             document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-          
-         
+
+
         }
 
 
@@ -622,7 +622,7 @@ function fillTableProductosCategoria(dataset) {
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('contenedor_productos').innerHTML = content_estrellas;
 
-   
+
     // Se inicializa el componente Material Box para que funcione el efecto Lightbox.
     M.Materialbox.init(document.querySelectorAll('.materialboxed'));
     // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
@@ -702,7 +702,7 @@ function readProductosCategoria(id, categoria) {
                                 // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                                 document.getElementById("contenedor_productos").innerHTML = content_estrellas;
                                 showFavo(idC);
-                           
+
                             } else {
                                 //Para 1
                                 // Se crean y concatenan las tarjetas con los datos de cada producto.
@@ -749,7 +749,7 @@ function readProductosCategoria(id, categoria) {
                                 // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                                 document.getElementById("contenedor_productos").innerHTML = content_estrellas;
                                 showFavo(idC);
-                  
+
                             }
                             //Para 1.5
                         } else if (row.calidad <= 2 && row.calidad > 1) {
@@ -797,7 +797,7 @@ function readProductosCategoria(id, categoria) {
                                 // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                                 document.getElementById("contenedor_productos").innerHTML = content_estrellas;
                                 showFavo(idC);
-                         
+
                             } else {
                                 //Para 2
                                 // Se crean y concatenan las tarjetas con los datos de cada producto.
@@ -844,7 +844,7 @@ function readProductosCategoria(id, categoria) {
                                 // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                                 document.getElementById("contenedor_productos").innerHTML = content_estrellas;
                                 showFavo(idC);
-                        
+
                             }
                         } else if (row.calidad <= 3 && row.calidad > 2) {
                             //Para 2.5
@@ -892,7 +892,7 @@ function readProductosCategoria(id, categoria) {
                                 // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                                 document.getElementById("contenedor_productos").innerHTML = content_estrellas;
                                 showFavo(idC);
-                        
+
                             } else {
                                 //Para 3
                                 // Se crean y concatenan las tarjetas con los datos de cada producto.
@@ -939,7 +939,7 @@ function readProductosCategoria(id, categoria) {
                                 // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                                 document.getElementById("contenedor_productos").innerHTML = content_estrellas;
                                 showFavo(idC);
-                       
+
                             }
                         } else if (row.calidad <= 4 && row.calidad > 3) {
                             //Para 3.5
@@ -987,7 +987,7 @@ function readProductosCategoria(id, categoria) {
                                 // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                                 document.getElementById("contenedor_productos").innerHTML = content_estrellas;
                                 showFavo(idC);
-                           
+
                             } else {
                                 //Para 4
                                 // Se crean y concatenan las tarjetas con los datos de cada producto.
@@ -1034,7 +1034,7 @@ function readProductosCategoria(id, categoria) {
                                 // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                                 document.getElementById("contenedor_productos").innerHTML = content_estrellas;
                                 showFavo(idC);
-                               
+
                             }
                         } else if (row.calidad <= 5 && row.calidad > 4) {
                             //Para 4.5
@@ -1082,7 +1082,7 @@ function readProductosCategoria(id, categoria) {
                                 // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                                 document.getElementById("contenedor_productos").innerHTML = content_estrellas;
                                 showFavo(idC);
-                         
+
                             } else {
 
                                 // Se crean y concatenan las tarjetas con los datos de cada producto.
@@ -1129,7 +1129,7 @@ function readProductosCategoria(id, categoria) {
                                 // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                                 document.getElementById("contenedor_productos").innerHTML = content_estrellas;
                                 showFavo(idC);
-                 
+
 
                             }
                         } else if (row.calidad == null) {
@@ -1170,7 +1170,7 @@ function readProductosCategoria(id, categoria) {
                             // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                             document.getElementById("contenedor_productos").innerHTML = content_estrellas;
                             showFavo(idC);
-                       
+
                         } else {
                             content_estrellas += `
                 <!--Catalogo-->
@@ -1210,7 +1210,7 @@ function readProductosCategoria(id, categoria) {
                             // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
                             document.getElementById("contenedor_productos").innerHTML = content_estrellas;
                             showFavo(idC);
-                       
+
                         }
 
                     });
@@ -1635,7 +1635,7 @@ function searchProductosCalidad() {
     if (document.getElementById("cali_uno").checked == true) {
         //Mandamos los dos parametros para buscar
         parameter.append('data', 1)
-        
+
 
         //Deshabilitamos
         document.getElementById("cali_uno").checked = true;
@@ -1667,7 +1667,7 @@ function searchProductosCalidad() {
 
     } else if (document.getElementById("cali_cuatro").checked == true) {
         parameter.append('data', 4)
-       
+
         //Deshabilitamos
         document.getElementById("cali_uno").checked = false;
         document.getElementById("cali_dos").checked = false;

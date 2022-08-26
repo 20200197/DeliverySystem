@@ -2,7 +2,7 @@
 const API_ESTADISTICA = SERVER + 'publico/estadistica_vendedor.php?action=';
 
 //Método que se ejecutará cuando se carga la página
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     //Se carga la internacionalización de day.js
     dayjs.locale("es");
 
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     //Actualización de los componentes cuando se mueven las manijas
-    slider.noUiSlider.on('update', function(values, handle) {
+    slider.noUiSlider.on('update', function (values, handle) {
         //Se colocan las fechas en los componentes para el usuario (Visible)
         dateValues[handle].innerHTML = dayjs(new Date(+values[handle])).format('DD, MMMM, YYYY');
         //Se colocan las fechas en los componetes para la consulta (Ocultos)
@@ -92,13 +92,13 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     //Se ejecuta la recarga de la gráfica cuando pare de moverse las manijas
-    slider.noUiSlider.on('end', function() {
+    slider.noUiSlider.on('end', function () {
         //Se ejecuta nuevamente la función para generar la gráfica
         totalPromedio();
     })
 
     //Actualización de los componentes cuando se mueven las manijas
-    sliderRango.noUiSlider.on('update', function(values, handle) {
+    sliderRango.noUiSlider.on('update', function (values, handle) {
         //Se colocan las fechas en los componentes para el usuario (Visible)
         dateValuesRango[handle].innerHTML = "$" + +values[handle];
         //Se colocan las cantidades en los componentes para enviar como parámetros
@@ -120,11 +120,11 @@ function totalPromedio() {
     fetch(API_ESTADISTICA + 'promedioTotal', {
         method: 'post',
         body: datos,
-    }).then(function(request) {
+    }).then(function (request) {
         //Se verifica el estado de la ejecución
         if (request.ok) {
             //Se pasa a formato JSON
-            request.json().then(function(response) {
+            request.json().then(function (response) {
                 //Se verifica el estado devuelto por la API
                 if (response.status) {
                     //Se limpia el problema
@@ -135,7 +135,7 @@ function totalPromedio() {
                     let promedio = []; //Contenedor de los datos por 
                     let total = []; //Contenedor de los datos por titulo
                     //Se buscan los datos fila por fila
-                    response.dataset.map(function(row) {
+                    response.dataset.map(function (row) {
                         //Se llena la fila y los titulos
                         titulos.push(row.fecha_compra);
                         //Variables para almacenar los datos

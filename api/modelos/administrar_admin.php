@@ -1,6 +1,7 @@
 <?php
 
-class Administrador extends Validator{
+class Administrador extends Validator
+{
     //creamos atributos de la clase administrador
     private $id = null;
     private $nombre = null;
@@ -14,7 +15,7 @@ class Administrador extends Validator{
     //Creamos metodos set
     public function setId($valor)
     {
-        if($this->validateNaturalNumber($valor)) {
+        if ($this->validateNaturalNumber($valor)) {
             $this->id = $valor;
             return true;
         } else {
@@ -31,7 +32,7 @@ class Administrador extends Validator{
             return false;
         }
     }
-    
+
     public function setApellido($valor)
     {
         if ($this->validateAlphabetic($valor, 3, 30)) {
@@ -157,7 +158,7 @@ class Administrador extends Validator{
         $sql = 'SELECT id_admin FROM administrador WHERE usuario_admin = ?';
         $params = array($this->usuario);
 
-        if  ($data = Database::getRow($sql, $params)) {
+        if ($data = Database::getRow($sql, $params)) {
             $this->id = $data['id_admin'];
         }
         return $data;
@@ -203,7 +204,7 @@ class Administrador extends Validator{
                 FROM administrador WHERE nombre_admin ILIKE ? AND id_admin != ? OR apellido_admin ILIKE ? AND id_admin != ? OR usuario_admin ILIKE ? AND id_admin != ? OR dui_admin ILIKE ? AND id_admin != ? OR correo_admin ILIKE ? AND id_admin != ?
                 ORDER BY fecha_registro_admin';
         $params = array("%$data%", $_SESSION['id_admin'], "%$data%", $_SESSION['id_admin'], "%$data%", $_SESSION['id_admin'], "%$data%", $_SESSION['id_admin'], "%$data%", $_SESSION['id_admin']);
-        
+
         return Database::getRows($sql, $params);
     }
 
@@ -217,7 +218,8 @@ class Administrador extends Validator{
         }
     }
 
-    public function changeStatus($id){
+    public function changeStatus($id)
+    {
         if ($this->getStatus($id)) {
             $sql = 'UPDATE administrador SET status_admin = false WHERE id_admin = ?';
         } else {
@@ -228,7 +230,8 @@ class Administrador extends Validator{
         return Database::executeRow($sql, $params);
     }
 
-    public function checkStatus(){
+    public function checkStatus()
+    {
         $sql = 'SELECT status_admin FROM administrador WHERE id_admin = ? AND status_admin = true';
         $params = array($this->id);
 

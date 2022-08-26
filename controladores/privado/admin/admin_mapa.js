@@ -110,7 +110,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
         const data = new FormData();
         //Asignamos las coordenadas la y lo en la llave coordenadas
         data.append('coordenadasCliente', la + ',' + ' ' + lo);
-        console.log('Coordenads' +la + ',' + ' ' + lo);
+        console.log('Coordenads' + la + ',' + ' ' + lo);
 
         fetch(API_MAPA + 'updateCoordenadasCliente', {
             method: 'post',

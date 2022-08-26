@@ -7,7 +7,7 @@ $pdf = new Report;
 //Se reinicia la sesión 
 session_start();
 // Se inicia el reporte con el encabezado del documento.
-$pdf->startReport('Top 5 vendedores con más ventas',$_SESSION['nombre_admin']);
+$pdf->startReport('Top 5 vendedores con más ventas', $_SESSION['nombre_admin']);
 
 $administrar_vendedor = new AdministrarVendedor;
 // Se verifica si existen registros (categorías) para mostrar, de lo contrario se imprime un mensaje.
@@ -36,7 +36,7 @@ if ($dataVendedor = $administrar_vendedor->obtenerVendedores()) {
             ($rowVendedor['status_vendedor']) ? $estado = 'Activo' : $estado = 'Inactivo';
             // Se imprimen las celdas con los datos de los productos.
             $pdf->cell(60, 10, utf8_decode($rowVendedor['nombre_vendedor']), 1, 0);
-            $pdf->cell(20, 10, utf8_decode('$'.$rowVendedor['total']), 1, 0);
+            $pdf->cell(20, 10, utf8_decode('$' . $rowVendedor['total']), 1, 0);
             $pdf->cell(40, 10, utf8_decode($rowVendedor['correo_vendedor']), 1, 0);
             $pdf->cell(25, 10, $rowVendedor['dui_vendedor'], 1, 0);
             $pdf->cell(20, 10, $estado, 1, 0);

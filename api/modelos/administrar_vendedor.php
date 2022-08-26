@@ -402,10 +402,10 @@ class AdministrarVendedor extends Validator
     }
 
 
-     /** Porcentaje de ventas por categoria de sus productos **/ 
-     public function readPorcentajeVentaCategoria()
-     {
-         $sql = " SELECT categoria, SUM(ROUND((cantidad_pedido * 100.0 / 
+    /** Porcentaje de ventas por categoria de sus productos **/
+    public function readPorcentajeVentaCategoria()
+    {
+        $sql = " SELECT categoria, SUM(ROUND((cantidad_pedido * 100.0 / 
          (
              SELECT sum(cantidad_pedido)
              FROM detalle_factura
@@ -418,33 +418,33 @@ class AdministrarVendedor extends Validator
          INNER JOIN producto USING (id_producto)
          INNER JOIN categoria categoria on producto.id_categoria = categoria.id_categoria
          GROUP BY categoria ";
-         $params = null;
-         return Database::getRows($sql, $params);
-     }
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
 
-      /** Top 5 productos mas vendidos con sus valoraciones **/
-      public function readProductosMasVendidosValorados()
-      {
-          $sql = "SELECT producto.nombre_producto, sum(detalle_factura.cantidad_pedido) as cantidad_pedido, (sum(detalle_factura.cantidad_pedido) * (detalle_factura.precio + detalle_factura.costo_envio)) as total  
+    /** Top 5 productos mas vendidos con sus valoraciones **/
+    public function readProductosMasVendidosValorados()
+    {
+        $sql = "SELECT producto.nombre_producto, sum(detalle_factura.cantidad_pedido) as cantidad_pedido, (sum(detalle_factura.cantidad_pedido) * (detalle_factura.precio + detalle_factura.costo_envio)) as total  
              from producto 
              inner join detalle_factura detalle_factura on detalle_factura.id_producto = producto.id_producto 
              inner join factura factura on factura.id_factura = detalle_factura.id_factura 
              inner join comentario_producto comentario_producto on comentario_producto.id_detalle = detalle_factura.id_detalle 
              group by producto.nombre_producto, detalle_factura.precio, detalle_factura.costo_envio, cantidad_pedido 
              order by cantidad_pedido desc limit 5";
-          $params = null;
-          return Database::getRows($sql, $params);
-      }
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
 
-      public function readCategorias()
-      {
+    public function readCategorias()
+    {
         $sql = 'SELECT id_categoria, categoria FROM categoria';
- 
+
         return Database::getRows($sql, null);
-      }
- 
-      public function readSellsCategory($nombre_categoria)
-      {
+    }
+
+    public function readSellsCategory($nombre_categoria)
+    {
         $sql = "SELECT sum(total) as total, TO_CHAR(fecha_compra, 'YYYY-MM-DD') as fecha
                 FROM factura
                 INNER JOIN detalle_factura USING (id_factura)
@@ -453,9 +453,9 @@ class AdministrarVendedor extends Validator
                 WHERE categoria = ? and id_vendedor = ?
                 GROUP BY fecha";
         $params = array($nombre_categoria, $_SESSION['id_vendedor']);
- 
+
         return Database::getRows($sql, $params);
-      }
+    }
     /** Top 5 vendedores con más ventas **/
     public function readVendedoresVentas()
     {
@@ -468,5 +468,4 @@ class AdministrarVendedor extends Validator
         $params = null;
         return Database::getRows($sql, $params);
     }
-
 }
