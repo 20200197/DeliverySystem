@@ -22,6 +22,13 @@ class Sesion extends Validator
         $params = array($id);
         return Database::getRow($sql, $params);
     }
+
+    public function sesionR($id)
+    {
+        $sql = "SELECT CONCAT(nombre_repartidor, ' ',apellido_repartidor) as nombre FROM repartidor WHERE id_repartidor = ?";
+        $params = array($id);
+        return Database::getRow($sql, $params);
+    }
  
 }
 

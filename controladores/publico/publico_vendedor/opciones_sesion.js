@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <span class="black-text">${data.nombre}</span>
                     </div>
                     <div class="col l1 m4 s12 left">
-                        <a href="perfil_cliente.html"><i
+                        <a href="perfil.html"><i
                                 class="icono-sesion material-icons black-text">account_circle</i></a>
                     </div>`;
                     //se incrustan en el html

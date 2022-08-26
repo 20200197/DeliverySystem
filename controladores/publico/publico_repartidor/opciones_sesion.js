@@ -21,17 +21,40 @@ document.addEventListener("DOMContentLoaded", function () {
                     //Si hay sesión se reeemplazan las opciones
                     contenido = `
                     <div class="col l11 m8 s12 right-align">
+                        <div class="col l8 m8 s8">
+                            <!--Switch de cambiar color-->
+                            <div class="switch switch_colorr hide-on-small-and-down right-align">
+                                <label>
+                                    🌕
+                                    <input type="checkbox" id="switch_color" onclick="modoOscuro()">
+                                    <span class="lever"></span>
+                                    🌙
+                                </label>
+                            </div>
+                        </div>
                         <span class="black-text">${data.nombre}</span>
                     </div>
                     <div class="col l1 m4 s12 left">
-                        <a href="perfil_cliente.html"><i class="icono-sesion material-icons black-text">account_circle</i></a>
+                        <a href="perfil.html"><i
+                                class="icono-sesion material-icons black-text">account_circle</i></a>
                     </div>`;
                     //se incrustan en el html
                     document.getElementById("opciones_navbar").innerHTML = contenido;
                 } else {
                     //si no hay sesión se coloca la opción para iniciar sesión
                     contenido = `
-                    <div class="col l12 m12 s12 right-align">
+                    <div class="col l8 m6 s12">
+                            <!--Switch de cambiar color-->
+                            <div class="switch switch_colorr hide-on-small-and-down right-align">
+                                <label>
+                                    🌕
+                                    <input type="checkbox" id="switch_color" onclick="modoOscuro()">
+                                    <span class="lever"></span>
+                                    🌙
+                                </label>
+                            </div>
+                        </div>
+                    <div class="col l4 m6 s12 right-align">
                         <a href="index.html" class="waves-effect waves-light btn blue accent-2 boton_iniciar_sesion">Iniciar sesion</a>
                     </div>
                     `;
@@ -46,4 +69,3 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-

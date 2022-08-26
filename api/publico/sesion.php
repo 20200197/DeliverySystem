@@ -21,7 +21,7 @@ if (isset($_GET['action'])) {
     switch ($_GET['action']) {
          case 'obtenerSesionR':
             if (isset($_SESSION['id_repartidor'])) {
-                if($result['dataset'] = $sesion->sesionV($_SESSION['id_repartidor'])) {
+                if($result['dataset'] = $sesion->sesionR($_SESSION['id_repartidor'])) {
                     $result['status'] = 1;
                 }else{
                     $result['exception'] = Database::getException();
