@@ -25,7 +25,7 @@
  * Se pueden in_array() para validar si existe algo en especifico
  */
 
-function validateSafePassword($clave) // ,$nombre, $apellido, $usuario, $fecha
+function validateSafePassword($clave, $nombre, $apellido, $usuario, $fecha)
 {
     //Se procede a convertir la clave en un arreglo de carácteres diferentes
     $arregloPass = str_split($clave);
@@ -68,7 +68,7 @@ function validateSafePassword($clave) // ,$nombre, $apellido, $usuario, $fecha
     }
 }
 
-validateSafePassword("1234#85678s999");
+//validateSafePassword("1234#85678s999", null, null, null, null);
 
 /**
  * Función para validar que sea un número
@@ -116,22 +116,39 @@ function prohibido($valor)
     }
 }
 
+
 /**
- * preg_match_all('/[a-z1-9$]/', $clave, $encuentros,PREG_OFFSET_CAPTURE);
- *           $arrar = $encuentros[0];
- *          foreach ($arrar AS $valor) {
- *             $conta = true;
- *            foreach ($valor AS $fila) {
- *               
- **              if ($conta) {
- *                 echo "El valor es: ".$fila."<br>";
- *                    $conta = false;
- *               } else {
- *                  $conta = true;
- *             }
- *            
- *       }
-                    
-                    
- *  }
+ * Función para valiar que un nombre o apellido sean parte de la clave
  */
+
+function validarPalabra($arreglo, $palabra)
+{
+    //Se verifica si la palabra a buscar se puede dividir por medio de los espacios
+    $division = explode(' ', $palabra);
+    //Se obtiene la cantidad de palabras en las que se pudo dividir
+    $cantidad = count($division);
+    //Se realiza la busqueda dependiente de cuántas palabras se logró dividir
+    for ($i = 0; $i < $cantidad; $i++) {
+        //Se procede a dividir la palabra encontrada en valores individuales
+        $palabraDividida = str_split($division[$i]);
+        $coincidencias = 0; //Contador de aciertos seguidos
+        //Se evaluan las letras para buscar coincidencias
+        foreach ($arreglo as $letra) {
+            //Se revisa si la letra de la clave es igual a la letra de la palabra
+            if ($letra == $palabraDividida[$coincidencias]) {
+                echo $letra . " Si es: " . $palabraDividida[$coincidencias] . "<br>";
+                $coincidencias++;
+                //Se revisa si la cantidad de coincidencias para dar por hecho que está incluida
+                if ($coincidencias > round((count($palabraDividida)/2),0, PHP_ROUND_HALF_DOWN)) {
+                    echo "Se ha determinado que la palabra se encuentra dentro de la clave";
+                    break;
+                }
+            } else {
+                echo $letra . " No es: " . $palabraDividida[$coincidencias] . "<br>";
+                $coincidencias = 0;
+            }
+        }
+    }
+}
+
+validarPalabra(['o', 'l', 'i', 'v', 'e', 'r'], "oliveo");
