@@ -385,99 +385,6 @@ class Validator
     }
 
     /**
-     *  Función para validad la contraseña
-     * 
-     *  Se validan los siguientes aspectos
-     * 
-     *  - Longitud de al menos 8 carácteres y máximo de 64 carácteres
-     *  - Contener al menos una letra minúscula
-     *  - Contener al menos una letra mayúscula
-     *  - Contener al menos un número
-     *  - Contener al menos un caráctere especial
-     *  - Comprobar que no existan más de 4 símbolos o números seguidos
-     *  - Verificar que los siguientes datos no sean parte de la contraseña
-     *      + Nombre
-     *      + Apellido
-     *      + Nombre de usuario
-     *      + Partes de tu fecha de nacimiento
-     * 
-     *  Se generará la excepción del problema y un booleano para verificar si es apta o no
-     * 
-     */
-
-    /**
-     * Se pueden in_array() para validar si existe algo en especifico
-     */
-
-    public function validateSafePassword($clave, $nombre, $apellido, $usuario, $fecha)
-    {
-        //Se procede a convertir la clave en un arreglo de carácteres diferentes
-        $arregloPass = str_split($clave);
-        //Se valida que la contraseña esté dentro de la longitud mínima
-        if (count($arregloPass) >= 8) {
-            //Se verifica que la longitud esté dentro de la longitud máxima 
-            if (count($arregloPass) <= 64) {
-                //Se filtra para saber si hay carácteres peligrosos
-                $peligro = array_filter($arregloPass, "prohibido");
-                if (count($peligro) == 0) {
-                    //Se filtra para saber si hay números dentro de la contraseña
-                    $numero = array_filter($arregloPass, "numero");
-                    if (count($numero) > 0) {
-                        //Se filtra para saber si hay letras dentro de la contraseña
-                        $minuscula = array_filter($arregloPass, "letraMinuscula");
-                        if (count($minuscula) > 0) {
-                            $mayuscula = array_filter($arregloPass, "letraMayuscula");
-                            if (count($mayuscula) > 0) {
-                                //Se filtra para saber si hay simbolos dentro de la contraseña
-                                $simbolos = array_filter($arregloPass, "simbolo");
-                                if (count($simbolos) > 0) {
-                                    //Se revisa que la contraseña no contenga el nombre dentro de ella
-                                    if (!validarPalabra($arregloPass, $nombre)) {
-                                        //Se revisa que la contraseña no contenga el apellido dentro de ella
-                                        if (!validarPalabra($arregloPass, $apellido)) {
-                                            //Se revisa que la contraseña no contenga el nombre de usuario dentro de ella
-                                            if (!validarPalabra($arregloPass, $usuario)) {
-                                                //Se revisa que la contraseña no contenga la fecha o una referencia de ella
-                                                if (!validarFecha($clave, $fecha)) {
-                                                    echo "Es una contraseña segura";
-                                                } else {
-                                                    echo "La contraseña no puede contener tu fecha o parte de ella";
-                                                }
-                                            } else {
-                                                echo "La contraseña no puede contener tu nombre de usuario o una fracción";
-                                            }
-                                        } else {
-                                            echo "La contraseña no puede contener tu apellido o una fracción";
-                                        }
-                                    } else {
-                                        echo "La contraseña no puede contener tu nombre o fracciones";
-                                    }
-                                } else {
-                                    echo "No hay simbolos dentro de la contraseña";
-                                }
-                            } else {
-                                echo "No hay mayúsculas dentro de la contraseña";
-                            }
-                        } else {
-                            echo "No hay minúsculas dentro de la contraseña";
-                        }
-                    } else {
-                        echo "Lo sentimos, no hay números";
-                    }
-                } else {
-                    echo "Hay carácteres no válidos dentro de la contraseña";
-                }
-            } else {
-                //Se devuelve el problema
-                echo  'La clave debe contener un máximo de 64 caracteres';
-            }
-        } else {
-            echo 'La clave debe contener un mínimo de 8 caracteres';
-        }
-    }
-
-
-    /**
      * Función para validar que sea un número
      * 
      */
@@ -627,5 +534,101 @@ class Validator
         }
         //Si todo está bien se devuelve false porque no es encontró
         return false;
+    }
+    /**
+     *  Función para validad la contraseña
+     * 
+     *  Se validan los siguientes aspectos
+     * 
+     *  - Longitud de al menos 8 carácteres y máximo de 64 carácteres
+     *  - Contener al menos una letra minúscula
+     *  - Contener al menos una letra mayúscula
+     *  - Contener al menos un número
+     *  - Contener al menos un caráctere especial
+     *  - Comprobar que no existan más de 4 símbolos o números seguidos
+     *  - Verificar que los siguientes datos no sean parte de la contraseña
+     *      + Nombre
+     *      + Apellido
+     *      + Nombre de usuario
+     *      + Partes de tu fecha de nacimiento
+     * 
+     *  Se generará la excepción del problema y un booleano para verificar si es apta o no
+     * 
+     */
+
+    /**
+     * Se pueden in_array() para validar si existe algo en especifico
+     */
+
+    public function validateSafePassword(
+        $clave,
+        $nombre,
+        $apellido,
+        $usuario,
+        $fecha
+    ) {
+        //Se procede a convertir la clave en un arreglo de carácteres diferentes
+        $arregloPass = str_split($clave);
+        //Se valida que la contraseña esté dentro de la longitud mínima
+        if (count($arregloPass) >= 8) {
+            //Se verifica que la longitud esté dentro de la longitud máxima 
+            if (count($arregloPass) <= 64) {
+                //Se filtra para saber si hay carácteres peligrosos
+                $peligro = array_filter($arregloPass, "prohibido");
+                if (count($peligro) == 0) {
+                    //Se filtra para saber si hay números dentro de la contraseña
+                    $numero = array_filter($arregloPass, "numero");
+                    if (count($numero) > 0) {
+                        //Se filtra para saber si hay letras dentro de la contraseña
+                        $minuscula = array_filter($arregloPass, "letraMinuscula");
+                        if (count($minuscula) > 0) {
+                            $mayuscula = array_filter($arregloPass, "letraMayuscula");
+                            if (count($mayuscula) > 0) {
+                                //Se filtra para saber si hay simbolos dentro de la contraseña
+                                $simbolos = array_filter($arregloPass, "simbolo");
+                                if (count($simbolos) > 0) {
+                                    //Se revisa que la contraseña no contenga el nombre dentro de ella
+                                    if (!$this->validarPalabra($arregloPass, $nombre)) {
+                                        //Se revisa que la contraseña no contenga el apellido dentro de ella
+                                        if (!$this->validarPalabra($arregloPass, $apellido)) {
+                                            //Se revisa que la contraseña no contenga el nombre de usuario dentro de ella
+                                            if (!$this->validarPalabra($arregloPass, $usuario)) {
+                                                //Se revisa que la contraseña no contenga la fecha o una referencia de ella
+                                                if (!$this->validarFecha($clave, $fecha)) {
+                                                echo "Es una contraseña segura";
+                                                } else {
+                                                    echo "La contraseña no puede contener tu fecha o parte de ella";
+                                                }
+                                            } else {
+                                                echo "La contraseña no puede contener tu nombre de usuario o una fracción";
+                                            }
+                                        } else {
+                                            echo "La contraseña no puede contener tu apellido o una fracción";
+                                        }
+                                    } else {
+                                        echo "La contraseña no puede contener tu nombre o fracciones";
+                                    }
+                                } else {
+                                    echo "No hay simbolos dentro de la contraseña";
+                                }
+                            } else {
+                                echo "No hay mayúsculas dentro de la contraseña";
+                            }
+                        } else {
+                            echo "No hay minúsculas dentro de la contraseña";
+                        }
+                    } else {
+                        echo "Lo sentimos, no hay números";
+                    }
+                } else {
+                    echo "Hay carácteres no válidos dentro de la contraseña";
+                }
+            } else {
+                //Se devuelve el problema
+                echo  'La clave debe contener un máximo de 64 caracteres';
+            }
+        } else {
+            echo 'La clave debe contener un mínimo de 8 caracteres';
+        }
     }
 }
