@@ -40,18 +40,42 @@ function validateSafePassword($clave, $nombre, $apellido, $usuario, $fecha)
                 $numero = array_filter($arregloPass, "numero");
                 if (count($numero) > 0) {
                     //Se filtra para saber si hay letras dentro de la contraseña
-                    $letra = array_filter($arregloPass, "letra");
-                    if (count($letra) > 0) {
-                        //Se filtra para saber si hay simbolos dentro de la contraseña
-                        $simbolos = array_filter($arregloPass, "simbolo");
-                        if (count($simbolos) > 0) {
-                            //Se revisa que la contraseña no contenga datos dañinos para el sistema
-                            echo "Nice";
+                    $minuscula = array_filter($arregloPass, "letraMinuscula");
+                    if (count($minuscula) > 0) {
+                        $mayuscula = array_filter($arregloPass, "letraMayuscula");
+                        if (count($mayuscula) > 0) {
+                            //Se filtra para saber si hay simbolos dentro de la contraseña
+                            $simbolos = array_filter($arregloPass, "simbolo");
+                            if (count($simbolos) > 0) {
+                                //Se revisa que la contraseña no contenga el nombre dentro de ella
+                                if (!validarPalabra($arregloPass, $nombre)) {
+                                    //Se revisa que la contraseña no contenga el apellido dentro de ella
+                                    if (!validarPalabra($arregloPass, $apellido)) {
+                                        //Se revisa que la contraseña no contenga el nombre de usuario dentro de ella
+                                        if (!validarPalabra($arregloPass, $usuario)) {
+                                            //Se revisa que la contraseña no contenga la fecha o una referencia de ella
+                                            if (!validarFecha($clave, $fecha)) {
+                                                echo "Es una contraseña segura";
+                                            } else {
+                                                echo "La contraseña no puede contener tu fecha o parte de ella";
+                                            }
+                                        } else {
+                                            echo "La contraseña no puede contener tu nombre de usuario o una fracción";
+                                        }
+                                    } else {
+                                        echo "La contraseña no puede contener tu apellido o una fracción";
+                                    }
+                                } else {
+                                    echo "La contraseña no puede contener tu nombre o fracciones";
+                                }
+                            } else {
+                                echo "No hay simbolos dentro de la contraseña";
+                            }
                         } else {
-                            echo "No hay simbolos dentro de la contraseña";
+                            echo "No hay mayúsculas dentro de la contraseña";
                         }
                     } else {
-                        echo "No hay letras dentro de la contraseña";
+                        echo "No hay minúsculas dentro de la contraseña";
                     }
                 } else {
                     echo "Lo sentimos, no hay números";
@@ -68,7 +92,7 @@ function validateSafePassword($clave, $nombre, $apellido, $usuario, $fecha)
     }
 }
 
-//validateSafePassword("1234#85678s999", null, null, null, null);
+validateSafePassword("1", 'Oliver', 'Erazo', 'Usuario', '01-10-2003');
 
 /**
  * Función para validar que sea un número
@@ -82,14 +106,25 @@ function numero($valor)
 }
 
 /*
-     * Función para validar que sea una letra
+     * Función para validar que sea una letra minuscula
      * 
      */
 
-function letra($valor)
+function letraMinuscula($valor)
 {
     //Se revisa si el valor es númerico
-    return (ctype_alpha($valor));
+    return (ctype_lower($valor));
+}
+
+/*
+     * Función para validar que sea una letra mayúsucla
+     * 
+     */
+
+function letraMayuscula($valor)
+{
+    //Se revisa si el valor es númerico
+    return (ctype_upper($valor));
 }
 
 /**
@@ -136,19 +171,78 @@ function validarPalabra($arreglo, $palabra)
         foreach ($arreglo as $letra) {
             //Se revisa si la letra de la clave es igual a la letra de la palabra
             if ($letra == $palabraDividida[$coincidencias]) {
-                echo $letra . " Si es: " . $palabraDividida[$coincidencias] . "<br>";
+                //echo $letra . " Si es: " . $palabraDividida[$coincidencias] . "<br>";
                 $coincidencias++;
                 //Se revisa si la cantidad de coincidencias para dar por hecho que está incluida
-                if ($coincidencias > round((count($palabraDividida)/2),0, PHP_ROUND_HALF_DOWN)) {
-                    echo "Se ha determinado que la palabra se encuentra dentro de la clave";
+                if ($coincidencias > round((count($palabraDividida) / 3), 0, PHP_ROUND_HALF_DOWN)) {
+                    return true;
                     break;
                 }
             } else {
-                echo $letra . " No es: " . $palabraDividida[$coincidencias] . "<br>";
+                //echo $letra . " No es: " . $palabraDividida[$coincidencias] . "<br>";
                 $coincidencias = 0;
             }
         }
     }
+    //Si todo está bien retorna un false
+    return false;
 }
 
-validarPalabra(['o', 'l', 'i', 'v', 'e', 'r'], "oliveo");
+
+/**
+ * 
+ * Función para validad que una fecha no esté inmersa dentro de la contraseña
+ * 
+ */
+
+function validarFecha($clave, $fecha)
+{
+    //Variable para validar las coincidencias
+    $coincidencias = 0;
+    //Variable general para revisar la fecha
+    $fechaModificada = [];
+    //Variable que contendrá la fecha en un solo string
+    $fechaTotal = '';
+    //Se verifica si la fecha dada contiene guiones como parte del formato
+    if (str_contains($fecha, '-')) {
+        //Se crea un arreglo separado por los guiones
+        $fechaModificada = explode('-', $fecha);
+    } else {
+        //Se crea un arreglo separado por las plecas
+        $fechaModificada = explode('/', $fecha);
+    }
+
+    //Se revisa cada caso de la fecha encontrada
+    for ($i = 0; $i <= count($fechaModificada); $i++) {
+        //Se revisa si ya es el último dato
+        if (count($fechaModificada) == $i) {
+            //Se revisa la unión de toda la fecha para determinar si está dentro de la fecha
+            foreach ($fechaModificada as $trozo) {
+                $fechaTotal = $fechaTotal . $trozo;
+            }
+            //Se revisa si la fecha completa está dentro de la contraseña
+            if (str_contains($clave, $fechaTotal)) {
+                $coincidencias = $coincidencias + 3;
+            }
+        } else {
+            //Se evalua si una fracción de la fecha está dentro de la contraseña
+            if (str_contains($clave, $fechaModificada[$i])) {
+                $coincidencias++;
+            }
+        }
+
+        /**
+         * Se revisa la cantidad de coincidencias que se han encontrado
+         * Si se han encontrado 2 se da por hecho que al menos una parte 
+         * de la fecha está dentro de la fecha
+         */
+
+        if ($coincidencias > 1) {
+            return true;
+            break;
+        }
+    }
+    //Si todo está bien se devuelve false porque no es encontró
+    return false;
+}
+//validarPalabra(['o', 'l', 'i', 'v', 'e', 'r'], "oliveo");
