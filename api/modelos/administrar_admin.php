@@ -179,6 +179,38 @@ class Administrador extends Validator
         }
     }
 
+    public function resetAttempt()
+    {
+        $sql = 'UPDATE administrador SET intentos_fallidos = 0 WHERE id_admin = ?';
+        $params = array($this->id);
+
+        return Database::executeRow($sql, $params);
+    }
+
+    public function failedAttempt()
+    {
+        $sql = 'UPDATE administrador SET intentos_fallidos = (intentos_fallidos + 1) WHERE id_admin = ?';
+        $params = array($this->id);
+
+        return Database::executeRow($sql, $params);
+    }
+
+    public function lockUser()
+    {
+        $sql = 'UPDATE administrador SET fecha_desbloqueo = CURRENT_DATE + 1 AND id_estado_administrador = 3 WHERE id_admin = ?';
+        $params = array($this->id);
+
+        if (Database::executeRow($sql, $params)) {
+            $sql = 'UPDATE administrador SET id_estado_administrador = 3';
+
+            return Database::executeRow($sql, null);
+        } elseif (Database::getException()) {
+            return Database::getException();
+        } else {
+            return false;
+        }
+    }
+
     public function readAdminsAll()
     {
         $sql = 'SELECT id_admin, nombre_admin, apellido_admin, usuario_admin, dui_admin, correo_admin, fecha_registro_admin, telefono_admin, status_admin
