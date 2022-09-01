@@ -16,6 +16,23 @@ if (isset($_GET['action'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
+            case 'login':
+                $_POST = $administrar_vendedor->validateForm($_POST);
+                if (!$administrar_vendedor->setUsuario($_POST['user'])) {
+                    $result['exception'] = 'Ingrese un usuario válido';
+                } elseif (!$administrar_vendedor->checkUser()) {
+                    $result['exception'] = 'El usuario es incorrecto';
+                } elseif (!$administrar_vendedor->checkStatus()) {
+                    $result['exception'] = 'Lo sentimos, usted se encuentra desactivado';
+                } elseif ($administrar_vendedor->checkPass($_POST['password']) && $administrar_vendedor->checkStatus()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Autenticación correcta';
+                    $_SESSION['id_vendedor'] = $administrar_vendedor->getId();
+                    $_SESSION['nombre_vendedor'] = $administrar_vendedor->getUsuario();
+                } elseif (!$administrar_vendedor->checkPass($_POST['password'])) {
+                    $result['exception'] = 'Contraseña incorrecta';
+                }
+                break;
             case 'readAll':
                 if ($result['dataset'] = $administrar_vendedor->obtenerVendedores()) {
                     $result['status'] = 1;
