@@ -161,6 +161,7 @@ if (isset($_GET['action'])) {
                     $_SESSION['id_admin'] = $admin->getId();
                     $_SESSION['nombre_admin'] = $admin->getUsuario();
                 } elseif (!$admin->checkPass($_POST['password'])) {
+                    
                     $result['exception'] = 'Contraseña incorrecta';
                 }
                 break;
