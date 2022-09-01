@@ -481,13 +481,13 @@ class Repartidor extends Validator
     //Cambios Bonilla1
     public function checkUser()
     {
-        $sql = "SELECT id_repartidor, id_status_repartidor, nombre_repartidor, apellido_repartidor, usuario_repartidor, CONCAT(nombre_repartidor, ' ',apellido_repartidor) AS nombre_repartidor
+        $sql = "SELECT id_repartidor, id_estado_repartidor, nombre_repartidor, apellido_repartidor, usuario_repartidor, CONCAT(nombre_repartidor, ' ',apellido_repartidor) AS nombre_repartidor
                 FROM repartidor
                 WHERE usuario_repartidor = ?";
         $params = array($this->usuario);
         if ($data = Database::getRow($sql, $params)) {
             $this->id = $data['id_repartidor'];
-            $this->estado = $data['id_status_repartidor'];
+            $this->estado = $data['id_estado_repartidor'];
             $this->nombre = $data['nombre_repartidor'];
             $this->apellido = $data['apellido_repartidor'];
             $this->usuario = $data['usuario_repartidor'];
@@ -505,7 +505,7 @@ class Repartidor extends Validator
         $date = date('Y-m-d');
 
         $this->estado = 1;
-        $sql = 'INSERT INTO repartidor(nombre_repartidor, apellido_repartidor, dui_repartidor, correo_repartidor, usuario_repartidor, telefono_repartidor, clave_repartidor, solvencia_pnc, antecedente_penal, direccion_domicilio, placa_vehiculo, foto_placa_vehiculo, foto_repartidor, foto_vehiculo, id_status_repartidor, fecha_registro)
+        $sql = 'INSERT INTO repartidor(nombre_repartidor, apellido_repartidor, dui_repartidor, correo_repartidor, usuario_repartidor, telefono_repartidor, clave_repartidor, solvencia_pnc, antecedente_penal, direccion_domicilio, placa_vehiculo, foto_placa_vehiculo, foto_repartidor, foto_vehiculo, id_estado_repartidor, fecha_registro)
                 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
         $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->usuario, $this->telefono, $this->clave, $this->solvencia, $this->antecedentes, $this->direccion, $this->placa, $this->foto_placa, $this->foto, $this->foto_vehiculo, $this->estado, $date);
 

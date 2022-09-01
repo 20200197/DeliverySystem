@@ -16,9 +16,9 @@ class Database
     {
         // Credenciales para establecer la conexión con la base de datos.
         $server = 'localhost';
-        $database = 'delivery';
+        $database = 'DeliverySystem2';
         $username = 'postgres';
-        $password = 'admin';
+        $password = '1234';
 
 
 
@@ -139,7 +139,7 @@ class Database
                 //self::$error = 'Existe un problema al conectar con el servidor';
                 break;
             case '42703':
-                self::$error = 'Nombre de campo desconocido';
+                //self::$error = 'Nombre de campo desconocido';
                 break;
             case '23505':
                 self::$error = 'Dato duplicado, no se puede guardar';

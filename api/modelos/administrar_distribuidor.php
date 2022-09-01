@@ -362,7 +362,7 @@ class Distribuidor extends Validator
     {
         $sql = 'SELECT id_repartidor, nombre_repartidor,apellido_repartidor,dui_repartidor,correo_repartidor,usuario_repartidor,telefono_repartidor,clave_repartidor,solvencia_pnc,antecedente_penal,direccion_domicilio,placa_vehiculo,foto_placa_vehiculo,foto_repartidor,foto_vehiculo,status_repartidor,fecha_registro,id_admin
                 FROM repartidor
-                inner join estado_repartidor using(id_status_repartidor)
+                inner join estado_repartidor using(id_estado_repartidor)
                 WHERE  nombre_repartidor ILIKE ? OR apellido_repartidor ILIKE ? OR dui_repartidor ILIKE ? OR correo_repartidor ILIKE ? OR usuario_repartidor ILIKE ?
                 ORDER BY nombre_repartidor';
         $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%");
@@ -383,7 +383,7 @@ class Distribuidor extends Validator
     {
         $sql = 'SELECT id_repartidor, nombre_repartidor,apellido_repartidor,dui_repartidor,correo_repartidor,usuario_repartidor,telefono_repartidor,clave_repartidor,solvencia_pnc,antecedente_penal,direccion_domicilio,placa_vehiculo,foto_placa_vehiculo,foto_repartidor,foto_vehiculo,status_repartidor,fecha_registro,id_admin
                 FROM repartidor
-                inner join estado_repartidor using(id_status_repartidor)
+                inner join estado_repartidor using(id_estado_repartidor)
                 ORDER BY nombre_repartidor';
         return Database::getRows($sql, null);
     }
@@ -393,7 +393,7 @@ class Distribuidor extends Validator
     {
         $sql = 'SELECT id_repartidor, nombre_repartidor,apellido_repartidor,dui_repartidor,correo_repartidor,usuario_repartidor,telefono_repartidor,clave_repartidor,solvencia_pnc,antecedente_penal,direccion_domicilio,placa_vehiculo,foto_placa_vehiculo,foto_repartidor,foto_vehiculo,status_repartidor,fecha_registro,id_admin
                 FROM repartidor
-                 inner join estado_repartidor using(id_status_repartidor)
+                 inner join estado_repartidor using(id_estado_repartidor)
                 WHERE id_repartidor = ?
                 ORDER BY nombre_repartidor';
         $params = array($this->id);
@@ -415,11 +415,11 @@ class Distribuidor extends Validator
 
     public function getStatus()
     {
-        $sql = 'SELECT id_status_repartidor FROM repartidor WHERE id_repartidor = ?';
+        $sql = 'SELECT id_estado_repartidor FROM repartidor WHERE id_repartidor = ?';
         $params = array($this->id);
 
         if ($data = Database::getRow($sql, $params)) {
-            $this->status_repartidor = $data['id_status_repartidor'];
+            $this->status_repartidor = $data['id_estado_repartidor'];
             return true;
         } else {
             return false;
@@ -428,7 +428,7 @@ class Distribuidor extends Validator
 
     public function changeStatus()
     {
-        $sql = 'UPDATE repartidor SET id_status_repartidor = ? WHERE id_repartidor = ?';
+        $sql = 'UPDATE repartidor SET id_estado_repartidor = ? WHERE id_repartidor = ?';
         $params = array($this->status_repartidor, $this->id);
 
         return Database::executeRow($sql, $params);
