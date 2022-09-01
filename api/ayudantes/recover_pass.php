@@ -39,7 +39,7 @@ if (!isset($_POST) && empty($_POST)) {
         $mensaje['status'] = true; //Se cambia el estado a enviado para confirmar que el proceso ha sido éxitoso
         $mensaje['message'] = 'El mensaje de recuperación ha sido enviado'; //Mensaje de confirmación
     
-    } catch (Exception $exception) {
+    } catch (exception $exception) {
         $mensaje['message'] = 'El mensaje no se pudo enviar'; //Mensaje con el problema
     }
     print(json_encode($mensaje)); //Se pasa a formato JSON y se retorna

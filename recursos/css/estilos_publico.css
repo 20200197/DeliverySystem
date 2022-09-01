@@ -5,9 +5,12 @@ footer {
 }
 
 
+
 /*******************
 Fuentes generales 
 **************************/
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@200&display=swap');
 
 * {
     font-family: 'Fira Sans Condensed', sans-serif;
@@ -21,7 +24,7 @@ Fuentes generales
 .icono-registro {
     font-size: 20pt !important;
     height: auto !important;
-    line-height: 35px !important;
+    line-height: 35px !important; 
 }
 
 
