@@ -3,6 +3,7 @@ const API_perfil = SERVER + "publico/sesion.php?action=";
 
 //Método que se ejecuta cuando se carga la página
 document.addEventListener("DOMContentLoaded", function () {
+    M.Tooltip.init(document.querySelectorAll('.tooltipped'));
     //Se busca si se ha iniciado sesión o no
     fetch(API_perfil + "obtenerSesionC", {
         method: "get",

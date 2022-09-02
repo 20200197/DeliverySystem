@@ -85,13 +85,9 @@ if (isset($_GET['action'])) {
                 //Actualizar estatus
             case 'updateStatus':
                 $_POST = $admin->validateForm($_POST);
-                if ($admin->changeStatus($_POST['id'])) {
+                if ($admin->changeStatus($_POST['id'], $_POST['estado'])) {
                     $result['status'] = 1;
-                    if ($admin->getStatus($_POST['id'])) {
-                        $result['message'] = 'Se ha activado correctamente';
-                    } else {
-                        $result['message'] = 'Se ha dado de baja correctamente';
-                    }
+                    $result['message'] = 'Se ha modificado el estado correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }

@@ -215,7 +215,7 @@ class Administrador extends Validator
     {
         $sql = 'SELECT id_admin, nombre_admin, apellido_admin, usuario_admin, dui_admin, correo_admin, fecha_registro_admin, telefono_admin, status_admin
                 FROM administrador WHERE id_admin != ?
-                ORDER BY fecha_registro_admin';
+                ORDER BY nombre_admin';
         $params = array($_SESSION['id_admin']);
 
         return Database::getRows($sql, $params);
@@ -250,14 +250,10 @@ class Administrador extends Validator
         }
     }
 
-    public function changeStatus($id)
+    public function changeStatus($id, $estado)
     {
-        if ($this->getStatus($id)) {
-            $sql = 'UPDATE administrador SET status_admin = false WHERE id_admin = ?';
-        } else {
-            $sql = 'UPDATE administrador SET status_admin = true WHERE id_admin = ?';
-        }
-        $params = array($id);
+        $sql = 'UPDATE administrador SET status_admin = ? WHERE id_admin = ?';
+        $params = array($estado, $id);
 
         return Database::executeRow($sql, $params);
     }

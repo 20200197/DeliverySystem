@@ -100,10 +100,8 @@
                     <div class="row administrar_cate_o ">
                         <div class="col s12 m12 l12 titulo_pega">
                             <!--Titulo-->
-                            <div class="row ">
-                                <h5 class="center-align titulo_admin">Administradores</h5>
-                            </div>
-                            <div class="col l8 m8 s12">
+                            <h5 class="center-align titulo_admin">Administradores</h5>
+                            <div class="col l8 m8 s12 offset-l1">
                                 <!-- Formulario de búsqueda -->
                                 <form method="post" id="search-form">
                                     <div class="input-field col s9 m10 l6">
@@ -114,16 +112,14 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="col l2 m2 s12">
-                                <div class="col s12 m12 l12 center-align centrar-horizontal">
-                                    <a class="btn-floating right boton_color modal-trigger tooltipped"
+                            <div class="col l2 m2 s10">
+                                    <a class="btn-floating right boton_color modal-trigger tooltipped blue"
                                         data-position="left" data-tooltip="Agregar" onclick="openSave()"><i
-                                            class="material-icons left">add</i></a>
-                                </div>
+                                        class="material-icons left">add</i></a>
                             </div>
                         </div>
-                        <form class="row" id="updatee-form" method="post" enctype="multipart/form-data">
-                            <div class="col s12 l12 m12 contenido_apar">
+                        <form id="updatee-form" method="post" enctype="multipart/form-data">
+                            <div class="col s12 l10 m10 contenido_apar offset-l1 offset-m1">
                                 <!--Tabla-->
                                 <table id="table">
                                     <thead>
