@@ -179,7 +179,7 @@ class Administrador extends Validator
         }
     }
 
-    public function resetAttempt()
+    public function resetAttempts()
     {
         $sql = 'UPDATE administrador SET intentos_fallidos = 0 WHERE id_admin = ?';
         $params = array($this->id);
@@ -187,25 +187,59 @@ class Administrador extends Validator
         return Database::executeRow($sql, $params);
     }
 
-    public function failedAttempt()
+    public function getAttempts()
     {
-        $sql = 'UPDATE administrador SET intentos_fallidos = (intentos_fallidos + 1) WHERE id_admin = ?';
+        $sql = 'SELECT intentos_fallidos FROM administrador WHERE id_admin = ?';
+        $params = array($this->id);
+
+        $data = Database::getRow($sql, $params);
+
+        return $data['intentos_fallidos'];
+    }
+
+    public function lockUser()
+    {
+        $sql = 'UPDATE administrador SET fecha_desbloqueo = CURRENT_DATE + 1, id_estado_administrador = 3 WHERE id_admin = ?';
         $params = array($this->id);
 
         return Database::executeRow($sql, $params);
     }
 
-    public function lockUser()
+    public function unlockUser()
     {
-        $sql = 'UPDATE administrador SET fecha_desbloqueo = CURRENT_DATE + 1 AND id_estado_administrador = 3 WHERE id_admin = ?';
+        $sql = 'UPDATE administrador SET id_estado_administrador = 1, intentos_fallidos = 0 WHERE id_admin = ?';
         $params = array($this->id);
 
-        if (Database::executeRow($sql, $params)) {
-            $sql = 'UPDATE administrador SET id_estado_administrador = 3';
+        return Database::executeRow($sql, $params);
+    }
 
-            return Database::executeRow($sql, null);
-        } elseif (Database::getException()) {
-            return Database::getException();
+    public function failedAttempt()
+    {
+        $sql = 'UPDATE administrador SET intentos_fallidos = intentos_fallidos + 1 WHERE id_admin = ?';
+        $params = array($this->id);
+
+        if (!Database::executeRow($sql, $params)) {
+            return false;
+        } elseif ($this->getAttempts() >= 6) {
+            $this->lockUser();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function verifyUnlockDate()
+    {
+        $sql = 'SELECT CURRENT_TIMESTAMP as fecha_actual, fecha_desbloqueo, id_estado_administrador FROM administrador WHERE id_admin = ?';
+        $params = array($this->id);
+
+        if (!$data = Database::getRow($sql, $params)) {
+            return false;
+        } elseif ($data['fecha_actual'] >= $data['fecha_desbloqueo'] && $data['id_estado_administrador'] == 3) {
+            $this->unlockUser();
+            return true;
+        } elseif ($data['id_estado_administrador'] == 1) {
+            return true;
         } else {
             return false;
         }

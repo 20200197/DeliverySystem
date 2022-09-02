@@ -151,13 +151,21 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'El usuario es incorrecto';
                 } elseif (!$admin->checkStatus()) {
                     $result['exception'] = 'Lo sentimos, usted se encuentra desactivado';
+                } elseif (!$admin->verifyUnlockDate()) {
+                    $result['exception'] = 'Su cuenta ha sido desactivada durante un día por haber fallado el inicio de sesión más de 5 veces';
                 } elseif ($admin->checkPass($_POST['password']) && $admin->checkStatus()) {
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
                     $_SESSION['id_admin'] = $admin->getId();
                     $_SESSION['nombre_admin'] = $admin->getUsuario();
+                    $admin->resetAttempts();
                 } elseif (!$admin->checkPass($_POST['password'])) {
-                    $result['exception'] = 'Contraseña incorrecta';
+                    if ($admin->failedAttempt()) {
+                        $result['exception'] = 'Ha superado el limite de intentos permitidos, vuelva a intentar mañana';
+                    } else {
+                        $result['exception'] = 'Contraseña incorrecta';
+                    }
+                    
                 }
                 break;
             default:
