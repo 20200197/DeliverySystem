@@ -47,5 +47,3 @@ if (!isset($_POST) && empty($_POST)) {
     $mensaje['message'] = 'Se deben enviar datos para generar el correo'; //Mensaje con el problema
      print(json_encode($mensaje)); //Se pasa a formato JSON y se retorna
 }
-
-

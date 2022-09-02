@@ -737,3 +737,32 @@ function logOut(type) {
         }
     });
 }
+
+
+/**
+ * Función para enviar un correo de recuperación de contraseña
+ * Se utiliza la librería de Email.js
+ * Se debe de proporcionar los siguientes datos, todos se pueden encontrar en la página
+ *  - id_cuenta
+ *  - id_servicio
+ *  - id_plantilla
+ * Se debe iniciar primero la verificación de la cuenta antes de buscar la plantilla y servicio
+ * 
+ */
+
+function recuperar() { 
+    //Se inicializa la librería, se verifica que el usuario exista
+    //Se crea un arreglo con los datos a enviar
+    let valores = {
+        'codigo': 12345678,
+        'nombre': 'Oliver',
+        'correo': '20200313@ricaldone.edu.sv'
+    };
+    //Se realiza el proceso para enviarlo
+
+    emailjs.send('service_k5roc2l', 'template_2y2q2ik', valores, 'jlvJkg4wMQOlaYDl2').then(function (response) {
+        sweetAlert(1, 'Correo envíado correctamente' + response.text, null);
+    }, function (error) { 
+        sweetAlert(2, error, null);
+    });
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--Lenguaje de la página-->
+<html lang="es">
+<html>
+
+<head>
+    <meta charset="uft=8">
+    <!--Importar iconos-->
+    <link href="../../../recursos/css/icons.css" rel="stylesheet">
+    <!--Importar archivos CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_privado.css" media="screen,projection" />
+
+    <!--Optimización para mobiles-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <!--Encabezado-->
+    <header>
+        <nav>
+            <div class="nav-wrapper white">
+                <div class="row valign-wrapper">
+                    <div class="col m1 s1">
+                        <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                                class="material-icons large blue-text">menu</i></a>
+                    </div>
+                    <div class="col m5 s5 valign-wrapper">
+                        <img src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
+                    </div>
+                    <div class="col m6 s6">
+                        <div class="col s6 m8 l6 push-l5 right-align">
+                            <div class="switch switch_colorr  right-align">
+                                <label>
+                                    🌕
+                                    <input type="checkbox" id="switch_color" onclick="modoOscuro()">
+                                    <span class="lever"></span>
+                                    🌙
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </nav>
+
+    </header>
+
+
+
+    <!--Barra lateral, opciones para los usuarios-->
+    <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
+        <li>
+            <a href="index.html" class="tooltipped" data-position="right" data-tooltip="Hogar">
+                <i class="material-icons medium white-text">home</i>
+            </a>
+        </li>
+    </ul>
+    <!--Contenedor de datos-->
+    <main>
+        <div class="row center">
+            <button class="btn red" onclick="recuperar()">Enviar correo</button>
+        </div>
+    </main>
+
+
+    <!--Footer-->
+    <footer class="page-footer blue accent-3">
+        <div class="row">
+            <div class="col l2 m6 s12">
+                <div class="col offset-l1 offset-m1 offset-s1">
+                    <img class="responsive-img" src="../../../recursos/img/logo.png" alt="">
+                    <h6>Copyright 2022</h6>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--Importar archivos JavaScrip-->
+    <script src="../../../js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../../recursos/js/sweetalert2.all.min.js"></script>
+    <script src="../../../controladores/publico/activation.js"></script>
+    <script src="../../../controladores/componentes.js"></script>
+    <script src="../../../controladores/privado/admin/modo_oscuro.js"></script>
+    <script src="../../../controladores/componentes.js"></script>
+</body>
+
+</html>
