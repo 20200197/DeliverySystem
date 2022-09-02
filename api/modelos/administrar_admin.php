@@ -220,7 +220,7 @@ class Administrador extends Validator
 
         if (!Database::executeRow($sql, $params)) {
             return false;
-        } elseif ($this->getAttempts() >= 6) {
+        } elseif ($this->getAttempts() >= 3) {
             $this->lockUser();
             return true;
         } else {
