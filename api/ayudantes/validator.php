@@ -595,7 +595,7 @@ class Validator
                                             if (!$this->validarPalabra($arregloPass, $usuario)) {
                                                 //Se revisa que la contraseña no contenga la fecha o una referencia de ella
                                                 if (!$this->validarFecha($clave, $fecha)) {
-                                                echo "Es una contraseña segura";
+                                                    echo "Es una contraseña segura";
                                                 } else {
                                                     echo "La contraseña no puede contener tu fecha o parte de ella";
                                                 }
@@ -631,4 +631,5 @@ class Validator
             echo 'La clave debe contener un mínimo de 8 caracteres';
         }
     }
+
 }
