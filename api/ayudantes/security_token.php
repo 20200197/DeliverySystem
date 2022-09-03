@@ -9,30 +9,6 @@ Class SecurityToken {
     private $distributor_token = null;
 
     /*
-        creamos los métodos get que se usarán para obtener el valor de cada token 
-        asi verificar que el token en la clase sea igual al que esté en la sesión
-    */
-    public function getAdminToken()
-    {
-        return $this->admin_token;
-    }
-
-    public function getClientToken()
-    {
-        return $this->client_token;
-    }
-
-    public function getSellerToken()
-    {
-        return $this->seller_token;
-    }
-
-    public function getDistributorToken()
-    {
-        return $this->distributor_token;
-    }
-
-    /*
         Creamos el metodo setToken.
         Funcionamiento: 
         Primero crea una cadena random de 24 carácteres aleatorios
@@ -52,21 +28,25 @@ Class SecurityToken {
             //asignamos el valor de la cadena de carácteres hexadecimal a la variable de la clase y a una variable de sesión.
             case 'admin':
                 $this->admin_token = $random_chain;
-                $_SESSION['admin_token'] =  $this->admin_token;
+                $GLOBALS['admin_token'] = $this->admin_token;
+                $_SESSION['admin_token'] = $this->admin_token;
                 return true;
                 break;
             case 'client':
                 $this->client_token = $random_chain;
-                $_SESSION['client_token'] =  $this->client_token;
+                $GLOBALS['client_token'] = $this->client_token;
+                $_SESSION['client_token'] = $this->client_token;
                 return true;
                 break;
             case 'seller':
                 $this->seller_token = $random_chain;
-                $_SESSION['seller_token'] =  $this->seller_token;
+                $GLOBALS['seller_token'] = $this->seller_token;
+                $_SESSION['seller_token'] = $this->seller_token;
                 return true;
                 break;
             case 'distributor':
                 $this->distributor_token = $random_chain;
+                $GLOBALS['distributor_token'] = $this->admin_token;
                 $_SESSION['distributor_token'] = $this->distributor_token;
                 return true;
                 break;
@@ -92,21 +72,25 @@ Class SecurityToken {
             //Reestablecemos el token guardado dentro de la clase y eliminamos la variable de sesión respectiva al token generado anteriormente.
             case 'admin':
                 $this->admin_token = null;
+                unset($GLOBALS['admin_token']);
                 unset($_SESSION['admin_token']);
                 return true;
                 break;
             case 'client':
                 $this->client_token = null;
+                unset($GLOBALS['client_token']);
                 unset($_SESSION['client_token']);
                 return true;
                 break;
             case 'seller':
                 $this->seller_token = null;
+                unset($GLOBALS['seller_token']);
                 unset($_SESSION['seller_token']);
                 return true;
                 break;
             case 'distributor':
                 $this->distributor_token = null;
+                unset($GLOBALS['distributor_token']);
                 unset($_SESSION['distributor_token']);
                 return true;
                 break;
