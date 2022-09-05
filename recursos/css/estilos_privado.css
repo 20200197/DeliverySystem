@@ -488,3 +488,9 @@ th{
 .ct-series-e .ct-slice-donut {
     stroke: #01579b;
 }
+
+/* --------Card de recuperacion ---------*/
+
+.card-recuperacion{
+    height: 300px !important;
+}

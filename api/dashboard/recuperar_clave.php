@@ -22,7 +22,7 @@ if (isset($_GET['action'])) {
             } elseif (Database::getException()) {
                 $result['exception'] = Database::getException();
             } else {
-                $result['exception'] = 'No existe el nombre de usuario solicitado';
+                $result['exception'] = 'No existe el nombre de usuario';
             }
             break;
         default:

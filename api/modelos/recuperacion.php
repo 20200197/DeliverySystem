@@ -65,6 +65,25 @@ class Recuperacion extends Validator
         $this->tokenAdmin = bin2hex($token);
     }
 
+
+    /**
+     * Función para darle una pista al usuario de su propio correo
+     */
+    public function formatEmail($correo)
+    {
+        //Se recorta las primeras 3 líneas del correo
+        $comienzo = substr($correo, 0, strlen($correo) - (strlen($correo) - 3));
+        //Se extraen el dominio del correo
+        $final = substr($correo, strripos($correo, '@') - strlen($correo));
+        //Se obtiene el sobrante del correo para saber su longitud
+        $restante = substr($correo, (strlen($correo) - (strlen($correo) - 3)), (strripos($correo, '@') - strlen($correo)));
+        //Se le agregan asteríscos según la longitud del correo restante
+        $total = str_pad($comienzo, strlen($restante), "*", STR_PAD_RIGHT);
+        //Se une el todo para generar el nuevo formato de correo
+        return $total . $final;
+    }
+
+
     public function getCorreoAdmin()
     {
         return $this->correoAdmin;
@@ -88,7 +107,7 @@ class Recuperacion extends Validator
         if (!$data) {
             return false;
         } else {
-            $this->correoAdmin = $data['correo_admin'];
+            $this->correoAdmin = $this->formatEmail($data['correo_admin']);
             $this->identificadorAdmin = $data['id_admin'];
             return true;
         }

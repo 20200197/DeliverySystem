@@ -58,8 +58,57 @@
     </ul>
     <!--Contenedor de datos-->
     <main>
-        <div class="row center">
-            <button class="btn red" onclick="recuperar()">Enviar correo</button>
+        <div class="row">
+            <div class="col s12 m4 l4 offset-m4 offset-l4">
+                <div class="card row medium center center-align teal lighten-5">
+                    <div id="usuario" class="card-content">
+                        <h5 class="card-title">Recuperación de contraseña</h5>
+                        <div class="card-recuperacion valign-wrapper">
+                            <div>
+                                <form method="post" id="formularioUsuario">
+                                    <div class="col l12 m12 s12">
+                                        <span class="col l12 m12 s12">Escribe tu nombre de usuario al cual estás intentando de
+                                            iniciar sesión:</span>
+                                    </div>
+                                    <div class="input-field col s12 m12 l12">
+                                        <i class="material-icons prefix">account_circle</i>
+                                        <input id="user" type="text" class="validate" name="user">
+                                        <label for="user">Usuario</label>
+                                    </div>
+                                    <div class="col l12 m12 s12">
+                                        <button class="btn blue" type="submit">Confirmar usuario</button>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                        </div>
+                            
+                    </div>
+                    <div id="correo" class="card-content">
+                        <h5 class="card-title">Recuperación de contraseña</h5>
+                        <div class="card-recuperacion valign-wrapper">
+                            <div>
+                                <form method="post" id="formularioUsuario">
+                                    <div class="col l12 m12 s12">
+                                        <span class="col l12 m12 s12">Escribe tu nombre de usuario al cual estás intentando de
+                                            iniciar sesión:</span>
+                                    </div>
+                                    <div class="input-field col s12 m12 l12">
+                                        <i class="material-icons prefix">account_circle</i>
+                                        <input id="user" type="text" class="validate" name="user">
+                                        <label for="user">Usuario</label>
+                                    </div>
+                                    <div class="col l12 m12 s12">
+                                        <button class="btn blue" type="submit">Confirmar usuario</button>
+                                    </div>
+                                </form>
+                            </div>
+                    
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -83,6 +132,7 @@
     <script src="../../../controladores/publico/activation.js"></script>
     <script src="../../../controladores/componentes.js"></script>
     <script src="../../../controladores/privado/admin/modo_oscuro.js"></script>
+    <script src="../../../controladores/privado/admin/recuperacion.js"></script>
     <script src="../../../controladores/componentes.js"></script>
 </body>
 
