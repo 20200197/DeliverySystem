@@ -2,12 +2,14 @@
 require_once('../ayudantes/database.php');
 require_once('../ayudantes/validator.php');
 require_once('../modelos/administrar_admin.php');
+require_once('../ayudantes/security_token.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
+    $token = new SecurityToken;
     $admin = new Administrador;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null, 'session' => 0);
@@ -23,6 +25,7 @@ if (isset($_GET['action'])) {
             case 'logOut':
                 if (session_destroy()) {
                     $result['status'] = 1;
+                    $token->delToken('admin');
                     $result['message'] = 'Se ha cerrado sesión correctamente';
                 } else {
                     $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
@@ -31,7 +34,11 @@ if (isset($_GET['action'])) {
                 //Registrar admin
             case 'registerAdmin':
                 $_POST = $admin->validateForm($_POST);
-                if (!$admin->setNombre($_POST['name'])) {
+                if (!isset($_SESSION['admin_token'])) {
+                    $result['exception'] = 'Factor de autenticación deniega la acción';
+                } elseif ($_POST['token'] != $_SESSION['admin_token']) {
+                    $result['exception'] = 'Fáctor de autenticación, no es un humano';
+                } elseif (!$admin->setNombre($_POST['name'])) {
                     $result['exception'] = 'Ingrese un nombre válido';
                 } elseif (!$admin->setApellido($_POST['lastname'])) {
                     $result['exception'] = 'Ingrese un apellido válido';
@@ -58,6 +65,8 @@ if (isset($_GET['action'])) {
                 } elseif ($admin->registerAdmin()) {
                     $result['status'] = 1;
                     $result['message'] = 'Administrador creado con exito';
+                    $result['token'] = $_POST['token'];
+                    
                 } else {
                     $result['exception'] = Database::getException();
                 }
@@ -158,6 +167,7 @@ if (isset($_GET['action'])) {
                     $result['message'] = 'Autenticación correcta';
                     $_SESSION['id_admin'] = $admin->getId();
                     $_SESSION['nombre_admin'] = $admin->getUsuario();
+                    $token->setToken('admin');
                     $admin->resetAttempts();
                 } elseif (!$admin->checkPass($_POST['password'])) {
                     if ($admin->failedAttempt()) {

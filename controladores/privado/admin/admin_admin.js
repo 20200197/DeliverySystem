@@ -63,6 +63,7 @@ function fillTable(dataset) {
 
 function openSave() {
     M.Modal.getInstance(document.getElementById("save-modal")).open();
+    addToken(document.getElementById('save-form'));
 }
 
 document.getElementById('save-form').addEventListener('submit', function () {
@@ -75,7 +76,7 @@ document.getElementById('save-form').addEventListener('submit', function () {
         if (request.ok) {
             request.json().then(function (response) {
                 if (response.status) {
-                    sweetAlert(1, response.message, 'admin_admin.html');
+                    sweetAlert(1, response.message, null);
                 } else {
                     sweetAlert(2, response.exception, null);
                 }

@@ -147,9 +147,9 @@ class Administrador extends Validator
         // Se establece la zona horaria local para obtener la fecha del servidor.
         date_default_timezone_set('America/El_Salvador');
         $date = date('Y-m-d');
-        $sql = 'INSERT INTO administrador(nombre_admin, apellido_admin, dui_admin, correo_admin, usuario_admin, clave_admin, fecha_registro_admin, telefono_admin, status_admin)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, true)';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->usuario, $this->clave, $date, $this->telefono);
+        $sql = 'INSERT INTO administrador(nombre_admin, apellido_admin, dui_admin, correo_admin, usuario_admin, clave_admin, fecha_registro_admin, telefono_admin, status_admin, id_estado_administrador, intentos_fallidos)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, true, ?, ?)';
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->usuario, $this->clave, $date, $this->telefono, 1, 0);
         return Database::executeRow($sql, $params);
     }
 
