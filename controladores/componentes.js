@@ -18,7 +18,7 @@ function addToken(form) {
                     document.getElementById(response.token).remove();
                 }catch(exception){
                 }
-                form.innerHTML += `<input id='${response.token}' class='' name='token' value='${response.token}'>`;
+                form.innerHTML += `<input id='${response.token}' class='hide' name='token' value='${response.token}'>`;
             });
         }else{
             console.log(request.status + ' ' + request.statusText);
