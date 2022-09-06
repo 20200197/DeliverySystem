@@ -750,13 +750,13 @@ function logOut(type) {
  * 
  */
 
-function recuperar() { 
+function recuperar(correo, nombre, codigo) { 
     //Se inicializa la librería, se verifica que el usuario exista
     //Se crea un arreglo con los datos a enviar
     let valores = {
-        'codigo': 12345678,
-        'nombre': 'Oliver',
-        'correo': '20200313@ricaldone.edu.sv'
+        codigo: codigo,
+        nombre: nombre,
+        correo: correo,
     };
     //Se realiza el proceso para enviarlo
 

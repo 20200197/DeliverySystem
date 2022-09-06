@@ -11,7 +11,6 @@ class Recuperacion extends Validator
     private $usuarioAdmin = null;
     private $correoAdmin = null;
     private $passAdmin = null;
-    private $tokenAdmin = null;
 
 
 
@@ -61,8 +60,16 @@ class Recuperacion extends Validator
 
     public function generarToken()
     {
-        $token = openssl_random_pseudo_bytes(3, $cstrong);
-        $this->tokenAdmin = bin2hex($token);
+        $clave = openssl_random_pseudo_bytes(3, $cstrong);
+        $token = bin2hex($clave);
+        $_SESSION['token'] = $token;
+        //Se crea la fecha actual
+        $fecha = new DateTime();
+        //Se guarda la duración del token
+        $_SESSION['tokenLimit'] = $fecha->modify('+5 minute');
+        //Se devuelve el token
+        echo $token;
+        return $token;
     }
 
 
@@ -78,9 +85,10 @@ class Recuperacion extends Validator
         //Se obtiene el sobrante del correo para saber su longitud
         $restante = substr($correo, (strlen($correo) - (strlen($correo) - 3)), (strripos($correo, '@') - strlen($correo)));
         //Se le agregan asteríscos según la longitud del correo restante
-        $total = str_pad($comienzo, strlen($restante), "*", STR_PAD_RIGHT);
+        $total = str_pad($comienzo, strlen($restante)+3, "*", STR_PAD_RIGHT);
         //Se une el todo para generar el nuevo formato de correo
         return $total . $final;
+        
     }
 
 
@@ -89,10 +97,6 @@ class Recuperacion extends Validator
         return $this->correoAdmin;
     }
 
-    public function getTokenAdmin()
-    {
-        return $this->tokenAdmin;
-    }
 
     /**
      * Funciones para operar con la base de datos
@@ -100,17 +104,23 @@ class Recuperacion extends Validator
 
     public function obtenerCorreoAdministrador()
     {
-        $sql = 'SELECT id_admin, correo_admin FROM administrador
-        WHERE usuario_admin = ?';
-        $params = array($this->nombreUsuario);
+        $sql = "SELECT id_admin, correo_admin FROM administrador
+        WHERE usuario_admin = ?";
+        $params = array($this->usuarioAdmin);
         $data = Database::getRow($sql, $params);
-        if (!$data) {
-            return false;
-        } else {
-            $this->correoAdmin = $this->formatEmail($data['correo_admin']);
-            $this->identificadorAdmin = $data['id_admin'];
-            return true;
-        }
+        $_SESSION['id_admin'] = $data['id_admin'];
+        $_SESSION['correo_admin'] = $data['correo_admin'];
+        return $this->formatEmail($data['correo_admin']);
+        
+    }
+
+    //Función para obtener los datos del administrador
+    public function datosAdministrador()
+    {
+        $sql = "SELECT CONCAT(nombre_admin, ' ', apellido_admin) AS nombre_admin, correo_admin FROM administrador 
+        WHERE id_admin = ?";
+        $params = array($_SESSION['id_admin']);
+        return Database::getRow($sql, $params);
     }
 
     public function reestablecerPassAdministrador()
