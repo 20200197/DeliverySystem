@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!--Lenguaje de la página-->
+<html lang="ep">
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!--Importar iconos-->
+    <link href="../../../recursos/css/icons.css" rel="stylesheet">
+    <!--Importar archivos CSS-->
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_publico.css" media="screen,projection" />
+    <!--Optimización para moviles-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body id="categoria">
+    <!--Encabezado y sesión-->
+    <header>
+        <nav>
+            <div class="nav-wrapper white">
+                <div class="row valign-wrapper">
+                    <div class="col m1 s1">
+                        <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                                class="material-icons large blue-text">menu</i></a>
+                    </div>
+                    <div class="col m5 s5 left valign-wrapper">
+
+                        <img class="responsive-img" src="logo_delivery_system.png" alt="">
+                    </div>
+                    <div class="col m6 s6" id="opciones_navbar">
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <!--Menú lateral-->
+    <div class="row">
+        <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
+            <div class="opciones-sidenav">
+                <li class="collection-item"><a href="index.html" class="tooltipped" data-position="right"
+                        data-tooltip="Hogar"><i class="material-icons  white-text">home</i><span
+                            class="white-text hide-on-large-only">Inicio</span></a>
+                </li>
+                <li><a href="perfil_cliente.html" class="tooltipped Hide-on-large-only " data-position="right"
+                        data-tooltip="Perfil"><i class="material-icons  white-text">account_circle</i><span
+                            class="white-text hide-on-large-only">Perfil</span></a></li>
+                <li><a href="carrito.html" class="tooltipped" data-position="right" data-tooltip="Carrito de compras"><i
+                            class="material-icons  white-text">shopping_basket</i><span
+                            class="white-text hide-on-large-only">Compras</span></a></li>
+                <li class="hide-on-large-only"><button onclick="logOut('Cliente')"
+                        class="tooltipped transparent logout valign-wrapper" data-position="right"
+                        data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
+                            class="white-text hide-on-large-only">Cerrar
+                            sesión</span></button></li>
+            </div>
+            <div class="cerrar-navbar hide-on-med-and-down">
+                <li>
+                    <button onclick="logOut('Cliente')" class="tooltipped white-text transparent logout valign-wrapper"
+                        data-position="right" data-tooltip="Cerrar sesión"><i
+                            class="material-icons ">arrow_back</i><span class="white-text hide-on-large-only">Cerrar
+                            sesión</span></button>
+                </li>
+            </div>
+
+
+        </ul>
+    </div>
+    <!--Información de la página-->
+    <main>
+        <!--menu de categorías-->
+        <div class="row wrapper" id="contenedor_categoria">
+
+        </div>
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <!--Filtrado de busqueda-->
+                <div class="col s12 m3 l3" id="filtrado">
+
+                    <div class="row">
+                        <form method="post" id="search-form" class="col s12">
+                            <div class="row">
+                                <div class="input-field col s10 m9 l9">
+                                    <input placeholder="Busca por producto, categoría..." id="buscador" name="search"
+                                        type="text" class="validate grey lighten-3" required>
+                                    <i class="material-icons prefix">search</i>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <h6>Filtrar por</h6>
+                    <p>Precio</p>
+                    <form id="search-productoprecio" action="submit" method="post">
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" id="group1"
+                                    onchange="searchProductosPrecio()">
+                                <span>$ 1 - 50</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" id="group2"
+                                    onchange="searchProductosPrecio()">
+                                <span>$ 51 - 150</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" id="group3"
+                                    onchange="searchProductosPrecio()">
+                                <span>$ 151 - 300</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" id="group4"
+                                    onchange="searchProductosPrecio()">
+                                <span> Custom</span>
+                            </label>
+                            <div class="row valign-wrapper">
+                                <div class="input-field col s5 m5 l5">
+                                    <input id="precio-inicio" type="number" class="validate" onkeyup="searchCustom()"
+                                        disabled>
+                                    <label for="precio-inicio">min</label>
+                                </div>
+                                <div class="col s1 m1 l1">
+                                    <h5>-</h5>
+                                </div>
+                                <div class="input-field col s5 m5 l5">
+                                    <input id="precio-limite" type="number" class="validate" onkeyup="searchCustom()"
+                                        disabled>
+                                    <label for="precio-limite">max</label>
+                                </div>
+                            </div>
+                        </p>
+                    </form>
+                    <div class="divider"></div>
+                    <div id="contenedor_calidad">
+                        <p>Estrellas</p>
+                        <form action="">
+                            <p>
+                                <label>
+                                    <input type="radio" name="check" id="cali_cinco" class="option-input radio"
+                                        onchange="searchProductosCalidad()">
+                                    <span>
+                                        <i class="material-icons yellow-text small">star</i>
+                                        <i class="material-icons yellow-text small">star</i>
+                                        <i class="material-icons yellow-text small">star</i>
+                                        <i class="material-icons yellow-text small">star</i>
+                                        <i class="material-icons yellow-text small">star</i>
+                                    </span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input type="radio" name="check" id="cali_cuatro" class="option-input radio"
+                                        onchange="searchProductosCalidad()">
+                                    <span>
+                                        <i class="material-icons yellow-text small">star</i>
+                                        <i class="material-icons yellow-text small">star</i>
+                                        <i class="material-icons yellow-text small">star</i>
+                                        <i class="material-icons yellow-text small">star</i>
+                                    </span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input type="radio" name="check" id="cali_tres" class="option-input radio"
+                                        onchange="searchProductosCalidad()">
+                                    <span>
+                                        <i class="material-icons yellow-text small">star</i>
+                                        <i class="material-icons yellow-text small">star</i>
+                                        <i class="material-icons yellow-text small">star</i>
+                                    </span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input type="radio" name="check" id="cali_dos" class="option-input radio"
+                                        onchange="searchProductosCalidad()">
+                                    <span>
+                                        <i class="material-icons yellow-text small">star</i>
+                                        <i class="material-icons yellow-text small">star</i>
+                                    </span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input type="radio" name="check" id="cali_uno" class="option-input radio"
+                                        onchange="searchProductosCalidad()">
+                                    <span>
+                                        <i class="material-icons yellow-text small">star</i>
+                                    </span>
+                                </label>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <h5>
+                        <a href="index.html" id="title"></a>
+                    </h5>
+                </div>
+                <div class="col s19 m9 l9" id="contenedor_productos">
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!--Footer con la página-->
+    <footer class="page-footer blue accent-3">
+        <div class="row">
+            <div class="col l9 m6 s6">
+                <div class="col l6 m12 s12">
+                    <img src="../../../recursos/img/publico/clientes/modals/logo.png" class="responsive-img" alt="">
+                    <h6 class="hide-on-med-and-down">Copyright 2022</h6>
+                </div>
+                <div class="col l6 m12 ">
+                    <!--Redes-->
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">facebook</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">facebook</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">facebook</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">facebook</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">whatsapp</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">whatsapp</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">email</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">email</i>
+                        </a>
+                    </div>
+                    <h6 class="hide-on-large-only">Copyright 2022</h6>
+                </div>
+            </div>
+            <div class="col l3 s6">
+                <div class="col l12 m12">
+                    <ul>
+                        <h5>Información pública</h5>
+                        <li><a href="quienes_somos.html" class="white-text">Quienes somos</a></li>
+                        <li><a href="contactenos.html" class="white-text">Contáctanos</a></li>
+                        <li><a href="mision_vision.html" class="white-text">Misión y visión</a></li>
+                        <li><a href="terminos.html" class="white-text">Términos y condiciones</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--Importar archivos JavaScrip-->
+    <script type="text/javascript" src="../../../js/materialize.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../../controladores/componentes.js"></script>
+    <script src="../../../controladores/publico/publico_cliente/producto.js"></script>
+    <script src="../../../controladores/privado/modo_oscuro.js"></script>
+    <script type="text/javascript" src="../../../controladores/publico/publico_cliente/opciones_sesion.js"></script>
+</body>
+
+</html>

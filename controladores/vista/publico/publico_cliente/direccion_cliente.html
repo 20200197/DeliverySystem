@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<!--Lenguaje de la página-->
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <!--Importar iconos-->
+    <link href="../../../recursos/css/icons.css" rel="stylesheet" />
+    <!--Importar archivos CSS-->
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_publico.css" media="screen,projection" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+
+
+    <!--Optimización para mobiles-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <!--Encabezado y sesión-->
+    <header>
+        <nav>
+            <div class="nav-wrapper white">
+                <div class="row valign-wrapper">
+                    <div class="col m1 s1">
+                        <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                                class="material-icons large blue-text">menu</i></a>
+                    </div>
+                    <div class="col m5 s5 left valign-wrapper">
+
+                        <img class="responsive-img" src="logo_delivery_system.png" alt="">
+                    </div>
+                    <div class="col m6 s6" id="opciones_navbar">
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <!--Menú lateral-->
+    <div class="row">
+        <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
+            <div class="opciones-sidenav">
+                <li class="collection-item"><a href="index.html" class="tooltipped" data-position="right"
+                        data-tooltip="Hogar"><i class="material-icons  white-text">home</i><span
+                            class="white-text hide-on-large-only">Inicio</span></a>
+                </li>
+                <li><a href="perfil_cliente.html" class="tooltipped Hide-on-large-only " data-position="right"
+                        data-tooltip="Perfil"><i class="material-icons  white-text">account_circle</i><span
+                            class="white-text hide-on-large-only">Perfil</span></a></li>
+                <li><a href="carrito.html" class="tooltipped" data-position="right" data-tooltip="Carrito de compras"><i
+                            class="material-icons  white-text">shopping_basket</i><span
+                            class="white-text hide-on-large-only">Compras</span></a></li>
+                <li class="hide-on-large-only"><button onclick="logOut('Cliente')"
+                        class="tooltipped transparent logout valign-wrapper" data-position="right"
+                        data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
+                            class="white-text hide-on-large-only">Cerrar
+                            sesión</span></button></li>
+            </div>
+            <div class="cerrar-navbar hide-on-med-and-down">
+                <li>
+                    <button onclick="logOut('Cliente')" class="tooltipped white-text transparent logout valign-wrapper"
+                        data-position="right" data-tooltip="Cerrar sesión"><i
+                            class="material-icons ">arrow_back</i><span class="white-text hide-on-large-only">Cerrar
+                            sesión</span></button>
+                </li>
+            </div>
+
+
+        </ul>
+    </div>
+    <!--Información de la página-->
+    <main>
+        <div class="row">
+            <div class="col s7 m7 l7 right-align">
+                <p class="flow-text">Direcciones</p>
+            </div>
+            <div class="hide-on-small-only">
+                <br />
+                <br />
+            </div>
+            <div class="col s3 m3 l3 right-align">
+                <a class="waves-effect blue lighten-2 waves-light btn-large modal-trigger" onclick="openCreate()"><i
+                        class="material-icons left hide-on-small-only">add</i><i
+                        class="material-icons hide-on-med-and-up">add</i>añadir</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m8 l8 offset-l2 offset-m2">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Municipio</th>
+                            <th>Descripción</th>
+                            <th>Punto de referencia</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-direcciones">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--Modals-->
+        <!--Modal para eliminar una dirección-->
+        <div id="eliminar-direccion" class="modal">
+            <div class="modal-content">
+                <div class="row contorno">
+                    <h5 class="center-align">Confirmación</h5>
+                    <div class="col s12 m12 l12 center-align">
+                        <img src="../../../recursos/img/publico/clientes/modals/cancel_120px.png" />
+                    </div>
+                    <h6 class="center-align">
+                        ¿Está seguro de eliminar esta dirección?
+                    </h6>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Aceptar</a>
+            </div>
+        </div>
+        <!--modal para añadir una dirección-->
+        <div class="modal" id="modal-add">
+            <div class="modal-content">
+                <div class="row contorno">
+                    <div class="row center-align">
+                        <p class="flow-text">Añadir dirección</p>
+                    </div>
+                    <form id="add-form" name="add-form" method="post">
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <div class="col s12 m12 l12" id="mapa"></div>
+                                <input class="hide" id="coordenadas" name="coordenadas" type="text">
+                            </div>
+                            <div class="col s12 m12 l12">
+                                <!-- <div class="input-field col s12">
+                                    <select id="select_departamento" name="select_departamento" required>
+                                    </select>
+                                </div> -->
+                                <div class="input-field col s12 m12 l12">
+                                    <select id="municipio" name="municipio" required>
+
+                                    </select>
+                                </div>
+                                <div class="input-field col s12 m12 l12">
+                                    <input id="punto-ref" type="text" class="validate" name="punto-ref">
+                                    <label for="punto-ref">Punto de referencia</label>
+                                </div>
+                            </div>
+                            <div class="col s12 m12 l12">
+                                <div class="row">
+                                    <div class="row">
+                                        <div class="input-field col s12 m12 l12">
+                                            <textarea id="descripcion-direccion" class="materialize-textarea"
+                                                name="descripcion-direccion"></textarea>
+                                            <label for="descripcion-direccion">Descripción</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="modal-close waves-effect waves-green btn red darken-3">Descartar</a>
+                            <button class="waves-effect waves-green btn blue lighten-2" type="submit">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--modal para editar una dirección-->
+        <div class="modal" id="modal-update">
+            <div class="modal-content">
+                <div class="row contorno">
+                    <div class="row center-align">
+                        <p class="flow-text">Actualizar dirección</p>
+                    </div>
+                    <form id="update-form" name="update-form" method="post">
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <div class="col s12 m12 l12" id="mapa_"></div>
+                                <input class="hide" id="coordenadas_direccion" name="coordenadas_direccion" type="text">
+                                <input class="hide" id="id_direccion" name="id_direccion" type="number">
+                            </div>
+                            <div class="col s12 m12 l12">
+                                <!-- <div class="input-field col s12">
+                                    <select id="select_departamento" name="select_departamento" required>
+                                    </select>
+                                </div> -->
+                                <div class="input-field col s12 m12 l12">
+                                    <select id="municipio_editar" name="municipio_editar">
+
+                                    </select>
+                                </div>
+                                <div class="input-field col s12 m12 l12">
+                                    <input id="punto_referencia" type="text" class="validate" name="punto_referencia">
+                                    <label for="punto_referencia">Punto de referencia</label>
+                                </div>
+                            </div>
+                            <div class="col s12 m12 l12">
+                                <div class="row">
+
+                                    <div class="input-field col s12 m12 l12">
+                                        <textarea id="descripcion_direccion" class="materialize-textarea"
+                                            name="descripcion_direccion"></textarea>
+                                        <label for="descripcion_direccion">Descripción</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="modal-close waves-effect waves-green btn red darken-3">Descartar</a>
+                            <button class="waves-effect waves-green btn blue lighten-2" type="submit">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!--Footer con la página-->
+    <footer class="page-footer blue accent-3">
+        <div class="row">
+            <div class="col l9 m6 s6">
+                <div class="col l6 m12 s12">
+                    <img src="../../../recursos/img/publico/clientes/modals/logo.png" class="responsive-img" alt="">
+                    <h6 class="hide-on-med-and-down">Copyright 2022</h6>
+                </div>
+                <div class="col l6 m12 ">
+                    <!--Redes-->
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">facebook</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">facebook</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">facebook</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">facebook</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">whatsapp</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">whatsapp</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">email</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">email</i>
+                        </a>
+                    </div>
+                    <h6 class="hide-on-large-only">Copyright 2022</h6>
+                </div>
+            </div>
+            <div class="col l3 s6">
+                <div class="col l12 m12">
+                    <ul>
+                        <h5>Información pública</h5>
+                        <li><a href="quienes_somos.html" class="white-text">Quienes somos</a></li>
+                        <li><a href="contactenos.html" class="white-text">Contáctanos</a></li>
+                        <li><a href="mision_vision.html" class="white-text">Misión y visión</a></li>
+                        <li><a href="terminos.html" class="white-text">Términos y condiciones</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--Importar archivos JavaScrip-->
+    <script type="text/javascript" src="../../../js/materialize.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../../recursos/js/sweetalert2.all.min.js"></script>
+    <script src="../../../controladores/componentes.js"></script>
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <script src="../../../controladores/publico/publico_cliente/direcciones.js"></script>
+    <script src="../../../controladores/privado/modo_oscuro.js"></script>
+    <script type="text/javascript" src="../../../controladores/publico/publico_cliente/opciones_sesion.js"></script>
+</body>
+
+</html>
+
+</html>

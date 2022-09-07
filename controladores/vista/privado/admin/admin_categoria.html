@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<!--Lenguaje de la página-->
+<html lang="es">
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!--Importar iconos-->
+    <link href="../../../recursos/css/icons.css" rel="stylesheet">
+    <!--Importar archivos CSS-->
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_privado.css" media="screen,projection" />
+
+    <!--Optimización para mobiles-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <!--Marco general-->
+    <div class="row contenedor-general">
+        <!--Barra lateral, opciones para los usuarios-->
+        <ul id="slide-out" class="sidenav sidenav-fixed">
+            <li><a href="dashboard.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
+                        class="material-icons medium ">home</i></a></li>
+            <li><a href="perfil.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
+                        class="material-icons medium">account_circle</i></a></li>
+            <li><a href="admin_producto.html" class="tooltipped" data-position="right" data-tooltip="Productos"><i
+                        class="material-icons medium">import_contacts</i></a></li>
+            <li><a href="admin_categoria.html" class="tooltipped" data-position="right" data-tooltip="Categoria"><i
+                        class="material-icons medium">format_list_bulleted</i></a></li>
+            <li><a href="admin_marca.html" class="tooltipped" data-position="right" data-tooltip="Marcas"><i
+                        class="material-icons medium">style</i></a></li>
+            <li><a href="admin_vendedor.html" class="tooltipped" data-position="right" data-tooltip="Vendedores"><i
+                        class="material-icons medium">people</i></a></li>
+            <li><a href="admin_distribuidor.html" class="tooltipped" data-position="right"
+                    data-tooltip="Repartidores"><i class="material-icons medium">motorcycle</i></a></li>
+            <li><a href="admin_cliente.html" class="tooltipped" data-position="right" data-tooltip="Clientes"><i
+                        class="material-icons medium">wc</i></a></li>
+            <li><a href="admin_entrega.html" class="tooltipped" data-position="right" data-tooltip="Reparto"><i
+                        class="material-icons medium">description</i></a></li>
+            <li><a href="admin_admin.html" class="tooltipped" data-position="right" data-tooltip="Administradores"><i
+                        class="material-icons medium">folder_shared</i></a></li>
+            <li><button onclick="logOut('Admin')" class="tooltipped logout" data-position="right"
+                    data-tooltip="Cerrar sesión"><i class="material-icons medium">arrow_back</i></button></li>
+        </ul>
+        <!--Contenedor de datos-->
+        <div class="contenedor-datos">
+            <!--Encabezado-->
+            <header class="encabezado">
+                <a href="#" data-target="slide-out"
+                    class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
+                        class="material-icons">menu</i></a>
+                <img src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
+                <!--Switch de cambiar color-->
+                <div class="col s12 m12 l12 right-align">
+                    <div class="switch switch_colorr  right-align">
+                        <label>
+                            🌕
+                            <input type="checkbox" id="switch_color" onclick="modoOscuro()">
+                            <span class="lever"></span>
+                            🌙
+                        </label>
+                    </div>
+                </div>
+                <div id="opciones_navbar">
+
+                </div>
+
+            </header>
+            <!--Información de la página-->
+            <main>
+                <!--Contenedor-->
+                <div class="row administrar_cate_o ">
+                    <!--Primera columna-->
+                    <div class="col s12 m12 l12 titulo_pega">
+                        <!--Titulo-->
+                        <div class="row ">
+                            <h5 class="center-align titulo_admin">Administrar categoria</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col l8 m8 s12">
+                                <!-- Formulario de búsqueda -->
+                                <form method="post" id="search-form">
+                                    <div class="input-field col sl6 m6 s11">
+                                        <i class="material-icons prefix">search</i>
+                                        <input id="search" type="text" name="search"
+                                            placeholder="Busque por categoría..." required>
+                                        <label for="search">Buscador</label>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- Opciones de administración-->
+                            <div class="col l3 m2 s12">
+                                <a class=" btn-floating right boton_color tooltipped" data-position="right"
+                                    data-tooltip="Marcas" href="admin_rmarca.html"><i
+                                        class="material-icons">style</i></a>
+                                <a class="btn-floating right boton_color modal-trigger tooltipped" data-position="left"
+                                    data-tooltip="Agregar" href="#modal_anadir_categ_oo"><i
+                                        class="material-icons left">add</i></a>
+                             
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--Columna siguiente-->
+                    <div class="col s12 l12 m12 contenido_apar">
+                        <!--Tabla-->
+                        <table>
+                            <thead>
+                                <tr>
+                                    <!--Columnas-->
+                                    <th>Nombre categoria:</th>
+                                    <th>Imagen categoria:</th>
+                                    <th>Estado</th>
+                                    <th>Editar</th>
+                                </tr>
+                            </thead>
+                            <!--Datos de la tabla-->
+                            <tbody id="tbody-catego">
+                                <!--<tr>
+                                    <td data-target="Nombre categoría: ">Categoria 1</td>
+                                    <td data-target="Imagen cliente: "><img
+                                            src="../../../recursos/img/privado/admin/tabla/images (5).jpg"
+                                            clas="materialboxed"></td>
+                                    <td data-target="Eliminar: ">
+                                        <div class="switch">
+                                            <label>
+                                                <input type="checkbox" id="switch_estado" name="switch_estado">
+                                                <span class="lever"></span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td data-target="Editar: "><a class="btn-flat boton_editar_tabl modal-trigger"
+                                            href="#modal_editar_categ_o"><i class=" material-icons small">edit</i></td>
+                                </tr>-->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!--Modal editar categoria-->
+                <div id="modal_editar_categ_o" class="modal">
+                    <form class="row" method="post" id="update-form" enctype="multipart/form-data">
+                        <div class="modal-content">
+                            <div class="row contorno">
+                                <div class="col s12 m12 l12">
+                                    <h5 class="center-align">Editar categoria</h5>
+                                    <div class="col s12 m12 l5 imagen_categ">
+                                        <div class="row">
+                                            <div class="col s12 m12 l12">
+                                                <input type="text" id="id_ca" class="hide" name="id_ca">
+                                                <!--Boton-->
+                                                <div class="col l12 m12 s12 center-align" id="preview-categoriaA">
+                                                    <img id="categoria-picA"
+                                                        src="../../../recursos/img/privado/admin/default-img.jpg"
+                                                        width="100" height="100" class="imagen_prod_o">
+                                                    <div class="file-field input-field col s12 m12 l12 center-align">
+                                                        <div class="btn blue center-align">
+                                                            <span>Imagen</span>
+                                                            <input type="file"
+                                                                onchange="leerImg(this, document.getElementById('categoria-picA'))"
+                                                                id="archivo_cate" name="archivo_cate">
+                                                        </div>
+                                                        <div class="file-path-wrapper col s14 m4 l4">
+                                                            <input class="file-path validate" type="text"
+                                                                id="nombre_imagen">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m12 l5 nombre_catee">
+                                        <h6>Nombre categoria:</h6>
+                                        <div class="input-field col s12 m12 l12">
+                                            <input placeholder="Nombre" id="nombre_cate" name="nombre_cate" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!"
+                                class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
+                            <button href="#!" class="waves-effect waves-green btn-flat boton_a_gregar"
+                                type="submit">Modificar</button>
+                        </div>
+                    </form>
+                </div>
+                <!--Modal añadir categoria-->
+                <div id="modal_anadir_categ_oo" class="modal">
+                    <form class="row" method="post" id="save-form" enctype="multipart/form-data">
+                        <div class="modal-content">
+                            <div class="row contorno">
+                                <div class="col s12 m12 l12">
+                                    <h5 class="center-align">Agregar categoria</h5>
+                                    <div class="row">
+                                        <div class="col s12 m12 l4">
+                                            <!--Boton-->
+                                            <div class="col l12 m12 s12 center-align" id="preview-categoria">
+                                                <img id="categoria-pic"
+                                                    src="../../../recursos/img/privado/admin/default-img.jpg"
+                                                    width="100" height="100" class="imagen_prod_o">
+                                                <div class="file-field input-field col s12 m12 l12 center-align">
+                                                    <div class="btn blue center-align">
+                                                        <span>Imagen</span>
+                                                        <input type="file"
+                                                            onchange="leerImgCreate(this, document.getElementById('categoria-pic'))"
+                                                            id="archivo_categO" name="archivo_categO">
+                                                    </div>
+                                                    <div class="file-path-wrapper col s4 m4 l4">
+                                                        <input class="file-path validate" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--Siguiente columna-->
+                                        <div class="col s12 m12 l5">
+                                            <div class="col s12 m12 l12">
+                                                <h6>Nombre categoria:</h6>
+                                                <div class="input-field col s12 m12 l12 nombre_field">
+                                                    <input placeholder="Nombre" id="nombre_catego" name="nombre_catego"
+                                                        type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!"
+                                class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
+                            <button class="waves-green btn-flat boton_a_gregar" type="submit">Añadir</button>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!--Footer-->
+    <footer class="page-footer">
+        <!--Contenedor para el mapa y el copyright-->
+        <div class="footer_otros">
+            <div class="col l12 m12 s12 logo_copy_footer">
+                <img src="../../../recursos/img/privado/admin/modals/logo.png" alt="">
+                <h6>© 2022 DeliverySystem</h6>
+            </div>
+        </div>
+    </footer>
+    </div>
+    <!--Importar archivos JavaScrip-->
+    <script type="text/javascript" src="../../../js/materialize.min.js"></script>
+    <script src="../../../recursos/js/sweetalert2.all.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../../controladores/componentes.js"></script>
+    <script src="../../../controladores/privado/admin/admin_categoria.js"></script>
+    <script type="text/javascript" src="../../../controladores/privado/admin/opciones_sesion.js"></script>
+    <script src="../../../controladores/privado/admin/modo_oscuro.js"></script>
+</body>
+
+</html>
