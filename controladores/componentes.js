@@ -28,6 +28,8 @@ function readRows(api) {
                     data = response.dataset;
                 } else if (response == 'Acceso denegado'){
                     location.href = 'index.html';
+                }else if (response.exception == 'Accion no disponible fuera de la sesión' || response.exception == 'Acción no disponible fuera de la sesión' ){
+                    location.href = 'index.html';
                 }else{
                     sweetAlert(4, response.exception, null);
                 }

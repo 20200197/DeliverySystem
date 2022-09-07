@@ -481,13 +481,13 @@ class Repartidor extends Validator
     //Cambios Bonilla1
     public function checkUser()
     {
-        $sql = "SELECT id_repartidor, id_status_repartidor, nombre_repartidor, apellido_repartidor, usuario_repartidor, CONCAT(nombre_repartidor, ' ',apellido_repartidor) AS nombre_repartidor
+        $sql = "SELECT id_repartidor, id_estado_repartidor, nombre_repartidor, apellido_repartidor, usuario_repartidor, CONCAT(nombre_repartidor, ' ',apellido_repartidor) AS nombre_repartidor
                 FROM repartidor
                 WHERE usuario_repartidor = ?";
         $params = array($this->usuario);
         if ($data = Database::getRow($sql, $params)) {
             $this->id = $data['id_repartidor'];
-            $this->estado = $data['id_status_repartidor'];
+            $this->estado = $data['id_estado_repartidor'];
             $this->nombre = $data['nombre_repartidor'];
             $this->apellido = $data['apellido_repartidor'];
             $this->usuario = $data['usuario_repartidor'];
@@ -602,7 +602,7 @@ class Repartidor extends Validator
     {
         $sql = 'SELECT current_date - fecha_cambio as rango_ch
         from cambio_contra_repartidor where id_repartidor=?';
-        $params = array($_SESSION['id_cliente']);
+        $params = array($_SESSION['id_repartidor']);
 
         return Database::getRow($sql, $params);
     }
