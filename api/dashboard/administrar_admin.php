@@ -161,7 +161,7 @@ if (isset($_GET['action'])) {
                 } elseif (!$admin->checkStatus()) {
                     $result['exception'] = 'Lo sentimos, usted se encuentra desactivado';
                 } elseif (!$admin->verifyUnlockDate()) {
-                    $result['exception'] = 'Su cuenta ha sido desactivada durante un día por haber fallado el inicio de sesión más de 5 veces';
+                    $result['exception'] = 'Su cuenta ha sido desactivada durante un día por haber fallado el inicio de sesión 3 veces';
                 } elseif ($admin->checkPass($_POST['password']) && $admin->checkStatus()) {
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';

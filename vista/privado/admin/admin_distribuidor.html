@@ -113,6 +113,9 @@
                             <label for="search">Buscador</label>
                         </div>
                     </form>
+                    <div class="input-field col s3 m4 l8 right-align" id="button-request">
+                        
+                    </div>
                 </div>
                 <div class="col s12 l12 m12 contenido_apar">
                     <!--Tabla-->
@@ -173,6 +176,114 @@
         </div>
         </div>
     </main>
+
+    <div id="modal-info-request-one" class="modal">
+        <div class="modal-content">
+            <div class="row contorno">
+                <h5 class="center-align">Información</h5>
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <table class="default" id="contenidoInfoModal">
+                            <tr>
+                                <th>Nombre:</th>
+                                <td>Nombre 1</td>
+                            </tr>
+                            <tr>
+                                <th>Apellido:</th>
+                                <td>Apellido 1</td>
+                            </tr>
+                            <tr>
+                                <th>Dui:</th>
+                                <td>Dui 1|</td>
+                            </tr>
+                            <tr>
+                                <th>Correo:</th>
+                                <td>Correo 1</td>
+                            </tr>
+                            <tr>
+                                <th>Usuario:</th>
+                                <td>Usuario 1</td>
+                            </tr>
+                            <tr>
+                                <th>Solvencia pnc:</th>
+                                <td><img src="../../../recursos/img/privado/admin/modals/descarga (2).png "
+                                        class="responsive-img"></td>
+                            </tr>
+                            <tr>
+                                <th>Antecedente pnc:</th>
+                                <td><img src="../../../recursos/img/privado/admin/modals/descarga (2).png "
+                                        class="responsive-img"></td>
+                            </tr>
+                            <tr>
+                                <th>Dirección domicilio:</th>
+                                <td>Dirección 1</td>
+                            </tr>
+                            <tr>
+                                <th>Descripción vendedor:</th>
+                                <td>Descripción </td>
+                            </tr>
+                            <tr>
+                                <th>Status:</th>
+                                <td>Status 1</td>
+                            </tr>
+                            <tr>
+                                <th>Foto:</th>
+                                <td><img src="../../../recursos/img/privado/admin/modals/descarga (2).png "
+                                        class="responsive-img"></td>
+                            </tr>
+                            <tr>
+                                <th>Fecha registro:</th>
+                                <td>Fecha registro 1</td>
+                            </tr>
+                            <tr>
+                                <th>Coordenadas:</th>
+                                <td>Coordenadas 1</td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td><a class="btn-flat boton_eliminar_tabl modal-trigger"
+                                        href="#modal_eliminar_vendedor"><i class=" material-icons small ">delete</i></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Aceptar</a>
+        </div>
+    </div>
+
+    <div id="modal_request" class="modal">
+        <div class="modal-content">
+            <div class="row contorno">
+                <h5 class="center-align">Solicitudes de ser repartidor</h5>
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Foto</th>
+                                    <th>Nombre</th>
+                                    <th>Dui</th>
+                                    <th>Correo</th>
+                                    <th>Fecha solicitud</th>
+                                    <th>Ver más</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-request-general">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Aceptar</a>
+        </div>
+    </div>
 
     <!--Footer -->
     <footer class="page-footer blue accent-3">

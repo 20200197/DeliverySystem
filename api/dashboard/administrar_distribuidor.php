@@ -26,6 +26,24 @@ if (isset($_GET['action'])) {
                 }
                 break;
                 //Buscar dustribuidor
+            case 'getNumRequest':
+                if ($result['requestNum'] = $administrar_distribuidor->readRequestNum()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay datos registrados';
+                }
+                break;
+            case 'getRequest':
+                if ($result['dataset'] = $administrar_distribuidor->readRequest()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay datos registrados';
+                }
+                break;
             case 'search':
                 $_POST = $administrar_distribuidor->validateForm($_POST);
                 if ($result['dataset'] = $administrar_distribuidor->searchRows($_POST['data'])) {

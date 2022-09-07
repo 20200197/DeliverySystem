@@ -10,9 +10,94 @@ document.addEventListener('DOMContentLoaded', function () {
         dismissible: false
 
     }
+
+    fillNumRequest();
+
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
     M.Modal.init(document.querySelectorAll('.modal'), options);
+    M.Materialbox.init(document.querySelectorAll(".materialboxed"));
 });
+
+function fillNumRequest() {
+    let content = '';
+
+    fetch(API_DISTRIBUIDOR + 'getNumRequest', {
+        method: 'get'
+    }).then(function (request) {
+        if (request.ok){
+            request.json().then(function (response) {
+                if (response.status) {
+                    if (response.requestNum.count == 0) {
+                        content = '<button onclick="openRequest()" class="btn-flat mdoal-trigger"><i class="icono-sesion material-icons black-text">clear</i></button>';
+                    } else if (response.requestNum.count == 1) {
+                        content = '<button onclick="openRequest()" class="btn-flat mdoal-trigger"><i class="icono-sesion material-icons black-text">person filter_1</i></button>';
+                    } else if (response.requestNum.count == 2) {
+                        content = '<button onclick="openRequest()" class="btn-flat mdoal-trigger"><i class="icono-sesion material-icons black-text">person filter_2</i></button>';
+                    } else if (response.requestNum.count == 3) {
+                        content = '<button onclick="openRequest()" class="btn-flat mdoal-trigger"><i class="icono-sesion material-icons black-text">person filter_3</i></button>';
+                    } else if (response.requestNum.count == 4) {
+                        content = '<button onclick="openRequest()" class="btn-flat mdoal-trigger"><i class="icono-sesion material-icons black-text">person filter_4</i></button>';
+                    } else if (response.requestNum.count == 5) {
+                        content = '<button onclick="openRequest()" class="btn-flat mdoal-trigger"><i class="icono-sesion material-icons black-text">person filter_5</i></button>';
+                    } else if (response.requestNum.count == 6) {
+                        content = '<button onclick="openRequest()" class="btn-flat mdoal-trigger"><i class="icono-sesion material-icons black-text">person filter_6</i></button>';
+                    } else if (response.requestNum.count == 7) {
+                        content = '<button onclick="openRequest()" class="btn-flat mdoal-trigger"><i class="icono-sesion material-icons black-text">person filter_7</i></button>';
+                    } else if (response.requestNum.count == 8) {
+                        content = '<button onclick="openRequest()" class="btn-flat mdoal-trigger"><i class="icono-sesion material-icons black-text">person filter_8</i></button>';
+                    } else if (response.requestNum.count == 9) {
+                        content = '<button onclick="openRequest()" class="btn-flat mdoal-trigger"><i class="icono-sesion material-icons black-text">person filter_9</i></button>';
+                    } else if (response.requestNum.count > 9) {
+                        content = '<button onclick="openRequest()" class="btn-flat mdoal-trigger"><i class="icono-sesion material-icons black-text">person filter_9_plus</i></button>';
+                    }
+
+                    document.getElementById('button-request').innerHTML = content;
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+function openRequest() {
+    M.Modal.getInstance(document.getElementById('modal_request')).open();
+    let content = '';
+
+    fetch(API_DISTRIBUIDOR + 'getRequest', {
+        method: 'get'
+    }).then(function (request) {
+        if (request.ok) {
+            request.json().then(function (response) {
+                if (response.status) {
+                    response.dataset.map(function (row) {
+                        content += `<tr>
+                                        <td><img class="responsive-img" src="${SERVER}imagenes/repartidor/foto_repartidor/${row.foto_repartidor}"></td>
+                                        <td>${row.nombre_repartidor}</td>
+                                        <td>${row.dui_repartidor}</td>
+                                        <td>${row.correo_repartidor}</td>
+                                        <td>${row.fecha_registro}</td>
+                                        <td><button class="btn-flat" onclick="openRequestOne(${row.id_repartidor})"><i class="material-icons">remove_red_eye</i></button></td>
+                                    </tr>`;
+                    });
+                    document.getElementById('tbody-request-general').innerHTML = content;
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+
+}
+
+function openRequestOne(id) {
+    M.Modal.getInstance(document.getElementById('modal_request')).close();
+    M.Modal.getInstance(document.getElementById('modal-info-request-one')).open();
+}
 
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
 function fillTable(dataset) {

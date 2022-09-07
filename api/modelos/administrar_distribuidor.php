@@ -433,4 +433,23 @@ class Distribuidor extends Validator
 
         return Database::executeRow($sql, $params);
     }
+
+    public function readRequest()
+    {
+        $sql = "SELECT id_repartidor, foto_repartidor, CONCAT(nombre_repartidor, ' ', apellido_repartidor) as nombre_repartidor, dui_repartidor, correo_repartidor, fecha_registro
+                FROM repartidor
+                WHERE id_estado_repartidor = 1
+                ORDER BY fecha_registro ASC";
+        
+        return Database::getRows($sql, null);
+    }
+
+    public function readRequestNum()
+    {
+        $sql = 'SELECT COUNT(id_repartidor)
+                FROM repartidor
+                WHERE id_estado_repartidor = 1';
+        
+        return Database::getRow($sql, null);
+    }
 }
