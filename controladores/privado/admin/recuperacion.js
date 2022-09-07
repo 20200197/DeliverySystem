@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("usuario").style.display = "";
     document.getElementById("correo").style.display = "none";
     document.getElementById("codigo").style.display = "none";
+    document.getElementById("clave").style.display = "none";
     
 });
 
@@ -29,6 +30,7 @@ document.getElementById("formularioUsuario").addEventListener("submit", function
                     document.getElementById("usuario").style.display = "none";
                     document.getElementById("correo").style.display = "";
                     document.getElementById("codigo").style.display = "none";
+                    document.getElementById("clave").style.display = "none";
                     document.getElementById("mensajeCorreo").innerHTML = "Completa el correo mostrado a continuación enlazado a tu cuenta <br> " +
                     response.dataset;
                     sweetAlert(1, response.message, null);
@@ -64,10 +66,10 @@ document.getElementById("formularioCorreo").addEventListener('submit', function 
                     document.getElementById("usuario").style.display = "none";
                     document.getElementById("correo").style.display = "none";
                     document.getElementById("codigo").style.display = "";
+                    document.getElementById("clave").style.display = "none";
+
                     //Se enviar el correo
                     recuperar(response.dataset.correo_admin, response.dataset.nombre_admin, response.token);
-                    //Se confirma el proceso
-                    sweetAlert(1, response.message, null);
                 } else { 
                     //Se muestra el problema
                     sweetAlert(2, response.exception, null);
@@ -79,4 +81,34 @@ document.getElementById("formularioCorreo").addEventListener('submit', function 
     });
 });
 
-//Método 
+//Método para verificar que el código es correcto
+document.getElementById('formularioCodigo').addEventListener('submit', function (event) { 
+    //Se previene la recarga automática de la página
+    event.preventDefault();
+    //Se realiza la petición para verificar el código
+    fetch(API_RECUPERACION + 'validarCodigo', {
+        method: 'post',
+        body: new FormData(document.getElementById('formularioCodigo')),
+    }).then(function (request) {
+        //Se revisa el estado de la ejecución
+        if (request.ok) {
+            //Se procede a pasar la respuesta a json
+            request.json().then(function (response) {
+                //Se verifica el estado devuelto por la API
+                if (response.status) {
+                    sweetAlert(1, response.message, null);
+                    document.getElementById("usuario").style.display = "none";
+                    document.getElementById("correo").style.display = "none";
+                    document.getElementById("codigo").style.display = "none";
+                    document.getElementById("clave").style.display = "";
+                } else { 
+                    //Se muestra el error al usuario
+                    sweetAlert(2, response.exception, null);
+                }
+            })
+        } else {
+            //Se muestar el problema en la consola
+            console.log(request.status + ' ' + request.statusText);
+        }
+    })
+})

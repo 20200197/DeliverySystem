@@ -761,7 +761,7 @@ function recuperar(correo, nombre, codigo) {
     //Se realiza el proceso para enviarlo
 
     emailjs.send('service_k5roc2l', 'template_2y2q2ik', valores, 'jlvJkg4wMQOlaYDl2').then(function (response) {
-        sweetAlert(1, 'Correo envíado correctamente' + response.text, null);
+        sweetAlert(1, 'Correo envíado correctamente', null);
     }, function (error) { 
         sweetAlert(2, error, null);
     });

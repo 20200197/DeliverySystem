@@ -16,9 +16,9 @@ class Database
     {
         // Credenciales para establecer la conexión con la base de datos.
         $server = 'localhost';
-        $database = 'deliverysystem';
+        $database = 'DeliverySystem';
         $username = 'postgres';
-        $password = 'Firearcher15';
+        $password = 'admin';
 
 
 

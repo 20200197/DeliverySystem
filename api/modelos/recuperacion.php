@@ -60,15 +60,16 @@ class Recuperacion extends Validator
 
     public function generarToken()
     {
+        //Se agrega la zona horaria
+        date_default_timezone_set("America/El_Salvador");
         $clave = openssl_random_pseudo_bytes(3, $cstrong);
         $token = bin2hex($clave);
         $_SESSION['token'] = $token;
-        //Se crea la fecha actual
+        //Se crea la fecha actual;
         $fecha = new DateTime();
+        $fecha->modify('+5 minute');
         //Se guarda la duración del token
-        $_SESSION['tokenLimit'] = $fecha->modify('+5 minute');
-        //Se devuelve el token
-        echo $token;
+        $_SESSION['tokenLimit'] = $fecha->format('d-m-Y H:i:s');
         return $token;
     }
 
@@ -128,5 +129,12 @@ class Recuperacion extends Validator
         $sql = 'UPDATE administrador SET clave_admin = ? WHERE id_admin = ?';
         $params = array($this->passAdmin, $this->identificadorAdmin);
         return Database::executeRow($sql, $params);
+    }
+
+    //Función para obtener los datos importantes del usuario
+    public function informacionAdministrador()
+    {
+        $sql = '';
+        $params = array($_SESSION['id_admin']);
     }
 }
