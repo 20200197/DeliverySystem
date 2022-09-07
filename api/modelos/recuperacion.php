@@ -93,6 +93,7 @@ class Recuperacion extends Validator
     }
 
 
+
     public function getCorreoAdmin()
     {
         return $this->correoAdmin;
@@ -134,7 +135,7 @@ class Recuperacion extends Validator
     //Función para obtener los datos importantes del usuario
     public function informacionAdministrador()
     {
-        $sql = "SELECT nombre_admin, apellido_admin, usuario_admin, '00-00-0000' FROM administrador
+        $sql = "SELECT nombre_admin, apellido_admin, usuario_admin, '00-00-0000' as fecha, clave_admin FROM administrador
         WHERE id_admin = ?";
         $params = array($_SESSION['id_admin']);
         return Database::getRow($sql, $params);

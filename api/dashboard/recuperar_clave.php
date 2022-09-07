@@ -87,7 +87,7 @@ if (isset($_GET['action'])) {
                 $result['exception'] = 'El código ingresado no es correcto';
             } else {
                 //Se confirma el código y se continua el cambio
-                $result['message'] = 'Código correcto';
+                $result['message'] = 'Código verificado correctamente';
                 $result['status'] = true;
                 $_SESSION['confirmacion'] = true;
                 //Se eliminan las variables de validación de contraseña
@@ -97,18 +97,42 @@ if (isset($_GET['action'])) {
             }
             break;
         case 'cambiarPass':
-            //Se obtienen los datos de la cuenta del usuario para validar
-            if ($data = $recuperar->informacionAdministrador()) {
-                //Se procede a validar si la contraseña es segura
-                if (!$recuperar->validateSafePassword(
+            //Se verifica que ya se confirmó el código de reestablecimiento
+            if (!isset($_SESSION['confirmacion'])) {
+                $result['exception'] = 'Debes de confirmar el código de reestablecimiento antes de cambiar la constraseña';
+                //Se verifica que si se haya confirmado con éxito
+            } else if ($_SESSION['confirmacion']) {
+                //Se obtienen los datos de la cuenta del usuario para validar
+            } elseif ($data = $recuperar->informacionAdministrador()) {
+                //Se procede a validar si la contraseña ya ha sido colocada
+                if (password_verify($_POST['clave'], $data['clave_admin'])) {
+                    $result['exception'] = 'La contraseña colocada no se puede asignar';
+                    //Se valida si cumple con los requistos de una contraseña segura
+                } elseif (!$recuperar->setPassAdmin(
                     $_POST['clave'],
                     $data['nombre_admin'],
                     $data['apellido_admin'],
                     $data['usuario_admin'],
                     $data['fecha']
                 )) {
-
+                    $result['exception'] = $recuperar->getPasswordError();
+                    //Se procede a cambiar la contraseña
+                } elseif ($recuperar->reestablecerPassAdministrador()) {
+                    $result['status'] = true;
+                    $result['message'] = 'Contraseña reestablecida correctamente';
+                    //Se quitan los datos de validación de $_SESSION
+                    unset($_SESSION['id_admin']);
+                    unset($_SESSION['confirmacion']);
+                    unset($_SESSION['correo_admin']);
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'La contraseña no pudo ser reestablecida';
                 }
+            } elseif (Database::getException()) {
+                $result['exception'] = Database::getException();
+            } else {
+                $result['exception'] = 'No se encontraron los datos de tu cuenta';
             }
             break;
         default:
