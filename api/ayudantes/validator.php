@@ -595,41 +595,51 @@ class Validator
                                             if (!$this->validarPalabra($arregloPass, $usuario)) {
                                                 //Se revisa que la contraseña no contenga la fecha o una referencia de ella
                                                 if (!$this->validarFecha($clave, $fecha)) {
-                                                    echo "Es una contraseña segura";
+                                                    return true;
+                                                    $this->passwordError = "Es una contraseña segura";
                                                 } else {
-                                                    echo "La contraseña no puede contener tu fecha o parte de ella";
+                                                    return false;
+                                                    $this->passwordError = "La contraseña no puede contener tu fecha o parte de ella";
                                                 }
                                             } else {
-                                                echo "La contraseña no puede contener tu nombre de usuario o una fracción";
+                                                return false;
+                                                $this->passwordError = "La contraseña no puede contener tu nombre de usuario o una fracción";
                                             }
                                         } else {
-                                            echo "La contraseña no puede contener tu apellido o una fracción";
+                                            return false;
+                                            $this->passwordError = "La contraseña no puede contener tu apellido o una fracción";
                                         }
                                     } else {
-                                        echo "La contraseña no puede contener tu nombre o fracciones";
+                                        return false;
+                                        $this->passwordError = "La contraseña no puede contener tu nombre o fracciones";
                                     }
                                 } else {
-                                    echo "No hay simbolos dentro de la contraseña";
+                                    return false;
+                                    $this->passwordError = "No hay simbolos dentro de la contraseña";
                                 }
                             } else {
-                                echo "No hay mayúsculas dentro de la contraseña";
+                                return false;
+                                $this->passwordError = "No hay mayúsculas dentro de la contraseña";
                             }
                         } else {
-                            echo "No hay minúsculas dentro de la contraseña";
+                            return false;
+                            $this->passwordError = "No hay minúsculas dentro de la contraseña";
                         }
                     } else {
-                        echo "Lo sentimos, no hay números";
+                        return false;
+                        $this->passwordError = "Lo sentimos, no hay números";
                     }
                 } else {
-                    echo "Hay carácteres no válidos dentro de la contraseña";
+                    return false;
+                    $this->passwordError = "Hay carácteres no válidos dentro de la contraseña";
                 }
             } else {
-                //Se devuelve el problema
-                echo  'La clave debe contener un máximo de 64 caracteres';
+                return false;
+                $this->passwordError =  'La clave debe contener un máximo de 64 caracteres';
             }
         } else {
-            echo 'La clave debe contener un mínimo de 8 caracteres';
+            return false;
+            $this->passwordError = 'La clave debe contener un mínimo de 8 caracteres';
         }
     }
-
 }

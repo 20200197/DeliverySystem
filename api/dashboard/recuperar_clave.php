@@ -55,7 +55,7 @@ if (isset($_GET['action'])) {
             //Se verifica que ya se ha validado el correo
             if (!isset($_SESSION['correoValidado'])) {
                 $result['exception'] = 'El correo no ha sido validado, por favor regresa y validalo';
-            }elseif (!$_SESSION['correoValidado']) {
+            } elseif (!$_SESSION['correoValidado']) {
                 $result['exception'] = 'Ocurrió un problema durante tu validación';
             } elseif ($result['dataset'] = $recuperar->datosAdministrador()) {
                 //Se crea un nuevo código y se reenvia
@@ -97,10 +97,19 @@ if (isset($_GET['action'])) {
             }
             break;
         case 'cambiarPass':
-            //Se sanean los campos
-            $_POST = $recuperar->validateForm($_POST);
             //Se obtienen los datos de la cuenta del usuario para validar
-            if ($data != $recuperar)
+            if ($data = $recuperar->informacionAdministrador()) {
+                //Se procede a validar si la contraseña es segura
+                if (!$recuperar->validateSafePassword(
+                    $_POST['clave'],
+                    $data['nombre_admin'],
+                    $data['apellido_admin'],
+                    $data['usuario_admin'],
+                    $data['fecha']
+                )) {
+
+                }
+            }
             break;
         default:
             $result['exception'] = 'La acción solicitada no está disponible';
