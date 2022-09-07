@@ -101,7 +101,8 @@ if (isset($_GET['action'])) {
             if (!isset($_SESSION['confirmacion'])) {
                 $result['exception'] = 'Debes de confirmar el código de reestablecimiento antes de cambiar la constraseña';
                 //Se verifica que si se haya confirmado con éxito
-            } else if ($_SESSION['confirmacion']) {
+            } elseif (!$_SESSION['confirmacion']) {
+                $result['exception'] = 'No se confirmó correctamente el código de recuperación';
                 //Se obtienen los datos de la cuenta del usuario para validar
             } elseif ($data = $recuperar->informacionAdministrador()) {
                 //Se procede a validar si la contraseña ya ha sido colocada

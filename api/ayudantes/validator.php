@@ -436,7 +436,6 @@ class Validator
     {
         //Sr revisa si contiene valores problematicos
         if (str_contains($valor, "'") || str_contains($valor, '"')) {
-
             return $valor;
         }
     }
@@ -574,18 +573,18 @@ class Validator
             //Se verifica que la longitud esté dentro de la longitud máxima 
             if (count($arregloPass) <= 64) {
                 //Se filtra para saber si hay carácteres peligrosos
-                $peligro = array_filter($arregloPass, "prohibido");
+                $peligro = array_filter($arregloPass, $this->prohibido);
                 if (count($peligro) == 0) {
                     //Se filtra para saber si hay números dentro de la contraseña
-                    $numero = array_filter($arregloPass, "numero");
+                    $numero = array_filter($arregloPass, $this->numero);
                     if (count($numero) > 0) {
                         //Se filtra para saber si hay letras dentro de la contraseña
-                        $minuscula = array_filter($arregloPass, "letraMinuscula");
+                        $minuscula = array_filter($arregloPass, $this->letraMinuscula);
                         if (count($minuscula) > 0) {
-                            $mayuscula = array_filter($arregloPass, "letraMayuscula");
+                            $mayuscula = array_filter($arregloPass, $this->letraMayuscula);
                             if (count($mayuscula) > 0) {
                                 //Se filtra para saber si hay simbolos dentro de la contraseña
-                                $simbolos = array_filter($arregloPass, "simbolo");
+                                $simbolos = array_filter($arregloPass, $this->simbolo);
                                 if (count($simbolos) > 0) {
                                     //Se revisa que la contraseña no contenga el nombre dentro de ella
                                     if (!$this->validarPalabra($arregloPass, $nombre)) {

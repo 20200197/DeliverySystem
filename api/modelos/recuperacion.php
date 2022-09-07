@@ -110,9 +110,14 @@ class Recuperacion extends Validator
         WHERE usuario_admin = ?";
         $params = array($this->usuarioAdmin);
         $data = Database::getRow($sql, $params);
-        $_SESSION['id_admin'] = $data['id_admin'];
-        $_SESSION['correo_admin'] = $data['correo_admin'];
-        return $this->formatEmail($data['correo_admin']);
+        //Se revisa que no esté vacía
+        if ($data) {
+            $_SESSION['id_admin'] = $data['id_admin'];
+            $_SESSION['correo_admin'] = $data['correo_admin'];
+            return $this->formatEmail($data['correo_admin']);
+        }
+        
+        
         
     }
 
