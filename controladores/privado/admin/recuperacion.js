@@ -78,3 +78,5 @@ document.getElementById("formularioCorreo").addEventListener('submit', function 
         }
     });
 });
+
+//Método 
