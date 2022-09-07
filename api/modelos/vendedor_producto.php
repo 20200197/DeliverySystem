@@ -147,7 +147,7 @@ class VendedorProducto extends Validator
     //Función para cargar las categorias disponibles
     public function categorias()
     {
-        $sql = 'SELECT id_categoria_producto, categoria FROM categoria';
+        $sql = 'SELECT id_categoria, categoria FROM categoria';
         $params = null;
         return Database::getRows($sql, $params);
     }
@@ -195,7 +195,7 @@ class VendedorProducto extends Validator
     public function actualizar($accion, $imagen)
     {
         $sql = '';
-        if ($accion==1) {
+        if ($accion == 1) {
             $sql = 'UPDATE producto SET nombre_producto = ?, 
         cantidad_producto = ((SELECT cantidad_producto FROM producto WHERE id_producto = ?)+?), descripcion_producto = ?,
         precio_producto = ?, imagen = ?, id_categoria = ?, id_marca = ? WHERE id_producto = ?';
@@ -204,7 +204,7 @@ class VendedorProducto extends Validator
         cantidad_producto = ((SELECT cantidad_producto FROM producto WHERE id_producto = ?)-?), descripcion_producto = ?,
         precio_producto = ?, imagen = ?, id_categoria = ?, id_marca = ? WHERE id_producto = ?';
         }
-        
+
         $params = array(
             $this->nombre, $this->identificador, $this->cantidad, $this->descripcion, $this->precio, $imagen,
             $this->categoria, $this->marca, $this->identificador

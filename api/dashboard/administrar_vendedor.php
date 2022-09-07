@@ -12,7 +12,7 @@ if (isset($_GET['action'])) {
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null, 'session' => 0);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (isset($_SESSION['id_admin'])) { // Se cambiará por isset($_SESSION['id_usuario'])
+    if (isset($_SESSION['id_vendedor'])) { // Se cambiará por isset($_SESSION['id_usuario'])
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
@@ -52,8 +52,10 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Entrada de busqueda no valida';
                 } elseif ($result['dataset'] = $administrar_vendedor->buscar()) {
                     $result['status'] = 1;
-                } else {
+                } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No se encontraron registros con la busqueda solicitada';
                 }
                 break;
             case 'detalles':
@@ -130,15 +132,19 @@ if (isset($_GET['action'])) {
                     if (!$administrar_vendedor->saveFile($_FILES['solvencia-file'], $administrar_vendedor->getRutaSolvencia(), $administrar_vendedor->getSolvencia())) {
                         $result['status'] = 1;
                         $result['message'] = 'Usuario creado pero no se guardó la solvencia';
+                        $administrar_vendedor->insertCambio();
                     } elseif (!$administrar_vendedor->saveFile($_FILES['antecedente-file'], $administrar_vendedor->getRutaAntecedente(), $administrar_vendedor->getAntecedente())) {
                         $result['status'] = 1;
                         $result['message'] = 'Usuario creado pero no se guardó el antecedente';
+                        $administrar_vendedor->insertCambio();
                     } elseif (!$administrar_vendedor->saveFile($_FILES['profile-file'], $administrar_vendedor->getRutaFoto(), $administrar_vendedor->getFoto())) {
                         $result['status'] = 1;
                         $result['message'] = 'Usuario creado pero no se guardó la foto personal';
+                        $administrar_vendedor->insertCambio();
                     } else {
                         $result['status'] = 1;
                         $result['message'] = 'Usuario creado correctamente';
+                        $administrar_vendedor->insertCambio();
                     }
                 } else {
                     $result['exception'] = Database::getException();
@@ -153,9 +159,21 @@ if (isset($_GET['action'])) {
                 } elseif (!$administrar_vendedor->checkStatus()) {
                     $result['exception'] = 'Lo sentimos, usted se encuentra desactivado';
                 } elseif ($administrar_vendedor->checkPass($_POST['password']) && $administrar_vendedor->checkStatus()) {
+                
+                    $_SESSION['id_vendedor'] = $administrar_vendedor->getId();
+                    $_SESSION['nombre_vendedor'] = $administrar_vendedor->getUsuario();
+
+                    $result['dataset'] = $administrar_vendedor->checkRango();
+                    if(in_array("91 days", $result['dataset']) == true){
+                        $_SESSION['id_vendedor'] = null;
+               
+                        $result['status'] = 0;
+                    $result['exception'] = 'Lo sentimos, no cambio la contraseña hace 90 dias, debe de recuperarla';
+                   }else{
+
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
-                    $_SESSION['id_vendedor'] = $administrar_vendedor->getId();
+                   }
                 } elseif (!$administrar_vendedor->checkPass($_POST['password'])) {
                     $result['exception'] = 'Contraseña incorrecta';
                 }

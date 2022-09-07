@@ -18,6 +18,7 @@
 
 <body>
     <!--Encabezado-->
+    <!--Encabezado y sesión-->
     <header>
         <nav>
             <div class="nav-wrapper white">
@@ -26,43 +27,23 @@
                         <a href="#" data-target="slide-out" class="sidenav-trigger"><i
                                 class="material-icons large blue-text">menu</i></a>
                     </div>
-                    <div class="col m5 s5 valign-wrapper">
-
-                        <img class="responsive-img"
-                            src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
+                    <div class="col m5 s5 left valign-wrapper">
+    
+                        <img class="responsive-img" src="logo_delivery_system.png" alt="">
                     </div>
-                    <div class="col m6 s6">
-                        <ul class="right">
-                            <!--Switch de cambiar color-->
-                            <li>
-                                <div class="switch switch_colorr">
-                                    <label>
-                                        🌕
-                                        <input type="checkbox" id="switch_color" onclick="modoOscuro()">
-                                        <span class="lever"></span>
-                                        🌙
-                                    </label>
-                                </div>
-                            </li>
-                            <!--Colocamos nombre de usuario-->
-                            <li><span class="black-text" id="opciones_navbar"> </span></li>
-                            <!-- <li><a href="perfil.html" class="tooltipped " data-position="right" data-tooltip="Perfil"><i
-                                        class="material-icons medium black-text">account_circle</i></a></li> -->
-
-                        </ul>
+                    <div class="col m6 s6" id="opciones_navbar">
+    
                     </div>
                 </div>
+            </div>
         </nav>
-
+    
     </header>
     <div class="row">
         <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
             <div class="opciones-sidenav">
-                <li><a href="dashboard.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
-                            class="material-icons center white-text">home</i><span
-                            class="white-text hide-on-large-only">Hogar</span></a></li>
                 <li><a href="perfil.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
-                            class="material-icons medium">account_circle</i><span
+                            class="material-icons center white-text">account_circle</i><span
                             class="white-text hide-on-large-only">Perfil</span></a></li>
                 <li><a href="admin_producto.html" class="tooltipped" data-position="right" data-tooltip="Productos"><i
                             class="material-icons  white-text">import_contacts</i><span
@@ -90,6 +71,12 @@
                 <li><a href="admin_admin.html" class="tooltipped" data-position="right"
                         data-tooltip="Administradores"><i class="material-icons  white-text">folder_shared</i><span
                             class="white-text hide-on-large-only">Administradores</span></a></li>
+                <li><a href="admin_mapa.html" class="tooltipped" data-position="right" data-tooltip="Mapas"><i
+                            class="material-icons  white-text">map</i><span
+                            class="white-text hide-on-large-only">Mapas</span></a></li>
+                <li><a href="estadistica.html" class="tooltipped" data-position="right" data-tooltip="Estadísticas"><i
+                            class="material-icons  white-text">insert_chart</i><span
+                            class="white-text hide-on-large-only">Estadísticas</span></a></li>
                 <li class="hide-on-large-only"><button onclick="logOut('Admin')"
                         class="tooltipped transparent logout valign-wrapper" data-position="right"
                         data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
@@ -108,7 +95,7 @@
     <main>
         <!--Contenedor-->
         <div class="row">
-            <div class="row administrar_cate_o ">
+            <div class="row col l10 m10 s10 push-l1 ">
                 <div class="col s12 m12 l12">
                 </div>
                 <div class="col s12 m12 l12 titulo_pega">
@@ -186,9 +173,9 @@
         </div>
         </div>
     </main>
-    
-     <!--Footer -->
-     <footer class="page-footer blue accent-3">
+
+    <!--Footer -->
+    <footer class="page-footer blue accent-3">
         <div class="row">
             <div class="col l2 m6 s12">
                 <div class="col offset-l1 offset-m1 offset-s1">
@@ -198,7 +185,7 @@
             </div>
         </div>
     </footer>
-    
+
     <!--Importar archivos JavaScrip-->
     <script type="text/javascript" src="../../../js/materialize.min.js"></script>
     <script src="../../../recursos/js/sweetalert2.all.min.js"></script>

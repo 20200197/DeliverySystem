@@ -1,15 +1,15 @@
 <?php
 require('../../helpers/dashboard_report.php');
 require('../../models/productos.php');
-require('../../models/categorias.php');
+require('../../models/administrar_categoria.php');
 
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
 // Se inicia el reporte con el encabezado del documento.
-$pdf->startReport('Productos por categoría');
+$pdf->startReport('Productos por categoría',$_SESSION['nombre_vendedior']);
 
 // Se instancia el módelo Categorías para obtener los datos.
-$categoria = new Categorias;
+$categoria = new Categoria;
 // Se verifica si existen registros (categorías) para mostrar, de lo contrario se imprime un mensaje.
 if ($dataCategorias = $categoria->readAll()) {
     // Se establece un color de relleno para los encabezados.
@@ -31,9 +31,9 @@ if ($dataCategorias = $categoria->readAll()) {
         // Se imprime una celda con el nombre de la categoría.
         $pdf->cell(0, 10, utf8_decode('Categoría: '.$rowCategoria['nombre_categoria']), 1, 1, 'C', 1);
         // Se instancia el módelo Productos para procesar los datos.
-        $producto = new Productos;
+        $producto = new Producto;
         // Se establece la categoría para obtener sus productos, de lo contrario se imprime un mensaje de error.
-        if ($producto->setCategoria($rowCategoria['id_categoria'])) {
+        if ($producto->setCategoriaProducto($rowCategoria['id_categoria'])) {
             // Se verifica si existen registros (productos) para mostrar, de lo contrario se imprime un mensaje.
             if ($dataProductos = $producto->productosCategoria()) {
                 // Se recorren los registros ($dataProductos) fila por fila ($rowProducto).

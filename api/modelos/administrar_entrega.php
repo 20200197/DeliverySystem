@@ -14,6 +14,9 @@ class Entrega extends Validator
     //Repartidor
     private $id_repartidor = null;
 
+    private $id_factura = null;
+    private $id_detalle = null;
+
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -74,11 +77,12 @@ class Entrega extends Validator
         }
     }
 
-    public function setFechaReparto($date){
-        if($this->validateDate($date)){
+    public function setFechaReparto($date)
+    {
+        if ($this->validateDate($date)) {
             $this->fecha_reparto = $date;
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -87,6 +91,26 @@ class Entrega extends Validator
     {
         if ($this->validateNaturalNumber($value)) {
             $this->id_repartidor = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setIdFactura($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->id_factura = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setIdDetalle($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->id_detalle = $value;
             return true;
         } else {
             return false;
@@ -127,9 +151,19 @@ class Entrega extends Validator
         return $this->id_repartidor;
     }
 
+    public function getIdFactura()
+    {
+        return $this->id_factura;
+    }
+
+    public function getIdDetalle()
+    {
+        return $this->id_detalle;
+    }
 
 
-  
+
+
 
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
@@ -145,7 +179,7 @@ class Entrega extends Validator
         inner join cliente cliente on direccion.id_cliente = cliente.id_cliente
         inner join repartidor on factura.id_repartidor = repartidor.id_repartidor
         where nombre_producto ILIKE ?  or nombre_cliente ILIKE ? or nombre_repartidor ILIKE ? ";
-        $params = array("%$value%","%$value%","%$value%");
+        $params = array("%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
 
@@ -160,14 +194,15 @@ class Entrega extends Validator
         inner join metodo_pago on factura.id_metodo_pago = metodo_pago.id_metodo_pago
         inner join direccion direccion on factura.id_direccion = direccion.id_direccion
         inner join cliente cliente on direccion.id_cliente = cliente.id_cliente
-        inner join repartidor on factura.id_repartidor = repartidor.id_repartidor";
+        inner join repartidor on factura.id_repartidor = repartidor.id_repartidor
+        WHERE detalle_factura.status = true";
         $params = null;
         return Database::getRows($sql, $params);
     }
 
     public function readHistorialRepartidor()
     {
-        $sql = "SELECT nombre_producto, CONCAT(nombre_vendedor, ' ' , apellido_vendedor ) as nombre_vendedo, CONCAT(nombre_cliente, ' ' , apellido_cliente) as nombre_cliente, descripcion_direccion, fecha_compra, costo_envio
+        $sql = "SELECT nombre_producto, CONCAT(nombre_vendedor, ' ' , apellido_vendedor ) as nombre_vendedor, CONCAT(nombre_cliente, ' ' , apellido_cliente) as nombre_cliente, descripcion_direccion, fecha_compra, costo_envio
         from detalle_factura
         inner join factura using (id_factura)
         inner join producto using (id_producto)
@@ -176,9 +211,66 @@ class Entrega extends Validator
         inner join vendedor on producto.id_vendedor = vendedor.id_vendedor
         inner join cliente on direccion.id_cliente = cliente.id_cliente
         where factura.id_repartidor = ?";
-        $params = array(2); //SESSION[id_repartidor]
+        $params = array($_SESSION['id_repartidor']); //SESSION[id_repartidor]
+        return Database::getRows($sql, $params);
+    }
+ 
+    //Repartidores
+    public function repartidorAvaible()
+    {
+        $sql = "SELECT   distinct(factura.id_repartidor), CONCAT(nombre_repartidor,' ', apellido_repartidor) as nombre_repartidor
+        from factura factura 
+        full outer join repartidor using(id_repartidor)
+        full outer join detalle_factura detalle_factura on detalle_factura.id_factura = factura.id_factura
+        where fecha_envio > current_date +7 or fecha_envio is null or factura.id_repartidor not in (select id_repartidor from detalle_factura inner join factura using(id_factura))";
+        $params = null;
         return Database::getRows($sql, $params);
     }
 
-    
+    //Productos de detalle sin asignar, que nio tenga repartidor ni fecha
+    public function readProductosEntrega()
+    {
+        $sql = "SELECT id_detalle,nombre_producto, cantidad_pedido, precio, fecha_envio, repartidor.id_repartidor, id_factura
+        from detalle_factura
+        full outer join producto producto using(id_producto)
+        full outer join factura factura using(id_factura)
+        full outer join repartidor repartidor using(id_repartidor)
+        where fecha_envio is null and factura.id_repartidor is null and detalle_factura.id_detalle = ?";
+        $params = array($this->id_detalle);
+        return Database::getRows($sql, $params);
+    }
+
+    //Asignamos repartidor
+    public function updatePk()
+    {
+        $sql = 'UPDATE factura
+        SET id_repartidor = ? 
+        WHERE id_factura = ?';
+        $params = array($this->id_repartidor,$this->id_factura);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Asignamos fecha de envio
+    public function updatePkPk()
+    {
+        $sql = 'UPDATE detalle_factura
+        SET fecha_envio = ? 
+        WHERE id_detalle = ?';
+        $params = array($this->fecha_reparto,$this->id_detalle);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Facturas que no han sido asignadas, osea que repartidor y fecha no este asignada
+    public function readFac()
+    {
+        $sql = "SELECT id_factura, id_detalle
+        from detalle_factura
+        full outer  join  factura using(id_factura)
+        full outer  join repartidor using(id_repartidor)
+        where fecha_envio is null and factura.id_repartidor is null
+        group by  id_factura, id_detalle
+        order by id_detalle asc";
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
 }

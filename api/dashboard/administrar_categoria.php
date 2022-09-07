@@ -88,7 +88,7 @@ if (isset($_GET['action'])) {
                 //Actualizar fila
             case 'updateCa':
                 $_POST = $categoria->validateForm($_POST);
-                if (!$categoria->setId($_POST['id'])) {
+                if (!$categoria->setId($_POST['id_ca'])) {
                     $result['exception'] = 'Categoria incorrecta';
                 } elseif (!$data = $categoria->readOne()) {
                     $result['exception'] = 'Categoria inexistente';

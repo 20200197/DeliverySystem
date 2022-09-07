@@ -26,30 +26,30 @@ if (isset($_GET['action'])) {
                 }
                 break;
                 //Buscar dustribuidor
-                case 'search':
+            case 'search':
                 $_POST = $administrar_distribuidor->validateForm($_POST);
                 if ($result['dataset'] = $administrar_distribuidor->searchRows($_POST['data'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Valor encontrado';
-                    } elseif (Database::getException()) {
+                } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
-                    } else {
+                } else {
                     $result['exception'] = 'No hay coincidencias';
-                    }
-                    break; 
+                }
+                break;
                 //Crear fila
-                case 'create':
+            case 'create':
                 $_POST = $administrar_marca->validateForm($_POST);
                 if (!$administrar_marca->setNombreMarca($_POST['nombre_marca'])) {
                     $result['exception'] = 'Marca incorrecta';
                 } elseif ($administrar_marca->createRow()) {
-                    $result['status']=1;
+                    $result['status'] = 1;
                     $result['message'] = 'Marca registrada correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
-                case 'readOne':
+            case 'readOne':
                 if (!$administrar_distribuidor->setId($_POST['id'])) {
                     $result['exception'] = 'distribuidor incorrecto';
                 } elseif ($result['dataset'] = $administrar_distribuidor->readOne()) {
@@ -60,11 +60,11 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'distribuidor inexistente';
                 }
                 break;
-                 case 'updateStatus':
+            case 'updateStatus':
                 if (!$administrar_distribuidor->setId($_POST['idP'])) {
                     $result['exception'] = 'Ha ocurrido un error al ejecutar la acción';
-                } elseif (!$administrar_distribuidor->getStatus()) {
-                    $result['exception'] = 'Ha ocurrido un error al obtener el estado';
+                } elseif (!$administrar_distribuidor->setStatusRepartidor($_POST['estadoP'])) {
+                    $result['exception'] = 'No se pudo obtener el estado';
                 } elseif ($administrar_distribuidor->changeStatus()) {
                     $result['status'] = 1;
                     $result['message'] = 'Estado cambiado correctamente';
@@ -79,9 +79,9 @@ if (isset($_GET['action'])) {
         header('content-type: application/json; charset=utf-8');
         // Se imprime el resultado en formato JSON y se retorna al controlador.
         print(json_encode($result));
-   } else {
-       print(json_encode('Acceso denegado'));
-}
+    } else {
+        print(json_encode('Acceso denegado'));
+    }
 } else {
     print(json_encode('Recurso no disponible'));
 }

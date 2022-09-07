@@ -1,16 +1,16 @@
 const API_ADMIN = SERVER + 'dashboard/administrar_admin.php?action=';
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     fetch(API_ADMIN + 'readAdmin', {
         method: 'get'
-    }).then(function (request){
-        if(request.ok){
-            request.json().then(function (response){
-                if(response.status){
+    }).then(function (request) {
+        if (request.ok) {
+            request.json().then(function (response) {
+                if (response.status) {
                     sweetAlert(3, response.message, null);
-                } else if(response.session){
-                    sweetAlert(4, response.exception, 'dashboard.html');
-                } else{
+                } else if (response.session) {
+                    sweetAlert(4, response.exception, 'estadistica.html');
+                } else {
                     sweetAlert(4, response.exception, 'registrar_admin.html');
                 }
             });
@@ -20,16 +20,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-document.getElementById('login-form').addEventListener('submit', function() {
+document.getElementById('login-form').addEventListener('submit', function () {
     event.preventDefault();
     fetch(API_ADMIN + 'loginAdmin', {
         method: 'post',
         body: new FormData(document.getElementById('login-form'))
     }).then(function (request) {
-        if(request.ok){
+        if (request.ok) {
             request.json().then(function (response) {
-                if(response.status){
-                    sweetAlert(1, response.message, 'dashboard.html');
+                if (response.status) {
+                    sweetAlert(1, response.message, "estadistica.html");
                 } else {
                     sweetAlert(2, response.exception, null)
                 }
@@ -39,3 +39,4 @@ document.getElementById('login-form').addEventListener('submit', function() {
         }
     });
 });
+

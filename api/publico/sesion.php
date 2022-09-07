@@ -19,18 +19,27 @@ if (isset($_GET['action'])) {
     $result = array('status' => 0, 'message' => null, 'dataset' => null, 'exception' => null);
     //Se escoge el proceso que se ejecutará en el modelo
     switch ($_GET['action']) {
-         case 'obtenerSesion':
-            if (isset($_SESSION['id_admin'])) {
-                if($result['dataset'] = $sesion->sesionV($_SESSION['id_admin'])) {
+        case 'obtenerSesionR':
+            if (isset($_SESSION['id_repartidor'])) {
+                if($result['dataset'] = $sesion->sesionR($_SESSION['id_repartidor'])) {
                     $result['status'] = 1;
-                }else{
+                } else {
                     $result['exception'] = Database::getException();
                 }
-            } 
+            }
             break;
         case 'obtenerSesionV':
             if (isset($_SESSION['id_vendedor'])) {
                 if ($result['dataset'] = $sesion->sesionV($_SESSION['id_vendedor'])) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+            }
+            break;
+        case 'obtenerSesionC':
+            if (isset($_SESSION['id_cliente'])) {
+                if ($result['dataset'] = $sesion->sesionC($_SESSION['id_cliente'])) {
                     $result['status'] = 1;
                 } else {
                     $result['exception'] = Database::getException();

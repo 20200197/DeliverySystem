@@ -240,6 +240,11 @@ class AdministrarVendedor extends Validator
         return $this->dui;
     }
 
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
 
 
     /*
@@ -328,7 +333,7 @@ class AdministrarVendedor extends Validator
 
     public function checkPass($pass)
     {
-        $sql = 'SELECT id_vendedor, clave_vendedor FROM vendedor WHERE usuario_vendedor = ?';
+        $sql = "SELECT id_vendedor, clave_vendedor, CONCAT(nombre_vendedor, ' ',apellido_vendedor) AS nombre_vendedor FROM vendedor WHERE usuario_vendedor = ?";
         $params = array($this->usuario);
 
         if (!$data = Database::getRow($sql, $params)) {
@@ -336,6 +341,7 @@ class AdministrarVendedor extends Validator
         } elseif (!password_verify($pass, $data['clave_vendedor'])) {
             return false;
         } else {
+            $this->setUsuario($data['nombre_vendedor']);
             return true;
         }
     }
@@ -395,10 +401,11 @@ class AdministrarVendedor extends Validator
         return Database::getRow($sql, $params);
     }
 
-     /** Porcentaje de ventas por categoria de sus productos **/ 
-     public function readPorcentajeVentaCategoria()
-     {
-         $sql = " SELECT categoria, SUM(ROUND((cantidad_pedido * 100.0 / 
+
+    /** Porcentaje de ventas por categoria de sus productos **/
+    public function readPorcentajeVentaCategoria()
+    {
+        $sql = " SELECT categoria, SUM(ROUND((cantidad_pedido * 100.0 / 
          (
              SELECT sum(cantidad_pedido)
              FROM detalle_factura
@@ -409,23 +416,84 @@ class AdministrarVendedor extends Validator
          FROM detalle_factura
          INNER JOIN factura USING (id_factura)
          INNER JOIN producto USING (id_producto)
-         INNER JOIN categoria categoria on producto.id_categoria = categoria.id_categoria_producto
+         INNER JOIN categoria categoria on producto.id_categoria = categoria.id_categoria
          GROUP BY categoria ";
-         $params = null;
-         return Database::getRows($sql, $params);
-     }
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
 
-      /** Top 5 productos mas vendidos con sus valoraciones **/
-      public function readProductosMasVendidosValorados()
-      {
-          $sql = "SELECT producto.nombre_producto, sum(detalle_factura.cantidad_pedido) as cantidad_pedido, (sum(detalle_factura.cantidad_pedido) * (detalle_factura.precio + detalle_factura.costo_envio)) as total  
+    /** Top 5 productos mas vendidos con sus valoraciones **/
+    public function readProductosMasVendidosValorados()
+    {
+        $sql = "SELECT producto.nombre_producto, sum(detalle_factura.cantidad_pedido) as cantidad_pedido, (sum(detalle_factura.cantidad_pedido) * (detalle_factura.precio + detalle_factura.costo_envio)) as total  
              from producto 
              inner join detalle_factura detalle_factura on detalle_factura.id_producto = producto.id_producto 
              inner join factura factura on factura.id_factura = detalle_factura.id_factura 
              inner join comentario_producto comentario_producto on comentario_producto.id_detalle = detalle_factura.id_detalle 
              group by producto.nombre_producto, detalle_factura.precio, detalle_factura.costo_envio, cantidad_pedido 
              order by cantidad_pedido desc limit 5";
-          $params = null;
-          return Database::getRows($sql, $params);
-      }
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    public function readCategorias()
+    {
+        $sql = 'SELECT id_categoria, categoria FROM categoria';
+
+        return Database::getRows($sql, null);
+    }
+
+    public function readSellsCategory($nombre_categoria)
+    {
+        $sql = "SELECT sum(total) as total, TO_CHAR(fecha_compra, 'YYYY-MM-DD') as fecha
+                FROM factura
+                INNER JOIN detalle_factura USING (id_factura)
+                INNER JOIN producto USING (id_producto)
+                INNER JOIN categoria USING (id_categoria)
+                WHERE categoria = ? and id_vendedor = ?
+                GROUP BY fecha";
+        $params = array($nombre_categoria, $_SESSION['id_vendedor']);
+
+        return Database::getRows($sql, $params);
+    }
+    /** Top 5 vendedores con más ventas **/
+    public function readVendedoresVentas()
+    {
+        $sql = "SELECT  CONCAT(nombre_vendedor,' ', apellido_vendedor) AS nombre_vendedor,SUM(precio * cantidad_pedido) AS total, vendedor.id_vendedor,correo_vendedor, dui_vendedor, status_vendedor,SUM(cantidad_pedido) AS cantidad_total_vendida
+        FROM factura
+        inner join detalle_factura on detalle_factura.id_factura = factura.id_factura
+        INNER JOIN producto ON detalle_factura.id_producto = producto.id_producto
+        INNER JOIN vendedor ON producto.id_vendedor = vendedor.id_vendedor
+        GROUP BY vendedor.id_vendedor limit 5";
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    //Se agrega por primera vez la fecha de cambio de contraseña para cuando loguee
+    public function insertCambio()
+    {
+
+        $sql = 'INSERT into cambio_contra_vendedor (fecha_cambio,id_vendedor, id_cargo) values(current_date,(select id_vendedor from vendedor order by id_vendedor  desc limit 1),3);';
+        $params = null;
+        return Database::executeRow($sql, $params);
+    }
+
+    //Se camboa la fecha de cambio de contraseña de vendedor
+    public function changeCambio()
+    {
+
+        $sql = 'UPDATE cambio_contra_vendedor set fecha_cambio = current_date , id_vendedor=? ';
+        $params = array($_SESSION['id_vendedor']);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Dias en los que se h realizado el ultimo cambio de contraseña
+    public function checkRango()
+    {
+        $sql = 'SELECT current_date - fecha_cambio as rango_ch
+        from cambio_contra_vendedor where id_vendedor=?';
+        $params = array($_SESSION['id_vendedor']);
+
+        return Database::getRow($sql, $params);
+    }
 }

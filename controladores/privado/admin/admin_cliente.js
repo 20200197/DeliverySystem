@@ -21,9 +21,6 @@ function fillTable(data) {
     let contenido = [];
     //Se obtiene el contenido y se revisa fila por fila en el map
     data.map(function (row) {
-        //Establecemos texto para el estado
-        var estado_cliente;
-        (row.status_cliente) ? estado_cliente = 'Activo' : estado_cliente = 'Inactivo';
         contenido += `
             <tr>
                 <td data-target="Apellido cliente: ">${row.nombre_completo}</td>
@@ -32,13 +29,14 @@ function fillTable(data) {
                 <td data-target="Usuario cliente: ">${row.usuario_cliente}</td>
                 <td data-target="Fecha registro: ">${row.fecha_registro_cliente}</td>
                 <td data-target="Telefono cliente: ">${row.telefono_cliente}</td>
-                <td data-target="Estado: ">${estado_cliente}</td>
-                <td>
+                <td data-target="Imagen cliente: ">
                     <div class="switch">
                         <label>
+                        Inactivo
                         <input type="checkbox" id="estado${row.id_cliente}" onclick="estado(${row.id_cliente})"
                         ${row.status_cliente == true ? 'checked' : ''}>
                         <span class="lever"></span>
+                        Activo
                         </label>
                     </div>
                 </td>
@@ -54,7 +52,9 @@ function estado(id) {
     //Se crea la variable de tipo formulario
     datos = new FormData();
     //Se verifica el estado al que se cambiará mediante el switch
-    document.getElementById("estado" + id).checked ? datos.append("estado", true) : datos.append("estado", false);
+    document.getElementById("estado" + id).checked
+        ? datos.append("estado", true)
+        : datos.append("estado", false);
     //Se guarda el identificador
     datos.append("identificador", id);
     //Se procese a realizar la promesa
@@ -83,28 +83,32 @@ function estado(id) {
 
 //Función que realiza busquedas en los clientes
 
-function buscar() { 
+function buscar() {
     //Se crea el dato de tipo form
     let datos = new FormData();
     //Se llena con el valor de la busqueda
     datos.append('buscador', document.getElementById("search").value);
-        //Se realiza la promesa
-        fetch(API_CLIENTE + "buscar", {
-            method: "post",
-            body: datos,
-        }).then(function (request) {
-            //Se verifica si se logró ejecutar la función
-            if (request.ok) {
-                //Se procede a pasarlo a JSON
-                request.json().then(function (response) {
-                    //Se verifica el estado de la respuesta
-                    if (response.status) {
-                        //Se cargan los datos obtenidos
-                        fillTable(response.dataset);
-                    } else {
-                        //sweetAlert(1, response.exception, null);
-                    }
-                });
-            }
-        });
+    //Se realiza la promesa
+    fetch(API_CLIENTE + "buscar", {
+        method: "post",
+        body: datos,
+    }).then(function (request) {
+        //Se verifica si se logró ejecutar la función
+        if (request.ok) {
+            //Se procede a pasarlo a JSON
+            request.json().then(function (response) {
+                //Se verifica el estado de la respuesta
+                if (response.status) {
+                    //Se cargan los datos obtenidos
+                    fillTable(response.dataset);
+                    document.getElementById('notificacion').innerHTML = '';
+                } else {
+                    //Se cargan los datos obtenidos
+                    fillTable(response.dataset);
+                    document.getElementById('notificacion').innerHTML = 'No se encontraron datos según la busqueda solicitada';
+                }
+            });
+        }
+    });
 }
+

@@ -52,24 +52,24 @@ function fillTable(dataset) {
     dataset.map(function (row) {
         content += `
             <tr>
-                <td>
+                <td data-target="">
                     <div class="img-simulada"></div>
                 </td>
-                <td>${row.nombre_municipio}</td>
-                <td class="wrap2">
+                <td data-target="Municipio:">${row.nombre_municipio}</td>
+                <td class="wrap2" data-target="Descripción">
                     ${row.descripcion_direccion}
                 </td>
-                <td>${row.punto_referencia}</td>
-                <td class="row">
-                    <div class="col s6 m6 l4">
+                <td data-target="Punto referencia:">${row.punto_referencia}</td>
+                <td data-target="Opciones:">
+                    <div class="col s6 m6 l6">
                         <a class="waves-effect waves-light red darken-4 white-text btn-large col s12 m12 l12 modal-trigger"
                             onclick="openDelete(${row.id_direccion})"><i class="material-icons">delete</i></a>
                     </div>
-                    <div class="col s6 m6 l8">
-                        <a class="waves-effect waves-light blue lighten-2 black-text btn-large col s12 m12 l12 modal-trigger"
+                    <div class="col s6 m6 l6">
+                        <a class="waves-effect waves-light blue lighten-2 black-text btn-large col s12 m12 l12 modal-trigger center-align"
                             onclick="openUpdate(${row.id_direccion})"><i class="material-icons black-text hide-on-large-only">edit</i>
-                            <i class="material-icons left black-text hide-on-med-and-down">edit</i>
-                            <div class="hide-on-med-and-down">Editar</div>
+                            <i class="material-icons  black-text hide-on-med-and-down">edit</i>
+                            <div class="hide-on-med-and-down ">Editar</div>
                         </a>
                     </div>
                 </td>
@@ -208,7 +208,7 @@ function openUpdate(id) {
                     var latitude = response.dataset.latitude;
                     var longitud = response.dataset.longitud;
                     var coordenadas = response.dataset.coordenadas;
-                    Layers = L.marker([latitude,longitud], { draggable: false }).addTo(mapa);
+                    Layers = L.marker([latitude, longitud], { draggable: false }).addTo(mapa);
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -235,4 +235,3 @@ function openDelete(id) {
     // Se llama a la función que elimina un registro. Se encuentra en el archivo components.js
     confirmDelete(API_DIRECCIONES, data);
 }
- 

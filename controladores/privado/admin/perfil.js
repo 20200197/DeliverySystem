@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
     readRows(API_PERFIL);
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
-    M.Modal.init(document.querySelectorAll(".modal"), {dismissible: false});
+    M.Modal.init(document.querySelectorAll(".modal"), { dismissible: false });
     //se inicializan los tooltp
     M.Tooltip.init(document.querySelectorAll(".tooltipped"));
 });
@@ -16,7 +16,7 @@ function fillTable(data) {
     //Se crea una variable donde se guardará el HTML a inyectar
     let contenido = [];
     //Se obtiene el contenido y se revisa fila por fila en el map
-        contenido += `
+    contenido += `
                     <div class="col l7 m12 s12 datos_usuario_perfil_cliente center-align">
                         <h6>Tus datos personales</h6>
                         <div class="datos_perfil_cliente">
@@ -141,7 +141,7 @@ document.getElementById("usuarioF").addEventListener('submit', function (event) 
     } else {
         sweetAlert(3, 'Formato de correo incorrecto', null);
     }
-        
+
 });
 
 //Método que actualiza los datos de la cuenta
@@ -156,6 +156,7 @@ document.getElementById("cuentaF").addEventListener("submit", function (event) {
         } else {
             //Se ejecuatan los cambios
             saveRow(API_PERFIL, "actualizarCuenta", "cuentaF", "datos-cuenta");
+          
         }
     } else {
         sweetAlert(3, "Las contraseñas no son iguales", null);

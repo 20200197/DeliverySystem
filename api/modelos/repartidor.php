@@ -331,7 +331,11 @@ class Repartidor extends Validator
         return $this->dui;
     }
 
-
+    //Cambios Bonilla1
+    public function getEstado()
+    {
+        return $this->estado;
+    }
 
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
@@ -340,7 +344,7 @@ class Repartidor extends Validator
     public function checkPassword($password)
     {
         $sql = 'SELECT clave_repartidor FROM repartidor WHERE id_repartidor = ?';
-        $params = array(2); //creo que es SESION[id_reprtidor] sino le dejo this id
+        $params = array($_SESSION['id_repartidor']); //creo que es SESION[id_reprtidor] sino le dejo this id
         $data = Database::getRow($sql, $params);
         // Se verifica si la contraseña coincide con el hash almacenado en la base de datos.
         if (password_verify($password, $data['clave_repartidor'])) {
@@ -353,10 +357,10 @@ class Repartidor extends Validator
 
     public function getProfile()
     {
-        $sql = "SELECT id_repartidor,nombre_repartidor, apellido_repartidor,dui_repartidor,correo_repartidor,usuario_repartidor,telefono_repartidor,clave_repartidor,solvencia_pnc,antecedente_penal,direccion_domicilio,placa_vehiculo,foto_placa_vehiculo,foto_repartidor,foto_vehiculo,status_repartidor,fecha_registro
+        $sql = "SELECT id_repartidor,nombre_repartidor, apellido_repartidor,dui_repartidor,correo_repartidor,usuario_repartidor,telefono_repartidor,clave_repartidor,solvencia_pnc,antecedente_penal,direccion_domicilio,placa_vehiculo,foto_placa_vehiculo,foto_repartidor,foto_vehiculo,fecha_registro
         from repartidor
         where id_repartidor = ?";
-        $params = array(2); //SESSION[id_repartidor]
+        $params = array($_SESSION['id_repartidor']); //SESSION[id_repartidor]
         return Database::getRow($sql, $params);
     }
 
@@ -376,6 +380,7 @@ class Repartidor extends Validator
         SET nombre_repartidor = ?, apellido_repartidor = ?,correo_repartidor = ?,usuario_repartidor = ?,telefono_repartidor = ?,solvencia_pnc = ?,antecedente_penal = ?,direccion_domicilio = ?,placa_vehiculo = ?,foto_placa_vehiculo = ?,foto_repartidor = ?,foto_vehiculo = ?
         WHERE id_repartidor=?';
         $params = array($this->nombre, $this->apellido, $this->correo, $this->usuario, $this->telefono, $this->solvencia, $this->antecedentes, $this->direccion, $this->placa, $this->foto_placa, $this->foto, $this->foto_vehiculo, 2); //SESSION[id_repartidor]
+        print_r($params);
         return Database::executeRow($sql, $params);
     }
 
@@ -466,13 +471,64 @@ class Repartidor extends Validator
     //Función para leer un registro
     public function readOne()
     {
-        $sql = 'SELECT id_repartidor,nombre_repartidor, apellido_repartidor,dui_repartidor,correo_repartidor,usuario_repartidor,telefono_repartidor,clave_repartidor,solvencia_pnc,antecedente_penal,direccion_domicilio,placa_vehiculo,foto_placa_vehiculo,foto_repartidor,foto_vehiculo,status_repartidor,fecha_registro
+        $sql = 'SELECT id_repartidor,nombre_repartidor, apellido_repartidor,dui_repartidor,correo_repartidor,usuario_repartidor,telefono_repartidor,clave_repartidor,solvencia_pnc,antecedente_penal,direccion_domicilio,placa_vehiculo,foto_placa_vehiculo,foto_repartidor,foto_vehiculo,fecha_registro
                 FROM repartidor
                 WHERE id_repartidor = ?';
-        $params = array(2); //SESSION[id_repartidor]
+        $params = array($_SESSION['id_repartidor']); //SESSION[id_repartidor]
         return Database::getRow($sql, $params);
     }
 
+    //Cambios Bonilla1
+    public function checkUser()
+    {
+        $sql = "SELECT id_repartidor, id_status_repartidor, nombre_repartidor, apellido_repartidor, usuario_repartidor, CONCAT(nombre_repartidor, ' ',apellido_repartidor) AS nombre_repartidor
+                FROM repartidor
+                WHERE usuario_repartidor = ?";
+        $params = array($this->usuario);
+        if ($data = Database::getRow($sql, $params)) {
+            $this->id = $data['id_repartidor'];
+            $this->estado = $data['id_status_repartidor'];
+            $this->nombre = $data['nombre_repartidor'];
+            $this->apellido = $data['apellido_repartidor'];
+            $this->usuario = $data['usuario_repartidor'];
+            $this->setUsuario($data['nombre_repartidor']);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Bonilla1 modificaciones
+    public function requestRep()
+    {
+        date_default_timezone_set('America/El_Salvador');
+        $date = date('Y-m-d');
+
+        $this->estado = 1;
+        $sql = 'INSERT INTO repartidor(nombre_repartidor, apellido_repartidor, dui_repartidor, correo_repartidor, usuario_repartidor, telefono_repartidor, clave_repartidor, solvencia_pnc, antecedente_penal, direccion_domicilio, placa_vehiculo, foto_placa_vehiculo, foto_repartidor, foto_vehiculo, id_status_repartidor, fecha_registro)
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->usuario, $this->telefono, $this->clave, $this->solvencia, $this->antecedentes, $this->direccion, $this->placa, $this->foto_placa, $this->foto, $this->foto_vehiculo, $this->estado, $date);
+
+        return Database::executeRow($sql, $params);
+    }
+
+    //Cambios Bonilla1
+    //Metodo para verificar la contraseña
+    public function checkPass($pass)
+    {
+        $sql = "SELECT clave_repartidor, id_repartidor
+                FROM repartidor
+                WHERE id_repartidor = ?";
+        $params = array($this->id);
+
+        if (!$data = Database::getRow($sql, $params)) {
+            return false;
+        } elseif (!password_verify($pass, $data['clave_repartidor'])) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     /**Reportes */
     public function readComentarioRepartidorMejoreSemana()
     {
@@ -484,7 +540,7 @@ class Repartidor extends Validator
                   inner join departamento departamento on municipio.id_departamento = departamento.id_departamento
                   where valoracion >= 4 and (factura.fecha_compra >= current_date or factura.fecha_compra >= current_date -7 ) and id_repartidor = ?
                   order by valoracion";
-        $params = array(2); //$SESSION[id_repartidor]
+        $params = array($_SESSION['id_repartidor']);
         return Database::getRows($sql, $params);
     }
 
@@ -522,5 +578,32 @@ class Repartidor extends Validator
         order by nombre_departamento";
         $params = null;
         return Database::getRows($sql, $params);
+    }
+   //Se agrega por primera vez la fecha de cambio de contraseña para cuando loguee
+    public function insertCambio()
+    {
+
+        $sql = 'INSERT into cambio_contra_repartidor (fecha_cambio,id_repartidor,id_cargo) values(current_date,(select id_repartidor from repartidor order by id_repartidor  desc limit 1),2);';
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->usuario, $this->clave,  $this->telefono);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Se cambia la fecha de cambio de contraseña de repartidor
+    public function changeCambio()
+    {
+
+        $sql = 'UPDATE cambio_contra_repartidor set fecha_cambio = current_date , id_repartidor=? ';
+        $params = array($_SESSION['id_repartidor']);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Dias en los que han pasado donde se ha cambiado la contraseña
+    public function checkRango()
+    {
+        $sql = 'SELECT current_date - fecha_cambio as rango_ch
+        from cambio_contra_repartidor where id_repartidor=?';
+        $params = array($_SESSION['id_cliente']);
+
+        return Database::getRow($sql, $params);
     }
 }

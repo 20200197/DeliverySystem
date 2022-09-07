@@ -226,10 +226,10 @@ class Distribuidor extends Validator
 
     public function setFechaRegistro($date)
     {
-        if($this->validateDate($date)){
+        if ($this->validateDate($date)) {
             $this->fecha_registro = $date;
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -250,126 +250,109 @@ class Distribuidor extends Validator
     */
     public function getId($value)
     {
-        return $this-> id;
+        return $this->id;
     }
 
     public function getNombreRepartidor($value)
     {
 
         return $this->nombre_repartidor;
-
     }
 
     public function getApellidoRepartidor($value)
     {
-       
-        return $this->apellido_repartidor;
 
+        return $this->apellido_repartidor;
     }
 
     public function getDuiRepartidor($value)
     {
-        
+
         return $this->dui_repartidor;
-        
     }
 
     public function getCorreoRepartidor($value)
     {
-    
+
         return  $this->correo_repartidor;
-    
     }
 
     public function getUsuarioRepartidor($value)
     {
-    
+
         return $this->usuario_repartidor;
-    
     }
 
     public function getTelefonoRepartidor($value)
     {
-        
+
         return $this->telefono_repartidorlse;
-    
     }
 
     public function getClaveRepatidor($value)
     {
-        
+
         return $this->clave_repatidor;
-        
     }
 
     public function getSolvenciaPnc($value)
     {
-        
+
         return $this->solvencia_pnc;
-        
     }
     public function getAntecedentePenal($value)
     {
-        
+
         return $this->antecedente_penal;
-        
     }
 
     public function getDireccionDomicilio($value)
     {
-        
+
         return $this->direccion_domicilio;
-        
     }
 
     public function getPlacaVehiculo($value)
     {
-        
+
         return $this->placa_vehiculo;
-        
     }
 
     public function getFotoPlacaVehiculo($value)
     {
-        
+
         return $this->foto_placa_vehiculo;
-    
     }
 
     public function getFotoRepartidor($value)
     {
-        
+
         return $this->foto_repartidor;
-        
     }
 
     public function getFotoVehiculo($value)
     {
-       
+
         return $this->foto_vehiculo;
-        
     }
 
     public function getStatusRepartidor($value)
     {
-        
+
         return $this->status_repartidor;
-          
     }
 
     public function getFechaRegistro($value)
     {
-       
+
         return  $this->fecha_registro;
-        
     }
 
 
     public function getIdAdmin($value)
     {
-       
+
         return $this->id_admin;
-        
     }
 
     /*
@@ -379,6 +362,7 @@ class Distribuidor extends Validator
     {
         $sql = 'SELECT id_repartidor, nombre_repartidor,apellido_repartidor,dui_repartidor,correo_repartidor,usuario_repartidor,telefono_repartidor,clave_repartidor,solvencia_pnc,antecedente_penal,direccion_domicilio,placa_vehiculo,foto_placa_vehiculo,foto_repartidor,foto_vehiculo,status_repartidor,fecha_registro,id_admin
                 FROM repartidor
+                inner join estado_repartidor using(id_status_repartidor)
                 WHERE  nombre_repartidor ILIKE ? OR apellido_repartidor ILIKE ? OR dui_repartidor ILIKE ? OR correo_repartidor ILIKE ? OR usuario_repartidor ILIKE ?
                 ORDER BY nombre_repartidor';
         $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%");
@@ -399,6 +383,7 @@ class Distribuidor extends Validator
     {
         $sql = 'SELECT id_repartidor, nombre_repartidor,apellido_repartidor,dui_repartidor,correo_repartidor,usuario_repartidor,telefono_repartidor,clave_repartidor,solvencia_pnc,antecedente_penal,direccion_domicilio,placa_vehiculo,foto_placa_vehiculo,foto_repartidor,foto_vehiculo,status_repartidor,fecha_registro,id_admin
                 FROM repartidor
+                inner join estado_repartidor using(id_status_repartidor)
                 ORDER BY nombre_repartidor';
         return Database::getRows($sql, null);
     }
@@ -408,6 +393,7 @@ class Distribuidor extends Validator
     {
         $sql = 'SELECT id_repartidor, nombre_repartidor,apellido_repartidor,dui_repartidor,correo_repartidor,usuario_repartidor,telefono_repartidor,clave_repartidor,solvencia_pnc,antecedente_penal,direccion_domicilio,placa_vehiculo,foto_placa_vehiculo,foto_repartidor,foto_vehiculo,status_repartidor,fecha_registro,id_admin
                 FROM repartidor
+                 inner join estado_repartidor using(id_status_repartidor)
                 WHERE id_repartidor = ?
                 ORDER BY nombre_repartidor';
         $params = array($this->id);
@@ -415,7 +401,7 @@ class Distribuidor extends Validator
     }
 
     //Función para actualizar fila
-   
+
 
 
     //Función para eliminar fila
@@ -429,11 +415,11 @@ class Distribuidor extends Validator
 
     public function getStatus()
     {
-        $sql = 'SELECT status_repartidor FROM repartidor WHERE id_repartidor = ?';
+        $sql = 'SELECT id_status_repartidor FROM repartidor WHERE id_repartidor = ?';
         $params = array($this->id);
 
         if ($data = Database::getRow($sql, $params)) {
-            $this->status_repartidor = $data['status_repartidor'];
+            $this->status_repartidor = $data['id_status_repartidor'];
             return true;
         } else {
             return false;
@@ -442,13 +428,8 @@ class Distribuidor extends Validator
 
     public function changeStatus()
     {
-        $sql = 'UPDATE repartidor SET status_repartidor = ? WHERE id_repartidor = ?';
-
-        if ($this->status_repartidor) {
-            $params = array(0, $this->id);
-        } else {
-            $params = array(1, $this->id);
-        }
+        $sql = 'UPDATE repartidor SET id_status_repartidor = ? WHERE id_repartidor = ?';
+        $params = array($this->status_repartidor, $this->id);
 
         return Database::executeRow($sql, $params);
     }

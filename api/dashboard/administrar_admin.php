@@ -58,10 +58,11 @@ if (isset($_GET['action'])) {
                 } elseif ($admin->registerAdmin()) {
                     $result['status'] = 1;
                     $result['message'] = 'Administrador creado con exito';
+                    $admin->insertCambio();
                 } else {
                     $result['exception'] = Database::getException();
                 }
-                    break;
+                break;
             case 'readAll':
                 if ($result['dataset'] = $admin->readAdminsAll()) {
                     $result['status'] = 1;
@@ -105,6 +106,14 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                 }
                 break;
+            case 'checkRango':
+                $_POST = $admin->validateForm($_POST);
+                if ($result['dataset'] = $admin->checkRango()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
                 break;
@@ -142,6 +151,7 @@ if (isset($_GET['action'])) {
                 } elseif ($admin->registerAdmin()) {
                     $result['status'] = 1;
                     $result['message'] = 'Administrador creado con exito';
+                    $admin->insertCambio();
                 } else {
                     $result['exception'] = Database::getException();
                 }
@@ -156,12 +166,26 @@ if (isset($_GET['action'])) {
                 } elseif (!$admin->checkStatus()) {
                     $result['exception'] = 'Lo sentimos, usted se encuentra desactivado';
                 } elseif ($admin->checkPass($_POST['password']) && $admin->checkStatus()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Autenticación correcta';
                     $_SESSION['id_admin'] = $admin->getId();
-                } elseif(!$admin->checkPass($_POST['password'])) {
+                    $_SESSION['nombre_admin'] = $admin->getUsuario();
+                    //Asiganmos consulta que verifica los datos que han pasado desde su 
+                    //ultimo cambio de contraseña al dataset
+                    $result['dataset'] = $admin->checkRango();
+                    //Buscamos si en la consulta se encuentra el dato 91 days
+                    //Si han pasado 91 dias se manda una excepcion
+                    if (in_array("91 days", $result['dataset']) == true) {
+                        $_SESSION['id_admin'] = null;
+
+
+                        $result['exception'] = 'Lo sentimos, no cambio la contraseña hace 90 dias, debe de recuperarla';
+                    } else  {
+
+                        $result['status'] = 1;
+                        $result['message'] = 'Autenticación correcta';
+                    }
+                } elseif (!$admin->checkPass($_POST['password'])) {
                     $result['exception'] = 'Contraseña incorrecta';
-                } 
+                }
                 break;
             default:
                 $result['exception'] = 'Acción no disponible fuera de la sesión';

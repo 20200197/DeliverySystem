@@ -40,6 +40,58 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay coincidencias';
                 }
                 break;
+            case 'readRepartidorAvaible':
+                if ($result['dataset'] = $entrega->repartidorAvaible()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay datos registrados';
+                }
+                break;
+                //Faacturas disponibles
+            case 'readFac':
+                if ($result['dataset'] = $entrega->readFac()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay datos registrados';
+                }
+                break;
+                //Productos disponibles
+            case 'readProductosEntrega':
+                $_POST = $entrega->validateForm($_POST);
+                if (!$entrega->setIdDetalle($_POST['id_tt'])) {
+                    $result['exception'] = 'Factura incorrecta';
+                } elseif ($result['dataset'] = $entrega->readProductosEntrega()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay datos registrados';
+                }
+                break;
+                //Actualizamos repartidor
+            case 'updatePk':
+                $_POST = $entrega->validateForm($_POST);
+                if (!$entrega->setIdRepartidor($_POST['id_repartidor'])) {
+                    $result['exception'] = 'Repartidor incorrecto';
+                } elseif (!$entrega->setFechaReparto($_POST['fecha_reparto'])) {
+                    $result['exception'] = 'Fecha reparto incorrecto';
+                } elseif (!$entrega->setIdDetalle($_POST['id_detalle'])) {
+                    $result['exception'] = 'Detalle incorrecto';
+                } elseif (!$entrega->setIdFactura($_POST['id_factura'])) {
+                    $result['exception'] = 'Factura incorrecto';
+                } elseif ($entrega->updatePk()) {
+                    //Asignamos fecha
+                    $entrega->updatePkPk();
+                    $result['status'] = 1;
+                    $result['message'] = 'Envio modificado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

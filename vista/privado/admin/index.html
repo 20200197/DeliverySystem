@@ -8,7 +8,7 @@
     <!--Importar iconos-->
     <link href="../../../recursos/css/icons.css" rel="stylesheet">
     <!--Importar archivos CSS-->
-    <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_privado.css" media="screen,projection" />
 
     <!--Optimización para mobiles-->
@@ -18,78 +18,86 @@
 
 <body>
     <!--Encabezado-->
-    <header class="encabezado">
-        <a href="#" data-target="slide-out" class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
-                class="material-icons">menu</i></a>
-        <img src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
-        <!--Switch de cambiar color-->
-        <div class="col s12 m12 l12 right-align">
-            <div class="switch switch_colorr hide-on-small-and-down right-align">
-                <label>
-                    🌕
-                    <input type="checkbox" id="switch_color" onclick="modoOscuro()">
-                    <span class="lever"></span>
-                    🌙
-                </label>
-            </div>
-        </div>
-    </header>
-    <!--Marco general-->
-    <div>
+        <header>
+            <nav>
+                <div class="nav-wrapper white">
+                    <div class="row valign-wrapper">
+                        <div class="col m1 s1">
+                            <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                                    class="material-icons large blue-text">menu</i></a>
+                        </div>
+                        <div class="col m5 s5 valign-wrapper">
+                            <img src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
+                        </div>
+                        <div class="col m6 s6">
+                            <div class="col s6 m8 l6 push-l5 right-align">
+                                <div class="switch switch_colorr  right-align">
+                                    <label>
+                                        🌕
+                                        <input type="checkbox" id="switch_color" onclick="modoOscuro()">
+                                        <span class="lever"></span>
+                                        🌙
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </nav>
+        
+        </header>
+    
+
+
         <!--Barra lateral, opciones para los usuarios-->
-        <ul id="slide-out" class="sidenav sidenav-fixed">
+        <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
             <li>
                 <a href="index.html" class="tooltipped" data-position="right" data-tooltip="Hogar">
-                    <i class="material-icons medium">home</i>
+                    <i class="material-icons medium white-text">home</i>
                 </a>
             </li>
         </ul>
         <!--Contenedor de datos-->
-        <div class="row center-align">
-            <!--Información de la página-->
-            <main class="inicio-no-login center-align ">
-                <div class="col s12 m12 l12 center-align ">
-                    <img src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png "
-                        class="responsive-img">
-                </div>
-                <div class="card card-login login_modo_oscuro">
-                    <form id="login-form">
-                        <p id="titulo-login">Inicio de sesión</p>
-                        <div class="row n_l">
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">account_circle</i>
-                                <input name="user" id="icon_prefix" placeholder="Escribe tu nombre de usuario"
-                                    type="text" class="validate">
-                                <label for="icon_prefix">Nombre de usuario</label>
-                            </div>
+    <main>
+        <br><br>
+        <div class="row">
+            <div class="col s12 m4 l4 offset-m4 offset-l4">
+                <div class="card medium center center-align teal lighten-5">
+                    <form action="" id="login-form" autocomplete="off">
+                        <div class="row"></div>
+                        <h5>¡Inicia sesión!</h5>
+                        <div class="row"></div>
+                        <div class="input-field col s12 m11 l11">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="user" type="text" class="validate" name="user">
+                            <label for="user">Usuario</label>
                         </div>
-                        <div class="row n_l">
-                            <div class="input-field col s12">
-                                <i class=" material-icons prefix">vpn_key</i>
-                                <input id="password" placeholder="******" type="password" class="validate"
-                                    name="password">
-                                <label for="password">Contraseña</label>
-                            </div>
+                        <div class="input-field col s12 m11 l11">
+                            <i class="material-icons prefix">vpn_key</i>
+                            <input id="password" type="password" class="validate" name="password">
+                            <label for="password">Contraseña</label>
                         </div>
-                        <div id="texto-card-login">
-                            <a href="../Cliente/Recuperar_contra1.html">¿Olvidaste tu contraseña?</a>
-                            <br><br>
-                            <button class="waves-effect waves-light btn" id="boton_ingresar"
-                                type="submit">Ingresar</button>
-                        </div>
+                        <div class="row"></div>
+                        <a href="../Cliente/Recuperar_contra1.html">¿Olvidaste
+                            tu contraseña?</a>
+                        <br>
+                        <br>
+                        <button class="waves-effect waves-light btn
+                                    blue" type="submit">Iniciar sesión</button>
                     </form>
                 </div>
-            </main>
+            </div>
         </div>
+    </main>
     </div>
 
     <!--Footer-->
-    <footer class="page-footer">
-        <!--Contenedor para el mapa y el copyright-->
-        <div class="footer_otros">
-            <div class="col l6 m9 s12 logo_copy_footer">
-                <img src="../../../recursos/img/publico/clientes/modals/logo.png" alt="">
-                <h6>© 2022 DeliverySystem</h6>
+    <footer class="page-footer blue accent-3">
+        <div class="row">
+            <div class="col l2 m6 s12">
+                <div class="col offset-l1 offset-m1 offset-s1">
+                    <img class="responsive-img" src="../../../recursos/img/logo.png" alt="">
+                    <h6>Copyright 2022</h6>
+                </div>
             </div>
         </div>
     </footer>
