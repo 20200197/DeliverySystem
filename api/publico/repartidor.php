@@ -166,6 +166,7 @@ if (isset($_GET['action'])) {
                 } elseif ($repartidor->changePassword()) {
                     $result['status'] = 1;
                     $result['message'] = 'Contraseña cambiada correctamente';
+                    $repartidor->changeCambio();
                 } else {
                     $result['exception'] = Database::getException();
                 }
@@ -259,21 +260,27 @@ if (isset($_GET['action'])) {
                     if (!$repartidor->saveFile($_FILES['foto-file'], $repartidor->getRutaFoto(), $repartidor->getFoto())) {
                         $result['status'] = 1;
                         $result['message'] = 'Su solicitud ha sido recibida sin su foto personal, le enviaremos un correo electronico cuando le evaluemos';
+                        $repartidor->insertCambio();
                     } elseif (!$repartidor->saveFile($_FILES['solvencia-file'], $repartidor->getRutaSolvencia(), $repartidor->getSolvencia())) {
                         $result['status'] = 1;
                         $result['message'] = 'Su solicitud ha sido recibida sin la solvencia, le enviaremos un correo electronico cuando le evaluemos';
+                        $repartidor->insertCambio();
                     } elseif (!$repartidor->saveFile($_FILES['antecedente-file'], $repartidor->getRutaAntecedente(), $repartidor->getAntecedente())) {
                         $result['status'] = 1;
                         $result['message'] = 'Su solicitud ha sido recibida sin los antecedentes, le enviaremos un correo electronico cuando le evaluemos';
+                        $repartidor->insertCambio();
                     } elseif (!$repartidor->saveFile($_FILES['carro-file'], $repartidor->getRutaVehiculo(), $repartidor->getFotoVehiculo())) {
                         $result['status'] = 1;
                         $result['message'] = 'Su solicitud ha sido recibida sin la foto del carro, le enviaremos un correo electronico cuando le evaluemos';
+                        $repartidor->insertCambio();
                     } elseif (!$repartidor->saveFile($_FILES['placa-file'], $repartidor->getRutaPlaca(), $repartidor->getFotoPlaca())) {
                         $result['status'] = 1;
                         $result['message'] = 'Su solicitud ha sido recibida sin la foto de la placa, le enviaremos un correo electronico cuando le evaluemos';
+                        $repartidor->insertCambio();
                     } else {
                         $result['status'] = 1;
                         $result['message'] = 'Su solicitud ha sido recibida, le enviaremos un correo electronico cuando le evaluemos';
+                        $repartidor->insertCambio();
                     }
                 } else {
                     $result['exception'] = Database::getException();
@@ -293,11 +300,22 @@ if (isset($_GET['action'])) {
                 } elseif (!$repartidor->getEstado() == 4) {
                     $result['exception'] = 'Tu cuenta se encuentra suspendida actualmente';
                 } elseif ($repartidor->checkPass($_POST['password'])) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Sesión iniciada con éxito';
+
 
                     $_SESSION['id_repartidor'] = $repartidor->getId();
                     $_SESSION['usuario_repartidor'] = $repartidor->getUsuario();
+
+                    $result['dataset'] = $repartidor->checkRango();
+                    if (in_array("91 days", $result['dataset']) == true) {
+                        $_SESSION['id_repartidor'] = null;
+
+                        $result['status'] = 0;
+                        $result['exception'] = 'Lo sentimos, no cambio la contraseña hace 90 dias, debe de recuperarla';
+                    } else {
+
+                        $result['status'] = 1;
+                        $result['message'] = 'Autenticación correcta';
+                    }
                 } elseif (!$repartidor->checkPass($_POST['password'])) {
                     $result['exception'] = 'Contraseña incorrecta';
                 } elseif (Database::getException()) {

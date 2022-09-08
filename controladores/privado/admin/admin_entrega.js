@@ -309,7 +309,7 @@ function openFacT(id, id_repartidor) {
                         } else {
                             fecha_envio = row.fecha_envio;
                         }
-
+                        
                         content += `
                         <tr>
                         <td data-target="Nombre producto: ">${row.nombre_producto}</td>
