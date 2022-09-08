@@ -303,6 +303,13 @@ function openFacT(id,id_repartidor) {
                     response.dataset.map(function (row) {
                         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
                         //<td><img src="${SERVER}imagenes/administrar_empleados/${row.imagen_perfil_empleado}" class="materialboxed" height="100" width="100"></td>
+                        var fecha_envio;
+                        if (row.fecha_envio == null) {
+                            fecha_envio = 'Sin asignar'
+                        } else {
+                            fecha_envio = row.fecha_envio;
+                        }
+                        
                         content += `
                         <tr>
                         <td data-target="Nombre producto: ">${row.nombre_producto}</td>
