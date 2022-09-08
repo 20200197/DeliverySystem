@@ -85,24 +85,28 @@
         </ul>
     </div>
     <main>
-        <div class="row  center">
-            <h5>Administrar vendedor</h5>
-            <div class="row valign-wrapper">
-                <div class="input-field col l4 m5 s10 offset-l1 offset-m2 offset-s1">
-                    <i class="material-icons small prefix blue-text">search</i>
-                    <input type="text" id="search" onkeyup="buscar()"
-                        placeholder="Buscar por nombre, usuario y correo...">
-                    <span id="notificacion"></span>
-                </div>
-
-                <div class="row">
+        <div class="row administrar_cate_o">
+            <div class="col s12 m12 l12 titulo_pega">
+                <div class="center-align ">
+                    <h5 class="center-align titulo_admin">Administrar vendededor</h5>
+                 </div>
+                 <div class="col l8 m8 s12 offset-l1">
+                    <!-- Formulario de búsqueda -->
+                    <form method="post" id="search-form">
+                       <div class="input-field col s9 m10 l6">
+                          <i class="material-icons prefix">search</i>
+                          <input id="search" onkeyup="buscar()" type="text" name="search" placeholder="Busque por nombre, correo o usuario" required>
+                          <label for="search">Buscador</label>
+                       </div>
+                    </form>
+                 </div>
+                <div class="col s10 m2 l2">
                     <!-- Enlace para generar un reporte en formato PDF -->
                     <a onclick="openReportVendedoresMasVentas()" class="btn-floating waves-effect blue tooltipped right"
-                        data-tooltip="Reporte: Top 10 vendodores con más ventas">
-                        <i class="material-icons">assignment</i></a>
-
+                    data-tooltip="Reporte: Top 10 vendodores con más ventas">
+                        <i class="material-icons">assignment</i>
+                    </a>
                 </div>
-
             </div>
             <div class="col l10 m10 s12 offset-l1 offset-m1">
                 <table id="table">

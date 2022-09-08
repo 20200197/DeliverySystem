@@ -505,7 +505,7 @@ class Repartidor extends Validator
         $date = date('Y-m-d');
 
         $this->estado = 1;
-        $sql = 'INSERT INTO repartidor(nombre_repartidor, apellido_repartidor, dui_repartidor, correo_repartidor, usuario_repartidor, telefono_repartidor, clave_repartidor, solvencia_pnc, antecedente_penal, direccion_domicilio, placa_vehiculo, foto_placa_vehiculo, foto_repartidor, foto_vehiculo, id_status_repartidor, fecha_registro)
+        $sql = 'INSERT INTO repartidor(nombre_repartidor, apellido_repartidor, dui_repartidor, correo_repartidor, usuario_repartidor, telefono_repartidor, clave_repartidor, solvencia_pnc, antecedente_penal, direccion_domicilio, placa_vehiculo, foto_placa_vehiculo, foto_repartidor, foto_vehiculo, id_estado_repartidor, fecha_registro)
                 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
         $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->usuario, $this->telefono, $this->clave, $this->solvencia, $this->antecedentes, $this->direccion, $this->placa, $this->foto_placa, $this->foto, $this->foto_vehiculo, $this->estado, $date);
 
@@ -578,32 +578,5 @@ class Repartidor extends Validator
         order by nombre_departamento";
         $params = null;
         return Database::getRows($sql, $params);
-    }
-   //Se agrega por primera vez la fecha de cambio de contraseña para cuando loguee
-    public function insertCambio()
-    {
-
-        $sql = 'INSERT into cambio_contra_repartidor (fecha_cambio,id_repartidor,id_cargo) values(current_date,(select id_repartidor from repartidor order by id_repartidor  desc limit 1),2);';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->usuario, $this->clave,  $this->telefono);
-        return Database::executeRow($sql, $params);
-    }
-
-    //Se cambia la fecha de cambio de contraseña de repartidor
-    public function changeCambio()
-    {
-
-        $sql = 'UPDATE cambio_contra_repartidor set fecha_cambio = current_date , id_repartidor=? ';
-        $params = array($_SESSION['id_repartidor']);
-        return Database::executeRow($sql, $params);
-    }
-
-    //Dias en los que han pasado donde se ha cambiado la contraseña
-    public function checkRango()
-    {
-        $sql = 'SELECT current_date - fecha_cambio as rango_ch
-        from cambio_contra_repartidor where id_repartidor=?';
-        $params = array($_SESSION['id_repartidor']);
-
-        return Database::getRow($sql, $params);
     }
 }

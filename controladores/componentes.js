@@ -5,7 +5,26 @@
 /*
  *   Constante para establecer la ruta del servidor.
  */
-const SERVER = "http://192.168.1.10/DeliverySystem/api/";
+const SERVER = "http://localhost/DeliverySystem/api/";
+const API_TOKEN = SERVER + "dashboard/token.php?action=getToken";
+
+function addToken(form) {
+    fetch(API_TOKEN, {
+        method: 'get'
+    }).then(function (request) {
+        if(request.ok){
+            request.json().then(function (response) {
+                try{
+                    document.getElementById(response.token).remove();
+                }catch(exception){
+                }
+                form.innerHTML += `<input id='${response.token}' class='hide' name='token' value='${response.token}'>`;
+            });
+        }else{
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
 
 /*
  *   Función para obtener todos los registros disponibles en los mantenimientos de tablas (operación read).
@@ -26,11 +45,7 @@ function readRows(api) {
                 // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     data = response.dataset;
-                } else if (response == 'Acceso denegado'){
-                    location.href = 'index.html';
-                }else if (response.exception == 'Accion no disponible fuera de la sesión' || response.exception == 'Acción no disponible fuera de la sesión' ){
-                    location.href = 'index.html';
-                }else{
+                } else {
                     sweetAlert(4, response.exception, null);
                 }
                 // Se envían los datos a la función del controlador para llenar la tabla en la vista.
@@ -304,7 +319,7 @@ function sweetAlert(type, text, url) {
             closeOnClickOutside: false,
             showConfirmButton: false,
             timer: 2000,
-       
+            closeOnEsc: false,
         });
     }
 }

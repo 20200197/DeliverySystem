@@ -20,16 +20,24 @@ document.addEventListener("DOMContentLoaded", function () {
                     data = response.dataset;
                     //Si hay sesión se reeemplazan las opciones
                     contenido = `
-                    
-                        <div class="col l8 m8 s8 ">
-                          
-                        <span class="black-text left">${data.nombre}</span>
+                    <div class="col l11 m8 s12 right-align">
+                        <div class="col l8 m8 s8">
+                            <!--Switch de cambiar color-->
+                            <div class="switch switch_colorr hide-on-small-and-down right-align">
+                                <label>
+                                    🌕
+                                    <input type="checkbox" id="switch_color" onclick="modoOscuro()">
+                                    <span class="lever"></span>
+                                    🌙
+                                </label>
+                            </div>
+                        </div>
+                        <span class="black-text">${data.nombre}</span>
+                    </div>
+                    <div class="col l1 m4 s12 left">
                         <a href="perfil.html"><i
-                        class="icono-sesion material-icons small black-text right ">account_circle</i></a>
-    
-                  </div>
-                      
-                  `;
+                                class="icono-sesion material-icons black-text">account_circle</i></a>
+                    </div>`;
                     //se incrustan en el html
                     document.getElementById("opciones_navbar").innerHTML = contenido;
                 } else {

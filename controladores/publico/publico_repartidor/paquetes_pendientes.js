@@ -185,7 +185,6 @@ function cargar_productos(id) {
                         let contenido = [];
                         //Se crea un map del resultado
                         response.dataset.map(function (row) {
-                            sweetAlert(2, response.exception, null);
                             contenido += `
 
                             <tr>

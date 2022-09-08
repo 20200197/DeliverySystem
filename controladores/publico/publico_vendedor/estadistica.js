@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     M.Modal.init(document.querySelectorAll(".modal"), { dismissible: false });
     readbarrasProductosMasVendidosValorados();
     readDonaPorcentajeVentaCategoria();
-checkRango();
+
 });
 
 //cambios Bonilla1 24-08-2022
@@ -206,40 +206,6 @@ function readDonaPorcentajeVentaCategoria() {
         } else {
             //Se devuelve el error en la consola
             console.log(request.status + " " + request.statusText);
-        }
-    });
-}
-
-function checkRango() {
-    // Petición para obtener los datos del gráfico.
-    fetch(API_VENDEDOR + 'checkRango', {
-        method: 'get'
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-        if (request.ok) {
-            request.json().then(function (response) {
-                // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
-                if (response.status) {
-                  if(response.dataset.rango_ch == '90 days'){
-                    Swal.fire({
-                        title: 'Han pasado 90 días desde su último cambio de contraseña, por favor cambiela en este momento.',
-                        icon:'info',
-                        width: 600,
-                        padding: '3em',
-                        color: '#716add',
-                        background: '#fff',
-                   
-                }).then(function () {  
-                    location.href = 'perfil.html';
-                });
-                  }
-                } else {
-                    document.getElementById('porcentajeProductos');
-                    console.log(response.exception);
-                }
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
         }
     });
 }

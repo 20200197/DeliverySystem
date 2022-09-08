@@ -156,7 +156,6 @@ document.getElementById("cuentaF").addEventListener("submit", function (event) {
         } else {
             //Se ejecuatan los cambios
             saveRow(API_PERFIL, "actualizarCuenta", "cuentaF", "datos-cuenta");
-          
         }
     } else {
         sweetAlert(3, "Las contraseñas no son iguales", null);

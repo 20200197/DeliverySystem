@@ -212,32 +212,4 @@ class Cliente extends Validator
         $params = array($data);
         return Database::getRow($sql, $params);
     }
-
-    //Se agrega por primera vez la fecha de cambio de contraseña para cuando loguee
-    public function insertCambio()
-    {
-
-        $sql = 'INSERT into cambio_contra_cliente (fecha_cambio,id_cliente,id_cargo) values(current_date,(select id_cliente from cliente order by id_cliente  desc limit 1),4);';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->usuario, $this->clave,  $this->telefono);
-        return Database::executeRow($sql, $params);
-    }
-
-    //Se cambia fecha de cambio de contraseña de cliente
-    public function changeCambio()
-    {
-
-        $sql = 'UPDATE cambio_contra_cliente set fecha_cambio = current_date , id_cliente=? ';
-        $params = array($_SESSION['id_cliente']);
-        return Database::executeRow($sql, $params);
-    }
-
-    //Dias en los que ha pasado el ultimo cambio de contraseña
-    public function checkRango()
-    {
-        $sql = 'SELECT current_date - fecha_cambio as rango_ch
-        from cambio_contra_cliente where id_cliente=?';
-        $params = array($_SESSION['id_cliente']);
-
-        return Database::getRow($sql, $params);
-    }
 }

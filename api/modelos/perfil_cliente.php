@@ -176,29 +176,4 @@ class PerfilCliente extends Validator
         $params = array($user, $pass, $_SESSION['id_cliente']); //$_SESSION['id_cliente']
         return Database::executeRow($sql, $params);
     }
-
-    public function insertCambio()
-    {
-
-        $sql = 'INSERT into cambio_contra_cliente (fecha_cambio,id_admin) values(current_date,2);';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->usuario, $this->clave,  $this->telefono);
-        return Database::executeRow($sql, $params);
-    }
-
-    public function changeCambio()
-    {
-
-        $sql = 'UPDATE cambio_contra_cliente set fecha_cambio = current_date , id_cliente=? ';
-        $params = array($_SESSION['id_cliente']);
-        return Database::executeRow($sql, $params);
-    }
-
-    public function checkRango()
-    {
-        $sql = 'SELECT current_date - fecha_cambio as rango_ch
-        from cambio_contra_cliente where id_cliente=?';
-        $params = array($_SESSION['id_cliente']);
-
-        return Database::getRow($sql, $params);
-    }
 }

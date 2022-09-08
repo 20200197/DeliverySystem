@@ -1,7 +1,6 @@
 //Se crea la constante de la api
 const API_ESTADISTICA = SERVER + "dashboard/administrar_cliente.php?action=";
 const API_ESTADISTICA2 = SERVER + "dashboard/administrar_producto.php?action=";
-const API_ADMINISTRADOR = SERVER + 'dashboard/administrar_admin.php?action=';
 
 // Método que ejecuta la carga de de las tablas y la activación de componentes
 document.addEventListener("DOMContentLoaded", function () {
@@ -17,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Se llaman a la funciones que generan los gráficos en la página web.
     graficoTopClientesDestacados();
     graficoPorcentajeProductos();
-    checkRango();
 });
 
 // Función para mostrar la cantidad de productos por categoría en un gráfico de barras.
@@ -31,7 +29,6 @@ function graficoTopClientesDestacados() {
             request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
                 if (response.status) {
-                    
                     let nombre = [], //Vector donde se guardarán los titulos de la gráfica
                     total = [], //Vector donde se guardarán los datos por toda la gráfica (Es un contenedor nada más)
                     /*
@@ -55,9 +52,7 @@ function graficoTopClientesDestacados() {
                     total.push(dato);
                     //Se manda a llamar la función para generar una gráfica
                     barras(".topClientesDestacados", nombre, total);
-                } else if (response == 'Acceso denegado'){
-                    location.href = 'index.html';
-                }else {
+                } else {
                     document.getElementById('topClientesDestacados');
                     console.log(response.exception);
                 }
@@ -103,40 +98,6 @@ function graficoPorcentajeProductos() {
 
                     //Se manda a llamar la función para generar una gráfica
                     semiPastel(".porcentajeProductos", categoria, porcentaje);
-                } else {
-                    document.getElementById('porcentajeProductos');
-                    console.log(response.exception);
-                }
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    });
-}
-
-function checkRango() {
-    // Petición para obtener los datos del gráfico.
-    fetch(API_ADMINISTRADOR + 'checkRango', {
-        method: 'get'
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-        if (request.ok) {
-            request.json().then(function (response) {
-                // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
-                if (response.status) {
-                  if(response.dataset.rango_ch == '90 days'){
-                    Swal.fire({
-                        title: 'Han pasado 90 días desde su último cambio de contraseña, por favor cambiela en este momento.',
-                        icon:'info',
-                        width: 600,
-                        padding: '3em',
-                        color: '#716add',
-                        background: '#fff',
-                   
-                }).then(function () {  
-                    location.href = 'perfil.html';
-                });
-                  }
                 } else {
                     document.getElementById('porcentajeProductos');
                     console.log(response.exception);

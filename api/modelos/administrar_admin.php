@@ -147,9 +147,9 @@ class Administrador extends Validator
         // Se establece la zona horaria local para obtener la fecha del servidor.
         date_default_timezone_set('America/El_Salvador');
         $date = date('Y-m-d');
-        $sql = 'INSERT INTO administrador(nombre_admin, apellido_admin, dui_admin, correo_admin, usuario_admin, clave_admin, fecha_registro_admin, telefono_admin, status_admin, id_estado_administrador, intentos_fallidos, fecha_desbloqueo)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, true,1,0, current_date)';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->usuario, $this->clave, $date, $this->telefono);
+        $sql = 'INSERT INTO administrador(nombre_admin, apellido_admin, dui_admin, correo_admin, usuario_admin, clave_admin, fecha_registro_admin, telefono_admin, status_admin, id_estado_administrador, intentos_fallidos)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, true, ?, ?)';
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->usuario, $this->clave, $date, $this->telefono, 1, 0);
         return Database::executeRow($sql, $params);
     }
 
@@ -179,11 +179,77 @@ class Administrador extends Validator
         }
     }
 
+    public function resetAttempts()
+    {
+        $sql = 'UPDATE administrador SET intentos_fallidos = 0 WHERE id_admin = ?';
+        $params = array($this->id);
+
+        return Database::executeRow($sql, $params);
+    }
+
+    public function getAttempts()
+    {
+        $sql = 'SELECT intentos_fallidos FROM administrador WHERE id_admin = ?';
+        $params = array($this->id);
+
+        $data = Database::getRow($sql, $params);
+
+        return $data['intentos_fallidos'];
+    }
+
+    public function lockUser()
+    {
+        $sql = 'UPDATE administrador SET fecha_desbloqueo = CURRENT_DATE + 1, id_estado_administrador = 3 WHERE id_admin = ?';
+        $params = array($this->id);
+
+        return Database::executeRow($sql, $params);
+    }
+
+    public function unlockUser()
+    {
+        $sql = 'UPDATE administrador SET id_estado_administrador = 1, intentos_fallidos = 0 WHERE id_admin = ?';
+        $params = array($this->id);
+
+        return Database::executeRow($sql, $params);
+    }
+
+    public function failedAttempt()
+    {
+        $sql = 'UPDATE administrador SET intentos_fallidos = intentos_fallidos + 1 WHERE id_admin = ?';
+        $params = array($this->id);
+
+        if (!Database::executeRow($sql, $params)) {
+            return false;
+        } elseif ($this->getAttempts() >= 3) {
+            $this->lockUser();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function verifyUnlockDate()
+    {
+        $sql = 'SELECT CURRENT_TIMESTAMP as fecha_actual, fecha_desbloqueo, id_estado_administrador FROM administrador WHERE id_admin = ?';
+        $params = array($this->id);
+
+        if (!$data = Database::getRow($sql, $params)) {
+            return false;
+        } elseif ($data['fecha_actual'] >= $data['fecha_desbloqueo'] && $data['id_estado_administrador'] == 3) {
+            $this->unlockUser();
+            return true;
+        } elseif ($data['id_estado_administrador'] == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function readAdminsAll()
     {
         $sql = 'SELECT id_admin, nombre_admin, apellido_admin, usuario_admin, dui_admin, correo_admin, fecha_registro_admin, telefono_admin, status_admin
                 FROM administrador WHERE id_admin != ?
-                ORDER BY fecha_registro_admin';
+                ORDER BY nombre_admin';
         $params = array($_SESSION['id_admin']);
 
         return Database::getRows($sql, $params);
@@ -218,14 +284,10 @@ class Administrador extends Validator
         }
     }
 
-    public function changeStatus($id)
+    public function changeStatus($id, $estado)
     {
-        if ($this->getStatus($id)) {
-            $sql = 'UPDATE administrador SET status_admin = false WHERE id_admin = ?';
-        } else {
-            $sql = 'UPDATE administrador SET status_admin = true WHERE id_admin = ?';
-        }
-        $params = array($id);
+        $sql = 'UPDATE administrador SET status_admin = ? WHERE id_admin = ?';
+        $params = array($estado, $id);
 
         return Database::executeRow($sql, $params);
     }
@@ -237,33 +299,4 @@ class Administrador extends Validator
 
         return Database::getRow($sql, $params);
     }
-
-    //Se agrega por primera vez la fecha de cambio de contraseña para cuando loguee
-    public function insertCambio()
-    {
-
-        $sql = 'INSERT into cambio_contra_administrador (fecha_cambio,id_admin,id_cargo) values(current_date,(select id_admin from administrador order by id_admin  desc limit 1),1);';
-        $params =null;
-        return Database::executeRow($sql, $params);
-    }
-
-    //Se cambia la fecha de cambio de contraseña de administrador
-    public function changeCambio()
-    {
-
-        $sql = 'UPDATE cambio_contra_administrador set fecha_cambio = current_date , id_admin=? ';
-        $params = array($_SESSION['id_admin']);
-        return Database::executeRow($sql, $params);
-    }
-
-    //Dias que han pasado desde ultimo cambio de contraseña
-    public function checkRango()
-    {
-        $sql = 'SELECT current_date - fecha_cambio as rango_ch
-        from cambio_contra_administrador where id_admin=?';
-        $params = array($_SESSION['id_admin']);
-
-        return Database::getRow($sql, $params);
-    }
-
 }

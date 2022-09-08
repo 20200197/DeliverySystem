@@ -92,7 +92,6 @@ if (isset($_GET['action'])) {
                         $result['message'] = 'Cuenta actualizada con éxito';
                         unset($_SESSION['verificar']);
                         $result['status'] = 1;
-                        $perfil->changeCambio();
                     } else {
                         $result['exception'] = Database::getException();
                     }
@@ -102,7 +101,6 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     unset($_SESSION['verificar']);
                     $result['message'] = 'Cuenta actualizada con éxito';
-                    $perfil->changeCambio();
                 } else {
                     $result['exception'] = Database::getException();
                 }

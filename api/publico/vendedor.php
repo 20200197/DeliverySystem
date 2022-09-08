@@ -143,7 +143,6 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['status'] = 1;
                     $result['message'] = 'Perfil modificado correctamente';
-                    
                 }
             } else {
                 $result['exception'] = Database::getException();
@@ -202,14 +201,6 @@ if (isset($_GET['action'])) {
                 $result['exception'] = 'No hay datos para mostrar';
             }
             break;
-            case 'checkRango':
-                $_POST = $vendedor->validateForm($_POST);
-                if ($result['dataset'] = $vendedor->checkRango()) {
-                    $result['status'] = 1;
-                }else {
-                    $result['exception'] = Database::getException();
-                }
-                break;
         default:
             $result['exception'] = 'Acción no disponible dentro de la sesión';
     }

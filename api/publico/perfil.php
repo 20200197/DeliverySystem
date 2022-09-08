@@ -107,7 +107,6 @@ if (isset($_GET['action'])) {
                 } elseif ($perfil->updatePerfil($data['antecedente_penal'], $data['solvencia_pnc'], $data['foto_vendedor'])) {
                     $result['status'] = 1;
                     $estado = '';
-                    $perfil->changeCambio();
                     if (is_uploaded_file($_FILES['solvencia-file']['tmp_name'])) {
                         if (!$perfil->saveFile($_FILES['solvencia-file'], $perfil->getRutaSolvencia(), $perfil->getSolvencia())) {
                             $estado = '1';

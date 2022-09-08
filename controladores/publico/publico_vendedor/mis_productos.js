@@ -268,7 +268,8 @@ function openParametro() {
         } else {
             //Obtenemos la opcion seleccinada
             var selectedOption =
-                document.getElementById("opciones_categoriaa").options[document.getElementById("opciones_categoriaa").selectedIndex
+                document.getElementById("opciones_categoriaa").options[
+                document.getElementById("opciones_categoriaa").selectedIndex
                 ];
             console.log(selectedOption.text);
             openReport(selectedOption.text);
@@ -315,4 +316,3 @@ function openReportStar() {
 
     window.open(url);
 }
-

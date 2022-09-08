@@ -1,4 +1,5 @@
-const API_VENDEDOR = SERVER + 'dashboard/administrar_vendedor.php?action='
+const API_VENDEDOR = SERVER + 'dashboard/administrar_vendedor.php?action=';
+const API_SESSION = SERVER + 'publico/perfil.php?action=session';
 
 document.getElementById('login-form').addEventListener('submit', function () {
     event.preventDefault();
@@ -21,7 +22,7 @@ document.getElementById('login-form').addEventListener('submit', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    fetch(API_VENDEDOR + 'session', {
+    fetch(API_SESSION + 'session', {
         method: 'get'
     }).then(function (request) {
         if (request.ok) {

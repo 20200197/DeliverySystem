@@ -896,10 +896,3 @@ input[type="radio"]:checked~label>.estrellaProducto {
     margin-top: 8px !important;
     margin-bottom: 8px !important;
 }
-
-
-@media (max-width:600px) {
-#login-form{
-    width: 100%;
-}
-}

@@ -24,46 +24,59 @@
 
 
     <!--Marco general-->
-    <div class="row contenedor-general">
-        <!--Barra lateral, opciones para los usuarios-->
-
-        <ul id="slide-out" class="sidenav sidenav-fixed">
-            <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
-                        class="material-icons medium">home</i></a></li>
-            <li><a href="perfil.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
-                        class="material-icons medium">account_circle</i></a></li>
-            <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Compras"><i
-                        class="material-icons medium">shopping_basket</i></a></li>
-            <li><a href="estadistica.html" class="tooltipped" data-position="right" data-tooltip="Gráficos"><i
-                        class="material-icons medium">pie_chart</i></a></li>
-            <li><a href="" class="tooltipped" data-position="right" data-tooltip="Cerrar sesión"><i
-                        class="material-icons medium">arrow_back</i></a></li>
-        </ul>
-
-        <!--Contenedor de datos-->
-        <div class="contenedor-datos">
-            <!--Encabezado-->
-            <header class="encabezado">
-                <a href="#" data-target="slide-out"
-                    class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
-                        class="material-icons">menu</i></a>
-                <img src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
-                <div class="col s12 m12 l12 right-align">
-                    <!--Switch de cambiar color-->
-                    <div class="switch switch_colorr hide-on-small-and-down right-align">
-                        <label>
-                            🌕
-                            <input type="checkbox" id="switch_color" onclick="modoOscuro()">
-                            <span class="lever"></span>
-                            🌙
-                        </label>
+    <header>
+        <nav>
+            <div class="nav-wrapper white">
+                <div class="row valign-wrapper">
+                    <div class="col m1 s1">
+                        <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                                class="material-icons large blue-text">menu</i></a>
+                    </div>
+                    <div class="col m5 s5 left valign-wrapper">
+    
+                        <img class="responsive-img" src="logo_delivery_system.png" alt="">
+                    </div>
+                    <div class="col m6 s6" id="opciones_navbar">
+    
                     </div>
                 </div>
-            </header>
+            </div>
+        </nav>
+    
+    </header>
+
+
+    <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2 left-align">
+        <div class="opciones-sidenav">
+            <li class="collection-item"><a href="estadistica.html" class="tooltipped" data-position="right"
+                    data-tooltip="Estadísticas"><i class="material-icons  white-text">insert_chart</i><span
+                        class="white-text hide-on-large-only">Estadísticas</span></a>
+            </li>
+            <li><a href="perfil.html" class="tooltipped Hide-on-large-only " data-position="right" data-tooltip="Perfil"><i
+                        class="material-icons  white-text">account_circle</i><span
+                        class="white-text hide-on-large-only">Perfil</span></a></li>
+            <li><a href="mis_productos.html" class="tooltipped" data-position="right" data-tooltip="Mis productos"><i
+                        class="material-icons  white-text">business_center</i><span
+                        class="white-text hide-on-large-only">Mis
+                        productos</span></a></li>
+            <li class="hide-on-large-only"><button onclick="logOut('Vendedor')"
+                    class="tooltipped transparent logout valign-wrapper" data-position="right"
+                    data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
+                        class="white-text hide-on-large-only">Cerrar sesión</span></button></li>
+        </div>
+        <div class="cerrar-navbar hide-on-med-and-down ">
+            <li>
+                <button onclick="logOut('Vendedor')" class="tooltipped white-text transparent logout valign-wrapper"
+                    data-position="right" data-tooltip="Cerrar sesión"><i class="material-icons ">arrow_back</i><span
+                        class="white-text hide-on-large-only">Cerrar sesión</span></button>
+            </li>
+        </div>
+    
+    </ul>
             <!--Información de la página vendedor-->
             <main class="main_vendedor">
                 <div class="row contenedor_vendedor ">
-                    <form id="update-form" autocomplete="off">
+                    <form id="update-form">
                         <div class="col l5 m5 s12 foto_de_vendedor">
                             <h6>Foto personal</h6>
                             <div id="preview-profile" class="styleImage">
@@ -207,42 +220,50 @@
     </div>
 
     <!--Footer-->
-    <footer class="page-footer">
+    <footer class="page-footer blue accent-3">
         <div class="row">
-
-            <!--enlace de redes sociales-->
-            <div class="col l12 m6 s3 redes_footer center-align">
-                <ul>
-                    <li>
-                        <a href=""><i class="material-icons medium">facebook</i></a>
-                    </li>
-                    <li>
-                        <a href=""><img src="../../../recursos/img/publico/clientes/footer/instagram_old_50px.png"></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="material-icons medium">whatsapp</i></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="material-icons medium">email</i></a>
-                    </li>
-                </ul>
-            </div>
-
-            <!--Contenedor para el mapa y el copyright-->
-            <div class="footer_otros">
-                <div class="col l6 m9 s12 logo_copy_footer">
-                    <img src="../../../recursos/img/publico/clientes/modals/logo.png" alt="">
-                    <h6>© 2022 DeliverySystem</h6>
+            <div class="col l9 m6 s6">
+                <div class="col l6 m12 s12">
+                    <img src="../../../recursos/img/publico/clientes/modals/logo.png" class="responsive-img" alt="">
+                    <h6 class="hide-on-med-and-down">Copyright 2022</h6>
                 </div>
-                <div class="col l6 m9 s12 mapa-footer">
+                <div class="col l6 m12 ">
+                    <!--Redes-->
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">facebook</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">facebook</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">facebook</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">facebook</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">whatsapp</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">whatsapp</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">email</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">email</i>
+                        </a>
+                    </div>
+                    <h6 class="hide-on-large-only">Copyright 2022</h6>
+                </div>
+            </div>
+            <div class="col l3 s6">
+                <div class="col l12 m12">
                     <ul>
-                        <li>
-                            <h5>Información pública</h5>
-                        </li>
-                        <li><a href="../publico_cliente/quienes somos.html ">Quiénes somos</a></li>
-                        <li><a href="../publico_cliente/contactenos.html">Contáctanos</a></li>
-                        <li><a href="../publico_cliente/mision_vision.html">Misión y visión</a></li>
-                        <li><a href="../publico_cliente/terminos.html">Términos y condiciones</a></li>
+                        <h5>Información pública</h5>
+                        <li><a href="quienes_somos.html" class="white-text">Quienes somos</a></li>
+                        <li><a href="contactenos.html" class="white-text">Contáctanos</a></li>
+                        <li><a href="mision_vision.html" class="white-text">Misión y visión</a></li>
+                        <li><a href="terminos.html" class="white-text">Términos y condiciones</a></li>
                     </ul>
                 </div>
             </div>

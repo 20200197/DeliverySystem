@@ -1,6 +1,5 @@
 //Se crea la constante donde se guardará la ruta de la API
 const API_ESTADISTICA = SERVER + 'publico/estadistica_vendedor.php?action=';
-const API_VENDEDOR = SERVER + 'publico/vendedor.php?action='
 
 //Método que se ejecutará cuando se carga la página
 document.addEventListener("DOMContentLoaded", function () {
@@ -108,7 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Se ejecuta la función para generar la gráfica
     totalPromedio();
-    checkRango();
 });
 
 
@@ -192,39 +190,4 @@ function crearReporte() {
     let url = SERVER + `reportes/vendedor/facturas_clientes.php?rangos=${arreglo}`;
     // Se abre el reporte en una nueva pestaña del navegador web.
     window.open(url);
-}
-
-
-function checkRango() {
-    // Petición para obtener los datos del gráfico.
-    fetch(API_VENDEDOR + 'checkRango', {
-        method: 'get'
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-        if (request.ok) {
-            request.json().then(function (response) {
-                // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
-                if (response.status) {
-                  if(response.dataset.rango_ch == '90 days'){
-                    Swal.fire({
-                        title: 'Han pasado 90 días desde su último cambio de contraseña, por favor cambiela en este momento.',
-                        icon:'info',
-                        width: 600,
-                        padding: '3em',
-                        color: '#716add',
-                        background: '#fff',
-                   
-                }).then(function () {  
-                    location.href = 'perfil.html';
-                });
-                  }
-                } else {
-                    document.getElementById('porcentajeProductos');
-                    console.log(response.exception);
-                }
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    });
 }

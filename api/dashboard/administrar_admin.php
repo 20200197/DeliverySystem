@@ -2,12 +2,14 @@
 require_once('../ayudantes/database.php');
 require_once('../ayudantes/validator.php');
 require_once('../modelos/administrar_admin.php');
+require_once('../ayudantes/security_token.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
+    $token = new SecurityToken;
     $admin = new Administrador;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null, 'session' => 0);
@@ -23,6 +25,7 @@ if (isset($_GET['action'])) {
             case 'logOut':
                 if (session_destroy()) {
                     $result['status'] = 1;
+                    $token->delToken('admin');
                     $result['message'] = 'Se ha cerrado sesión correctamente';
                 } else {
                     $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
@@ -31,7 +34,11 @@ if (isset($_GET['action'])) {
                 //Registrar admin
             case 'registerAdmin':
                 $_POST = $admin->validateForm($_POST);
-                if (!$admin->setNombre($_POST['name'])) {
+                if (!isset($_SESSION['admin_token'])) {
+                    $result['exception'] = 'Factor de autenticación deniega la acción';
+                } elseif ($_POST['token'] != $_SESSION['admin_token']) {
+                    $result['exception'] = 'Fáctor de autenticación, no es un humano';
+                } elseif (!$admin->setNombre($_POST['name'])) {
                     $result['exception'] = 'Ingrese un nombre válido';
                 } elseif (!$admin->setApellido($_POST['lastname'])) {
                     $result['exception'] = 'Ingrese un apellido válido';
@@ -58,7 +65,8 @@ if (isset($_GET['action'])) {
                 } elseif ($admin->registerAdmin()) {
                     $result['status'] = 1;
                     $result['message'] = 'Administrador creado con exito';
-                    $admin->insertCambio();
+                    $result['token'] = $_POST['token'];
+                    
                 } else {
                     $result['exception'] = Database::getException();
                 }
@@ -86,13 +94,9 @@ if (isset($_GET['action'])) {
                 //Actualizar estatus
             case 'updateStatus':
                 $_POST = $admin->validateForm($_POST);
-                if ($admin->changeStatus($_POST['id'])) {
+                if ($admin->changeStatus($_POST['id'], $_POST['estado'])) {
                     $result['status'] = 1;
-                    if ($admin->getStatus($_POST['id'])) {
-                        $result['message'] = 'Se ha activado correctamente';
-                    } else {
-                        $result['message'] = 'Se ha dado de baja correctamente';
-                    }
+                    $result['message'] = 'Se ha modificado el estado correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }
@@ -104,14 +108,6 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                 } else {
                     $result['status'] = 1;
-                }
-                break;
-            case 'checkRango':
-                $_POST = $admin->validateForm($_POST);
-                if ($result['dataset'] = $admin->checkRango()) {
-                    $result['status'] = 1;
-                } else {
-                    $result['exception'] = Database::getException();
                 }
                 break;
             default:
@@ -151,7 +147,6 @@ if (isset($_GET['action'])) {
                 } elseif ($admin->registerAdmin()) {
                     $result['status'] = 1;
                     $result['message'] = 'Administrador creado con exito';
-                    $admin->insertCambio();
                 } else {
                     $result['exception'] = Database::getException();
                 }
@@ -165,26 +160,22 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'El usuario es incorrecto';
                 } elseif (!$admin->checkStatus()) {
                     $result['exception'] = 'Lo sentimos, usted se encuentra desactivado';
+                } elseif (!$admin->verifyUnlockDate()) {
+                    $result['exception'] = 'Su cuenta ha sido desactivada durante un día por haber fallado el inicio de sesión más de 5 veces';
                 } elseif ($admin->checkPass($_POST['password']) && $admin->checkStatus()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Autenticación correcta';
                     $_SESSION['id_admin'] = $admin->getId();
                     $_SESSION['nombre_admin'] = $admin->getUsuario();
-                    //Asiganmos consulta que verifica los datos que han pasado desde su 
-                    //ultimo cambio de contraseña al dataset
-                    $result['dataset'] = $admin->checkRango();
-                    //Buscamos si en la consulta se encuentra el dato 91 days
-                    //Si han pasado 91 dias se manda una excepcion
-                    if (in_array("91 days", $result['dataset']) == true) {
-                        $_SESSION['id_admin'] = null;
-
-
-                        $result['exception'] = 'Lo sentimos, no cambio la contraseña hace 90 dias, debe de recuperarla';
-                    } else  {
-
-                        $result['status'] = 1;
-                        $result['message'] = 'Autenticación correcta';
-                    }
+                    $token->setToken('admin');
+                    $admin->resetAttempts();
                 } elseif (!$admin->checkPass($_POST['password'])) {
-                    $result['exception'] = 'Contraseña incorrecta';
+                    if ($admin->failedAttempt()) {
+                        $result['exception'] = 'Ha superado el limite de intentos permitidos, vuelva a intentar mañana';
+                    } else {
+                        $result['exception'] = 'Contraseña incorrecta';
+                    }
+                    
                 }
                 break;
             default:

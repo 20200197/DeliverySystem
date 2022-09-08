@@ -1,7 +1,6 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
 const API_PRODUCTOS = SERVER + 'publico/productos.php?action=';
 const API_FAVORITO = SERVER + "publico/favorito.php?action=";
-const API_CLIENTE = SERVER + 'publico/cliente.php?action=';
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
@@ -21,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //document.getElementById("leve").style.visibility="hidden";
     //showFavo();
-checkRango();
+
 });
 
 // Función para llenar con los datos de los registros.
@@ -86,9 +85,9 @@ function fillTable(dataset) {
         //<td><img src="${SERVER}imagenes/administrar_empleados/${row.imagen_perfil_empleado}" class="materialboxed" height="100" width="100"></td>
         //Productos
         //Compramos la calidad para colocarle las estrellas
-        if (row.calidad <= 1 && row.id_producto != null && row.calidad > 0 && row.id_producto != null) {
+        if (row.calidad <= 1 && row.calidad > 0) {
             //Para 0.5
-            if (row.calidad < 1 && row.id_producto != null) {
+            if (row.calidad < 1) {
                 content_estrellas += `
                 <!--Catalogo-->
              <div class="col s12 m12 l12">
@@ -118,7 +117,7 @@ function fillTable(dataset) {
                         </label>
                     </div>
                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
                                     class="material-icons left black-text">remove_red_eye</i>Ver</a>
                         </div>
                     </div>
@@ -166,7 +165,7 @@ function fillTable(dataset) {
                         </label>
                     </div>
                     <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                        href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                        href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
                             class="material-icons left black-text">remove_red_eye</i>Ver</a>
                 </div>
                 </div>
@@ -185,8 +184,8 @@ function fillTable(dataset) {
                 //showOp();
             }
             //Para 1.5
-        } else if (row.calidad <= 2 && row.id_producto != null && row.calidad > 1 && row.id_producto != null) {
-            if (row.calidad < 2 && row.id_producto != null && row.calidad > 1 && row.id_producto != null) {
+        } else if (row.calidad <= 2 && row.calidad > 1) {
+            if (row.calidad < 2 && row.calidad > 1) {
                 content_estrellas += `    
                 <!--Catalogo-->
                 <div class="col s12 m12 l12">
@@ -216,7 +215,7 @@ function fillTable(dataset) {
                         </label>
                     </div>
                 <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                    href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                    href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
                         class="material-icons left black-text">remove_red_eye</i>Ver</a>
             </div>
                 </div>
@@ -265,7 +264,7 @@ function fillTable(dataset) {
                         </label>
                     </div>
                             <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                                href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
                                     class="material-icons left black-text">remove_red_eye</i>Ver</a>
                         </div>
                     </div>
@@ -283,9 +282,9 @@ function fillTable(dataset) {
                 //showFavo();
                 //showOp();
             }
-        } else if (row.calidad <= 3 && row.id_producto != null && row.calidad > 2 && row.id_producto != null) {
+        } else if (row.calidad <= 3 && row.calidad > 2) {
             //Para 2.5
-            if (row.calidad < 3 && row.id_producto != null && row.calidad > 2 && row.id_producto != null) {
+            if (row.calidad < 3 && row.calidad > 2) {
                 content_estrellas += `
                 <!--Catalogo-->
                 <div class="col s12 m12 l12">
@@ -315,7 +314,7 @@ function fillTable(dataset) {
                         </label>
                     </div>
                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                     </div>
                     </div>
@@ -364,7 +363,7 @@ function fillTable(dataset) {
                         </label>
                     </div>
                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                     </div>
                     </div>
@@ -382,9 +381,9 @@ function fillTable(dataset) {
                 //showFavo();
                 //showOp();
             }
-        } else if (row.calidad <= 4 && row.id_producto != null && row.calidad > 3 && row.id_producto != null) {
+        } else if (row.calidad <= 4 && row.calidad > 3) {
             //Para 3.5
-            if (row.calidad < 4 && row.id_producto != null && row.calidad > 3 && row.id_producto != null) {
+            if (row.calidad < 4 && row.calidad > 3) {
                 content_estrellas += `
                 <!--Catalogo-->
                 <div class="col s12 m12 l12">
@@ -414,7 +413,7 @@ function fillTable(dataset) {
                         </label>
                     </div>
                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                     </div>
                 </div>
@@ -463,7 +462,7 @@ function fillTable(dataset) {
                         </label>
                     </div>
                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                     </div>
                     </div>
@@ -481,9 +480,9 @@ function fillTable(dataset) {
                 //showFavo();
                 //showOp();
             }
-        } else if (row.calidad <= 5 && row.id_producto != null && row.calidad > 4 && row.id_producto != null) {
+        } else if (row.calidad <= 5 && row.calidad > 4) {
             //Para 4.5
-            if (row.calidad < 5 && row.id_producto != null && row.calidad > 4 && row.id_producto != null) {
+            if (row.calidad < 5 && row.calidad > 4) {
                 content_estrellas += `
                 <!--Catalogo-->
                 <div class="col s12 m12 l12">
@@ -513,7 +512,7 @@ function fillTable(dataset) {
                         </label>
                     </div>
                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                     </div>
                     </div>
@@ -562,7 +561,7 @@ function fillTable(dataset) {
                         </label>
                     </div>
                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                     </div>
                     </div>
@@ -581,7 +580,7 @@ function fillTable(dataset) {
                 //showOp();
 
             }
-        } else if (row.calidad == null && row.id_producto != null) {
+        } else if (row.calidad == null) {
             content_estrellas += `
             <!--Catalogo-->
                 <div class="col s12 m12 l12">
@@ -607,7 +606,7 @@ function fillTable(dataset) {
                         </label>
                     </div>
                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                     </div>
                     </div>
@@ -622,7 +621,7 @@ function fillTable(dataset) {
             document.getElementById("contenedor_productos").innerHTML = content_estrellas;
             //showFavo();
             //showOp();
-        } /**else {
+        } else {
             content_estrellas += `
             <!--Catalogo-->
                 <div class="col s12 m12 l12">
@@ -649,7 +648,7 @@ function fillTable(dataset) {
                         </label>
                     </div>  
                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                     </div>
                     </div>
@@ -664,7 +663,7 @@ function fillTable(dataset) {
             document.getElementById("contenedor_productos").innerHTML = content_estrellas;
             //showFavo();
             //showOp();
-        }**/
+        }
 
 
 
@@ -1088,7 +1087,7 @@ function searchProductosCalidad() {
                                             </label>
                                         </div>
                                             <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                                href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                                                href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
                                                         class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                             </div>
                                         </div>
@@ -1137,7 +1136,7 @@ function searchProductosCalidad() {
                                         </label>
                                     </div>
                                     <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                        href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                                        href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
                                             class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                 </div>
                                 </div>
@@ -1186,7 +1185,7 @@ function searchProductosCalidad() {
                                             </label>
                                         </div>
                                     <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                        href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                                        href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
                                             class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                     </div>
                                     </div>
@@ -1283,7 +1282,7 @@ function searchProductosCalidad() {
                                         </label>
                                     </div>
                                             <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                                href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                                                href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
                                                     class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                         </div>
                                     </div>
@@ -1332,7 +1331,7 @@ function searchProductosCalidad() {
                                         </label>
                                     </div>
                                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
                                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                     </div>
                                     </div>
@@ -1438,7 +1437,7 @@ function searchProductosCalidad() {
                                         </label>
                                     </div>
                                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
                                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                     </div>
                                     </div>
@@ -1487,7 +1486,7 @@ function searchProductosCalidad() {
                                     </label>
                                 </div>
                                     <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                        href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                                        href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
                                             class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                 </div>
                             </div>
@@ -1593,7 +1592,7 @@ function searchProductosCalidad() {
                                             </label>
                                         </div>
                                             <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                                href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                                                href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
                                                     class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                         </div>
                                         </div>
@@ -1643,7 +1642,7 @@ function searchProductosCalidad() {
                                         </label>
                                     </div>
                                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
                                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                     </div>
                                     </div>
@@ -1747,7 +1746,7 @@ function searchProductosCalidad() {
                                         </label>
                                     </div>
                                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
                                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                     </div>
                                     </div>
@@ -2032,37 +2031,3 @@ document.getElementById('search-form').addEventListener('keyup', function (event
         }
     });
 });
-
-function checkRango() {
-    // Petición para obtener los datos del gráfico.
-    fetch(API_CLIENTE + 'checkRango', {
-        method: 'get'
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-        if (request.ok) {
-            request.json().then(function (response) {
-                // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
-                if (response.status) {
-                  if(response.dataset.rango_ch == '90 days'){
-                    Swal.fire({
-                        title: 'Han pasado 90 días desde su último cambio de contraseña, por favor cambiela en este momento.',
-                        icon:'info',
-                        width: 600,
-                        padding: '3em',
-                        color: '#716add',
-                        background: '#fff',
-                   
-                }).then(function () {  
-                    location.href = 'perfil.html';
-                });
-                  }
-                } else {
-                    document.getElementById('porcentajeProductos');
-                    console.log(response.exception);
-                }
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    });
-}

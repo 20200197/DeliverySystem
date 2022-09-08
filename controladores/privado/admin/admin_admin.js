@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (request.ok) {
             request.json().then(function (response) {
                 if (response.status) {
-                    sweetAlert(1, response.message, null);
                     fillTable(response.dataset);
                 } else {
                     sweetAlert(2, response.exception, null);
@@ -51,7 +50,7 @@ function fillTable(dataset) {
             <td>
                 <div class="switch">
                     <label>
-                    <input type="checkbox" name="switch_estado" onclick="update(${row.id_admin})" ${estado}>
+                    <input type="checkbox" id="switch_estado${row.id_admin}" name="switch_estado" onclick="update(${row.id_admin})" ${estado}>
                     <span class="lever"></span>
                     </label>
                 </div>
@@ -64,6 +63,7 @@ function fillTable(dataset) {
 
 function openSave() {
     M.Modal.getInstance(document.getElementById("save-modal")).open();
+    addToken(document.getElementById('save-form'));
 }
 
 document.getElementById('save-form').addEventListener('submit', function () {
@@ -76,7 +76,7 @@ document.getElementById('save-form').addEventListener('submit', function () {
         if (request.ok) {
             request.json().then(function (response) {
                 if (response.status) {
-                    sweetAlert(1, response.message, 'admin_admin.html');
+                    sweetAlert(1, response.message, null);
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -131,33 +131,27 @@ function update(id) {
     const data = new FormData();
     data.append('id', id)
 
+    if (document.getElementById('switch_estado' + id).checked) {
+        data.append('estado', true);
+    } else {
+        data.append('estado', false)
+    }
 
-    fetch(API_ADMIN + 'checkStatus', {
+    fetch(API_ADMIN + 'updateStatus', {
         method: 'post',
         body: data
     }).then(function (request) {
-        if (request.ok) {
-            request.json().then(function (response) {
-                if (response.status) {
-                    fetch(API_ADMIN + 'updateStatus', {
-                        method: 'post',
-                        body: data
-                    }).then(function (request) {
-                        if (request.ok) {
-                            request.json().then(function (response) {
-                                if (response.status) {
-                                    readRows(API_ADMIN);
-                                    sweetAlert(1, response.message, null);
-                                } else {
-                                    sweetAlert(2, response.exception, null);
-                                }
-                            });
-                        } else {
-                            console.log(request.status + ' ' + request.statusText);
-                        }
-                    });
-                }
-            });
-        }
+            if (request.ok) {
+                request.json().then(function (response) {
+                    if (response.status) {
+                        readRows(API_ADMIN);
+                        sweetAlert(1, response.message, null);
+                    } else {
+                        sweetAlert(2, response.exception, null);
+                    }
+                });
+            } else {
+                console.log(request.status + ' ' + request.statusText);
+            }
     });
 }

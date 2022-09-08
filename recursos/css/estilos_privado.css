@@ -488,16 +488,3 @@ th{
 .ct-series-e .ct-slice-donut {
     stroke: #01579b;
 }
-
-#pickop-modal{
-    width: 75%;
-    height: 45%;
-}
-
-.Baneado{
-    color: red !important;
-}
-
-.Bloqueo{
-    color: #B6C804   !important;
-}

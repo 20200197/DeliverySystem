@@ -11,7 +11,7 @@ function actualizarDatos(id) {
         if (request.ok) {
             request.json().then(function (response) {
                 if (response.status) {
-                    document.getElementById('subtotal' + response.subtotal.id_producto).innerHTML = response.subtotal.subtotal;
+                    document.getElementById('subtotal' + response.subtotal.id_producto).innerHTML = '$' + response.subtotal.subtotal;
                     document.getElementById('total').innerHTML = '$' + response.total.suma;
                 }
             });
