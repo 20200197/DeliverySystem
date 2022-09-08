@@ -21,17 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     //Si hay sesión se reeemplazan las opciones
                     contenido = `
                     <div class="col l11 m8 s12 right-align">
-                        <div class="col l8 m8 s8">
-                            <!--Switch de cambiar color-->
-                            <div class="switch switch_colorr hide-on-small-and-down right-align">
-                                <label>
-                                    🌕
-                                    <input type="checkbox" id="switch_color" onclick="modoOscuro()">
-                                    <span class="lever"></span>
-                                    🌙
-                                </label>
-                            </div>
-                        </div>
+                       
                         <span class="black-text">${data.nombre}</span>
                     </div>
                     <div class="col l1 m4 s12 left">

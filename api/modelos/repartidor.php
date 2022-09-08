@@ -452,7 +452,7 @@ class Repartidor extends Validator
     public function changePassword()
     {
         $sql = 'UPDATE repartidor SET clave_repartidor = ? WHERE id_repartidor = ?';
-        $params = array($this->clave, 2); //SESSION[id_repartidor]
+        $params = array($this->clave,$_SESSION['id_repartidor']); 
         return Database::executeRow($sql, $params);
     }
 
@@ -463,7 +463,7 @@ class Repartidor extends Validator
     public function readD($column, $data)
     {
         $sql = "SELECT * from repartidor where $column=?  except select * from repartidor where id_repartidor = ?";
-        $params = array($data, 2); //SESSION[id_repartidor]
+        $params = array($data, $_SESSION['id_repartidor']); 
 
         return Database::getRow($sql, $params);
     }

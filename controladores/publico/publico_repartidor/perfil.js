@@ -45,6 +45,7 @@ function openUpdate() {
                     document.getElementById('placa-pic').setAttribute('src', SERVER + 'imagenes/repartidor/foto_placa/' + response.dataset.foto_placa_vehiculo);
                     document.getElementById('foto-pic').setAttribute('src', SERVER + 'imagenes/repartidor/foto_repartidor/' + response.dataset.foto_repartidor);
                     document.getElementById('vehiculo-pic').setAttribute('src', SERVER + 'imagenes/repartidor/foto_vehiculo/' + response.dataset.foto_vehiculo);
+                    M.updateTextFields();
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -118,7 +119,7 @@ document.getElementById('pass-form').addEventListener('submit', function (event)
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se muestra un mensaje de éxito.
-                    sweetAlert(1, response.message, 'index.html');
+                    sweetAlert(1, response.message, 'historial.html');
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
