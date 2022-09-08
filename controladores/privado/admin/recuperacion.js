@@ -129,7 +129,7 @@ document.getElementById('formularioClave').addEventListener('submit', function (
                 //Se verifica el estado devuelto por la API
                 if (response.status) {
                     //Se muestra la confirmación y se redirecciona al login
-                    sweetAlert(1, response.exception, 'index.html');
+                    sweetAlert(1, response.message, 'index.html');
                 } else {
                     //Se muestra el problema
                     sweetAlert(2, response.exception, null);
@@ -141,3 +141,11 @@ document.getElementById('formularioClave').addEventListener('submit', function (
         }
     })
 })
+
+//Función para regresar de correo a usuarios
+function correoUsuarios() { 
+    document.getElementById("usuarioRecuperacion").style.display = "";
+    document.getElementById("correoRecuperacion").style.display = "none";
+    document.getElementById("codigoRecuperacion").style.display = "none";
+    document.getElementById("claveRecuperacion").style.display = "none";
+}
