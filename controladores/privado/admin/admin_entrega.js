@@ -181,7 +181,7 @@ function formatDate(date) {
     return [year, month, day].join('-');
 }
 
-function chngPk(id_repartidor,id_detalle, id_factura, fecha_reparto) {
+function chngPk(id_repartidor, id_detalle, id_factura, fecha_reparto) {
     const data = new FormData();
     data.append("id_repartidor", id_repartidor);
     data.append("id_detalle", id_detalle);
@@ -230,7 +230,7 @@ function openOpciones(id_repartidor) {
                     }
                     // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
                     response.dataset.map(function (row) {
-                       if(row.id_factura !=null){
+                        if (row.id_factura != null) {
 
                             // Se obtiene el dato del primer campo de la sentencia SQL (valor para cada opción).
                             value = Object.values(row)[0];
@@ -243,7 +243,7 @@ function openOpciones(id_repartidor) {
                                 content += `<option value="${text}" selected>${text}</option>`;
                             }
                         }
-                        
+
                     });
                 } else {
                     content += "<option>No hay opciones disponibles</option>";
@@ -280,7 +280,7 @@ function openFac(id_repartidor) {
 
 }
 
-function openFacT(id,id_repartidor) {
+function openFacT(id, id_repartidor) {
     // Se abre la caja de diálogo (modal) que contiene el formulario.
     M.Modal.getInstance(document.getElementById("productosentrega-modal")).open();
     M.Modal.getInstance(document.getElementById("asignarentrega-modal")).close();
@@ -303,12 +303,19 @@ function openFacT(id,id_repartidor) {
                     response.dataset.map(function (row) {
                         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
                         //<td><img src="${SERVER}imagenes/administrar_empleados/${row.imagen_perfil_empleado}" class="materialboxed" height="100" width="100"></td>
+                        var fecha_envio;
+                        if (row.fecha_envio == null) {
+                            fecha_envio = 'Sin asignar'
+                        }else{
+                            fecha_envio = row.fecha_envio;
+                        }
+
                         content += `
                         <tr>
                         <td data-target="Nombre producto: ">${row.nombre_producto}</td>
                         <td data-target="Cantidad pedido: ">${row.cantidad_pedido}</td>
                         <td data-target="Precio: ">${row.precio}</td>
-                        <td data-target="Fecha envío: ">${row.fecha_envio}</td>
+                        <td data-target="Fecha envío: ">${fecha_envio}</td>
                         <td data-target="Cambiar envío: "><a class="btn flat blue" onclick="openPickOp(${id_repartidor},${row.id_factura},${row.id_detalle})" id="botonAB${row.id_factura}"><i class="material-icons">av_timer</a></td>
                         </tr>
                     `;
