@@ -62,6 +62,7 @@ if (isset($_GET['action'])) {
                     } elseif ($perfil->actualizarCuenta()) {
                         $result['status'] = 1;
                         $result['message'] = 'Datos de la cuenta correctamente modificados';
+                        $perfil->changeCambio();
                     } else {
                         $result['exception'] = Database::getException();
                     }
@@ -70,6 +71,7 @@ if (isset($_GET['action'])) {
                 } elseif ($perfil->actualizarCuenta()) {
                     $result['status'] = 1;
                     $result['message'] = 'Datos de la cuenta correctamente modificados';
+                    $perfil->changeCambio();
                 } else {
                     $result['exception'] = Database::getException();
                 }

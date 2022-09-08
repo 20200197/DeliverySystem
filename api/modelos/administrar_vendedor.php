@@ -468,4 +468,32 @@ class AdministrarVendedor extends Validator
         $params = null;
         return Database::getRows($sql, $params);
     }
+
+    //Se agrega por primera vez la fecha de cambio de contraseña para cuando loguee
+    public function insertCambio()
+    {
+
+        $sql = 'INSERT into cambio_contra_vendedor (fecha_cambio,id_vendedor, id_cargo) values(current_date,(select id_vendedor from vendedor order by id_vendedor  desc limit 1),3);';
+        $params = null;
+        return Database::executeRow($sql, $params);
+    }
+
+    //Se camboa la fecha de cambio de contraseña de vendedor
+    public function changeCambio()
+    {
+
+        $sql = 'UPDATE cambio_contra_vendedor set fecha_cambio = current_date , id_vendedor=? ';
+        $params = array($_SESSION['id_vendedor']);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Dias en los que se h realizado el ultimo cambio de contraseña
+    public function checkRango()
+    {
+        $sql = 'SELECT current_date - fecha_cambio as rango_ch
+          from cambio_contra_vendedor where id_vendedor=?';
+        $params = array($_SESSION['id_vendedor']);
+
+        return Database::getRow($sql, $params);
+    }
 }

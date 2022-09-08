@@ -176,4 +176,16 @@ class PerfilCliente extends Validator
         $params = array($user, $pass, $_SESSION['id_cliente']); //$_SESSION['id_cliente']
         return Database::executeRow($sql, $params);
     }
+
+        
+    //Se cambia fecha de cambio de contraseña de cliente
+    public function changeCambio()
+    {
+
+        $sql = 'UPDATE cambio_contra_cliente set fecha_cambio = current_date , id_cliente=? ';
+        $params = array($_SESSION['id_cliente']);
+        return Database::executeRow($sql, $params);
+    }
+
+   
 }

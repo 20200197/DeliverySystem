@@ -56,8 +56,10 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     if ($cliente->saveFile($_FILES['file'], $cliente->getRuta(), $cliente->getFoto())) {
                         $result['message'] = 'Cuenta creada correctamente';
+                        $cliente->insertCambio();
                     } else {
                         $result['message'] = 'Cuenta creada pero no se guardó la imagen';
+                        $cliente->insertCambio();
                     }
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -74,11 +76,22 @@ if (isset($_GET['action'])) {
                 } elseif (!$cliente->getStatus()) {
                     $result['exception'] = 'Lo sentimos pero tu cuenta ha sido desactivada';
                 } elseif ($cliente->checkPass($_POST['password'])) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Sesión iniciada con éxito';
+
 
                     $_SESSION['id_cliente'] = $cliente->getId();
                     $_SESSION['usuario_cliente'] = $cliente->getUsuario();
+
+                    $result['dataset'] = $cliente->checkRango();
+                    if (in_array("91 days", $result['dataset']) == true) {
+                        $_SESSION['id_cliente'] = null;
+
+                        $result['status'] = 0;
+                        $result['exception'] = 'Lo sentimos, no cambio la contraseña hace 90 dias, debe de recuperarla';
+                    } else {
+
+                        $result['status'] = 1;
+                        $result['message'] = 'Autenticación correcta';
+                    }
                 } elseif (!$cliente->checkPass($_POST['password'])) {
                     $result['exception'] = 'Contraseña incorrecta';
                 } elseif (Database::getException()) {
