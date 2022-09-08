@@ -21,7 +21,7 @@ document.getElementById('login-form').addEventListener('submit', function () {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
+/*document.addEventListener('DOMContentLoaded', function () {
     fetch(API_REPARTIDOR + 'session', {
         method: 'get'
     }).then(function (request) {
@@ -37,4 +37,4 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(request.status + ' ' + request.statusText);
         }
     });
-});
+});*/
