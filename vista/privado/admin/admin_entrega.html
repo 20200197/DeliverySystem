@@ -116,6 +116,16 @@
                             <label for="search">Buscador</label>
                         </div>
                     </form>
+
+                    <div class="col s1 m1 l8">
+                        <div class="row">
+                            <!-- Enlace para generar un reporte en formato PDF -->
+                            <a onclick="openRepartidoresAvaible()"
+                                class="btn-floating waves-effect blue tooltipped right"
+                                data-tooltip="Reporte: Top productos más y menos vendedidos">
+                                <i class="material-icons">assignment_turned_in</i></a>
+                        </div>
+                    </div>
                 </div>
                 <div class="col s12 l10 m10 contenido_apar offset-l1">
                     <!--Tabla-->
@@ -152,6 +162,84 @@
                     <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Aceptar</a>
                 </div>
             </div>
+
+            <div id="asignarentrega-modal" class="modal">
+                <div class="modal-content">
+                    <div class="row ">
+                        <h5 class="center-align" id="titulo_E">Repartidores disponibles</h5>
+                        <form id="asignarentrega-form" method="post">
+                            <table>
+                                <thead>
+                                    <!--Columnas-->
+                                    <tr>
+                                        <th>Nombre repartidor:</th>
+                                        <th>Asignar entrega:</th>
+                                    </tr>
+                                </thead>
+                                <!--Datos de tabla-->
+                                <tbody id="tbody-asignarentrega">
+        
+                                </tbody>
+                            </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
+                    <button class="waves-effect waves-green btn-flat boton_a_gregar">Aceptar</button>
+                </div>
+                </form>
+            </div>
+
+
+            <div id="productosentrega-modal" class="modal">
+                <div class="modal-content">
+                    <div class="row ">
+                        <h5 class="center-align" id="titulo_E">Productos sin asignar</h5>
+                        <form id="productosentrega-form" method="post">
+                            <table>
+                                <thead>
+                                    <!--Columnas-->
+                                    <tr>
+                                        <th>Nombre producto:</th>
+                                        <th>Cantidad pedido:</th>
+                                        <th>Precio:</th>
+                                        <th>Fecha envío:</th>
+                                        <th>Cambiar envío:</th>
+                                    </tr>
+                                </thead>
+                                <!--Datos de tabla-->
+                                <tbody id="tbody-productosentrega">
+        
+                                </tbody>
+                            </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
+                    <button class="waves-effect waves-green btn-flat boton_a_gregar">Aceptar</button>
+                </div>
+                </form>
+            </div>
+
+
+            <div id="pickop-modal" class="modal">
+                <div class="modal-content">
+                    <div class="row ">
+                        <h5 class="center-align" id="titulo_E"></h5>
+                        <form id="pickop-form" method="post">
+                            <input type="text" class="datepicker" id="pickop-modal" >
+
+                            
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
+                    <button class="waves-effect waves-green btn-flat boton_a_gregar">Aceptar</button>
+                </div>
+                </form>
+            </div>
+
+           
         </div>
     </main>
     <!--Footer -->
@@ -169,6 +257,7 @@
     <!--Importar archivos JavaScrip-->
     <script src="../../../recursos/js/materialize.min.js"></script>
     <script src="../../../recursos/js/sweetalert2.all.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../../controladores/componentes.js"></script>
     <script src="../../../controladores/privado/admin/admin_entrega.js"></script>
     <script src="../../../controladores/privado/admin/modo_oscuro.js"></script>

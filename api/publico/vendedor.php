@@ -160,6 +160,8 @@ if (isset($_GET['action'])) {
             } elseif ($repartidor->changePassword()) {
                 $result['status'] = 1;
                 $result['message'] = 'Contraseña cambiada correctamente';
+                //Se cambia la fecha de cambio de contraseña
+                $repartidor->changeCambio();
             } else {
                 $result['exception'] = Database::getException();
             }

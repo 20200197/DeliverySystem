@@ -299,4 +299,32 @@ class Administrador extends Validator
 
         return Database::getRow($sql, $params);
     }
+
+      //Se agrega por primera vez la fecha de cambio de contraseña para cuando loguee
+      public function insertCambio()
+      {
+  
+          $sql = 'INSERT into cambio_contra_administrador (fecha_cambio,id_admin,id_cargo) values(current_date,(select id_admin from administrador order by id_admin  desc limit 1),1);';
+          $params =null;
+          return Database::executeRow($sql, $params);
+      }
+  
+      //Se cambia la fecha de cambio de contraseña de administrador
+      public function changeCambio()
+      {
+  
+          $sql = 'UPDATE cambio_contra_administrador set fecha_cambio = current_date , id_admin=? ';
+          $params = array($_SESSION['id_admin']);
+          return Database::executeRow($sql, $params);
+      }
+  
+      //Dias que han pasado desde ultimo cambio de contraseña
+      public function checkRango()
+      {
+          $sql = 'SELECT current_date - fecha_cambio as rango_ch
+          from cambio_contra_administrador where id_admin=?';
+          $params = array($_SESSION['id_admin']);
+  
+          return Database::getRow($sql, $params);
+      }
 }

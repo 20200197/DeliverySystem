@@ -66,7 +66,6 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Administrador creado con exito';
                     $result['token'] = $_POST['token'];
-                    
                 } else {
                     $result['exception'] = Database::getException();
                 }
@@ -147,6 +146,7 @@ if (isset($_GET['action'])) {
                 } elseif ($admin->registerAdmin()) {
                     $result['status'] = 1;
                     $result['message'] = 'Administrador creado con exito';
+                    $admin->insertCambio();
                 } else {
                     $result['exception'] = Database::getException();
                 }
@@ -163,19 +163,34 @@ if (isset($_GET['action'])) {
                 } elseif (!$admin->verifyUnlockDate()) {
                     $result['exception'] = 'Su cuenta ha sido desactivada durante un día por haber fallado el inicio de sesión más de 5 veces';
                 } elseif ($admin->checkPass($_POST['password']) && $admin->checkStatus()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Autenticación correcta';
+
                     $_SESSION['id_admin'] = $admin->getId();
                     $_SESSION['nombre_admin'] = $admin->getUsuario();
-                    $token->setToken('admin');
-                    $admin->resetAttempts();
+
+
+                    //Asiganmos consulta que verifica los datos que han pasado desde su 
+                    //ultimo cambio de contraseña al dataset
+                    $result['dataset'] = $admin->checkRango();
+                    //Buscamos si en la consulta se encuentra el dato 91 days
+                    //Si han pasado 91 dias se manda una excepcion
+                    if (in_array("91 days", $result['dataset']) == true) {
+                        $_SESSION['id_admin'] = null;
+
+
+                        $result['exception'] = 'Lo sentimos, no cambio la contraseña hace 90 dias, debe de recuperarla';
+                    } else {
+
+                        $result['status'] = 1;
+                        $result['message'] = 'Autenticación correcta';
+                        $token->setToken('admin');
+                        $admin->resetAttempts();
+                    }
                 } elseif (!$admin->checkPass($_POST['password'])) {
                     if ($admin->failedAttempt()) {
                         $result['exception'] = 'Ha superado el limite de intentos permitidos, vuelva a intentar mañana';
                     } else {
                         $result['exception'] = 'Contraseña incorrecta';
                     }
-                    
                 }
                 break;
             default:
