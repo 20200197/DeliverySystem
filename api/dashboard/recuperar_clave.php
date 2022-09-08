@@ -36,7 +36,7 @@ if (isset($_GET['action'])) {
                 $result['exception'] = 'Correo invalido';
                 //Se valida que el correo sea igual
             } elseif ($_SESSION['correo_admin'] != $_POST['correo']) {
-                $result['exception'] = 'El código no coincide';
+                $result['exception'] = 'Correo incorrecto';
                 //Se obtiene los datos y se envia el correo
             } elseif ($result['dataset'] = $recuperar->datosAdministrador()) {
                 $result['status'] = true;
