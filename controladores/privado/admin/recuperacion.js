@@ -117,7 +117,7 @@ document.getElementById('formularioCodigo').addEventListener('submit', function 
 document.getElementById('formularioClave').addEventListener('submit', function (event) {
     //Se previene la recarga por defecto
     event.preventDefault();
-    //Se realiza la petición para verificar lso datos y el cambio de contraseña
+    //Se realiza la petición para verificar los datos y el cambio de contraseña
     fetch(API_RECUPERACION + 'cambiarPass', {
         method: 'post',
         body: new FormData(document.getElementById('formularioClave')),
@@ -144,8 +144,42 @@ document.getElementById('formularioClave').addEventListener('submit', function (
 
 //Función para regresar de correo a usuarios
 function correoUsuarios() { 
+    //Se escoden y muestran los formularios según sea necesario
     document.getElementById("usuarioRecuperacion").style.display = "";
     document.getElementById("correoRecuperacion").style.display = "none";
     document.getElementById("codigoRecuperacion").style.display = "none";
     document.getElementById("claveRecuperacion").style.display = "none";
+    //Se limpian los formularios
+    resetForm();
+}
+
+//Función para regresar de código a correo
+function codigoCorreo() { 
+     //Se escoden y muestran los formularios según sea necesario
+    document.getElementById("usuarioRecuperacion").style.display = "none";
+    document.getElementById("correoRecuperacion").style.display = "";
+    document.getElementById("codigoRecuperacion").style.display = "none";
+    document.getElementById("claveRecuperacion").style.display = "none";
+    //Se limpian los formularios
+    resetForm();
+}
+
+//Función para regresar de clave a código
+
+function claveCodigo() {
+     //Se escoden y muestran los formularios según sea necesario
+    document.getElementById("usuarioRecuperacion").style.display = "none";
+    document.getElementById("correoRecuperacion").style.display = "none";
+    document.getElementById("codigoRecuperacion").style.display = "";
+    document.getElementById("claveRecuperacion").style.display = "none";
+    //Se limpian los formularios
+    resetForm();
+}
+
+//Función para reestablecer todos los formularios
+function resetForm() { 
+    document.getElementById('formularioUsuario').reset();
+    document.getElementById('formularioCorreo').reset();
+    document.getElementById('formularioCodigo').reset();
+    document.getElementById('formularioClave').reset();
 }

@@ -122,7 +122,7 @@ if (isset($_GET['action'])) {
                     $result['status'] = true;
                     $result['message'] = 'Contraseña reestablecida correctamente';
                     //Se quitan los datos de validación de $_SESSION
-                    unset($_SESSION['id_admin']);
+                    unset($_SESSION['id_admin_recuperar']);
                     unset($_SESSION['confirmacion']);
                     unset($_SESSION['correo_admin']);
                 } elseif (Database::getException()) {

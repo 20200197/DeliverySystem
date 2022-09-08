@@ -112,7 +112,7 @@ class Recuperacion extends Validator
         $data = Database::getRow($sql, $params);
         //Se revisa que no esté vacía
         if ($data) {
-            $_SESSION['id_admin'] = $data['id_admin'];
+            $_SESSION['id_admin_recuperar'] = $data['id_admin'];
             $_SESSION['correo_admin'] = $data['correo_admin'];
             return $this->formatEmail($data['correo_admin']);
         }
@@ -126,7 +126,7 @@ class Recuperacion extends Validator
     {
         $sql = "SELECT CONCAT(nombre_admin, ' ', apellido_admin) AS nombre_admin, correo_admin FROM administrador 
         WHERE id_admin = ?";
-        $params = array($_SESSION['id_admin']);
+        $params = array($_SESSION['id_admin_recuperar']);
         return Database::getRow($sql, $params);
     }
 
@@ -142,7 +142,7 @@ class Recuperacion extends Validator
     {
         $sql = "SELECT nombre_admin, apellido_admin, usuario_admin, '00-00-0000' as fecha, clave_admin FROM administrador
         WHERE id_admin = ?";
-        $params = array($_SESSION['id_admin']);
+        $params = array($_SESSION['id_admin_recuperar']);
         return Database::getRow($sql, $params);
     }
 }
