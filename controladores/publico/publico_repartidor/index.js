@@ -10,7 +10,7 @@ document.getElementById('login-form').addEventListener('submit', function () {
         if (request.ok) {
             request.json().then(function (response) {
                 if (response.status) {
-                    sweetAlert(1, response.message, 'historial.html');
+                    sweetAlert(1, response.message, 'estadistica.html');
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
