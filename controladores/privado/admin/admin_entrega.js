@@ -315,7 +315,7 @@ function openFacT(id,id_repartidor) {
                         <td data-target="Nombre producto: ">${row.nombre_producto}</td>
                         <td data-target="Cantidad pedido: ">${row.cantidad_pedido}</td>
                         <td data-target="Precio: ">${row.precio}</td>
-                        <td data-target="Fecha envío: ">${row.fecha_envio}</td>
+                        <td data-target="Fecha envío: ">${fecha_envio}</td>
                         <td data-target="Cambiar envío: "><a class="btn flat blue" onclick="openPickOp(${id_repartidor},${row.id_factura},${row.id_detalle})" id="botonAB${row.id_factura}"><i class="material-icons">av_timer</a></td>
                         </tr>
                     `;
