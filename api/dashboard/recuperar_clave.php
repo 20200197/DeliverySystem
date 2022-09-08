@@ -60,7 +60,6 @@ if (isset($_GET['action'])) {
             } elseif ($result['dataset'] = $recuperar->datosAdministrador()) {
                 //Se crea un nuevo código y se reenvia
                 $result['status'] = true;
-                $result['message'] = 'Correo validado correctamente';
                 $_SESSION['correoValidado'] = true;
                 $result['token'] = $recuperar->generarToken();
             } else {

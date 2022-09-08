@@ -72,14 +72,14 @@
                                             intentando de
                                             iniciar sesión:</span>
                                     </div>
-                                    <div class="input-field col s12 m12 l12">
+                                    <div class="input-field col s11 m11 l11">
                                         <i class="material-icons prefix">account_circle</i>
                                         <input id="user" type="text" class="validate" name="usuario"
                                             onkeypress="revisarTexto(event)">
                                         <label for="user">Usuario</label>
                                     </div>
                                     <div class="col l12 m12 s12">
-                                        <button class="btn blue" type="submit">Confirmar usuario</button>
+                                        <button class="btn blue" type="submit">Verificar</button>
                                         <br>
                                         <br>
                                         <a href="index.html">Ya tienes cuenta, ¡Inicia sesión!</a>
@@ -101,14 +101,14 @@
                                             cual estás intentando de
                                             iniciar sesión:</span>
                                     </div>
-                                    <div class="input-field col s12 m12 l12">
+                                    <div class="input-field col s11 m11 l11">
                                         <i class="material-icons prefix">email</i>
                                         <input id="correo" type="email" class="validate" name="correo"
                                             onkeypress="revisarTexto(event)">
                                         <label for="correo">Correo</label>
                                     </div>
                                     <div class="col l12 m12 s12">
-                                        <button class="btn blue" type="submit">Confirmar correo</button>
+                                        <button class="btn blue" type="submit">Verificar</button>
                                         <a class="btn blue" type="submit" onclick="correoUsuarios()">Regresar</a>
                                     </div>
                                 </form>
@@ -126,14 +126,27 @@
                                     <div class="col l12 m12 s12">
                                         <span class="col l12 m12 s12">Escribe el código enviado a tu correo:</span>
                                     </div>
-                                    <div class="input-field col s12 m12 l12">
-                                        <i class="material-icons prefix">email</i>
-                                        <input id="codigo" type="password" class="validate" name="codigo" onkeypress="letras_numeros(event)">
+                                    <div class="input-field col s11 m11 l11">
+                                        <i class="material-icons prefix">filter_6</i>
+                                        <input id="codigo" type="password" class="validate" name="codigo"
+                                            onkeypress="letras_numeros(event)">
+                                        <a onclick="mostrarPass('codigo', 'codigoIcon')"><i id="codigoIcon"
+                                                class="material-icons prefix black-text">visibility</i></a>
                                         <label for="codigo">Código de recuperación</label>
                                     </div>
                                     <div class="col l12 m12 s12">
-                                        <button class="btn blue" type="submit">Confirmar correo</button>
-                                        <a class="btn blue" type="submit" onclick="codigoCorreo()">Regresar</a>
+                                        <div class="col l6 m6 s12">
+                                            <button class="btn blue" type="submit">Verificar</button>
+                                        </div>
+                                        <div class="col l6 m6 s12">
+                                            <a onclick="reenviar()" class="btn blue">Reenviar</a>
+                                        </div>
+
+                                        <div class="col l12 m12 s12 center">
+                                            <hr>
+                                            <a class="btn blue" type="submit" onclick="codigoCorreo()">Regresar</a>
+                                        </div>
+
                                     </div>
                                 </form>
                             </div>
@@ -152,18 +165,21 @@
                                     </div>
                                     <div class="input-field col s12 m12 l12">
                                         <i class="material-icons prefix">vpn_key</i>
-                                        <input id="clave" type="password" class="validate" name="clave">
                                         <label for="clave">Nueva contraseña</label>
+                                        <a onclick="mostrarPass('clave', 'claveIcon')"><i id="claveIcon"
+                                                class="material-icons prefix black-text">visibility</i></a>
                                     </div>
                                     <div class="input-field col s12 m12 l12">
                                         <i class="material-icons prefix">vpn_key</i>
                                         <input id="clave1" type="password" class="validate"
                                             onkeypress="revisarTexto(event)">
-                                        <label for="clave1">Confirmación de nueva contraseña</label>
+                                        <a onclick="mostrarPass('clave1', 'clave1Icon')"><i id="clave1Icon"
+                                                class="material-icons prefix black-text">visibility</i></a>
+                                        <label for="clave1">Nueva contraseña</label>
                                     </div>
                                     <div class="col l12 m12 s12">
                                         <button class="btn blue" type="submit"
-                                            onkeypress="revisarTexto(event)">Confirmar contraseña</button>
+                                            onkeypress="revisarTexto(event)">Confirmación de contraseña</button>
                                         <a class="btn blue" type="submit" onclick="claveCodigo()">Regresar</a>
                                     </div>
                                 </form>

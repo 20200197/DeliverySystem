@@ -87,6 +87,32 @@ document.getElementById("formularioCorreo").addEventListener('submit', function 
 
 });
 
+//Función para reenviar el código
+function reenviar() {
+    //Se realiza la petición a la API
+    fetch(API_RECUPERACION + 'reenvio', {
+        method: 'get',
+    }).then(function (request) {
+        //Se verifica el resultado de la ejecución
+        if (request.ok) {
+            //Se pasa a JSON
+            request.json().then(function (response) {
+                //Se verifica el estado devuelto por la API
+                if (response.status) {
+                    //Se enviar el correo
+                    recuperar(response.dataset.correo_admin, response.dataset.nombre_admin, response.token);
+                } else {
+                    //Se muestra el error
+                    sweetAlert(2, response.exception, null);
+                }
+            })
+        } else {
+            //Se imprime el problema en la consola
+            console.log(request.status + ' ' + request.statusText);
+        }
+    })
+}
+
 //Método para verificar que el código es correcto
 document.getElementById('formularioCodigo').addEventListener('submit', function (event) {
     //Se previene la recarga automática de la página
@@ -206,5 +232,29 @@ function checkPass(clave, claveConfirmacion) {
     } else {
         sweetAlert(3, 'La contraseña debe contener números, carácteres alfanúmericos, símbolos y ser mayor a 7 carácteres', null);
         return false;
+    }
+}
+
+/**
+ * Función para cambiar la visibilidad de los inputs
+ * 
+ * idComponente = identificador del input
+ * idIcono = identificador de la etiqueta i del icono
+ */
+function mostrarPass(idComponente, idIcono) {
+    //Se obtiene los componentes
+    let componente = document.getElementById(idComponente);
+    let icono = document.getElementById(idIcono);
+
+    //Se revisa el tipo de campo
+    if (componente.type == "password") {
+        //Se cambia a texto para ver la clave
+        componente.type = "text";
+        icono.innerHTML = 'visibility';
+
+    } else {
+        //Se cambia a password para que no sea visible
+        componente.type = "password";
+        icono.innerHTML = 'visibility_off';
     }
 }
