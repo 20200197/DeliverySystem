@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("antecedente-file").style.visibility = "hidden";
     document.getElementById("vehiculo-file").style.visibility = "hidden";
     document.getElementById("placa-file").style.visibility = "hidden";
+    M.updateTextFields();
 });
 
 

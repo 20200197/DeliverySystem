@@ -127,7 +127,7 @@ class Repartidor extends Validator
 
     public function setAntecedentes($file)
     {
-        if ($this->validateImageFile($file, 5000, 5000)) {
+        if ($this->validateImageFile($file, 8000, 8000)) {
             $this->antecedentes = $this->getFileName();
             return true;
         } else {
@@ -177,7 +177,7 @@ class Repartidor extends Validator
 
     public function setFotoPlaca($file)
     {
-        if ($this->validateImageFile($file, 500, 500)) {
+        if ($this->validateImageFile($file, 8000, 8000)) {
             $this->foto_placa = $this->getFileName();
             return true;
         } else {
@@ -187,7 +187,7 @@ class Repartidor extends Validator
 
     public function setFotoVehiculo($file)
     {
-        if ($this->validateImageFile($file, 500, 500)) {
+        if ($this->validateImageFile($file, 8000, 8000)) {
             $this->foto_vehiculo = $this->getFileName();
             return true;
         } else {
@@ -360,7 +360,7 @@ class Repartidor extends Validator
         $sql = "SELECT id_repartidor,nombre_repartidor, apellido_repartidor,dui_repartidor,correo_repartidor,usuario_repartidor,telefono_repartidor,clave_repartidor,solvencia_pnc,antecedente_penal,direccion_domicilio,placa_vehiculo,foto_placa_vehiculo,foto_repartidor,foto_vehiculo,fecha_registro
         from repartidor
         where id_repartidor = ?";
-        $params = array($_SESSION['id_repartidor']); //SESSION[id_repartidor]
+        $params = array($_SESSION['id_repartidor']);
         return Database::getRow($sql, $params);
     }
 
@@ -379,8 +379,7 @@ class Repartidor extends Validator
         $sql = 'UPDATE repartidor 
         SET nombre_repartidor = ?, apellido_repartidor = ?,correo_repartidor = ?,usuario_repartidor = ?,telefono_repartidor = ?,solvencia_pnc = ?,antecedente_penal = ?,direccion_domicilio = ?,placa_vehiculo = ?,foto_placa_vehiculo = ?,foto_repartidor = ?,foto_vehiculo = ?
         WHERE id_repartidor=?';
-        $params = array($this->nombre, $this->apellido, $this->correo, $this->usuario, $this->telefono, $this->solvencia, $this->antecedentes, $this->direccion, $this->placa, $this->foto_placa, $this->foto, $this->foto_vehiculo, 2); //SESSION[id_repartidor]
-        print_r($params);
+        $params = array($this->nombre, $this->apellido, $this->correo, $this->usuario, $this->telefono, $this->solvencia, $this->antecedentes, $this->direccion, $this->placa, $this->foto_placa, $this->foto, $this->foto_vehiculo, $_SESSION['id_repartidor']);
         return Database::executeRow($sql, $params);
     }
 
@@ -393,7 +392,7 @@ class Repartidor extends Validator
         $sql = 'UPDATE repartidor 
         SET nombre_repartidor = ?, apellido_repartidor = ?,correo_repartidor = ?,usuario_repartidor = ?,telefono_repartidor = ?,direccion_domicilio = ?,placa_vehiculo = ?,foto_repartidor = ?
         WHERE id_repartidor=?';
-        $params = array($this->nombre, $this->apellido, $this->correo, $this->usuario, $this->telefono, $this->direccion, $this->placa, $this->foto, 2); //SESSION[id_repartidor]
+        $params = array($this->nombre, $this->apellido, $this->correo, $this->usuario, $this->telefono, $this->direccion, $this->placa, $this->foto, $_SESSION['id_repartidor']); 
         return Database::executeRow($sql, $params);
     }
 
@@ -406,7 +405,7 @@ class Repartidor extends Validator
         $sql = 'UPDATE repartidor 
         SET nombre_repartidor = ?, apellido_repartidor = ?,correo_repartidor = ?,usuario_repartidor = ?,telefono_repartidor = ?,solvencia_pnc = ?,direccion_domicilio = ?,placa_vehiculo = ?
         WHERE id_repartidor=?';
-        $params = array($this->nombre, $this->apellido, $this->correo, $this->usuario, $this->telefono, $this->solvencia, $this->direccion, $this->placa, 2); //SESSION[id_repartidor]
+        $params = array($this->nombre, $this->apellido, $this->correo, $this->usuario, $this->telefono, $this->solvencia, $this->direccion, $this->placa, $_SESSION['id_repartidor']); 
         return Database::executeRow($sql, $params);
     }
 
@@ -419,7 +418,7 @@ class Repartidor extends Validator
         $sql = 'UPDATE repartidor 
         SET nombre_repartidor = ?, apellido_repartidor = ?,correo_repartidor = ?,usuario_repartidor = ?,telefono_repartidor = ?,antecedente_penal = ?,direccion_domicilio = ?,placa_vehiculo = ?
         WHERE id_repartidor=?';
-        $params = array($this->nombre, $this->apellido, $this->correo, $this->usuario, $this->telefono, $this->antecedentes, $this->direccion, $this->placa, 2); //SESSION[id_repartidor]
+        $params = array($this->nombre, $this->apellido, $this->correo, $this->usuario, $this->telefono, $this->antecedentes, $this->direccion, $this->placa, $_SESSION['id_repartidor']); 
         return Database::executeRow($sql, $params);
     }
 
@@ -432,7 +431,7 @@ class Repartidor extends Validator
         $sql = 'UPDATE repartidor 
         SET nombre_repartidor = ?, apellido_repartidor = ?,correo_repartidor = ?,usuario_repartidor = ?,telefono_repartidor = ?,direccion_domicilio = ?,placa_vehiculo = ?,foto_vehiculo = ?
         WHERE id_repartidor=?';
-        $params = array($this->nombre, $this->apellido, $this->correo, $this->usuario, $this->telefono,  $this->direccion, $this->placa, $this->foto_vehiculo, 2); //SESSION[id_repartidor]
+        $params = array($this->nombre, $this->apellido, $this->correo, $this->usuario, $this->telefono,  $this->direccion, $this->placa, $this->foto_vehiculo, $_SESSION['id_repartidor']); 
         return Database::executeRow($sql, $params);
     }
 
@@ -445,7 +444,7 @@ class Repartidor extends Validator
         $sql = 'UPDATE repartidor 
         SET nombre_repartidor = ?, apellido_repartidor = ?,correo_repartidor = ?,usuario_repartidor = ?,telefono_repartidor = ?,direccion_domicilio = ?,placa_vehiculo = ?,foto_placa_vehiculo = ?
         WHERE id_repartidor=?';
-        $params = array($this->nombre, $this->apellido, $this->correo, $this->usuario, $this->telefono, $this->direccion, $this->placa, $this->foto_placa, 2); //SESSION[id_repartidor]
+        $params = array($this->nombre, $this->apellido, $this->correo, $this->usuario, $this->telefono, $this->direccion, $this->placa, $this->foto_placa, $_SESSION['id_repartidor']);
         return Database::executeRow($sql, $params);
     }
     //Función para cambiar contraseña
@@ -474,7 +473,7 @@ class Repartidor extends Validator
         $sql = 'SELECT id_repartidor,nombre_repartidor, apellido_repartidor,dui_repartidor,correo_repartidor,usuario_repartidor,telefono_repartidor,clave_repartidor,solvencia_pnc,antecedente_penal,direccion_domicilio,placa_vehiculo,foto_placa_vehiculo,foto_repartidor,foto_vehiculo,fecha_registro
                 FROM repartidor
                 WHERE id_repartidor = ?';
-        $params = array($_SESSION['id_repartidor']); //SESSION[id_repartidor]
+        $params = array($_SESSION['id_repartidor']); 
         return Database::getRow($sql, $params);
     }
 
