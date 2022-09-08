@@ -11,6 +11,8 @@ document.getElementById('login-form').addEventListener('submit', function () {
             request.json().then(function (response) {
                 if (response.status) {
                     sweetAlert(1, response.message, 'historial.html');
+                }else if(response.exception == 'Acción no disponible dentro de la sesión'){
+                    sweetAlert(2, response.exception, 'historial.html');
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -21,7 +23,7 @@ document.getElementById('login-form').addEventListener('submit', function () {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
+/*document.addEventListener('DOMContentLoaded', function () {
     fetch(API_REPARTIDOR + 'session', {
         method: 'get'
     }).then(function (request) {
@@ -37,4 +39,4 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(request.status + ' ' + request.statusText);
         }
     });
-});
+});*/
