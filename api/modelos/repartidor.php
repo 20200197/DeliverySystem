@@ -579,4 +579,32 @@ class Repartidor extends Validator
         $params = null;
         return Database::getRows($sql, $params);
     }
+
+      //Se agrega por primera vez la fecha de cambio de contraseña para cuando loguee
+      public function insertCambio()
+      {
+  
+          $sql = 'INSERT into cambio_contra_repartidor (fecha_cambio,id_repartidor,id_cargo) values(current_date,(select id_repartidor from repartidor order by id_repartidor  desc limit 1),2);';
+          $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->usuario, $this->clave,  $this->telefono);
+          return Database::executeRow($sql, $params);
+      }
+  
+      //Se cambia la fecha de cambio de contraseña de repartidor
+      public function changeCambio()
+      {
+  
+          $sql = 'UPDATE cambio_contra_repartidor set fecha_cambio = current_date , id_repartidor=? ';
+          $params = array($_SESSION['id_repartidor']);
+          return Database::executeRow($sql, $params);
+      }
+  
+      //Dias en los que han pasado donde se ha cambiado la contraseña
+      public function checkRango()
+      {
+          $sql = 'SELECT current_date - fecha_cambio as rango_ch
+          from cambio_contra_repartidor where id_repartidor=?';
+          $params = array($_SESSION['id_repartidor']);
+  
+          return Database::getRow($sql, $params);
+      }
 }
