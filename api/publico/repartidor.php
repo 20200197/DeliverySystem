@@ -46,7 +46,53 @@ if (isset($_GET['action'])) {
                 $_POST = $repartidor->validateForm($_POST);
                 if (!$data = $repartidor->readOne()) {
                     $result['exception'] = 'Repartidor inexistente';
-                } elseif (!$repartidor->setNombre($_POST['nombre_repartidor'])) {
+                }
+                if (is_uploaded_file($_FILES['foto_p']['tmp_name'])) {
+                    if (!$repartidor->setFoto($_FILES['foto_p'])) {
+                        $result['exception'] = $repartidor->getFileError();
+                        // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
+                        header('content-type: application/json; charset=utf-8');
+                        // Se imprime el resultado en formato JSON y se retorna al controlador.
+                        return print(json_encode($result));
+                    }
+                }
+                if (is_uploaded_file($_FILES['solvencia_p']['tmp_name'])) {
+                    if (!$repartidor->setSolvencia($_FILES['solvencia_p'])) {
+                        $result['exception'] = $repartidor->getFileError();
+                        // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
+                        header('content-type: application/json; charset=utf-8');
+                        // Se imprime el resultado en formato JSON y se retorna al controlador.
+                        return print(json_encode($result));
+                    }
+                }
+                if (is_uploaded_file($_FILES['antecedente_p']['tmp_name'])) {
+                    if (!$repartidor->setAntecedentes($_FILES['antecedente_p'])) {
+                        $result['exception'] = $repartidor->getFileError();
+                        // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
+                        header('content-type: application/json; charset=utf-8');
+                        // Se imprime el resultado en formato JSON y se retorna al controlador.
+                        return print(json_encode($result));
+                    }
+                }
+                if (is_uploaded_file($_FILES['vehiculo_p']['tmp_name'])) {
+                    if (!$repartidor->setFotoVehiculo($_FILES['vehiculo_p'])) {
+                        $result['exception'] = $repartidor->getFileError();
+                        // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
+                        header('content-type: application/json; charset=utf-8');
+                        // Se imprime el resultado en formato JSON y se retorna al controlador.
+                        return print(json_encode($result));
+                    }
+                }
+                if (is_uploaded_file($_FILES['placa_p']['tmp_name'])) {
+                    if (!$repartidor->setFotoPlaca($_FILES['placa_p'])) {
+                        $result['exception'] = $repartidor->getFileError();
+                        // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
+                        header('content-type: application/json; charset=utf-8');
+                        // Se imprime el resultado en formato JSON y se retorna al controlador.
+                        return print(json_encode($result));
+                    }
+                }
+                if (!$repartidor->setNombre($_POST['nombre_repartidor'])) {
                     $result['exception'] = 'Nombre incorrecto';
                 } elseif (!$repartidor->setApellido($_POST['apellido_repartidor'])) {
                     $result['exception'] = 'Apellido incorrecto';
@@ -85,70 +131,86 @@ if (isset($_GET['action'])) {
                     //         $result['message'] = 'Perfil modificado pero no se guardó la imagen';
                     //     }
                     // }
-                } elseif (!is_uploaded_file($_FILES['foto_p']['tmp_name'])) {
-                    if ($repartidor->updatePerfilFoto($data['foto_repartidor'])) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Perfil foto correctamente';
-                    } else {
-                        $result['exception'] = Database::getException();
-                    }
-                } elseif (!$repartidor->setFoto($_FILES['foto_p'])) {
-                    $result['exception'] = $repartidor->getFileError();
-                } elseif (!is_uploaded_file($_FILES['solvencia_p']['tmp_name'])) {
-                    if ($repartidor->updatePerfilSolvencia($data['solvencia_pnc'])) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Perfil solvencia correctamente';
-                    } else {
-                        $result['exception'] = Database::getException();
-                    }
-                } elseif (!$repartidor->setSolvencia($_FILES['solvencia_p'])) {
-                    $result['exception'] = $repartidor->getFileError();
-                } elseif (!is_uploaded_file($_FILES['antecedente_p']['tmp_name'])) {
-                    if ($repartidor->updatePerfilAntecedente($data['antecedente_penal'])) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Perfil antecedente correctamente';
-                    } else {
-                        $result['exception'] = Database::getException();
-                    }
-                } elseif (!$repartidor->setAntecedentes($_FILES['antecedente_p'])) {
-                    $result['exception'] = $repartidor->getFileError();
-                } elseif (!is_uploaded_file($_FILES['vehiculo_p']['tmp_name'])) {
-                    if ($repartidor->updatePerfilVehiculo($data['foto_vehiculo'])) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Perfil vehiculo correctamente';
-                    } else {
-                        $result['exception'] = Database::getException();
-                    }
-                } elseif (!$repartidor->setFotoVehiculo($_FILES['vehiculo_p'])) {
-                    $result['exception'] = $repartidor->getFileError();
-                } elseif (!is_uploaded_file($_FILES['placa_p']['tmp_name'])) {
-                    if ($repartidor->updatePerfilPlaca($data['foto_placa_vehiculo'])) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Perfil placa correctamente';
-                    } else {
-                        $result['exception'] = Database::getException();
-                    }
-                } elseif (!$repartidor->setFotoPlaca($_FILES['placa_p'])) {
-                    $result['exception'] = $repartidor->getFileError();
                 } elseif ($repartidor->updatePerfil($data['foto_repartidor'], $data['solvencia_pnc'], $data['antecedente_penal'], $data['foto_vehiculo'], $data['foto_placa_vehiculo'])) {
-                    if (!$repartidor->saveFile($_FILES['foto_p'], $repartidor->getRutaFoto(), $repartidor->getFoto())) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Perfil modificado pero no se guardo la foto';
-                    } elseif (!$repartidor->saveFile($_FILES['solvencia_p'], $repartidor->getRutaSolvencia(), $repartidor->getSolvencia())) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Perfil modificado pero no se guardó la solvencia';
-                    } elseif (!$repartidor->saveFile($_FILES['antecedente_p'], $repartidor->getRutaAntecedente(), $repartidor->getAntecedente())) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Perfil modificado pero no se guardó el antecedente';
-                    } elseif (!$repartidor->saveFile($_FILES['vehiculo_p'], $repartidor->getRutaVehiculo(), $repartidor->getFotoVehiculo())) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Perfil modificado pero no se guardó la placa';
-                    } elseif (!$repartidor->saveFile($_FILES['placa_p'], $repartidor->getRutaPlaca(), $repartidor->getFotoPlaca())) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Perfil modificado pero no se guardó la placa';
-                    } else {
-                        $result['status'] = 1;
-                        $result['message'] = 'Perfil modificado correctamente';
+                    $result['status'] = 1;
+                    $estado = '';
+                    if (is_uploaded_file($_FILES['foto_p']['tmp_name'])) {
+                        if (!$repartidor->saveFile($_FILES['foto_p'], $repartidor->getRutaFoto(), $repartidor->getFoto())) {
+                            $estado = '1';
+                        }
+                    }
+                    if (is_uploaded_file($_FILES['solvencia_p']['tmp_name'])) {
+                        if (!$repartidor->saveFile($_FILES['solvencia_p'], $repartidor->getRutaSolvencia(), $repartidor->getSolvencia())) {
+                            $estado = $estado . '2';
+                        }
+                    }
+                    if (is_uploaded_file($_FILES['antecedente_p']['tmp_name'])) {
+                        if ($repartidor->saveFile($_FILES['antecedente_p'], $repartidor->getRutaAntecedente(), $repartidor->getAntecedente())) {
+                            $estado = $estado . '3';
+                        }
+                    }
+                    if (is_uploaded_file($_FILES['vehiculo_p']['tmp_name'])) {
+                        if (!$repartidor->saveFile($_FILES['vehiculo_p'], $repartidor->getRutaVehiculo(), $repartidor->getFotoVehiculo())) {
+                            $estado = $estado . '4';
+                        }
+                    }
+                    if (is_uploaded_file($_FILES['placa_p']['tmp_name'])) {
+                        if (!$repartidor->saveFile($_FILES['placa_p'], $repartidor->getRutaPlaca(), $repartidor->getFotoPlaca())) {
+                            $estado = $estado . '5';
+                        }
+                    }
+                    switch ($estado) {
+                        case '1':
+                            $result['message'] = 'Usuario actualizado pero no se guardó la foto de perfil';
+                            break;
+                        case '2':
+                            $result['message'] = 'Usuario actualizado pero no se guardó la solvencia';
+                            break;
+                        case '3':
+                            $result['message'] = 'Usuario actualizado pero no se guardó el antecedente';
+                            break;
+                        case '4':
+                            $result['message'] = 'Usuario actualizado pero no se guardó la foto de vehiculo';
+                            break;
+                        case '5':
+                            $result['message'] = 'Usuario actualizado pero no se guardó la placa';
+                            break;
+                        case '12':
+                            $result['message'] = 'Usuario actualizado pero no se guardaron la foto de perfil y la solvencia';
+                            break;
+                        case '13':
+                            $result['message'] = 'Usuario actualizado pero no se guardaron el antecedente y la foto de perfil';
+                            break;
+                        case '14':
+                            $result['message'] = 'Usuario actualizado pero no se guardaron la foto de perfil y la foto de vehiculo';
+                            break;
+                        case '15':
+                            $result['message'] = 'Usuario actualizado pero no se guardaron la foto de perfil y la placa';
+                            break;
+                        case '23':
+                            $result['message'] = 'Usuario actualizado pero no se guardaron la solvencia y el antecedente';
+                            break;
+                        case '24':
+                            $result['message'] = 'Usuario actualizado pero no se guardaron la solvencia y la foto de vehiculo';
+                            break;
+                        case '25':
+                            $result['message'] = 'Usuario actualizado pero no se guardaron la solvencia y la placa';
+                            break;
+                        case '34':
+                            $result['message'] = 'Usuario actualizado pero no se guardaron el antecedente y la foto de vehiculo';
+                            break;
+                        case '35':
+                            $result['message'] = 'Usuario actualizado pero no se guardaron el antecedente y la placa';
+                            break;
+                        case '45':
+                            $result['message'] = 'Usuario actualizado pero no se guardaron la foto de vehiculo y la placa';
+                            break;
+                        case '12345':
+                            $result['message'] = 'Usuario actualizado pero no se guardó ninguna imagen';
+                            break;
+                        default:
+                            $result['message'] = 'Usuario actualizado con éxito';
+                            break;
                     }
                 } else {
                     $result['exception'] = Database::getException();
