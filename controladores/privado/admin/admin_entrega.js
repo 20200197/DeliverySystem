@@ -306,7 +306,7 @@ function openFacT(id, id_repartidor) {
                         var fecha_envio;
                         if (row.fecha_envio == null) {
                             fecha_envio = 'Sin asignar'
-                        }else{
+                        } else {
                             fecha_envio = row.fecha_envio;
                         }
 
