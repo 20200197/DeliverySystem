@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 //Se revisa el estado devuelto por la api
                 if (response.status) {
                     //Se coloca el código qr
-                    document.getElementById('qr').src = response.dataset;
+                    document.getElementById('qr').src = response.dataset[1];
+                    document.getElementById('secreto').innerHTML = response.dataset[0];
                     //Se muestra el mensaje
                     sweetAlert(1, response.message, null);
                 } else {
