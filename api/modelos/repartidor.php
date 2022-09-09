@@ -593,8 +593,8 @@ class Repartidor extends Validator
       public function insertCambio()
       {
   
-          $sql = 'INSERT into cambio_contra_repartidor (fecha_cambio,id_repartidor,id_cargo) values(current_date,(select id_repartidor from repartidor order by id_repartidor  desc limit 1),2);';
-          $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->usuario, $this->clave,  $this->telefono);
+          $sql = 'INSERT into cambio_contra_repartidor (fecha_cambio,id_repartidor,id_cargo) values(current_date,(select id_repartidor from repartidor order by id_repartidor  desc limit 1),2)';
+          $params = null;
           return Database::executeRow($sql, $params);
       }
   

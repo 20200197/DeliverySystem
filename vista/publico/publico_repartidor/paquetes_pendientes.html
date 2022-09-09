@@ -8,6 +8,8 @@
     <link href="../../../recursos/css/icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="../../../recursos/css/estilos_publico.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
 </head>
 
 <body>
@@ -33,7 +35,7 @@
                 </div>
             </div>
         </nav>
-    
+
     </header>
 
 
@@ -41,17 +43,25 @@
     <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2 left-align">
         <div class="opciones-sidenav">
             <li><a href="perfil.html" class="tooltipped Hide-on-large-only " data-position="right"
-                    data-tooltip="Perfil"><i class="material-icons tiny white-text">account_circle</i><!--<span
-                        class="white-text hide-on-large-only">Perfil</span>--></a></li>
+                    data-tooltip="Perfil"><i class="material-icons tiny white-text">account_circle</i>
+                    <!--<span
+                        class="white-text hide-on-large-only">Perfil</span>-->
+                </a></li>
             <li><a href="historial.html" class="tooltipped" data-position="right" data-tooltip="Historial"><i
-                        class="material-icons prefix  white-text">description</i><!--<span
-                        class="white-text hide-on-large-only ">Historial</span>--></a></li>
+                        class="material-icons prefix  white-text">description</i>
+                    <!--<span
+                        class="white-text hide-on-large-only ">Historial</span>-->
+                </a></li>
             <li><a href="paquetes_pendientes.html" class="tooltipped" data-position="right"
-                    data-tooltip="Paquetes pendientes"><i class="material-icons  white-text">alarm</i><!--<span
-                        class="white-text hide-on-large-only">Paquetes pendientes</span>--></a></li>
+                    data-tooltip="Paquetes pendientes"><i class="material-icons  white-text">alarm</i>
+                    <!--<span
+                        class="white-text hide-on-large-only">Paquetes pendientes</span>-->
+                </a></li>
             <li><a href="estadistica.html" class="tooltipped" data-position="right" data-tooltip="Estadística"><i
-                        class="material-icons  white-text">insert_chart</i><!--<span
-                        class="white-text hide-on-large-only">Estadística</span>--></a></li>
+                        class="material-icons  white-text">insert_chart</i>
+                    <!--<span
+                        class="white-text hide-on-large-only">Estadística</span>-->
+                </a></li>
             <!--<li class="hide-on-large-only"><button onclick="logOut('Repartidor')"
                     class="tooltipped transparent logout valign-wrapper" data-position="right"
                     data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
@@ -86,6 +96,7 @@
                         <tbody id="contenido" class="row">
                         </tbody>
                     </table>
+                    
                 </div>
             </div>
         </div>
@@ -108,19 +119,42 @@
                                 </tr>
                             </thead>
                             <tbody class="row" id="contenido_modal">
+
                             </tbody>
 
                         </table>
+                       
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat blue accent-2 white-text valign-wrapper"><i
+                <a href="#!"
+                    class="modal-close waves-effect waves-green btn-flat blue accent-2 white-text valign-wrapper"><i
                         class="material-icons white-text left">cancel</i>Cerrar</a>
             </div>
         </div>
 
     </div>
+
+    <div id="mapa-modal" class="modal">
+        <div class="modal-content">
+
+            <div class="row">
+                <div class="col s12 m12 l12">
+                    <div id="map" class="col s12 m12 l12"></div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <a href="#!"
+                    class="modal-close waves-effect waves-green btn-flat blue accent-2 white-text valign-wrapper"><i
+                        class="material-icons white-text left">cancel</i>Cerrar</a>
+            </div>
+        </div>
+
+    </div>
+
+
     <footer class="page-footer blue accent-3">
         <div class="row">
             <div class="col l9 m6 s6">
@@ -175,9 +209,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../../controladores/componentes.js"></script>
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <script src="../../../js/leaflet-routing-machine.js"></script>
     <script src="../../../controladores/publico/publico_repartidor/paquetes_pendientes.js"></script>
     <script src="../../../controladores/activador.js"></script>
-<script src="../../../controladores/publico/publico_repartidor/opciones_sesion.js"></script>
+    <script src="../../../controladores/publico/publico_repartidor/opciones_sesion.js"></script>
 </body>
 
 </html>

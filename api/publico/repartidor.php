@@ -341,7 +341,7 @@ if (isset($_GET['action'])) {
                         $repartidor->insertCambio();
                     } else {
                         $result['status'] = 1;
-                        $result['message'] = 'Su solicitud ha sido recibida, le enviaremos un correo electronico cuando le evaluemos';
+                        $result['message'] = 'Su solicitud ha sido recibida, le enviaremos un correo electrónico cuando le evaluemos';
                         $repartidor->insertCambio();
                     }
                 } else {
