@@ -1,6 +1,7 @@
 <?php
 require_once('../ayudantes/database.php');
 require_once('../ayudantes/validator.php');
+require_once('../ayudantes/autentificador.php');
 require_once('../modelos/administrar_admin.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
@@ -9,6 +10,7 @@ if (isset($_GET['action'])) {
     session_start();
     // Se instancia la clase correspondiente.
     $admin = new Administrador;
+    $autentificador = new Autentificador;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null, 'session' => 0);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
@@ -161,8 +163,26 @@ if (isset($_GET['action'])) {
                     $_SESSION['id_admin'] = $admin->getId();
                     $_SESSION['nombre_admin'] = $admin->getUsuario();
                 } elseif (!$admin->checkPass($_POST['password'])) {
-                    
+
                     $result['exception'] = 'Contraseña incorrecta';
+                }
+                break;
+            case 'generarCodigo':
+                //Se genera el código
+                if ($result['dataset'] = $autentificador->generarSecreto()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Código generado correctamente';
+                } else {
+                    $result['exception'] = 'No se logró generar el código';
+                }
+                break;
+            case 'verificarCodigo':
+                $_POST = $admin->validateForm($_POST);
+                if ($autentificador->verificarCodigo($_POST['codigo'])) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Código correcto ';
+                } else {
+                    $result['exception'] = 'Código incorrecto';
                 }
                 break;
             default:
