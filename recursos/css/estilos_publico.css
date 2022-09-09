@@ -558,10 +558,10 @@ label {
 /*-----------------Responsive de tabla -------------------*/
 
 @media (max-width: 612px) {
-    table {
+    table:not(#tabla_in) {
         width: 100%;
     }
-    table tr {
+    table:not(#tabla_in) tr {
         display: flex;
         flex-direction: column;
         border: 1px solid black;
@@ -569,19 +569,19 @@ label {
         padding: 1em;
         margin-bottom: 1em;
     }
-    table thead {
+    table:not(#tabla_in) thead {
         display: none;
     }
     /*Colocamos columnas*/
-    table td[data-target] {
+    table:not(#tabla_in) td[data-target] {
         display: flex;
     }
-    table td[data-target]::before {
+    table:not(#tabla_in) td[data-target]::before {
         content: attr(data-target);
         width: 150px;
     }
     /*Tamaño*/
-    td,
+    table:not(#tabla_in) td, table:not(#tabla_in)
     th {
         width: 100%;
         word-wrap: break-word;
