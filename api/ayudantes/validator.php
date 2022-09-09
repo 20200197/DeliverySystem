@@ -518,7 +518,8 @@ class Validator
                 //Se filtra para saber si hay carácteres peligrosos
                 $peligro = array_filter($arregloPass, function ($arregloPass) {
                     //Sr revisa si contiene comillas
-                    return str_contains($arregloPass, "'") || str_contains($arregloPass, '"');
+                    return str_contains($arregloPass, "'") || str_contains($arregloPass, '"') || str_contains($arregloPass, "\\") || 
+                    str_contains($arregloPass, "<") || str_contains($arregloPass, ">");
                 });
                 if (count($peligro) == 0) {
                     //Se filtra para saber si hay números dentro de la contraseña
