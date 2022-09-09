@@ -44,6 +44,44 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos registrados';
                 }
                 break;
+            case 'getRequestOne':
+                $_POST = $administrar_distribuidor->validateForm($_POST);
+                if (!$administrar_distribuidor->setId($_POST['id'])) {
+                    $result['exception'] = 'Error obteniendo el id';
+                } elseif ($result['dataset'] = $administrar_distribuidor->readRequestOne()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay datos registrados';
+                }
+                break;
+            case 'accepted':
+                $_POST = $administrar_distribuidor->validateForm($_POST);
+                if (!$administrar_distribuidor->setId($_POST['id'])) {
+                    $result['exception'] = 'Error obteniendo el id';
+                } elseif ($result['dataset'] = $administrar_distribuidor->acceptRequest()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Se ha aceptado la solicitud con éxito';
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay datos registrados';
+                }
+                break;
+            case 'denied':
+                $_POST = $administrar_distribuidor->validateForm($_POST);
+                if (!$administrar_distribuidor->setId($_POST['id'])) {
+                    $result['exception'] = 'Error obteniendo el id';
+                } elseif ($result['dataset'] = $administrar_distribuidor->denyRequest()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Se ha rechazado la solicitud con éxito';
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay datos registrados';
+                }
+                break;
             case 'search':
                 $_POST = $administrar_distribuidor->validateForm($_POST);
                 if ($result['dataset'] = $administrar_distribuidor->searchRows($_POST['data'])) {

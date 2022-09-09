@@ -368,16 +368,16 @@ if (isset($_GET['action'])) {
                     $_SESSION['usuario_repartidor'] = $repartidor->getUsuario();
 
                     $result['dataset'] = $repartidor->checkRango();
-                    if (in_array("91 days", $result['dataset']) == true) {
+                    /*if (in_array("91 days", $result['dataset']) == true) {
                         $_SESSION['id_repartidor'] = null;
 
                         $result['status'] = 0;
                         $result['exception'] = 'Lo sentimos, no cambio la contraseña hace 90 dias, debe de recuperarla';
-                    } else {
+                    } else {*/
 
                         $result['status'] = 1;
                         $result['message'] = 'Autenticación correcta';
-                    }
+                    //}
                 } elseif (!$repartidor->checkPass($_POST['password'])) {
                     $result['exception'] = 'Contraseña incorrecta';
                 } elseif (Database::getException()) {

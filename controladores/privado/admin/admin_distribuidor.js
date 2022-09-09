@@ -28,7 +28,7 @@ function fillNumRequest() {
             request.json().then(function (response) {
                 if (response.status) {
                     if (response.requestNum.count == 0) {
-                        content = '<button onclick="openRequest()" class="btn-flat mdoal-trigger"><i class="icono-sesion material-icons black-text">clear</i></button>';
+                        content = '<i class="icono-sesion material-icons black-text">check</i>';
                     } else if (response.requestNum.count == 1) {
                         content = '<button onclick="openRequest()" class="btn-flat mdoal-trigger"><i class="icono-sesion material-icons black-text">person filter_1</i></button>';
                     } else if (response.requestNum.count == 2) {
@@ -63,6 +63,7 @@ function fillNumRequest() {
 }
 
 function openRequest() {
+    fillNumRequest();
     M.Modal.getInstance(document.getElementById('modal_request')).open();
     let content = '';
 
@@ -74,7 +75,7 @@ function openRequest() {
                 if (response.status) {
                     response.dataset.map(function (row) {
                         content += `<tr>
-                                        <td><img class="responsive-img" src="${SERVER}imagenes/repartidor/foto_repartidor/${row.foto_repartidor}"></td>
+                                        <td><img class="responsive-img" width="200px" src="${SERVER}imagenes/repartidor/foto_repartidor/${row.foto_repartidor}"></td>
                                         <td>${row.nombre_repartidor}</td>
                                         <td>${row.dui_repartidor}</td>
                                         <td>${row.correo_repartidor}</td>
@@ -94,9 +95,119 @@ function openRequest() {
 
 }
 
+function backModal() {
+    M.Modal.getInstance(document.getElementById('modal-info-request-one')).close();
+    M.Modal.getInstance(document.getElementById('modal_request')).open();
+}
+
 function openRequestOne(id) {
     M.Modal.getInstance(document.getElementById('modal_request')).close();
     M.Modal.getInstance(document.getElementById('modal-info-request-one')).open();
+    M.Tooltip.init(document.querySelectorAll('.tooltipped'));
+
+    let parameter = new FormData();
+    parameter.append('id', id);
+
+    let contenido = '';
+    fetch(API_DISTRIBUIDOR + 'getRequestOne', {
+        method: 'post',
+        body: parameter
+    }).then(function (request) {
+        if(request.ok){
+            request.json().then(function (response) {
+                if(response.status){
+                    contenido += `<tr>
+                                    <th>Foto</th>
+                                    <td><img width="200px" class="responsive-img" src="${SERVER}imagenes/repartidor/foto_repartidor/${response.dataset.foto_repartidor}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Nombre:</th>
+                                    <td>${response.dataset.nombre_repartidor}</td>
+                                </tr>
+                                <tr>
+                                    <th>Apellido:</th>
+                                    <td>${response.dataset.apellido_repartidor}</td>
+                                </tr>
+                                <tr>
+                                    <th>Dui:</th>
+                                    <td>${response.dataset.dui_repartidor}</td>
+                                </tr>
+                                <tr>
+                                    <th>Correo:</th>
+                                    <td>${response.dataset.correo_repartidor}</td>
+                                </tr>
+                                <tr>
+                                    <th>Usuario:</th>
+                                    <td>${response.dataset.usuario_repartidor}</td>
+                                </tr>
+                                <tr>
+                                    <th>Placa:</th>
+                                    <td>${response.dataset.placa_vehiculo}</td>
+                                </tr>
+                                <tr>
+                                    <th>Dirección domicilio:</th>
+                                    <td>${response.dataset.direccion_domicilio}</td>
+                                </tr>
+                                <tr>
+                                    <th>Foto placa:</th>
+                                    <td><img class="responsive-img width="400px" src="${SERVER}imagenes/repartidor/foto_placa/${response.dataset.foto_placa_vehiculo}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Foto vehiculo:</th>
+                                    <td><img class="responsive-img width="400px" src="${SERVER}imagenes/repartidor/foto_vehiculo/${response.dataset.foto_vehiculo}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Solvencia pnc:</th>
+                                    <td><img class="responsive-img width="400px" src="${SERVER}imagenes/repartidor/foto_solvencia/${response.dataset.solvencia_pnc}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Antecedente penal:</th>
+                                    <td><img class="responsive-img width="400px" src="${SERVER}imagenes/repartidor/foto_antecedente/${response.dataset.antecedente_penal}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Fecha solicitud:</th>
+                                    <td>${response.dataset.fecha_registro}</td>
+                                </tr>
+                                <tr>
+                                    <th>Acción:</th>
+                                    <td>
+                                        <a onclick="updateRequest('accepted', ${response.dataset.id_repartidor})" class="btn green"><i class="material-icons small">check</i></a>
+                                        <a onclick="updateRequest('denied', ${response.dataset.id_repartidor})" class="btn red"><i class="material-icons small">close</i></a>
+                                    </td>
+                                </tr>`;
+                document.getElementById('contenidoRequest').innerHTML = contenido;
+                }else{
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        }else{
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+function updateRequest(action, id) {
+    let parameter = new FormData();
+    parameter.append('id', id);
+
+    fetch(API_DISTRIBUIDOR + action, {
+        method: 'post',
+        body: parameter
+    }).then(function (request) {
+        if(request.ok){
+            request.json().then(function (response) {
+                if(response.status){
+                    sweetAlert(1, response.message, null);
+                    M.Modal.getInstance(document.getElementById('modal-info-request-one')).close();
+                    fillNumRequest();
+                }else{
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        }else{
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
 }
 
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
