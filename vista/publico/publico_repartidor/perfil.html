@@ -26,24 +26,24 @@
                                 class="material-icons large blue-text">menu</i></a>
                     </div>
                     <div class="col m5 s5 left valign-wrapper">
-    
+
                         <img class="responsive-img" src="logo_delivery_system.png" alt="">
                     </div>
                     <div class="col m6 s6" id="opciones_navbar">
-    
+
                     </div>
                 </div>
             </div>
         </nav>
-    
+
     </header>
 
 
     <!--Navegabilidad de la página-->
     <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2 left-align">
         <div class="opciones-sidenav">
-            <li><a href="perfil.html" class="tooltipped Hide-on-large-only " data-position="right" data-tooltip="Perfil"><i
-                        class="material-icons  white-text">account_circle</i><span
+            <li><a href="perfil.html" class="tooltipped Hide-on-large-only " data-position="right"
+                    data-tooltip="Perfil"><i class="material-icons  white-text">account_circle</i><span
                         class="white-text hide-on-large-only">Perfil</span></a></li>
             <li><a href="historial.html" class="tooltipped" data-position="right" data-tooltip="Historial"><i
                         class="material-icons  white-text">description</i><span
@@ -54,6 +54,9 @@
             <li><a href="estadistica.html" class="tooltipped" data-position="right" data-tooltip="Estadística"><i
                         class="material-icons  white-text">insert_chart</i><span
                         class="white-text hide-on-large-only">Estadística</span></a></li>
+            <li><a href="comentarios.html" class="tooltipped" data-position="right" data-tooltip="Comentarios"><i
+                        class="material-icons  white-text">message</i><span
+                        class="white-text hide-on-large-only">Comentarios</span></a></li>
             <li class="hide-on-large-only"><button onclick="logOut('Vendedor')"
                     class="tooltipped transparent logout valign-wrapper" data-position="right"
                     data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
@@ -181,12 +184,14 @@
                         <div class="datos_perfil_cliente">
                             <div class="input-field col s6">
                                 <input placeholder="Nombre" id="nombre_repartidor" type="text" class="validate"
-                                    name="nombre_repartidor" pattern="[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{3,30}" onkeypress="return soloLetras(event)">
+                                    name="nombre_repartidor" pattern="[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{3,30}"
+                                    onkeypress="return soloLetras(event)">
                                 <label for="nombre_repartidor">Nombre</label>
                             </div>
                             <div class="input-field col s6">
                                 <input placeholder="Apellido" id="apellido_repartidor" type="text" class="validate"
-                                    name="apellido_repartidor" pattern="[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{3,30}" onkeypress="return soloLetras(event)">
+                                    name="apellido_repartidor" pattern="[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{3,30}"
+                                    onkeypress="return soloLetras(event)">
                                 <label for="apellido_repartidor">Apellido</label>
                             </div>
                             <div class="input-field col s6">
@@ -195,13 +200,14 @@
                                 <label for="dui_repartidor">DUI</label>
                             </div>
                             <div class="input-field col s6">
-                                <input placeholder="Correo" id="correo_repartidor" type="email" name="correo_repartidor"  onkeypress="return verificarTel('correo_repartidor')"
-                                    class="validate">
+                                <input placeholder="Correo" id="correo_repartidor" type="email" name="correo_repartidor"
+                                    onkeypress="return verificarTel('correo_repartidor')" class="validate">
                                 <label for="correo_repartidor">Correo</label>
                             </div>
                             <div class="input-field col s6">
                                 <input placeholder="Teléfono" id="telefono_repartidor" type="text"
-                                    name="telefono_repartidor" class="validate"  onkeypress="return verificarTel(event, 'telefono_repartidor')">
+                                    name="telefono_repartidor" class="validate"
+                                    onkeypress="return verificarTel(event, 'telefono_repartidor')">
                                 <label for="telefono_repartidor">Teléfono</label>
                             </div>
                             <div class="input-field col s6">
@@ -210,8 +216,9 @@
                                 <label for="direccion_repartidor">Dirección:</label>
                             </div>
                             <div class="input-field col s6 m12 l12">
-                                <input placeholder="Dirección" id="placa_repartidor" type="text"  class="validate"
-                                    name="placa_repartidor" pattern="[A-Z]{1}[0-9]{6}" onkeypress="return verificarPlaca(event, 'placa_repartidor')">
+                                <input placeholder="Dirección" id="placa_repartidor" type="text" class="validate"
+                                    name="placa_repartidor" pattern="[A-Z]{1}[0-9]{6}"
+                                    onkeypress="return verificarPlaca(event, 'placa_repartidor')">
                                 <label for="placa_repartidor">Placa:</label>
                             </div>
                         </div>
@@ -221,18 +228,18 @@
                                 <div class="">
                                     <div class="input-field col s12 l12">
                                         <input id="usuario_repartidor" type="text" name="usuario_repartidor"
-                                            pattern="[/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\,\;\.\-]{]{1,65}" class="validate" onkeypress="return revisarTexto(event)"
-                                            required>
+                                            pattern="[/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\,\;\.\-]{]{1,65}" class="validate"
+                                            onkeypress="return revisarTexto(event)" required>
                                         <label for="usuario_repartidor" class="active">Usuario</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="contrasenia_repartidor" type="password" class="validate" onkeypress="return revisarTexto(event)"
-                                            name="contrasenia_repartidor">
+                                        <input id="contrasenia_repartidor" type="password" class="validate"
+                                            onkeypress="return revisarTexto(event)" name="contrasenia_repartidor">
                                         <label for="contrasenia_repartidor" class="active">Contraseña</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="contrasenia_repartidor2" type="password" class="validate" onkeypress="return revisarTexto(event)"
-                                            name="contrasenia_repartidor2">
+                                        <input id="contrasenia_repartidor2" type="password" class="validate"
+                                            onkeypress="return revisarTexto(event)" name="contrasenia_repartidor2">
                                         <label for="contrasenia_repartidor2" class="active">Confirmar contraseña</label>
                                     </div>
                                 </div>
@@ -251,7 +258,7 @@
         <div id="pass-modal" class="modal">
             <div class="modal-content">
                 <div class="row" id="contorno">
-                    <h5 id="titulo"class="center-align">Cambiar clave</h5>
+                    <h5 id="titulo" class="center-align">Cambiar clave</h5>
                     <!-- Formulario para actualizar contraseña -->
                     <form class="row" method="post" id="pass-form" enctype="multipart/form-data">
                         <input class="hide" type="number" id="id_id" name="id_id">

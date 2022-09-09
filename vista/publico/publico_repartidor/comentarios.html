@@ -4,18 +4,15 @@
 <html>
 
 <head>
-    <meta charset="uft=8">
-    <!--Importar fuentes de Google-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta charset="utf-8">
     <!--Importar iconos-->
     <link href="../../../recursos/css/icons.css" rel="stylesheet">
     <!--Importar archivos CSS-->
     <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
     <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_publico.css" media="screen,projection" />
+
     <!--Optimización para mobiles-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="utf-8">
 </head>
 
 <body>
@@ -30,7 +27,7 @@
                     </div>
                     <div class="col m5 s5 left valign-wrapper">
 
-                        <img class="responsive-img" src="logo_delivery_system.png" alt="">
+                        <img class="responsive-img" src="../../../recursos/img/logo_delivery_system.png" alt="">
                     </div>
                     <div class="col m6 s6" id="opciones_navbar">
 
@@ -40,7 +37,6 @@
         </nav>
 
     </header>
-
 
     <!--Navegabilidad de la página-->
     <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2 left-align">
@@ -68,64 +64,30 @@
         </div>
         <div class="cerrar-navbar hide-on-med-and-down">
             <li>
-                <button onclick="logOut('Vendedor')" class="tooltipped white-text transparent logout valign-wrapper"
+
+                <button onclick="logOut('Repartidor')" class="tooltipped white-text transparent logout valign-wrapper"
                     data-position="right" data-tooltip="Cerrar sesión"><i class="material-icons ">arrow_back</i><span
                         class="white-text hide-on-large-only">Cerrar sesión</span></button>
             </li>
         </div>
     </ul>
-
     <!--Información de la página-->
-    <main class="center-align">
-        <!--Contenedor de la lista-->
-        <div class="row">
-            <h5>Zona de gráficos</h5>
-            <!--Articulos de la lista-->
-            <div class="col l10 m10 s10 push-l1 push-m1 push-s1 center" id="graficaTop">
-                <h6 id="tituloGraficaTotalPromedio ">Top 5 de clientes que han comprado más según departamento</h6>
-                <span id="ComentariograficaTop"></span>
-                <div class="col l9 m9 s9 center" id="graficaTotalPromedio ">
-                    <div class="TotalPromedio col l12 m12 s12 "></div>
-                    <div class="col l10 m10 s10 push-l1 push-m1 push-s1 slider-styled slider-round "
-                        id="sliderTotalPromedio "></div>
-                    <div class="col l10 m10 s10 push-l1 push-m1 push-s1 ">
-                        <div class="col l6 m6 s12 center ">
-                            <span id="fechaInicial "></span>
-                            <span id="fechaInicialDato " class="hide "></span>
-                        </div>
-                        <div class="col l6 m6 s12 center ">
-                            <span id="fechaFinal "></span>
-                            <span id="fechaFinalDato " class="hide "></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col l3 m3 s3">
-                    <dir class="opciones">
-                        <table>
-                            <thead class="blue lighten-1">
-                                <th>Departamento</th>
-                                <th>Mostrar</th>
-                            </thead>
-                            <tbody id="departamentos" class="contenedorDepartamentos">
-                            </tbody>
-                        </table>
-                    </dir>
+    <main class="metodo-pago">
+        <div class="container">
+            <h5 id="titulo" class="center-align">Comentarios</h5>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Comentario:</th>
+                        <th>Nombre Cliente:</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-coment">
 
-                </div>
-            </div>
-            <div class="col l10 m10 s12 push-l1 push-m1 center">
-                <h6>Departamentos con más compras</h6>
-                <div class="col l12 m12 s12">
-                    <button onclick="openOpciones()" class="btn blue">Generar</button>
-                    <div class="barra_producto_vendido_categoria">
-
-                    </div>
-                </div>
-            </div>
-
+                </tbody>
+            </table>
         </div>
     </main>
-    <!--Footer-->
     <footer class="page-footer blue accent-3">
         <div class="row">
             <div class="col l9 m6 s6">
@@ -175,18 +137,15 @@
             </div>
         </div>
     </footer>
+
     <!--Importar archivos JavaScrip-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.4/underscore-min.js"
-        integrity="sha512-uLKRd6hCNYAENFn2h7w0p5hrUAz21bAu/85eqSqmQ1Y565lFInwRga9Lgk+QAAR9QvNfSlZjnEb+HHfzkAC/8Q=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript" src="../../../js/materialize.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../../../js/chartist.js"></script>
-    <script src="../../../js/chartist-plugin-tooltip.min.js"></script>
+    <script src="../../../recursos/js/sweetalert2.all.min.js"></script>
     <script src="../../../controladores/componentes.js"></script>
-    <script src="../../../controladores/publico/publico_repartidor/estadistica.js"></script>
-    <script src="../../../controladores/publico/publico_repartidor/opciones_sesion.js"></script>
-    <script src="../../../controladores/activador.js"></script>
+    <script src="../../../controladores/publico/publico_repartidor/comentarios.js"></script>
+    <script src="../../../controladores/privado/admin/modo_oscuro.js"></script>
+    <script type="text/javascript" src="../../../controladores/publico/publico_repartidor/opciones_sesion.js"></script>
 </body>
 
 </html>
