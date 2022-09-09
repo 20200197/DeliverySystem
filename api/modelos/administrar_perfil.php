@@ -156,4 +156,17 @@ class AdministrarPerfil extends Validator
         $params = array($this->usuario, $this->pass, $this->identificador);
         return Database::executeRow($sql, $params);
     }
+
+    
+  
+      //Se cambia la fecha de cambio de contraseña de administrador
+      public function changeCambio()
+      {
+  
+          $sql = 'UPDATE cambio_contra_administrador set fecha_cambio = current_date , id_admin=? ';
+          $params = array($_SESSION['id_admin']);
+          return Database::executeRow($sql, $params);
+      }
+  
+     
 }

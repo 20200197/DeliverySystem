@@ -9,6 +9,9 @@ $pdf = new Report;
 // Se inicia el reporte con el encabezado del documento.
 $pdf->startReport('Top 10 clientes que se le han hecho más entregas', 'usuario');
 
+header('Content-type: application/download;filename="productos_mas_menos_vendidos.pdf"');
+header('Cache-Control: private, max-age=0, must-revalidate');
+header('Pragma: public');
 // Se instancia el módelo Producto para obtener los datos.
 $producto = new Producto;
 $cliente = new AdministrarCliente;

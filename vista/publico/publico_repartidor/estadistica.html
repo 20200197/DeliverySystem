@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--Lenguaje de la página-->
 <html lang="es">
-<html>
+
 
 <head>
     <meta charset="uft=8">
@@ -23,23 +23,18 @@
     <header>
         <nav>
             <div class="nav-wrapper white">
-                <div class="row valign-wrapper">
-                    <div class="col m1 s1">
-                        <a href="#" data-target="slide-out" class="sidenav-trigger"><i
-                                class="material-icons large blue-text">menu</i></a>
-                    </div>
-                    <div class="col m5 s5 left valign-wrapper">
-    
-                        <img class="responsive-img" src="logo_delivery_system.png" alt="">
-                    </div>
-                    <div class="col m6 s6" id="opciones_navbar">
-    
-                    </div>
-                </div>
-            </div>
-        </nav>
-    
-    </header>
+                <div class="col s12 m12 l12">
+                    <div class="row valign-wrapper">
+                        <div class="col m1 s1">
+                            <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                                    class="material-icons large blue-text">menu</i></a>
+                        </div>
+                        <div class="col m5 s5 left offset-s1">
+
+                            <img class="responsive-img"
+                                src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
+                        </div>
+                        <div class="col m7 s7 right-align valign-wrapper    " id="opciones_navbar">
 
 
     <!--Navegabilidad de la página-->
@@ -95,18 +90,90 @@
                         </div>
                     </div>
                 </div>
-                <div class="col l3 m3 s3">
-                    <dir class="opciones">
-                        <table>
-                            <thead class="blue lighten-1">
-                                <th>Departamento</th>
-                                <th>Mostrar</th>
-                            </thead>
-                            <tbody id="departamentos" class="contenedorDepartamentos">
-                            </tbody>
-                        </table>
-                    </dir>
+            </div>
+        </nav>
 
+    </header>
+
+
+    <!--Navegabilidad de la página-->
+    <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2 left-align ">
+        <div class="opciones-sidenav">
+            <li><a href="perfil.html" class="tooltipped Hide-on-large-only " data-position="right"
+                    data-tooltip="Perfil"><i class="material-icons tiny white-text">account_circle</i>
+                    <!--<span
+                        class="white-text hide-on-large-only">Perfil</span>-->
+                </a></li>
+            <li><a href="historial.html" class="tooltipped" data-position="right" data-tooltip="Historial"><i
+                        class="material-icons prefix  white-text">description</i>
+                    <!--<span
+                        class="white-text hide-on-large-only ">Historial</span>-->
+                </a></li>
+            <li><a href="paquetes_pendientes.html" class="tooltipped" data-position="right"
+                    data-tooltip="Paquetes pendientes"><i class="material-icons  white-text">alarm</i>
+                    <!--<span
+                        class="white-text hide-on-large-only">Paquetes pendientes</span>-->
+                </a></li>
+            <li><a href="estadistica.html" class="tooltipped" data-position="right" data-tooltip="Estadística"><i
+                        class="material-icons  white-text">insert_chart</i>
+                    <!--<span
+                        class="white-text hide-on-large-only">Estadística</span>-->
+                </a></li>
+            <!--<li class="hide-on-large-only"><button onclick="logOut('Repartidor')"
+                    class="tooltipped transparent logout valign-wrapper" data-position="right"
+                    data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
+                        class="white-text hide-on-large-only">Cerrar
+                        sesión</span></button></li>-->
+        </div>
+        <div class="cerrar-navbar ">
+            <li>
+                <button onclick="logOut('Repartidor')" class="tooltipped white-text transparent logout valign-wrapper"
+                    data-position="right" data-tooltip="Cerrar sesión"><i class="material-icons ">arrow_back</i><span
+                        class="white-text hide-on-large-only">Cerrar sesión</span></button>
+            </li>
+        </div>
+    </ul>
+
+    <!--Información de la página-->
+    <main class="center-align">
+        <!--Contenedor de la lista-->
+        <div class="row">
+            <h5>Zona de gráficos</h5>
+            <div class="row">
+                <!--Articulos de la lista-->
+                <div class="col l10 m10 s10 push-l1 push-m1 push-s1 center" id="graficaTop">
+                    <h6 id="tituloGraficaTotalPromedio ">Top 5 de clientes que han comprado más según departamento</h6>
+                    <span id="ComentariograficaTop"></span>
+                    <div class="col l9 m9 s12 center" id="graficaTotalPromedio ">
+                        <div class="TotalPromedio col l12 m12 s12 "></div>
+                        <div class="col l10 m10 s10 push-l1 push-m1 push-s1 slider-styled slider-round "
+                            id="sliderTotalPromedio "></div>
+                        <div class="col l10 m10 s10 push-l1 push-m1 push-s1 ">
+                            <div class="col l6 m6 s12 center ">
+                                <span id="fechaInicial "></span>
+                                <span id="fechaInicialDato " class="hide "></span>
+                            </div>
+                            <div class="col l6 m6 s12 center ">
+                                <span id="fechaFinal "></span>
+                                <span id="fechaFinalDato " class="hide "></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col l3 m3 s12">
+                        <div class="opciones">
+                            <table id="tabla_in">
+                                <thead class="blue lighten-1" id="thead_in">
+                              
+                                    <th>Departamento</th>
+                                    <th>Mostrar</th>
+                                 
+                                </thead>
+                                <tbody id="departamentos" class="contenedorDepartamentos">
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
                 </div>
             </div>
             <div class="col l10 m10 s12 push-l1 push-m1 center">
@@ -122,7 +189,7 @@
         </div>
     </main>
     <!--Footer-->
-    <footer class="page-footer blue accent-3">
+    <footer class="page-footer blue accent-3" id="footer">
         <div class="row">
             <div class="col l9 m6 s6">
                 <div class="col l6 m12 s12">
@@ -172,7 +239,9 @@
         </div>
     </footer>
     <!--Importar archivos JavaScrip-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.4/underscore-min.js" integrity="sha512-uLKRd6hCNYAENFn2h7w0p5hrUAz21bAu/85eqSqmQ1Y565lFInwRga9Lgk+QAAR9QvNfSlZjnEb+HHfzkAC/8Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.4/underscore-min.js"
+        integrity="sha512-uLKRd6hCNYAENFn2h7w0p5hrUAz21bAu/85eqSqmQ1Y565lFInwRga9Lgk+QAAR9QvNfSlZjnEb+HHfzkAC/8Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript" src="../../../js/materialize.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../../js/chartist.js"></script>

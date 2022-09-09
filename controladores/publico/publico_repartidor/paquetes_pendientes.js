@@ -18,24 +18,28 @@ function fillTable(dataset) {
             ${row.nombre}
             </td>
             <td data-target="Contacto: ">
-                <div class="input-field  col l12 m6 s12 valign-wrapper">
+                <div class="row">
+                <div class="col s12">
                     <i class="material-icons blue-text text-accent-2">local_phone</i>
                     <span>${row.telefono_cliente}</span>
                 </div>
-                <div class="input-field col l12 m6 s12 valign-wrapper">
+                 <div class="col s12">
                     <i class="material-icons blue-text text-accent-2">email</i>
                     <span>${row.correo_cliente}</span>
+                  </div>
                 </div>
             </td>
             
             <td data-target="Dirección y punto de referencia: ">
-            <div class="input-field col l12 m6 s6 valign-wrapper ">
+            <div class="row ">
+            <div class="col s12 offset-s1">
             <i class="material-icons blue-text text-accent-2 tooltipped" data-position="right" data-tooltip="Dirección">location_on</i>
             <span>${row.descripcion_direccion}</span>
-        </div>
-        <div class="input-field col l12 m6 s6 valign-wrapper ">
+            </div>
+        <div class="col s12 offset-s1">
             <i class="material-icons blue-text text-accent-2 tooltipped" data-position="right" data-tooltip="Punto de referencia">map</i>
             <span>${row.punto_referencia}</span>
+        </div>
         </div>
             </td>
             <td data-target="Productos: "> <a href="#modal_info" class="waves-effect waves-light modal-trigger" onClick="cargar_productos(${row.id_factura})"><i class="material-icons blue-text text-accent-2 center-align">remove_red_eye</i></a></td>

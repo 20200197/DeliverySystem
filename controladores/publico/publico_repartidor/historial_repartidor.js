@@ -51,10 +51,10 @@ function fillTable(dataset) {
         content += `
         <tr>
             <td data-target="Producto:">${row.nombre_producto}</td>
-            <td data-target="Vendedor:"><i class=" material-icons prefix" id="icono_reparto">person</i><br> ${row.nombre_vendedor}
+            <td data-target="Vendedor:"><br> ${row.nombre_vendedor}
             </td>
-            <td data-target="Cliente:"><i class=" material-icons prefix" id="icono_reparto">person</i><br> ${row.nombre_cliente}</td>
-            <td data-target="Dirección:">${row.descripcion_direccion}</td>
+            <td data-target="Cliente:"><br> ${row.nombre_cliente}</td>
+            <td data-target="Dirección:"><div class="row"><div class="col s12 offset-s1">${row.descripcion_direccion}</div></div></td>
             <td data-target="Fecha:">${row.fecha_compra}</td>
             <td data-target="Costo de envío:">$${row.costo_envio}</td>
          </tr>
@@ -77,6 +77,7 @@ function openReport() {
     let url = SERVER + `reportes/publico/clientes_mas_entregas.php`;
     // Se abre el reporte en una nueva pestaña del navegador web.
     window.open(url);
+    
 }
 
 
@@ -87,3 +88,72 @@ function openReportComent() {
     // Se abre el reporte en una nueva pestaña del navegador web.
     window.open(url);
 }
+
+
+
+cordova.plugins.SitewaertsDocumentViewer.canViewDocument(
+    SERVER + `reportes/publico/clientes_mas_entregas.php`, '', options, onPossible, onMissingApp, onImpossible, onError);
+    var options = {
+        title: STRING,
+        documentView : {
+            closeLabel : STRING
+        },
+        navigationView : {
+            closeLabel : STRING
+        },
+        email : {
+            enabled : BOOLEAN
+        },
+        print : {
+            enabled : BOOLEAN
+        },
+        openWith : {
+            enabled : BOOLEAN
+        },
+        bookmarks : {
+            enabled : BOOLEAN
+        },
+        search : {
+            enabled : BOOLEAN
+        },
+        autoClose: {
+            onPause : BOOLEAN
+        }
+    }
+    function onPossible(){
+        window.console.log('document can be shown');
+        //e.g. track document usage
+      }
+
+      function onMissingApp(appId, installer)
+{
+    if(confirm("Do you want to install the free PDF Viewer App "
+            + appId + " for Android?"))
+    {
+        installer();
+    }
+}
+
+function onImpossible(){
+    window.console.log('document cannot be shown');
+    //e.g. track document usage
+  }
+
+  function onError(error){
+    window.console.log(error);
+    alert("Sorry! Cannot show document.");
+  }
+
+  cordova.plugins.SitewaertsDocumentViewer.viewDocument(
+    SERVER + `reportes/publico/clientes_mas_entregas.php`, mimeType, options, onShow, onClose, onMissingApp, onError, linkHandlers);
+
+    function onShow(){
+        window.console.log('document shown');
+        //e.g. track document usage
+      }
+
+      function onClose(){
+  window.console.log('document closed');
+  //e.g. remove temp files
+}
+
