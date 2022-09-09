@@ -467,6 +467,16 @@ class Repartidor extends Validator
         return Database::getRow($sql, $params);
     }
 
+      //Metodo para validar campos repetidos
+      public function read($column, $data)
+      {
+          $sql = "SELECT $column 
+                  FROM repartidor 
+                  WHERE $column = ?";
+          $params = array($data);
+          return Database::getRow($sql, $params);
+      }
+
     //Función para leer un registro
     public function readOne()
     {
@@ -504,9 +514,9 @@ class Repartidor extends Validator
         $date = date('Y-m-d');
 
         $this->estado = 1;
-        $sql = 'INSERT INTO repartidor(nombre_repartidor, apellido_repartidor, dui_repartidor, correo_repartidor, usuario_repartidor, telefono_repartidor, clave_repartidor, solvencia_pnc, antecedente_penal, direccion_domicilio, placa_vehiculo, foto_placa_vehiculo, foto_repartidor, foto_vehiculo, id_estado_repartidor, fecha_registro)
-                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->usuario, $this->telefono, $this->clave, $this->solvencia, $this->antecedentes, $this->direccion, $this->placa, $this->foto_placa, $this->foto, $this->foto_vehiculo, $this->estado, $date);
+        $sql = 'INSERT INTO repartidor(nombre_repartidor, apellido_repartidor, dui_repartidor, correo_repartidor, usuario_repartidor, telefono_repartidor, clave_repartidor, solvencia_pnc, antecedente_penal, direccion_domicilio, placa_vehiculo, foto_placa_vehiculo, foto_repartidor, foto_vehiculo, fecha_registro,id_estado_repartidor,intentos_fallidos,fecha_desbloqueo)
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)';
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->usuario, $this->telefono, $this->clave, $this->solvencia, $this->antecedentes, $this->direccion, $this->placa, $this->foto_placa, $this->foto, $this->foto_vehiculo,  $date,$this->estado,0,$date);
 
         return Database::executeRow($sql, $params);
     }

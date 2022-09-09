@@ -279,20 +279,20 @@ if (isset($_GET['action'])) {
                 } elseif (!$repartidor->setCorreo($_POST['email'])) {
                     $result['exception'] = 'Correo incorrecto';
                     //Evaluamos correo que no se repita
-                } elseif ($repartidor->readD('correo_repartidor', $repartidor->getCorreo())) {
+                } elseif ($repartidor->read('correo_repartidor', $repartidor->getCorreo())) {
                     $result['exception'] = 'Este correo ya esta registrado';
                 } elseif (!$repartidor->setUsuario($_POST['user'])) {
                     $result['exception'] = 'Usuario incorrecto';
-                } elseif ($repartidor->readD('usuario_repartidor', $repartidor->getUsuario())) {
+                } elseif ($repartidor->read('usuario_repartidor', $repartidor->getUsuario())) {
                     $result['exception'] = 'Este usuario ya esta registrado';
                 } elseif (!$repartidor->setTelefono($_POST['phone'])) {
                     $result['exception'] = 'Teléfono incorrecto';
                     //Evaluamos telefono que no se repita
-                } elseif ($repartidor->readD('telefono_repartidor', $repartidor->getTelefono())) {
+                } elseif ($repartidor->read('telefono_repartidor', $repartidor->getTelefono())) {
                     $result['exception'] = 'Este teléfono ya esta registrado';
                 } elseif (!$repartidor->setDui($_POST['dui'])) {
                     $result['exception'] = 'DUI incorrecto';
-                } elseif ($repartidor->readD('dui_repartidor', $repartidor->getDui())) {
+                } elseif ($repartidor->read('dui_repartidor', $repartidor->getDui())) {
                     $result['exception'] = 'Este DUI ya se encuentra en uso';
                 } elseif ($_POST['pass1'] != $_POST['pass2']) {
                     $result['exception'] = 'Las contraseñas no coinciden';
