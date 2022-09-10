@@ -51,7 +51,7 @@ function showPosition(position) {
         styles = {
             route: new ol.style.Style({
                 stroke: new ol.style.Stroke({
-                    width: 6, color: [40, 40, 40, 0.8]
+                    width: 6, color: [6, 60, 200, 0.8]
                 })
             }),
             icon: new ol.style.Style({
@@ -210,7 +210,7 @@ function showPosition(position) {
         });
 
     }
-    setInterval(locate, 3000);
+   locate();
     var lat1 = latitudeAc;
     var long1 = longitudeAc;
     var lat2 = LATITUDE;
