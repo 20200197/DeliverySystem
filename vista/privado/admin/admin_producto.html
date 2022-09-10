@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!--Lenguaje de la página-->
+<html lang="es">
+<html>
+
+<head>
+    <meta charset="uft=8">
+    <!--Importar iconos-->
+    <link href="../../../recursos/css/icons.css" rel="stylesheet">
+    <!--Importar archivos CSS-->
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_privado.css" media="screen,projection" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@200&display=swap" rel="stylesheet">
+    <!--Optimización para mobiles-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <!--Encabezado-->
+    <!--Encabezado y sesión-->
+    <header>
+        <nav>
+            <div class="nav-wrapper white">
+                <div class="row valign-wrapper">
+                    <div class="col m1 s1">
+                        <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                                class="material-icons large blue-text">menu</i></a>
+                    </div>
+                    <div class="col m5 s5 left valign-wrapper">
+
+                        <img class="responsive-img" src="../../../recursos/img/logo_delivery_system.png" alt="">
+                    </div>
+                    <div class="col m6 s6" id="opciones_navbar">
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <div class="row">
+        <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
+            <div class="opciones-sidenav">
+                <li><a href="perfil.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
+                            class="material-icons center white-text">account_circle</i><span
+                            class="white-text hide-on-large-only">Perfil</span></a></li>
+                <li><a href="admin_producto.html" class="tooltipped" data-position="right" data-tooltip="Productos"><i
+                            class="material-icons  white-text">import_contacts</i><span
+                            class="white-text hide-on-large-only">Productos</span></a></li>
+                <li><a href="admin_categoria.html" class="tooltipped" data-position="right" data-tooltip="Categoria"><i
+                            class="material-icons  white-text">format_list_bulleted</i><span
+                            class="white-text hide-on-large-only">Categoria</span></a></li>
+                <li><a href="admin_marca.html" class="tooltipped" data-position="right" data-tooltip="Marcas"><i
+                            class="material-icons  white-text">style</i><span
+                            class="white-text hide-on-large-only">Marcas</span></a>
+                </li>
+                <li><a href="admin_vendedor.html" class="tooltipped" data-position="right" data-tooltip="Vendedores"><i
+                            class="material-icons  white-text">people</i><span
+                            class="white-text hide-on-large-only">Vendedores</span></a></li>
+                <li><a href="admin_distribuidor.html" class="tooltipped" data-position="right"
+                        data-tooltip="Repartidores"><i class="material-icons  white-text">motorcycle</i><span
+                            class="white-text hide-on-large-only">Repartidores</span></a></li>
+                <li><a href="admin_cliente.html" class="tooltipped" data-position="right" data-tooltip="Clientes"><i
+                            class="material-icons  white-text">wc</i><span
+                            class="white-text hide-on-large-only">Clientes</span></a>
+                </li>
+                <li><a href="admin_entrega.html" class="tooltipped" data-position="right" data-tooltip="Reparto"><i
+                            class="material-icons  white-text">description</i><span
+                            class="white-text hide-on-large-only">Reparto</span></a></li>
+                <li><a href="admin_admin.html" class="tooltipped" data-position="right"
+                        data-tooltip="Administradores"><i class="material-icons  white-text">folder_shared</i><span
+                            class="white-text hide-on-large-only">Administradores</span></a></li>
+                <li><a href="admin_baneo.html" class="tooltipped" data-position="right" data-tooltip="Mapas"><i
+                            class="material-icons  white-text">lock_outline</i><span
+                            class="white-text hide-on-large-only">Administrar baneos</span></a>
+                </li>
+                <li><a href="estadistica.html" class="tooltipped" data-position="right" data-tooltip="Estadísticas"><i
+                            class="material-icons  white-text">insert_chart</i><span
+                            class="white-text hide-on-large-only">Estadísticas</span></a></li>
+                <li class="hide-on-large-only"><button onclick="logOut('Admin')"
+                        class="tooltipped transparent logout valign-wrapper" data-position="right"
+                        data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
+                            class="white-text hide-on-large-only">Cerrar sesión</span></button></li>
+            </div>
+            <div class="cerrar-navbar hide-on-med-and-down">
+                <li><button onclick="logOut('Admin')" class="tooltipped transparent logout" data-position="right"
+                        data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
+                            class="white-text hide-on-large-only">Cerrar sesión</span></button></li>
+            </div>
+
+        </ul>
+    </div>
+    <!--Información de la página-->
+    <main>
+        <div class="row ">
+            <!--Contenedor-->
+            <div class="row col l10 m12 s12 push-l1 ">
+                <div class="col s12 m12 l12 titulo_pega">
+                    <!--Titulo-->
+                    <div class="row ">
+                        <h5 class="center-align titulo_admin">Administrar producto</h5>
+                    </div>
+                    <!-- Formulario de búsqueda -->
+                    <form method="post" id="search-form">
+                        <div class="input-field col s9 m7 l4">
+                            <i class="material-icons prefix">search</i>
+                            <input id="search" type="text" name="search"
+                                placeholder="Busque por producto, categoria, marca o vendedor..." required>
+                            <label for="search">Buscador</label>
+                        </div>
+                    </form>
+
+                    <div class="col s1 m1 l8">
+                        <div class="row">
+                            <!-- Enlace para generar un reporte en formato PDF -->
+                            <a onclick="openReportProductosMasMenosVendidos()"
+                                class="btn-floating waves-effect blue tooltipped right"
+                                data-tooltip="Reporte: Top productos más y menos vendedidos">
+                                <i class="material-icons">assignment</i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="row" id="updatee-form" method="post" enctype="multipart/form-data">
+                    <div class="col s12 l12 m12 contenido_apar">
+                        <!--Tabla-->
+                        <table id="table">
+                            <thead>
+                                <!--Columnas-->
+                                <tr>
+                                    <th>Nombre producto:</th>
+                                    <th>Cantidad:</th>
+                                    <th>Descripción:</th>
+                                    <th>Precio:</th>
+                                    <th>Imagen:</th>
+                                    <th>Estado: </th>
+                                    <th>Categoria: </th>
+                                    <th>Vendedor:</th>
+                                    <th>Marca: </th>
+                                    <th>Dar de baja: </th>
+                                </tr>
+                            </thead>
+                            <!--Datos de tabla-->
+                            <tbody id="tbody-productos">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <!--Modal eliminar producto-->
+            <div id="update-modal" class="modal">
+                <div class="modal-content">
+                    <div class="row contorno">
+                        <h5 class="center-align" id="titulo_E"></h5>
+                        <form id="update-form" method="post">
+                            <!--Campo ocultos-->
+                            <input type="text" class="hide" id="id" name="id">
+                            <!-- <div class="switch">
+                                        <label>
+                                            <input id="estado_producto" type="checkbox" name="estado_producto" >
+                                            <span class="lever hide "></span>
+                                        </label>
+                                    </div>-->
+                            <div class="col s12 m12 l12 imagen_categ">
+                                <img id="imagen_E">
+                            </div>
+                            <h6 class="center-align" id="texto_E"></h6>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
+                    <button class="waves-effect waves-green btn-flat boton_a_gregar">Aceptar</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!--Footer -->
+    <footer class="page-footer blue accent-3">
+        <div class="row">
+            <div class="col l2 m6 s12">
+                <div class="col offset-l1 offset-m1 offset-s1">
+                    <img class="responsive-img" src="../../../recursos/img/privado/admin/modals/logo.png" alt="">
+                    <h6>Copyright 2022</h6>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!--Importar archivos JavaScrip-->
+    <script src="../../../recursos/js/materialize.min.js "></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../../recursos/js/sweetalert2.all.min.js"></script>
+    <script src="../../../controladores/componentes.js"></script>
+    <script src="../../../controladores/privado/admin/admin_producto.js"></script>
+    <script src="../../../controladores/privado/admin/modo_oscuro.js"></script>
+    <script type="text/javascript" src="../../../controladores/privado/admin/opciones_sesion.js"></script>
+</body>
+
+</html>
