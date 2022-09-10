@@ -909,3 +909,10 @@ input[type="radio"]:checked~label>.estrellaProducto {
     width: 100% !important;
     height: 600px !important ;
 }
+
+.ol-control button{ 
+    background-color: rgba(40, 40, 40, 0.85) !important;
+  }
+  .ol-control button:hover{ 
+    background-color: rgba(40, 40, 40, 1) !important;
+  }

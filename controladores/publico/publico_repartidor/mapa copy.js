@@ -41,35 +41,12 @@ function showPosition(position) {
     var latitudeAc = position.coords.latitude;
     var longitudeAc = position.coords.longitude;
 
-    var vectorSource = new ol.source.Vector(),
-        url_osrm_nearest = '//router.project-osrm.org/nearest/v1/driving/',
-        url_osrm_route = '//router.project-osrm.org/route/v1/driving/',
-        icon_url = '//cdn.rawgit.com/openlayers/ol3/master/examples/data/icon.png',
-        vectorLayer = new ol.layer.Vector({
-            source: vectorSource
-        }),
-        styles = {
-            route: new ol.style.Style({
-                stroke: new ol.style.Stroke({
-                    width: 6, color: [40, 40, 40, 0.8]
-                })
-            }),
-            icon: new ol.style.Style({
-                image: new ol.style.Icon({
-                    anchor: [0.5, 1],
-                    src: '../../../recursos/img/cajaki.png'
-                })
-            })
-        };
-
-
     var mapa = new ol.Map({
         target: 'mapa',
         layers: [
             new ol.layer.Tile({
                 source: new ol.source.OSM()
             }),
-            vectorLayer
         ],
         view: new ol.View({
             center: ol.proj.fromLonLat([LONGITUD, LATITUDE]),
@@ -77,31 +54,27 @@ function showPosition(position) {
         })
     });
 
-
-
     //Marcador de reparto
-    /**let marcador = new ol.Feature({
+    let marcador = new ol.Feature({
         geometry: new ol.geom.Point(//lo y la
             ol.proj.fromLonLat([LONGITUD, LATITUDE])// En dónde se va a ubicar
         ),
-    });**/
+    });
 
+    marcador.setStyle(new ol.style.Style({
+        image: new ol.style.Icon({
+            src: "../../../recursos/img/cajaki.png",
 
+        })
+    }));
 
-    /**  marcador.setStyle(new ol.style.Style({
-         image: new ol.style.Icon({
-             src: "../../../recursos/img/cajaki.png",
- 
-         })
-     }));
- **/
 
 
 
     // marcadores debe ser un arreglo
     const marcadores = []; // Arreglo para que se puedan agregar otros más tarde
 
-    /**  marcadores.push(marcador);// Agregamos el marcador al arreglo*/
+    marcadores.push(marcador);// Agregamos el marcador al arreglo
 
 
 
@@ -134,19 +107,84 @@ function showPosition(position) {
 
     // Y agregamos la capa al mapa
     mapa.addLayer(capa);
-    var coordenadaInicio = ol.proj.fromLonLat([longitudeAc, latitudeAc]);
-    var coordenadaFinal = ol.proj.fromLonLat([LONGITUD, LATITUDE]);
 
+    //Poup up de repartidor
+    var popupRe = new ol.Overlay.Popup();
+    mapa.addOverlay(popupRe);
 
+    //Pop up de reparto
+    var popup = new ol.Overlay.Popup();
+    mapa.addOverlay(popup);
+    
+    mapa.on('singleclick', function (evt) {
+
+        var coordenadaRe = ol.proj.fromLonLat([longitudeAc, latitudeAc]);
+        popupRe.show(coordenadaRe, 'Usted esta aqui');
+        var coordenada = ol.proj.fromLonLat([LONGITUD, LATITUDE]);
+        popup.show(coordenada, 'Su destino');
+    });
+   
+    var points = [],
+        msg_el = document.getElementById('msg'),
+        url_osrm_nearest = '//router.project-osrm.org/nearest/v1/driving/',
+        url_osrm_route = '//router.project-osrm.org/route/v1/driving/',
+        icon_url = '//cdn.rawgit.com/openlayers/ol3/master/examples/data/icon.png',
+        vectorSource = new ol.source.Vector(),
+        vectorLayer = new ol.layer.Vector({
+            source: vectorSource
+        }),
+
+        styles = {
+            route: new ol.style.Style({
+                stroke: new ol.style.Stroke({
+                    width: 6, color: [40, 40, 40, 0.8]
+                })
+            }),
+            icon: new ol.style.Style({
+                image: new ol.style.Icon({
+                    anchor: [0.5, 1],
+                    src: '../../../recursos/img/posi.png'
+                })
+            })
+        };
+
+    mapa.on('click', function (evt) {
+        utils.getNearest(evt.coordinate).then(function (coord_street) {
+            var last_point = points[points.length - 1];
+            var points_length = points.push(coord_street);
+
+            utils.createFeature(coord_street);
+
+            if (points_length < 2) {
+                msg_el.innerHTML = 'Click to add another point';
+                return;
+            }
+
+            //get the route
+            var point1 = last_point.join();
+            var point2 = coord_street.join();
+
+            fetch(url_osrm_route + point1 + ';' + point2).then(function (r) {
+                return r.json();
+            }).then(function (json) {
+                if (json.code !== 'Ok') {
+                    msg_el.innerHTML = 'No route found.';
+                    return;
+                }
+                msg_el.innerHTML = 'Route added';
+                //points.length = 0;
+                utils.createRoute(json.routes[0].geometry);
+            });
+        });
+    });
 
     var utils = {
         getNearest: function (coord) {
-
             var coord4326 = utils.to4326(coord);
             return new Promise(function (resolve, reject) {
-                //Comprobar que este en el mapa
+                //make sure the coord is on street
                 fetch('//router.project-osrm.org/nearest/v1/driving/' + coord4326.join()).then(function (response) {
-                    // Formato Json
+                    // Convert to JSON
                     return response.json();
                 }).then(function (json) {
                     if (json.code === 'Ok') resolve(json.waypoints[0].location);
@@ -163,7 +201,7 @@ function showPosition(position) {
             vectorSource.addFeature(feature);
         },
         createRoute: function (polyline) {
-
+            // route is ol.geom.LineString
             var route = new ol.format.Polyline({
                 factor: 1e5
             }).readGeometry(polyline, {
@@ -176,62 +214,14 @@ function showPosition(position) {
             });
             feature.setStyle(styles.route);
             vectorSource.addFeature(feature);
-        }, to4326: function (coord) {
+        },
+        to4326: function (coord) {
             return ol.proj.transform([
                 parseFloat(coord[0]), parseFloat(coord[1])
             ], 'EPSG:3857', 'EPSG:4326');
         }
-
     };
 
-
-
-
-    function locate() {
-        const coordinates = [longitudeAc, latitudeAc];
-
-        var my_lati = latitudeAc;
-        var my_longi = longitudeAc;
-        var lati = LATITUDE;
-        var longi = LONGITUD;
-
-        utils.getNearest([my_longi, my_lati]);
-        utils.getNearest([longi, lati]);
-        utils.createFeature([longi, lati]);
-        var point1 = [my_longi, my_lati];
-        var point2 = [longi, lati];
-        fetch(url_osrm_route + point1 + ';' + point2).then(function (r) {
-            return r.json();
-        }).then(function (json) {
-            if (json.code !== 'Ok') {
-                return;
-            }
-            utils.createRoute(json.routes[0].geometry);
-        });
-
-    }
-    setInterval(locate, 3000);
-    var lat1 = latitudeAc;
-    var long1 = longitudeAc;
-    var lat2 = LATITUDE;
-    var long2 = LONGITUD;
-    //Distancia aproximanda en km
-    function Dist(lat1, long1, lat2, long2) {
-        rad = function (x) {
-            return x * Math.PI / 180;
-        }
-
-        var R = 6378.137;//Radio de la tierra en km
-        var dLat = rad(lat2 - lat1);
-        var dLong = rad(long2 - long1);
-        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(rad(lat1)) * Math.cos(rad(lat2)) * Math.sin(dLong / 2) * Math.sin(dLong / 2);
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        var d = R * c;
-        d  = d + 30;//Solo para llegar mas exacto
-        return d.toFixed(3);//Retorna tres decimales
-    }
-    Distancia = Dist(lat1, long2, lat2, long1);//Retorna numero en Km
-    document.getElementById("con").innerHTML = Distancia+'km';
 }
 function mapa(latitude, longitud) {
 
