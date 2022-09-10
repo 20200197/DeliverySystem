@@ -488,3 +488,11 @@ th{
 .ct-series-e .ct-slice-donut {
     stroke: #01579b;
 }
+
+.Baneado{
+    color: red;
+}
+
+.Bloqueo{
+    color: rgba(187, 187, 72, 0.807);
+}
