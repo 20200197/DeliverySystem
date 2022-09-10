@@ -20,121 +20,118 @@
     <!--Marco general-->
     <header>
         <nav>
-           <div class="nav-wrapper white">
-              <div class="row valign-wrapper">
-                 <div class="col m1 s1">
-                    <a href="#" data-target="slide-out" class="sidenav-trigger"><i
-                          class="material-icons large blue-text">menu</i></a>
-                 </div>
-                 <div class="col m5 s5 left valign-wrapper">
-  
-                    <img class="responsive-img" src="logo_delivery_system.png" alt="">
-                 </div>
-                 <div class="col m6 s6" id="opciones_navbar">
-  
-                 </div>
-              </div>
-           </div>
-        </nav>
-  
-     </header>
-     <div class="row">
-        <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
-           <div class="opciones-sidenav">
-              <li><a href="perfil.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
-                       class="material-icons center white-text">account_circle</i><span
-                       class="white-text hide-on-large-only">Perfil</span></a></li>
-              <li><a href="admin_producto.html" class="tooltipped" data-position="right" data-tooltip="Productos"><i
-                       class="material-icons  white-text">import_contacts</i><span
-                       class="white-text hide-on-large-only">Productos</span></a></li>
-              <li><a href="admin_categoria.html" class="tooltipped" data-position="right" data-tooltip="Categoria"><i
-                       class="material-icons  white-text">format_list_bulleted</i><span
-                       class="white-text hide-on-large-only">Categoria</span></a></li>
-              <li><a href="admin_marca.html" class="tooltipped" data-position="right" data-tooltip="Marcas"><i
-                       class="material-icons  white-text">style</i><span
-                       class="white-text hide-on-large-only">Marcas</span></a>
-              </li>
-              <li><a href="admin_vendedor.html" class="tooltipped" data-position="right" data-tooltip="Vendedores"><i
-                       class="material-icons  white-text">people</i><span
-                       class="white-text hide-on-large-only">Vendedores</span></a></li>
-              <li><a href="admin_distribuidor.html" class="tooltipped" data-position="right"
-                    data-tooltip="Repartidores"><i class="material-icons  white-text">motorcycle</i><span
-                       class="white-text hide-on-large-only">Repartidores</span></a></li>
-              <li><a href="admin_cliente.html" class="tooltipped" data-position="right" data-tooltip="Clientes"><i
-                       class="material-icons  white-text">wc</i><span
-                       class="white-text hide-on-large-only">Clientes</span></a>
-              </li>
-              <li><a href="admin_entrega.html" class="tooltipped" data-position="right" data-tooltip="Reparto"><i
-                       class="material-icons  white-text">description</i><span
-                       class="white-text hide-on-large-only">Reparto</span></a></li>
-              <li><a href="admin_admin.html" class="tooltipped" data-position="right" data-tooltip="Administradores"><i
-                       class="material-icons  white-text">folder_shared</i><span
-                       class="white-text hide-on-large-only">Administradores</span></a></li>
-              <li><a href="admin_mapa.html" class="tooltipped" data-position="right" data-tooltip="Mapas"><i
-                       class="material-icons  white-text">map</i><span
-                       class="white-text hide-on-large-only">Mapas</span></a>
-              </li>
-              <li><a href="estadistica.html" class="tooltipped" data-position="right" data-tooltip="Estadísticas"><i
-                       class="material-icons  white-text">insert_chart</i><span
-                       class="white-text hide-on-large-only">Estadísticas</span></a></li>
-              <li class="hide-on-large-only"><button onclick="logOut('Admin')"
-                    class="tooltipped transparent logout valign-wrapper" data-position="right"
-                    data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
-                       class="white-text hide-on-large-only">Cerrar sesión</span></button></li>
-           </div>
-           <div class="cerrar-navbar hide-on-med-and-down">
-              <li><button onclick="logOut('Admin')" class="tooltipped transparent logout" data-position="right"
-                    data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
-                       class="white-text hide-on-large-only">Cerrar sesión</span></button></li>
-           </div>
-  
-  
-        </ul>
-     </div>
-            <!--Información de la página-->
-            <main>
-                <!--Contenedor-->
-                <div class="row administrar_cate_o ">
-                    <!--Primera columna-->
-                    <div class="col s12 m12 l12 titulo_pega">
-                        <!--Titulo-->
-                            <h5 class="center-align titulo_admin">Administrar categoria</h5>
-                            <div class="col l8 m8 s12 offset-l1">
-                                <!-- Formulario de búsqueda -->
-                                <form method="post" id="search-form">
-                                    <div class="input-field col sl6 m6 s11">
-                                        <i class="material-icons prefix">search</i>
-                                        <input id="search" type="text" name="search"
-                                            placeholder="Busque por categoría..." required>
-                                        <label for="search">Buscador</label>
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- Opciones de administración-->
-                            <div class="col l2 m2 s10">
-                                <a class=" btn-floating right boton_color tooltipped blue" data-position="right"
-                                    data-tooltip="Marcas" href="admin_marca.html"><i
-                                        class="material-icons">style</i></a>
-                                <a class="btn-floating right boton_color modal-trigger tooltipped blue" data-position="left"
-                                    data-tooltip="Agregar" href="#modal_anadir_categ_oo"><i
-                                        class="material-icons left">add</i></a>
+            <div class="nav-wrapper white">
+                <div class="row valign-wrapper">
+                    <div class="col m1 s1">
+                        <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                                class="material-icons large blue-text">menu</i></a>
                     </div>
-                    <!--Columna siguiente-->
-                    <div class="col s12 l10 m10 contenido_apar offset-l1 offset-m1">
-                        <!--Tabla-->
-                        <table>
-                            <thead>
-                                <tr>
-                                    <!--Columnas-->
-                                    <th>Nombre categoria:</th>
-                                    <th>Imagen categoria:</th>
-                                    <th>Estado</th>
-                                    <th>Editar</th>
-                                </tr>
-                            </thead>
-                            <!--Datos de la tabla-->
-                            <tbody id="tbody-catego">
-                                <!--<tr>
+                    <div class="col m5 s5 left valign-wrapper">
+
+                        <img class="responsive-img" src="logo_delivery_system.png" alt="">
+                    </div>
+                    <div class="col m6 s6" id="opciones_navbar">
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <div class="row">
+        <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
+            <div class="opciones-sidenav">
+                <li><a href="perfil.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
+                            class="material-icons center white-text">account_circle</i><span
+                            class="white-text hide-on-large-only">Perfil</span></a></li>
+                <li><a href="admin_producto.html" class="tooltipped" data-position="right" data-tooltip="Productos"><i
+                            class="material-icons  white-text">import_contacts</i><span
+                            class="white-text hide-on-large-only">Productos</span></a></li>
+                <li><a href="admin_categoria.html" class="tooltipped" data-position="right" data-tooltip="Categoria"><i
+                            class="material-icons  white-text">format_list_bulleted</i><span
+                            class="white-text hide-on-large-only">Categoria</span></a></li>
+                <li><a href="admin_marca.html" class="tooltipped" data-position="right" data-tooltip="Marcas"><i
+                            class="material-icons  white-text">style</i><span
+                            class="white-text hide-on-large-only">Marcas</span></a>
+                </li>
+                <li><a href="admin_vendedor.html" class="tooltipped" data-position="right" data-tooltip="Vendedores"><i
+                            class="material-icons  white-text">people</i><span
+                            class="white-text hide-on-large-only">Vendedores</span></a></li>
+                <li><a href="admin_distribuidor.html" class="tooltipped" data-position="right"
+                        data-tooltip="Repartidores"><i class="material-icons  white-text">motorcycle</i><span
+                            class="white-text hide-on-large-only">Repartidores</span></a></li>
+                <li><a href="admin_cliente.html" class="tooltipped" data-position="right" data-tooltip="Clientes"><i
+                            class="material-icons  white-text">wc</i><span
+                            class="white-text hide-on-large-only">Clientes</span></a>
+                </li>
+                <li><a href="admin_entrega.html" class="tooltipped" data-position="right" data-tooltip="Reparto"><i
+                            class="material-icons  white-text">description</i><span
+                            class="white-text hide-on-large-only">Reparto</span></a></li>
+                <li><a href="admin_admin.html" class="tooltipped" data-position="right"
+                        data-tooltip="Administradores"><i class="material-icons  white-text">folder_shared</i><span
+                            class="white-text hide-on-large-only">Administradores</span></a></li>
+                <li><a href="admin_baneo.html" class="tooltipped" data-position="right" data-tooltip="Mapas"><i
+                            class="material-icons  white-text">lock_outline</i><span
+                            class="white-text hide-on-large-only">Administrar baneos</span></a>
+                </li>
+                <li><a href="estadistica.html" class="tooltipped" data-position="right" data-tooltip="Estadísticas"><i
+                            class="material-icons  white-text">insert_chart</i><span
+                            class="white-text hide-on-large-only">Estadísticas</span></a></li>
+                <li class="hide-on-large-only"><button onclick="logOut('Admin')"
+                        class="tooltipped transparent logout valign-wrapper" data-position="right"
+                        data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
+                            class="white-text hide-on-large-only">Cerrar sesión</span></button></li>
+            </div>
+            <div class="cerrar-navbar hide-on-med-and-down">
+                <li><button onclick="logOut('Admin')" class="tooltipped transparent logout" data-position="right"
+                        data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
+                            class="white-text hide-on-large-only">Cerrar sesión</span></button></li>
+            </div>
+
+
+        </ul>
+    </div>
+    <!--Información de la página-->
+    <main>
+        <!--Contenedor-->
+        <div class="row administrar_cate_o ">
+            <!--Primera columna-->
+            <div class="col s12 m12 l12 titulo_pega">
+                <!--Titulo-->
+                <h5 class="center-align titulo_admin">Administrar categoria</h5>
+                <div class="col l8 m8 s12 offset-l1">
+                    <!-- Formulario de búsqueda -->
+                    <form method="post" id="search-form">
+                        <div class="input-field col sl6 m6 s11">
+                            <i class="material-icons prefix">search</i>
+                            <input id="search" type="text" name="search" placeholder="Busque por categoría..." required>
+                            <label for="search">Buscador</label>
+                        </div>
+                    </form>
+                </div>
+                <!-- Opciones de administración-->
+                <div class="col l2 m2 s10">
+                    <a class=" btn-floating right boton_color tooltipped blue" data-position="right"
+                        data-tooltip="Marcas" href="admin_marca.html"><i class="material-icons">style</i></a>
+                    <a class="btn-floating right boton_color modal-trigger tooltipped blue" data-position="left"
+                        data-tooltip="Agregar" href="#modal_anadir_categ_oo"><i class="material-icons left">add</i></a>
+                </div>
+                <!--Columna siguiente-->
+                <div class="col s12 l10 m10 contenido_apar offset-l1 offset-m1">
+                    <!--Tabla-->
+                    <table>
+                        <thead>
+                            <tr>
+                                <!--Columnas-->
+                                <th>Nombre categoria:</th>
+                                <th>Imagen categoria:</th>
+                                <th>Estado</th>
+                                <th>Editar</th>
+                            </tr>
+                        </thead>
+                        <!--Datos de la tabla-->
+                        <tbody id="tbody-catego">
+                            <!--<tr>
                                     <td data-target="Nombre categoría: ">Categoria 1</td>
                                     <td data-target="Imagen cliente: "><img
                                             src="../../../recursos/img/privado/admin/tabla/images (5).jpg"
@@ -150,122 +147,122 @@
                                     <td data-target="Editar: "><a class="btn-flat boton_editar_tabl modal-trigger"
                                             href="#modal_editar_categ_o"><i class=" material-icons small">edit</i></td>
                                 </tr>-->
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
-                <!--Modal editar categoria-->
-                <div id="modal_editar_categ_o" class="modal">
-                    <form class="row" method="post" id="update-form" enctype="multipart/form-data">
-                        <div class="modal-content">
-                            <div class="row contorno">
-                                <div class="col s12 m12 l12">
-                                    <h5 class="center-align">Editar categoria</h5>
-                                    <div class="col s12 m12 l5 imagen_categ">
-                                        <div class="row">
-                                            <div class="col s12 m12 l12">
-                                                <input type="text" id="id_ca" class="hide" name="id_ca">
-                                                <!--Boton-->
-                                                <div class="col l12 m12 s12 center-align" id="preview-categoriaA">
-                                                    <img id="categoria-picA"
-                                                        src="../../../recursos/img/privado/admin/default-img.jpg"
-                                                        width="100" height="100" class="imagen_prod_o">
-                                                    <div class="file-field input-field col s12 m12 l12 center-align">
-                                                        <div class="btn blue center-align">
-                                                            <span>Imagen</span>
-                                                            <input type="file"
-                                                                onchange="leerImg(this, document.getElementById('categoria-picA'))"
-                                                                id="archivo_cate" name="archivo_cate">
-                                                        </div>
-                                                        <div class="file-path-wrapper col s14 m4 l4">
-                                                            <input class="file-path validate" type="text"
-                                                                id="nombre_imagen">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col s12 m12 l5 nombre_catee">
-                                        <h6>Nombre categoria:</h6>
-                                        <div class="input-field col s12 m12 l12">
-                                            <input placeholder="Nombre" id="nombre_cate" name="nombre_cate" type="text">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#!"
-                                class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
-                            <button href="#!" class="waves-effect waves-green btn-flat boton_a_gregar"
-                                type="submit">Modificar</button>
-                        </div>
-                    </form>
-                </div>
-                <!--Modal añadir categoria-->
-                <div id="modal_anadir_categ_oo" class="modal">
-                    <form class="row" method="post" id="save-form" enctype="multipart/form-data">
-                        <div class="modal-content">
-                            <div class="row contorno">
-                                <div class="col s12 m12 l12">
-                                    <h5 class="center-align">Agregar categoria</h5>
+            </div>
+            <!--Modal editar categoria-->
+            <div id="modal_editar_categ_o" class="modal">
+                <form class="row" method="post" id="update-form" enctype="multipart/form-data">
+                    <div class="modal-content">
+                        <div class="row contorno">
+                            <div class="col s12 m12 l12">
+                                <h5 class="center-align">Editar categoria</h5>
+                                <div class="col s12 m12 l5 imagen_categ">
                                     <div class="row">
-                                        <div class="col s12 m12 l4">
+                                        <div class="col s12 m12 l12">
+                                            <input type="text" id="id_ca" class="hide" name="id_ca">
                                             <!--Boton-->
-                                            <div class="col l12 m12 s12 center-align" id="preview-categoria">
-                                                <img id="categoria-pic"
+                                            <div class="col l12 m12 s12 center-align" id="preview-categoriaA">
+                                                <img id="categoria-picA"
                                                     src="../../../recursos/img/privado/admin/default-img.jpg"
                                                     width="100" height="100" class="imagen_prod_o">
                                                 <div class="file-field input-field col s12 m12 l12 center-align">
                                                     <div class="btn blue center-align">
                                                         <span>Imagen</span>
                                                         <input type="file"
-                                                            onchange="leerImgCreate(this, document.getElementById('categoria-pic'))"
-                                                            id="archivo_categO" name="archivo_categO">
+                                                            onchange="leerImg(this, document.getElementById('categoria-picA'))"
+                                                            id="archivo_cate" name="archivo_cate">
                                                     </div>
-                                                    <div class="file-path-wrapper col s4 m4 l4">
-                                                        <input class="file-path validate" type="text">
+                                                    <div class="file-path-wrapper col s14 m4 l4">
+                                                        <input class="file-path validate" type="text"
+                                                            id="nombre_imagen">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--Siguiente columna-->
-                                        <div class="col s12 m12 l5">
-                                            <div class="col s12 m12 l12">
-                                                <h6>Nombre categoria:</h6>
-                                                <div class="input-field col s12 m12 l12 nombre_field">
-                                                    <input placeholder="Nombre" id="nombre_catego" name="nombre_catego"
-                                                        type="text">
+                                    </div>
+                                </div>
+                                <div class="col s12 m12 l5 nombre_catee">
+                                    <h6>Nombre categoria:</h6>
+                                    <div class="input-field col s12 m12 l12">
+                                        <input placeholder="Nombre" id="nombre_cate" name="nombre_cate" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!"
+                            class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
+                        <button href="#!" class="waves-effect waves-green btn-flat boton_a_gregar"
+                            type="submit">Modificar</button>
+                    </div>
+                </form>
+            </div>
+            <!--Modal añadir categoria-->
+            <div id="modal_anadir_categ_oo" class="modal">
+                <form class="row" method="post" id="save-form" enctype="multipart/form-data">
+                    <div class="modal-content">
+                        <div class="row contorno">
+                            <div class="col s12 m12 l12">
+                                <h5 class="center-align">Agregar categoria</h5>
+                                <div class="row">
+                                    <div class="col s12 m12 l4">
+                                        <!--Boton-->
+                                        <div class="col l12 m12 s12 center-align" id="preview-categoria">
+                                            <img id="categoria-pic"
+                                                src="../../../recursos/img/privado/admin/default-img.jpg" width="100"
+                                                height="100" class="imagen_prod_o">
+                                            <div class="file-field input-field col s12 m12 l12 center-align">
+                                                <div class="btn blue center-align">
+                                                    <span>Imagen</span>
+                                                    <input type="file"
+                                                        onchange="leerImgCreate(this, document.getElementById('categoria-pic'))"
+                                                        id="archivo_categO" name="archivo_categO">
                                                 </div>
+                                                <div class="file-path-wrapper col s4 m4 l4">
+                                                    <input class="file-path validate" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--Siguiente columna-->
+                                    <div class="col s12 m12 l5">
+                                        <div class="col s12 m12 l12">
+                                            <h6>Nombre categoria:</h6>
+                                            <div class="input-field col s12 m12 l12 nombre_field">
+                                                <input placeholder="Nombre" id="nombre_catego" name="nombre_catego"
+                                                    type="text">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <a href="#!"
-                                class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
-                            <button class="waves-green btn-flat boton_a_gregar" type="submit">Añadir</button>
-                        </div>
-                    </form>
-                </div>
-            </main>
-        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!"
+                            class="modal-close waves-effect waves-green btn-flat boton_cancelar_cate">Cancelar</a>
+                        <button class="waves-green btn-flat boton_a_gregar" type="submit">Añadir</button>
+                    </div>
+                </form>
+            </div>
+    </main>
+    </div>
     </div>
 
     <!--Footer-->
     <footer class="page-footer blue accent-3">
         <div class="row">
-           <div class="col l2 m6 s12">
-              <div class="col offset-l1 offset-m1 offset-s1">
-                 <img class="responsive-img" src="../../../recursos/img/privado/admin/modals/logo.png" alt="">
-                 <h6>Copyright 2022</h6>
-              </div>
-           </div>
+            <div class="col l2 m6 s12">
+                <div class="col offset-l1 offset-m1 offset-s1">
+                    <img class="responsive-img" src="../../../recursos/img/privado/admin/modals/logo.png" alt="">
+                    <h6>Copyright 2022</h6>
+                </div>
+            </div>
         </div>
-     </footer>
+    </footer>
     </div>
     <!--Importar archivos JavaScrip-->
     <script type="text/javascript" src="../../../js/materialize.min.js"></script>

@@ -21,16 +21,16 @@
                                 class="material-icons large blue-text">menu</i></a>
                     </div>
                     <div class="col m5 s5 left valign-wrapper">
-    
+
                         <img class="responsive-img" src="logo_delivery_system.png" alt="">
                     </div>
                     <div class="col m6 s6" id="opciones_navbar">
-    
+
                     </div>
                 </div>
             </div>
         </nav>
-    
+
     </header>
     <div class="row">
         <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
@@ -64,9 +64,10 @@
                 <li><a href="admin_admin.html" class="tooltipped" data-position="right"
                         data-tooltip="Administradores"><i class="material-icons  white-text">folder_shared</i><span
                             class="white-text hide-on-large-only">Administradores</span></a></li>
-                <li><a href="admin_mapa.html" class="tooltipped" data-position="right" data-tooltip="Mapas"><i
-                            class="material-icons  white-text">map</i><span
-                            class="white-text hide-on-large-only">Mapas</span></a></li>
+                <li><a href="admin_baneo.html" class="tooltipped" data-position="right" data-tooltip="Mapas"><i
+                            class="material-icons  white-text">lock_outline</i><span
+                            class="white-text hide-on-large-only">Administrar baneos</span></a>
+                </li>
                 <li><a href="estadistica.html" class="tooltipped" data-position="right" data-tooltip="Estadísticas"><i
                             class="material-icons  white-text">insert_chart</i><span
                             class="white-text hide-on-large-only">Estadísticas</span></a></li>
@@ -81,7 +82,6 @@
                             class="white-text hide-on-large-only">Cerrar sesión</span></button></li>
             </div>
 
-
         </ul>
     </div>
     <main>
@@ -89,21 +89,22 @@
             <div class="col s12 m12 l12 titulo_pega">
                 <div class="center-align ">
                     <h5 class="center-align titulo_admin">Administrar vendededor</h5>
-                 </div>
-                 <div class="col l8 m8 s12 offset-l1">
+                </div>
+                <div class="col l8 m8 s12 offset-l1">
                     <!-- Formulario de búsqueda -->
                     <form method="post" id="search-form">
-                       <div class="input-field col s9 m10 l6">
-                          <i class="material-icons prefix">search</i>
-                          <input id="search" onkeyup="buscar()" type="text" name="search" placeholder="Busque por nombre, correo o usuario" required>
-                          <label for="search">Buscador</label>
-                       </div>
+                        <div class="input-field col s9 m10 l6">
+                            <i class="material-icons prefix">search</i>
+                            <input id="search" onkeyup="buscar()" type="text" name="search"
+                                placeholder="Busque por nombre, correo o usuario" required>
+                            <label for="search">Buscador</label>
+                        </div>
                     </form>
-                 </div>
+                </div>
                 <div class="col s10 m2 l2">
                     <!-- Enlace para generar un reporte en formato PDF -->
                     <a onclick="openReportVendedoresMasVentas()" class="btn-floating waves-effect blue tooltipped right"
-                    data-tooltip="Reporte: Top 10 vendodores con más ventas">
+                        data-tooltip="Reporte: Top 10 vendodores con más ventas">
                         <i class="material-icons">assignment</i>
                     </a>
                 </div>
