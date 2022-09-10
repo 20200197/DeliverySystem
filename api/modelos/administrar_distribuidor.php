@@ -433,4 +433,50 @@ class Distribuidor extends Validator
 
         return Database::executeRow($sql, $params);
     }
+
+    public function readRequest()
+    {
+        $sql = "SELECT id_repartidor, foto_repartidor, CONCAT(nombre_repartidor, ' ', apellido_repartidor) as nombre_repartidor, dui_repartidor, correo_repartidor, fecha_registro
+                FROM repartidor
+                WHERE id_estado_repartidor = 1
+                ORDER BY fecha_registro ASC";
+        
+        return Database::getRows($sql, null);
+    }
+
+    public function readRequestOne()
+    {
+        $sql = "SELECT id_repartidor, foto_repartidor, nombre_repartidor, apellido_repartidor, dui_repartidor, correo_repartidor, usuario_repartidor, placa_vehiculo, foto_placa_vehiculo, foto_vehiculo, solvencia_pnc, antecedente_penal, direccion_domicilio, fecha_registro
+                FROM repartidor
+                WHERE id_estado_repartidor = 1 AND id_repartidor = ?
+                ORDER BY fecha_registro ASC";
+        $params = array($this->id);
+        
+        return Database::getRow($sql, $params);
+    }
+
+    public function readRequestNum()
+    {
+        $sql = 'SELECT COUNT(id_repartidor)
+                FROM repartidor
+                WHERE id_estado_repartidor = 1';
+        
+        return Database::getRow($sql, null);
+    }
+
+    public function acceptRequest()
+    {
+        $sql = 'UPDATE repartidor SET id_estado_repartidor = 2, id_admin = ? WHERE id_repartidor = ?';
+        $params = array($_SESSION['id_admin'], $this->id);
+
+        return Database::executeRow($sql, $params);
+    }
+
+    public function denyRequest()
+    {
+        $sql = 'UPDATE repartidor SET id_estado_repartidor = 3, id_admin = ? WHERE id_repartidor = ?';
+        $params = array($_SESSION['id_admin'], $this->id);
+
+        return Database::executeRow($sql, $params);
+    }
 }
