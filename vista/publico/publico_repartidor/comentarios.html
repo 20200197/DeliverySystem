@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--Lenguaje de la página-->
+<html lang="es">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <!--Importar iconos-->
     <link href="../../../recursos/css/icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="../../../recursos/css/estilos_publico.css">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/css/ol.css" type="text/css">
-    <link rel="stylesheet" href="https://unpkg.com/ol-popup@5.0.0/src/ol-popup.css" />
+    <!--Importar archivos CSS-->
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_publico.css" media="screen,projection" />
+
+    <!--Optimización para mobiles-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body>
@@ -18,27 +20,23 @@
     <header>
         <nav>
             <div class="nav-wrapper white">
-                <div class="col s12 m12 l12">
-                    <div class="row valign-wrapper">
-                        <div class="col m1 s1">
-                            <a href="#" data-target="slide-out" class="sidenav-trigger"><i
-                                    class="material-icons large blue-text">menu</i></a>
-                        </div>
-                        <div class="col m5 s5 left offset-s1">
+                <div class="row valign-wrapper">
+                    <div class="col m1 s1">
+                        <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                                class="material-icons large blue-text">menu</i></a>
+                    </div>
+                    <div class="col m5 s5 left valign-wrapper">
 
-                            <img class="responsive-img"
-                                src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
-                        </div>
-                        <div class="col m7 s7 right-align valign-wrapper    " id="opciones_navbar">
+                        <img class="responsive-img" src="../../../recursos/img/logo_delivery_system.png" alt="">
+                    </div>
+                    <div class="col m6 s6" id="opciones_navbar">
 
-                        </div>
                     </div>
                 </div>
             </div>
         </nav>
 
     </header>
-
 
     <!--Navegabilidad de la página-->
     <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2 left-align">
@@ -80,25 +78,23 @@
             </li>
         </div>
     </ul>
+    <!--Información de la página-->
+    <main class="metodo-pago">
+        <div class="container">
+            <h5 id="titulo" class="center-align">Comentarios</h5>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Comentario:</th>
+                        <th>Nombre Cliente:</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-coment">
 
-    <main class="center-align">
-        <div class="row">
-            <div class="col s12 m12 l12 center-align">
-                <div class="row">
-                    <div class="col s12 m12 l12 mapaa" id="mapa"></div>
-                    <div id="con"></div>
-                </div>
-
-            </div>
-
-
-        </div>
+                </tbody>
+            </table>
         </div>
     </main>
-
-
-
-
     <footer class="page-footer blue accent-3">
         <div class="row">
             <div class="col l9 m6 s6">
@@ -149,15 +145,14 @@
         </div>
     </footer>
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!--Importar archivos JavaScrip-->
+    <script type="text/javascript" src="../../../js/materialize.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../../recursos/js/sweetalert2.all.min.js"></script>
     <script src="../../../controladores/componentes.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/build/ol.js"></script>
-    <script src="https://unpkg.com/ol-popup@5.0.0"></script>
-    <script src="../../../controladores/publico/publico_repartidor/mapa.js"></script>
-    <script src="../../../controladores/activador.js"></script>
-    <script src="../../../controladores/publico/publico_repartidor/opciones_sesion.js"></script>
+    <script src="../../../controladores/publico/publico_repartidor/comentarios.js"></script>
+    <script src="../../../controladores/privado/admin/modo_oscuro.js"></script>
+    <script type="text/javascript" src="../../../controladores/publico/publico_repartidor/opciones_sesion.js"></script>
 </body>
 
 </html>

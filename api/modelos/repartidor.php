@@ -616,4 +616,16 @@ class Repartidor extends Validator
   
           return Database::getRow($sql, $params);
       }
+
+      public function readComentarios()
+      {
+          $sql = "SELECT CONCAT(nombre_cliente,' ',apellido_cliente) AS nombre_cliente, comentario
+          FROM comentario_repartidor
+          INNER JOIN factura ON comentario_repartidor.id_factura = factura.id_factura
+          INNER JOIN direccion ON factura.id_direccion = direccion.id_direccion
+          INNER JOIN cliente ON direccion.id_cliente = cliente.id_cliente
+          WHERE id_repartidor = ?";
+          $params = array($_SESSION['id_repartidor']);
+          return Database::getRows($sql, $params);
+      }
 }
