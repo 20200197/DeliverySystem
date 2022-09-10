@@ -5,7 +5,7 @@
 /*
  *   Constante para establecer la ruta del servidor.
  */
-const SERVER = "http://127.0.0.1/DeliverySystem/api/";
+const SERVER = "http://localhost/DeliverySystem/api/";
 const API_TOKEN = SERVER + "dashboard/token.php?action=getToken";
 
 function addToken(form) {
