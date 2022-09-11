@@ -53,20 +53,7 @@ function fillTable(dataset) {
             </td>
            
         </tr>
-        <thead>
-            <tr class="row">
-            <th></th>
-            <th></th>
-                <th> <ul class="collapsible" >
-                <li>
-                  <div class="collapsible-header "><i class="material-icons">map</i>Ver mapa</div>
-                  <div class="collapsible-body"><div class="col s12 m12 l12 mapa" id="mapa${row.id_cliente}"></div></div>
-                </li>
-             
-              </ul></th>
-              
-            </tr>
-        </thead> 
+       
         `
        
         

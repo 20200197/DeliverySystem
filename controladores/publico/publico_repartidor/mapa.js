@@ -134,6 +134,23 @@ function showPosition(position) {
 
     // Y agregamos la capa al mapa
     mapa.addLayer(capa);
+
+    //Poup up de repartidor
+    var popupRe = new ol.Overlay.Popup();
+    mapa.addOverlay(popupRe);
+
+    //Pop up de reparto
+    var popup = new ol.Overlay.Popup();
+    mapa.addOverlay(popup);
+
+    mapa.on('singleclick', function (evt) {
+
+        var coordenadaRe = ol.proj.fromLonLat([longitudeAc, latitudeAc]);
+        popupRe.show(coordenadaRe, 'Usted esta aqui');
+        var coordenada = ol.proj.fromLonLat([LONGITUD, LATITUDE]);
+        popup.show(coordenada, 'Su destino');
+    });
+    
     var coordenadaInicio = ol.proj.fromLonLat([longitudeAc, latitudeAc]);
     var coordenadaFinal = ol.proj.fromLonLat([LONGITUD, LATITUDE]);
 
