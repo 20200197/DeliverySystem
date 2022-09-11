@@ -5,7 +5,7 @@
 /*
  *   Constante para establecer la ruta del servidor.
  */
-const SERVER = "http://localhost/DeliverySystem/api/";
+const SERVER = "https://995b-190-87-160-25.ngrok.io/DeliverySystem/api/";
 const API_TOKEN = SERVER + "dashboard/token.php?action=getToken";
 
 function addToken(form) {

@@ -23,14 +23,14 @@ document.getElementById('login-form').addEventListener('submit', function () {
     });
 });
 
-/*document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     fetch(API_REPARTIDOR + 'session', {
         method: 'get'
     }).then(function (request) {
         if (request.ok) {
             request.json().then(function (response) {
                 if (response.session) {
-                    sweetAlert(1, response.message, 'historial.html');
+                    sweetAlert(1, "Ya hay una sesión iniciada", 'historial.html');
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -39,4 +39,4 @@ document.getElementById('login-form').addEventListener('submit', function () {
             console.log(request.status + ' ' + request.statusText);
         }
     });
-});*/
+});
