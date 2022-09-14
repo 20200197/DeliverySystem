@@ -26,9 +26,9 @@ class Autentificador extends PHPGangsta_GoogleAuthenticator
     }
 
     //Función para validar que el código ingresado sea el correcto
-    public function verificarCodigo($valor)
+    public function verificarCodigo($usuario,$valor)
     {
-        if ($this->verifyCode('L5DL7Q2W5GIFLVUM', $valor)) { //Llave del usuario
+        if ($this->verifyCode($usuario, $valor)) { //Llave del usuario
             return true;
         } else {
             return false;

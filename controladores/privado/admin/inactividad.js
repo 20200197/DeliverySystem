@@ -6,8 +6,11 @@
  * El tiempo máximo será de 5 minutos de inactividad
  */
 
-//Se crea una variable que llevará el conteo del tiempo respecto
 
+//Se crea la constante de la API a cerrar
+API_ADMIN = SERVER + 'dashboard/administrar_admin.php?action=';
+
+//Se crea una variable que llevará el conteo del tiempo respecto
 var inactividad, advertencia;
 
 
@@ -28,22 +31,22 @@ function actividad() {
 
 //Función que se encarga de reiniciar el tiempo máximo que puede pasar en inactividad
 function iniciarInactividad() {
-    advertencia = window.setTimeout(mensaje, 1350000); //Se mostrará el mensaje a los 2 minutos y 25 segundos
+    advertencia = window.setTimeout(mensaje, 5000); //Se mostrará el mensaje a los 2 minutos y 25 segundos = 1350000
     //Mensaje final antes de que se cierre la sesión
-    inactividad = window.setTimeout(cerrarSesion, 240000); //Se mostrará el mensaje a los 4 minutos
+    inactividad = window.setTimeout(cerrarSesion, 15000); //Se mostrará el mensaje a los 4 minutos = 240000
     /**
-     * 
+     *
      * Esto se realiza porque la alerta durará 5 segundos
-     * 
+     *
      * 5 segundos + 2 minutos y 25 segundos = 2 minutos y 30 segundos
-     * 
+     *
      * El resto de los 5 minutos será para la confirmación final
-     * 
+     *
      * Explicación del tiempo
      * 1 segundo = 1000 milisegundos
      * 1 minuto = 1000 * 6 = 60,000 milisegundos
      * 2.25 minutos = 1000 * (6 * 2.25)  = 135,000 milisegundos
-     * 
+     *
      */
 }
 
@@ -99,7 +102,37 @@ function cerrarSesion() {
         }
     }).then((result) => {
         if (result.dismiss === Swal.DismissReason.timer) { 
-              //Se procede a cerrar la sesión
+              //Se procede a cerrar la sesión mediante un fetch
+            fetch(API_ADMIN + "logOut", {
+                method: 'get'
+            }).then(function (request) { 
+                //Se revisa el estado de la ejecución
+                if (request.ok) {
+                    //Se pasa a JSON
+                    request.json().then(function (response) {
+                        //Se revisa el estado ejecutado por la API
+                        if (response.status) {
+                            Swal.fire({
+                                title: response.message,
+                                position: "top-end",
+                                icon: "success",
+                                timer: 5000,
+                            });
+                        } else {
+                            Swal.fire({
+                                title: response.exception,
+                                position: "top-end",
+                                icon: "success",
+                                timer: 5000,
+                            });
+                        }
+                    });
+                } else { 
+                    //Se imprime el error en la consola
+                    console.log(request.status + ' ' + request.statusText);
+                }
+                location.href = "index.html";
+            });
         }  
                  
     })
