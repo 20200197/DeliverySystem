@@ -160,7 +160,7 @@ if (isset($_GET['action'])) {
                 } elseif ($admin->checkPass($_POST['password']) && $admin->checkStatus()) {
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
-                    $_SESSION['id_admin'] = $admin->getId();
+                    $_SESSION['id_admin_temporal'] = $admin->getId();
                     $_SESSION['nombre_admin'] = $admin->getUsuario();
                 } elseif (!$admin->checkPass($_POST['password'])) {
 
@@ -176,14 +176,58 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No se logró generar el código';
                 }
                 break;
-            case 'verificarCodigo':
+            case 'verificarRegistro':
+                //Se limpian los campos
                 $_POST = $admin->validateForm($_POST);
-                if ($autentificador->verificarCodigo($_POST['codigo'])) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Código correcto ';
+                //Se verifica el código ingresado
+                if ($autentificador->verificarCodigo($_SESSION['identificador'],$_POST['codigo'])) {
+                    //Se procede a ingresar la clave
+                    //Se trata de inserta
+                    if ($admin->colocarLlave($_SESSION['identificador'])) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Autentificación de dos pasos activada';
+                    } elseif (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No se logró completar el proceso, por favor vuelve a intentarlo';
+                    }
+                    unset($_SESSION['identificador']);
                 } else {
                     $result['exception'] = 'Código incorrecto';
                 }
+                break;
+            case 'verificacionSegundoPaso':
+                if (isset($_SESSION['id_admin_temporal'])) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Coloca el pin de autentificación';
+                } else {
+                    $result['exception'] = 'Debes de verificar la contraseña antes de pasar al segundo paso de verificación';
+                }
+                break;
+            case 'segundoPaso':
+                //Se limpian los campos
+                $_POST = $admin->validateForm($_POST);
+                //Se verifica que se ha colocado la contraseña anteiormente
+                if (!isset($_SESSION['id_admin_temporal'])) {
+                    $result['exception'] = 'Debes de verificar la contraseña antes de pasar al segundo paso de verificación';
+                      //Se obtiene la clave del usuarios
+                } elseif ($data = $admin->obtenerLlave()) {
+                    //Se procede a revisar si la llave es correcta
+                    if ($autentificador->verificarCodigo($data['verificacion'], $_POST['codigo'])) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Segundo paso de verificación completado';
+                        unset($_SESSION['id_admin_temporal']);
+                        $_SESSION['id_admin'] = $data['id_admin'];
+                    } else {
+                        $result['exception'] = 'El pin ingresado es incorrecto';
+                    }
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No se encontró tu usuario';
+                }
+                
+                
                 break;
             default:
                 $result['exception'] = 'Acción no disponible fuera de la sesión';

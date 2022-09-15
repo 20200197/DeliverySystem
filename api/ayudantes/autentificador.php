@@ -20,6 +20,7 @@ class Autentificador extends PHPGangsta_GoogleAuthenticator
         $contenedor = array();
         array_push($contenedor, $clave);
         $codigoQR = $this->getQRCodeGoogleUrl('DeliverySystem', $clave);
+        $_SESSION['identificador'] = $clave;
         array_push($contenedor, $codigoQR);
         return $contenedor;
        
