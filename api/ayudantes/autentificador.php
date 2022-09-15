@@ -6,7 +6,6 @@ require_once "../librerias/google_authenticator/PHPGangsta/GoogleAuthenticator.p
 class Autentificador extends PHPGangsta_GoogleAuthenticator
 {
 
-
     //Función para generar un secreto
     public function generarSecreto()
     {
@@ -20,16 +19,14 @@ class Autentificador extends PHPGangsta_GoogleAuthenticator
         $contenedor = array();
         array_push($contenedor, $clave);
         $codigoQR = $this->getQRCodeGoogleUrl('DeliverySystem', $clave);
-        $_SESSION['identificador'] = $clave;
         array_push($contenedor, $codigoQR);
         return $contenedor;
-       
     }
 
     //Función para validar que el código ingresado sea el correcto
-    public function verificarCodigo($usuario,$valor)
+    public function verificarCodigo($valor)
     {
-        if ($this->verifyCode($usuario, $valor)) { //Llave del usuario
+        if ($this->verifyCode('3JSS3SNCNFUKUBNX', $valor)) { //Llave del usuario
             return true;
         } else {
             return false;

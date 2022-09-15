@@ -158,12 +158,16 @@ if (isset($_GET['action'])) {
                 } elseif (!$admin->checkStatus()) {
                     $result['exception'] = 'Lo sentimos, usted se encuentra desactivado';
                 } elseif ($admin->checkPass($_POST['password']) && $admin->checkStatus()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Autenticación correcta';
+                    //Se verifica si el usuario tiene habilitado el segundo paso de autentificacion
                     $_SESSION['id_admin_temporal'] = $admin->getId();
                     $_SESSION['nombre_admin'] = $admin->getUsuario();
+                    if ($admin->verificarSegundoPaso()) {
+                        $result['status'] = 2;
+                    } else {
+                        $result['status'] = 1;
+                    }
+                    $result['message'] = 'Autenticación correcta';
                 } elseif (!$admin->checkPass($_POST['password'])) {
-
                     $result['exception'] = 'Contraseña incorrecta';
                 }
                 break;
@@ -180,7 +184,7 @@ if (isset($_GET['action'])) {
                 //Se limpian los campos
                 $_POST = $admin->validateForm($_POST);
                 //Se verifica el código ingresado
-                if ($autentificador->verificarCodigo($_SESSION['identificador'],$_POST['codigo'])) {
+                if ($autentificador->verificarCodigo($_SESSION['identificador'], $_POST['codigo'])) {
                     //Se procede a ingresar la clave
                     //Se trata de inserta
                     if ($admin->colocarLlave($_SESSION['identificador'])) {
@@ -193,7 +197,7 @@ if (isset($_GET['action'])) {
                     }
                     unset($_SESSION['identificador']);
                 } else {
-                    $result['exception'] = 'Código incorrecto';
+                    $result['exception'] = 'Código incorrecto'. $_SESSION['codigo'];
                 }
                 break;
             case 'verificacionSegundoPaso':
@@ -210,7 +214,7 @@ if (isset($_GET['action'])) {
                 //Se verifica que se ha colocado la contraseña anteiormente
                 if (!isset($_SESSION['id_admin_temporal'])) {
                     $result['exception'] = 'Debes de verificar la contraseña antes de pasar al segundo paso de verificación';
-                      //Se obtiene la clave del usuarios
+                    //Se obtiene la clave del usuarios
                 } elseif ($data = $admin->obtenerLlave()) {
                     //Se procede a revisar si la llave es correcta
                     if ($autentificador->verificarCodigo($data['verificacion'], $_POST['codigo'])) {
@@ -226,8 +230,6 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'No se encontró tu usuario';
                 }
-                
-                
                 break;
             default:
                 $result['exception'] = 'Acción no disponible fuera de la sesión';

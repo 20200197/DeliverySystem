@@ -33,9 +33,9 @@ document.getElementById('autentificacion').addEventListener('submit', function (
     //Se previene la autorecarga
     event.preventDefault();
     //Se realiza la peticion
-    fetch(API_AUTENTIFICADOR + 'verificarCodigo', {
-        method: 'post',
-        body: new FormData(document.getElementById('autentificacion'))
+    fetch(API_AUTENTIFICADOR + "verificarRegistro", {
+        method: "post",
+        body: new FormData(document.getElementById("autentificacion")),
     }).then(function (request) {
         //Se revisa el estado de la ejecución
         if (request.ok) {
@@ -48,9 +48,9 @@ document.getElementById('autentificacion').addEventListener('submit', function (
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
-            })
+            });
         } else {
-            console.log(request.status + ' ' + request.statusText);
+            console.log(request.status + " " + request.statusText);
         }
     });
 }) 
