@@ -15,7 +15,13 @@ Fuentes generales
 **************************/
 
 * {
-    font-family: 'Fira Sans Condensed', sans-serif ;
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+
+button,
+a {
+    font-family: 'Fira Sans Condensed',
+        sans-serif !important;
 }
 
 .icono-sesion {
@@ -302,15 +308,15 @@ h5 {
 /******************
 contorno modal
 **************/
-.modal{
+.modal {
     border-radius: 25px !important;
 }
 
-th{
+th {
     background-color: #8dc5ff;
-  }
+}
 
-  /*----------------------------------------------*/
+/*----------------------------------------------*/
 /*-------------Carrito - clientes---------------*/
 /*----------------------------------------------*/
 
@@ -320,25 +326,25 @@ th{
     border-radius: 15px;
     height: 200px;
     width: 100%;
-  }
-  
-  .main_carrito .center-align {
+}
+
+.main_carrito .center-align {
     margin-left: 3%;
     margin-right: 3%;
-  }
-  
-  .producto_carrito .row .col img {
+}
+
+.producto_carrito .row .col img {
     height: 150px;
     border-radius: 15px;
-  }
-  
-  .contador_cantidad_carrito {
+}
+
+.contador_cantidad_carrito {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .contador_cantidad_carrito input {
+}
+
+.contador_cantidad_carrito input {
     width: 30% !important;
     border: 1px solid black !important;
     border-radius: 15px;
@@ -347,34 +353,34 @@ th{
     margin-right: 4px !important;
     margin-left: 4px !important;
     text-align: center;
-  }
-  
-  .contador_cantidad_carrito input:focus {
+}
+
+.contador_cantidad_carrito input:focus {
     border: 1px solid black !important;
     box-shadow: none !important;
-  }
-  
-  .titulo_producto_carrito {
+}
+
+.titulo_producto_carrito {
     font-size: 14pt;
-  }
-  
-  .descripcion_producto_carrito {
+}
+
+.descripcion_producto_carrito {
     padding-right: 5% !important;
     padding-left: 5% !important;
     height: 100%;
-  }
-  
-  .descripcion_producto_carrito .row {
+}
+
+.descripcion_producto_carrito .row {
     margin-bottom: -150px !important;
-  }
-  
-  .total_carrito {
+}
+
+.total_carrito {
     height: 180px !important;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     padding-top: 3% !important;
-  }
+}
 
 /*-------------Diseños de modal---------------*/
 
@@ -384,17 +390,17 @@ th{
     border-bottom-left-radius: 30px;
     border-top-right-radius: 30px;
     border-top-left-radius: 30px;
-  }
+}
 
-  .file-path{
+.file-path {
     width: 0px !important;
-  }
+}
 
-  .sin-margen{
+.sin-margen {
     margin: 0px !important;
-  }
+}
 
-  /* ------------Estilos para chartist-----------------*/
+/* ------------Estilos para chartist-----------------*/
 
 /*----Tooltip----*/
 
@@ -495,4 +501,9 @@ th{
 
 .Bloqueo{
     color: rgba(187, 187, 72, 0.807);
+}
+/* --------Card de recuperacion ---------*/
+
+.card-recuperacion {
+    height: 300px !important;
 }

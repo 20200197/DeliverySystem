@@ -4,6 +4,8 @@ const API_ENTREGAFAC = SERVER + 'dashboard/administrar_entrega.php?action=readFa
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
+    //Se ejecuta el método de inactividad
+    actividad();
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
     readRows(API_ENTREGA);
     // Se define una variable para establecer las opciones del componente Modal.

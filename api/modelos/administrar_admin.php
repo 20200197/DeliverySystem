@@ -168,7 +168,6 @@ class Administrador extends Validator
     {
         $sql = "SELECT id_admin, clave_admin, CONCAT(nombre_admin, ' ', apellido_admin) AS nombre_admin FROM administrador WHERE usuario_admin = ?";
         $params = array($this->usuario);
-
         if (!$data = Database::getRow($sql, $params)) {
             return false;
         } elseif (!password_verify($pass, $data['clave_admin'])) {
@@ -323,8 +322,73 @@ class Administrador extends Validator
       {
           $sql = 'SELECT current_date - fecha_cambio as rango_ch
           from cambio_contra_administrador where id_admin=?';
-          $params = array($_SESSION['id_admin']);
+          $params = array($_SESSION['id_admin_temporal']);
   
           return Database::getRow($sql, $params);
       }
+    //Función para obtener la llave de autentificación del usuario
+    public function obtenerEstadoLlave()
+    {
+        $sql = 'SELECT id_admin, verificacion FROM administrador WHERE id_admin = ?';
+        $params = array($_SESSION['id_admin']);
+        $data = Database::getRow($sql, $params);
+        if ($data['verificacion'] != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Función para colocar la llave del autentificador en el usuario 
+    public function colocarLlave($llave)
+    {
+        $sql = 'UPDATE administrador SET verificacion = ? WHERE id_admin = ?';
+        $params = array($llave, $_SESSION['id_admin']);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Función para validar que si este habilitado el segundo paso de autentificacion
+    public function verificarSegundoPaso()
+    {
+        $sql = 'SELECT verificacion FROM administrador WHERE id_admin = ?';
+        $params = array($_SESSION['id_admin_temporal']);
+        $data = Database::getRow($sql, $params);
+        if ($data['verificacion'] != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Función para obtener la llave de autentificación del usuario
+    public function obtenerLlave()
+    {
+        $sql = 'SELECT id_admin, verificacion FROM administrador WHERE id_admin = ?';
+        $params = array($_SESSION['id_admin_temporal']);
+        return Database::getRow($sql, $params);
+    }
+
+    //Función para eliminar el campo de autentificación
+    public function eliminarLlave()
+    {
+        $sql = 'UPDATE administrador SET verificacion = NULL WHERE id_admin = ?';
+        $params = array($_SESSION['id_admin']);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Función para validar la contraseña del usuario a base del id
+    public function checkPassChange($pass)
+    {
+        $sql = "SELECT id_admin, clave_admin, CONCAT(nombre_admin, ' ', apellido_admin) AS nombre_admin FROM administrador WHERE id_admin = ?";
+        $params = array($_SESSION['id_admin']);
+        if (!$data = Database::getRow($sql, $params)) {
+            return false;
+        } elseif (!password_verify($pass, $data['clave_admin'])) {
+            return false;
+        } else {
+            $this->setUsuario($data['nombre_admin']);
+            return true;
+        }
+    }
+
 }

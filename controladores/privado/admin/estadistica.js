@@ -4,6 +4,8 @@ const API_ESTADISTICA2 = SERVER + "dashboard/administrar_producto.php?action=";
 
 // Método que ejecuta la carga de de las tablas y la activación de componentes
 document.addEventListener("DOMContentLoaded", function () {
+    //Se ejecuta el método de inactividad
+    actividad();
     // Se define una variable para establecer las opciones del componente Modal.
     let options = {
         dismissible: false,

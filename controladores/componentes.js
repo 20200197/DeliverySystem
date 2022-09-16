@@ -46,7 +46,7 @@ function readRows(api) {
                 if (response.status) {
                     data = response.dataset;
                 } else {
-                    sweetAlert(4, response.exception, null);
+                    sweetAlert(4, response.exception, 'index.html');
                 }
                 // Se envían los datos a la función del controlador para llenar la tabla en la vista.
                 fillTable(data);
@@ -96,7 +96,7 @@ function readRow(api) {
                 if (response.status) {
                     data = response.dataset;
                 } else {
-                    sweetAlert(4, response.exception, null);
+                    sweetAlert(4, response.exception, 'index.html');
                 }
                 // Se envían los datos a la función del controlador para llenar la tabla en la vista.
                 fillTablee(data);
@@ -127,9 +127,9 @@ function searchRows(api, form) {
                 if (response.status) {
                     // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
                     fillTable(response.dataset);
-                    // sweetAlert(1, response.message, null);
+                    sweetAlert(1, response.message, null);
                 } else {
-                    //   sweetAlert(2, response.exception, null);
+                    sweetAlert(2, response.exception, 'index.html');
                 }
             });
         } else {
@@ -154,7 +154,7 @@ function searchRowsProductos(api, form) {
                     readProductosBuscador(response.dataset);
                     sweetAlert(1, response.message, null);
                 } else {
-                    sweetAlert(2, response.exception, null);
+                    sweetAlert(2, response.exception, 'index.html');
                 }
             });
         } else {
@@ -754,5 +754,34 @@ function logOut(type) {
         } else {
             sweetAlert(4, "Puede continuar con la sesión", null);
         }
+    });
+}
+
+
+/**
+ * Función para enviar un correo de recuperación de contraseña
+ * Se utiliza la librería de Email.js
+ * Se debe de proporcionar los siguientes datos, todos se pueden encontrar en la página
+ *  - id_cuenta
+ *  - id_servicio
+ *  - id_plantilla
+ * Se debe iniciar primero la verificación de la cuenta antes de buscar la plantilla y servicio
+ * 
+ */
+
+function recuperar(correo, nombre, codigo) { 
+    //Se inicializa la librería, se verifica que el usuario exista
+    //Se crea un arreglo con los datos a enviar
+    let valores = {
+        codigo: codigo,
+        nombre: nombre,
+        correo: correo,
+    };
+    //Se realiza el proceso para enviarlo
+
+    emailjs.send('service_k5roc2l', 'template_2y2q2ik', valores, 'jlvJkg4wMQOlaYDl2').then(function (response) {
+        sweetAlert(1, 'Correo envíado correctamente', null);
+    }, function (error) { 
+        sweetAlert(2, error, null);
     });
 }

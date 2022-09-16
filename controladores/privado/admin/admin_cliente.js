@@ -3,6 +3,8 @@ const API_CLIENTE = SERVER + "dashboard/administrar_cliente.php?action=";
 
 // Método que ejecuta la carga de de las tablas y la activación de componentes
 document.addEventListener("DOMContentLoaded", function () {
+    //Se ejecuta el método de inactividad
+    actividad();
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
     readRows(API_CLIENTE);
     // Se define una variable para establecer las opciones del componente Modal.

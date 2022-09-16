@@ -80,7 +80,11 @@ if (isset($_GET['action'])) {
         // Se imprime el resultado en formato JSON y se retorna al controlador.
         print(json_encode($result));
     } else {
-        print(json_encode('Acceso denegado'));
+        switch ($_GET['action']) {
+            default:
+                $result['exception'] = 'Acción no disponible fuera de la sesión';
+        }
+        print(json_encode($result));
     }
 } else {
     print(json_encode('Recurso no disponible'));
