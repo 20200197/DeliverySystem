@@ -168,7 +168,6 @@ class Administrador extends Validator
     {
         $sql = "SELECT id_admin, clave_admin, CONCAT(nombre_admin, ' ', apellido_admin) AS nombre_admin FROM administrador WHERE usuario_admin = ?";
         $params = array($this->usuario);
-
         if (!$data = Database::getRow($sql, $params)) {
             return false;
         } elseif (!password_verify($pass, $data['clave_admin'])) {
@@ -286,6 +285,21 @@ class Administrador extends Validator
         $sql = 'UPDATE administrador SET verificacion = NULL WHERE id_admin = ?';
         $params = array($_SESSION['id_admin']);
         return Database::executeRow($sql, $params);
+    }
+
+    //Función para validar la contraseña del usuario a base del id
+    public function checkPassChange($pass)
+    {
+        $sql = "SELECT id_admin, clave_admin, CONCAT(nombre_admin, ' ', apellido_admin) AS nombre_admin FROM administrador WHERE id_admin = ?";
+        $params = array($_SESSION['id_admin']);
+        if (!$data = Database::getRow($sql, $params)) {
+            return false;
+        } elseif (!password_verify($pass, $data['clave_admin'])) {
+            return false;
+        } else {
+            $this->setUsuario($data['nombre_admin']);
+            return true;
+        }
     }
 
 }

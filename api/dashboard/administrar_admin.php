@@ -167,7 +167,7 @@ if (isset($_GET['action'])) {
                 //Se coloca el nombre del usuario para buscar
                 if (!$admin->setUsuario($_SESSION['nombre_admin'])) {
                     $result['exception'] = 'Ocurrió un problema al verificar la contraseña';
-                } elseif ($admin->checkPass($_POST['clave'])) {
+                } elseif ($admin->checkPassChange($_POST['clave'])) {
                     $result['status'] = 1;
                     $_SESSION['confirmacionPass'] = true;
                 } elseif (Database::getException()) {

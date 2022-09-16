@@ -27,7 +27,7 @@ function readRows(api) {
                 if (response.status) {
                     data = response.dataset;
                 } else {
-                    sweetAlert(4, response.exception, null);
+                    sweetAlert(4, response.exception, 'index.html');
                 }
                 // Se envían los datos a la función del controlador para llenar la tabla en la vista.
                 fillTable(data);
@@ -77,7 +77,7 @@ function readRow(api) {
                 if (response.status) {
                     data = response.dataset;
                 } else {
-                    sweetAlert(4, response.exception, null);
+                    sweetAlert(4, response.exception, 'index.html');
                 }
                 // Se envían los datos a la función del controlador para llenar la tabla en la vista.
                 fillTablee(data);
@@ -108,9 +108,9 @@ function searchRows(api, form) {
                 if (response.status) {
                     // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
                     fillTable(response.dataset);
-                    // sweetAlert(1, response.message, null);
+                    sweetAlert(1, response.message, null);
                 } else {
-                    //   sweetAlert(2, response.exception, null);
+                    sweetAlert(2, response.exception, 'index.html');
                 }
             });
         } else {
@@ -135,7 +135,7 @@ function searchRowsProductos(api, form) {
                     readProductosBuscador(response.dataset);
                     sweetAlert(1, response.message, null);
                 } else {
-                    sweetAlert(2, response.exception, null);
+                    sweetAlert(2, response.exception, 'index.html');
                 }
             });
         } else {
