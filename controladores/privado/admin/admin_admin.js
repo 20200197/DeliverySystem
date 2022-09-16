@@ -1,14 +1,16 @@
 const API_ADMIN = SERVER + 'dashboard/administrar_admin.php?action=';
 
 document.addEventListener('DOMContentLoaded', function () {
+    //Se ejecuta el método de inactividad
+    actividad();
     let options = {
-        dismissible: false
-    }
+        dismissible: false,
+    };
     M.Modal.init(document.querySelectorAll(".modal"), options);
-    M.Tooltip.init(document.querySelectorAll('.tooltipped'));
+    M.Tooltip.init(document.querySelectorAll(".tooltipped"));
 
-    fetch(API_ADMIN + 'readAll', {
-        method: 'get'
+    fetch(API_ADMIN + "readAll", {
+        method: "get",
     }).then(function (request) {
         if (request.ok) {
             request.json().then(function (response) {
@@ -20,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
         } else {
-            console.log(request.status + ' ' + request.statusText);
+            console.log(request.status + " " + request.statusText);
         }
     });
 });

@@ -4,6 +4,8 @@ const API_AUTENTIFICADOR = SERVER + "dashboard/administrar_admin.php?action=";
 
 // Método que ejecuta la carga de de las tablas y la activación de componentes
 document.addEventListener("DOMContentLoaded", function () {
+    //Se ejecuta el método de inactividad
+    actividad();
     //Cargar los datos de la autentificación
     datosAutentificacion();
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
