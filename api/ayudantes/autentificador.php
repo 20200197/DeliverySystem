@@ -10,6 +10,8 @@ class Autentificador extends PHPGangsta_GoogleAuthenticator
     public function generarSecreto()
     {
         $secreto = $this->createSecret();
+        $_SESSION['identificador'] = $secreto;
+        $_SESSION['codigo'] = $this->getCode($secreto);
         return $this->generarQR($secreto);
     }
 
@@ -24,9 +26,9 @@ class Autentificador extends PHPGangsta_GoogleAuthenticator
     }
 
     //Función para validar que el código ingresado sea el correcto
-    public function verificarCodigo($valor)
+    public function verificarCodigo($usuario, $valor)
     {
-        if ($this->verifyCode('3JSS3SNCNFUKUBNX', $valor)) { //Llave del usuario
+        if ($this->verifyCode($usuario, $valor)) { //Llave del usuario
             return true;
         } else {
             return false;

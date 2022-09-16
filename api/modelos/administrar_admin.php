@@ -242,7 +242,7 @@ class Administrador extends Validator
     public function colocarLlave($llave)
     {
         $sql = 'UPDATE administrador SET verificacion = ? WHERE id_admin = ?';
-        $params = array($llave, $_SESSION['id_admin_temporal']);
+        $params = array($llave, $_SESSION['id_admin']);
         return Database::executeRow($sql, $params);
     }
 

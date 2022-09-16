@@ -107,6 +107,35 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                 }
                 break;
+            case 'generarCodigo':
+                //Se genera el código
+                if ($result['dataset'] = $autentificador->generarSecreto()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Código generado correctamente';
+                } else {
+                    $result['exception'] = 'No se logró generar el código';
+                }
+                break;
+            case 'verificarRegistro':
+                //Se limpian los campos
+                $_POST = $admin->validateForm($_POST);
+                //Se verifica el código ingresado
+                if ($autentificador->verificarCodigo($_SESSION['identificador'], $_POST['codigo'])) {
+                    //Se procede a ingresar la clave
+                    //Se trata de inserta
+                    if ($admin->colocarLlave($_SESSION['identificador'])) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Autentificación de dos pasos activada';
+                    } elseif (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No se logró completar el proceso, por favor vuelve a intentarlo';
+                    }
+                    unset($_SESSION['identificador']);
+                } else {
+                    $result['exception'] = 'Tu código ' . $_POST['codigo'] . " El verdadero código " . $_SESSION['codigo'];
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
                 break;
@@ -169,35 +198,6 @@ if (isset($_GET['action'])) {
                     $result['message'] = 'Autenticación correcta';
                 } elseif (!$admin->checkPass($_POST['password'])) {
                     $result['exception'] = 'Contraseña incorrecta';
-                }
-                break;
-            case 'generarCodigo':
-                //Se genera el código
-                if ($result['dataset'] = $autentificador->generarSecreto()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Código generado correctamente';
-                } else {
-                    $result['exception'] = 'No se logró generar el código';
-                }
-                break;
-            case 'verificarRegistro':
-                //Se limpian los campos
-                $_POST = $admin->validateForm($_POST);
-                //Se verifica el código ingresado
-                if ($autentificador->verificarCodigo($_SESSION['identificador'], $_POST['codigo'])) {
-                    //Se procede a ingresar la clave
-                    //Se trata de inserta
-                    if ($admin->colocarLlave($_SESSION['identificador'])) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Autentificación de dos pasos activada';
-                    } elseif (Database::getException()) {
-                        $result['exception'] = Database::getException();
-                    } else {
-                        $result['exception'] = 'No se logró completar el proceso, por favor vuelve a intentarlo';
-                    }
-                    unset($_SESSION['identificador']);
-                } else {
-                    $result['exception'] = 'Código incorrecto'. $_SESSION['codigo'];
                 }
                 break;
             case 'verificacionSegundoPaso':

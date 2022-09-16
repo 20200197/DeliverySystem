@@ -31,9 +31,9 @@ function actividad() {
 
 //Función que se encarga de reiniciar el tiempo máximo que puede pasar en inactividad
 function iniciarInactividad() {
-    advertencia = window.setTimeout(mensaje, 5000); //Se mostrará el mensaje a los 2 minutos y 25 segundos = 1350000
+    advertencia = window.setTimeout(mensaje, 1350000); //Se mostrará el mensaje a los 2 minutos y 25 segundos = 1350000
     //Mensaje final antes de que se cierre la sesión
-    inactividad = window.setTimeout(cerrarSesion, 15000); //Se mostrará el mensaje a los 4 minutos = 240000
+    inactividad = window.setTimeout(cerrarSesion, 90000); //Se mostrará el mensaje a 1 minuto y 30 segundos = 90000
     /**
      *
      * Esto se realiza porque la alerta durará 5 segundos
@@ -84,7 +84,7 @@ function cerrarSesion() {
         imageUrl: '/DeliverySystem/recursos/img/logo_delivery_system.png', //Logo
         title: 'La sesión está a punto de cerrarse', //Titulo
         html: 'La sesión se cerrará <b>60</b> segundos.', //Explicación
-        timer: 60000, //Tiempo de duración
+        timer: 60000, //Tiempo de duración 1 minuto ) 60,000 milisegundos
         timerProgressBar: true,
         confirmButtonText: 'Continuar con la sesión',
         backdrop: `
