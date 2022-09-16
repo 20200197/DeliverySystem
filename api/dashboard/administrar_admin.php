@@ -136,6 +136,46 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Código incorrecto';
                 }
                 break;
+            case 'ObtenerEstadoVerificacion':
+                //Se manda a obtener el estado de la verificación en dos pasos
+                if ($admin->obtenerEstadoLlave()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['status'] = 0;
+                }
+                break;
+            case 'eliminarAutentificacion':
+                //Se verifica que ya se haya confirmado el cambio
+                if (!isset($_SESSION['confirmacionPass'])) {
+                    $result['exception'] = 'Debes de verificar tu identidad antes de desactivar la autentificación en dos pasos';
+                    //Se procede a eliminar el campo
+                } elseif ($admin->eliminarLlave()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Se ha desactivado la autentificación en dos pasos';
+                    unset($_SESSION['confirmacionPass']);
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No se puedo desactivar la autentificación en dos pasos';
+                }
+                break;
+            case 'verificarPass':
+                //Se limpian los campos
+                $_POST = $admin->validateForm($_POST);
+                //Se coloca el nombre del usuario para buscar
+                if (!$admin->setUsuario($_SESSION['nombre_admin'])) {
+                    $result['exception'] = 'Ocurrió un problema al verificar la contraseña';
+                } elseif ($admin->checkPass($_POST['clave'])) {
+                    $result['status'] = 1;
+                    $_SESSION['confirmacionPass'] = true;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'La contraseña es incorrecta';
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
                 break;
@@ -195,8 +235,7 @@ if (isset($_GET['action'])) {
                     } else {
                         $_SESSION['id_admin'] = $_SESSION['id_admin_temporal'];
                         $result['status'] = 1;
-                        unset( $_SESSION['id_admin_temporal']);
-                        
+                        unset($_SESSION['id_admin_temporal']);
                     }
                     $result['message'] = 'Autenticación correcta';
                 } elseif (!$admin->checkPass($_POST['password'])) {

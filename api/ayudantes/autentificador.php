@@ -11,7 +11,6 @@ class Autentificador extends PHPGangsta_GoogleAuthenticator
     {
         $secreto = $this->createSecret();
         $_SESSION['identificador'] = $secreto;
-        $_SESSION['codigo'] = $this->getCode($secreto);
         return $this->generarQR($secreto);
     }
 

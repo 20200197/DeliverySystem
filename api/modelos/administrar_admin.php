@@ -238,6 +238,19 @@ class Administrador extends Validator
         return Database::getRow($sql, $params);
     }
 
+    //Función para obtener la llave de autentificación del usuario
+    public function obtenerEstadoLlave()
+    {
+        $sql = 'SELECT id_admin, verificacion FROM administrador WHERE id_admin = ?';
+        $params = array($_SESSION['id_admin']);
+        $data = Database::getRow($sql, $params);
+        if ($data['verificacion'] != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     //Función para colocar la llave del autentificador en el usuario 
     public function colocarLlave($llave)
     {
@@ -266,4 +279,13 @@ class Administrador extends Validator
         $params = array($_SESSION['id_admin_temporal']);
         return Database::getRow($sql, $params);
     }
+
+    //Función para eliminar el campo de autentificación
+    public function eliminarLlave()
+    {
+        $sql = 'UPDATE administrador SET verificacion = NULL WHERE id_admin = ?';
+        $params = array($_SESSION['id_admin']);
+        return Database::executeRow($sql, $params);
+    }
+
 }
