@@ -133,7 +133,7 @@ if (isset($_GET['action'])) {
                     }
                     unset($_SESSION['identificador']);
                 } else {
-                    $result['exception'] = 'Tu código ' . $_POST['codigo'] . " El verdadero código " . $_SESSION['codigo'];
+                    $result['exception'] = 'Código incorrecto';
                 }
                 break;
             default:
@@ -188,12 +188,15 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Lo sentimos, usted se encuentra desactivado';
                 } elseif ($admin->checkPass($_POST['password']) && $admin->checkStatus()) {
                     //Se verifica si el usuario tiene habilitado el segundo paso de autentificacion
-                    $_SESSION['id_admin_temporal'] = $admin->getId();
                     $_SESSION['nombre_admin'] = $admin->getUsuario();
+                    $_SESSION['id_admin_temporal'] = $admin->getId();
                     if ($admin->verificarSegundoPaso()) {
                         $result['status'] = 2;
                     } else {
+                        $_SESSION['id_admin'] = $_SESSION['id_admin_temporal'];
                         $result['status'] = 1;
+                        unset( $_SESSION['id_admin_temporal']);
+                        
                     }
                     $result['message'] = 'Autenticación correcta';
                 } elseif (!$admin->checkPass($_POST['password'])) {

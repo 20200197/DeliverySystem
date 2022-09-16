@@ -252,7 +252,7 @@ class Administrador extends Validator
         $sql = 'SELECT verificacion FROM administrador WHERE id_admin = ?';
         $params = array($_SESSION['id_admin_temporal']);
         $data = Database::getRow($sql, $params);
-        if ($data) {
+        if ($data['verificacion'] != null) {
             return true;
         } else {
             return false;

@@ -56,7 +56,7 @@ function graficoTopClientesDestacados() {
                     barras(".topClientesDestacados", nombre, total);
                 } else {
                     document.getElementById('topClientesDestacados');
-                    console.log(response.exception);
+                    sweetAlert(2, response.exception, "index.html");
                 }
             });
         } else {
@@ -102,7 +102,7 @@ function graficoPorcentajeProductos() {
                     semiPastel(".porcentajeProductos", categoria, porcentaje);
                 } else {
                     document.getElementById('porcentajeProductos');
-                    console.log(response.exception);
+                    sweetAlert(2, response.exception, 'index.html');
                 }
             });
         } else {
