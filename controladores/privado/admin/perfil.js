@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //Cargar los datos de la autentificación
     datosAutentificacion();
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
-    readRows(API_PERFIL);
+    fillTable(API_PERFIL);
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
     M.Modal.init(document.querySelectorAll(".modal"), { dismissible: false });
     //se inicializan los tooltp

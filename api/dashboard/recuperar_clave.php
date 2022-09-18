@@ -3,8 +3,10 @@
 require_once '../ayudantes/database.php';
 require_once '../ayudantes/validator.php';
 require_once '../modelos/recuperacion.php';
+require_once '../modelos/administrar_admin.php';
 //Se instancia la clase a utilizar
 $recuperar = new Recuperacion;
+$admin = new Administrador;
 //Se inicia la sesión
 session_start();
 //Se crea un arreglo donde se guardarán los datos a retornar
@@ -118,12 +120,21 @@ if (isset($_GET['action'])) {
                     $result['exception'] = $recuperar->getPasswordError();
                     //Se procede a cambiar la contraseña
                 } elseif ($recuperar->reestablecerPassAdministrador()) {
-                    $result['status'] = true;
-                    $result['message'] = 'Contraseña reestablecida correctamente';
-                    //Se quitan los datos de validación de $_SESSION
+                    //Se instancia el id para reestablecer el tiempo de contraseña
+                    $_SESSION['id_admin'] = $_SESSION['id_admin_recuperar'];
                     unset($_SESSION['id_admin_recuperar']);
-                    unset($_SESSION['confirmacion']);
-                    unset($_SESSION['correo_admin']);
+                    //Se reestablece el tiempo de cambio de contraseña
+                    if ($admin->changeCambio()) {
+                        $result['status'] = true;
+                        //Se reestablece el conteo de días para volverla a cambiar
+                        $result['message'] = 'Contraseña reestablecida correctamente';
+                        //Se quitan los datos de validación de $_SESSION
+                        unset($_SESSION['id_admin']);
+                        unset($_SESSION['confirmacion']);
+                        unset($_SESSION['correo_admin']);
+                    } else {
+                        $result['exception'] = 'Ocurrió un problema en el reestablecimineto de tu contraseña';
+                    }
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {

@@ -18,7 +18,7 @@ class Database
         $server = 'localhost';
         $database = 'deliverysystem';
         $username = 'postgres';
-        $password = 'Firearcher15';
+        $password = '1234';
 
 
 
