@@ -168,5 +168,17 @@ class AdministrarPerfil extends Validator
           return Database::executeRow($sql, $params);
       }
   
-     
+     public function checkPass($passstr)
+     {
+        $sql = 'SELECT clave_admin FROM administrador WHERE id_admin = ?';
+        $params = array($_SESSION['id_admin']);
+
+        $data = Database::getRow($sql, $params);
+
+        if (password_verify($passstr, $data['clave_admin'])) {
+            return true;
+        } else {
+            return false;
+        }
+     }
 }
