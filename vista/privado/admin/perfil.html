@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <!--Marco general-->
+    <!--Encabezado y sesión-->
     <header>
         <nav>
             <div class="nav-wrapper white">
@@ -27,17 +27,18 @@
                                 class="material-icons large blue-text">menu</i></a>
                     </div>
                     <div class="col m5 s5 left valign-wrapper">
-    
-                        <img class="responsive-img" src="../../../recursos/img/logo_delivery_system.png" alt="">
+
+                        <img class="responsive-img" src="logo_delivery_system.png" alt="">
                     </div>
                     <div class="col m6 s6" id="opciones_navbar">
-    
+
                     </div>
                 </div>
             </div>
         </nav>
-    
+
     </header>
+    <!--Barra de navegación lateral-->
     <div class="row">
         <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
             <div class="opciones-sidenav">
@@ -90,59 +91,79 @@
     
         </ul>
     </div>
-            <!--Información de la página-->
-            <main>
-                <!--Contenedor general de los datos-->
-                <div class="row contenedor_perfil_cliente" id="contenedor">
-                    <div class="col l7 m12 s12 datos_usuario_perfil_cliente">
-                        <h6>Tus datos personales</h6>
-                        <div class="datos_perfil_cliente">
-                            <form method="post" id="datos-usuario" autocomplete="off">
-                                <div class="input-field col s6 m12 l12">
-                                    <input placeholder="Nombre" id="name" type="text" class="validate" />
-                                    <label for="first_name">Nombre</label>
-                                </div>
-                                <div class="input-field col s6 m12 l12">
-                                    <input placeholder="Apellido" id="lastname" type="text" class="validate" />
-                                    <label for="first_name">Apellido</label>
-                                </div>
-                                <div class="input-field col s6 m12 l12">
-                                    <input placeholder="Número de DUI" id="dui" type="text" class="validate" />
-                                    <label for="first_name">DUI</label>
-                                </div>
-                                <div class="input-field col s6 m12 l12">
-                                    <input placeholder="Correo" id="email" type="email" class="validate" />
-                                    <label for="first_name">Correo</label>
-                                </div>
-                                <div class="input-field col s6 m12 l12">
-                                    <input placeholder="Teléfono" id="telefono" type="tel" class="validate" />
-                                    <label for="first_name">Teléfono</label>
-                                </div>
-                            </form>
+
+
+    <!--Información de la página-->
+    <main>
+        <!--Contenedor general de los datos-->
+        <div class="row">
+            <div class="col l7 m12 s12 datos_usuario_perfil_cliente">
+                <h6>Tus datos personales</h6>
+                <div class="datos_perfil_cliente">
+                    <form method="post" id="datos-usuario">
+                        <div class="input-field col s6 m12 l12">
+                            <input placeholder="Nombre" id="name" type="text" class="validate" />
+                            <label for="first_name">Nombre</label>
                         </div>
+                        <div class="input-field col s6 m12 l12">
+                            <input placeholder="Apellido" id="lastname" type="text" class="validate" />
+                            <label for="first_name">Apellido</label>
+                        </div>
+                        <div class="input-field col s6 m12 l12">
+                            <input placeholder="Número de DUI" id="dui" type="text" class="validate" />
+                            <label for="first_name">DUI</label>
+                        </div>
+                        <div class="input-field col s6 m12 l12">
+                            <input placeholder="Correo" id="email" type="email" class="validate" />
+                            <label for="first_name">Correo</label>
+                        </div>
+                        <div class="input-field col s6 m12 l12">
+                            <input placeholder="Teléfono" id="telefono" type="tel" class="validate" />
+                            <label for="first_name">Teléfono</label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col l5 m12 s12 center-align">
+                <h6>Datos de tu cuenta</h6>
+                <div class="contenedor_datos_usuario_perfil_cliente">
+                    <div class="input-field col s6 m12 l12">
+                        <input id="usuario" type="text" name="usuario" class="validate" />
+                        <label for="usuario">Usuario</label>
                     </div>
-                    <div class="col l5 m12 s12 center-align">
-                        <h6>Datos de tu cuenta</h6>
-                        <div class="contenedor_datos_usuario_perfil_cliente">
-                            <div class="input-field col s6 m12 l12">
-                                <input id="usuario" type="text" name="usuario" class="validate" />
-                                <label for="usuario">Usuario</label>
-                            </div>
-                            <div class="input-field col s6 m12 l12">
-                                <input id="pass" type="password" name="pass" class="validate" />
-                                <label for="pass">Contraseña</label>
-                            </div>
-                            <div class="contenedor_boton_modificar_datos_cliente">
-                                <a href="#datos-cuenta" class="btn modal-trigger boton_cambiar_foto_cliente"><i
-                                        class="material-icons">edit</i></a>
-                            </div>
-                        </div>
+                    <div class="input-field col s6 m12 l12">
+                        <input id="pass" type="password" name="pass" class="validate" />
+                        <label for="pass">Contraseña</label>
+                    </div>
+                    <div class="contenedor_boton_modificar_datos_cliente">
+                        <a href="#datos-cuenta" class="btn modal-trigger boton_cambiar_foto_cliente"><i
+                                class="material-icons">edit</i></a>
                     </div>
                 </div>
-            </main>
-        </div>
-    </div>
+                <div class="col l12 m12 s12">
+                    <div class="row"></div>
+                    <div class="card row">
+                        <div class="card-content row">
+                            <span class="card-title">Autentificación en dos pasos:</span>
+                            <div class="col l10 m10 s10 push-l1 push-m1 push-s1">
+                                <hr>
+                            </div>
 
+                            <div class="col l6 m6 s12">
+                                <h6 id="estadoAutentificación">Sin datos</h6>
+                            </div>
+                            <div class="col l6 m6 s12">
+                                <a href="#modal-autentificar" id="activar" onclick="cargarQR()"
+                                    class="btn blue modal-trigger">¡Activar!</a>
+                                <a onclick="desactivar()" id="desactivar" class="btn blue">Desactivar</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
     <!--Footer-->
     <footer class="page-footer blue accent-3">
         <div class="row">
@@ -155,9 +176,41 @@
         </div>
     </footer>
     <!--Modals para modificar los datos del perfil-->
+
+    <!--Modal para activar la autentificación en dos pasos-->
+    <div id="modal-autentificar" class="modal">
+        <form id="autentificacion" method="post">
+            <div class="row">
+                <div class="col l10 m10 s10 push-l1 push-m1 push-s1 center">
+                    <h5>Activar autentificación en dos pasos</h6>
+                        <span>Escanea el código con tu aplicación o agregalo por medio de la clave, luego intruce el
+                            código generado en la aplicación para activar la autentificación en dos pasos</span>
+                        <div class="col l10 m10 s10 push-l1 push-m1 push-s1">
+                            <div class="row"></div>
+                            <div class="row">
+                                <img id="codigoQR" src="" class="responsive-img" alt="">
+                            </div>
+
+                            <span id="secreto"></span>
+                        </div>
+                        <div class="input-field col l8 m8 s10 push-l2 push-m2 push-s1">
+                            <i class="material-icons prefix">vpn_key</i>
+                            <input id="last_name" type="text" class="validate" name="codigo">
+                            <label for="last_name">Pin de verificación</label>
+                        </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class=" waves-effect waves-green btn-flat boton_a_gregar">Verificar</button>
+                <a class="modal-close waves-effect waves-green btn-flat boton_a_gregar">Cerrar</a>
+            </div>
+        </form>
+
+    </div>
+
     <!--Modal de la informacion-->
     <div id="modal_info" class="modal">
-        <form action="post" id="usuarioF" autocomplete="off">
+        <form action="post" id="usuarioF">
             <input type="text" id="idU" name="id" class="hide">
             <div class="modal-content">
                 <div class="row contorno">
@@ -200,7 +253,7 @@
     </div>
     <!--Datos de la cuenta -->
     <div id="datos-cuenta" class="modal">
-        <form action="post" id="cuentaF" autocomplete="off">
+        <form action="post" id="cuentaF">
             <input type="text" id="idC" name="id" class="hide">
             <div class="modal-content">
                 <div class="row contorno">
@@ -236,6 +289,7 @@
     <script src="../../../recursos/js/sweetalert2.all.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript" src="../../../controladores/componentes.js"></script>
+    <script src="../../../controladores/privado/admin/inactividad.js"></script>
     <script type="text/javascript" src="../../../controladores/validator.js"></script>
     <script type="text/javascript" src="../../../controladores/privado/admin/perfil.js"></script>
     <script src="../../../controladores/privado/admin/modo_oscuro.js"></script>

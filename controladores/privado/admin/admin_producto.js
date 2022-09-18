@@ -3,18 +3,19 @@ const API_PRODUCTOS = SERVER + 'dashboard/administrar_producto.php?action=';
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
+    //Se ejecuta el método de inactividad
+    actividad();
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
     readRows(API_PRODUCTOS);
     // Se define una variable para establecer las opciones del componente Modal.
     let options = {
-        dismissible: false
-    }
+        dismissible: false,
+    };
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
-    M.Modal.init(document.querySelectorAll('.modal'), options);
-    M.Sidenav.init(document.querySelectorAll('.sidenav'));
+    M.Modal.init(document.querySelectorAll(".modal"), options);
+    M.Sidenav.init(document.querySelectorAll(".sidenav"));
     // Se inicializa el componente Dropdown para que funcione la lista desplegable en los menús.
     M.Dropdown.init(document.querySelectorAll(".dropdown-trigger"));
-
 });
 
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().

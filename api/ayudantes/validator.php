@@ -385,65 +385,7 @@ class Validator
     }
 
     /**
-     * Función para validar que sea un número
-     * 
-     */
-
-    public function numero($valor)
-    {
-        //Se revisa si el valor es númerico
-        return (is_numeric($valor));
-    }
-
-    /*
-     * Función para validar que sea una letra minuscula
-     * 
-     */
-
-    public function letraMinuscula($valor)
-    {
-        //Se revisa si el valor es númerico
-        return (ctype_lower($valor));
-    }
-
-    /*
-     * Función para validar que sea una letra mayúsucla
-     * 
-     */
-
-    public function letraMayuscula($valor)
-    {
-        //Se revisa si el valor es númerico
-        return (ctype_upper($valor));
-    }
-
-    /**
-     * Función para validar que existan simbolos
-     */
-
-    public function simbolo($valor)
-    {
-        //Se revisa si el valor es númerico
-        return (ctype_punct($valor));
-    }
-
-
-    /**
-     * Función para validar que no contenga datos peligrosos para el sistema
-     */
-
-    public function prohibido($valor)
-    {
-        //Sr revisa si contiene valores problematicos
-        if (str_contains($valor, "'") || str_contains($valor, '"')) {
-
-            return $valor;
-        }
-    }
-
-
-    /**
-     * Función para valiar que un nombre o apellido sean parte de la clave
+     * Función para validar que un nombre o apellido sean parte de la clave
      */
 
     public function validarPalabra($arreglo, $palabra)
@@ -574,18 +516,35 @@ class Validator
             //Se verifica que la longitud esté dentro de la longitud máxima 
             if (count($arregloPass) <= 64) {
                 //Se filtra para saber si hay carácteres peligrosos
-                $peligro = array_filter($arregloPass, "prohibido");
+                $peligro = array_filter($arregloPass, function ($arregloPass) {
+                    //Sr revisa si contiene comillas
+                    return str_contains($arregloPass, "'") || str_contains($arregloPass, '"') || str_contains($arregloPass, "\\") || 
+                    str_contains($arregloPass, "<") || str_contains($arregloPass, ">");
+                });
                 if (count($peligro) == 0) {
                     //Se filtra para saber si hay números dentro de la contraseña
-                    $numero = array_filter($arregloPass, "numero");
+                    $numero = array_filter($arregloPass, function ($valor) {
+                        //Se revisa si el valor es númerico
+                        return (is_numeric($valor));
+                    });
                     if (count($numero) > 0) {
-                        //Se filtra para saber si hay letras dentro de la contraseña
-                        $minuscula = array_filter($arregloPass, "letraMinuscula");
+                        //Se filtra para saber si hay letras minúsculas dentro de la contraseña
+                        $minuscula = array_filter($arregloPass, function ($valor) {
+                            //Se revisa si el valor es alfabético en minúscula
+                            return (ctype_lower($valor));
+                        });
                         if (count($minuscula) > 0) {
-                            $mayuscula = array_filter($arregloPass, "letraMayuscula");
+                            //Se filtra para saber si hay letras mayúsuclas dentro de la contraseña
+                            $mayuscula = array_filter($arregloPass, function ($arregloPass) {
+                                //Se revisa si el valor es alfabetico en mayúscula
+                                return (ctype_upper($arregloPass));
+                            });
                             if (count($mayuscula) > 0) {
                                 //Se filtra para saber si hay simbolos dentro de la contraseña
-                                $simbolos = array_filter($arregloPass, "simbolo");
+                                $simbolos = array_filter($arregloPass, function ($arregloPass) {
+                                    //Se revisa si el valor es númerico
+                                    return (ctype_punct($arregloPass));
+                                });
                                 if (count($simbolos) > 0) {
                                     //Se revisa que la contraseña no contenga el nombre dentro de ella
                                     if (!$this->validarPalabra($arregloPass, $nombre)) {
@@ -595,40 +554,51 @@ class Validator
                                             if (!$this->validarPalabra($arregloPass, $usuario)) {
                                                 //Se revisa que la contraseña no contenga la fecha o una referencia de ella
                                                 if (!$this->validarFecha($clave, $fecha)) {
-                                                echo "Es una contraseña segura";
+                                                    $this->passwordError = "Es una contraseña segura";
+                                                    return true;
                                                 } else {
-                                                    echo "La contraseña no puede contener tu fecha o parte de ella";
+                                                    $this->passwordError = "La contraseña no puede contener tu fecha o parte de ella";
+                                                    return false;
                                                 }
                                             } else {
-                                                echo "La contraseña no puede contener tu nombre de usuario o una fracción";
+                                                $this->passwordError = "La contraseña no puede contener tu nombre de usuario o una fracción";
+                                                return false;
                                             }
                                         } else {
-                                            echo "La contraseña no puede contener tu apellido o una fracción";
+                                            $this->passwordError = "La contraseña no puede contener tu apellido o una fracción";
+                                            return false;
                                         }
                                     } else {
-                                        echo "La contraseña no puede contener tu nombre o fracciones";
+                                        $this->passwordError = "La contraseña no puede contener tu nombre o fracciones";
+                                        return false;
                                     }
                                 } else {
-                                    echo "No hay simbolos dentro de la contraseña";
+                                    $this->passwordError = "No hay simbolos dentro de la contraseña";
+                                    return false;
                                 }
                             } else {
-                                echo "No hay mayúsculas dentro de la contraseña";
+                                $this->passwordError = "No hay mayúsculas dentro de la contraseña";
+                                return false;
                             }
                         } else {
-                            echo "No hay minúsculas dentro de la contraseña";
+                            $this->passwordError = "No hay minúsculas dentro de la contraseña";
+                            return false;
                         }
                     } else {
-                        echo "Lo sentimos, no hay números";
+                        $this->passwordError = "No hay números dentro de la contraseña";
+                        return false;
                     }
                 } else {
-                    echo "Hay carácteres no válidos dentro de la contraseña";
+                    $this->passwordError = "Hay carácteres no válidos dentro de la contraseña";
+                    return false;
                 }
             } else {
-                //Se devuelve el problema
-                echo  'La clave debe contener un máximo de 64 caracteres';
+                $this->passwordError =  'La clave debe contener un máximo de 64 caracteres';
+                return false;
             }
         } else {
-            echo 'La clave debe contener un mínimo de 8 caracteres';
+            $this->passwordError = 'La clave debe contener un mínimo de 8 caracteres';
+            return false;
         }
     }
 }

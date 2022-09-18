@@ -28,10 +28,12 @@ document.getElementById('login-form').addEventListener('submit', function () {
     }).then(function (request) {
         if (request.ok) {
             request.json().then(function (response) {
-                if (response.status) {
+                if (response.status == 2) {
+                    sweetAlert(1, response.message, "verificacion.html");
+                } else if (response.status == 1) {
                     sweetAlert(1, response.message, "estadistica.html");
-                } else {
-                    sweetAlert(2, response.exception, null)
+                } else { 
+                     sweetAlert(2, response.exception, null);
                 }
             });
         } else {

@@ -1,8 +1,13 @@
 //Se crea la constante de la api
 const API_PERFIL = SERVER + "dashboard/administrar_perfil.php?action=";
+const API_AUTENTIFICADOR = SERVER + "dashboard/administrar_admin.php?action=";
 
 // Método que ejecuta la carga de de las tablas y la activación de componentes
 document.addEventListener("DOMContentLoaded", function () {
+    //Se ejecuta el método de inactividad
+    actividad();
+    //Cargar los datos de la autentificación
+    datosAutentificacion();
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
     readRows(API_PERFIL);
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
@@ -10,6 +15,35 @@ document.addEventListener("DOMContentLoaded", function () {
     //se inicializan los tooltp
     M.Tooltip.init(document.querySelectorAll(".tooltipped"));
 });
+
+//Función para verificar los datos de autentificación
+function datosAutentificacion() {
+    //Se realiza la petición
+    fetch(API_AUTENTIFICADOR + "ObtenerEstadoVerificacion", {
+        method: "get",
+    }).then(function (request) {
+        //Se verifica el estado devuelto por la ejecución
+        if (request.ok) {
+            //Se pasa a JSON
+            request.json().then(function (response) {
+                //Se verifica el estado devuelto por la API
+                if (response.status) {
+                    //Se cambian los botones a activado
+                    document.getElementById("estadoAutentificación").innerHTML = "¡Activada!";
+                    document.getElementById("activar").style.display = "none";
+                    document.getElementById("desactivar").style.display = "";
+                } else {
+                    document.getElementById("estadoAutentificación").innerHTML = "Desactivada";
+                    document.getElementById("activar").style.display = "";
+                    document.getElementById("desactivar").style.display = "none";
+                }
+            });
+        } else {
+            //Se imprime el problema en la consola
+            console.log(request.status + " " + request.statusText);
+        }
+    });
+}
 
 //Función que llena la tabla
 function fillTable(data) {
@@ -73,7 +107,7 @@ function cargarUsuario(id) {
     //Se crea un dato de tipo formulario
     let datos = new FormData();
     //Se carga con el id
-    datos.append('id', id);
+    datos.append("id", id);
     //Se empieza con la petición
     fetch(API_PERFIL + "cargarUsuario", {
         method: "post",
@@ -106,7 +140,7 @@ function cargarCuenta(id) {
     //Se crea un dato de tipo formulario
     let datos = new FormData();
     //Se carga con el id
-    datos.append('id', id);
+    datos.append("id", id);
     //Se empieza con la petición
     fetch(API_PERFIL + "cargarCuenta", {
         method: "post",
@@ -130,18 +164,16 @@ function cargarCuenta(id) {
     });
 }
 
-
 //Método que actualiza los datos del usuario
-document.getElementById("usuarioF").addEventListener('submit', function (event) {
+document.getElementById("usuarioF").addEventListener("submit", function (event) {
     //Se previene la recarga automatica
     event.preventDefault();
     if (verificarEmail("correo")) {
         //Se ejecuatan los cambios
         saveRow(API_PERFIL, "actualizarUsuario", "usuarioF", "modal_info");
     } else {
-        sweetAlert(3, 'Formato de correo incorrecto', null);
+        sweetAlert(3, "Formato de correo incorrecto", null);
     }
-
 });
 
 //Método que actualiza los datos de la cuenta
@@ -161,3 +193,236 @@ document.getElementById("cuentaF").addEventListener("submit", function (event) {
         sweetAlert(3, "Las contraseñas no son iguales", null);
     }
 });
+
+//Función para generar el proceso de autentificación en dos pasos
+//Se crea un método cuando se carga la página
+function cargarQR() {
+    //Se realiza la peticion
+    fetch(API_AUTENTIFICADOR + "generarCodigo", {
+        method: "get",
+    }).then(function (request) {
+        //Se revisa el estado de la ejecución
+        if (request.ok) {
+            //Se pasa a json
+            request.json().then(function (response) {
+                //Se revisa el estado devuelto por la api
+                if (response.status) {
+                    //Se coloca el código qr
+                    document.getElementById("codigoQR").src = response.dataset[1];
+                    document.getElementById("secreto").innerHTML = response.dataset[0];
+                    //Se muestra el mensaje
+                    sweetAlert(1, response.message, null);
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + " " + request.statusText);
+        }
+    });
+}
+
+//método para revisar el código ingresado
+document.getElementById("autentificacion").addEventListener("submit", function (event) {
+    //Se previene la autorecarga
+    event.preventDefault();
+    //Se realiza la peticion
+    fetch(API_AUTENTIFICADOR + "verificarRegistro", {
+        method: "post",
+        body: new FormData(document.getElementById("autentificacion")),
+    }).then(function (request) {
+        //Se revisa el estado de la ejecución
+        if (request.ok) {
+            //Se pasa a formato JSON
+            request.json().then(function (response) {
+                //Se verifica el estado devuelto por la api
+                if (response.status) {
+                    //Se muestra el mensaje
+                    sweetAlert(1, response.message, null);
+                    //Se cierra el modal
+                    M.Modal.getInstance(document.getElementById("modal-autentificar")).close();
+                    //Se reestablece el formulario
+                    document.getElementById("autentificacion").reset();
+                    //Se refrescan las opciones de autentificación en dos pasos
+                    datosAutentificacion();
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + " " + request.statusText);
+        }
+    });
+});
+
+//Función para desactivar la autentificación en dos pasos
+function desactivar() {
+    (async () => {
+        const { value: pass } = await Swal.fire({
+            title: "Confirmación de identidad",
+            text: "Antes de proceder, es necesario que digites tu contraseña antes de desactivar la autentificación en dos pasos",
+            showCancelButton: true,
+            input: "text",
+            with: "40em",
+            inputPlaceholder: "Escribe tu contraseña",
+            inputValidator: (value) => {
+                if (!value) {
+                    return "Debes de escribir la contraseña antes de enviarla";
+                }
+            },
+            padding: 50,
+            inputAttributes: {
+                maxlength: 10,
+            },
+        });
+
+        let data = new FormData();
+        data.append("clave", pass);
+        //Se realiza la petición para verificar la existencia el usuario
+        fetch(API_AUTENTIFICADOR + "verificarPass", {
+            method: "post",
+            body: data,
+        }).then(function (request) {
+            //Se revisa el estado de la ejecución
+            if (request.ok) {
+                //Se pasa a JSON
+                request.json().then(function (response) {
+                    //Se revisa el estado devuelto por la API
+                    if (response.status) {
+                        //Se le solicita la confirmación antes de desactivarla
+                        swal.fire({
+                            title: "Desactivar autentificación en dos pasos",
+                            text: "Si desactivas la autentificación en dos pasos, tu cuenta estará más vulnerable a ataques y robos de ella, ¿Estás seguro?",
+                            showCancelButton: true,
+                            cancelButtonColor: "#1e88e5",
+                            confirmButtonColor: "#c62828 ",
+                            confirmButtonText: "Desactivar",
+                            cancelButtonText: "Cancelar",
+                        }).then(function (result) {
+                            //Se revisa la elección del usuario
+                            if (result.isConfirmed) {
+                                //Se procede a eliminar el factor de dos pasos
+                                fetch(API_AUTENTIFICADOR + "eliminarAutentificacion", {
+                                    method: "get",
+                                }).then(function (request) {
+                                    //Se revisa el estado devuelto por la ejecución
+                                    if (request.ok) {
+                                        //Se pasa a formato JSON
+                                        request.json().then(function (response) {
+                                            //Se verifica el estado devuelto por la API
+                                            if (response.status) {
+                                                //Se confirma la desactivación
+                                                sweetAlert(1, response.message, null);
+                                                //Se refrescan las opciones de verificación en dos pasos
+                                                datosAutentificacion();
+                                            } else {
+                                                //Se muestra el problema
+                                                sweetAlert(2, response.exception, null);
+                                            }
+                                        });
+                                    } else {
+                                        //Se mueyts el problema en la conosla
+                                        console.log(request.status + " " + request.statusText);
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        //Se muestra el problema
+                        sweetAlert(2, response.exception, null);
+                    }
+                });
+            } else {
+                //Se imprime el problema en la consola
+                console.log(request.status + " " + request.statusText);
+            }
+        });
+    })();
+    /**
+     *     (async () => {
+        //Se solicita que se digite la contraseña antes de desactivarla
+        const { value: pass } = await Swal.fire({
+            title: "Confirmación de identidad",
+            text: "Antes de proceder, es necesario que digites tu contraseña antes de desactivar la autentificación en dos pasos",
+            showCancelButton: true,
+            input: "text",
+            with: "40em",
+            inputPlaceholder: "Escribe tu contraseña",
+            inputValue: inputValue,
+            inputValidator: (value) => {
+                if (!value) {
+                    return "Debes de escibir la contraseña antes de enviarla";
+                }
+            },
+            padding: 50,
+            inputAttributes: {
+                maxlength: 10,
+            },
+        });
+    })();
+     */
+    /**
+     *         //Se crea una constante para enviar la contraseña
+        let data = new FormData();
+        data.append("clave", pass);
+        //Se realiza la petición para verificar la existencia el usuario
+        fetch(API_AUTENTIFICADOR + "verificarPass", {
+            method: "post",
+            body: data,
+        }).then(function (request) {
+            //Se revisa el estado de la ejecución
+            if (request.ok) {
+                //Se pasa a JSON
+                request.json().then(function (response) {
+                    //Se revisa el estado devuelto por la API
+                    if (response.status) {
+                        //Se le solicita la confirmación antes de desactivarla
+                        swal.fire({
+                            title: "Desactivar autentificación en dos pasos",
+                            text: "Si desactivas la autentificación en dos pasos, tu cuenta estará más vulnerable a ataques y robos de ella, ¿Estás seguro?",
+                            showCancelButton: true,
+                            cancelButtonColor: "#1e88e5",
+                            confirmButtonColor: "#c62828 ",
+                            confirmButtonText: "Desactivar",
+                            cancelButtonText: "Cancelar",
+                        }).then(function (result) {
+                            //Se revisa la elección del usuario
+                            if (result.isConfirmed) {
+                                //Se procede a eliminar el factor de dos pasos
+                                fetch(API_AUTENTIFICADOR + "eliminarAutentificacion", {
+                                    method: "get",
+                                }).then(function (request) {
+                                    //Se revisa el estado devuelto por la ejecución
+                                    if (request.ok) {
+                                        //Se pasa a formato JSON
+                                        request.json().then(function (response) {
+                                            //Se verifica el estado devuelto por la API
+                                            if (request.status) {
+                                                //Se confirma la desactivación
+                                                sweetAlert(1, response.message, null);
+                                                //Se refrescan las opciones de verificación en dos pasos
+                                                datosAutentificacion();
+                                            } else {
+                                                //Se muestra el problema
+                                                sweetAlert(2, response.exception, null);
+                                            }
+                                        });
+                                    } else {
+                                        //Se mueyts el problema en la conosla
+                                        console.log(request.status + " " + request.statusText);
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        //Se muestra el problema
+                        sweetAlert(2, response.exception, null);
+                    }
+                });
+            } else {
+                //Se imprime el problema en la consola
+                console.log(request.status + " " + request.statusText);
+            }
+        });
+     */
+}
