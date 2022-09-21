@@ -157,19 +157,19 @@ class AdministrarPerfil extends Validator
         return Database::executeRow($sql, $params);
     }
 
-    
-  
-      //Se cambia la fecha de cambio de contraseña de administrador
-      public function changeCambio()
-      {
-  
-          $sql = 'UPDATE cambio_contra_administrador set fecha_cambio = current_date , id_admin=? ';
-          $params = array($_SESSION['id_admin']);
-          return Database::executeRow($sql, $params);
-      }
-  
-     public function checkPass($passstr)
-     {
+
+
+    //Se cambia la fecha de cambio de contraseña de administrador
+    public function changeCambio()
+    {
+
+        $sql = 'UPDATE cambio_contra_administrador set fecha_cambio = current_date , id_admin=? ';
+        $params = array($_SESSION['id_admin']);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function checkPass($passstr)
+    {
         $sql = 'SELECT clave_admin FROM administrador WHERE id_admin = ?';
         $params = array($_SESSION['id_admin']);
 
@@ -180,5 +180,19 @@ class AdministrarPerfil extends Validator
         } else {
             return false;
         }
-     }
+    }
+
+    //Función para revisar si la contraseña colocada es correcta
+    public function revisarPass($clave)
+    {
+        $sql = 'SELECT clave_admin FROM administrador WHERE id_admin = ?';
+        $params = array($_SESSION['id_admin']);
+        $data = Database::getRow($sql, $params);
+        //Se revisa si la contraseña es correcta
+        if (password_verify($clave, $data['clave_admin'])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
