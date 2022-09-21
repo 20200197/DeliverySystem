@@ -165,17 +165,17 @@
                                     <div class="input-field col s12 m12 l12">
                                         <i class="material-icons prefix">vpn_key</i>
                                         <label for="clave">Nueva contraseña</label>
-                                        <input id="clave1" type="password" class="validate" onkeypress="revisarTexto(event)">
+                                        <input id="clave" type="password" class="validate" onkeypress="revisarTexto(event)" name="clave">
                                         <a onclick="mostrarPass('clave', 'claveIcon')"><i id="claveIcon"
                                                 class="material-icons prefix black-text">visibility</i></a>
                                     </div>
                                     <div class="input-field col s12 m12 l12">
                                         <i class="material-icons prefix">vpn_key</i>
-                                        <input id="clave" type="password" class="validate"
+                                        <input id="clave1" type="password" class="validate"
                                             onkeypress="revisarTexto(event)">
-                                        <a onclick="mostrarPass('clave', 'claveIcon')"><i id="claveIcon"
+                                        <a onclick="mostrarPass('clave', 'claveIcon')"><i id="clave"
                                                 class="material-icons prefix black-text">visibility</i></a>
-                                        <label for="clave1">Nueva contraseña</label>
+                                        <label for="clave1">Confirmar contraseña</label>
                                     </div>
                                     <div class="col l12 m12 s12">
                                         <button class="btn blue" type="submit"

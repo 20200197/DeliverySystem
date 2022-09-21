@@ -133,7 +133,7 @@ class Recuperacion extends Validator
     public function reestablecerPassAdministrador()
     {
         $sql = 'UPDATE administrador SET clave_admin = ? WHERE id_admin = ?';
-        $params = array($this->passAdmin, $this->identificadorAdmin);
+        $params = array($this->passAdmin, $_SESSION['id_admin_recuperar']);
         return Database::executeRow($sql, $params);
     }
 

@@ -23,7 +23,7 @@ if (isset($_GET['action'])) {
                 $result['exception'] = 'Nombre de usuario incorrecto';
             } elseif ($result['dataset'] = $recuperar->obtenerCorreoAdministrador()) {
                 $result['status'] = true;
-                $result['message'] = 'Autentificación de usuario completada';
+                $result['message'] = 'Autentificación de usuario completada '. $_SESSION['id_admin_recuperar'];
             } elseif (Database::getException()) {
                 $result['exception'] = Database::getException();
             } else {
