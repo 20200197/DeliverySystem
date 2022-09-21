@@ -90,6 +90,32 @@
                         </div>
 
                     </div>
+                    <!--Formulario de correo-->
+                    <div id="correoRecuperacion" class="card-content">
+                        <h5 class="card-title">Confirmación de correo</h5>
+                        <div class="card-recuperacion valign-wrapper">
+                            <div>
+                                <form method="post" id="formularioCorreo" autocomplete="off">
+                                    <div class="col l12 m12 s12">
+                                        <span id="mensajeCorreo" class="col l12 m12 s12">Escribe tu nombre de usuario al
+                                            cual estás intentando de
+                                            iniciar sesión:</span>
+                                    </div>
+                                    <div class="input-field col s11 m11 l11">
+                                        <i class="material-icons prefix">email</i>
+                                        <input id="correo" type="email" class="validate" name="correo" onkeypress="revisarTexto(event)">
+                                        <label for="correo">Correo</label>
+                                    </div>
+                                    <div class="col l12 m12 s12">
+                                        <button class="btn blue" type="submit">Verificar</button>
+                                        <a class="btn blue" type="submit" onclick="correoUsuarios()">Regresar</a>
+                                    </div>
+                                </form>
+                            </div>
+                    
+                        </div>
+                    
+                    </div>
                     <!--Formulario de código de seguridad-->
                     <div id="codigoRecuperacion" class="card-content">
                         <h5 class="card-title">Confirmación de código de seguridad</h5>
