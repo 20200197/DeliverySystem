@@ -17,7 +17,7 @@ if (isset($_GET['action'])) {
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null, 'session' => 0);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (isset($_SESSION['id_admin'])) {
+    if (isset($_SESSION['id_admin']) && $token->getToken('admin') == $_SESSION['admin_token']) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
@@ -37,11 +37,7 @@ if (isset($_GET['action'])) {
                 //Registrar admin
             case 'registerAdmin':
                 $_POST = $admin->validateForm($_POST);
-                if (!isset($_SESSION['admin_token'])) {
-                    $result['exception'] = 'Factor de autenticación deniega la acción';
-                } elseif ($_POST['token'] != $_SESSION['admin_token']) {
-                    $result['exception'] = 'Fáctor de autenticación, no es un humano';
-                } elseif (!$admin->setNombre($_POST['name'])) {
+                if (!$admin->setNombre($_POST['name'])) {
                     $result['exception'] = 'Ingrese un nombre válido';
                 } elseif (!$admin->setApellido($_POST['lastname'])) {
                     $result['exception'] = 'Ingrese un apellido válido';
@@ -68,7 +64,6 @@ if (isset($_GET['action'])) {
                 } elseif ($admin->registerAdmin()) {
                     $result['status'] = 1;
                     $result['message'] = 'Administrador creado con exito';
-                    $result['token'] = $_POST['token'];
                 } else {
                     $result['exception'] = Database::getException();
                 }
@@ -261,12 +256,12 @@ if (isset($_GET['action'])) {
 
                         $result['status'] = 1;
                         $result['message'] = 'Autenticación correcta';
-                        $token->setToken('admin');
 
                         if ($admin->verificarSegundoPaso()) {
                             $result['status'] = 2;
                         } else {
                             $_SESSION['id_admin'] = $_SESSION['id_admin_temporal'];
+                            $token->setToken('admin');
                             $result['status'] = 1;
                             unset($_SESSION['id_admin_temporal']);
                         }
@@ -302,6 +297,7 @@ if (isset($_GET['action'])) {
                         $result['message'] = 'Segundo paso de verificación completado';
                         unset($_SESSION['id_admin_temporal']);
                         $_SESSION['id_admin'] = $data['id_admin'];
+                        $token->setToken('admin');
                     } else {
                         $result['exception'] = 'El pin ingresado es incorrecto';
                     }

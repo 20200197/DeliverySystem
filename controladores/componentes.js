@@ -9,24 +9,6 @@ const SERVER = "http://localhost/DeliverySystem/api/";
 //const SERVER = "https://995b-190-87-160-25.ngrok.io/DeliverySystem/api/";
 const API_TOKEN = SERVER + "dashboard/token.php?action=getToken";
 
-function addToken(form) {
-    fetch(API_TOKEN, {
-        method: 'get'
-    }).then(function (request) {
-        if(request.ok){
-            request.json().then(function (response) {
-                try{
-                    document.getElementById(response.token).remove();
-                }catch(exception){
-                }
-                form.innerHTML += `<input id='${response.token}' class='hide' name='token' value='${response.token}'>`;
-            });
-        }else{
-            console.log(request.status + ' ' + request.statusText);
-        }
-    });
-}
-
 /*
  *   Función para obtener todos los registros disponibles en los mantenimientos de tablas (operación read).
  *

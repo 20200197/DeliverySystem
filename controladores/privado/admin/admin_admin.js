@@ -65,7 +65,6 @@ function fillTable(dataset) {
 
 function openSave() {
     M.Modal.getInstance(document.getElementById("save-modal")).open();
-    addToken(document.getElementById('save-form'));
 }
 
 document.getElementById('save-form').addEventListener('submit', function () {

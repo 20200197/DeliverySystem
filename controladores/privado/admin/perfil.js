@@ -283,7 +283,7 @@ function desactivar() {
             title: "Confirmación de identidad",
             text: "Antes de proceder, es necesario que digites tu contraseña antes de desactivar la autentificación en dos pasos",
             showCancelButton: true,
-            input: "text",
+            input: "password",
             with: "40em",
             inputPlaceholder: "Escribe tu contraseña",
             inputValidator: (value) => {
@@ -293,7 +293,7 @@ function desactivar() {
             },
             padding: 50,
             inputAttributes: {
-                maxlength: 10,
+                maxlength: 50,
             },
         });
 

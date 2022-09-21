@@ -31,9 +31,9 @@ function actividad() {
 
 //Función que se encarga de reiniciar el tiempo máximo que puede pasar en inactividad
 function iniciarInactividad() {
-    advertencia = window.setTimeout(mensaje, 1350000); //Se mostrará el mensaje a los 2 minutos y 25 segundos = 1350000
+    advertencia = window.setTimeout(mensaje, 135000); //Se mostrará el mensaje a los 2 minutos y 25 segundos = 1350000
     //Mensaje final antes de que se cierre la sesión
-    inactividad = window.setTimeout(cerrarSesion, 900000); //Se mostrará el mensaje a 1 minuto y 30 segundos = 90000
+    inactividad = window.setTimeout(cerrarSesion, 240000); //Se mostrará el mensaje a 1 minuto y 30 segundos = 90000
     /**
      *
      * Esto se realiza porque la alerta durará 5 segundos
