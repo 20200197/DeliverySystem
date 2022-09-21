@@ -83,17 +83,18 @@
                                 <img src="../../../recursos/img/publico/default-profile.jpg" id="profile-pic"
                                     width="200px" height="200px">
                             </div>
-                            <div class="file-field input-field">
+                            <div class="file-field input-field ">
                                 <div class="btn blue">
-                                    <span>Agregar foto</span>
-                                    <input type="file">
+                                    <span>Agregar imagen</span>
+                                    <input type="file" onchange="leerImg(this, document.getElementById('profile-pic'))"
+                                        id="foto_p" name="profile-file">
                                 </div>
-                                <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="file" name="profile-file" id="profile-file">
+                                <div class="file-path-wrapper white">
+                                    <input class="file-path validate" type="text" name="profile-file" id="profile-file">
                                 </div>
                             </div>
-                            <div class="contenedor_fotos_vendedor ">
-                                <div class="row ampliador_perfil_repartidor">
+                            <div class="">
+                                <div class="row">
                                     <div class="col l6 m6 s6">
                                         <h6>Antecendente penal</h6>
                                         <div id="preview-antecedente" class="styleImage">
@@ -103,10 +104,12 @@
                                         <div class="file-field input-field">
                                             <div class="btn blue">
                                                 <span>Agregar imagen</span>
-                                                <input type="file">
+                                                <input type="file"
+                                                    onchange="leerImg(this, document.getElementById('antecedente-pic'))"
+                                                    id="antecedente_p" name="antecedente-file">
                                             </div>
                                             <div class="file-path-wrapper">
-                                                <input class="file-path validate" type="file" name="antecedente-file"
+                                                <input class="file-path validate" type="text" name="antecedente-file"
                                                     id="antecedente-file">
                                             </div>
                                         </div>
@@ -120,7 +123,9 @@
                                         <div class="file-field input-field">
                                             <div class="btn blue">
                                                 <span>Agregar imagen</span>
-                                                <input type="file">
+                                                <input type="file"
+                                                    onchange="leerImg(this, document.getElementById('solvencia-pic'))"
+                                                    id="solvencia_p" name="solvencia-file">
                                             </div>
                                             <div class="file-path-wrapper">
                                                 <input class="file-path validate" type="text" name="solvencia-file"
@@ -128,27 +133,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col l6 m6 s6">
-                                        <div class="file-field input-field">
-                                            <div>
-                                                <input type="file">
-                                            </div>
-                                            <div class="file-path-wrapper hide">
-                                                <input class="file-path validate" type="text">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col l6 m6 s6">
-                                        <div class="file-field input-field hide">
-                                            <div>
-                                                <input type="file">
-                                            </div>
-                                            <div class="file-path-wrapper reducir_place">
-                                                <input class="file-path validate" type="text">
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
                                 <h6>Seleccione la ubicación para retirar los productos</h6>
                                 <div id="mapa" class="col s6 m6 l6"></div>

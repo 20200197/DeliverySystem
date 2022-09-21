@@ -90,6 +90,32 @@
                         </div>
 
                     </div>
+                    <!--Formulario de correo-->
+                    <div id="correoRecuperacion" class="card-content">
+                        <h5 class="card-title">Confirmación de correo</h5>
+                        <div class="card-recuperacion valign-wrapper">
+                            <div>
+                                <form method="post" id="formularioCorreo" autocomplete="off">
+                                    <div class="col l12 m12 s12">
+                                        <span id="mensajeCorreo" class="col l12 m12 s12">Escribe tu nombre de usuario al
+                                            cual estás intentando de
+                                            iniciar sesión:</span>
+                                    </div>
+                                    <div class="input-field col s11 m11 l11">
+                                        <i class="material-icons prefix">email</i>
+                                        <input id="correo" type="email" class="validate" name="correo" onkeypress="revisarTexto(event)">
+                                        <label for="correo">Correo</label>
+                                    </div>
+                                    <div class="col l12 m12 s12">
+                                        <button class="btn blue" type="submit">Verificar</button>
+                                        <a class="btn blue" type="submit" onclick="correoUsuarios()">Regresar</a>
+                                    </div>
+                                </form>
+                            </div>
+                    
+                        </div>
+                    
+                    </div>
                     <!--Formulario de código de seguridad-->
                     <div id="codigoRecuperacion" class="card-content">
                         <h5 class="card-title">Confirmación de código de seguridad</h5>
@@ -139,14 +165,15 @@
                                     <div class="input-field col s12 m12 l12">
                                         <i class="material-icons prefix">vpn_key</i>
                                         <label for="clave">Nueva contraseña</label>
+                                        <input id="clave1" type="password" class="validate" onkeypress="revisarTexto(event)">
                                         <a onclick="mostrarPass('clave', 'claveIcon')"><i id="claveIcon"
                                                 class="material-icons prefix black-text">visibility</i></a>
                                     </div>
                                     <div class="input-field col s12 m12 l12">
                                         <i class="material-icons prefix">vpn_key</i>
-                                        <input id="clave1" type="password" class="validate"
+                                        <input id="clave" type="password" class="validate"
                                             onkeypress="revisarTexto(event)">
-                                        <a onclick="mostrarPass('clave1', 'clave1Icon')"><i id="clave1Icon"
+                                        <a onclick="mostrarPass('clave', 'claveIcon')"><i id="claveIcon"
                                                 class="material-icons prefix black-text">visibility</i></a>
                                         <label for="clave1">Nueva contraseña</label>
                                     </div>

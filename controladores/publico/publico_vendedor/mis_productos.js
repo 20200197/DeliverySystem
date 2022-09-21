@@ -5,7 +5,27 @@ const API_CATEGORIA = SERVER + 'publico/categoria.php?action=';
 //Método que carga los datos cuando se inicia la página
 
 document.addEventListener("DOMContentLoaded", function () {
-    readRows(API_PRODUCTOS);
+    fetch(API_PRODUCTOS + "readAll", {
+        method: "get",
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                let data = [];
+                // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    data = response.dataset;
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+                // Se envían los datos a la función del controlador para llenar la tabla en la vista.
+                fillTable(data);
+            });
+        } else {
+            console.log(request.status + " " + request.statusText);
+        }
+    });
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
     M.Modal.init(document.querySelectorAll(".modal"), { dismissible: false });
 });

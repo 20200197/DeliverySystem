@@ -2,6 +2,7 @@
 require_once('../ayudantes/database.php');
 require_once('../ayudantes/validator.php');
 require_once('../modelos/administrar_perfil.php');
+require_once('../modelos/administrar_admin.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -67,7 +68,9 @@ if (isset($_GET['action'])) {
                         $result['exception'] = Database::getException();
                     }
                 } elseif (!$perfil->setPass($_POST['pass'])) {
-                    $result['exception'] = 'Contraseña invalido';
+                        $result['exception'] = 'Contraseña invalido';
+                } elseif ($perfil->checkPass($_POST['pass'])) {
+                    $result['exception'] = 'Por favor ingrese una contraseña diferente a la actual';
                 } elseif ($perfil->actualizarCuenta()) {
                     $result['status'] = 1;
                     $result['message'] = 'Datos de la cuenta correctamente modificados';

@@ -303,8 +303,8 @@ class AdministrarVendedor extends Validator
         // Se establece la zona horaria local para obtener la fecha del servidor.
         date_default_timezone_set('America/El_Salvador');
         $date = date('Y-m-d');
-        $sql = 'INSERT INTO vendedor(nombre_vendedor, apellido_vendedor, dui_vendedor, correo_vendedor, telefono_vendedor, usuario_vendedor, clave_vendedor, solvencia_pnc, antecedente_penal, direccion_domicilio_vendedor, status_vendedor, foto_vendedor, fecha_registro_vendedor, coordenadas_vendedor)
-        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, true, ?, ?, ?)';
+        $sql = 'INSERT INTO vendedor(nombre_vendedor, apellido_vendedor, dui_vendedor, correo_vendedor, telefono_vendedor, usuario_vendedor, clave_vendedor, solvencia_pnc, antecedente_penal, direccion_domicilio_vendedor, status_vendedor, foto_vendedor, fecha_registro_vendedor, coordenadas_vendedor, id_estado_vendedor, intentos_fallidos, fecha_desbloqueo)
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, true, ?, ?, ?, 1, 0, CURRENT_DATE - 1)';
         $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->telefono, $this->usuario, $this->clave, $this->solvencia, $this->antecedentes, $this->direccion, $this->foto, $date, $this->coordenadas);
 
         return Database::executeRow($sql, $params);
@@ -492,7 +492,7 @@ class AdministrarVendedor extends Validator
     {
         $sql = 'SELECT current_date - fecha_cambio as rango_ch
           from cambio_contra_vendedor where id_vendedor=?';
-        $params = array($_SESSION['id_vendedor']);
+        $params = array($this->identificador);
 
         return Database::getRow($sql, $params);
     }
