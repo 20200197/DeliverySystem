@@ -126,7 +126,7 @@ class PerfilCliente extends Validator
     {
         $sql = "SELECT nombre_cliente, apellido_cliente, correo_cliente, telefono_cliente, foto_cliente
         FROM cliente WHERE id_cliente = ?";
-        $params = array($this->identificador);
+        $params = array($this->identificador);  
         return Database::getRow($sql, $params);
     }
 

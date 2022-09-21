@@ -5,6 +5,7 @@ const API_RECUPERACION = SERVER + "dashboard/recuperar_clave.php?action=";
 document.addEventListener("DOMContentLoaded", function () {
     //Se procede a esconder los trozos de vista
     document.getElementById("usuarioRecuperacion").style.display = "";
+    
     document.getElementById("codigoRecuperacion").style.display = "none";
     document.getElementById("claveRecuperacion").style.display = "none";
 
@@ -27,6 +28,7 @@ document.getElementById("formularioUsuario").addEventListener("submit", function
                 if (response.status) {
                     //Se cambia de menú
                     document.getElementById("usuarioRecuperacion").style.display = "none";
+                    
                     document.getElementById("codigoRecuperacion").style.display = "none";
                     document.getElementById("claveRecuperacion").style.display = "none";
                     document.getElementById("mensajeCorreo").innerHTML = "Completa el correo mostrado a continuación enlazado a tu cuenta <br> " +
@@ -64,6 +66,7 @@ document.getElementById("formularioCorreo").addEventListener('submit', function 
                     if (response.status) {
                         //Se muestran y escoden los formularios
                         document.getElementById("usuarioRecuperacion").style.display = "none";
+                        
                         document.getElementById("codigoRecuperacion").style.display = "";
                         document.getElementById("claveRecuperacion").style.display = "none";
 
@@ -127,6 +130,7 @@ document.getElementById('formularioCodigo').addEventListener('submit', function 
                 if (response.status) {
                     sweetAlert(1, response.message, null);
                     document.getElementById("usuarioRecuperacion").style.display = "none";
+                    
                     document.getElementById("codigoRecuperacion").style.display = "none";
                     document.getElementById("claveRecuperacion").style.display = "";
                 } else {
@@ -177,6 +181,7 @@ document.getElementById('formularioClave').addEventListener('submit', function (
 function correoUsuarios() {
     //Se escoden y muestran los formularios según sea necesario
     document.getElementById("usuarioRecuperacion").style.display = "";
+    
     document.getElementById("codigoRecuperacion").style.display = "none";
     document.getElementById("claveRecuperacion").style.display = "none";
     //Se limpian los formularios
@@ -187,6 +192,7 @@ function correoUsuarios() {
 function codigoCorreo() {
     //Se escoden y muestran los formularios según sea necesario
     document.getElementById("usuarioRecuperacion").style.display = "none";
+    
     document.getElementById("codigoRecuperacion").style.display = "none";
     document.getElementById("claveRecuperacion").style.display = "none";
     //Se limpian los formularios
@@ -198,6 +204,7 @@ function codigoCorreo() {
 function claveCodigo() {
     //Se escoden y muestran los formularios según sea necesario
     document.getElementById("usuarioRecuperacion").style.display = "none";
+    
     document.getElementById("codigoRecuperacion").style.display = "";
     document.getElementById("claveRecuperacion").style.display = "none";
     //Se limpian los formularios

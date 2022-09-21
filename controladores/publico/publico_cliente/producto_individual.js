@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let params = new URLSearchParams(location.search);
     // Se obtienen los datos localizados por medio de las variables.
     const ID = params.get("id_producto");
-    const IDDETALLE = params.get("id_detalle");
+    const CALIDAD = params.get("calidad");
     // Se llama a la función que muestra el detalle del producto seleccionado previamente.
     readOneProducto(ID);
     readComent(ID);
-    readCali(IDDETALLE);
+    fillCali(CALIDAD);
     // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
     M.Tooltip.init(document.querySelectorAll(".tooltipped"));
     readCheckFavoOfClient(ID);
@@ -58,168 +58,137 @@ function readOneProducto(id) {
 }
 
 //Leemos calidad de producto individual
-function readCali(id_detalle) {
-    // Se define un objeto con los datos del producto seleccionado.
-    const data = new FormData();
-    data.append("id_detalle", id_detalle);
-    fetch(API_PRODUCTOS + 'readCali', {
-        method: "post",
-        body: data,
-    }).then(function (request) {
-        if (request.ok) {
-            request.json().then(function (response) {
-                if (response.status) {
-                    //Definimos variables
-                    let content_estrellas = '';
-                    // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
-                    response.dataset.map(function (row) {
-                        //Compramos la calidad para colocarle las estrellas
-                        if (row.calidad <= 1 && row.calidad > 0) {
-                            //Para 0.5
-                            if (row.calidad < 1) {
-                                content_estrellas += `
+function fillCali(calidad) {
+    let content_estrellas = '';
+
+    console.log(calidad);
+    //Compramos la calidad para colocarle las estrellas
+    if (calidad <= 1 && calidad > 0) {
+        //Para 0.5
+        if (calidad < 1) {
+            content_estrellas += `
                                 <i class="material-icons yellow-text">star_half</i>
                                 <i class="material-icons yellow-text">star_border</i>
                                 <i class="material-icons yellow-text">star_border</i>
                                 <i class="material-icons yellow-text">star_border</i>
                                 <i class="material-icons yellow-text">star_border</i>`;
-                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-                            } else {
-                                //Para 1
-                                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                                content_estrellas += `
+            // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+            document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+        } else {
+            //Para 1
+            // Se crean y concatenan las tarjetas con los datos de cada producto.
+            content_estrellas += `
                                 <i class="material-icons yellow-text">star</i>
                                 <i class="material-icons yellow-text">star_border</i>
                                 <i class="material-icons yellow-text">star_border</i>
                                 <i class="material-icons yellow-text">star_border</i>
                                 <i class="material-icons yellow-text">star_border</i>  `;
-                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-                            }
-                            //Para 1.5
-                        } else if (row.calidad <= 2 && row.calidad > 1) {
-                            if (row.calidad < 2 && row.calidad > 1) {
-                                content_estrellas += `                            
+            // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+            document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+        }
+        //Para 1.5
+    } else if (calidad <= 2 && calidad > 1) {
+        if (calidad < 2 && calidad > 1) {
+            content_estrellas += `                            
                                 <i class="material-icons yellow-text">star</i>
                                 <i class="material-icons yellow-text">star_half</i>
                                 <i class="material-icons yellow-text">star_border</i>
                                 <i class="material-icons yellow-text">star_border</i>
                                 <i class="material-icons yellow-text">star_border</i>  `;
-                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-                            } else {
-                                //Para 2
-                                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                                content_estrellas += `
+            // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+            document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+        } else {
+            //Para 2
+            // Se crean y concatenan las tarjetas con los datos de cada producto.
+            content_estrellas += `
                                 <i class="material-icons yellow-text">star</i>
                                 <i class="material-icons yellow-text">star</i>
                                 <i class="material-icons yellow-text">star_border</i>
                                 <i class="material-icons yellow-text">star_border</i>
                                 <i class="material-icons yellow-text">star_border</i>`;
-                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-                            }
-                        } else if (row.calidad <= 3 && row.calidad > 2) {
-                            //Para 2.5
-                            if (row.calidad < 3 && row.calidad > 2) {
-                                content_estrellas += `
+            // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+            document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+        }
+    } else if (calidad <= 3 && calidad > 2) {
+        //Para 2.5
+        if (calidad < 3 && calidad > 2) {
+            content_estrellas += `
                                 <i class="material-icons yellow-text">star</i>
                                 <i class="material-icons yellow-text">star</i>
                                 <i class="material-icons yellow-text">star_half</i>
                                 <i class="material-icons yellow-text">star_border</i>
                                 <i class="material-icons yellow-text">star_border</i>`;
-                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-                            } else {
-                                //Para 3
-                                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                                content_estrellas += `
+            // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+            document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+        } else {
+            //Para 3
+            // Se crean y concatenan las tarjetas con los datos de cada producto.
+            content_estrellas += `
                                  <i class="material-icons yellow-text">star</i>
                                  <i class="material-icons yellow-text">star</i>
                                  <i class="material-icons yellow-text">star</i>
                                  <i class="material-icons yellow-text">star_border</i>
                                  <i class="material-icons yellow-text">star_border</i> `;
-                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-                            }
-                        } else if (row.calidad <= 4 && row.calidad > 3) {
-                            //Para 3.5
-                            if (row.calidad < 4 && row.calidad > 3) {
-                                content_estrellas += `
+            // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+            document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+        }
+    } else if (calidad <= 4 && calidad > 3) {
+        //Para 3.5
+        if (calidad < 4 && calidad > 3) {
+            content_estrellas += `
                                     <i class="material-icons yellow-text">star</i>
                                     <i class="material-icons yellow-text">star</i>
                                     <i class="material-icons yellow-text">star</i>
                                     <i class="material-icons yellow-text">star_half</i>
                                     <i class="material-icons yellow-text">star_border</i> `;
-                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-                            } else {
-                                //Para 4
-                                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                                content_estrellas += `
+            // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+            document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+        } else {
+            //Para 4
+            // Se crean y concatenan las tarjetas con los datos de cada producto.
+            content_estrellas += `
                                  <i class="material-icons yellow-text">star</i>
                                  <i class="material-icons yellow-text">star</i>
                                  <i class="material-icons yellow-text">star</i>
                                  <i class="material-icons yellow-text">star</i>
                                  <i class="material-icons yellow-text">star_border</i>`;
-                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                                content_estrellas.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-                            }
-                        } else if (row.calidad <= 5 && row.calidad > 4) {
-                            //Para 4.5
-                            if (row.calidad < 5 && row.calidad > 4) {
-                                content_estrellas += `
+            // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+            document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+        }
+    } else if (calidad <= 5 && calidad > 4) {
+        //Para 4.5
+        if (calidad < 5 && calidad > 4) {
+            content_estrellas += `
                                     <i class="material-icons yellow-text">star</i>
                                     <i class="material-icons yellow-text">star</i>
                                     <i class="material-icons yellow-text">star</i>
                                     <i class="material-icons yellow-text">star</i>
                                     <i class="material-icons yellow-text">star_half</i>`;
-                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-                            } else {
-                                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                                content_estrellas += `
+            // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+            document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+        } else {
+            // Se crean y concatenan las tarjetas con los datos de cada producto.
+            content_estrellas += `
                                   <i class="material-icons yellow-text">star</i>
                                   <i class="material-icons yellow-text">star</i>
                                   <i class="material-icons yellow-text">star</i>
                                   <i class="material-icons yellow-text">star</i>
                                   <i class="material-icons yellow-text">star</i>`;
-                                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                                document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-                            }
-                        } else if (row.calidad == null) {
-                            content_estrellas += `
-                                <p class"black-text">No hay calificación para este producto</p> `;
-                            // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                            document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-                        } else {
-                            content_estrellas += `
-                                <p class="black-text">No hay calificación para este producto</p>`;
-                            // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                            document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
-                        }
-                    });
-                    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
-                    document.getElementById('contenedor_calidad').innerHTML = content_estrellas;
-                    // Se inicializa el componente Material Box para que funcione el efecto Lightbox.
-                    M.Materialbox.init(document.querySelectorAll(".materialboxed"));
-                } else {
-                    // Se presenta un mensaje de error cuando no existen datos para mostrar.
-                    document.getElementById(
-                        "contenedor_calidad"
-                    ).innerHTML = `<p class"black-text">No hay calificación para este producto</p>`;
-                }
-            });
-        } else {
-            // Se presenta un mensaje de error cuando no existen datos para mostrar.
-            document.getElementById(
-                "contenedor_calidad"
-            ).innerHTML = `<p class"black-text">Sin calificación</p>`;
+            // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+            document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
         }
-    });
+    } else if (calidad == null || calidad == 0) {
+        content_estrellas += `
+                                <p class"black-text">No hay calificación para este producto</p> `;
+        // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+        document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+    } else {
+        content_estrellas += `
+                                <p class="black-text">No hay calificación para este producto</p>`;
+        // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+        document.getElementById("contenedor_calidad").innerHTML = content_estrellas;
+    }
 }
-
 // Función para obtener y mostrar los datos del producto seleccionado.
 function readComent(id) {
     // Se define un objeto con los datos del producto seleccionado.
