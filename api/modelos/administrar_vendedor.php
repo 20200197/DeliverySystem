@@ -492,7 +492,7 @@ class AdministrarVendedor extends Validator
     {
         $sql = 'SELECT current_date - fecha_cambio as rango_ch
           from cambio_contra_vendedor where id_vendedor=?';
-        $params = array($_SESSION['id_vendedor']);
+        $params = array($this->identificador);
 
         return Database::getRow($sql, $params);
     }
