@@ -1,49 +1,17 @@
 const API_VENDEDOR = SERVER + 'dashboard/administrar_vendedor.php?action=';
 
-/*Functiones que sirven para reemplazar las imagenes por defecto del formulario por las seleccionadas*/
-document.getElementById('profile-file').onchange = function (e) {
-    document.getElementById('profile-pic').remove();
-    let reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload = function () {
-        let preview = document.getElementById('preview-profile');
-        imagen = document.createElement('img');
-        imagen.src = reader.result;
-        imagen.id = 'profile-pic';
-        imagen.width = 200;
-        imagen.height = 200;
-        preview.append(imagen);
+function leerImg(input, img_destino) {
+    //Se obtiene los archivos del input
+    let archivos = input.files;
+    //Se verifica si está vacío
+    if (!archivos || !archivos.length) {
+        img_destino.src = "../../recursos/img/publico/sin.png";
+        return;
     }
-}
-
-document.getElementById('antecedente-file').onchange = function (e) {
-    document.getElementById('antecedente-pic').remove();
-    let reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload = function () {
-        let preview = document.getElementById('preview-antecedente');
-        imagen = document.createElement('img');
-        imagen.src = reader.result;
-        imagen.id = 'antecedente-pic';
-        imagen.width = 100;
-        imagen.height = 100;
-        preview.append(imagen);
-    }
-}
-
-document.getElementById('solvencia-file').onchange = function (e) {
-    document.getElementById('solvencia-pic').remove();
-    let reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload = function () {
-        let preview = document.getElementById('preview-solvencia');
-        imagen = document.createElement('img');
-        imagen.src = reader.result;
-        imagen.id = 'solvencia-pic';
-        imagen.width = 100;
-        imagen.height = 100;
-        preview.append(imagen);
-    }
+    //
+    const visualizar = archivos[0];
+    const url = URL.createObjectURL(visualizar);
+    img_destino.src = url;
 }
 
 

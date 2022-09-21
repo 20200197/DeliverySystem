@@ -187,16 +187,15 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Lo sentimos, usted se encuentra desactivado';
                 } elseif ($administrar_vendedor->checkPass($_POST['password']) && $administrar_vendedor->checkStatus()) {
 
-                    $_SESSION['id_vendedor'] = $administrar_vendedor->getId();
-                    $_SESSION['nombre_vendedor'] = $administrar_vendedor->getUsuario();
+                    
 
                     $result['dataset'] = $administrar_vendedor->checkRango();
                     if (in_array("91 days", $result['dataset']) == true) {
-                        $_SESSION['id_vendedor'] = null;
-
                         $result['status'] = 0;
                         $result['exception'] = 'Lo sentimos, no cambio la contraseña hace 90 dias, debe de recuperarla';
                     } else {
+                        $_SESSION['id_vendedor'] = $administrar_vendedor->getId();
+                        $_SESSION['nombre_vendedor'] = $administrar_vendedor->getUsuario();
 
                         $result['status'] = 1;
                         $result['message'] = 'Autenticación correcta';

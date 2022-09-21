@@ -376,8 +376,11 @@ if (isset($_GET['action'])) {
                     $_SESSION['id_repartidor'] = $repartidor->getId();
                     $_SESSION['usuario_repartidor'] = $repartidor->getUsuario();
 
+                    $result['status'] = 1;
+                    $result['message'] = 'Autenticación correcta';
+
                     $result['dataset'] = $repartidor->checkRango();
-                    if (in_array("91 days", $result['dataset']) == true) {
+                    /*if (in_array("91 days", $result['dataset']) == true) {
                         $_SESSION['id_repartidor'] = null;
 
                         $result['status'] = 0;
@@ -386,7 +389,7 @@ if (isset($_GET['action'])) {
 
                         $result['status'] = 1;
                         $result['message'] = 'Autenticación correcta';
-                    }
+                    }*/
                 } elseif (!$repartidor->checkPass($_POST['password'])) {
                     $result['exception'] = 'Contraseña incorrecta';
                 } elseif (Database::getException()) {
