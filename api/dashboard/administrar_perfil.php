@@ -68,7 +68,7 @@ if (isset($_GET['action'])) {
                         $result['exception'] = Database::getException();
                     }
                 } elseif (!$perfil->setPass($_POST['pass'])) {
-                    $result['exception'] = 'Contraseña invalido';
+                        $result['exception'] = 'Contraseña invalido';
                 } elseif ($perfil->checkPass($_POST['pass'])) {
                     $result['exception'] = 'Por favor ingrese una contraseña diferente a la actual';
                 } elseif ($perfil->actualizarCuenta()) {

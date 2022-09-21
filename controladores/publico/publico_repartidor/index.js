@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (response.session) {
                     sweetAlert(1, "Ya hay una sesión iniciada", 'historial.html');
                 } else {
-                    sweetAlert(2, response.exception, null);
                 }
             });
         } else {
