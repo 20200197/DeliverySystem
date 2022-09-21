@@ -18,7 +18,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un repartidor ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
-                if (!$perfil->setIdentificador(1)) { //$perfil->setIdentificador($_SESSION['id_cliente'])
+                if (!$perfil->setIdentificador($_SESSION['id_cliente'])) { //$perfil->setIdentificador($_SESSION['id_cliente'])
                     $result['exception'] = 'No se encontró la sesión de tu cuenta';
                 } elseif ($result['dataset'] = $perfil->datosPerfil()) {
                     $result['status'] = 1;

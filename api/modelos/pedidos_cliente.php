@@ -157,7 +157,7 @@ class PedidosCliente extends Validator
 
     public function readDetail()
     {
-        $sql = "SELECT id_factura, nombre_producto,TO_CHAR(fecha_compra, 'DD-MM-YYYY HH12:MI:SS') AS fecha_compra, total, descripcion_direccion, cantidad_pedido, precio, nombre_cliente, apellido_cliente, telefono_cliente, usuario_cliente, correo_cliente, dui_cliente, precio * cantidad_pedido as subtotal_detalle
+        $sql = "SELECT id_factura, nombre_producto,TO_CHAR(fecha_compra, 'DD-MM-YYYY HH12:MI:SS') AS fecha_compra, total, SUBSTRING(descripcion_direccion, 1, 20) as descripcion_direccion, cantidad_pedido, precio, nombre_cliente, apellido_cliente, telefono_cliente, usuario_cliente, correo_cliente, dui_cliente, precio * cantidad_pedido as subtotal_detalle
             FROM factura 
             inner join detalle_factura using (id_factura) 
             inner join producto using (id_producto)
