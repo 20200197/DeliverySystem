@@ -6,10 +6,10 @@ const API_AUTENTIFICADOR = SERVER + "dashboard/administrar_admin.php?action=";
 document.addEventListener("DOMContentLoaded", function () {
     //Se ejecuta el método de inactividad
     actividad();
+    // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
+    readRows(API_PERFIL);
     //Cargar los datos de la autentificación
     datosAutentificacion();
-    // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
-    fillTable(API_PERFIL);
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
     M.Modal.init(document.querySelectorAll(".modal"), { dismissible: false });
     //se inicializan los tooltp
@@ -96,6 +96,27 @@ function fillTable(data) {
                                         class="material-icons">edit</i></a>
                             </div>
                         </div>
+                                        <div class="col l12 m12 s12">
+                    <div class="row"></div>
+                    <div class="card row">
+                        <div class="card-content row">
+                            <span class="card-title">Autentificación en dos pasos:</span>
+                            <div class="col l10 m10 s10 push-l1 push-m1 push-s1">
+                                <hr>
+                            </div>
+
+                            <div class="col l6 m6 s12">
+                                <h6 id="estadoAutentificación">Sin datos</h6>
+                            </div>
+                            <div class="col l6 m6 s12">
+                                <a href="#modal-autentificar" id="activar" onclick="cargarQR()"
+                                    class="btn blue modal-trigger">¡Activar!</a>
+                                <a onclick="desactivar()" id="desactivar" class="btn blue">Desactivar</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
                     </div>
         `;
     //Se Inyecta el HTML en la página
