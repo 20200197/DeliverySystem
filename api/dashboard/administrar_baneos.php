@@ -2,6 +2,7 @@
 require_once('../ayudantes/database.php');
 require_once('../ayudantes/validator.php');
 require_once('../modelos/administrar_baneo.php');
+require_once('../ayudantes/security_token.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -9,10 +10,11 @@ if (isset($_GET['action'])) {
     session_start();
     // Se instancia la clase correspondiente.
     $baneo = new Baneo;
+    $token = new SecurityToken;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (isset($_SESSION['id_admin'])) {
+    if (isset($_SESSION['id_admin']) && $token->getToken('admin') == $_SESSION['admin_token']) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
                 //Cargos de usuario
