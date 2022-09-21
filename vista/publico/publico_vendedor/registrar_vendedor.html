@@ -4,7 +4,10 @@
 <html>
 
 <head>
-    <meta charset="uft=8">
+    <!-- Codificación de caracteres para el documento -->
+    <meta charset="utf-8">
+    <!--Importar fuentes de Google-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Importar iconos-->
     <link href="../../../recursos/css/icons.css" rel="stylesheet">
     <!--Importar archivos CSS-->
@@ -15,54 +18,54 @@
 
     <!--Optimización para mobiles-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="UTF-8">
 </head>
 
 <body>
     <!--Marco general-->
-    <div class="row contenedor-general">
-        <!--Barra lateral, opciones para los usuarios-->
-        <ul id="slide-out" class="sidenav sidenav-fixed">
-            <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
-                        class="material-icons medium">home</i></a></li>
-        </ul>
-
-        <!--Contenedor de datos-->
-        <div class="contenedor-datos">
-            <!--Encabezado-->
-            <header class="encabezado">
-                <a href="#" data-target="slide-out"
-                class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
-                    class="material-icons">menu</i></a>
-            <img src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
-            <div class="col s12 m12 l12 right-align">
-                <!--Switch de cambiar color-->
-                <div class="switch switch_colorr hide-on-small-and-down right-align">
-                    <label>
-                        🌕
-                        <input type="checkbox" id="switch_color" onclick="modoOscuro()">
-                        <span class="lever"></span>
-                        🌙
-                    </label>
+    <header>
+        <nav>
+            <div class="nav-wrapper white">
+                <div class="row valign-wrapper">
+                    <div class="col m1 s1">
+                        <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                                class="material-icons large blue-text">menu</i></a>
+                    </div>
+                    <div class="col m5 s5 left valign-wrapper">
+                    </div>
                 </div>
             </div>
-            </header>
+        </nav>
+
+    </header>
+    <!--Barra lateral, opciones para los usuarios-->
+    <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2 left-align">
+        <div class="opciones-sidenav">
+            <li class="collection-item"><a href="index.html" class="tooltipped" data-position="right"
+                    data-tooltip="Hogar"><i class="material-icons  white-text">home</i><span
+                        class="white-text hide-on-large-only">Inicio</span></a>
+            </li>
+        </div>
+
+    </ul>
             <!--Información de la página vendedor-->
             <main class="main_vendedor">
                 <div class="row contenedor_vendedor ">
                     <form id="save-form" autocomplete="off">
-                        <div class="col l5 m5 s12 foto_de_vendedor">
+                        <div class="col l5 m5 s12">
                             <h6>Foto personal</h6>
                             <div id="preview-profile" class="styleImage">
                                 <img src="../../../recursos/img/publico/default-profile.jpg" id="profile-pic" width="200px" height="200px">
                             </div>
                                 <div class="file-field input-field">
-                                    <div class="btn blue">
-                                        <span>Agregar foto</span>
-                                        <input type="file">
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="file" name="profile-file" id="profile-file" required>
+                                    <div class="file-field input-field ">
+                                        <div class="btn blue ">
+                                            <span>Agregar</span>
+                                            <input type="file" onchange="leerImg(this,
+                                            document.getElementById('profile-pic'))" name="profile-file" required>
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input class="file-path validate" type="text" placeholder="sube una imagen">
+                                        </div>
                                     </div>
                                 </div>
                             <div class="contenedor_fotos_vendedor ">
@@ -70,54 +73,39 @@
                                     <div class="col l6 m6 s6">
                                         <h6>Antecedente penal</h6>
                                         <div id="preview-antecedente" class="styleImage">
-                                            <img src="../../../recursos/img/publico/default-img.jpg" id="antecedente-pic" width="100px" height="100px">
+                                            <img src="../../../recursos/img/publico/default-img.jpg" id="antecedente-pic" width="200px" height="200px">
                                         </div>
-                                            <div class="file-field input-field">
-                                                <div class="btn blue">
-                                                    <span>Agregar imagen</span>
-                                                    <input type="file">
+                                        <div class="file-field input-field">
+                                            <div class="file-field input-field ">
+                                                <div class="btn blue ">
+                                                    <span>Agregar</span>
+                                                    <input type="file" onchange="leerImg(this,
+                                                    document.getElementById('antecedente-pic'))" name="antecedente-file" required>
                                                 </div>
                                                 <div class="file-path-wrapper">
-                                                    <input class="file-path validate" type="file" name="antecedente-file" id="antecedente-file" required>
+                                                    <input class="file-path validate" type="text" placeholder="sube una imagen">
                                                 </div>
                                             </div>
+                                        </div>
                                     </div>
                                     <div class="col l6 m6 s6">
                                         <h6>Solvencia PNC</h6>
                                         <div id="preview-solvencia" class="styleImage">
-                                            <img src="../../../recursos/img/publico/default-img.jpg" id="solvencia-pic" width="100px" height="100px">
+                                            <img src="../../../recursos/img/publico/default-img.jpg" id="solvencia-pic" width="200px" height="200px">
                                         </div>
-                                            <div class="file-field input-field">
-                                                <div class="btn blue">
-                                                    <span>Agregar imagen</span>
-                                                    <input type="file">
+                                        <div class="file-field input-field">
+                                            <div class="file-field input-field ">
+                                                <div class="btn blue ">
+                                                    <span>Agregar</span>
+                                                    <input type="file" onchange="leerImg(this,
+                                                    document.getElementById('solvencia-pic'))" name="solvencia-file" required>
                                                 </div>
                                                 <div class="file-path-wrapper">
-                                                    <input class="file-path validate" type="file" name="solvencia-file" id="solvencia-file" required>
+                                                    <input class="file-path validate" type="text" placeholder="sube una imagen">
                                                 </div>
                                             </div>
+                                        </div>
                                     </div>
-                                    <div class="col l6 m6 s6">
-                                            <div class="file-field input-field">
-                                                <div>
-                                                    <input type="file">
-                                                </div>
-                                                <div class="file-path-wrapper hide">
-                                                    <input class="file-path validate" type="text">
-                                                </div>
-                                            </div>
-                                    </div>
-                                    <div class="col l6 m6 s6">
-                                            <div class="file-field input-field hide">
-                                                <div>
-                                                    <input type="file">
-                                                </div>
-                                                <div class="file-path-wrapper reducir_place">
-                                                    <input class="file-path validate" type="text">
-                                                </div>
-                                            </div>
-                                    </div>
-                                    
                                 </div>
                                 <h6>Seleccione la ubicación para retirar los productos</h6>
                                     <div id="mapa" class="col s6 m6 l6"></div>
@@ -179,40 +167,50 @@
             </main>
         </div>
     <!--Footer-->
-    <footer class="page-footer">
+    <footer class="page-footer blue accent-3">
         <div class="row">
-            <!--enlace de redes sociales-->
-            <div class="col l12 m6 s3 redes_footer center-align">
-                <ul>
-                    <li>
-                        <a href=""><i class="material-icons medium">facebook</i></a>
-                    </li>
-                    <li>
-                        <a href=""><img src="../../../recursos/img/publico/clientes/footer/instagram_old_50px.png"></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="material-icons medium">whatsapp</i></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="material-icons medium">email</i></a>
-                    </li>
-                </ul>
-            </div>
-            <!--Contenedor para el mapa y el copyright-->
-            <div class="footer_otros">
-                <div class="col l6 m9 s12 logo_copy_footer">
-                    <img src="../../../recursos/img/publico/clientes/modals/logo.png" alt="">
-                    <h6>© 2022 DeliverySystem</h6>
+            <div class="col l9 m6 s6">
+                <div class="col l6 m12 s12">
+                    <img src="logo.png" class="responsive-img" alt="">
+                    <h6 class="hide-on-med-and-down">Copyright 2022</h6>
                 </div>
-                <div class="col l6 m9 s12 mapa-footer">
+                <div class="col l6 m12 ">
+                    <!--Redes-->
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">facebook</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">facebook</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">facebook</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">facebook</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">whatsapp</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">whatsapp</i>
+                        </a>
+                    </div>
+                    <div class="col l3 s3">
+                        <a href="">
+                            <i class="material-icons medium hide-on-small-only white-text">email</i>
+                            <i class="material-icons small hide-on-med-and-up white-text">email</i>
+                        </a>
+                    </div>
+                    <h6 class="hide-on-large-only">Copyright 2022</h6>
+                </div>
+            </div>
+            <div class="col l3 s6">
+                <div class="col l12 m12">
                     <ul>
-                        <li>
-                            <h5>Información pública</h5>
-                        </li>
-                        <li><a href="../publico_cliente/quienes somos.html ">Quiénes somos</a></li>
-                        <li><a href="../publico_cliente/contactenos.html">Contáctanos</a></li>
-                        <li><a href="../publico_cliente/mision_vision.html">Misión y visión</a></li>
-                        <li><a href="../publico_cliente/terminos.html">Términos y condiciones</a></li>
+                        <h5 class="">Información pública</h5>
+                        <li><a href="" class="white-text">Quienes somos</a></li>
+                        <li><a href="" class="white-text">Contáctanos</a></li>
+                        <li><a href="" class="white-text">Misión y visión</a></li>
+                        <li><a href="" class="white-text">Términos y condiciones</a></li>
                     </ul>
                 </div>
             </div>

@@ -42,7 +42,7 @@ function fillTable(dataset) {
           <td data-target="Cantidad: ">${row.cantidad_producto}</td>
           <td data-target="Descripción: ">${row.descripcion_producto}</td>
           <td data-target="Precio: ">${row.precio_producto}</td>
-          <td data-target="Imagen: "><img src="${SERVER}imagenes/administrar_producto/${row.imagen}" class="materialboxed" height="100" width="100"></td>
+          <td data-target="Imagen: "><img src="${SERVER}imagenes/productos/${row.imagen}" class="materialboxed" height="100" width="100"></td>
           <td data-target="Estado: ">${estado_producto}</td>
           <td data-target="Categoria: ">${row.categoria}</td>
           <td data-target="Nombre vendedor: ">${row.nombre_vendedor}</td>

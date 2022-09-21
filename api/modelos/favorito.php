@@ -86,7 +86,7 @@ class Favorito extends Validator
     public function createFavorito()
     {
         $sql = 'INSERT INTO favorito(id_producto,id_cliente,status_favorito) values (?,?,?)';
-        $params = array($this->id_producto, 2, true); //SESSION[id_cliente]
+        $params = array($this->id_producto, $_SESSION['id_cliente'], true); //SESSION[id_cliente]
         return Database::executeRow($sql, $params);
     }
 
