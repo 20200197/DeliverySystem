@@ -4,101 +4,115 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="uft=8">
     <!--Importar iconos-->
     <link href="../../../recursos/css/icons.css" rel="stylesheet">
     <!--Importar archivos CSS-->
-    <link type="text/css" rel="stylesheet" href="../../../recursos/css/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link type="text/css" rel="stylesheet" href="../../../recursos/css/estilos_privado.css" media="screen,projection" />
 
     <!--Optimización para mobiles-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
 </head>
 
 <body>
     <!--Marco general-->
-    <div class="row contenedor-general">
-        <!--Barra lateral, opciones para los usuarios-->
-        <ul id="slide-out" class="sidenav sidenav-fixed">
-            <li><a href="index.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
-                        class="material-icons medium ">home</i></a></li>
-        </ul>
-        <!--Contenedor de datos-->
-        <div class="contenedor-datos">
-            <!--Encabezado-->
-            <header class="encabezado">
-                <a href="#" data-target="slide-out"
-                    class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
-                        class="material-icons">menu</i></a>
-                <img src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
-                <div id="opciones_navbar">
-
-                </div>
-            </header>
-            <!--Información de la página registrar admin-->
-            <main class="main_admin">
-                <div class="row contenedor_perfil_cliente">
-                    <form id="register-form" autocomplete="off">
-                        <div class="col l7 m7 s12 offset-l2 offset-m2 center-align">
-                            <h6>Datos personales del administrador</h6>
-                            <div class="input-field col s6">
-                                <input id="name" type="text" class="validate" name="name" required>
-                                <label for="name">Nombre</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="lastname" type="text" class="validate" name="lastname" required>
-                                <label for="lastname">Apellido</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="dui" type="text" class="validate" name="dui" required>
-                                <label for="dui">DUI</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="phone" type="text" class="validate" name="phone" required>
-                                <label for="phone">Telefono</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <input id="email" type="email" class="validate" name="email" required>
-                                <label for="email">Correo</label>
-                            </div>
-                            <h6>Datos de la cuenta</h6>
-                            <div class="input-field col s12">
-                                <input id="user" type="text" class="validate" name="user" required>
-                                <label for="user">Usuario</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="password1" type="password" class="validate" name="pass1" required>
-                                <label for="password1">Contraseña</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="password2" type="password" class="validate" name="pass2" required>
-                                <label for="password2">Confirmar contraseña</label>
-                            </div>
-                            <div class="dato_usuario_admin">
-                            </div>
-                            <div class="contenedor_boton_modificar_datos_cliente">
-                                <button class="btn boton_foto_admin modal-trigger" type="submit"><i
-                                        class="material-icons"></i> Registrarse</button>
+    <header>
+        <nav>
+            <div class="nav-wrapper white">
+                <div class="row valign-wrapper">
+                    <div class="col m1 s1">
+                        <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                                class="material-icons large blue-text">menu</i></a>
+                    </div>
+                    <div class="col m5 s5 valign-wrapper">
+                        <img src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
+                    </div>
+                    <div class="col m6 s6">
+                        <div class="col s6 m8 l6 push-l5 right-align">
+                            <div class="switch switch_colorr  right-align">
+                                <label>
+                                    🌕
+                                    <input type="checkbox" id="switch_color" onclick="modoOscuro()">
+                                    <span class="lever"></span>
+                                    🌙
+                                </label>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </main>
+        </nav>
+    </header>
+    <!--Barra lateral, opciones para los usuarios-->
+    <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
+        <li>
+            <a href="index.html" class="tooltipped" data-position="right" data-tooltip="Hogar">
+                <i class="material-icons medium white-text">home</i>
+            </a>
+        </li>
+    </ul>
+            <!--Información de la página registrar admin-->
+    <main class="main_admin">
+        <div class="row contenedor_perfil_cliente">
+            <form id="register-form" autocomplete="off">
+                <div class="col l7 m7 s12 offset-l2 offset-m2 center-align">
+                    <h6>Datos personales del administrador</h6>
+                    <div class="input-field col s6">
+                        <input id="name" type="text" class="validate" name="name" required>
+                        <label for="name">Nombre</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="lastname" type="text" class="validate" name="lastname" required>
+                        <label for="lastname">Apellido</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="dui" type="text" class="validate" name="dui" required>
+                        <label for="dui">DUI</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="phone" type="text" class="validate" name="phone" required>
+                        <label for="phone">Telefono</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="email" type="email" class="validate" name="email" required>
+                        <label for="email">Correo</label>
+                    </div>
+                    <h6>Datos de la cuenta</h6>
+                    <div class="input-field col s12">
+                        <input id="user" type="text" class="validate" name="user" required>
+                        <label for="user">Usuario</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="password1" type="password" class="validate" name="pass1" required>
+                        <label for="password1">Contraseña</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="password2" type="password" class="validate" name="pass2" required>
+                        <label for="password2">Confirmar contraseña</label>
+                    </div>
+                    <div class="dato_usuario_admin">
+                    </div>
+                    <div class="contenedor_boton_modificar_datos_cliente">
+                        <button class="btn blue" type="submit"><i
+                                class="material-icons"></i> Registrarse</button>
+                    </div>
+                </div>
+            </form>
         </div>
-    </div>
-    </div>
+    </main>
 
     <!--Footer-->
-    <footer class="page-footer">
-        <!--Contenedor para el mapa y el copyright-->
-        <div class="footer_otros">
-            <div class="col l12 m12 s12 logo_copy_footer">
-                <img src="../../../recursos/img/privado/admin/modals/logo.png" alt="">
-                <h6>© 2022 DeliverySystem</h6>
+    <footer class="page-footer blue accent-3">
+        <div class="row">
+            <div class="col l2 m6 s12">
+                <div class="col offset-l1 offset-m1 offset-s1">
+                    <img class="responsive-img" src="../../../recursos/img/logo.png" alt="">
+                    <h6>Copyright 2022</h6>
+                </div>
             </div>
         </div>
     </footer>
-    </div>
 
     <!--Importar archivos JavaScrip-->
     <script src="../../../js/materialize.min.js"></script>
