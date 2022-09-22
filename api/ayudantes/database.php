@@ -150,6 +150,30 @@ class Database
             case '23503':
                 self::$error = 'Registro ocupado, no se puede eliminar';
                 break;
+            case '42804':
+                self::$error = 'Tipo de dato incorrecto';
+                break;
+            case '42601':
+                self::$error = 'Error de sintaxis en la sentencia';
+                break;
+            case '42702':
+                self::$error = 'La referencia a la columna es ambigua';
+                break;
+            case '42883':
+                self::$error = 'Nombre de función desconocido';
+                break;
+            case '53100':
+                self::$error = 'Espacio en disco lleno';
+                break;
+            case '53200':
+                self::$error = 'No hay memoria disponible';
+                break;
+            case '23502':
+                self::$error = 'Violación a la regla NOT NULL';
+                break;
+            case '42803':
+                self::$error = 'Error en la agrupación de los datos';
+                break;
             default:
                 self::$error = 'Ocurrió un problema en la base de datos';
         }
