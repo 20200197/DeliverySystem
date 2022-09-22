@@ -23,7 +23,7 @@ if (isset($_GET['action'])) {
                 $result['exception'] = 'Nombre de usuario incorrecto';
             } elseif ($result['dataset'] = $recuperar->obtenerCorreoAdministrador()) {
                 $result['status'] = true;
-                $result['message'] = 'Autentificación de usuario completada '. $_SESSION['id_admin_recuperar'];
+                $result['message'] = 'Autentificación de usuario completada';
             } elseif (Database::getException()) {
                 $result['exception'] = Database::getException();
             } else {
@@ -100,7 +100,7 @@ if (isset($_GET['action'])) {
         case 'cambiarPass':
             //Se verifica que ya se confirmó el código de reestablecimiento
             if (!isset($_SESSION['confirmacion'])) {
-                $result['exception'] = 'Debes de confirmar el código de reestablecimiento antes de cambiar la constraseña';
+                $result['exception'] = 'Debes de confirmar el código de reestablecimiento antes de cambiar la contraseña';
                 //Se verifica que si se haya confirmado con éxito
             } elseif (!$_SESSION['confirmacion']) {
                 $result['exception'] = 'No se confirmó correctamente el código de recuperación';

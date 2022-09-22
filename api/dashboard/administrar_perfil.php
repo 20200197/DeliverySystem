@@ -52,15 +52,20 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'actualizarCuenta':
+                //Se filtran los datos
                 $_POST = $perfil->validateForm($_POST);
+                //Se carga el identificador
                 if (!$perfil->setIdentificador($_POST['id'])) {
                     $result['exception'] = 'No se logró identificar tu usuario';
+                    //Se revisa el usuario
                 } elseif (!$perfil->setUsuario($_POST['usuario'])) {
                     $result['exception'] = 'Usuario invalido';
-                } elseif ($_POST['pass'] == null) {
+                    //Se revisa si la contraseña está colocada
+                } elseif (empty($_POST['pass'])) {
+                    //Si no se colocó se obtiene la actual
                     if (!$data = $perfil->cargarPass()) {
                         $result['exception'] = 'Error al reconocer datos';
-                    } elseif (!$perfil->setPass($data['clave_admin'])) {
+                    } elseif (!$perfil->setLowPass($data['clave_admin'])) {
                         $result['exception'] = 'Error al reconocer esenciales';
                     } elseif ($perfil->actualizarCuenta()) {
                         $result['status'] = 1;
@@ -69,11 +74,13 @@ if (isset($_GET['action'])) {
                     } else {
                         $result['exception'] = Database::getException();
                     }
-                } elseif (!$perfil->setPass($_POST['pass'])) {
-                        $result['exception'] = 'Contraseña invalido';
+                } elseif (!$data = $perfil->cargarDatos()) {
+                    $result['exception'] = 'Error al reconocer datos';
                 } elseif ($perfil->checkPass($_POST['pass'])) {
                     $result['exception'] = 'Por favor ingrese una contraseña diferente a la actual';
-                } elseif ($perfil->actualizarCuenta()) {
+                }elseif (!$perfil->setPass($_POST['pass'], $data['nombre_admin'], $data['apellido_admin'], $data['usuario_admin'], '0000-00-00')) {
+                        $result['exception'] = $perfil->getPasswordError();
+                }  elseif ($perfil->actualizarCuenta()) {
                     $result['status'] = 1;
                     $result['message'] = 'Datos de la cuenta correctamente modificados';
                     $perfil->changeCambio();
@@ -97,6 +104,19 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                 } else {
                     $result['exception'] = Database::getException();
+                }
+                break;
+            case 'revisarPass':
+                //Se revisa la contraseña
+                if ($perfil->revisarPass($_POST['clave'])) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Contraseña correcta';
+                    $result['dataset'] = $_SESSION['id_admin'];
+                    $_SESSION['confirmacionPass'] = true;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'La contraseña no es correcta';
                 }
                 break;
             default:
