@@ -46,7 +46,7 @@ document.getElementById('search').addEventListener('keyup', function (event) {
           fillTable(response.dataset);
           //Si no se busca nada se carga la tabla
         } else if (response.exception == 'Ingrese un valor para buscar') {
-          readRows(API_PRODUCTOS);
+          readRows(API_CATEGORIA);
         } else {
 
         }

@@ -28,7 +28,7 @@ document.getElementById("formularioUsuario").addEventListener("submit", function
                 if (response.status) {
                     //Se cambia de menú
                     document.getElementById("usuarioRecuperacion").style.display = "none";
-                     document.getElementById("correoRecuperacion").style.display = "";
+                    document.getElementById("correoRecuperacion").style.display = "";
                     document.getElementById("codigoRecuperacion").style.display = "none";
                     document.getElementById("claveRecuperacion").style.display = "none";
                     document.getElementById("mensajeCorreo").innerHTML = "Completa el correo mostrado a continuación enlazado a tu cuenta <br> " +

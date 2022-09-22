@@ -39,7 +39,7 @@ function fillTable(dataset) {
           <td data-target="Nombre producto: ">${row.nombre_producto}</td>
           <td data-target="Nombre cliente: ">${row.nombre_cliente}</td>
           <td data-target="Nombre repartidor: ">${row.nombre_repartidor}</td>
-          <td data-target="Fecha envío: ">${row.fecha_envio}</td>
+          <td data-target="Fecha envío: ">${row.fecha_envio == null ? 'Sin asignar' : row.fecha_envio}</td>
         </tr>
       `;
     });
