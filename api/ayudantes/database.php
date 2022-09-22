@@ -174,6 +174,9 @@ class Database
             case '42803':
                 self::$error = 'Error en la agrupación de los datos';
                 break;
+            case '42830':
+                self::$error = 'Llave foránea invalida';
+                break;
             default:
                 self::$error = 'Ocurrió un problema en la base de datos';
         }
