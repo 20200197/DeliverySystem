@@ -237,7 +237,12 @@ function revisarPass() {
                     request.json().then(function (response) {
                         //Se revisa el estado devuelto por la API
                         if (response.status) {
-                            //Se mostrarán los datos
+                            //Se muestra el mensaje de confirmación
+                            sweetAlert(1, response.message, null);
+                            //Se ejecuta el método para cargar los datos de la cuenta
+                            cargarCuenta(response.dataset);
+                            //Se abre el formulario de datos
+                            M.Modal.getInstance(document.getElementById("datos-cuenta")).open();
                         } else { 
                             sweetAlert(2, response.exception, null);
                         }
@@ -257,18 +262,25 @@ function revisarPass() {
 document.getElementById("cuentaF").addEventListener("submit", function (event) {
     //Se previene la recarga automatica
     event.preventDefault();
-    //Se verifican si son iguales
-    if (document.getElementById("passC").value == document.getElementById("pass2C").value) {
-        //se mide la longitug
-        if (document.getElementById("passC").value.length < 8) {
-            sweetAlert(3, "Las contraseñas debe tener al menos 8 caracteres", null);
+    //Se verifica si se han llenado los campos
+    if (document.getElementById("passC").value.length != 0) {
+        if (document.getElementById("passC").value == document.getElementById("pass2C").value) {
+            //Se verifican si son iguales
+            //se mide la longitug
+            if (document.getElementById("passC").value.length < 8) {
+                sweetAlert(3, "Las contraseñas debe tener al menos 8 caracteres", null);
+            } else {
+                //Se ejecuatan los cambios
+                saveRow(API_PERFIL, "actualizarCuenta", "cuentaF", "datos-cuenta");
+            }
         } else {
-            //Se ejecuatan los cambios
-            saveRow(API_PERFIL, "actualizarCuenta", "cuentaF", "datos-cuenta");
+            sweetAlert(3, "Las contraseñas no son iguales", null);
         }
     } else {
-        sweetAlert(3, "Las contraseñas no son iguales", null);
+        //Se ejecuatan los cambios
+        saveRow(API_PERFIL, "actualizarCuenta", "cuentaF", "datos-cuenta");
     }
+        
 });
 
 //Función para generar el proceso de autentificación en dos pasos
@@ -331,6 +343,7 @@ document.getElementById("autentificacion").addEventListener("submit", function (
         }
     });
 });
+
 
 //Función para desactivar la autentificación en dos pasos
 function desactivar() {

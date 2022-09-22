@@ -31,21 +31,24 @@ function actividad() {
 
 //Función que se encarga de reiniciar el tiempo máximo que puede pasar en inactividad
 function iniciarInactividad() {
-    advertencia = window.setTimeout(mensaje, 1350000); //Se mostrará el mensaje a los 2 minutos y 25 segundos = 1350000
+    advertencia = window.setTimeout(mensaje, 135000); //Se mostrará el mensaje a los 2 minutos y 25 segundos = 1350000
     //Mensaje final antes de que se cierre la sesión
-    inactividad = window.setTimeout(cerrarSesion, 90000); //Se mostrará el mensaje a 1 minuto y 30 segundos = 90000
+    inactividad = window.setTimeout(cerrarSesion, 240000); //Se mostrará el mensaje a 4 minutos =  240000
     /**
      *
      * Esto se realiza porque la alerta durará 5 segundos
      *
-     * 5 segundos + 2 minutos y 25 segundos = 2 minutos y 30 segundos
+     * 5 segundos + 2 minutos y 25 segundos = 2 minutos y 30 segundos (advertencia)
+     *
+     * 4 minutos y dura 1 minuto = 5 //Cierra la sesión cuando se agote el tiempo (inactividad)
      *
      * El resto de los 5 minutos será para la confirmación final
      *
      * Explicación del tiempo
      * 1 segundo = 1000 milisegundos
      * 1 minuto = 1000 * 6 = 60,000 milisegundos
-     * 2.25 minutos = 1000 * (6 * 2.25)  = 135,000 milisegundos
+     * 2.25 minutos = (1000 * 6) * 2.25  = 135,000 milisegundos
+     * 4 minutos = (1000 * 6) * 4 = 240,000 milisegundos
      *
      */
 }
