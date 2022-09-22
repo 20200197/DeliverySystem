@@ -146,6 +146,8 @@ function cargarUsuario(id) {
                     document.getElementById("telefonoM").value = response.dataset.telefono_admin;
                     document.getElementById("correo").value = response.dataset.correo_admin;
                     document.getElementById("idU").value = response.dataset.id_admin;
+                    //Cargar los datos de la autentificación
+                    datosAutentificacion();
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -192,6 +194,8 @@ document.getElementById("usuarioF").addEventListener("submit", function (event) 
     if (verificarEmail("correo")) {
         //Se ejecuatan los cambios
         saveRow(API_PERFIL, "actualizarUsuario", "usuarioF", "modal_info");
+        //Cargar los datos de la autentificación
+        datosAutentificacion();
     } else {
         sweetAlert(3, "Formato de correo incorrecto", null);
     }
@@ -243,6 +247,8 @@ function revisarPass() {
                             cargarCuenta(response.dataset);
                             //Se abre el formulario de datos
                             M.Modal.getInstance(document.getElementById("datos-cuenta")).open();
+                            //Cargar los datos de la autentificación
+                            datosAutentificacion();
                         } else { 
                             sweetAlert(2, response.exception, null);
                         }
@@ -272,6 +278,8 @@ document.getElementById("cuentaF").addEventListener("submit", function (event) {
             } else {
                 //Se ejecuatan los cambios
                 saveRow(API_PERFIL, "actualizarCuenta", "cuentaF", "datos-cuenta");
+                //Cargar los datos de la autentificación
+                datosAutentificacion();
             }
         } else {
             sweetAlert(3, "Las contraseñas no son iguales", null);
@@ -280,6 +288,8 @@ document.getElementById("cuentaF").addEventListener("submit", function (event) {
         //Se ejecuatan los cambios
         saveRow(API_PERFIL, "actualizarCuenta", "cuentaF", "datos-cuenta");
     }
+    //Cargar los datos de la autentificación
+    datosAutentificacion();
         
 });
 

@@ -41,3 +41,28 @@ document.getElementById('login-form').addEventListener('submit', function () {
         }
     });
 });
+
+
+/**
+ * Función para cambiar la visibilidad de los inputs
+ * 
+ * idComponente = identificador del input
+ * idIcono = identificador de la etiqueta i del icono
+ */
+function mostrarPass(idComponente, idIcono) {
+    //Se obtiene los componentes
+    let componente = document.getElementById(idComponente);
+    let icono = document.getElementById(idIcono);
+
+    //Se revisa el tipo de campo
+    if (componente.type == "password") {
+        //Se cambia a texto para ver la clave
+        componente.type = "text";
+        icono.innerHTML = 'visibility';
+
+    } else {
+        //Se cambia a password para que no sea visible
+        componente.type = "password";
+        icono.innerHTML = 'visibility_off';
+    }
+}
