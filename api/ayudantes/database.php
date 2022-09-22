@@ -16,9 +16,9 @@ class Database
     {
         // Credenciales para establecer la conexión con la base de datos.
         $server = 'localhost';
-        $database = 'DeliverySystem';
+        $database = 'deliverysystem2';
         $username = 'postgres';
-        $password = 'admin';
+        $password = 'Firearcher15';
 
 
 
@@ -136,10 +136,10 @@ class Database
         // Se compara el código del error para establecer un error personalizado.
         switch ($code) {
             case '7':
-                //self::$error = 'Existe un problema al conectar con el servidor';
+                self::$error = 'Existe un problema al conectar con el servidor';
                 break;
             case '42703':
-                //self::$error = 'Nombre de campo desconocido';
+                self::$error = 'Nombre de campo desconocido';
                 break;
             case '23505':
                 self::$error = 'Dato duplicado, no se puede guardar';
@@ -151,7 +151,7 @@ class Database
                 self::$error = 'Registro ocupado, no se puede eliminar';
                 break;
             default:
-                //self::$error = 'Ocurrió un problema en la base de datos';
+                self::$error = 'Ocurrió un problema en la base de datos';
         }
     }
 

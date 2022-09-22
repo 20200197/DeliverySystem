@@ -73,9 +73,9 @@ class Administrador extends Validator
         }
     }
 
-    public function setClave($clave)
+    public function setClave($clave,$nombre, $apellido, $usuario, $fecha)
     {
-        if ($this->validatePassword($clave)) {
+        if ($this->validateSafePassword($clave, $nombre, $apellido, $usuario, $fecha)) {
             $this->clave = password_hash($clave, PASSWORD_DEFAULT);
             return true;
         } else {
@@ -390,5 +390,6 @@ class Administrador extends Validator
             return true;
         }
     }
+
 
 }

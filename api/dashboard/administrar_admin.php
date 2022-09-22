@@ -51,7 +51,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ingrese un usuario válido';
                 } elseif ($_POST['pass1'] != $_POST['pass2']) {
                     $result['exception'] = 'Las contraseñas no coinciden';
-                } elseif (!$admin->setClave($_POST['pass1'])) {
+                } elseif (!$admin->setClave($_POST['pass1'], $_POST['name'], $_POST['lastname'], $_POST['user'], '0000-00-00')) {
                     $result['exception'] = 'Ingrese una contraseña correcta';
                 } elseif ($admin->validateExist('usuario_admin', $admin->getUsuario())) {
                     $result['exception'] = 'El usuario ingresado ya está en uso';
@@ -193,6 +193,7 @@ if (isset($_GET['action'])) {
                 break;
                 //Registrar admin
             case 'registerAdmin':
+                /*
                 $_POST = $admin->validateForm($_POST);
                 if (!$admin->setNombre($_POST['name'])) {
                     $result['exception'] = 'Ingrese un nombre válido';
@@ -214,6 +215,29 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Administrador creado con exito';
                     $admin->insertCambio();
+                } else {
+                    $result['exception'] = Database::getException();
+                }*/
+                $_POST = $admin->validateForm($_POST);
+                if (!$admin->setNombre($_POST['name'])) {
+                    $result['exception'] = 'Ingrese un nombre válido';
+                } elseif (!$admin->setApellido($_POST['lastname'])) {
+                    $result['exception'] = 'Ingrese un apellido válido';
+                } elseif (!$admin->setDui($_POST['dui'])) {
+                    $result['exception'] = 'Ingrese un DUI válido';
+                } elseif (!$admin->setTelefono($_POST['phone'])) {
+                    $result['exception'] = 'Ingrese un Teléfono válido';
+                } elseif (!$admin->setCorreo($_POST['email'])) {
+                    $result['exception'] = 'Ingrese un correo válido';
+                } elseif (!$admin->setUsuario($_POST['user'])) {
+                    $result['exception'] = 'Ingrese un usuario válido';
+                } elseif ($_POST['pass1'] != $_POST['pass2']) {
+                    $result['exception'] = 'Las contraseñas no coinciden';
+                } elseif (!$admin->setClave($_POST['pass2'], $_POST['name'], $_POST['lastname'], $_POST['user'], '0000-00-00')) {
+                    $result['exception'] = $admin->getPasswordError();
+                }elseif ($admin->registerAdmin()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Administrador creado con exito';
                 } else {
                     $result['exception'] = Database::getException();
                 }
