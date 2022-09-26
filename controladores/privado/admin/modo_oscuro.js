@@ -1,6 +1,6 @@
 
 const API_perfi = SERVER + "dashboard/sesion.php?action=";
-let iddd;
+let id;
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
      modo_oscuro();
@@ -35,12 +35,12 @@ function modo_oscuro() {
                
                 // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
-                    iddd = response.dataset.id_admin;
+                    id = response.dataset.id_admin;
                     //Obtenemos item de la sesion
     data = sessionStorage.getItem('oc');
     if (data == 1  ) {
         var element = document.body;
-        document.getElementById('switch_color'+iddd).checked = true;
+        document.getElementById('switch_color'+id).checked = true;
         element.classList.toggle("modo_oscuro");
         element.classList.toggle("footer_oscuro");
         element.classList.toggle("sidenav_oscuro");
@@ -91,7 +91,7 @@ function modo_oscuro() {
 }
 
 //Función par activar el switch en modo oscuro
-function modoOscuro(id) {
+function modoOscuro() {
      if(document.getElementById('switch_color'+id).checked==true){
         var element = document.body;
         
