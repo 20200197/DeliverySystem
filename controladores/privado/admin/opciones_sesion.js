@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div>
                         </div>
                         <span class="black-text">${data.nombre}</span>
+                        <i class="material-icons black-text">notifications</i>
                     </div>
                     <div class="col l1 m4 s12 left">
                         <a href="perfil.html"><i
