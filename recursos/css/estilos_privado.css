@@ -233,6 +233,10 @@ nav div ul li a i {
     background-color: #053A80 !important;
 }
 
+.span_oscuro span, .span_oscuro i{
+    color: white !important;
+}
+
 /*Modo oscuro de login ya que tiene otros colores*/
 .login_oscuro .login_modo_oscuro {
     background-color: #053A80;
