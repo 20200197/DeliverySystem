@@ -681,9 +681,9 @@ function readProductosCategoria(id, categoria) {
                         //<td><img src="${SERVER}imagenes/administrar_empleados/${row.imagen_perfil_empleado}" class="materialboxed" height="100" width="100"></td>
                         //Productos
                         //Compramos la calidad para colocarle las estrellas
-                        if (row.calidad <= 1 && row.id_producto != null && row.calidad > 0 && row.id_producto != null) {
+                        if (row.calidad <= 1  && row.calidad > 0 ) {
                             //Para 0.5
-                            if (row.calidad < 1 && row.id_producto != null) {
+                            if (row.calidad < 1 ) {
                                 content_estrellas += `
                     <!--Catalogo-->
                  <div class="col s12 m12 l12">
@@ -781,8 +781,8 @@ function readProductosCategoria(id, categoria) {
 
                             }
                             //Para 1.5
-                        } else if (row.calidad <= 2 && row.id_producto != null && row.calidad > 1 && row.id_producto != null) {
-                            if (row.calidad < 2 && row.id_producto != null && row.calidad > 1 && row.id_producto != null) {
+                        } else if (row.calidad <= 2  && row.calidad > 1 ) {
+                            if (row.calidad < 2  && row.calidad > 1 ) {
                                 content_estrellas += `    
                     <!--Catalogo-->
                     <div class="col s12 m12 l12">
@@ -879,9 +879,9 @@ function readProductosCategoria(id, categoria) {
                                 // showFavo(idC);
 
                             }
-                        } else if (row.calidad <= 3 && row.id_producto != null && row.calidad > 2 && row.id_producto != null) {
+                        } else if (row.calidad <= 3  && row.calidad > 2 ) {
                             //Para 2.5
-                            if (row.calidad < 3 && row.id_producto != null && row.calidad > 2 && row.id_producto != null) {
+                            if (row.calidad < 3  && row.calidad > 2 ) {
                                 content_estrellas += `
                     <!--Catalogo-->
                     <div class="col s12 m12 l12">
@@ -978,9 +978,9 @@ function readProductosCategoria(id, categoria) {
                                 //showFavo(idC);
 
                             }
-                        } else if (row.calidad <= 4 && row.id_producto != null && row.calidad > 3 && row.id_producto != null) {
+                        } else if (row.calidad <= 4  && row.calidad > 3 ) {
                             //Para 3.5
-                            if (row.calidad < 4 && row.id_producto != null && row.calidad > 3 && row.id_producto != null) {
+                            if (row.calidad < 4  && row.calidad > 3 ) {
                                 content_estrellas += `
                     <!--Catalogo-->
                     <div class="col s12 m12 l12">
@@ -1077,9 +1077,9 @@ function readProductosCategoria(id, categoria) {
                                 //showFavo(idC);
 
                             }
-                        } else if (row.calidad <= 5 && row.id_producto != null && row.calidad > 4 && row.id_producto != null) {
+                        } else if (row.calidad <= 5  && row.calidad > 4 ) {
                             //Para 4.5
-                            if (row.calidad < 5 && row.id_producto != null && row.calidad > 4 && row.id_producto != null) {
+                            if (row.calidad < 5  && row.calidad > 4 ) {
                                 content_estrellas += `
                     <!--Catalogo-->
                     <div class="col s12 m12 l12">
@@ -1177,7 +1177,7 @@ function readProductosCategoria(id, categoria) {
 
 
                             }
-                        } else if (row.calidad == null && row.id_producto != null && row.id_producto != null) {
+                        } else if (row.calidad == null  ) {
                             content_estrellas += `
                 <!--Catalogo-->
                     <div class="col s12 m12 l12">
@@ -1739,7 +1739,7 @@ function searchProductosCalidad() {
                                 if (row.calidad < 1) {
                                     content_estrellas += `
                                     <!--Catalogo-->
-                                <div class="col s12 m12 l12">
+                                    <div class="col s12 m12 l12">
                                     <div class="col s12 m3 l3">
                                         <img src="${SERVER}imagenes/productos/${row.imagen}"
                                         class="responsive-img" alt="" height="550" width="550">
