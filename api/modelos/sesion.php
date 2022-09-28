@@ -27,7 +27,7 @@ class Sesion extends Validator
 
     public function sesionR($id)
     {
-        $sql = "SELECT usuario_repartidor as nombre FROM repartidor WHERE id_repartidor = ?";
+        $sql = "SELECT usuario_repartidor as nombre, foto_repartidor FROM repartidor WHERE id_repartidor = ?";
         $params = array($id);
         return Database::getRow($sql, $params);
     }

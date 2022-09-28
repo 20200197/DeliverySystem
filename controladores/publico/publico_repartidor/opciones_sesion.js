@@ -14,22 +14,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 //Se crea la variable donde se guardarán los datos
                 let data = [];
                 //se crea la variable donde se guardará el HTML a inyectar
-                let contenido = [];
+                let contenido = [], contenido2 = [];
                 // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     data = response.dataset;
                     //Si hay sesión se reeemplazan las opciones
                     contenido = `
-                    <div class="col l11 m8 s12 right-align">
+                    <div class="col l11 m10 s9 right-align">
                        
                         <span class="black-text">${data.nombre}</span>
                     </div>
-                    <div class="col l1 m4 s12 left">
-                        <a href="perfil.html"><i
-                                class="icono-sesion material-icons black-text">account_circle</i></a>
+                    <div class="col l1 m2 s3 right valign-wrapper">
+                        <a href="perfil.html">
+                        <img src='../../../api/imagenes/repartidor/foto_repartidor/${data.foto_repartidor}' class="foto-perfil-repartidor-grande"></a>
                     </div>`;
+                    contenido2 = `
+                    <a>
+                                       <img src='../../../api/imagenes/repartidor/foto_repartidor/${data.foto_repartidor}' class="foto-perfil-repartidor">
+                    <span class="white-text hide-on-large-only ">${data.nombre}</span></a>
+
+                   `;
                     //se incrustan en el html
                     document.getElementById("opciones_navbar").innerHTML = contenido;
+                    document.getElementById("sesion_navbar").innerHTML = contenido2;
                 } else {
                     //si no hay sesión se coloca la opción para iniciar sesión
                     contenido = `

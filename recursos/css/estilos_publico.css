@@ -30,75 +30,93 @@ a {
 .icono-registro {
     font-size: 20pt !important;
     height: auto !important;
-    line-height: 35px !important; 
+    line-height: 35px !important;
 }
 
 
 @media only screen and (max-width: 992px) {
+
     header,
     main,
     footer {
         padding-left: 0 !important;
     }
+
     .sidenav {
-        width: 50% !important;
+        width: 60% !important;
         align-items: flex-start !important;
     }
+
     .sidenav li a i {
         font-size: 5rem !important;
         padding-right: 50px !important;
     }
+
     .sidenav li button i {
         font-size: 5rem !important;
         margin: 0 5px 0 0;
     }
+
     .sidenav li a span {
         font-size: 16pt !important;
     }
+
     .sidenav li button span {
         font-size: 16pt !important;
         font-weight: 500 !important;
     }
+
     header,
     main,
     footer {
         padding-left: 0 !important;
     }
+
     .sidenav {
         width: 50% !important;
         align-items: flex-start !important;
     }
+
     .sidenav li a i {
         font-size: 5rem !important;
         padding-right: 50px !important;
     }
+
     .sidenav li button i {
         font-size: 5rem !important;
         margin: 0 5px 0 0;
     }
+
     .sidenav li a span {
         font-size: 16pt !important;
     }
+
     .sidenav li button span {
         font-size: 16pt !important;
         font-weight: 500 !important;
     }
+
     .sidenav li {
         width: 100% !important;
         padding: 10px 0px 10px 0px !important;
     }
+
     .sidenav li a {
         padding-left: 10px !important;
     }
+
     .sidenav li button {
         padding-left: 10px !important;
     }
+
     .margin-low-left {
         margin-left: auto !important;
     }
+
     #direccion-select {
         margin-left: 25px !important;
     }
+
     .half-quarter-fifteen-reduct {
         width: 90% !important;
     }
@@ -112,8 +130,19 @@ a {
     align-content: space-between;
 }
 
+.opciones-sidenav li a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+
+
 .sidenav li {
     padding: 2px 0px 2px 0px;
+    display: flex;
+    justify-content: center;
 }
 
 .sidenav li a i {
@@ -158,7 +187,10 @@ nav div ul li a i {
 
 .opciones-sidenav {
     height: 90%;
+    width: 100%;
 }
+
+
 
 .cerrar-sidenav {
     height: 10%;
@@ -279,40 +311,72 @@ footer {
 }
 
 @media only screen and (max-width: 992px) {
+
     header,
     main,
     footer {
         padding-left: 0 !important;
     }
+
     .sidenav {
-        width: 50% !important;
+        width: 60% !important;
         align-items: flex-start !important;
     }
+
     .sidenav li a i {
         font-size: 5rem !important;
         padding-right: 50px !important;
     }
+
     .sidenav li button i {
         font-size: 5rem !important;
         margin: 0 5px 0 0;
     }
+
     .sidenav li a span {
         font-size: 16pt !important;
     }
+
     .sidenav li button span {
         font-size: 16pt !important;
         font-weight: 500 !important;
     }
+
     .sidenav li {
         width: 100% !important;
         padding: 10px 0px 10px 0px !important;
     }
+
     .sidenav li a {
         padding-left: 10px !important;
     }
+
     .sidenav li button {
         padding-left: 10px !important;
     }
+
+    .opciones-sidenav {
+        height: 90%;
+        width: 100% !important;
+    }
+
+    .opciones-sidenav li {
+        width: 100% !important;
+        margin: 0px !important;
+        padding: 0px !important;
+        display: flex;
+        justify-content: start !important;
+    }
+
+    .opciones-sidenav li a {
+        padding: 10px 0px;
+        height: auto;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        width: 100% !important;
+    }
+
 }
 
 .sidenav {
@@ -324,8 +388,24 @@ footer {
     flex-wrap: nowrap;
 }
 
-.sidenav li {
-    padding: 2px 0px 2px 0px;
+
+.foto-perfil-repartidor {
+    width: 65px !important;
+    border: 0.5px solid black;
+    border-radius: 35px;
+    margin: 0px 15px 0px 5px
+}
+
+.foto-perfil-repartidor-grande {
+    width: 50px !important;
+    border: 0.5px solid black;
+    border-radius: 35px;
+    margin: 10px 0px 0px 0px
+}
+
+.logo-centrado {
+    display: flex;
+    justify-content: center;
 }
 
 .sidenav li a i {
@@ -368,9 +448,9 @@ nav div ul li a i {
 
 /*-----------------Footer--------------*/
 
-.opciones-sidenav {
-    height: 90%;
-}
+
+
+
 
 .cerrar-sidenav {
     height: 10%;
@@ -570,6 +650,7 @@ label {
     table:not(#tabla_in) {
         width: 100%;
     }
+
     table:not(#tabla_in) tr {
         display: flex;
         flex-direction: column;
@@ -578,24 +659,28 @@ label {
         padding: 1em;
         margin-bottom: 1em;
     }
+
     table:not(#tabla_in) thead {
         display: none;
     }
+
     /*Colocamos columnas*/
     table:not(#tabla_in) td[data-target] {
         display: flex;
     }
+
     table:not(#tabla_in) td[data-target]::before {
         content: attr(data-target);
         width: 150px;
     }
+
     /*Tamaño*/
-    table:not(#tabla_in) td, table:not(#tabla_in)
-    th {
+    table:not(#tabla_in) td,
+    table:not(#tabla_in) th {
         width: 100%;
         word-wrap: break-word;
     }
-  
+
 }
 
 
@@ -889,7 +974,7 @@ input[type="radio"]:checked~label>.estrellaProducto {
     padding: 0px !important;
     overflow: auto;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-   
+
 }
 
 .contenedorDepartamentos tr td {
@@ -903,25 +988,26 @@ input[type="radio"]:checked~label>.estrellaProducto {
 }
 
 .contenedorDepartamentos tr td p {
-   
+
     margin-top: 8px !important;
     margin-bottom: 8px !important;
 }
 
-#map{
+#map {
     width: 100%;
     height: 500px;
 }
 
-.mapaa{
-    max-width: auto !important ;
+.mapaa {
+    max-width: auto !important;
     width: 100% !important;
-    height: 600px !important ;
+    height: 600px !important;
 }
 
-.ol-control button{ 
+.ol-control button {
     background-color: rgba(40, 40, 40, 0.85) !important;
-  }
-  .ol-control button:hover{ 
+}
+
+.ol-control button:hover {
     background-color: rgba(40, 40, 40, 1) !important;
-  }
+}
