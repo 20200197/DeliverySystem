@@ -1056,9 +1056,9 @@ function searchProductosCalidad() {
                             //<td><img src="${SERVER}imagenes/administrar_empleados/${row.imagen_perfil_empleado}" class="materialboxed" height="100" width="100"></td>
                             //Productos
                             //Compramos la calidad para colocarle las estrellas
-                            if (row.calidad <= 1 && row.calidad > 0) {
+                            if (row.calidad <= 1 && row.id_producto != null && row.calidad > 0 && row.id_producto != null) {
                                 //Para 0.5
-                                if (row.calidad < 1) {
+                                if (row.calidad < 1 && row.id_producto != null && row.calidad > 0 && row.id_producto != null) {
                                     content_estrellas += `
                                     <!--Catalogo-->
                                 <div class="col s12 m12 l12">
@@ -1155,8 +1155,8 @@ function searchProductosCalidad() {
                                     //showOp();
                                 }
                                 //Para 1.5
-                            } else if (row.calidad <= 2 && row.calidad > 1) {
-                                if (row.calidad < 2 && row.calidad > 1) {
+                            } else if (row.calidad <= 2 && row.id_producto != null && row.calidad > 1 && row.id_producto != null) {
+                                if (row.calidad < 2 && row.id_producto != null && row.calidad > 1 && row.id_producto != null) {
                                     content_estrellas += `    
                                     <!--Catalogo-->
                                     <div class="col s12 m12 l12">
@@ -1248,8 +1248,8 @@ function searchProductosCalidad() {
                             //<td><img src="${SERVER}imagenes/administrar_empleados/${row.imagen_perfil_empleado}" class="materialboxed" height="100" width="100"></td>
                             //Productos
                             //Compramos la calidad para colocarle las estrellas
-                            if (row.calidad <= 2 && row.calidad > 1) {
-                                if (row.calidad < 2 && row.calidad > 1) {
+                            if (row.calidad <= 2 && row.id_producto != null && row.calidad > 1 && row.id_producto != null) {
+                                if (row.calidad < 2 && row.id_producto != null && row.calidad > 1 && row.id_producto != null) {
 
                                 } else {
                                     //Para 2
@@ -1300,9 +1300,9 @@ function searchProductosCalidad() {
                                     document.getElementById("contenedor_productos").innerHTML = content_estrellas;
                                     // showOp();
                                 }
-                            } else if (row.calidad <= 3 && row.calidad > 2) {
+                            } else if (row.calidad <= 3 && row.id_producto != null && row.calidad > 2 && row.id_producto != null) {
                                 //Para 2.5
-                                if (row.calidad < 3 && row.calidad > 2) {
+                                if (row.calidad < 3 && row.id_producto != null && row.calidad > 2 && row.id_producto != null) {
                                     content_estrellas += `
                                 <!--Catalogo-->
                                 <div class="col s12 m12 l12">
@@ -1402,9 +1402,9 @@ function searchProductosCalidad() {
                             //<td><img src="${SERVER}imagenes/administrar_empleados/${row.imagen_perfil_empleado}" class="materialboxed" height="100" width="100"></td>
                             //Productos
                             //Compramos la calidad para colocarle las estrellas
-                            if (row.calidad <= 3 && row.calidad > 2) {
+                            if (row.calidad <= 3 && row.id_producto != null && row.calidad > 2 && row.id_producto != null) {
                                 //Para 2.5
-                                if (row.calidad < 3 && row.calidad > 2) {
+                                if (row.calidad < 3 && row.id_producto != null && row.calidad > 2 && row.id_producto != null) {
 
                                 } else {
                                     //Para 3
@@ -1455,9 +1455,9 @@ function searchProductosCalidad() {
                                     document.getElementById("contenedor_productos").innerHTML = content_estrellas;
                                     //showOp();
                                 }
-                            } else if (row.calidad <= 4 && row.calidad > 3) {
+                            } else if (row.calidad <= 4 && row.id_producto != null && row.calidad > 3 && row.id_producto != null) {
                                 //Para 3.5
-                                if (row.calidad < 4 && row.calidad > 3) {
+                                if (row.calidad < 4 && row.id_producto != null && row.calidad > 3 && row.id_producto != null) {
                                     content_estrellas += `
                             <!--Catalogo-->
                             <div class="col s12 m12 l12">
@@ -1557,9 +1557,9 @@ function searchProductosCalidad() {
                             //<td><img src="${SERVER}imagenes/administrar_empleados/${row.imagen_perfil_empleado}" class="materialboxed" height="100" width="100"></td>
                             //Productos
                             //Compramos la calidad para colocarle las estrellas
-                            if (row.calidad <= 4 && row.calidad > 3) {
+                            if (row.calidad <= 4 && row.id_producto != null && row.calidad > 3 && row.id_producto != null) {
                                 //Para 3.5
-                                if (row.calidad < 4 && row.calidad > 3) {
+                                if (row.calidad < 4 && row.id_producto != null && row.calidad > 3 && row.id_producto != null) {
 
                                 } else {
                                     //Para 4
@@ -1611,9 +1611,9 @@ function searchProductosCalidad() {
                                     // showFavo();
                                     // showOp();
                                 }
-                            } else if (row.calidad <= 5 && row.calidad > 4) {
+                            } else if (row.calidad <= 5 && row.id_producto != null && row.calidad > 4 && row.id_producto != null) {
                                 //Para 4.5
-                                if (row.calidad < 5 && row.calidad > 4) {
+                                if (row.calidad < 5 && row.id_producto != null && row.calidad > 4 && row.id_producto != null) {
                                     content_estrellas += `
                                 <!--Catalogo-->
                                 <div class="col s12 m12 l12">
@@ -1712,9 +1712,9 @@ function searchProductosCalidad() {
                             //<td><img src="${SERVER}imagenes/administrar_empleados/${row.imagen_perfil_empleado}" class="materialboxed" height="100" width="100"></td>
                             //Productos
                             //Compramos la calidad para colocarle las estrellas
-                            if (row.calidad <= 5 && row.calidad > 4) {
+                            if (row.calidad <= 5 && row.id_producto != null && row.calidad > 4 && row.id_producto != null) {
                                 //Para 4.5
-                                if (row.calidad < 5 && row.calidad > 4) {
+                                if (row.calidad < 5 && row.id_producto != null && row.calidad > 4 && row.id_producto != null) {
 
                                 } else {
                                     // Se crean y concatenan las tarjetas con los datos de cada producto.

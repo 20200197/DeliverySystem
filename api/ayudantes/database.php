@@ -16,9 +16,9 @@ class Database
     {
         // Credenciales para establecer la conexión con la base de datos.
         $server = 'localhost';
-        $database = 'dbdeliverySystem';
+        $database = 'DeliverySystem';
         $username = 'postgres';
-        $password = 'Academica20_21';
+        $password = 'admin';
 
 
 
@@ -157,7 +157,7 @@ class Database
                 self::$error = 'Error de sintaxis en la sentencia';
                 break;
             case '42702':
-                self::$error = 'La referencia a la columna es ambigua';
+                //self::$error = 'La referencia a la columna es ambigua';
                 break;
             case '42883':
                 self::$error = 'Nombre de función desconocido';

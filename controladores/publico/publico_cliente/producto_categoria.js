@@ -91,7 +91,7 @@ function fillTableProductosCategoria(dataset) {
                         </label>
                     </div>
                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                     class="material-icons left black-text">remove_red_eye</i>Ver</a>
                         </div>
                     </div>
@@ -140,7 +140,7 @@ function fillTableProductosCategoria(dataset) {
                         </label>
                     </div>
                     <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                        href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                        href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                             class="material-icons left black-text">remove_red_eye</i>Ver</a>
                 </div>
                 </div>
@@ -190,7 +190,7 @@ function fillTableProductosCategoria(dataset) {
                         </label>
                     </div>
                 <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                    href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                    href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                         class="material-icons left black-text">remove_red_eye</i>Ver</a>
             </div>
                 </div>
@@ -239,7 +239,7 @@ function fillTableProductosCategoria(dataset) {
                         </label>
                     </div>
                             <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                                href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                     class="material-icons left black-text">remove_red_eye</i>Ver</a>
                         </div>
                     </div>
@@ -289,7 +289,7 @@ function fillTableProductosCategoria(dataset) {
                         </label>
                     </div>
                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                     </div>
                     </div>
@@ -338,7 +338,7 @@ function fillTableProductosCategoria(dataset) {
                         </label>
                     </div>
                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                     </div>
                     </div>
@@ -388,7 +388,7 @@ function fillTableProductosCategoria(dataset) {
                         </label>
                     </div>
                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                     </div>
                 </div>
@@ -437,7 +437,7 @@ function fillTableProductosCategoria(dataset) {
                         </label>
                     </div>
                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                     </div>
                     </div>
@@ -488,7 +488,7 @@ function fillTableProductosCategoria(dataset) {
                         </label>
                     </div>
                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                     </div>
                     </div>
@@ -537,7 +537,7 @@ function fillTableProductosCategoria(dataset) {
                         </label>
                     </div>
                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                     </div>
                     </div>
@@ -582,7 +582,7 @@ function fillTableProductosCategoria(dataset) {
                         </label>
                     </div>
                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                     </div>
                     </div>
@@ -624,7 +624,7 @@ function fillTableProductosCategoria(dataset) {
                         </label>
                     </div>  
                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                     </div>
                     </div>
@@ -681,9 +681,9 @@ function readProductosCategoria(id, categoria) {
                         //<td><img src="${SERVER}imagenes/administrar_empleados/${row.imagen_perfil_empleado}" class="materialboxed" height="100" width="100"></td>
                         //Productos
                         //Compramos la calidad para colocarle las estrellas
-                        if (row.calidad <= 1 && row.calidad > 0) {
+                        if (row.calidad <= 1 && row.id_producto != null && row.calidad > 0 && row.id_producto != null) {
                             //Para 0.5
-                            if (row.calidad < 1) {
+                            if (row.calidad < 1 && row.id_producto != null) {
                                 content_estrellas += `
                     <!--Catalogo-->
                  <div class="col s12 m12 l12">
@@ -713,7 +713,7 @@ function readProductosCategoria(id, categoria) {
                             </label>
                         </div>
                             <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                                href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                         class="material-icons left black-text">remove_red_eye</i>Ver</a>
                             </div>
                         </div>
@@ -762,7 +762,7 @@ function readProductosCategoria(id, categoria) {
                             </label>
                         </div>
                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                     </div>
                     </div>
@@ -781,8 +781,8 @@ function readProductosCategoria(id, categoria) {
 
                             }
                             //Para 1.5
-                        } else if (row.calidad <= 2 && row.calidad > 1) {
-                            if (row.calidad < 2 && row.calidad > 1) {
+                        } else if (row.calidad <= 2 && row.id_producto != null && row.calidad > 1 && row.id_producto != null) {
+                            if (row.calidad < 2 && row.id_producto != null && row.calidad > 1 && row.id_producto != null) {
                                 content_estrellas += `    
                     <!--Catalogo-->
                     <div class="col s12 m12 l12">
@@ -812,7 +812,7 @@ function readProductosCategoria(id, categoria) {
                             </label>
                         </div>
                     <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                        href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                        href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                             class="material-icons left black-text">remove_red_eye</i>Ver</a>
                 </div>
                     </div>
@@ -861,7 +861,7 @@ function readProductosCategoria(id, categoria) {
                             </label>
                         </div>
                                 <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                    href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                                    href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                         class="material-icons left black-text">remove_red_eye</i>Ver</a>
                             </div>
                         </div>
@@ -879,9 +879,9 @@ function readProductosCategoria(id, categoria) {
                                 // showFavo(idC);
 
                             }
-                        } else if (row.calidad <= 3 && row.calidad > 2) {
+                        } else if (row.calidad <= 3 && row.id_producto != null && row.calidad > 2 && row.id_producto != null) {
                             //Para 2.5
-                            if (row.calidad < 3 && row.calidad > 2) {
+                            if (row.calidad < 3 && row.id_producto != null && row.calidad > 2 && row.id_producto != null) {
                                 content_estrellas += `
                     <!--Catalogo-->
                     <div class="col s12 m12 l12">
@@ -911,7 +911,7 @@ function readProductosCategoria(id, categoria) {
                             </label>
                         </div>
                             <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                                href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                     class="material-icons left black-text">remove_red_eye</i>Ver</a>
                         </div>
                         </div>
@@ -960,7 +960,7 @@ function readProductosCategoria(id, categoria) {
                             </label>
                         </div>
                             <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                                href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                     class="material-icons left black-text">remove_red_eye</i>Ver</a>
                         </div>
                         </div>
@@ -978,9 +978,9 @@ function readProductosCategoria(id, categoria) {
                                 //showFavo(idC);
 
                             }
-                        } else if (row.calidad <= 4 && row.calidad > 3) {
+                        } else if (row.calidad <= 4 && row.id_producto != null && row.calidad > 3 && row.id_producto != null) {
                             //Para 3.5
-                            if (row.calidad < 4 && row.calidad > 3) {
+                            if (row.calidad < 4 && row.id_producto != null && row.calidad > 3 && row.id_producto != null) {
                                 content_estrellas += `
                     <!--Catalogo-->
                     <div class="col s12 m12 l12">
@@ -1010,7 +1010,7 @@ function readProductosCategoria(id, categoria) {
                             </label>
                         </div>
                             <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                                href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                     class="material-icons left black-text">remove_red_eye</i>Ver</a>
                         </div>
                     </div>
@@ -1059,7 +1059,7 @@ function readProductosCategoria(id, categoria) {
                             </label>
                         </div>
                             <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                                href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                     class="material-icons left black-text">remove_red_eye</i>Ver</a>
                         </div>
                         </div>
@@ -1077,9 +1077,9 @@ function readProductosCategoria(id, categoria) {
                                 //showFavo(idC);
 
                             }
-                        } else if (row.calidad <= 5 && row.calidad > 4) {
+                        } else if (row.calidad <= 5 && row.id_producto != null && row.calidad > 4 && row.id_producto != null) {
                             //Para 4.5
-                            if (row.calidad < 5 && row.calidad > 4) {
+                            if (row.calidad < 5 && row.id_producto != null && row.calidad > 4 && row.id_producto != null) {
                                 content_estrellas += `
                     <!--Catalogo-->
                     <div class="col s12 m12 l12">
@@ -1109,7 +1109,7 @@ function readProductosCategoria(id, categoria) {
                             </label>
                         </div>
                             <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                                href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                     class="material-icons left black-text">remove_red_eye</i>Ver</a>
                         </div>
                         </div>
@@ -1158,7 +1158,7 @@ function readProductosCategoria(id, categoria) {
                             </label>
                         </div>
                             <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                                href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                     class="material-icons left black-text">remove_red_eye</i>Ver</a>
                         </div>
                         </div>
@@ -1177,7 +1177,7 @@ function readProductosCategoria(id, categoria) {
 
 
                             }
-                        } else if (row.calidad == null) {
+                        } else if (row.calidad == null && row.id_producto != null && row.id_producto != null) {
                             content_estrellas += `
                 <!--Catalogo-->
                     <div class="col s12 m12 l12">
@@ -1203,7 +1203,7 @@ function readProductosCategoria(id, categoria) {
                             </label>
                         </div>
                             <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                                href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                     class="material-icons left black-text">remove_red_eye</i>Ver</a>
                         </div>
                         </div>
@@ -1245,7 +1245,7 @@ function readProductosCategoria(id, categoria) {
                             </label>
                         </div>  
                             <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                                href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                     class="material-icons left black-text">remove_red_eye</i>Ver</a>
                         </div>
                         </div>
@@ -1331,10 +1331,7 @@ function fillTableC(dataset) {
       ${row.categoria}
       <a href="${url}"><img src="${SERVER}imagenes/categoria/${row.imagen_categoria}"
               class="imagen-categoria hoverable" alt="" width="100"></a>
-       </div>`;
-
-
-
+        </div>`;
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('contenedor_categoria').innerHTML = content;
@@ -1769,7 +1766,7 @@ function searchProductosCalidad() {
                                             </label>
                                         </div>
                                             <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                                href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                                                href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                                         class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                             </div>
                                         </div>
@@ -1818,7 +1815,7 @@ function searchProductosCalidad() {
                                         </label>
                                     </div>
                                     <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                        href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                                        href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                             class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                 </div>
                                 </div>
@@ -1867,7 +1864,7 @@ function searchProductosCalidad() {
                                             </label>
                                         </div>
                                     <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                        href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                                        href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                             class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                     </div>
                                     </div>
@@ -1969,7 +1966,7 @@ function searchProductosCalidad() {
                                         </label>
                                     </div>
                                             <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                                href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                                                href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                                     class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                         </div>
                                     </div>
@@ -2018,7 +2015,7 @@ function searchProductosCalidad() {
                                         </label>
                                     </div>
                                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                     </div>
                                     </div>
@@ -2127,7 +2124,7 @@ function searchProductosCalidad() {
                                         </label>
                                     </div>
                                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                     </div>
                                     </div>
@@ -2176,7 +2173,7 @@ function searchProductosCalidad() {
                                     </label>
                                 </div>
                                     <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                        href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                                        href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                             class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                 </div>
                             </div>
@@ -2286,7 +2283,7 @@ function searchProductosCalidad() {
                                             </label>
                                         </div>
                                             <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                                href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                                                href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                                     class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                         </div>
                                         </div>
@@ -2336,7 +2333,7 @@ function searchProductosCalidad() {
                                         </label>
                                     </div>
                                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                     </div>
                                     </div>
@@ -2443,7 +2440,7 @@ function searchProductosCalidad() {
                                         </label>
                                     </div>
                                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                            href="producto_individual.html?id_producto=${row.id_producto}&id_detalle=${row.id_detalle}" id="boton_datos"><i
+                                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                     </div>
                                     </div>
