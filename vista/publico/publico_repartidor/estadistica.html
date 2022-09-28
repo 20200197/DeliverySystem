@@ -21,62 +21,69 @@
 <body>
     <!--Encabezado y sesión-->
     <header>
-        <nav>
-            <div class="nav-wrapper white">
-                <div class="col s12 m12 l12">
-                    <div class="row valign-wrapper">
-                        <div class="col m1 s1">
-                            <a href="#" data-target="slide-out" class="sidenav-trigger"><i
-                                    class="material-icons large blue-text">menu</i></a>
-                        </div>
-                        <div class="col m5 s5 left offset-s1">
-
-                            <img class="responsive-img"
-                                src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
-                        </div>
-                        <div class="col m7 s7 right-align valign-wrapper    " id="opciones_navbar">
-                        </div>
-                    </div>
+        <nav class="row white">
+    
+            <div class="col l5 m5 s5 hide-on-med-and-down">
+                <div class="col m3 s3 l3 show-on-small center valign-wrapper">
+                    <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                            class="material-icons large blue-text">menu</i></a>
+                </div>
+                <div class="col l9 m9 s10 push-m1 valign-wrapper">
+                    <img class="responsive-img" src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png"
+                        alt="">
                 </div>
             </div>
+            <div class="col l12 m12 s12 hide-on-large-only">
+                <div class="col m1 s2 l3 show-on-small center">
+                    <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                            class="material-icons large blue-text">menu</i></a>
+                </div>
+                <div class="col l7 m11 s10 valign-wrapper logo-centrado">
+                    <img class="responsive-img center-align"
+                        src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
+                </div>
+            </div>
+    
+            <div class="col m7 s7 l7 right-align valign-wrapper hide-on-med-and-down" id="opciones_navbar">
+    
+            </div>
         </nav>
+    
     </header>
+    
     <!--Navegabilidad de la página-->
     <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2 left-align">
         <div class="opciones-sidenav">
-            <li><a href="perfil.html" class="tooltipped Hide-on-large-only " data-position="right"
-                    data-tooltip="Perfil"><i class="material-icons tiny white-text">account_circle</i>
-                    <!--<span
-                                                class="white-text hide-on-large-only">Perfil</span>-->
+            <li id="sesion_navbar" class="hide-on-large-only valign-wrapper"></li>
+            <hr class="hide-on-large-only">
+            <li><a href="perfil.html" class="tooltipped Hide-on-large-only " data-position="right" data-tooltip="Perfil"><i
+                        class="material-icons tiny white-text">account_circle</i>
+                    <span class="white-text hide-on-large-only">Perfil</span>
                 </a></li>
             <li><a href="historial.html" class="tooltipped" data-position="right" data-tooltip="Historial"><i
                         class="material-icons prefix  white-text">description</i>
-                    <!--<span
-                                                class="white-text hide-on-large-only ">Historial</span>-->
+                    <span class="white-text hide-on-large-only ">Historial</span>
                 </a></li>
             <li><a href="paquetes_pendientes.html" class="tooltipped" data-position="right"
                     data-tooltip="Paquetes pendientes"><i class="material-icons  white-text">alarm</i>
-                    <!--<span
-                                                class="white-text hide-on-large-only">Paquetes pendientes</span>-->
+                    <span class="white-text hide-on-large-only">Paquetes pendientes</span>
                 </a></li>
             <li><a href="comentarios.html" class="tooltipped" data-position="right" data-tooltip="Comentarios"><i
                         class="material-icons  white-text">message</i>
-                    <!--<span
-                                                class="white-text hide-on-large-only">Comentarios</span>-->
+                    <span class="white-text hide-on-large-only">Comentarios</span>
                 </a></li>
             <li><a href="estadistica.html" class="tooltipped" data-position="right" data-tooltip="Estadística"><i
                         class="material-icons  white-text">insert_chart</i>
-                    <!--<span
-                                                class="white-text hide-on-large-only">Estadística</span>-->
+                    <span class="white-text hide-on-large-only">Estadística</span>
                 </a></li>
-            <!--<li class="hide-on-large-only"><button onclick="logOut('Repartidor')"
-                                            class="tooltipped transparent logout valign-wrapper" data-position="right"
-                                            data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
-                                                class="white-text hide-on-large-only">Cerrar
-                                                sesión</span></button></li>-->
+            <li class="hide-on-med-and-down"><button onclick="logOut('Repartidor')"
+                    class="tooltipped transparent logout valign-wrapper" data-position="right"
+                    data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
+                        class="white-text hide-on-large-only">Cerrar
+                        sesión</span></button></li>
         </div>
         <div class="cerrar-navbar ">
-            <li>
+            <li class="hide-on-large-only">
                 <button onclick="logOut('Repartidor')" class="tooltipped white-text transparent logout valign-wrapper"
                     data-position="right" data-tooltip="Cerrar sesión"><i class="material-icons ">arrow_back</i><span
                         class="white-text hide-on-large-only">Cerrar sesión</span></button>
