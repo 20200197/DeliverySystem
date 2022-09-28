@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <img src='../../../api/imagenes/repartidor/foto_repartidor/${data.foto_repartidor}' class="foto-perfil-repartidor-grande"></a>
                     </div>`;
                     contenido2 = `
-                    <a>
+                    <a href="perfil.html">
                                        <img src='../../../api/imagenes/repartidor/foto_repartidor/${data.foto_repartidor}' class="foto-perfil-repartidor">
                     <span class="white-text hide-on-large-only ">${data.nombre}</span></a>
 
