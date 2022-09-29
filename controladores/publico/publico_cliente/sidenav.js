@@ -1,7 +1,7 @@
 const API_PERFIL = SERVER + "publico/sesion.php?action=";
 
 document.addEventListener('DOMContentLoaded', function() {
-    fetch(API_perfil + "obtenerSesionC", {
+    fetch(API_PERFIL + "obtenerSesionC", {
         method: "get",
     }).then(function (request) {
         //Se verifica que la sentencia se haya ejecutado

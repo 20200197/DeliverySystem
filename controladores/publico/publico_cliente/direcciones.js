@@ -3,6 +3,7 @@ const API_DIRECCIONES = SERVER + 'publico/direcciones.php?action=';
 const ENDPOINT_MUNICIPIO = SERVER + "publico/municipios.php?action=readAll";
 const ENDPOINT_DEPARTAMENTO = SERVER + "publico/departamentos.php?action=readAll";
 
+
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
     // Se define una variable para establecer las opciones del componente Modal.
@@ -15,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Se inicializa el componente Dropdown para que funcione la lista desplegable en los menús.
     M.Dropdown.init(document.querySelectorAll(".dropdown-trigger"));
     readDirecciones();
+    
+    
 });
 
 // Función para llenar con los datos de los registros.
@@ -87,21 +90,23 @@ function fillTable(dataset) {
 
 }
 
+
 function openCreate() {
     M.Modal.getInstance(document.getElementById("modal-add")).open();
     fillSelect(ENDPOINT_MUNICIPIO, "municipio", null);
     // fillSelect(ENDPOINT_DEPARTAMENTO, "select_departamento", null);
+    //Se inicializa el mapa con la vista y nivel de zoom
 }
 
-
-//Se inicializa el mapa con la vista y nivel de zoom
 var map = L.map('mapa').setView([13.683767546575941, -88.93569946289064], 8);
-
-//se añaden agrega el mapa
-var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //se añaden agrega el mapa
+    
+let tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
+
+    
 
 //Variables para manejar las coordenadas seleccionadas en el mapa
 Layer = null;
@@ -183,6 +188,7 @@ document.getElementById("add-form").addEventListener("submit", function (event) 
 
 
 function openUpdate(id) {
+
     // Se abre la caja de diálogo (modal) que contiene el formulario.
     M.Modal.getInstance(document.getElementById("modal-update")).open();
     // Se define un objeto con los datos del registro seleccionado.
