@@ -150,14 +150,15 @@ class PedidosCliente extends Validator
                 INNER JOIN estado_factura USING (id_status)
                 INNER JOIN direccion USING (id_direccion)
                 INNER JOIN cliente USING (id_cliente)
-                WHERE id_status = 2 AND id_cliente = ? OR id_status = 3 AND id_cliente = ?";
+                WHERE id_status = 2 AND id_cliente = ? OR id_status = 3 AND id_cliente = ?
+                ORDER BY id_factura DESC";
         $params = array($_SESSION['id_cliente'], $_SESSION['id_cliente']);
         return Database::getRows($sql, $params);
     }
 
     public function readDetail()
     {
-        $sql = "SELECT id_factura, nombre_producto,TO_CHAR(fecha_compra, 'DD-MM-YYYY HH12:MI:SS') AS fecha_compra, total, SUBSTRING(descripcion_direccion, 1, 20) as descripcion_direccion, cantidad_pedido, precio, nombre_cliente, apellido_cliente, telefono_cliente, usuario_cliente, correo_cliente, dui_cliente, precio * cantidad_pedido as subtotal_detalle
+        $sql = "SELECT id_factura, nombre_producto,TO_CHAR(fecha_compra, 'DD-MM-YYYY HH12:MI:SS') AS fecha_compra, total, CONCAT(SUBSTRING(descripcion_direccion, 1, 75), '...') as descripcion_direccion, cantidad_pedido, precio, nombre_cliente, apellido_cliente, telefono_cliente, usuario_cliente, correo_cliente, dui_cliente, precio * cantidad_pedido as subtotal_detalle
             FROM factura 
             inner join detalle_factura using (id_factura) 
             inner join producto using (id_producto)

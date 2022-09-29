@@ -203,6 +203,11 @@ if (isset($_GET['action'])) {
                 $result['status'] = 1;
             }
             break;
+        case 'readProductosCalidadCategoria':
+            if ($result['dataset'] = $producto->readProductosCalidadCategoria($_GET['calidad'], $_GET['id_categoria'])) {
+                $result['status'] = 1;
+            }
+            break;
         default:
             $result['exception'] = 'Acción no disponible dentro de la sesión';
     }

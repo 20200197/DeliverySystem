@@ -36,36 +36,8 @@
 
     </header>
     <!--Menú lateral-->
-    <div class="row">
-        <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
-            <div class="opciones-sidenav">
-                <li class="collection-item"><a href="index.html" class="tooltipped" data-position="right"
-                        data-tooltip="Hogar"><i class="material-icons  white-text">home</i><span
-                            class="white-text hide-on-large-only">Inicio</span></a>
-                </li>
-                <li><a href="perfil_cliente.html" class="tooltipped Hide-on-large-only " data-position="right"
-                        data-tooltip="Perfil"><i class="material-icons  white-text">account_circle</i><span
-                            class="white-text hide-on-large-only">Perfil</span></a></li>
-                <li><a href="carrito.html" class="tooltipped" data-position="right" data-tooltip="Carrito de compras"><i
-                            class="material-icons  white-text">shopping_basket</i><span
-                            class="white-text hide-on-large-only">Compras</span></a></li>
-                <li class="hide-on-large-only"><button onclick="logOut('Cliente')"
-                        class="tooltipped transparent logout valign-wrapper" data-position="right"
-                        data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
-                            class="white-text hide-on-large-only">Cerrar
-                            sesión</span></button></li>
-            </div>
-            <div class="cerrar-navbar hide-on-med-and-down">
-                <li>
-                    <button onclick="logOut('Cliente')" class="tooltipped white-text transparent logout valign-wrapper"
-                        data-position="right" data-tooltip="Cerrar sesión"><i
-                            class="material-icons ">arrow_back</i><span class="white-text hide-on-large-only">Cerrar
-                            sesión</span></button>
-                </li>
-            </div>
-
-
-        </ul>
+    <div class="row" id="sidenav-content">
+        
     </div>
     <!--Información de la página-->
     <main>
@@ -96,28 +68,28 @@
                         <p>
                             <label>
                                 <input class="with-gap" name="group1" type="radio" id="group1"
-                                    onchange="searchProductosPrecio()">
+                                    onchange="searchProductosPrecio(); validateFilterPrice()">
                                 <span>$ 1 - 50</span>
                             </label>
                         </p>
                         <p>
                             <label>
                                 <input class="with-gap" name="group1" type="radio" id="group2"
-                                    onchange="searchProductosPrecio()">
+                                    onchange="searchProductosPrecio(); validateFilterPrice()">
                                 <span>$ 51 - 150</span>
                             </label>
                         </p>
                         <p>
                             <label>
                                 <input class="with-gap" name="group1" type="radio" id="group3"
-                                    onchange="searchProductosPrecio()">
+                                    onchange="searchProductosPrecio(); validateFilterPrice()">
                                 <span>$ 151 - 300</span>
                             </label>
                         </p>
                         <p>
                             <label>
                                 <input class="with-gap" name="group1" type="radio" id="group4"
-                                    onchange="searchProductosPrecio()">
+                                    onchange="searchProductosPrecio(); validateFilterPrice()">
                                 <span> Custom</span>
                             </label>
                             <div class="row valign-wrapper">
@@ -144,7 +116,7 @@
                             <p>
                                 <label>
                                     <input type="radio" name="check" id="cali_cinco" class="option-input radio"
-                                        onchange="searchProductosCalidad()">
+                                        onchange="searchProductosCalidad(); validateFilterCali()">
                                     <span>
                                         <i class="material-icons yellow-text small">star</i>
                                         <i class="material-icons yellow-text small">star</i>
@@ -157,7 +129,7 @@
                             <p>
                                 <label>
                                     <input type="radio" name="check" id="cali_cuatro" class="option-input radio"
-                                        onchange="searchProductosCalidad()">
+                                        onchange="searchProductosCalidad(); validateFilterCali()">
                                     <span>
                                         <i class="material-icons yellow-text small">star</i>
                                         <i class="material-icons yellow-text small">star</i>
@@ -169,7 +141,7 @@
                             <p>
                                 <label>
                                     <input type="radio" name="check" id="cali_tres" class="option-input radio"
-                                        onchange="searchProductosCalidad()">
+                                        onchange="searchProductosCalidad(); validateFilterCali()">
                                     <span>
                                         <i class="material-icons yellow-text small">star</i>
                                         <i class="material-icons yellow-text small">star</i>
@@ -180,7 +152,7 @@
                             <p>
                                 <label>
                                     <input type="radio" name="check" id="cali_dos" class="option-input radio"
-                                        onchange="searchProductosCalidad()">
+                                        onchange="searchProductosCalidad(); validateFilterCali()">
                                     <span>
                                         <i class="material-icons yellow-text small">star</i>
                                         <i class="material-icons yellow-text small">star</i>
@@ -190,7 +162,7 @@
                             <p>
                                 <label>
                                     <input type="radio" name="check" id="cali_uno" class="option-input radio"
-                                        onchange="searchProductosCalidad()">
+                                        onchange="searchProductosCalidad(); validateFilterCali()">
                                     <span>
                                         <i class="material-icons yellow-text small">star</i>
                                     </span>
@@ -202,7 +174,7 @@
                 <!-- Título del contenido principal -->
                 <h4 class="center indigo-text" id="title"></h4>
                 <div class="col s12 m9 l9" id="contenedor_productos">
-
+                    
                 </div>
             </div>
         </div>
@@ -266,6 +238,7 @@
     <script src="../../../controladores/publico/publico_cliente/producto_categoria.js"></script>
     <script src="../../../controladores/privado/modo_oscuro.js"></script>
     <script type="text/javascript" src="../../../controladores/publico/publico_cliente/opciones_sesion.js"></script>
+    <script src="../../../controladores/publico/publico_cliente/sidenav.js"></script>
 </body>
 
 </html>
