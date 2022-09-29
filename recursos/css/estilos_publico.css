@@ -23,6 +23,15 @@ a {
 }
 
 
+#contenedor_categoria {
+    overflow-x:scroll;
+    height:150px;
+    width:100%;
+
+    display: flex;
+    flex-wrap: nowrap;
+}
+
 .icono-sesion {
     font-size: 32pt !important;
 }

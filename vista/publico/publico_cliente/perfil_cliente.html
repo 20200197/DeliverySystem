@@ -29,7 +29,7 @@
     
                         <img class="responsive-img" src="../../../recursos/img/logo_delivery_system.png" alt="">
                     </div>
-                    <div class="col m6 s6" id="opciones_navbar">
+                    <div class="col m6 s6" id="">
     
                     </div>
                 </div>
@@ -38,49 +38,13 @@
     
         </header>
     <!--Menú lateral-->
-    <div class="row">
-        <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
-            <div class="opciones-sidenav">
-                <li class="collection-item"><a href="index.html" class="tooltipped" data-position="right"
-                        data-tooltip="Hogar"><i class="material-icons  white-text">home</i><span
-                            class="white-text hide-on-large-only">Inicio</span></a>
-                </li>
-                <li><a href="perfil_cliente.html" class="tooltipped Hide-on-large-only " data-position="right"
-                        data-tooltip="Perfil"><i class="material-icons  white-text">account_circle</i><span
-                            class="white-text hide-on-large-only">Perfil</span></a></li>
-                <li><a href="carrito.html" class="tooltipped" data-position="right" data-tooltip="Carrito de compras"><i
-                            class="material-icons  white-text">shopping_basket</i><span
-                            class="white-text hide-on-large-only">Compras</span></a></li>
-                <li class="hide-on-large-only"><button onclick="logOut('Cliente')"
-                        class="tooltipped transparent logout valign-wrapper" data-position="right"
-                        data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
-                            class="white-text hide-on-large-only">Cerrar
-                            sesión</span></button></li>
-            </div>
-            <div class="cerrar-navbar hide-on-med-and-down">
-                <li>
-                    <button onclick="logOut('Cliente')" class="tooltipped white-text transparent logout valign-wrapper"
-                        data-position="right" data-tooltip="Cerrar sesión"><i
-                            class="material-icons ">arrow_back</i><span class="white-text hide-on-large-only">Cerrar
-                            sesión</span></button>
-                </li>
-            </div>
-    
-    
-        </ul>
+    <div class="row" id="sidenav-content">
+        
     </div>
             <!--Información de la página-->
-            <main class="p_e">
-                <div class="row perfil-cliente">
-                    <!--Imagen de perfil-->
-                    <div class="col s9 m2 l1 offset-s3 offset-m1 offset-l1">
-                        <img class="responsive-img perfil-img" id="img-profile"
-                            src="../../../recursos/img/publico/clientes/modals/contacts_200px.png" />
-                    </div>
-                    <!--Bienvenida-->
-                    <div class="col s9 m8 l9 offset-s3 valign-wrapper">
-                        <p class="flow-text" id="saludo">¡Hola, Nombre Apellido!</p>
-                    </div>
+            <main class="p_e" id="main">
+                <div class="row perfil-cliente" id="datos-insert">
+                    
                 </div>
                 <div class="divider"></div>
                 <div class="hide-on-small-only">
@@ -181,7 +145,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../../recursos/js/sweetalert2.all.min.js"></script>
     <script src="../../../controladores/componentes.js"></script>
-    <script src="../../../controladores/publico/publico_cliente/opciones_sesion.js"></script>
+    <script src="../../../controladores/publico/publico_cliente/perfil_cliente.js"></script>
 </body>
 
 </html>

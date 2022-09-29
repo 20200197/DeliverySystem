@@ -108,7 +108,7 @@ class Favorito extends Validator
                  FROM favorito
                  inner join producto using (id_producto)
                  WHERE status_favorito=true and id_producto = ? and id_cliente = ?";
-        $params = array($this->id_producto, 2); //SESSION[id_cliente]
+        $params = array($this->id_producto, $_SESSION['id_cliente']); //SESSION[id_cliente]
         return Database::getRows($sql, $params);
     }
 
@@ -118,7 +118,7 @@ class Favorito extends Validator
                  FROM favorito
                  inner join producto using (id_producto)
                  WHERE status_favorito=true and id_producto = ? and id_cliente = ?";
-        $params = array($this->id_producto, 2); //SESSION[id_cliente]
+        $params = array($this->id_producto, $_SESSION['id_cliente']); //SESSION[id_cliente]
         return Database::getRows($sql, $params);
     }
 
@@ -140,7 +140,7 @@ class Favorito extends Validator
                 FROM favorito
                 inner join producto using (id_producto)
                 WHERE id_categoria = ? and id_cliente = ?";
-        $params = array($id_categoria, 2); //SESSION[id_cliente]
+        $params = array($id_categoria, $_SESSION['id_cliente']); //SESSION[id_cliente]
         return Database::getRows($sql, $params);
     }
 
@@ -156,7 +156,7 @@ class Favorito extends Validator
     public function deleteFavorito()
     {
         $sql = 'DELETE from favorito  where id_producto = ? and id_cliente = ?';
-        $params = array($this->id_producto, 2); //SESSION[id_cliente]
+        $params = array($this->id_producto, $_SESSION['id_cliente']); //SESSION[id_cliente]
         return Database::executeRow($sql, $params);
     }
 }

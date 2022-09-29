@@ -37,7 +37,7 @@ function fillTable(dataset) {
             </a>
         </td>
         <td>
-            <a class="waves-effect waves-light blue lighten-2 black-text btn-large col s12 l8 tooltipped" data-tooltip="Factura de pedido" onclick="openFactura(${row.id_factura})">
+            <a class="waves-effect waves-light blue lighten-2 black-text btn-large col s12 l10" onclick="openFactura(${row.id_factura})">
                 <i class="material-icons left black-text">local_printshop</i>Factura
             </a>
         </td>

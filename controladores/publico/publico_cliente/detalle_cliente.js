@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Se busca en la URL las variables (parámetros) disponibles.
     let params = new URLSearchParams(location.search);
     // Se obtienen los datos localizados por medio de las variables.
-    const ID = 1; //params.get("id");
+    let ID = params.get("id_factura"); 
     //Se crea y llena una variable de tipo formulario
     let datos = new FormData();
     datos.append("identificador", ID); //datos.append("identificador", ID);
@@ -59,9 +59,9 @@ function fillTable(dataset) {
             }</td>
                 <td data-target="Fecha: " class="col l1 sin-margen">${row.fecha_compra}</td>
                 <td data-target="Valoración: " class="col l2 sin-margen">
-                    <a class="waves-effect waves-light btn white-text" onclick="cargarProducto(${row.id_detalle
+                    <a class="waves-effect waves-light btn blue white-text" onclick="cargarProducto(${row.id_detalle
             })"><i class="material-icons left">stars</i>Valorar</a>
-                    <a class="waves-effect waves-light btn white-text" onclick="pedir(${row.id_detalle})"><i class="material-icons left">stars</i>Pedir</a>
+                    <a class="waves-effect waves-light btn blue white-text" onclick="pedir(${row.id_detalle})"><i class="material-icons left">stars</i>Pedir</a>
                 </td>
             </tr>
         `;

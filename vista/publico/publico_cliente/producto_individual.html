@@ -39,36 +39,8 @@
 
     </header>
     <!--Menú lateral-->
-    <div class="row">
-        <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
-            <div class="opciones-sidenav">
-                <li class="collection-item"><a href="index.html" class="tooltipped" data-position="right"
-                        data-tooltip="Hogar"><i class="material-icons  white-text">home</i><span
-                            class="white-text hide-on-large-only">Inicio</span></a>
-                </li>
-                <li><a href="perfil_cliente.html" class="tooltipped Hide-on-large-only " data-position="right"
-                        data-tooltip="Perfil"><i class="material-icons  white-text">account_circle</i><span
-                            class="white-text hide-on-large-only">Perfil</span></a></li>
-                <li><a href="carrito.html" class="tooltipped" data-position="right" data-tooltip="Carrito de compras"><i
-                            class="material-icons  white-text">shopping_basket</i><span
-                            class="white-text hide-on-large-only">Compras</span></a></li>
-                <li class="hide-on-large-only"><button onclick="logOut('Cliente')"
-                        class="tooltipped transparent logout valign-wrapper" data-position="right"
-                        data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
-                            class="white-text hide-on-large-only">Cerrar
-                            sesión</span></button></li>
-            </div>
-            <div class="cerrar-navbar hide-on-med-and-down">
-                <li>
-                    <button onclick="logOut('Cliente')" class="tooltipped white-text transparent logout valign-wrapper"
-                        data-position="right" data-tooltip="Cerrar sesión"><i
-                            class="material-icons ">arrow_back</i><span class="white-text hide-on-large-only">Cerrar
-                            sesión</span></button>
-                </li>
-            </div>
-
-
-        </ul>
+    <div class="row" id="sidenav-content">
+        
     </div>
     <!--Información de la página-->
     <main>
@@ -210,6 +182,7 @@
     <script src="../../../controladores/publico/publico_cliente/producto_individual.js"></script>
     <script src="../../../controladores/privado/modo_oscuro.js"></script>
     <script type="text/javascript" src="../../../controladores/publico/publico_cliente/opciones_sesion.js"></script>
+    <script src="../../../controladores/publico/publico_cliente/sidenav.js"></script>
 </body>
 
 </html>

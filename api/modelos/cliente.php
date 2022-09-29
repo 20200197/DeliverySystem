@@ -161,8 +161,8 @@ class Cliente extends Validator
     {
         date_default_timezone_set('America/El_Salvador');
         $date = date('Y-m-d');
-        $sql = 'INSERT INTO cliente(nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, usuario_cliente, clave_cliente, status_cliente, fecha_registro_cliente, foto_cliente)
-                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        $sql = 'INSERT INTO cliente(nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, usuario_cliente, clave_cliente, status_cliente, fecha_registro_cliente, foto_cliente, id_estado_cliente, intentos_fallidos, fecha_desbloqueo)
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, 0, CURRENT_DATE - 1)';
         $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->telefono, $this->usuario, $this->clave, true, $date, $this->foto);
         return Database::executeRow($sql, $params);
     }

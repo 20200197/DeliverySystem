@@ -42,36 +42,8 @@
 
     </header>
     <!--Menú lateral-->
-    <div class="row">
-        <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
-            <div class="opciones-sidenav">
-                <li class="collection-item"><a href="index.html" class="tooltipped" data-position="right"
-                        data-tooltip="Hogar"><i class="material-icons  white-text">home</i><span
-                            class="white-text hide-on-large-only">Inicio</span></a>
-                </li>
-                <li><a href="perfil_cliente.html" class="tooltipped Hide-on-large-only " data-position="right"
-                        data-tooltip="Perfil"><i class="material-icons  white-text">account_circle</i><span
-                            class="white-text hide-on-large-only">Perfil</span></a></li>
-                <li><a href="carrito.html" class="tooltipped" data-position="right" data-tooltip="Carrito de compras"><i
-                            class="material-icons  white-text">shopping_basket</i><span
-                            class="white-text hide-on-large-only">Compras</span></a></li>
-                <li class="hide-on-large-only"><button onclick="logOut('Cliente')"
-                        class="tooltipped transparent logout valign-wrapper" data-position="right"
-                        data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
-                            class="white-text hide-on-large-only">Cerrar
-                            sesión</span></button></li>
-            </div>
-            <div class="cerrar-navbar hide-on-med-and-down">
-                <li>
-                    <button onclick="logOut('Cliente')" class="tooltipped white-text transparent logout valign-wrapper"
-                        data-position="right" data-tooltip="Cerrar sesión"><i
-                            class="material-icons ">arrow_back</i><span class="white-text hide-on-large-only">Cerrar
-                            sesión</span></button>
-                </li>
-            </div>
-
-
-        </ul>
+    <div class="row" id="sidenav-content">
+        
     </div>
     <!--Información de la página-->
     <main>
@@ -84,7 +56,7 @@
                 <br />
             </div>
             <div class="col s3 m3 l3 right-align">
-                <a class="waves-effect blue lighten-2 waves-light btn-large modal-trigger" onclick="openCreate()"><i
+                <a class="waves-effect blue lighten-2 waves-light btn-large js-modal-trigger" onclick="openCreate()"><i
                         class="material-icons left hide-on-small-only">add</i><i
                         class="material-icons hide-on-med-and-up">add</i>añadir</a>
             </div>
@@ -127,6 +99,17 @@
             </div>
         </div>
         <!--modal para añadir una dirección-->
+
+        <div id="modal-add1" class="modal bottom-sheet">
+            <div class="modal-content">
+              <h4>Modal Header</h4>
+              <div class="col s12" id=""></div>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+        </div>
+
         <div class="modal" id="modal-add">
             <div class="modal-content">
                 <div class="row contorno">
@@ -136,7 +119,7 @@
                     <form id="add-form" name="add-form" method="post">
                         <div class="row">
                             <div class="col s12 m12 l12">
-                                <div class="col s12 m12 l12" id="mapa"></div>
+                                <div class="col s12" id="mapa"></div>
                                 <input class="hide" id="coordenadas" name="coordenadas" type="text">
                             </div>
                             <div class="col s12 m12 l12">
@@ -282,6 +265,7 @@
     <script src="../../../controladores/componentes.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <script src="../../../controladores/publico/publico_cliente/sidenav.js"></script>
     <script src="../../../controladores/publico/publico_cliente/direcciones.js"></script>
     <script src="../../../controladores/privado/modo_oscuro.js"></script>
     <script type="text/javascript" src="../../../controladores/publico/publico_cliente/opciones_sesion.js"></script>
