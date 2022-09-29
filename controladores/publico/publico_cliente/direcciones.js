@@ -3,7 +3,6 @@ const API_DIRECCIONES = SERVER + 'publico/direcciones.php?action=';
 const ENDPOINT_MUNICIPIO = SERVER + "publico/municipios.php?action=readAll";
 const ENDPOINT_DEPARTAMENTO = SERVER + "publico/departamentos.php?action=readAll";
 
-
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
     // Se define una variable para establecer las opciones del componente Modal.
@@ -105,8 +104,6 @@ let tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
-
-    
 
 //Variables para manejar las coordenadas seleccionadas en el mapa
 Layer = null;

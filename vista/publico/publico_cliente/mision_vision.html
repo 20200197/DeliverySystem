@@ -17,67 +17,40 @@
 
 <body>
   <!--Marco general-->
-  <div class="row contenedor-general">
-    <!--Barra lateral, opciones para los usuarios-->
-    <ul id="slide-out" class="sidenav sidenav-fixed">
-      <li>
-        <a href="index.html" class="tooltipped" data-position="right" data-tooltip="Hogar"><i
-            class="material-icons medium">home</i></a>
-      </li>
-      <li>
-        <a href="perfil_cliente.html" class="tooltipped" data-position="right" data-tooltip="Perfil"><i
-            class="material-icons medium">account_circle</i></a>
-      </li>
-      <li>
-        <a href="pedidos_cliente.html" class="tooltipped" data-position="right" data-tooltip="Compras"><i
-            class="material-icons medium">shopping_basket</i></a>
-      </li>
-      <li>
-        <a href="index.html" class="tooltipped" data-position="right" data-tooltip="Categoria"><i
-            class="material-icons medium">format_list_bulleted</i></a>
-      </li>
-      <li>
-        <a href="" class="tooltipped" data-position="right" data-tooltip="Cerrar sesión"><i
-            class="material-icons medium">arrow_back</i></a>
-      </li>
-    </ul>
-    <!--Contenedor de datos-->
-    <div class="contenedor-datos">
-      <!--Encabezado-->
-      <header class="encabezado">
-        <a href="#" data-target="slide-out" class="sidenav-trigger show-on-medium-and-down hide-on-large-only"><i
-            class="material-icons">menu</i></a>
-        <img src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png" alt="" />
-        <a class="waves-effect waves-light btn boton_iniciar_sesion">Log In</a>
-      </header>
-      <!--Información de Mision y vision-->
-      <main class="main_perfil_cliente">
-        <h5>Vision y Misión</h5>
-        <div class="row contenedor_mision">
-          <div class="col l5 m5 s12 foto_mision">
-            <i class="material-icons foto_cliente">account_circle</i>
-            <img src="../../../recursos/img/publico/clientes/modals/logo_delivery_system.png" alt="" />
-            <div class="contenedor_titulo_direccion"></div>
-            <div>
-              <div>
-                <div></div>
-              </div>
-              <div>
-                <div></div>
-              </div>
-              <div>
-                <div></div>
-              </div>
+  <header>
+    <nav>
+        <div class="nav-wrapper white">
+            <div class="row valign-wrapper">
+                <div class="col m1 s1">
+                    <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                            class="material-icons large blue-text">menu</i></a>
+                </div>
+                <div class="col m5 s5 left valign-wrapper">
+                    <img class="responsive-img" src="../../../recursos/img/logo_delivery_system.png" alt="">
+                </div>
+                <div class="col m6 s6" id="opciones_navbar">
+
+                </div>
             </div>
-          </div>
-          <div class="col l7 m7 s12 datos_usuario_perfil_cliente">
+        </div>
+    </nav>
+
+    </header>
+<!--Menú lateral-->
+<div class="row" id="sidenav-content">
+    
+</div>
+      <!--Información de Mision y vision-->
+      <main class="">
+        <div class="row">
+          <div class="col l7 m7 s12 offset-l3 offset-m3">
             <h6>Visión</h6>
             <div class="row">
-              <div class="card mision">
+              <div class="card">
                 <div class="card-content">
                   <div class="row">
                     <div class="col s12 m12 l12">
-                      <p class="titulo_vision">
+                      <p class="">
                         Lorem ipsum dolor sit amet consectetur adipiscing
                         elit sed, aptent laoreet viverra semper in dui
                         nulla, sociosqu lectus per tempus montes aliquet
@@ -112,52 +85,64 @@
           </div>
         </div>
       </main>
-    </div>
-  </div>
 
   <!--Footer-->
-  <footer class="page-footer">
+  <footer class="page-footer blue accent-3">
     <div class="row">
-      <!--enlace de redes sociales-->
-      <div class="col l12 m6 s3 redes_footer center-align">
-        <ul>
-          <li>
-            <a href=""><i class="material-icons medium">facebook</i></a>
-          </li>
-          <li>
-            <a href=""><img src="../../../recursos/img/publico/clientes/footer/instagram_old_50px.png" /></a>
-          </li>
-          <li>
-            <a href=""><i class="material-icons medium">whatsapp</i></a>
-          </li>
-          <li>
-            <a href=""><i class="material-icons medium">email</i></a>
-          </li>
-        </ul>
-      </div>
-      <!--Contenedor para el mapa y el copyright-->
-      <div class="footer_otros">
-        <div class="col l6 m9 s12 logo_copy_footer">
-          <img src="../../../recursos/img/publico/clientes/modals/logo.png" alt="" />
-          <h6>© 2022 DeliverySystem</h6>
+        <div class="col l9 m6 s6">
+            <div class="col l6 m12 s12">
+                <img src="../../../recursos/img/publico/clientes/modals/logo.png" class="responsive-img" alt="">
+                <h6 class="hide-on-med-and-down">Copyright 2022</h6>
+            </div>
+            <div class="col l6 m12 ">
+                <!--Redes-->
+                <div class="col l3 s3">
+                    <a href="">
+                        <i class="material-icons medium hide-on-small-only white-text">facebook</i>
+                        <i class="material-icons small hide-on-med-and-up white-text">facebook</i>
+                    </a>
+                </div>
+                <div class="col l3 s3">
+                    <a href="">
+                        <i class="material-icons medium hide-on-small-only white-text">facebook</i>
+                        <i class="material-icons small hide-on-med-and-up white-text">facebook</i>
+                    </a>
+                </div>
+                <div class="col l3 s3">
+                    <a href="">
+                        <i class="material-icons medium hide-on-small-only white-text">whatsapp</i>
+                        <i class="material-icons small hide-on-med-and-up white-text">whatsapp</i>
+                    </a>
+                </div>
+                <div class="col l3 s3">
+                    <a href="">
+                        <i class="material-icons medium hide-on-small-only white-text">email</i>
+                        <i class="material-icons small hide-on-med-and-up white-text">email</i>
+                    </a>
+                </div>
+                <h6 class="hide-on-large-only">Copyright 2022</h6>
+            </div>
         </div>
-        <div class="col l6 m9 s12 mapa-footer">
-          <ul>
-            <li>
-              <h5>Información pública</h5>
-            </li>
-            <li><a href="quienes somos.html">Quiénes somos</a></li>
-            <li><a href="contactenos.html">Contáctanos</a></li>
-            <li><a href="mision_vision.html">Misión y visión</a></li>
-            <li><a href="terminos.html">Términos y condiciones</a></li>
-          </ul>
+        <div class="col l3 s6">
+            <div class="col l12 m12">
+                <ul>
+                    <h5>Información pública</h5>
+                    <li><a href="quienes_somos.html" class="white-text">Quienes somos</a></li>
+                    <li><a href="contactenos.html" class="white-text">Contáctanos</a></li>
+                    <li><a href="mision_vision.html" class="white-text">Misión y visión</a></li>
+                    <li><a href="terminos.html" class="white-text">Términos y condiciones</a></li>
+                </ul>
+            </div>
         </div>
-      </div>
     </div>
-  </footer>
+</footer>
   <!--Importar archivos JavaScrip-->
-  <script type="text/javascript" src="../../../js/materialize.min.js"></script>
-  <script type="text/javascript" src="../../../controladores/publico/activation.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../../recursos/js/sweetalert2.all.min.js"></script>
+    <script src="../../../controladores/componentes.js"></script>
+    <script src="../../../controladores/publico/publico_cliente/sidenav.js"></script>
+    <script src="../../../controladores/publico/publico_cliente/opciones_sesion.js"></script>
 </body>
 
 </html>
