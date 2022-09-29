@@ -157,7 +157,7 @@ class Database
                 self::$error = 'Error de sintaxis en la sentencia';
                 break;
             case '42702':
-                //self::$error = 'La referencia a la columna es ambigua';
+                self::$error = 'La referencia a la columna es ambigua';
                 break;
             case '42883':
                 self::$error = 'Nombre de función desconocido';

@@ -359,7 +359,22 @@ class Producto extends Validator
         INNER JOIN marca USING(id_marca)
         LEFT JOIN detalle_factura USING(id_producto)
         FULL OUTER JOIN comentario_producto USING(id_detalle)
-        GROUP BY producto.id_producto, nombre_producto, cantidad_producto, descripcion_producto, precio_producto, imagen, status_producto, nombre_vendedor, apellido_vendedor, nombre_marca";        $params = null;
+        GROUP BY producto.id_producto, nombre_producto, cantidad_producto, descripcion_producto, precio_producto, imagen, status_producto, nombre_vendedor, apellido_vendedor, nombre_marca";
+        return Database::getRows($sql, null);
+    }
+
+    public function readProductosCalidad($cali)
+    {
+        $sql = "SELECT id_producto, nombre_producto, cantidad_producto, descripcion_producto, precio_producto, imagen, CONCAT(nombre_vendedor, ' ', apellido_vendedor) as nombre_vendedor, nombre_marca, status_producto, ROUND(avg(valoracion), 2) as calidad
+            FROM producto
+            INNER JOIN vendedor USING(id_vendedor)
+            INNER JOIN marca USING(id_marca)
+            LEFT JOIN detalle_factura USING(id_producto)
+            FULL OUTER JOIN comentario_producto USING(id_detalle)
+            GROUP BY producto.id_producto, nombre_producto, cantidad_producto, descripcion_producto, precio_producto, imagen, status_producto, nombre_vendedor, apellido_vendedor, nombre_marca
+            HAVING ROUND(avg(valoracion), 2) <= ?
+            ORDER BY ROUND(avg(valoracion), 2) DESC";
+        $params = array($cali);
         return Database::getRows($sql, $params);
     }
 
@@ -443,15 +458,14 @@ class Producto extends Validator
     //Buscar por calidad y categoria
     public function searchProductoPrecioCategoria($id_categoria)
     {
-        $sql = "SELECT producto.id_producto, nombre_producto, cantidad_producto, descripcion_producto, precio_producto, imagen,CONCAT(nombre_vendedor,' ',apellido_vendedor) as nombre_vendedor, nombre_marca, status_producto,avg(comentario_producto.valoracion) as calidad,producto.id_categoria
-		from comentario_producto comentario_producto
-		FULL OUTER join detalle_factura as detalle_factura on comentario_producto.id_detalle = detalle_factura.id_detalle
-		FULL OUTER join producto as producto on detalle_factura.id_producto = producto.id_producto
-		FULL OUTER join categoria as categoria on producto.id_categoria = categoria.id_categoria
-		inner join vendedor using (id_vendedor)
-		inner join marca using (id_marca)
+        $sql = "SELECT id_producto, nombre_producto, cantidad_producto, descripcion_producto, precio_producto, imagen, CONCAT(nombre_vendedor, ' ', apellido_vendedor) as nombre_vendedor, nombre_marca, status_producto, ROUND(avg(valoracion), 2) as calidad
+        FROM producto
+        INNER JOIN vendedor USING(id_vendedor)
+        INNER JOIN marca USING(id_marca)
+        LEFT JOIN detalle_factura USING(id_producto)
+        FULL OUTER JOIN comentario_producto USING(id_detalle)
         where status_producto = true and (precio_producto >= ? and precio_producto <= ?) and producto.id_categoria = ?
-        group by producto.id_producto,vendedor.nombre_vendedor,vendedor.apellido_vendedor,marca.nombre_marca ";
+        GROUP BY producto.id_producto, nombre_producto, cantidad_producto, descripcion_producto, precio_producto, imagen, status_producto, nombre_vendedor, apellido_vendedor, nombre_marca";
         $params = array($this->buscadorI, $this->buscadorL, $id_categoria);
         return Database::getRows($sql, $params);
     }

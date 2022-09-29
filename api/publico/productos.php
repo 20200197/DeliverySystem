@@ -17,6 +17,13 @@ if (isset($_GET['action'])) {
     // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
     switch ($_GET['action']) {
             //Leer todos los productos 
+        case 'session':
+            if (!isset($_SESSION['id_cliente'])) {
+
+            } else {
+                $result['status'] = 1;
+            }
+            break;
         case 'readProductos':
             if ($result['dataset'] = $producto->readProductos()) {
                 $result['status'] = 1;
@@ -189,6 +196,11 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'Producto modificado correctamente';
             } else {
                 $result['exception'] = Database::getException();
+            }
+            break;
+        case 'readProductosCalidad':
+            if ($result['dataset'] = $producto->readProductosCalidad($_GET['calidad'])) {
+                $result['status'] = 1;
             }
             break;
         default:

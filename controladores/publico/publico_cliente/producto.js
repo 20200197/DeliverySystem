@@ -24,6 +24,21 @@ document.addEventListener('DOMContentLoaded', function () {
 checkRango();
 });
 
+function validateFilterPrice() {
+    document.getElementById('cali_cinco').checked = false;
+    document.getElementById('cali_cuatro').checked = false;
+    document.getElementById('cali_tres').checked = false;
+    document.getElementById('cali_dos').checked = false;
+    document.getElementById('cali_uno').checked = false;
+}
+
+function validateFilterCali() {
+    document.getElementById('group1').checked = false;
+    document.getElementById('group2').checked = false;
+    document.getElementById('group3').checked = false;
+    document.getElementById('group4').checked = false;
+}
+
 // Función para llenar con los datos de los registros.
 function readProductos() {
     fetch(API_PRODUCTOS + 'readProductos', {
@@ -79,596 +94,47 @@ function readCategoria() {
 function fillTable(dataset) {
     //Declaramos variables
     let content_estrellas = '';
-    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+
     dataset.map(function (row) {
-
-        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-        //<td><img src="${SERVER}imagenes/administrar_empleados/${row.imagen_perfil_empleado}" class="materialboxed" height="100" width="100"></td>
-        //Productos
-        //Compramos la calidad para colocarle las estrellas
-        if (row.calidad <= 1 && row.calidad > 0 ) {
-            //Para 0.5
-            if (row.calidad < 1 ) {
-                content_estrellas += `
-                <!--Catalogo-->
-             <div class="col s12 m12 l12">
-                  <div class="col s12 m3 l3">
-                     <img src="${SERVER}imagenes/productos/${row.imagen}"
-                     class="responsive-img" alt="" height="550" width="550">
-                </div>
-                <div class="col s12 m5 l5">
-                    <h5>${row.nombre_producto}</h5>
-                    <h4>${row.descripcion_producto}</h4>
-                    <p>Marca: ${row.nombre_marca}</p>
-                    <div class="row" id="contenedor_cali">
-                    <i class="material-icons">star_half</i>
-                    <i class="material-icons">star_border</i>
-                    <i class="material-icons">star_border</i>
-                    <i class="material-icons">star_border</i>
-                    <i class="material-icons">star_border</i>
-                    </div>
-                    <p>Precio: $${row.precio_producto}</p>
-                    </div>
-                    <div class="col s12 m3 l3 valign-wrapper" >
-                    <div class="switch">
-                        <label id="label${row.id_producto}">
-                            <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
-                            <span class="lever" id="lever${row.id_producto}"></span>
-                            <span>★</span>
-                        </label>
-                    </div>
-                        <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
-                                    class="material-icons left black-text">remove_red_eye</i>Ver</a>
-                        </div>
-                    </div>
-                    <div class="col s12 m9 l9">
-                        <br>
-                        <div class="divider"></div>
-                        <br>
-                    </div>
-
-                  `
-                readCheckFavoOfClient(row.id_producto);;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-
-                //showOp();
-            } else {
-                //Para 1
-                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                content_estrellas += `
-                <!--Catalogo-->
-                 <div class="col s12 m12 l12">
-                   <div class="col s12 m3 l3">
-                      <img src="${SERVER}imagenes/productos/${row.imagen}"
-                    class="responsive-img" alt="" height="550" width="550">
-                  </div>
-                <div class="col s12 m5 l5">
-                    <h5>${row.nombre_producto}</h5>
-                    <h4>${row.descripcion_producto}</h4>
-                    <p>Marca: ${row.nombre_marca}</p>
-                    <div class="row" id="contenedor_cali">
-                    <i class="material-icons">star</i>
-                    <i class="material-icons">star_border</i>
-                    <i class="material-icons">star_border</i>
-                    <i class="material-icons">star_border</i>
-                    <i class="material-icons">star_border</i> 
-                    </div>
-                    <p>Precio: $${row.precio_producto}</p>
-                </div>
-                <div class="col s12 m3 l3 valign-wrapper" >
-                <div class="switch">
-                        <label id="label${row.id_producto}">
-                            <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
-                            <span class="lever" id="lever${row.id_producto}"></span>
-                            <span>★</span>
-                        </label>
-                    </div>
-                    <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                        href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
-                            class="material-icons left black-text">remove_red_eye</i>Ver</a>
-                </div>
-                </div>
-                <div class="col s12 m9 l9">
-                    <br>
-                    <div class="divider"></div>
-                    <br>
-                </div>
-
-                 `
-                readCheckFavoOfClient(row.id_producto);
-                ;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-                //showFavo();
-                //showOp();
-            }
-            //Para 1.5
-        } else if (row.calidad <= 2  && row.calidad > 1 ) {
-            if (row.calidad < 2  && row.calidad > 1 ) {
-                content_estrellas += `    
-                <!--Catalogo-->
-                <div class="col s12 m12 l12">
-                    <div class="col s12 m3 l3">
-                        <img src="${SERVER}imagenes/productos/${row.imagen}"
-                            class="responsive-img" alt="" height="550" width="550">
-                 </div>
-            <div class="col s12 m5 l5">
-                <h5>${row.nombre_producto}</h5>
-                <h4>${row.descripcion_producto}</h4>
-                <p>Marca: ${row.nombre_marca}</p>
-                <div class="row" id="contenedor_cali">
-                <i class="material-icons">star</i>
-                  <i class="material-icons">star_half</i>
-                  <i class="material-icons">star_border</i>
-                  <i class="material-icons">star_border</i>
-                  <i class="material-icons">star_border</i> 
-                </div>
-                <p>Precio: $${row.precio_producto}</p>
-            </div>
-            <div class="col s12 m3 l3 valign-wrapper" >
-            <div class="switch">
-                        <label id="label${row.id_producto}">
-                            <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
-                            <span class="lever" id="lever${row.id_producto}"></span>
-                            <span>★</span>
-                        </label>
-                    </div>
-                <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                    href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
-                        class="material-icons left black-text">remove_red_eye</i>Ver</a>
-            </div>
-                </div>
-                <div class="col s12 m9 l9">
-                    <br>
-                    <div class="divider"></div>
-                    <br>
-                </div>
-
-                  `
-                readCheckFavoOfClient(row.id_producto);
-                ;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-                //showFavo();
-                //showOp();
-            } else {
-                //Para 2
-                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                content_estrellas += `
-                <!--Catalogo-->
-                <div class="col s12 m12 l12">
-                    <div class="col s12 m3 l3">
-                        <img src="${SERVER}imagenes/productos/${row.imagen}"
-                            class="responsive-img" alt="" height="550" width="550">
-                    </div>
-                    <div class="col s12 m5 l5">
-                        <h5>${row.nombre_producto}</h5>
-                        <h4>${row.descripcion_producto}</h4>
-                        <p>Marca: ${row.nombre_marca}</p>
-                        <div class="row" id="contenedor_cali">
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star_border</i>
-                        <i class="material-icons">star_border</i>
-                        <i class="material-icons">star_border</i>
-                        </div>
-                        <p>Precio: $${row.precio_producto}</p>
-                        </div>
-                        <div class="col s12 m3 l3 valign-wrapper" >
-                        <div class="switch">
-                        <label id="label${row.id_producto}">
-                            <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
-                            <span class="lever" id="lever${row.id_producto}"></span>
-                            <span>★</span>
-                        </label>
-                    </div>
-                            <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
-                                    class="material-icons left black-text">remove_red_eye</i>Ver</a>
-                        </div>
-                    </div>
-                    <div class="col s12 m9 l9">
-                        <br>
-                        <div class="divider"></div>
-                        <br>
-                    </div>
-
-                 `
-                readCheckFavoOfClient(row.id_producto);
-                ;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-                //showFavo();
-                //showOp();
-            }
-        } else if (row.calidad <= 3  && row.calidad > 2 ) {
-            //Para 2.5
-            if (row.calidad < 3  && row.calidad > 2 ) {
-                content_estrellas += `
-                <!--Catalogo-->
-                <div class="col s12 m12 l12">
-                    <div class="col s12 m3 l3">
-                        <img src="${SERVER}imagenes/productos/${row.imagen}"
-                            class="responsive-img" alt="" height="550" width="550">
-                    </div>
-                    <div class="col s12 m5 l5">
-                        <h5>${row.nombre_producto}</h5>
-                        <h4>${row.descripcion_producto}</h4>
-                        <p>Marca: ${row.nombre_marca}</p>
-                        <div class="row" id="contenedor_cali">
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star_half</i>
-                        <i class="material-icons">star_border</i>
-                        <i class="material-icons">star_border</i>
-                        </div>
-                        <p>Precio: $${row.precio_producto}</p>
-                    </div>
-                    <div class="col s12 m3 l3 valign-wrapper" >
-                    <div class="switch">
-                        <label id="label${row.id_producto}">
-                            <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
-                            <span class="lever" id="lever${row.id_producto}"></span>
-                            <span>★</span>
-                        </label>
-                    </div>
-                        <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
-                                class="material-icons left black-text">remove_red_eye</i>Ver</a>
-                    </div>
-                    </div>
-                    <div class="col s12 m9 l9">
-                        <br>
-                        <div class="divider"></div>
-                        <br>
-                    </div>
-
-                `
-                readCheckFavoOfClient(row.id_producto);
-                ;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-                //showFavo();
-                //showOp();
-            } else {
-                //Para 3
-                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                content_estrellas += `
-                <!--Catalogo-->
-                <div class="col s12 m12 l12">
-                    <div class="col s12 m3 l3">
-                        <img src="${SERVER}imagenes/productos/${row.imagen}"
-                            class="responsive-img" alt="" height="550" width="550">
-                    </div>
-                    <div class="col s12 m5 l5">
-                        <h5>${row.nombre_producto}</h5>
-                        <h4>${row.descripcion_producto}</h4>
-                        <p>Marca: ${row.nombre_marca}</p>
-                        <div class="row" id="contenedor_cali">
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star_border</i>
-                        <i class="material-icons">star_border</i> 
-                        </div>
-                        <p>Precio: $${row.precio_producto}</p>
-                    </div>
-                    <div class="col s12 m3 l3 valign-wrapper" >
-                    <div class="switch">
-                        <label id="label${row.id_producto}">
-                            <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
-                            <span class="lever" id="lever${row.id_producto}"></span>
-                            <span>★</span>
-                        </label>
-                    </div>
-                        <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
-                                class="material-icons left black-text">remove_red_eye</i>Ver</a>
-                    </div>
-                    </div>
-                    <div class="col s12 m9 l9">
-                        <br>
-                        <div class="divider"></div>
-                        <br>
-                    </div>
-
-                `
-                readCheckFavoOfClient(row.id_producto);
-                ;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-                //showFavo();
-                //showOp();
-            }
-        } else if (row.calidad <= 4  && row.calidad > 3 ) {
-            //Para 3.5
-            if (row.calidad < 4  && row.calidad > 3 ) {
-                content_estrellas += `
-                <!--Catalogo-->
-                <div class="col s12 m12 l12">
-                    <div class="col s12 m3 l3">
-                        <img src="${SERVER}imagenes/productos/${row.imagen}"
-                            class="responsive-img" alt="" height="550" width="550">
-                    </div>
-                    <div class="col s12 m5 l5">
-                        <h5>${row.nombre_producto}</h5>
-                        <h4>${row.descripcion_producto}</h4>
-                        <p>Marca: ${row.nombre_marca}</p>
-                        <div class="row" id="contenedor_cali">
-                        <i class="material-icons">star</i>
-                            <i class="material-icons">star</i>
-                            <i class="material-icons">star</i>
-                            <i class="material-icons">star_half</i>
-                            <i class="material-icons">star_border</i> 
-                        </div>
-                        <p>Precio: $${row.precio_producto}</p>
-                    </div>
-                    <div class="col s12 m3 l3 valign-wrapper" >
-                    <div class="switch">
-                        <label id="label${row.id_producto}">
-                            <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
-                            <span class="lever" id="lever${row.id_producto}"></span>
-                            <span>★</span>
-                        </label>
-                    </div>
-                        <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
-                                class="material-icons left black-text">remove_red_eye</i>Ver</a>
-                    </div>
-                </div>
-                <div class="col s12 m9 l9">
-                    <br>
-                    <div class="divider"></div>
-                    <br>
-                </div>
-
-                     `
-                readCheckFavoOfClient(row.id_producto);
-                ;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-                //showFavo();
-                //showOp();
-            } else {
-                //Para 4
-                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                content_estrellas += `
-                <!--Catalogo-->
-                <div class="col s12 m12 l12">
-                    <div class="col s12 m3 l3">
-                        <img src="${SERVER}imagenes/productos/${row.imagen}"
-                            class="responsive-img" alt="" height="550" width="550">
-                    </div>
-                    <div class="col s12 m5 l5">
-                        <h5>${row.nombre_producto}</h5>
-                        <h4>${row.descripcion_producto}</h4>
-                        <p>Marca: ${row.nombre_marca}</p>
-                        <div class="row" id="contenedor_cali">
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star_border</i>
-                        </div>
-                        <p>Precio: $${row.precio_producto}</p>
-                     </div>
-                    <div class="col s12 m3 l3 valign-wrapper" >
-                    <div class="switch">
-                        <label id="label${row.id_producto}">
-                            <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
-                            <span class="lever" id="lever${row.id_producto}"></span>
-                            <span>★</span>
-                        </label>
-                    </div>
-                        <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
-                                class="material-icons left black-text">remove_red_eye</i>Ver</a>
-                    </div>
-                    </div>
-                    <div class="col s12 m9 l9">
-                        <br>
-                        <div class="divider"></div>
-                        <br>
-                    </div>
-
-                  `
-                readCheckFavoOfClient(row.id_producto);
-                ;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-                //showFavo();
-                //showOp();
-            }
-        } else if (row.calidad <= 5  && row.calidad > 4 ) {
-            //Para 4.5
-            if (row.calidad < 5  && row.calidad > 4 ) {
-                content_estrellas += `
-                <!--Catalogo-->
-                <div class="col s12 m12 l12">
-                    <div class="col s12 m3 l3">
-                        <img src="${SERVER}imagenes/productos/${row.imagen}"
-                            class="responsive-img" alt="" height="550" width="550">
-                    </div>
-                    <div class="col s12 m5 l5">
-                        <h5>${row.nombre_producto}</h5>
-                        <h4>${row.descripcion_producto}</h4>
-                        <p>Marca: ${row.nombre_marca}</p>
-                        <div class="row" id="contenedor_cali">
-                        <i class="material-icons">star</i>
-                            <i class="material-icons">star</i>
-                            <i class="material-icons">star</i>
-                            <i class="material-icons">star</i>
-                            <i class="material-icons">star_half</i>
-                        </div>
-                     <p>Precio: $${row.precio_producto}</p>
-                     </div>
-                    <div class="col s12 m3 l3 valign-wrapper" >
-                    <div class="switch">
-                        <label id="label${row.id_producto}">
-                            <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
-                            <span class="lever" id="lever${row.id_producto}"></span>
-                            <span>★</span>
-                        </label>
-                    </div>
-                        <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
-                                class="material-icons left black-text">remove_red_eye</i>Ver</a>
-                    </div>
-                    </div>
-                    <div class="col s12 m9 l9">
-                        <br>
-                        <div class="divider"></div>
-                        <br>
-                    </div>
-
-                     `
-                readCheckFavoOfClient(row.id_producto);
-                ;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-                //showFavo();
-                //showOp();
-            } else {
-
-                // Se crean y concatenan las tarjetas con los datos de cada producto.
-                content_estrellas += `
-                <!--Catalogo-->
-                <div class="col s12 m12 l12">
-                    <div class="col s12 m3 l3">
-                        <img src="${SERVER}imagenes/productos/${row.imagen}"
-                            class="responsive-img" alt="" height="550" width="550">
-                    </div>
-                    <div class="col s12 m5 l5">
-                        <h5>${row.nombre_producto}</h5>
-                        <h4>${row.descripcion_producto}</h4>
-                        <p>Marca: ${row.nombre_marca}</p>
-                        <div class="row" id="contenedor_cali">
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        </div>
-                        <p>Precio: $${row.precio_producto}</p>
-                    </div>
-                    <div class="col s12 m3 l3 valign-wrapper" >
-                    <div class="switch">
-                        <label id="label${row.id_producto}" >
-                            <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
-                            <span class="lever" id="lever${row.id_producto}"></span>
-                            <span>★</span>
-                        </label>
-                    </div>
-                        <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
-                                class="material-icons left black-text">remove_red_eye</i>Ver</a>
-                    </div>
-                    </div>
-                    <div class="col s12 m9 l9">
-                        <br>
-                        <div class="divider"></div>
-                        <br>
-                    </div>
-                    
-                    `
-                readCheckFavoOfClient(row.id_producto);
-                ;
-                // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-                //showFavo();
-                //showOp();
-
-            }
-        } else if (row.calidad == null ) {
-            content_estrellas += `
-            <!--Catalogo-->
-                <div class="col s12 m12 l12">
-                    <div class="col s12 m3 l3">
-                        <img src="${SERVER}imagenes/productos/${row.imagen}"
-                            class="responsive-img" alt="" height="550" width="550">
-                    </div>
-                    <div class="col s12 m5 l5">
-                        <h5>${row.nombre_producto}</h5>
-                        <h4>${row.descripcion_producto}</h4>
-                        <p>Marca: ${row.nombre_marca}</p>
-                        <div class="row" id="contenedor_cali">
-                        <p>No hay calificación para este producto</p>
-                        </div>
-                        <p>Precio: $${row.precio_producto}</p>
-                    </div>
-                    <div class="col s12 m3 l3 valign-wrapper" >
-                    <div class="switch">
-                        <label id="label${row.id_producto}">
-                            <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
-                            <span class="lever" name="lever${row.id_producto}" id="lever${row.id_producto}"></span>
-                            <span>★</span>
-                        </label>
-                    </div>
-                        <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
-                                class="material-icons left black-text">remove_red_eye</i>Ver</a>
-                    </div>
-                    </div>
-                    <div class="col s12 m9 l9">
-                        <br>
-                        <div class="divider"></div>
-                        <br>
-                    </div> `
+        content_estrellas += `
+                            <!--Catalogo-->
+                            <div class="col s12 m12 l12">
+                                <div class="col s12 m3 l3">
+                                    <img src="${SERVER}imagenes/productos/${row.imagen}"
+                                        class="responsive-img" alt="" height="550" width="550">
+                                </div>
+                                <div class="col s12 m5 l5">
+                                    <h5>${row.nombre_producto}</h5>
+                                    <h4>${row.descripcion_producto}</h4>
+                                    <p>Marca: ${row.nombre_marca}</p>
+                                    <div class="row" id="contenedor_cali">
+                                    ${getEstrellas(row.calidad)}
+                                    </div>
+                                    <p>Precio: $${row.precio_producto}</p>
+                                    </div>
+                                    <div class="col s12 m3 l3 valign-wrapper" >
+                                    <div class="switch">
+                                    <label id="label${row.id_producto}">
+                                        <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
+                                        <span class="lever" id="lever${row.id_producto}"></span>
+                                        <span>★</span>
+                                    </label>
+                                </div>
+                                        <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
+                                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                                                class="material-icons left black-text">remove_red_eye</i>Ver</a>
+                                    </div>
+                                </div>
+                                <div class="col s12 m9 l9">
+                                    <br>
+                                    <div class="divider"></div>
+                                    <br>
+                                </div>
+            
+                            `;
             readCheckFavoOfClient(row.id_producto);
-            ;
-            // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-            document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-            //showFavo();
-            //showOp();
-        } /**else {
-            content_estrellas += `
-            <!--Catalogo-->
-                <div class="col s12 m12 l12">
-                    <div class="col s12 m3 l3">
-                        <img src="${SERVER}imagenes/productos/${row.imagen}"
-                            class="responsive-img" alt="" height="550" width="550">
-                    </div>
-                    <div class="col s12 m5 l5">
-                        <h5>${row.nombre_producto}</h5>
-                        <h4>${row.descripcion_producto}</h4>
-                        <p>Marca: ${row.nombre_marca}</p>
-                        <div class="row" id="contenedor_cali">
-                        <i class="material-icons">star</i>
-                        <p>No hay calificación para este producto</p>
-                        </div>
-                     <p>Precio: $${row.precio_producto}</p>
-                     </div>
-                    <div class="col s12 m3 l3 valign-wrapper" >
-                    <div class="switch">
-                        <label id="label${row.id_producto}">
-                            <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
-                            <span class="lever"  name="lever${row.id_producto}" id="lever${row.id_producto}"></span>
-                            <span>★</span>
-                        </label>
-                    </div>  
-                        <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
-                                class="material-icons left black-text">remove_red_eye</i>Ver</a>
-                    </div>
-                    </div>
-                    <div class="col s12 m9 l9">
-                        <br>
-                        <div class="divider"></div>
-                        <br>
-                    </div>`
-            readCheckFavoOfClient(row.id_producto);
-            ;
-            // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-            document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-            //showFavo();
-            //showOp();
-        }**/
-
-
-
     });
+
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('contenedor_productos').innerHTML = content_estrellas;
     //showFavo();
@@ -677,8 +143,6 @@ function fillTable(dataset) {
     M.Materialbox.init(document.querySelectorAll('.materialboxed'));
     // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
-
-
 }
 
 //Función para llenar los datos
@@ -1029,6 +493,75 @@ function searchCustom() {
     document.getElementById("title").textContent = '';
 }
 
+function getEstrellas(calidad) {
+    let estrellas = null;
+    if (calidad == null) {
+        estrellas = `<p>No hay calificación para este producto</p>`;
+    } else if (calidad < 1) {
+        estrellas = `<i class="material-icons">star_half</i>
+                        <i class="material-icons">star_border</i>
+                        <i class="material-icons">star_border</i>
+                        <i class="material-icons">star_border</i>
+                        <i class="material-icons">star_border</i>`;
+    } else if (calidad == 1) {
+        estrellas = `<i class="material-icons">star</i>
+                        <i class="material-icons">star_border</i>
+                        <i class="material-icons">star_border</i>
+                        <i class="material-icons">star_border</i>
+                        <i class="material-icons">star_border</i>`;
+    } else if (calidad > 1 && calidad < 2) {
+        estrellas = `<i class="material-icons">star</i>
+                        <i class="material-icons">star_half</i>
+                        <i class="material-icons">star_border</i>
+                        <i class="material-icons">star_border</i>
+                        <i class="material-icons">star_border</i>`;
+    } else if (calidad == 2) {
+        estrellas = `<i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star_border</i>
+                        <i class="material-icons">star_border</i>
+                        <i class="material-icons">star_border</i>`;
+    } else if (calidad > 2 && calidad < 3) {
+        estrellas = `<i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star_half</i>
+                        <i class="material-icons">star_border</i>
+                        <i class="material-icons">star_border</i>`;
+    } else if (calidad == 3) {
+        estrellas = `<i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star_border</i>
+                        <i class="material-icons">star_border</i>`;
+    } else if (calidad > 3 && calidad < 4) {
+        estrellas = `<i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star_half</i>
+                        <i class="material-icons">star_border</i>`;
+    } else if (calidad == 4) {
+        estrellas = `<i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star_border</i>`;
+    } else if (calidad > 4 && calidad < 5) {
+        estrellas = `<i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star_half</i>`;
+    } else if (calidad == 5) {
+        estrellas = `<i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>`;
+    } 
+
+    return estrellas;
+}
+
 //Función para search por calidad
 function searchProductosCalidad() {
     //Evaluamos la opcion del checkbox que se selecciono
@@ -1039,7 +572,7 @@ function searchProductosCalidad() {
         document.getElementById("cali_tres").checked = false;
         document.getElementById("cali_cuatro").checked = false;
         document.getElementById("cali_cinco").checked = false;
-        fetch(API_PRODUCTOS + 'readProductos', {
+        fetch(API_PRODUCTOS + 'readProductosCalidad&calidad=1.00', {
             method: 'get'
         }).then(function (request) {
             // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
@@ -1052,161 +585,43 @@ function searchProductosCalidad() {
                     if (response.status) {
                         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
                         response.dataset.map(function (row) {
-                            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-                            //<td><img src="${SERVER}imagenes/administrar_empleados/${row.imagen_perfil_empleado}" class="materialboxed" height="100" width="100"></td>
-                            //Productos
-                            //Compramos la calidad para colocarle las estrellas
-                            if (row.calidad <= 1  && row.calidad > 0 ) {
-                                //Para 0.5
-                                if (row.calidad < 1  && row.calidad > 0 ) {
-                                    content_estrellas += `
-                                    <!--Catalogo-->
-                                <div class="col s12 m12 l12">
-                                    <div class="col s12 m3 l3">
-                                        <img src="${SERVER}imagenes/productos/${row.imagen}"
-                                        class="responsive-img" alt="" height="550" width="550">
-                                    </div>
-                                    <div class="col s12 m5 l5">
-                                        <h5>${row.nombre_producto}</h5>
-                                        <h4>${row.descripcion_producto}</h4>
-                                        <p>Marca: ${row.nombre_marca}</p>
-                                        <div class="row" id="contenedor_cali">
-                                        <i class="material-icons">star_half</i>
-                                        <i class="material-icons">star_border</i>
-                                        <i class="material-icons">star_border</i>
-                                        <i class="material-icons">star_border</i>
-                                        <i class="material-icons">star_border</i>
-                                        </div>
-                                        <p>Precio: $${row.precio_producto}</p>
-                                        </div>
-                                        <div class="col s12 m3 l3 valign-wrapper" >
-                                        <div class="switch">
-                                            <label id="label${row.id_producto}">
-                                                <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
-                                                <span class="lever" id="lever${row.id_producto}"></span>
-                                                <span>★</span>
-                                            </label>
-                                        </div>
-                                            <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                                href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
-                                                        class="material-icons left black-text">remove_red_eye</i>Ver</a>
-                                            </div>
-                                        </div>
-                                    <div class="col s12 m9 l9">
-                                            <br>
-                                    <div class="divider"></div>
-                                            <br>
-                                </div>
-
-                                `
-                                    readCheckFavoOfClient(row.id_producto);
-                                    ;
-                                    // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                                    document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-
-                                    //showOp();
-                                } else {
-                                    //Para 1
-                                    // Se crean y concatenan las tarjetas con los datos de cada producto.
-                                    content_estrellas += `
-                                <!--Catalogo-->
-                                <div class="col s12 m12 l12">
+                            content_estrellas += `
+                            <!--Catalogo-->
+                            <div class="col s12 m12 l12">
                                 <div class="col s12 m3 l3">
                                     <img src="${SERVER}imagenes/productos/${row.imagen}"
-                                    class="responsive-img" alt="" height="550" width="550">
+                                        class="responsive-img" alt="" height="550" width="550">
                                 </div>
                                 <div class="col s12 m5 l5">
                                     <h5>${row.nombre_producto}</h5>
                                     <h4>${row.descripcion_producto}</h4>
                                     <p>Marca: ${row.nombre_marca}</p>
                                     <div class="row" id="contenedor_cali">
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star_border</i>
-                                    <i class="material-icons">star_border</i>
-                                    <i class="material-icons">star_border</i>
-                                    <i class="material-icons">star_border</i> 
+                                    ${getEstrellas(row.calidad)}
                                     </div>
                                     <p>Precio: $${row.precio_producto}</p>
-                                </div>
-                                <div class="col s12 m3 l3 valign-wrapper" >
-                                <div class="switch">
-                                        <label id="label${row.id_producto}">
-                                            <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
-                                            <span class="lever" id="lever${row.id_producto}"></span>
-                                            <span>★</span>
-                                        </label>
                                     </div>
-                                    <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                        href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
-                                            class="material-icons left black-text">remove_red_eye</i>Ver</a>
+                                    <div class="col s12 m3 l3 valign-wrapper" >
+                                    <div class="switch">
+                                    <label id="label${row.id_producto}">
+                                        <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
+                                        <span class="lever" id="lever${row.id_producto}"></span>
+                                        <span>★</span>
+                                    </label>
                                 </div>
+                                        <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
+                                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                                                class="material-icons left black-text">remove_red_eye</i>Ver</a>
+                                    </div>
                                 </div>
                                 <div class="col s12 m9 l9">
                                     <br>
                                     <div class="divider"></div>
                                     <br>
                                 </div>
-
-                                `
-                                    readCheckFavoOfClient(row.id_producto);
-                                    ;
-                                    // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                                    document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-                                    //showOp();
-                                }
-                                //Para 1.5
-                            } else if (row.calidad <= 2  && row.calidad > 1 ) {
-                                if (row.calidad < 2  && row.calidad > 1 ) {
-                                    content_estrellas += `    
-                                    <!--Catalogo-->
-                                    <div class="col s12 m12 l12">
-                                        <div class="col s12 m3 l3">
-                                            <img src="${SERVER}imagenes/productos/${row.imagen}"
-                                                class="responsive-img" alt="" height="550" width="550">
-                                    </div>
-                                <div class="col s12 m5 l5">
-                                    <h5>${row.nombre_producto}</h5>
-                                    <h4>${row.descripcion_producto}</h4>
-                                    <p>Marca: ${row.nombre_marca}</p>
-                                    <div class="row" id="contenedor_cali">
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star_half</i>
-                                    <i class="material-icons">star_border</i>
-                                    <i class="material-icons">star_border</i>
-                                    <i class="material-icons">star_border</i> 
-                                    </div>
-                                    <p>Precio: $${row.precio_producto}</p>
-                                </div>
-                                <div class="col s12 m3 l3 valign-wrapper" >
-                                <div class="switch">
-                                            <label id="label${row.id_producto}">
-                                                <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
-                                                <span class="lever" id="lever${row.id_producto}"></span>
-                                                <span>★</span>
-                                            </label>
-                                        </div>
-                                    <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                        href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
-                                            class="material-icons left black-text">remove_red_eye</i>Ver</a>
-                                    </div>
-                                    </div>
-                                    <div class="col s12 m9 l9">
-                                        <br>
-                                        <div class="divider"></div>
-                                        <br>
-                                    </div>
-
-                                `
-                                    readCheckFavoOfClient(row.id_producto);
-                                    ;
-                                    // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                                    document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-                                    //showOp();
-                                }
-                            } else {
-                                // Se presenta un mensaje de error cuando no existen datos para mostrar.
-                                document.getElementById("title").innerHTML = `<i class="material-icons small black-text">cloud_off</i><span class="red-text">No hay coincidencias</span><p><i class="material-icons medium black-text">home</i></p>`;
-                            }
+            
+                             `;
+                             readCheckFavoOfClient(row.id_producto);
                         });
                         // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
                         document.getElementById('contenedor_productos').innerHTML = content_estrellas;
@@ -1217,7 +632,8 @@ function searchProductosCalidad() {
                         // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
                         M.Tooltip.init(document.querySelectorAll('.tooltipped'));
                     } else {
-                        sweetAlert(4, response.exception, null);
+                        document.getElementById('contenedor_productos').innerHTML = content_estrellas;
+                        document.getElementById('title').innerHTML = `<i class="material-icons small black-text">cloud_off</i><span class="red-text">No hay coincidencias</span><p><i class="material-icons medium black-text">home</i></p>`;;
                     }
                 });
             } else {
@@ -1231,7 +647,7 @@ function searchProductosCalidad() {
         document.getElementById("cali_tres").checked = false;
         document.getElementById("cali_cuatro").checked = false;
         document.getElementById("cali_cinco").checked = false;
-        fetch(API_PRODUCTOS + 'readProductos', {
+        fetch(API_PRODUCTOS + 'readProductosCalidad&calidad=2.00', {
             method: 'get'
         }).then(function (request) {
             // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
@@ -1244,119 +660,43 @@ function searchProductosCalidad() {
                     if (response.status) {
                         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
                         response.dataset.map(function (row) {
-                            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-                            //<td><img src="${SERVER}imagenes/administrar_empleados/${row.imagen_perfil_empleado}" class="materialboxed" height="100" width="100"></td>
-                            //Productos
-                            //Compramos la calidad para colocarle las estrellas
-                            if (row.calidad <= 2  && row.calidad > 1 ) {
-                                if (row.calidad < 2  && row.calidad > 1 ) {
-
-                                } else {
-                                    //Para 2
-                                    // Se crean y concatenan las tarjetas con los datos de cada producto.
-                                    content_estrellas += `
-                                <!--Catalogo-->
-                                <div class="col s12 m12 l12">
-                                    <div class="col s12 m3 l3">
-                                        <img src="${SERVER}imagenes/productos/${row.imagen}"
-                                            class="responsive-img" alt="" height="550" width="550">
+                            content_estrellas += `
+                            <!--Catalogo-->
+                            <div class="col s12 m12 l12">
+                                <div class="col s12 m3 l3">
+                                    <img src="${SERVER}imagenes/productos/${row.imagen}"
+                                        class="responsive-img" alt="" height="550" width="550">
+                                </div>
+                                <div class="col s12 m5 l5">
+                                    <h5>${row.nombre_producto}</h5>
+                                    <h4>${row.descripcion_producto}</h4>
+                                    <p>Marca: ${row.nombre_marca}</p>
+                                    <div class="row" id="contenedor_cali">
+                                    ${getEstrellas(row.calidad)}
                                     </div>
-                                    <div class="col s12 m5 l5">
-                                        <h5>${row.nombre_producto}</h5>
-                                        <h4>${row.descripcion_producto}</h4>
-                                        <p>Marca: ${row.nombre_marca}</p>
-                                        <div class="row" id="contenedor_cali">
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star_border</i>
-                                        <i class="material-icons">star_border</i>
-                                        <i class="material-icons">star_border</i>
-                                        </div>
-                                        <p>Precio: $${row.precio_producto}</p>
-                                        </div>
-                                        <div class="col s12 m3 l3 valign-wrapper" >
-                                        <div class="switch">
-                                        <label id="label${row.id_producto}">
-                                            <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
-                                            <span class="lever" id="lever${row.id_producto}"></span>
-                                            <span>★</span>
-                                        </label>
-                                    </div>
-                                            <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                                href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
-                                                    class="material-icons left black-text">remove_red_eye</i>Ver</a>
-                                        </div>
-                                    </div>
-                                    <div class="col s12 m9 l9">
-                                        <br>
-                                        <div class="divider"></div>
-                                        <br>
-                                    </div>
-                
-                                 `
-                                    readCheckFavoOfClient(row.id_producto);
-                                    ;
-                                    // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                                    document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-                                    // showOp();
-                                }
-                            } else if (row.calidad <= 3  && row.calidad > 2 ) {
-                                //Para 2.5
-                                if (row.calidad < 3  && row.calidad > 2 ) {
-                                    content_estrellas += `
-                                <!--Catalogo-->
-                                <div class="col s12 m12 l12">
-                                    <div class="col s12 m3 l3">
-                                        <img src="${SERVER}imagenes/productos/${row.imagen}"
-                                            class="responsive-img" alt="" height="550" width="550">
-                                    </div>
-                                    <div class="col s12 m5 l5">
-                                        <h5>${row.nombre_producto}</h5>
-                                        <h4>${row.descripcion_producto}</h4>
-                                        <p>Marca: ${row.nombre_marca}</p>
-                                        <div class="row" id="contenedor_cali">
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star_half</i>
-                                        <i class="material-icons">star_border</i>
-                                        <i class="material-icons">star_border</i>
-                                        </div>
-                                        <p>Precio: $${row.precio_producto}</p>
+                                    <p>Precio: $${row.precio_producto}</p>
                                     </div>
                                     <div class="col s12 m3 l3 valign-wrapper" >
                                     <div class="switch">
-                                        <label id="label${row.id_producto}">
-                                            <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
-                                            <span class="lever" id="lever${row.id_producto}"></span>
-                                            <span>★</span>
-                                        </label>
-                                    </div>
+                                    <label id="label${row.id_producto}">
+                                        <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
+                                        <span class="lever" id="lever${row.id_producto}"></span>
+                                        <span>★</span>
+                                    </label>
+                                </div>
                                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
                                             href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                     </div>
-                                    </div>
-                                    <div class="col s12 m9 l9">
-                                        <br>
-                                        <div class="divider"></div>
-                                        <br>
-                                    </div>
-                
-                                `
-                                    readCheckFavoOfClient(row.id_producto);
-                                    ;
-                                    // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                                    document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-                                    //showOp();
-                                } else {
-                                    //Para 3
-
-                                }
-                            } else {
-                                // Se presenta un mensaje de error cuando no existen datos para mostrar.
-                                document.getElementById("title").innerHTML = `<i class="material-icons small black-text">cloud_off</i><span class="red-text">No hay coincidencias</span><p><i class="material-icons medium black-text">home</i></p>`;
-                            }
-
+                                </div>
+                                <div class="col s12 m9 l9">
+                                    <br>
+                                    <div class="divider"></div>
+                                    <br>
+                                </div>
+            
+                             `;
+                             readCheckFavoOfClient(row.id_producto);
                         });
                         // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
                         document.getElementById('contenedor_productos').innerHTML = content_estrellas;
@@ -1367,10 +707,9 @@ function searchProductosCalidad() {
                         // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
                         M.Tooltip.init(document.querySelectorAll('.tooltipped'));
                     } else {
-                        sweetAlert(4, response.exception, null);
+                        document.getElementById('contenedor_productos').innerHTML = content_estrellas;
+                        document.getElementById('title').innerHTML = `<i class="material-icons small black-text">cloud_off</i><span class="red-text">No hay coincidencias</span><p><i class="material-icons medium black-text">home</i></p>`;;
                     }
-
-
                 });
             } else {
                 console.log(request.status + ' ' + request.statusText);
@@ -1385,7 +724,7 @@ function searchProductosCalidad() {
         document.getElementById("cali_cuatro").checked = false;
         document.getElementById("cali_cinco").checked = false;
 
-        fetch(API_PRODUCTOS + 'readProductos', {
+        fetch(API_PRODUCTOS + 'readProductosCalidad&calidad=3.00', {
             method: 'get'
         }).then(function (request) {
             // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
@@ -1398,67 +737,7 @@ function searchProductosCalidad() {
                     if (response.status) {
                         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
                         response.dataset.map(function (row) {
-                            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-                            //<td><img src="${SERVER}imagenes/administrar_empleados/${row.imagen_perfil_empleado}" class="materialboxed" height="100" width="100"></td>
-                            //Productos
-                            //Compramos la calidad para colocarle las estrellas
-                            if (row.calidad <= 3  && row.calidad > 2 ) {
-                                //Para 2.5
-                                if (row.calidad < 3  && row.calidad > 2 ) {
-
-                                } else {
-                                    //Para 3
-                                    // Se crean y concatenan las tarjetas con los datos de cada producto.
-                                    content_estrellas += `
-                                <!--Catalogo-->
-                                <div class="col s12 m12 l12">
-                                    <div class="col s12 m3 l3">
-                                        <img src="${SERVER}imagenes/productos/${row.imagen}"
-                                            class="responsive-img" alt="" height="550" width="550">
-                                    </div>
-                                    <div class="col s12 m5 l5">
-                                        <h5>${row.nombre_producto}</h5>
-                                        <h4>${row.descripcion_producto}</h4>
-                                        <p>Marca: ${row.nombre_marca}</p>
-                                        <div class="row" id="contenedor_cali">
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star_border</i>
-                                        <i class="material-icons">star_border</i> 
-                                        </div>
-                                        <p>Precio: $${row.precio_producto}</p>
-                                    </div>
-                                    <div class="col s12 m3 l3 valign-wrapper" >
-                                    <div class="switch">
-                                        <label id="label${row.id_producto}">
-                                            <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
-                                            <span class="lever" id="lever${row.id_producto}"></span>
-                                            <span>★</span>
-                                        </label>
-                                    </div>
-                                        <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
-                                                class="material-icons left black-text">remove_red_eye</i>Ver</a>
-                                    </div>
-                                    </div>
-                                    <div class="col s12 m9 l9">
-                                        <br>
-                                        <div class="divider"></div>
-                                        <br>
-                                    </div>
-
-                                `
-                                    readCheckFavoOfClient(row.id_producto);
-                                    ;
-                                    // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                                    document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-                                    //showOp();
-                                }
-                            } else if (row.calidad <= 4  && row.calidad > 3 ) {
-                                //Para 3.5
-                                if (row.calidad < 4  && row.calidad > 3 ) {
-                                    content_estrellas += `
+                            content_estrellas += `
                             <!--Catalogo-->
                             <div class="col s12 m12 l12">
                                 <div class="col s12 m3 l3">
@@ -1470,47 +749,31 @@ function searchProductosCalidad() {
                                     <h4>${row.descripcion_producto}</h4>
                                     <p>Marca: ${row.nombre_marca}</p>
                                     <div class="row" id="contenedor_cali">
-                                    <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star_half</i>
-                                        <i class="material-icons">star_border</i> 
+                                    ${getEstrellas(row.calidad)}
                                     </div>
                                     <p>Precio: $${row.precio_producto}</p>
-                                </div>
-                                <div class="col s12 m3 l3 valign-wrapper" >
-                                <div class="switch">
+                                    </div>
+                                    <div class="col s12 m3 l3 valign-wrapper" >
+                                    <div class="switch">
                                     <label id="label${row.id_producto}">
                                         <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
                                         <span class="lever" id="lever${row.id_producto}"></span>
                                         <span>★</span>
                                     </label>
                                 </div>
-                                    <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                        href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
-                                            class="material-icons left black-text">remove_red_eye</i>Ver</a>
+                                        <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
+                                            href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
+                                                class="material-icons left black-text">remove_red_eye</i>Ver</a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col s12 m9 l9">
-                                <br>
-                                <div class="divider"></div>
-                                <br>
-                            </div>
-
-                                `
-                                    readCheckFavoOfClient(row.id_producto);
-                                    ;
-                                    // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                                    document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-                                    //showOp();
-                                } else {
-                                    //Para 4
-
-                                }
-                            } else {
-                                // Se presenta un mensaje de error cuando no existen datos para mostrar.
-                                document.getElementById("title").innerHTML = `<i class="material-icons small black-text">cloud_off</i><span class="red-text">No hay coincidencias</span><p><i class="material-icons medium black-text">home</i></p>`;
-                            }
+                                <div class="col s12 m9 l9">
+                                    <br>
+                                    <div class="divider"></div>
+                                    <br>
+                                </div>
+            
+                             `;
+                             readCheckFavoOfClient(row.id_producto);
                         });
                         // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
                         document.getElementById('contenedor_productos').innerHTML = content_estrellas;
@@ -1521,10 +784,9 @@ function searchProductosCalidad() {
                         // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
                         M.Tooltip.init(document.querySelectorAll('.tooltipped'));
                     } else {
-                        sweetAlert(4, response.exception, null);
+                        document.getElementById('contenedor_productos').innerHTML = content_estrellas;
+                        document.getElementById('title').innerHTML = `<i class="material-icons small black-text">cloud_off</i><span class="red-text">No hay coincidencias</span><p><i class="material-icons medium black-text">home</i></p>`;;
                     }
-
-
                 });
             } else {
                 console.log(request.status + ' ' + request.statusText);
@@ -1540,7 +802,7 @@ function searchProductosCalidad() {
         document.getElementById("cali_tres").checked = false;
         document.getElementById("cali_cinco").checked = false;
 
-        fetch(API_PRODUCTOS + 'readProductos', {
+        fetch(API_PRODUCTOS + 'readProductosCalidad&calidad=4.00', {
             method: 'get'
         }).then(function (request) {
             // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
@@ -1553,131 +815,55 @@ function searchProductosCalidad() {
                     if (response.status) {
                         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
                         response.dataset.map(function (row) {
-                            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-                            //<td><img src="${SERVER}imagenes/administrar_empleados/${row.imagen_perfil_empleado}" class="materialboxed" height="100" width="100"></td>
-                            //Productos
-                            //Compramos la calidad para colocarle las estrellas
-                            if (row.calidad <= 4  && row.calidad > 3 ) {
-                                //Para 3.5
-                                if (row.calidad < 4  && row.calidad > 3 ) {
-
-                                } else {
-                                    //Para 4
-                                    // Se crean y concatenan las tarjetas con los datos de cada producto.
-                                    content_estrellas += `
-                                    <!--Catalogo-->
-                                    <div class="col s12 m12 l12">
-                                        <div class="col s12 m3 l3">
-                                            <img src="${SERVER}imagenes/productos/${row.imagen}"
-                                                class="responsive-img" alt="" height="550" width="550">
-                                        </div>
-                                        <div class="col s12 m5 l5">
-                                            <h5>${row.nombre_producto}</h5>
-                                            <h4>${row.descripcion_producto}</h4>
-                                            <p>Marca: ${row.nombre_marca}</p>
-                                            <div class="row" id="contenedor_cali">
-                                            <i class="material-icons">star</i>
-                                            <i class="material-icons">star</i>
-                                            <i class="material-icons">star</i>
-                                            <i class="material-icons">star</i>
-                                            <i class="material-icons">star_border</i>
-                                            </div>
-                                            <p>Precio: $${row.precio_producto}</p>
-                                        </div>
-                                        <div class="col s12 m3 l3 valign-wrapper" >
-                                        <div class="switch">
-                                            <label id="label${row.id_producto}">
-                                                <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
-                                                <span class="lever" id="lever${row.id_producto}"></span>
-                                                <span>★</span>
-                                            </label>
-                                        </div>
-                                            <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
-                                                href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
-                                                    class="material-icons left black-text">remove_red_eye</i>Ver</a>
-                                        </div>
-                                        </div>
-                                        <div class="col s12 m9 l9">
-                                            <br>
-                                            <div class="divider"></div>
-                                            <br>
-                                        </div>
-
-                                    `
-                                    readCheckFavoOfClient(row.id_producto);
-                                    ;
-                                    // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                                    document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-                                    // showFavo();
-                                    // showOp();
-                                }
-                            } else if (row.calidad <= 5  && row.calidad > 4 ) {
-                                //Para 4.5
-                                if (row.calidad < 5  && row.calidad > 4 ) {
-                                    content_estrellas += `
-                                <!--Catalogo-->
-                                <div class="col s12 m12 l12">
-                                    <div class="col s12 m3 l3">
-                                        <img src="${SERVER}imagenes/productos/${row.imagen}"
-                                            class="responsive-img" alt="" height="550" width="550">
+                            content_estrellas += `
+                            <!--Catalogo-->
+                            <div class="col s12 m12 l12">
+                                <div class="col s12 m3 l3">
+                                    <img src="${SERVER}imagenes/productos/${row.imagen}"
+                                        class="responsive-img" alt="" height="550" width="550">
+                                </div>
+                                <div class="col s12 m5 l5">
+                                    <h5>${row.nombre_producto}</h5>
+                                    <h4>${row.descripcion_producto}</h4>
+                                    <p>Marca: ${row.nombre_marca}</p>
+                                    <div class="row" id="contenedor_cali">
+                                    ${getEstrellas(row.calidad)}
                                     </div>
-                                    <div class="col s12 m5 l5">
-                                        <h5>${row.nombre_producto}</h5>
-                                        <h4>${row.descripcion_producto}</h4>
-                                        <p>Marca: ${row.nombre_marca}</p>
-                                        <div class="row" id="contenedor_cali">
-                                        <i class="material-icons">star</i>
-                                            <i class="material-icons">star</i>
-                                            <i class="material-icons">star</i>
-                                            <i class="material-icons">star</i>
-                                            <i class="material-icons">star_half</i>
-                                        </div>
                                     <p>Precio: $${row.precio_producto}</p>
                                     </div>
                                     <div class="col s12 m3 l3 valign-wrapper" >
                                     <div class="switch">
-                                        <label id="label${row.id_producto}">
-                                            <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
-                                            <span class="lever" id="lever${row.id_producto}"></span>
-                                            <span>★</span>
-                                        </label>
-                                    </div>
+                                    <label id="label${row.id_producto}">
+                                        <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
+                                        <span class="lever" id="lever${row.id_producto}"></span>
+                                        <span>★</span>
+                                    </label>
+                                </div>
                                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
                                             href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                     </div>
-                                    </div>
-                                    <div class="col s12 m9 l9">
-                                        <br>
-                                        <div class="divider"></div>
-                                        <br>
-                                    </div>
-
-                                    `
-                                    readCheckFavoOfClient(row.id_producto);
-                                    ;
-                                    // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                                    document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-                                    // showOp();
-                                } else {
-
-
-                                }
-                            } else {
-                                // Se presenta un mensaje de error cuando no existen datos para mostrar.
-                                document.getElementById("title").innerHTML = `<i class="material-icons small black-text">cloud_off</i><span class="red-text">No hay coincidencias</span><p><i class="material-icons medium black-text">home</i></p>`;
-                            }
+                                </div>
+                                <div class="col s12 m9 l9">
+                                    <br>
+                                    <div class="divider"></div>
+                                    <br>
+                                </div>
+            
+                             `;
+                             readCheckFavoOfClient(row.id_producto);
                         });
-                        //readCheckFavoOfClient(row.id_producto);
-                        //showOp();
                         // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
                         document.getElementById('contenedor_productos').innerHTML = content_estrellas;
+                        //showFavo();
+                        //showOp();
                         // Se inicializa el componente Material Box para que funcione el efecto Lightbox.
                         M.Materialbox.init(document.querySelectorAll('.materialboxed'));
                         // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
                         M.Tooltip.init(document.querySelectorAll('.tooltipped'));
                     } else {
-                        sweetAlert(4, response.exception, null);
+                        document.getElementById('contenedor_productos').innerHTML = content_estrellas;
+                        document.getElementById('title').innerHTML = `<i class="material-icons small black-text">cloud_off</i><span class="red-text">No hay coincidencias</span><p><i class="material-icons medium black-text">home</i></p>`;;
                     }
 
 
@@ -1695,7 +881,7 @@ function searchProductosCalidad() {
         document.getElementById("cali_tres").checked = false;
         document.getElementById("cali_cuatro").checked = false;
 
-        fetch(API_PRODUCTOS + 'readProductos', {
+        fetch(API_PRODUCTOS + 'readProductosCalidad&calidad=5.00', {
             method: 'get'
         }).then(function (request) {
             // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
@@ -1708,67 +894,43 @@ function searchProductosCalidad() {
                     if (response.status) {
                         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
                         response.dataset.map(function (row) {
-                            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-                            //<td><img src="${SERVER}imagenes/administrar_empleados/${row.imagen_perfil_empleado}" class="materialboxed" height="100" width="100"></td>
-                            //Productos
-                            //Compramos la calidad para colocarle las estrellas
-                            if (row.calidad <= 5  && row.calidad > 4 ) {
-                                //Para 4.5
-                                if (row.calidad < 5  && row.calidad > 4 ) {
-
-                                } else {
-                                    // Se crean y concatenan las tarjetas con los datos de cada producto.
-                                    content_estrellas += `
-                                <!--Catalogo-->
-                                <div class="col s12 m12 l12">
-                                    <div class="col s12 m3 l3">
-                                        <img src="${SERVER}imagenes/productos/${row.imagen}"
-                                            class="responsive-img" alt="" height="550" width="550">
+                            content_estrellas += `
+                            <!--Catalogo-->
+                            <div class="col s12 m12 l12">
+                                <div class="col s12 m3 l3">
+                                    <img src="${SERVER}imagenes/productos/${row.imagen}"
+                                        class="responsive-img" alt="" height="550" width="550">
+                                </div>
+                                <div class="col s12 m5 l5">
+                                    <h5>${row.nombre_producto}</h5>
+                                    <h4>${row.descripcion_producto}</h4>
+                                    <p>Marca: ${row.nombre_marca}</p>
+                                    <div class="row" id="contenedor_cali">
+                                    ${getEstrellas(row.calidad)}
                                     </div>
-                                    <div class="col s12 m5 l5">
-                                        <h5>${row.nombre_producto}</h5>
-                                        <h4>${row.descripcion_producto}</h4>
-                                        <p>Marca: ${row.nombre_marca}</p>
-                                        <div class="row" id="contenedor_cali">
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        </div>
-                                        <p>Precio: $${row.precio_producto}</p>
+                                    <p>Precio: $${row.precio_producto}</p>
                                     </div>
                                     <div class="col s12 m3 l3 valign-wrapper" >
                                     <div class="switch">
-                                        <label id="label${row.id_producto}" >
-                                            <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
-                                            <span class="lever" id="lever${row.id_producto}"></span>
-                                            <span>★</span>
-                                        </label>
-                                    </div>
+                                    <label id="label${row.id_producto}">
+                                        <input type="checkbox" id="cali_favo${row.id_producto}" name="cali_favo" onchange="createFavo(${row.id_producto})" onclick="changeColorActive('label${row.id_producto}','cali_favo${row.id_producto}')">
+                                        <span class="lever" id="lever${row.id_producto}"></span>
+                                        <span>★</span>
+                                    </label>
+                                </div>
                                         <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s12 l8"
                                             href="producto_individual.html?id_producto=${row.id_producto}&calidad=${row.calidad}" id="boton_datos"><i
                                                 class="material-icons left black-text">remove_red_eye</i>Ver</a>
                                     </div>
-                                    </div>
-                                    <div class="col s12 m9 l9">
-                                        <br>
-                                        <div class="divider"></div>
-                                        <br>
-                                    </div>
-                                    
-                                    `
-                                    readCheckFavoOfClient(row.id_producto);
-                                    ;
-                                    // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
-                                    document.getElementById("contenedor_productos").innerHTML = content_estrellas;
-                                    //showOp();
-
-                                }
-                            } else {
-                                // Se presenta un mensaje de error cuando no existen datos para mostrar.
-                                document.getElementById("title").innerHTML = `<i class="material-icons small black-text">cloud_off</i><span class="red-text">No hay coincidencias</span><p><i class="material-icons medium black-text">home</i></p>`;
-                            }
+                                </div>
+                                <div class="col s12 m9 l9">
+                                    <br>
+                                    <div class="divider"></div>
+                                    <br>
+                                </div>
+            
+                             `;
+                             readCheckFavoOfClient(row.id_producto);
                         });
                         // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
                         document.getElementById('contenedor_productos').innerHTML = content_estrellas;
@@ -1779,7 +941,8 @@ function searchProductosCalidad() {
                         // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
                         M.Tooltip.init(document.querySelectorAll('.tooltipped'));
                     } else {
-                        sweetAlert(4, response.exception, null);
+                        document.getElementById('contenedor_productos').innerHTML = content_estrellas;
+                        document.getElementById('title').innerHTML = `<i class="material-icons small black-text">cloud_off</i><span class="red-text">No hay coincidencias</span><p><i class="material-icons medium black-text">home</i></p>`;;
                     }
 
 
@@ -1800,58 +963,74 @@ function searchProductosCalidad() {
 function createFavo(id) {
 
     //Comprobamos si el radio esta chequeado
-    if (document.getElementById("cali_favo" + id).checked) {
-        console.log("no");
-        // Se define un objeto con los datos del registro seleccionado.
-        const data = new FormData();
-        data.append('idP', id);
-        fetch(API_FAVORITO + 'create', {
-            method: 'post',
-            body: data
-        }).then(function (request) {
-            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-            if (request.ok) {
-                // Se obtiene la respuesta en formato JSON.
-                request.json().then(function (response) {
-                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                    if (response.status) {
-                        sweetAlert(1, response.message, null);
+    fetch(API_PRODUCTOS + 'session', {
+        method: 'get'
+    }).then(function (request) {
+        if(request.ok){
+            request.json().then(function (response) {
+                if(response.status) {
+                    if (document.getElementById("cali_favo" + id).checked) {
+                        console.log("no");
+                        // Se define un objeto con los datos del registro seleccionado.
+                        const data = new FormData();
+                        data.append('idP', id);
+                        fetch(API_FAVORITO + 'create', {
+                            method: 'post',
+                            body: data
+                        }).then(function (request) {
+                            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+                            if (request.ok) {
+                                // Se obtiene la respuesta en formato JSON.
+                                request.json().then(function (response) {
+                                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                                    if (response.status) {
+                                        sweetAlert(1, response.message, null);
+                                    } else {
+                                        sweetAlert(2, response.exception, null);
+                                    }
+                                });
+                            } else {
+                                console.log(request.status + ' ' + request.statusText);
+                            }
+                        });
+                
+                
                     } else {
-                        sweetAlert(2, response.exception, null);
+                        console.log("act");
+                        // Se define un objeto con los datos del registro seleccionado.
+                        const data = new FormData();
+                        data.append('idP', id);
+                
+                        fetch(API_FAVORITO + 'delete', {
+                            method: 'post',
+                            body: data
+                        }).then(function (request) {
+                            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+                            if (request.ok) {
+                                // Se obtiene la respuesta en formato JSON.
+                                request.json().then(function (response) {
+                                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                                    if (response.status) {
+                                        sweetAlert(1, response.message, null);
+                                    } else {
+                                        sweetAlert(2, response.exception, null);
+                                    }
+                                });
+                            } else {
+                                console.log(request.status + ' ' + request.statusText);
+                            }
+                        });
                     }
-                });
-            } else {
-                console.log(request.status + ' ' + request.statusText);
-            }
-        });
+                } else {
+                    sweetAlert(4, 'Inicie sesión para agregar a favoritos', null);
+                }
+            });
+        }else{
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
 
-
-    } else {
-        console.log("act");
-        // Se define un objeto con los datos del registro seleccionado.
-        const data = new FormData();
-        data.append('idP', id);
-
-        fetch(API_FAVORITO + 'delete', {
-            method: 'post',
-            body: data
-        }).then(function (request) {
-            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-            if (request.ok) {
-                // Se obtiene la respuesta en formato JSON.
-                request.json().then(function (response) {
-                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                    if (response.status) {
-                        sweetAlert(1, response.message, null);
-                    } else {
-                        sweetAlert(2, response.exception, null);
-                    }
-                });
-            } else {
-                console.log(request.status + ' ' + request.statusText);
-            }
-        });
-    }
+    
 
 }
 
