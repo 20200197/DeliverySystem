@@ -64,6 +64,7 @@ if (isset($_GET['action'])) {
                 } elseif ($admin->registerAdmin()) {
                     $result['status'] = 1;
                     $result['message'] = 'Administrador creado con exito';
+                    $admin->insertCambio();
                 } else {
                     $result['exception'] = Database::getException();
                 }
@@ -238,6 +239,7 @@ if (isset($_GET['action'])) {
                 }elseif ($admin->registerAdmin()) {
                     $result['status'] = 1;
                     $result['message'] = 'Administrador creado con exito';
+                    $admin->insertCambio();
                 } else {
                     $result['exception'] = Database::getException();
                 }
