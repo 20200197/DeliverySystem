@@ -1,7 +1,7 @@
 // Constantes para establecer rutas de archivos esenciales y parametros de la API
 const API_perfil = SERVER + "dashboard/sesion.php?action=";
 
-const API_DISTRIBUIDOR = SERVER + 'dashboard/administrar_distribuidor.php?action=';
+const API_DISTRIBUIDOR1 = SERVER + 'dashboard/administrar_distribuidor.php?action=';
 
 
 //Método que se ejecuta cuando se carga la página
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 class="icono-sesion material-icons black-text">account_circle</i></a>
                     </div>`;
 
-                    fetch(API_DISTRIBUIDOR + "getRequest", {
+                    fetch(API_DISTRIBUIDOR1 + "getRequest", {
                         method: "get",
                     }).then(function (request) {
                         //Se verifica que la sentencia se haya ejecutado

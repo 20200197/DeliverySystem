@@ -15,7 +15,7 @@ document.getElementById('save-form').addEventListener('submit', function () {
         if (request.ok) {
             request.json().then(function (response) {
                 if (response.status) {
-                    sweetAlert(1, response.message, 'login.html');
+                    sweetAlert(1, response.message, null);
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
