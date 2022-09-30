@@ -218,7 +218,7 @@ function readComent(id) {
                 <div class="row valign-wrapper">
                 <div class="col s2 m1 l1 offset-l1 offset-m1">
                     <img class="responsive-img circle"
-                        src="${SERVER}imagenes/clientes/${row.imagen_perfil_cliente}" />
+                        src="${SERVER}imagenes/cliente/${row.foto_cliente}">
                 </div>
                 <div class="col s10 m10 l10">
                     <p>${row.usuario_cliente}</p> 
@@ -248,7 +248,7 @@ function readComent(id) {
                 <div class="row valign-wrapper">
                 <div class="col s2 m1 l1 offset-l1 offset-m1">
                     <img class="responsive-img circle"
-                        src="${SERVER}imagenes/clientes/${row.imagen_perfil_cliente}" />
+                        src="${SERVER}imagenes/cliente/${row.foto_cliente}" />
                 </div>
                 <div class="col s10 m10 l10">
                     <p>${row.usuario_cliente}</p>  
@@ -281,7 +281,7 @@ function readComent(id) {
                 <div class="row valign-wrapper">
                 <div class="col s2 m1 l1 offset-l1 offset-m1">
                     <img class="responsive-img circle"
-                        src="${SERVER}imagenes/clientes/${row.imagen_perfil_cliente}" />
+                        src="${SERVER}imagenes/cliente/${row.foto_cliente}" />
                 </div>
                 <div class="col s10 m10 l10">
                     <p>${row.usuario_cliente}</p>
@@ -312,7 +312,7 @@ function readComent(id) {
                 <div class="row valign-wrapper">
                 <div class="col s2 m1 l1 offset-l1 offset-m1">
                     <img class="responsive-img circle"
-                        src="${SERVER}imagenes/clientes/${row.imagen_perfil_cliente}" />
+                        src="${SERVER}imagenes/cliente/${row.foto_cliente}" />
                 </div>
                 <div class="col s10 m10 l10">
                     <p>${row.usuario_cliente}</p>
@@ -345,7 +345,7 @@ function readComent(id) {
                 <div class="row valign-wrapper">
                 <div class="col s2 m1 l1 offset-l1 offset-m1">
                     <img class="responsive-img circle"
-                        src="${SERVER}imagenes/clientes/${row.imagen_perfil_cliente}" />
+                        src="${SERVER}imagenes/cliente/${row.foto_cliente}" />
                 </div>
                 <div class="col s10 m10 l10">
                     <p>${row.usuario_cliente}</p>
@@ -376,7 +376,7 @@ function readComent(id) {
                 <div class="row valign-wrapper">
                 <div class="col s2 m1 l1 offset-l1 offset-m1">
                     <img class="responsive-img circle"
-                        src="${SERVER}imagenes/clientes/${row.imagen_perfil_cliente}" />
+                        src="${SERVER}imagenes/cliente/${row.foto_cliente}" />
                 </div>
                 <div class="col s10 m10 l10">
                     <p>${row.usuario_cliente}</p>  
@@ -409,7 +409,7 @@ function readComent(id) {
                 <div class="row valign-wrapper">
                 <div class="col s2 m1 l1 offset-l1 offset-m1">
                     <img class="responsive-img circle"
-                        src="${SERVER}imagenes/clientes/${row.imagen_perfil_cliente}" />
+                        src="${SERVER}imagenes/cliente/${row.foto_cliente}" />
                 </div>
                 <div class="col s10 m10 l10">
                     <p>${row.usuario_cliente}</p>
@@ -439,7 +439,7 @@ function readComent(id) {
                 <div class="row valign-wrapper">
                 <div class="col s2 m1 l1 offset-l1 offset-m1">
                     <img class="responsive-img circle"
-                        src="${SERVER}imagenes/clientes/${row.imagen_perfil_cliente}" />
+                        src="${SERVER}imagenes/cliente/${row.foto_cliente}" />
                 </div>
                 <div class="col s10 m10 l10">
                     <p>${row.usuario_cliente}</p>
@@ -472,7 +472,7 @@ function readComent(id) {
                 <div class="row valign-wrapper">
                 <div class="col s2 m1 l1 offset-l1 offset-m1">
                     <img class="responsive-img circle"
-                        src="${SERVER}imagenes/clientes/${row.imagen_perfil_cliente}" />
+                        src="${SERVER}imagenes/cliente/${row.foto_cliente}" />
                 </div>
                 <div class="col s10 m10 l10">
                     <p>${row.usuario_cliente}</p>
@@ -502,7 +502,7 @@ function readComent(id) {
                 <div class="row valign-wrapper">
                 <div class="col s2 m1 l1 offset-l1 offset-m1">
                     <img class="responsive-img circle"
-                        src="${SERVER}imagenes/clientes/${row.imagen_perfil_cliente}" />
+                        src="${SERVER}imagenes/cliente/${row.foto_cliente}" />
                 </div>
                 <div class="col s10 m10 l10">
                     <p>${row.usuario_cliente}</p>

@@ -409,7 +409,7 @@ class Producto extends Validator
     //Leemos comentarios de productos
     public function readComent()
     {
-        $sql = "SELECT comentario, cliente.usuario_cliente, valoracion as calidad
+        $sql = "SELECT comentario, cliente.usuario_cliente, foto_cliente, valoracion as calidad
         from comentario_producto comentario_producto
 		INNER JOIN detalle_factura as detalle_factura on comentario_producto.id_detalle = detalle_factura.id_detalle
 		INNER JOIN producto as producto on detalle_factura.id_producto = producto.id_producto
@@ -420,7 +420,7 @@ class Producto extends Validator
 		inner join vendedor using (id_vendedor)
 		inner join marca using (id_marca)
         where status_producto = true and producto.id_producto = ?
-        group by comentario, cliente.usuario_cliente, valoracion";
+        group by comentario, cliente.usuario_cliente, valoracion, foto_cliente";
         $params = array($this->id);
         return Database::getRows($sql, $params);
     }

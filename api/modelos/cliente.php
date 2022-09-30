@@ -217,9 +217,8 @@ class Cliente extends Validator
     public function insertCambio()
     {
 
-        $sql = 'INSERT into cambio_contra_cliente (fecha_cambio,id_cliente,id_cargo) values(current_date,(select id_cliente from cliente order by id_cliente  desc limit 1),4);';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->usuario, $this->clave,  $this->telefono);
-        return Database::executeRow($sql, $params);
+        $sql = 'INSERT INTO cambio_contra_cliente(fecha_cambio, id_cliente, id_cargo) VALUES(CURRENT_DATE, (SELECT id_cliente FROM cliente ORDER BY id_cliente  DESC LIMIT 1), 4)';
+        return Database::executeRow($sql, null);
     }
 
     //Se cambia fecha de cambio de contraseña de cliente

@@ -303,7 +303,7 @@ class Administrador extends Validator
       public function insertCambio()
       {
   
-          $sql = 'INSERT into cambio_contra_administrador (fecha_cambio,id_admin,id_cargo) values(current_date,(select id_admin from administrador order by id_admin  desc limit 1),1);';
+          $sql = 'INSERT INTO cambio_contra_administrador(fecha_cambio, id_admin, id_cargo) VALUES(current_date, (SELECT id_admin FROM administrador ORDER BY id_admin DESC LIMIT 1), 1)';
           $params =null;
           return Database::executeRow($sql, $params);
       }
