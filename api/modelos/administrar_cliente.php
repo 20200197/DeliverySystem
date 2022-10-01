@@ -311,7 +311,7 @@ class AdministrarCliente extends Validator
     public function createDireccion()
     {
         $sql = 'INSERT INTO direccion(descripcion_direccion,punto_referencia,coordenadas,id_cliente,id_municipio) values (?,?,?,?,?)';
-        $params = array($this->descripcion_direccion, $this->punto_referencia, $this->coordenadas, 2, $this->id_municipio);
+        $params = array($this->descripcion_direccion, $this->punto_referencia, $this->coordenadas, $_SESSION['id_cliente'], $this->id_municipio);
         return Database::executeRow($sql, $params);
     }
 

@@ -161,8 +161,8 @@ class Cliente extends Validator
     {
         date_default_timezone_set('America/El_Salvador');
         $date = date('Y-m-d');
-        $sql = 'INSERT INTO cliente(nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, usuario_cliente, clave_cliente, status_cliente, fecha_registro_cliente, foto_cliente)
-                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        $sql = 'INSERT INTO cliente(nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, usuario_cliente, clave_cliente, status_cliente, fecha_registro_cliente, foto_cliente, id_estado_cliente, intentos_fallidos, fecha_desbloqueo)
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, 0, CURRENT_DATE - 1)';
         $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->telefono, $this->usuario, $this->clave, true, $date, $this->foto);
         return Database::executeRow($sql, $params);
     }
@@ -217,9 +217,8 @@ class Cliente extends Validator
     public function insertCambio()
     {
 
-        $sql = 'INSERT into cambio_contra_cliente (fecha_cambio,id_cliente,id_cargo) values(current_date,(select id_cliente from cliente order by id_cliente  desc limit 1),4);';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->usuario, $this->clave,  $this->telefono);
-        return Database::executeRow($sql, $params);
+        $sql = 'INSERT INTO cambio_contra_cliente(fecha_cambio, id_cliente, id_cargo) VALUES(CURRENT_DATE, (SELECT id_cliente FROM cliente ORDER BY id_cliente  DESC LIMIT 1), 4)';
+        return Database::executeRow($sql, null);
     }
 
     //Se cambia fecha de cambio de contraseña de cliente
