@@ -77,6 +77,14 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = Database::getException();
                 }
+            case 'checkRango':
+                if ($result['dataset'] = $admin->checkRango()) {
+                    $result['status'] = 1;
+                } elseif (!$admin->checkRango()) {
+                    $result['exception'] = 'Datos no encontrados';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
                 break;
                 //Buscador
             case 'search':
@@ -235,7 +243,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Las contraseñas no coinciden';
                 } elseif (!$admin->setClave($_POST['pass2'], $_POST['name'], $_POST['lastname'], $_POST['user'], '0000-00-00')) {
                     $result['exception'] = $admin->getPasswordError();
-                }elseif ($admin->registerAdmin()) {
+                } elseif ($admin->registerAdmin()) {
                     $result['status'] = 1;
                     $result['message'] = 'Administrador creado con exito';
                 } else {
