@@ -137,12 +137,22 @@
                                         <input placeholder="Nombre" id="nombre_productoM" name="nombre_productoM"
                                             type="text" required onkeypress="return soloLetras(event)">
                                     </div>
-                                    <div class="input-field col s12 m12 l6">
-                                        <label for="cantidad_productoM" id="cantidad_actual">Cantidad:</label>
-                                        <input class="validate" id="cantidad_productoM" name="cantidad_productoM"
-                                            type="number" placeholder="0" required
-                                            onkeypress="return validarcantidad(event, 'cantidad_productoM')">
-                                    </div>
+                                        <div class="input-field col s12 m12 l6">
+                                            <label id="cantidad_actual" for="cantidad_productoM">Cantidad:</label>
+                                            <input class="validate" id="cantidad_productoM" name="cantidad_productoM" type="number" placeholder="0" value="0">
+                                            <div class="col l12">
+                                                <label class="no-font">
+                                                    <input class="with-gap" type="radio" name="opciones" value="1" checked>
+                                                    <span>Agregar</span>
+                                                </label>
+                                                <label class="no-font">
+                                                    <input class="with-gap" type="radio" name="opciones" value="2">
+                                                    <span>Eliminar</span>
+                                                </label>
+                                            </div>
+                                        
+                                        
+                                        </div>
                                     <div class="input-field col s12 m12 l6">
                                         <label for="precio_productoM">Precio:</label>
                                         <input placeholder="$00.00" id="precio_productoM" name="precio_productoM"

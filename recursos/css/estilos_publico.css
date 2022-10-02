@@ -1027,3 +1027,8 @@ input[type="radio"]:checked~label>.estrellaProducto {
 .ol-control button:hover {
     background-color: rgba(40, 40, 40, 1) !important;
 }
+
+.no-font {
+    font-size: 16pt !important;
+    margin: 0px !important;
+}
