@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
   };
   // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
   M.Modal.init(document.querySelectorAll('.modal'), options);
-
+  M.Tooltip.init(document.querySelectorAll(".tooltipped"));
   openCargo();
 });
 
@@ -204,7 +204,7 @@ function openBan() {
                           <div class="hide-on-med-and-down ">Editar</div>
                       </a>
                       <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s3 m3 l3  center-align"
-                          onclick="updateHoraDesbaneoRepartidor(${row.id_repartidor})" id="botonB${row.id_repartidor}"><i class="material-icons black-text">lock_open</i>
+                          onclick="updateHoraDesbaneoRepartidor(${row.id_repartidor})" id="botonB${row.id_repartidor}"><i class="material-icons black-text">av_timer</i>
                       </a></td>
                       </tr>
                     `;
@@ -266,7 +266,7 @@ function openBan() {
                           <div class="hide-on-med-and-down ">Editar</div>
                       </a>
                       <a class="waves-effect waves-light blue lighten-3 black-text btn-large col s3 m3 l3 center-align"
-                          onclick="updateHoraDesbaneoVendedor(${row.id_vendedor})" id="botonB${row.id_vendedor}"><i class="material-icons black-text">lock_open</i>
+                          onclick="updateHoraDesbaneoVendedor(${row.id_vendedor})" id="botonB${row.id_vendedor}"><i class="material-icons black-text">av_timer</i>
                       </a>
                       </td>
                       </tr>
@@ -333,7 +333,7 @@ function openBan() {
                           onclick="updateDesbaneoCliente(${row.id_cliente})" id="botonB${row.id_cliente}"><i class="material-icons black-text">lock_open</i>
                           <div class="hide-on-med-and-down ">Editar</div>
                       </a><a class="waves-effect waves-light blue lighten-3 black-text btn-large col s3 m3 l3  center-align"
-                      onclick="updateHoraDesbaneoCliente(${row.id_cliente})" id="botonB${row.id_cliente}"><i class="material-icons black-text">lock_open</i>
+                      onclick="updateHoraDesbaneoCliente(${row.id_cliente})" id="botonB${row.id_cliente}"><i class="material-icons black-text">av_timer</i>
                       <div class="hide-on-med-and-down ">Editar</div>
                   </a>  </td>
                       </tr>
@@ -590,9 +590,18 @@ function updateHoraDesbaneoAdministrador(id) {
   const data = new FormData();
   data.append('id_aa', id);
 
+  function pad2(n) {
+    return (n < 10 ? '0' : '') + n;
+}
+var date = new Date();
+var month = pad2(date.getMonth() + 1);//months (0-11)
+var day = pad2(date.getDate());//day (1-31)
+var year = date.getFullYear();
+ 
+ fecha =  year+'-'+month+'-'+day;
   Swal.fire({
     title: 'Selecciona la fecha de desbloqueo',
-    html: '<input type="date" class="datepicker" id="pk">',
+    html: '<input type="date" class="datepicker" id="pk" min="'+fecha+'">',
     showCancelButton: true,
   }).then((result) => {
     if (result.isConfirmed) {
@@ -626,10 +635,18 @@ function updateHoraDesbaneoRepartidor(id) {
 
   const data = new FormData();
   data.append('id_aa', id);
-
+  function pad2(n) {
+    return (n < 10 ? '0' : '') + n;
+}
+var date = new Date();
+var month = pad2(date.getMonth() + 1);//months (0-11)
+var day = pad2(date.getDate());//day (1-31)
+var year = date.getFullYear();
+ 
+ fecha =  year+'-'+month+'-'+day;
   Swal.fire({
     title: 'Selecciona la fecha de desbloqueo',
-    html: '<input type="date" class="datepicker" id="pk">',
+    html: '<input type="date" class="datepicker" id="pk" min="'+fecha+'">',
     showCancelButton: true,
   }).then((result) => {
     if (result.isConfirmed) {
@@ -663,10 +680,19 @@ function updateHoraDesbaneoVendedor(id) {
 
   const data = new FormData();
   data.append('id_aa', id);
+  function pad2(n) {
+    return (n < 10 ? '0' : '') + n;
+}
+var date = new Date();
+var month = pad2(date.getMonth() + 1);//months (0-11)
+var day = pad2(date.getDate());//day (1-31)
+var year = date.getFullYear();
+ 
+ fecha =  year+'-'+month+'-'+day;
 
   Swal.fire({
     title: 'Selecciona la fecha de desbloqueo',
-    html: '<input type="date" class="datepicker" id="pk">',
+    html: '<input type="date" class="datepicker" id="pk" min="'+fecha+'">',
     showCancelButton: true,
   }).then((result) => {
     if (result.isConfirmed) {
@@ -696,14 +722,25 @@ function updateHoraDesbaneoVendedor(id) {
   });
 }
 
+
 function updateHoraDesbaneoCliente(id) {
 
   const data = new FormData();
   data.append('id_aa', id);
+  function pad2(n) {
+    return (n < 10 ? '0' : '') + n;
+}
+var date = new Date();
+var month = pad2(date.getMonth() + 1);//months (0-11)
+var day = pad2(date.getDate());//day (1-31)
+var year = date.getFullYear();
+ 
+ fecha =  year+'-'+month+'-'+day;
+console.log(fecha);
 
   Swal.fire({
     title: 'Selecciona la fecha de desbloqueo',
-    html: '<input type="date" class="datepicker" id="pk">',
+    html: '<input type="date" class="datepicker" id="pk" min="'+fecha+'">',
     showCancelButton: true,
   }).then((result) => {
     if (result.isConfirmed) {

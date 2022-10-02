@@ -233,7 +233,7 @@ nav div ul li a i {
     background-color: #053A80 !important;
 }
 
-.span_oscuro span, .span_oscuro i{
+.span_oscuro span:not(.datepicker-container .select-dropdown .ul .li .span) , .span_oscuro i{
     color: white !important;
 }
 

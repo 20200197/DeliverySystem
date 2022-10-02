@@ -227,16 +227,51 @@ class Entrega extends Validator
         return Database::getRows($sql, $params);
     }
 
+      public function repartidorAvaibleMas()
+    {
+        $sql = "SELECT   distinct(factura.id_repartidor), CONCAT(nombre_repartidor,' ', apellido_repartidor) as nombre_repartidor
+        from factura factura 
+        full outer join repartidor using(id_repartidor)
+        full outer join detalle_factura detalle_factura on detalle_factura.id_factura = factura.id_factura
+        where  fecha_envio > current_date+20";
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    public function repartidorAvaibleA()
+    {
+        $sql = "	SELECT   distinct(factura.id_repartidor), CONCAT(nombre_repartidor,' ', apellido_repartidor) as nombre_repartidor
+        from factura factura 
+        inner join repartidor using(id_repartidor)
+        left join detalle_factura detalle_factura on detalle_factura.id_factura = factura.id_factura
+        where fecha_envio < current_date ";
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    public function repartidorAvaibleNE()
+    {
+        $sql = "SELECT   distinct(factura.id_repartidor), CONCAT(nombre_repartidor,' ', apellido_repartidor) as nombre_repartidor
+        from factura factura 
+        inner join repartidor using(id_repartidor)
+        left join detalle_factura detalle_factura on detalle_factura.id_factura = factura.id_factura
+        where factura.id_repartidor not in (select id_repartidor from factura )";
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+
+
     //Productos de detalle sin asignar, que nio tenga repartidor ni fecha
     public function readProductosEntrega()
     {
-        $sql = "SELECT id_detalle,nombre_producto, cantidad_pedido, precio, fecha_envio, repartidor.id_repartidor, id_factura
+        $sql = "SELECT id_detalle, nombre_producto, cantidad_pedido, precio, fecha_envio, repartidor.id_repartidor, id_factura
         from detalle_factura
         full outer join producto producto using(id_producto)
         full outer join factura factura using(id_factura)
         full outer join repartidor repartidor using(id_repartidor)
-        where fecha_envio is null and factura.id_repartidor is null and detalle_factura.id_detalle = ?";
-        $params = array($this->id_detalle);
+        where fecha_envio is null and factura.id_repartidor is null and detalle_factura.id_factura = ?";
+        $params = array($this->id_factura);
         return Database::getRows($sql, $params);
     }
 
@@ -255,21 +290,21 @@ class Entrega extends Validator
     {
         $sql = 'UPDATE detalle_factura
         SET fecha_envio = ? 
-        WHERE id_detalle = ?';
-        $params = array($this->fecha_reparto,$this->id_detalle);
+        WHERE id_factura = ?';
+        $params = array($this->fecha_reparto,$this->id_factura);
         return Database::executeRow($sql, $params);
     }
 
     //Facturas que no han sido asignadas, osea que repartidor y fecha no este asignada
     public function readFac()
     {
-        $sql = "SELECT id_factura, id_detalle
+        $sql = "SELECT distinct id_factura
         from detalle_factura
         full outer  join  factura using(id_factura)
         full outer  join repartidor using(id_repartidor)
         where fecha_envio is null and factura.id_repartidor is null
-        group by  id_factura, id_detalle
-        order by id_detalle asc";
+        group by  id_detalle, id_factura
+        order by id_factura asc";
         $params = null;
         return Database::getRows($sql, $params);
     }
