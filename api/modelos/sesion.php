@@ -12,7 +12,7 @@ class Sesion extends Validator
 
     public function sesionV($id)
     {
-        $sql = "SELECT CONCAT(nombre_vendedor, ' ',apellido_vendedor) as nombre FROM vendedor WHERE id_vendedor = ?";
+        $sql = "SELECT CONCAT(nombre_vendedor, ' ',apellido_vendedor) as nombre, foto_vendedor FROM vendedor WHERE id_vendedor = ?";
         $params = array($id);
         return Database::getRow($sql, $params);
     }
@@ -27,7 +27,7 @@ class Sesion extends Validator
 
     public function sesionR($id)
     {
-        $sql = "SELECT usuario_repartidor as nombre, foto_repartidor FROM repartidor WHERE id_repartidor = ?";
+        $sql = "SELECT CONCAT(nombre_repartidor, ' ',apellido_repartidor) as nombre, foto_repartidor FROM repartidor WHERE id_repartidor = ?";
         $params = array($id);
         return Database::getRow($sql, $params);
     }

@@ -16,29 +16,41 @@
 <body>
     <!--Encabezado y sesión-->
     <header>
-        <nav>
-            <div class="nav-wrapper white">
-                <div class="row valign-wrapper">
-                    <div class="col m1 s1">
-                        <a href="#" data-target="slide-out" class="sidenav-trigger"><i
-                                class="material-icons large blue-text">menu</i></a>
-                    </div>
-                    <div class="col m5 s5 left valign-wrapper">
+        <nav class="row white">
     
-                        <img class="responsive-img" src="logo_delivery_system.png" alt="">
-                    </div>
-                    <div class="col m6 s6" id="opciones_navbar">
-    
-                    </div>
+            <div class="col l5 m5 s5 hide-on-med-and-down">
+                <div class="col m3 s3 l3 show-on-small center valign-wrapper">
+                    <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                            class="material-icons large blue-text">menu</i></a>
                 </div>
+                <div class="col l9 m9 s10 push-m1 valign-wrapper">
+                    <img class="responsive-img" src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png"
+                        alt="">
+                </div>
+            </div>
+            <div class="col l12 m12 s12 hide-on-large-only">
+                <div class="col m1 s2 l3 show-on-small center">
+                    <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                            class="material-icons large blue-text">menu</i></a>
+                </div>
+                <div class="col l7 m11 s10 valign-wrapper logo-centrado">
+                    <img class="responsive-img center-align"
+                        src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
+                </div>
+            </div>
+    
+            <div class="col m7 s7 l7 right-align valign-wrapper hide-on-med-and-down" id="opciones_navbar">
+    
             </div>
         </nav>
     
     </header>
-
-
+    
+    
     <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2 left-align">
         <div class="opciones-sidenav">
+            <li id="sesion_navbar" class="hide-on-large-only valign-wrapper"></li>
+            <hr class="hide-on-large-only">
             <li class="collection-item"><a href="estadistica.html" class="tooltipped" data-position="right"
                     data-tooltip="Estadísticas"><i class="material-icons  white-text">insert_chart</i><span
                         class="white-text hide-on-large-only">Estadísticas</span></a>
