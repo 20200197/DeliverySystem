@@ -240,9 +240,9 @@ function openOpciones(id_repartidor) {
                             text = Object.values(row)[1];
                             // Se verifica si el valor de la API es diferente al valor seleccionado para enlistar una opción, de lo contrario se establece la opción como seleccionada.
                             if (value != null) {
-                                content += `<option value="${text}">${text}</option>`;
+                                content += `<option value="${value}">${value}</option>`;
                             } else {
-                                content += `<option value="${text}" selected>${text}</option>`;
+                                content += `<option value="${value}" selected>${value}</option>`;
                             }
                         }
 
@@ -264,7 +264,7 @@ function openFac(id_repartidor) {
 
 
     Swal.fire({
-        title: "Selecciona el detalle de factura que desea entregar",
+        title: "Selecciona la factura que desea entregar",
         html: '<div class="input-field"><select class="browser-default" id="fac" name="fac" required> </select></div>',
         showCancelButton: true,
     }).then(function (value) {
@@ -301,6 +301,7 @@ function openFacT(id, id_repartidor) {
                 if (response.status) {
 
                     let content = '';
+                    let contenido = '';
                     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
                     response.dataset.map(function (row) {
                         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
@@ -318,13 +319,23 @@ function openFacT(id, id_repartidor) {
                         <td data-target="Cantidad pedido: ">${row.cantidad_pedido}</td>
                         <td data-target="Precio: ">${row.precio}</td>
                         <td data-target="Fecha envío: ">${fecha_envio}</td>
-                        <td data-target="Cambiar envío: "><a class="btn flat blue" onclick="openPickOp(${id_repartidor},${row.id_factura},${row.id_detalle})" id="botonAB${row.id_factura}"><i class="material-icons">av_timer</a></td>
+                     
                         </tr>
                     `;
 
+                   
+
                     });
+ 
+                    console.log(id+'adkj');
+                    contenido += `
+                   
+                <a class="btn flat blue right-align" onclick="openPickOp(${id_repartidor},${id},${response.dataset.id_detalle})" id="botonAB${id}"><i class="material-icons">av_timer</a>
+               
+                `;
                     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
                     document.getElementById('tbody-productosentrega').innerHTML = content;
+                    document.getElementById('boton').innerHTML = contenido;
                     // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
                     M.updateTextFields();
                 } else {

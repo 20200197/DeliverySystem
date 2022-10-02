@@ -43,9 +43,16 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readRepartidorAvaible':
-                if ($result['dataset'] = $entrega->repartidorAvaible()) {
+                if ($result['dataset'] =  $entrega->repartidorAvaibleMas()) {
                     $result['status'] = 1;
-                } elseif (Database::getException()) {
+
+                 
+                
+                }elseif ($result['dataset'] =  $entrega->repartidorAvaibleNE()  ) {
+                    $result['status'] = 1;
+                } elseif ($result['dataset'] =  $entrega->repartidorAvaibleA()) {
+                    $result['status'] = 1;
+                }elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
                     $result['exception'] = 'No hay datos registrados';
@@ -64,7 +71,7 @@ if (isset($_GET['action'])) {
                 //Productos disponibles
             case 'readProductosEntrega':
                 $_POST = $entrega->validateForm($_POST);
-                if (!$entrega->setIdDetalle($_POST['id_tt'])) {
+                if (!$entrega->setIdFactura($_POST['id_tt'])) {
                     $result['exception'] = 'Factura incorrecta';
                 } elseif ($result['dataset'] = $entrega->readProductosEntrega()) {
                     $result['status'] = 1;
@@ -81,9 +88,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Repartidor incorrecto';
                 } elseif (!$entrega->setFechaReparto($_POST['fecha_reparto'])) {
                     $result['exception'] = 'Fecha reparto incorrecto';
-                } elseif (!$entrega->setIdDetalle($_POST['id_detalle'])) {
-                    $result['exception'] = 'Detalle incorrecto';
-                } elseif (!$entrega->setIdFactura($_POST['id_factura'])) {
+                }  elseif (!$entrega->setIdFactura($_POST['id_factura'])) {
                     $result['exception'] = 'Factura incorrecto';
                 } elseif ($entrega->updatePk()) {
                     //Asignamos fecha
