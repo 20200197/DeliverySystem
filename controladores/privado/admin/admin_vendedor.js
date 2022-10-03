@@ -25,7 +25,7 @@ function fillTable(data) {
                     <td data-target="Correo vendedor: ">${row.correo_vendedor}</td>
                     <td data-target="Usuario vendedor: ">${row.usuario_vendedor}</td>
                     <td data-target="Solvencia pnc: ">
-                        <img src="../../../api/imagenes/privado/admin/modals/${row.solvencia_pnc}" 
+                        <img src="${SERVER}imagenes/vendedores/solvencias/${row.solvencia_pnc}" width="100" height="100" 
                         class="responsive-img">
                     </td>
                     <td data-target="Ver más: ">
@@ -93,15 +93,15 @@ function cargarModal(data) {
         <tr>
             <th>Solvencia pnc:</th>
             <td>
-                <img src="../../../api/imagenes/vendedor/solvencia/${data.antecedente_penal}"
-                class="responsive-img">
+                <img src="${SERVER}imagenes/vendedores/solvencias/${data.solvencia_pnc}"
+                class="responsive-img" width="100" height="100">
             </td>
         </tr>
         <tr>
             <th>Antecedente pnc:</th>
             <td>
-                <img src="../../../api/imagenes/vendedor/antecedentes/${data.antecedente_penal}"
-                class="responsive-img">
+                <img src="${SERVER}imagenes/vendedores/antecedentes/${data.antecedente_penal}"
+                class="responsive-img" width="100" height="100">
             </td>
         </tr>
         <tr>
@@ -119,8 +119,8 @@ function cargarModal(data) {
         <tr>
             <th>Foto:</th>
             <td>
-                <img src="../../../api/imagenes/vendedor/foto/${data.foto_vendedor}"
-                class="responsive-img">
+                <img src="${SERVER}imagenes/vendedores/${data.foto_vendedor}"
+                class="responsive-img" width="100" height="100">
             </td>
         </tr>
         <tr>
