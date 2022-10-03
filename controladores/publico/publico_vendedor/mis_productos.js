@@ -64,14 +64,14 @@ function fillTable(dataset) {
                             <p>$${row.precio_producto}</p>
                         </div>
                         <div class="col s12 m6 l6 center-align input-field">
-                            <a onclick="eliminar(${row.id_producto})" class="btn-small modal-trigger white black-text"
+                            <a onclick="eliminar(${row.id_producto})" class="btn-small modal-trigger red darken-4 white-text"
                             href="#modal_eliminar_produ"><i
-                            class="material-icons left black-text">delete</i>Eliminar</a>
+                            class="material-icons left white-text">delete</i>Eliminar</a>
                         </div>
                         <div class="col s12 m6 l6 center-align input-field">
-                            <a class="btn-small modal-trigger white black-text"
+                            <a class="btn-small blue accent-2 modal-trigger white-text"
                             href="#modal_editar_producto"  onclick="cargar_editar(${row.id_producto})"><i
-                            class="material-icons left black-text">edit</i>Editar</a>
+                            class="material-icons left white-text">edit</i>Editar</a>
                         </div>
                     </div>
 

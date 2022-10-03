@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         Layer = L.marker([response.dataset.latitud_vendedor, response.dataset.longitud_vendedor]).addTo(map);
                         // Se inicializa el componente Sidenav para que funcione la navegación lateral.
                         M.Sidenav.init(document.querySelectorAll('.sidenav'));
+                        M.updateTextFields();
                     } else {
                         sweetAlert(3, response.exception, 'index.html');
                     }

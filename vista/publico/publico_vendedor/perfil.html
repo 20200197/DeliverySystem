@@ -88,7 +88,7 @@
             <main class="main_vendedor">
                 <div class="row contenedor_vendedor ">
                     <form id="update-form" autocomplete="off">
-                        <div class="col l5 m5 s12 foto_de_vendedor">
+                        <div class="col l5 m5 s12 foto_de_vendedor center">
                             <h6>Foto personal</h6>
                             <div id="preview-profile" class="styleImage">
                                 <img src="../../../recursos/img/publico/default-profile.jpg" id="profile-pic"
@@ -106,7 +106,7 @@
                             </div>
                             <div class="">
                                 <div class="row">
-                                    <div class="col l6 m6 s6">
+                                    <div class="col l6 m6 s6 center">
                                         <h6>Antecendente penal</h6>
                                         <div id="preview-antecedente" class="styleImage">
                                             <img src="../../../recursos/img/publico/default-img.jpg"
@@ -125,7 +125,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col l6 m6 s6">
+                                    <div class="col l6 m6 s6 center">
                                         <h6>Solvencia PNC</h6>
                                         <div id="preview-solvencia" class="styleImage">
                                             <img src="../../../recursos/img/publico/default-img.jpg" id="solvencia-pic"
@@ -145,8 +145,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h6>Seleccione la ubicación para retirar los productos</h6>
-                                <div id="mapa" class="col s6 m6 l6"></div>
+                                <div class="col l12 m12 s12 centrador-mapa">
+                                    <h6>Seleccione la ubicación para retirar los productos</h6>
+                                    <div id="mapa"></div>
+                                </div>
+                                
                             </div>
                         </div>
                         <div class="col l7 m7 s12 datos_usuario_perfil_cliente">
@@ -214,7 +217,7 @@
         </div>
     </div>
 
-    <!--Footer-->
+    <!--Footer y redes sociales-->
     <footer class="page-footer blue accent-3">
         <div class="row">
             <div class="col l9 m6 s6">
@@ -225,25 +228,27 @@
                 <div class="col l6 m12 ">
                     <!--Redes-->
                     <div class="col l3 s3">
-                        <a href="">
+                        <a href="" class="centrador-mapa">
                             <i class="material-icons medium hide-on-small-only white-text">facebook</i>
                             <i class="material-icons small hide-on-med-and-up white-text">facebook</i>
                         </a>
                     </div>
                     <div class="col l3 s3">
-                        <a href="">
-                            <i class="material-icons medium hide-on-small-only white-text">facebook</i>
-                            <i class="material-icons small hide-on-med-and-up white-text">facebook</i>
+                        <a href="" class="centrador-mapa">
+                            <div class="col l9 m9 s9 sin-margen">
+                                <img src="../../../recursos/img/instagram.png" class="responsive-img" alt="">
+                            </div>
+    
                         </a>
                     </div>
                     <div class="col l3 s3">
-                        <a href="">
+                        <a href="" class="centrador-mapa">
                             <i class="material-icons medium hide-on-small-only white-text">whatsapp</i>
                             <i class="material-icons small hide-on-med-and-up white-text">whatsapp</i>
                         </a>
                     </div>
                     <div class="col l3 s3">
-                        <a href="">
+                        <a href="" class="centrador-mapa">
                             <i class="material-icons medium hide-on-small-only white-text">email</i>
                             <i class="material-icons small hide-on-med-and-up white-text">email</i>
                         </a>
