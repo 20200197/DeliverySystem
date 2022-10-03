@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     M.Modal.init(document.querySelectorAll(".modal"), { dismissible: false });
     //se inicializan los tooltp
     M.Tooltip.init(document.querySelectorAll(".tooltipped"));
+    M.Sidenav.init(document.querySelectorAll('.sidenav'));
 });
 
 //Función para verificar los datos de autentificación
@@ -75,7 +76,7 @@ function fillTable(data) {
                                     <input placeholder="Teléfono" id="telefono" type="tel" class="validate" value="${data.telefono_admin}" disabled/>
                                     <label class='active' for="telefono">Teléfono</label>
                                 </div>
-                                    <a class="btn waves-effect waves-light btn modal-trigger boton_cambiar_foto_cliente" href="#modal_info"  onclick="cargarUsuario(${data.id_admin})"><i
+                                    <a class="btn waves-effect waves-light btn modal-trigger blue boton_cambiar_foto_cliente" href="#modal_info"  onclick="cargarUsuario(${data.id_admin})"><i
                                     class="material-icons">edit</i></a>
                             </form>
                         </div>
@@ -92,7 +93,7 @@ function fillTable(data) {
                                 <label class='active' for="pass">Contraseña</label>
                             </div>
                             <div class="contenedor_boton_modificar_datos_cliente">
-                                <a onclick="revisarPass()" class="btn boton_cambiar_foto_cliente"><i
+                                <a onclick="revisarPass()" class="btn boton_cambiar_foto_cliente blue"><i
                                 class="material-icons">edit</i></a>
                             </div>
                         </div>

@@ -225,7 +225,7 @@ function fillTable(dataset) {
             <td data-target="Dui repartidor: ">${row.dui_repartidor}</td>
             <td data-target="Correo repartidor: ">${row.correo_repartidor}</td>
             <td data-target="Usuario repartidor: ">${row.usuario_repartidor}</td>
-            <td data-target="Telefono repartidor: "><img src="${SERVER}imagenes/distribuidor/${row.solvencia_pnc}"></td>
+            <td data-target="Telefono repartidor: "><img src="${SERVER}imagenes/repartidor/foto_solvencia/${row.solvencia_pnc}" width="100" height"100"></td>
             <td data-target="Ver más: "><button class=" btn-flat modal-trigger"
                                                 onClick="openInfo(${row.id_repartidor})"><i class="material-icons">remove_red_eye</i></button></td>
         `;
@@ -307,13 +307,13 @@ function fillData(id) {
                 </tr>
                 <tr>
                     <th>Solvencia pnc:</th>
-                    <td><img src="${SERVER}dasboard/imagenes/distribuidor/${response.dataset.solvencia_pnc}"
-                            class="materialboxed imagen_standar"></td>
+                    <td><img src="${SERVER}imagenes/repartidor/foto_solvencia/${response.dataset.solvencia_pnc}"
+                            class="materialboxed imagen_standar" height="100" width="100"></td>
                 </tr>
                 <tr>
                     <th>Antecedente pnc:</th>
-                    <td><img src="${SERVER}dasboard/imagenes/distribuidor/${response.dataset.antecedente_pnc}"
-                            class="materialboxed imagen_standar"></td>
+                    <td><img src="${SERVER}imagenes/repartidor/foto_antecedente/${response.dataset.antecedente_penal}"
+                            class="materialboxed imagen_standar" height="100" width="100"></td>
                 </tr>
                 <tr>
                     <th>Dirección domicilio:</th>
@@ -325,18 +325,18 @@ function fillData(id) {
                 </tr>
                 <tr>
                     <th>Foto placa:</th>
-                    <td><img src="${SERVER}dasboard/imagenes/distribuidor/${response.dataset.foto_placa_vehiculo}"
-                            class="materialboxed imagen_standar"></td>
+                    <td><img src="${SERVER}imagenes/repartidor/foto_placa/${response.dataset.foto_placa_vehiculo}"
+                            class="materialboxed imagen_standar" height="100" width="100"></td>
                 </tr>
                 <tr>
                     <th>Foto repartidor:</th>
-                    <td><img src="${SERVER}dasboard/imagenes/distribuidor/${response.dataset.foto_repartidor}"
-                            class="materialboxed imagen_standar"></td>
+                    <td><img src="${SERVER}imagenes/repartidor/foto_repartidor/${response.dataset.foto_repartidor}"
+                            class="materialboxed imagen_standar" height="100" width="100"></td>
                 </tr>
                 <tr>
                     <th>Foto vehiculo:</th>
-                    <td><img src="${SERVER}dasboard/imagenes/distribuidor/${response.dataset.foto_vehiculo}"
-                            class="materialboxed imagen_standar"></td>
+                    <td><img src="${SERVER}imagenes/repartidor/foto_vehiculo/${response.dataset.foto_vehiculo}"
+                            class="materialboxed imagen_standar" height="100" width="100"></td>
                 </tr>
                 <tr>
                     <th>Fecha registro:</th>

@@ -30,16 +30,7 @@
                             <img src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
                         </div>
                         <div class="col m6 s6">
-                            <div class="col s6 m8 l6 push-l5 right-align">
-                                <div class="switch switch_colorr  right-align">
-                                    <label>
-                                        🌕
-                                        <input type="checkbox" id="switch_color" onclick="modoOscuro()">
-                                        <span class="lever"></span>
-                                        🌙
-                                    </label>
-                                </div>
-                            </div>
+                           
                         </div>
                     </div>
             </nav>
@@ -58,37 +49,49 @@
         </ul>
         <!--Contenedor de datos-->
     <main>
-        <br><br>
-        <div class="row">
-            <div class="col s12 m4 l4 offset-m4 offset-l4">
-                <div class="card medium center center-align teal lighten-5">
-                    <form action="" id="login-form" autocomplete="off">
-                        <div class="row"></div>
-                        <h5>¡Inicia sesión!</h5>
-                        <div class="row"></div>
-                        <div class="input-field col s12 m11 l11">
-                            <i class="material-icons prefix">account_circle</i>
-                            <input id="user" type="text" class="validate" name="user">
-                            <label for="user">Usuario</label>
+       
+
+
+        <div class="container">
+            <div class="screen">
+                <div class="screen__content">
+                    <form action="" id="login-form" autocomplete="off" class="login">
+                        <h5 class="center-align">¡Inicia sesión!</h5>
+                        <div class="login__field">
+                          
+                            <div class="input-field col s12 m11 l11">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input id="user" type="text" class="validate" name="user">
+                            
+                            </div>
                         </div>
-                        <div class="input-field col s12 m11 l11">
-                        <i class="material-icons prefix">vpn_key</i>
-                        <input id="confirmacion" type="password" class="validate " name="password" onkeypress="revisarTexto(event)">
-                        <a onclick="mostrarPass('confirmacion', 'clave')"><i id="clave"
-                                class="material-icons prefix black-text">visibility</i></a>
-                        <label for="clave1">Escribe tu contraseña</label>
+                        <div class="login__field">
+                            <div class="input-field col s12 m11 l11">
+                                <i class="material-icons prefix">vpn_key</i>
+                                <input id="confirmacion" type="password" class="validate " name="password" onkeypress="revisarTexto(event)">
+                                <a onclick="mostrarPass('confirmacion', 'clave')"><i id="clave"
+                                        class="material-icons prefix black-text">visibility</i></a>
+                            
+                                </div>
                         </div>
-                        <div class="row"></div>
-                        <a href="recuperar_clave.html">¿Olvidaste
-                            tu contraseña?</a>
-                        <br>
-                        <br>
-                        <button class="waves-effect waves-light btn
-                                    blue" type="submit">Iniciar sesión</button>
+                        <button class="button login__submit" type="submit">
+                            <span class="button__text">Iniciar sesión</span>
+                            <i class="button__icon fas fa-chevron-right"></i>
+                        </button>	
+                        <a href="recuperar_clave.html" class="white-text">¿Olvidaste
+                            tu contraseña?</a>			
                     </form>
+                    
                 </div>
+                <div class="screen__background">
+                    <span class="screen__background__shape screen__background__shape4"></span>
+                    <span class="screen__background__shape screen__background__shape3"></span>		
+                    <span class="screen__background__shape screen__background__shape2"></span>
+                    <span class="screen__background__shape screen__background__shape1"></span>
+                </div>		
             </div>
         </div>
+        
     </main>
     </div>
 

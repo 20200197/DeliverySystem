@@ -102,19 +102,24 @@ function openRepartidoresAvaible() {
                 if (response.status) {
 
                     let content = '';
-                    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+
+
                     response.dataset.map(function (row) {
                         if (row.id_repartidor != null) {
 
-
-                            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-                            //<td><img src="${SERVER}imagenes/administrar_empleados/${row.imagen_perfil_empleado}" class="materialboxed" height="100" width="100"></td>
-                            content += `
+                            if (row.cantt == 1) {
+                                // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+                                //<td><img src="${SERVER}imagenes/administrar_empleados/${row.imagen_perfil_empleado}" class="materialboxed" height="100" width="100"></td>
+                                content += `
                             <tr>
                             <td data-target="Nombre repartidor: ">${row.nombre_repartidor}</td>
                             <td data-target="Asignar entrega: "><a class="btn flat blue" onclick="openOpciones(${row.id_repartidor})"><i class="material-icons">assignment_turned_in</a></td>
                             </tr>
                         `;
+                            }else{
+                              
+                            }
+
                         }
                     });
                     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
@@ -312,7 +317,7 @@ function openFacT(id, id_repartidor) {
                         } else {
                             fecha_envio = row.fecha_envio;
                         }
-                        
+
                         content += `
                         <tr>
                         <td data-target="Nombre producto: ">${row.nombre_producto}</td>
@@ -323,11 +328,11 @@ function openFacT(id, id_repartidor) {
                         </tr>
                     `;
 
-                   
+
 
                     });
- 
-                    console.log(id+'adkj');
+
+                    console.log(id + 'adkj');
                     contenido += `
                    
                 <a class="btn flat blue right-align" onclick="openPickOp(${id_repartidor},${id},${response.dataset.id_detalle})" id="botonAB${id}"><i class="material-icons">av_timer</a>

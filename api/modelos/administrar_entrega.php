@@ -218,29 +218,33 @@ class Entrega extends Validator
     //Repartidores
     public function repartidorAvaible()
     {
-        $sql = "SELECT   distinct(factura.id_repartidor), CONCAT(nombre_repartidor,' ', apellido_repartidor) as nombre_repartidor
+        $sql = "SELECT  distinct(factura.id_repartidor), CONCAT(nombre_repartidor,' ', apellido_repartidor) as nombre_repartidor, count(id_repartidor) as cant,case 
+        when  count (id_repartidor) <30 then 1
+        when  count (id_repartidor) >=30 then 0
+     end as cantt
         from factura factura 
         full outer join repartidor using(id_repartidor)
-        full outer join detalle_factura detalle_factura on detalle_factura.id_factura = factura.id_factura
-        where fecha_envio > current_date +7 or fecha_envio is null or factura.id_repartidor not in (select id_repartidor from detalle_factura inner join factura using(id_factura))";
+        inner join detalle_factura detalle_factura on detalle_factura.id_factura = factura.id_factura
+        where  EXTRACT(MONTH FROM fecha_envio) = EXTRACT(MONTH FROM current_date)
+		group by factura.id_repartidor, nombre_repartidor, apellido_repartidor";
         $params = null;
         return Database::getRows($sql, $params);
     }
 
       public function repartidorAvaibleMas()
     {
-        $sql = "SELECT   distinct(factura.id_repartidor), CONCAT(nombre_repartidor,' ', apellido_repartidor) as nombre_repartidor
+        $sql = "SELECT   (factura.id_repartidor), CONCAT(nombre_repartidor,' ', apellido_repartidor) as nombre_repartidor, fecha_envio
         from factura factura 
         full outer join repartidor using(id_repartidor)
         full outer join detalle_factura detalle_factura on detalle_factura.id_factura = factura.id_factura
-        where  fecha_envio > current_date+20";
+        where  fecha_envio > current_date+20 or fecha_envio < current_date";
         $params = null;
         return Database::getRows($sql, $params);
     }
 
     public function repartidorAvaibleA()
     {
-        $sql = "	SELECT   distinct(factura.id_repartidor), CONCAT(nombre_repartidor,' ', apellido_repartidor) as nombre_repartidor
+        $sql = "	SELECT   distinct(factura.id_repartidor), CONCAT(nombre_repartidor,' ', apellido_repartidor) as nombre_repartidor, fecha_envio
         from factura factura 
         inner join repartidor using(id_repartidor)
         left join detalle_factura detalle_factura on detalle_factura.id_factura = factura.id_factura
@@ -251,11 +255,13 @@ class Entrega extends Validator
 
     public function repartidorAvaibleNE()
     {
-        $sql = "SELECT   distinct(factura.id_repartidor), CONCAT(nombre_repartidor,' ', apellido_repartidor) as nombre_repartidor
-        from factura factura 
-        inner join repartidor using(id_repartidor)
-        left join detalle_factura detalle_factura on detalle_factura.id_factura = factura.id_factura
-        where factura.id_repartidor not in (select id_repartidor from factura )";
+        $sql = "SELECT   (repartidor.id_repartidor), CONCAT(repartidor.nombre_repartidor,' ',repartidor.apellido_repartidor) as nombre_repartidor, count (id_repartidor) as cant, case 
+        when  count (id_repartidor) <30 then 1
+        when  count (id_repartidor) >=30 then 0
+     end as cantt
+        from repartidor
+        where id_repartidor not in (select id_repartidor from factura where id_repartidor is not null)
+        group by id_repartidor";
         $params = null;
         return Database::getRows($sql, $params);
     }

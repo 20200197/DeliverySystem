@@ -1,7 +1,7 @@
 // Constantes para establecer rutas de archivos esenciales y parametros de la API
 const API_perfil = SERVER + "dashboard/sesion.php?action=";
 
-const API_DISTRIBUIDOR = SERVER + 'dashboard/administrar_distribuidor.php?action=';
+const API_DISTRIBUIDO = SERVER + 'dashboard/administrar_distribuidor.php?action=';
 
 
 //Método que se ejecuta cuando se carga la página
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     //Si hay sesión se reeemplazan las opciones
                     contenido = `
                     <div class="col l11 m8 s12 right-align">
-                        <div class="col l8 m8 s8">
+                        <div class="col l9 m9  s12 right-align">
                             <!--Switch de cambiar color-->
                             <div class="switch switch_colorr hide-on-small-and-down right-align">
                                 <label>
@@ -35,15 +35,18 @@ document.addEventListener("DOMContentLoaded", function () {
                                 </label>
                             </div>
                         </div>
+                        <div class="col s3 m3 l3">
                         <span class="black-text">${data.nombre}</span>
-                        <i class="material-icons black-text" id="campa${data.id_admin}" onclick="openCampa()">notifications</i>
+                        </div>
+                      
                     </div>
-                    <div class="col l1 m4 s12 left">
-                        <a href="perfil.html"><i
-                                class="icono-sesion material-icons black-text">account_circle</i></a>
+                    <div class="row">
+                    <div class="col s10 m10 l10 right-align">
+                    <i class="material-icons black-text" id="campa${data.id_admin}" onclick="openCampa()">notifications</i>
+                    </div>
                     </div>`;
 
-                    fetch(API_DISTRIBUIDOR + "getRequest", {
+                    fetch(API_DISTRIBUIDO + "getRequest", {
                         method: "get",
                     }).then(function (request) {
                         //Se verifica que la sentencia se haya ejecutado
@@ -56,8 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
                                 let title = [];
                                 // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
                                 if (response.status) {
-                          
-                                        document.getElementById("campa"+data.id_admin).innerHTML = 'notifications_none';
+  
+                                        document.getElementById("campa"+data.id_admin).innerHTML = 'notifications';
 
                                 } else {
                                     //si no hay sesión se coloca la opción para iniciar sesión
@@ -75,17 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 } else {
                     //si no hay sesión se coloca la opción para iniciar sesión
                     contenido = `
-                    <div class="col l8 m6 s12">
-                            <!--Switch de cambiar color-->
-                            <div class="switch switch_colorr hide-on-small-and-down right-align">
-                                <label>
-                                    🌕
-                                    <input type="checkbox" id="switch_color" onclick="modoOscuro()">
-                                    <span class="lever"></span>
-                                    🌙
-                                </label>
-                            </div>
-                        </div>
+                   
                     <div class="col l4 m6 s12 right-align">
                         <a href="index.html" class="waves-effect waves-light btn blue accent-2 boton_iniciar_sesion">Iniciar sesion</a>
                     </div>
@@ -113,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function openCampa() {
     let contenido = '';
     let title = '';
-    fetch(API_DISTRIBUIDOR + "getRequest", {
+    fetch(API_DISTRIBUIDO + "getRequest", {
         method: "get",
     }).then(function (request) {
         //Se verifica que la sentencia se haya ejecutado

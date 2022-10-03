@@ -78,6 +78,7 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = Database::getException();
                 }
+                break;
             case 'checkRango':
                 if ($result['dataset'] = $admin->checkRango()) {
                     $result['status'] = 1;

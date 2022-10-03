@@ -43,15 +43,18 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readRepartidorAvaible':
-                if ($result['dataset'] =  $entrega->repartidorAvaibleMas()) {
+                if ($result['dataset'] =  $entrega->repartidorAvaible()) {
                     $result['status'] = 1;
 
                  
                 
-                }elseif ($result['dataset'] =  $entrega->repartidorAvaibleNE()  ) {
+               
+                }elseif($result['dataset'] =  $entrega->repartidorAvaibleNE()) {
                     $result['status'] = 1;
-                } elseif ($result['dataset'] =  $entrega->repartidorAvaibleA()) {
-                    $result['status'] = 1;
+
+                 
+                
+               
                 }elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
