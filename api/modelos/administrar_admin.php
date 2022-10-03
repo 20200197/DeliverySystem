@@ -327,6 +327,8 @@ class Administrador extends Validator
           return Database::getRow($sql, $params);
       }
 
+      
+
 
     //Función para obtener la llave de autentificación del usuario
     public function obtenerEstadoLlave()
