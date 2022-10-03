@@ -100,9 +100,9 @@ class AdministrarVendedor extends Validator
         }
     }
 
-    public function setClave($value)
+    public function setClave($value,$nombre, $apellido, $usuario)
     {
-        if ($this->validatePassword($value)) {
+        if ($this->validateSafePassword($value,$nombre, $apellido, $usuario, '0000-00-00')) {
             $this->clave = password_hash($value, PASSWORD_DEFAULT);
             return true;
         } else {

@@ -139,8 +139,8 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ese usuario ya se encuentra en uso';
                 } elseif ($_POST['pass1'] != $_POST['pass2']) {
                     $result['exception'] = 'Las contraseñas no coinciden';
-                } elseif (!$administrar_vendedor->setClave($_POST['pass1'])) {
-                    $result['exception'] = 'Contraseña inválida';
+                } elseif (!$administrar_vendedor->setClave($_POST['pass1'], $_POST['name'], $_POST['lastname'], $_POST['user'])) {
+                    $result['exception'] = $administrar_vendedor->getPasswordError();
                 } elseif (!is_uploaded_file($_FILES['solvencia-file']['tmp_name'])) {
                     $result['exception'] = 'Seleccione una imagen para la solvencia';
                 } elseif (!$administrar_vendedor->setSolvencia($_FILES['solvencia-file'])) {

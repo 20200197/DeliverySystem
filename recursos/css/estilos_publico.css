@@ -1039,14 +1039,14 @@ input[type="radio"]:checked~label>.estrellaProducto {
     margin: 0px !important;
 }
 
-.input-field {
-    display: flex;
-    justify-content: center;
-}
-
 .centrador-mapa {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.file-field{
+    display: flex;
+    justify-content: center;
 }
