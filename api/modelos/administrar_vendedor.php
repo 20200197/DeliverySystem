@@ -110,6 +110,16 @@ class AdministrarVendedor extends Validator
         }
     }
 
+    public function setClave1($value)
+    {
+        if ($this->validatePassword($value)) {
+            $this->clave = password_hash($value, PASSWORD_DEFAULT);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function setSolvencia($file)
     {
         if ($this->validateImageFile($file, 8000, 8000)) {

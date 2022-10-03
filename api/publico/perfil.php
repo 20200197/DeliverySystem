@@ -31,7 +31,7 @@ if (isset($_GET['action'])) {
                 break;
             case 'changePass':
                 $_POST = $perfil->validateForm($_POST);
-                if (!$perfil->setClave($_POST['contrasenia1'])){
+                if (!$perfil->setClave1($_POST['contrasenia1'])){
                     $result['exception'] = 'Ingrese una contraseña válida';
                 } elseif ($_POST['contrasenia1'] != $_POST['contrasenia2']){
                     $result['exception'] = 'Las contraseñas no coinciden';
