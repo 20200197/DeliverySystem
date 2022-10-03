@@ -186,7 +186,7 @@
                                     <label for="telefono_vendedor" class="active">Teléfono</label>
                                 </div>
                             </div>
-                            <h6>Datos del vendedor</h6>
+                            <h6>Datos de la cuenta</h6>
                             <div class="contenedor_datos_repartidor">
                                 <div class="">
                                     <div class="input-field col s12 l12">
@@ -195,26 +195,58 @@
                                             required>
                                         <label for="usuario_vendedor" class="active">Usuario</label>
                                     </div>
-                                    <div class="input-field col s6">
-                                        <input id="contrasenia_vendedor1" type="password" class="validate"
-                                            name="contrasenia_vendedor1">
-                                        <label for="contrasenia_vendedor1" class="active">Contraseña</label>
-                                    </div>
-                                    <div class="input-field col s6">
-                                        <input id="contrasenia_vendedor2" type="password" class="validate"
-                                            name="contrasenia_vendedor2">
-                                        <label for="contrasenia_vendedor2" class="active">Confirmar contraseña</label>
-                                    </div>
                                 </div>
                                 <div class="center-align">
                                     <button class="btn blue" type="submit"><i class="material-icons">save</i></button>
+                                    <a class="btn blue" onclick="openCheckPass()"><i class="material-icons">security</i></a>
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
             </main>
-        </div>
+
+    <div class="modal" id="modal-cambiar-contrasenia">
+        <form action="" id="cambiar-contra-form">
+            <div class="modal-content">
+                <div class="row contorno">
+                    <h5 class="center-align">Ingrese su nueva contraseña</h5>
+                    <div class="input-field col s12 m6 l6">
+                        <input id="contrasenia1" type="password" class="validate"
+                            name="contrasenia1">
+                        <label for="contrasenia1" class="active">Contraseña</label>
+                    </div>
+                    <div class="input-field col s12 m6 l6">
+                        <input id="contrasenia2" type="password" class="validate"
+                            name="contrasenia2">
+                        <label for="contrasenia2" class="active">Confirmar contraseña</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class=" waves-effect waves-green btn blue boton_a_gregar">Actualizar</button>
+                <a href="#!" class="modal-close waves-effect waves-green btn red boton_a_gregar">Cerrar</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal" id="modal-confirmar-contrasenia">
+        <form action="" id="confirmar-form">
+            <div class="modal-content">
+                <div class="row contorno">
+                    <h5 class="center-align">Ingrese su contraseña actual</h5>
+                    <div class="input-field col s12 m8 l8 offset-l2 offset-m2">
+                        <input id="contrasenia_conf" type="password" class="validate"
+                            name="contrasenia_conf">
+                        <label for="contrasenia_conf" class="active">Contraseña</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class=" waves-effect waves-green btn blue boton_a_gregar">Confirmar</button>
+                <a href="#!" class="modal-close waves-effect waves-green btn red boton_a_gregar">Cerrar</a>
+            </div>
+        </form>
     </div>
 
     <!--Footer y redes sociales-->

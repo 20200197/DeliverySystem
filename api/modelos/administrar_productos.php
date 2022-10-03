@@ -359,6 +359,7 @@ class Producto extends Validator
         INNER JOIN marca USING(id_marca)
         LEFT JOIN detalle_factura USING(id_producto)
         FULL OUTER JOIN comentario_producto USING(id_detalle)
+        WHERE status_producto = true AND cantidad_producto >= 1
         GROUP BY producto.id_producto, nombre_producto, cantidad_producto, descripcion_producto, precio_producto, imagen, status_producto, nombre_vendedor, apellido_vendedor, nombre_marca";
         return Database::getRows($sql, null);
     }
@@ -371,6 +372,7 @@ class Producto extends Validator
             INNER JOIN marca USING(id_marca)
             LEFT JOIN detalle_factura USING(id_producto)
             FULL OUTER JOIN comentario_producto USING(id_detalle)
+            WHERE status_producto = true AND cantidad_producto >= 1
             GROUP BY producto.id_producto, nombre_producto, cantidad_producto, descripcion_producto, precio_producto, imagen, status_producto, nombre_vendedor, apellido_vendedor, nombre_marca
             HAVING ROUND(avg(valoracion), 2) <= ?
             ORDER BY ROUND(avg(valoracion), 2) DESC";
@@ -433,7 +435,7 @@ class Producto extends Validator
             INNER JOIN marca USING(id_marca)
             LEFT JOIN detalle_factura USING(id_producto)
             FULL OUTER JOIN comentario_producto USING(id_detalle)
-            WHERE id_categoria = ?
+            WHERE id_categoria = ? AND cantidad_producto >= 1 AND status_producto = true
             GROUP BY producto.id_producto, nombre_producto, cantidad_producto, descripcion_producto, precio_producto, imagen, status_producto, nombre_vendedor, apellido_vendedor, nombre_marca
             HAVING ROUND(avg(valoracion), 2) <= ?
             ORDER BY ROUND(avg(valoracion), 2) DESC";
@@ -450,7 +452,7 @@ class Producto extends Validator
         INNER JOIN marca USING(id_marca)
         LEFT JOIN detalle_factura USING(id_producto)
         FULL OUTER JOIN comentario_producto USING(id_detalle)
-        where status_producto = true and id_categoria = ?
+        where status_producto = true and id_categoria = ? AND cantidad_producto >= 1
         GROUP BY producto.id_producto, nombre_producto, cantidad_producto, descripcion_producto, precio_producto, imagen, status_producto, nombre_vendedor, apellido_vendedor, nombre_marca";
         $params = array($this->id_categoria);
         return Database::getRows($sql, $params);
@@ -465,7 +467,7 @@ class Producto extends Validator
         INNER JOIN marca USING(id_marca)
         LEFT JOIN detalle_factura USING(id_producto)
         FULL OUTER JOIN comentario_producto USING(id_detalle)
-        where status_producto = true and (precio_producto >= ? and precio_producto <= ?)
+        where status_producto = true and (precio_producto >= ? and precio_producto <= ?) AND cantidad_producto >= 1
         GROUP BY producto.id_producto, nombre_producto, cantidad_producto, descripcion_producto, precio_producto, imagen, status_producto, nombre_vendedor, apellido_vendedor, nombre_marca";
         $params = array($this->buscadorI, $this->buscadorL);
         return Database::getRows($sql, $params);
@@ -480,7 +482,7 @@ class Producto extends Validator
         INNER JOIN marca USING(id_marca)
         LEFT JOIN detalle_factura USING(id_producto)
         FULL OUTER JOIN comentario_producto USING(id_detalle)
-        where status_producto = true and (precio_producto >= ? and precio_producto <= ?) and producto.id_categoria = ?
+        where status_producto = true and (precio_producto >= ? and precio_producto <= ?) and producto.id_categoria = ? AND cantidad_producto >= 1
         GROUP BY producto.id_producto, nombre_producto, cantidad_producto, descripcion_producto, precio_producto, imagen, status_producto, nombre_vendedor, apellido_vendedor, nombre_marca";
         $params = array($this->buscadorI, $this->buscadorL, $id_categoria);
         return Database::getRows($sql, $params);
@@ -497,7 +499,7 @@ class Producto extends Validator
 		FULL OUTER join categoria as categoria on producto.id_categoria = categoria.id_categoria
 		inner join vendedor using (id_vendedor)
 		inner join marca using (id_marca)
-        where status_producto = true and valoracion = ? or valoracion = ? or valoracion = ? or valoracion = ? or valoracion = ? 
+        where status_producto = true and valoracion = ? or valoracion = ? or valoracion = ? or valoracion = ? or valoracion = ? AND cantidad_producto >= 1
         group by producto.id_producto,vendedor.nombre_vendedor,vendedor.apellido_vendedor,marca.nombre_marca ";
         $params = array($valorU, $valorD, $valorT, $valorC, $valorCi);
         return Database::getRows($sql, $params);
@@ -513,7 +515,7 @@ class Producto extends Validator
 		FULL OUTER join categoria as categoria on producto.id_categoria = categoria.id_categoria
 		inner join vendedor using (id_vendedor)
 		inner join marca using (id_marca)
-        where status_producto = true and (valoracion < ? + 1 and valoracion >= ?) or (valoracion >= ? + 0.5 and valoracion < ? + 1) and id_categoria = ?
+        where status_producto = true and (valoracion < ? + 1 and valoracion >= ?) or (valoracion >= ? + 0.5 and valoracion < ? + 1) and id_categoria = ? AND cantidad_producto >= 1
         group by producto.id_producto,vendedor.nombre_vendedor,vendedor.apellido_vendedor,marca.nombre_marca ";
         $params = array($valor, $valor, $valor, $valor, $id_categoria);
         return Database::getRows($sql, $params);
@@ -526,7 +528,7 @@ class Producto extends Validator
                 INNER JOIN vendedor using (id_vendedor)
                 INNER JOIN marca using (id_marca)
                 INNER JOIN categoria as categoria on producto.id_categoria = categoria.id_categoria
-                WHERE id_producto = ?";
+                WHERE id_producto = ? AND status_producto = true";
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }

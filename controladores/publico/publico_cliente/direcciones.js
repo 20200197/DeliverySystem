@@ -95,6 +95,7 @@ function openCreate() {
     fillSelect(ENDPOINT_MUNICIPIO, "municipio", null);
     // fillSelect(ENDPOINT_DEPARTAMENTO, "select_departamento", null);
     //Se inicializa el mapa con la vista y nivel de zoom
+    map.invalidateSize();
 }
 
 var map = L.map('mapa').setView([13.683767546575941, -88.93569946289064], 8);
@@ -187,7 +188,9 @@ document.getElementById("add-form").addEventListener("submit", function (event) 
 function openUpdate(id) {
 
     // Se abre la caja de diálogo (modal) que contiene el formulario.
+    Layers = null;
     M.Modal.getInstance(document.getElementById("modal-update")).open();
+    mapa.invalidateSize();
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append("id", id);
@@ -211,7 +214,8 @@ function openUpdate(id) {
                     var latitude = response.dataset.latitude;
                     var longitud = response.dataset.longitud;
                     var coordenadas = response.dataset.coordenadas;
-                    Layers = L.marker([latitude, longitud], { draggable: false }).addTo(mapa);
+                    Layers = L.marker([latitude, longitud]).addTo(mapa);
+                    M.updateTextFields();
                 } else {
                     sweetAlert(2, response.exception, null);
                 }

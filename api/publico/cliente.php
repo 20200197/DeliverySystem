@@ -61,6 +61,7 @@ if (isset($_GET['action'])) {
                         $result['message'] = 'Cuenta creada pero no se guardó la imagen';
                         $cliente->insertCambio();
                     }
+                    $result['exception'] = Database::getException();
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {

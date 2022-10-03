@@ -173,8 +173,8 @@ function openRequestOne(id) {
                                 <tr>
                                     <th>Acción:</th>
                                     <td>
-                                        <a onclick="updateRequest('accepted', ${response.dataset.id_repartidor})" class="btn green"><i class="material-icons small">check</i></a>
-                                        <a onclick="updateRequest('denied', ${response.dataset.id_repartidor})" class="btn red"><i class="material-icons small">close</i></a>
+                                        <a onclick="updateRequest('accepted', ${response.dataset.id_repartidor}, '${response.dataset.correo_repartidor}', '${response.dataset.nombre_repartidor}', 'te informamos de parte de CoreSystems que tu solicitud de ser un repartidor ha sido evaluada y posteriormente aceptada, puedes acceder al sistema por medio de este link: http://localhost/DeliverySystem/vista/publico/publico_repartidor/', 'con el uso de las credenciales que tu elegiste para enviar la solicitud.')" class="btn green"><i class="material-icons small">check</i></a>
+                                        <a onclick="updateRequest('denied', ${response.dataset.id_repartidor}, '${response.dataset.correo_repartidor}', '${response.dataset.nombre_repartidor}', 'te informamos de parte de CoreSystems que tu solicitud de ser un repartidor ha sido evaluada y lamentamos informarte que sus aptitudes no son las necesarias para cumplir con las exigencias del puesto de trabajo.')" class="btn red"><i class="material-icons small">close</i></a>
                                     </td>
                                 </tr>`;
                 document.getElementById('contenidoRequest').innerHTML = contenido;
@@ -188,7 +188,7 @@ function openRequestOne(id) {
     });
 }
 
-function updateRequest(action, id) {
+function updateRequest(action, id, correo, nombre, mensaje1) {
     let parameter = new FormData();
     parameter.append('id', id);
 
@@ -199,7 +199,31 @@ function updateRequest(action, id) {
         if(request.ok){
             request.json().then(function (response) {
                 if(response.status){
-                    sweetAlert(1, response.message, null);
+                    contratacion(correo, nombre, mensaje1);
+                    M.Modal.getInstance(document.getElementById('modal-info-request-one')).close();
+                    fillNumRequest();
+                }else{
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        }else{
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+function updateRequest(action, id, correo, nombre, mensaje1, mensaje2) {
+    let parameter = new FormData();
+    parameter.append('id', id);
+
+    fetch(API_DISTRIBUIDOR + action, {
+        method: 'post',
+        body: parameter
+    }).then(function (request) {
+        if(request.ok){
+            request.json().then(function (response) {
+                if(response.status){
+                    contratacion(correo, nombre, mensaje1, mensaje2);
                     M.Modal.getInstance(document.getElementById('modal-info-request-one')).close();
                     fillNumRequest();
                 }else{

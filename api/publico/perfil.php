@@ -18,6 +18,34 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
                 //Leer perfil de vendedor
+            case 'checkPass':
+                $_POST = $perfil->validateForm($_POST);
+                if ($perfil->checkPassParam($_POST['contrasenia_conf'])) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Contraseña verificada';
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Contraseña incorrecta';
+                }
+                break;
+            case 'changePass':
+                $_POST = $perfil->validateForm($_POST);
+                if (!$perfil->setClave($_POST['contrasenia1'])){
+                    $result['exception'] = 'Ingrese una contraseña válida';
+                } elseif ($_POST['contrasenia1'] != $_POST['contrasenia2']){
+                    $result['exception'] = 'Las contraseñas no coinciden';
+                } elseif ($perfil->checkPassParam($_POST['contrasenia1'])) {
+                    $result['exception'] = 'No puede actualizar a su contraseña actual';
+                } elseif ($perfil->changePass()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Contraseña actualizada con éxito';
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Hubo un error al cambiar la contraseña';
+                }
+                break;
             case 'readProfile':
                 if ($result['dataset'] = $perfil->readProfile()) {
                     $result['status'] = 1;

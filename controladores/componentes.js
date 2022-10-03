@@ -768,3 +768,38 @@ function recuperar(correo, nombre, codigo) {
         sweetAlert(2, error, null);
     });
 }
+
+function contratacion(correo, nombre, mensaje1) { 
+    //Se inicializa la librería, se verifica que el usuario exista
+    //Se crea un arreglo con los datos a enviar
+    let valores = {
+        correo: correo,
+        nombre: nombre,
+        mensaje1: mensaje1,
+    };
+    //Se realiza el proceso para enviarlo
+
+    emailjs.send('service_k5roc2l', 'template_nyfl9yd', valores, 'jlvJkg4wMQOlaYDl2').then(function (response) {
+        sweetAlert(1, 'Correo envíado correctamente', null);
+    }, function (error) { 
+        sweetAlert(2, error, null);
+    });
+}
+
+function contratacion(correo, nombre, mensaje1, mensaje2) { 
+    //Se inicializa la librería, se verifica que el usuario exista
+    //Se crea un arreglo con los datos a enviar
+    let valores = {
+        correo: correo,
+        nombre: nombre,
+        mensaje1: mensaje1,
+        mensaje2: mensaje2,
+    };
+    //Se realiza el proceso para enviarlo
+
+    emailjs.send('service_k5roc2l', 'template_nyfl9yd', valores, 'jlvJkg4wMQOlaYDl2').then(function (response) {
+        sweetAlert(1, 'Correo envíado correctamente', null);
+    }, function (error) { 
+        sweetAlert(2, error, null);
+    });
+}
