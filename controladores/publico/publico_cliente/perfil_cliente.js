@@ -78,6 +78,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.getElementById('main').innerHTML = contenido;
                 }
                 document.getElementById('sidenav-content').innerHTML = sidenav;
+                M.Sidenav.init(document.querySelectorAll('.sidenav'));
+                M.Tooltip.init(document.querySelectorAll('.tooltipped'));
+                M.Modal.init(document.querySelectorAll(".modal"), { dismissible: false });
+                M.Materialbox.init(document.querySelectorAll(".materialboxed"));
                 // Se envían los datos a la función del controlador para llenar la tabla en la vista.
             });
         } else {
