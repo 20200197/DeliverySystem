@@ -61,7 +61,6 @@ function fillTable(dataset) {
                 <td data-target="Valoración: " class="col l2 sin-margen">
                     <a class="waves-effect waves-light btn blue white-text" onclick="cargarProducto(${row.id_detalle
             })"><i class="material-icons left">stars</i>Valorar</a>
-                    <a class="waves-effect waves-light btn blue white-text" onclick="pedir(${row.id_detalle})"><i class="material-icons left">stars</i>Pedir</a>
                 </td>
             </tr>
         `;
