@@ -28,7 +28,7 @@ document.getElementById('search').addEventListener('keyup', function (event) {
   // Se evita recargar la página web después de enviar el formulario.
   event.preventDefault();
   // Petición para obtener los datos del registro solicitado.
-  fetch(API_CATEGORIA + 'search', {
+  fetch(API_BANEO + 'search', {
     method: 'post',
     body: parameter
   }).then(function (request) {
