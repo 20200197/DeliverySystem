@@ -18,7 +18,7 @@ class Database
         $server = 'localhost';
         $database = 'dbDeliverysystem';
         $username = 'postgres';
-        $password = 'admin';
+        $password = 'Academica20_21';
 
 
 
