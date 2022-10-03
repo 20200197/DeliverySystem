@@ -261,6 +261,30 @@ class AdministrarVendedor extends Validator
         return Database::getRows($sql, $params);
     }
 
+    public function changePass()
+    {
+        $sql = 'UPDATE vendedor SET clave_vendedor = ? WHERE id_vendedor = ?';
+        $params = array($this->clave, $_SESSION['id_vendedor']);
+
+        return Database::executeRow($sql, $params);
+    }
+
+    public function checkPassParam($clave)
+    {
+        $sql = 'SELECT clave_vendedor FROM vendedor WHERE id_vendedor = ?';
+        $params = array($_SESSION['id_vendedor']);
+
+        $pass = Database::getRow($sql, $params)['clave_vendedor'];
+        
+        if (password_verify($clave, $pass)) {
+            return true;
+        } elseif(Database::getException()) {
+            return Database::getException();
+        } else {
+            return false;
+        }
+    }
+
     //función para cambiar el estado de los clientes
 
     public function cambiarEstado()

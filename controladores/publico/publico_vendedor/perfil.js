@@ -94,6 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         
     });
+    M.updateTextFields();
     // Se define una variable para establecer las opciones del componente Modal.
     let options = {
         dismissible: false
@@ -129,6 +130,53 @@ document.getElementById('update-form').addEventListener('submit', function () {
     });
 
 });
+
+document.getElementById('confirmar-form').addEventListener('submit', function () {
+    event.preventDefault();
+    fetch(API_PERFIL + 'checkPass', {
+        method: 'post',
+        body: new FormData(document.getElementById('confirmar-form'))
+    }).then(function (request) {
+        if (request.ok) {
+            request.json().then(function (response) {
+                if(response.status){
+                    sweetAlert(1, response.message, null);
+                    M.Modal.getInstance(document.getElementById('modal-confirmar-contrasenia')).close();
+                    M.Modal.getInstance(document.getElementById('modal-cambiar-contrasenia')).open();
+                }else{
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+});
+
+document.getElementById('cambiar-contra-form').addEventListener('submit', function () {
+    event.preventDefault();
+    fetch(API_PERFIL + 'changePass', {
+        method: 'post',
+        body: new FormData(document.getElementById('cambiar-contra-form'))
+    }).then(function (request) {
+        if (request.ok) {
+            request.json().then(function (response) {
+                if(response.status){
+                    sweetAlert(1, response.message, null);
+                    M.Modal.getInstance(document.getElementById('modal-cambiar-contrasenia')).close();
+                }else{
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+})
+
+function openCheckPass() {
+    M.Modal.getInstance(document.getElementById('modal-confirmar-contrasenia')).open();
+}
 
 //Validaciones
 document.getElementById("dui_vendedor").addEventListener("input", function (evt) {
