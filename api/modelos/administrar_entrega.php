@@ -255,13 +255,13 @@ class Entrega extends Validator
 
     public function repartidorAvaibleNE()
     {
-        $sql = "SELECT   (repartidor.id_repartidor), CONCAT(repartidor.nombre_repartidor,' ',repartidor.apellido_repartidor) as nombre_repartidor, count (id_repartidor) as cant, case 
-        when  count (id_repartidor) <30 then 1
-        when  count (id_repartidor) >=30 then 0
-     end as cantt
+        $sql = "SELECT (repartidor.id_repartidor), CONCAT(repartidor.nombre_repartidor,' ',repartidor.apellido_repartidor) as nombre_repartidor, count (factura.id_repartidor) as cant, case
+        when count (factura.id_repartidor) <30 then 1
+        when count (factura.id_repartidor) >=30 then 0
+        end as cantt
         from repartidor
-        where id_repartidor not in (select id_repartidor from factura where id_repartidor is not null)
-        group by id_repartidor";
+        LEFT JOIN factura USING(id_repartidor)
+        group by repartidor.id_repartidor";
         $params = null;
         return Database::getRows($sql, $params);
     }
