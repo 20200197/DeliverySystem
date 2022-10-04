@@ -5,8 +5,8 @@
 /*
  *   Constante para establecer la ruta del servidor.
  */
-//const SERVER = "https://deliverysystemweb.herokuapp.com/api/";
-const SERVER = "http://localhost/DeliverySystem/api/";
+const SERVER = "https://deliverysystemweb.herokuapp.com/api/";
+//const SERVER = "http://localhost/DeliverySystem/api/";
 const API_TOKEN = SERVER + "dashboard/token.php?action=getToken";
 
 /*
