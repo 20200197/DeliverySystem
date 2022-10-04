@@ -1,5 +1,5 @@
 //Se crea la constante para la API
-const API_PERFIL = SERVER + 'publico/perfil_cliente.php?action=';
+const API_PERFIL2 = SERVER + 'publico/perfil_cliente.php?action=';
 
 //Se crea el método que se ejecutará cuando se ejecuta la página
 document.addEventListener('DOMContentLoaded', function () {
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('cancelar').style.display = "none";
     document.getElementById('botonFoto').setAttribute('disabled', true);
     //Se cargan los datos
-    readRows(API_PERFIL);
+    readRows(API_PERFIL2);
 });
 
 //Se crea una función para cargar los datos en la página
@@ -57,7 +57,7 @@ function activar() {
         //Se desctiva el boton del perfil
         document.getElementById('botonFoto').setAttribute('disabled', true);
         //Se rellenan los campos con los datos actuales
-        readRows(API_PERFIL);
+        readRows(API_PERFIL2);
     } else {
         //Se muestran los botones
         document.getElementById('guardar').style.display = "";
@@ -84,7 +84,7 @@ function activar() {
 //Función para guardar los cambios del usuario
 function guardarDatos() {
     //Se realiza una petición para validar que si se han realizado cambios a guardar
-    fetch(API_PERFIL + 'readAll', {
+    fetch(API_PERFIL2 + 'readAll', {
         method: 'get',
     }).then(function (request) {
         //Se verifica si se ha ejecutado la petición
@@ -106,7 +106,7 @@ function guardarDatos() {
                         sweetAlert(3, 'Debes modificar datos para poder actualizar', null);
                     } else {
                         //Se procede a actualizar el registro
-                        fetch(API_PERFIL + "ActualizarPerfil", {
+                        fetch(API_PERFIL2 + "ActualizarPerfil", {
                             method: "post",
                             body: new FormData(document.getElementById("datosGenerales")),
                         }).then(function (request) {
@@ -135,7 +135,7 @@ function guardarDatos() {
                                         //Se desctiva el boton del perfil
                                         document.getElementById('botonFoto').setAttribute('disabled', true);
                                         //Se rellenan los campos con los datos actuales
-                                        readRows(API_PERFIL);
+                                        readRows(API_PERFIL2);
                                     } else {
                                         //Se notifica el problema
                                         sweetAlert(2, response.exception, null);
@@ -165,7 +165,7 @@ document.getElementById("confirmacionAutenticidad").addEventListener('submit', f
     //Se evita la recarga de la página
     event.preventDefault();
     //Se realiza la petición
-    fetch(API_PERFIL + "verificarPass", {
+    fetch(API_PERFIL2 + "verificarPass", {
         method: "post",
         body: new FormData(document.getElementById("confirmacionAutenticidad")),
     }).then(function (request) {
@@ -199,7 +199,7 @@ document.getElementById("cambioPass").addEventListener("submit", function (event
     //Se evita la recarga de la página
     event.preventDefault();
     //Se realiza la petición
-    fetch(API_PERFIL + "actualizarPass", {
+    fetch(API_PERFIL2 + "actualizarPass", {
         method: "post",
         body: new FormData(document.getElementById("cambioPass")),
     }).then(function (request) {

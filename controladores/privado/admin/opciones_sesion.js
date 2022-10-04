@@ -17,34 +17,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 //Se crea la variable donde se guardarán los datos
                 let data = [];
                 //se crea la variable donde se guardará el HTML a inyectar
-                let contenido = [];
+                let contenido = [], contenido2 = [];
                 // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     data = response.dataset;
                     //Si hay sesión se reeemplazan las opciones
                     contenido = `
-                    <div class="col l11 m8 s12 right-align">
-                        <div class="col l9 m9  s12 right-align">
-                            <!--Switch de cambiar color-->
-                            <div class="switch switch_colorr hide-on-small-and-down right-align">
-                                <label>
-                                    🌕
-                                    <input type="checkbox" id="switch_color${data.id_admin}" onclick="modoOscuro()">
-                                    <span class="lever"></span>
-                                    🌙
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col s3 m3 l3">
+                    <div class="col l11 m10 s9 right-align">
+                       
                         <span class="black-text">${data.nombre}</span>
-                        </div>
-                      
                     </div>
-                    <div class="row">
-                    <div class="col s10 m10 l10 right-align">
-                    <i class="material-icons black-text" id="campa${data.id_admin}" onclick="openCampa()">notifications</i>
-                    </div>
+                    <div class="col l1 m2 s3 right valign-wrapper">
+                        <a href="perfil.html">
+                         <i class=" icono-sesion material-icons  black-text">account_circle</i></a>
                     </div>`;
+                    contenido2 = `
+                    <a href="perfil.html">
+                         <i class=" icono-sesion material-icons  white-text">account_circle</i>
+                    <span class="white-text hide-on-large-only ">${data.nombre}</span></a>
+
+                   `;
+                    //se incrustan en el html
+                    document.getElementById("opciones_navbar").innerHTML = contenido;
+                    document.getElementById("sesion_navbar").innerHTML = contenido2;
 
                     fetch(API_DISTRIBUIDO + "getRequest", {
                         method: "get",
@@ -73,8 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
                             console.log(request.status + " " + request.statusText);
                         }
                     });
-                    //se incrustan en el html
-                    document.getElementById("opciones_navbar").innerHTML = contenido;
                 } else {
                     //si no hay sesión se coloca la opción para iniciar sesión
                     contenido = `

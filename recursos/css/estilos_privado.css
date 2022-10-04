@@ -76,7 +76,25 @@ a {
     }
 
     .opciones-sidenav {
-        height: 100% !important;
+        height: 90%;
+        width: 100% !important;
+    }
+
+    .opciones-sidenav li {
+        width: 100% !important;
+        margin: 0px !important;
+        padding: 0px !important;
+        display: flex;
+        justify-content: start !important;
+    }
+
+    .opciones-sidenav li a {
+        padding: 10px 0px;
+        height: auto;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        width: 100% !important;
     }
 
     .cerrar-sidenav {
@@ -90,6 +108,7 @@ a {
     flex-direction: column;
     align-items: center;
     align-content: space-between;
+    flex-wrap: nowrap;
 }
 
 .sidenav li {
@@ -511,15 +530,6 @@ th {
 .card-recuperacion {
     height: 300px !important;
 }
-
-
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;	
-	font-family: Raleway, sans-serif;
-}
-
 
 
 .container {
