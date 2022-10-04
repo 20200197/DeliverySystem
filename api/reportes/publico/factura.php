@@ -7,17 +7,17 @@ $pdf = new Report;
 $factura = new PedidosCliente;
 
 //Iniciamos variables de sesion
-session_start();
+//session_start();
 
 $pdf->setFillColor(52, 152, 247);
 // Se establece la fuente para los encabezados.
 $pdf->setFont('Arial', 'B', 11);
 //se verificar que exista un id y que no esté vacío
 if (isset($_GET['id']) and !empty($_GET['id'])) {
-    $pdf->startReport('Factura #' . $_GET['id'], $_SESSION['usuario_cliente']);
+    $pdf->startReport('Factura #' . $_GET['id'], 'usuario');
     $pdf->setTitle('Factura');
 
-    if (isset($_SESSION['id_cliente'])) {
+    //if (isset($_SESSION['id_cliente'])) {
         //se pone setea el id de la url
         if ($factura->setId($_GET['id'])) {
             //Se establece el color de relleno y la fuente
@@ -85,9 +85,9 @@ if (isset($_GET['id']) and !empty($_GET['id'])) {
         } else {
             $pdf->cell(185, 10, utf8_decode("Recurso no disponible"), 1, 0, 'C', 0);
         }
-    } else {
+    /*} else {
         header('location: ../../../vista/publico/publico_cliente/index.html');
-    }
+    }*/
     $pdf->output('I', 'Factura #' . $_GET['id'] . '.pdf');
 } else {
     header('location: ../../../vista/publico/publico_cliente/pedidos_cliente.html');
