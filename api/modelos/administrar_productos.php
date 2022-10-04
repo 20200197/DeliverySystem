@@ -603,14 +603,13 @@ class Producto extends Validator
 
     public function readProductosMenosVendidos()
     {
-        $sql = "SELECT producto.nombre_producto, sum(detalle_factura.cantidad_pedido) as cantidad_pedido,min(detalle_factura.cantidad_pedido) as cantidad_minima, (sum(detalle_factura.cantidad_pedido) * (detalle_factura.precio + detalle_factura.costo_envio)) as total, categoria.categoria  
-                from producto 
-                inner join detalle_factura detalle_factura on detalle_factura.id_producto = producto.id_producto 
-                inner join factura factura on factura.id_factura = detalle_factura.id_factura 
-                inner join categoria categoria on producto.id_categoria = categoria.id_categoria
-                where cantidad_pedido<(select max(detalle_factura.cantidad_pedido) from detalle_factura)
-                group by producto.nombre_producto, detalle_factura.precio, detalle_factura.costo_envio, cantidad_pedido, categoria.categoria
-                order by total desc limit 5";
+        $sql = "SELECT nombre_producto, sum(cantidad_pedido) as pedido, sum(cantidad_pedido * precio) as total, categoria
+                FROM producto
+                INNER JOIN detalle_factura USING (id_producto)
+                INNER JOIN factura USING (id_factura)
+                INNER JOIN categoria USING (id_categoria)
+                GROUP BY nombre_producto, categoria
+                ORDER BY pedido ASC LIMIT 5";
         $params = null;
         return Database::getRows($sql, $params);
     }
