@@ -68,6 +68,6 @@ if ($dataProductos = $producto->readAll()) {
 }
 header('Content-type: application/pdf');
 // Se envía el documento al navegador y se llama al método footer()
-$pdf->output('D', 'productos_mas_menos_vendidos.pdf');
+$pdf->output('I', 'productos_mas_menos_vendidos.pdf');
 
 
