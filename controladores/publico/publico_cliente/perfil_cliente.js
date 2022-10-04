@@ -1,5 +1,3 @@
-API_PERFIL = SERVER + "publico/sesion.php?action=";
-
 document.addEventListener('DOMContentLoaded', function () {
     fetch(API_PERFIL + "obtenerSesionC", {
         method: "get",

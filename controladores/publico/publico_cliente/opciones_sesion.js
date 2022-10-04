@@ -28,11 +28,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                     <div class="col l1 m2 s3 right valign-wrapper">
                         <a href="perfil.html">
-                        <img src='../../../api/imagenes/repartidor/foto_repartidor/${data.foto_cliente}' class="foto-perfil-repartidor-grande"></a>
+                        <img src='../../../api/imagenes/cliente/${data.foto_cliente}' class="foto-perfil-repartidor-grande"></a>
                     </div>`;
                     contenido2 = `
                     <a href="perfil.html">
-                                       <img src='../../../api/imagenes/repartidor/foto_repartidor/${data.foto_cliente}' class="foto-perfil-repartidor">
+                                       <img src='../../../api/imagenes/cliente/${data.foto_cliente}' class="foto-perfil-repartidor">
                     <span class="white-text hide-on-large-only ">${data.nombre}</span></a>
                    `;
                     //se incrustan en el html
@@ -42,11 +42,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     //si no hay sesión se coloca la opción para iniciar sesión
                     contenido = `
                     <div class="col l12 m12 s12 right-align">
-                        <a href="login.html" class="waves-effect waves-light btn blue accent-2 boton_iniciar_sesion">Iniciar sesion</a>
+                        <a href="login.html" class="waves-effect waves-light btn blue accent-2 boton_iniciar_sesion">Iniciar sesión</a>
                     </div>
                     `;
                     contenido2 = `
-                         <a href="login.html" class="waves-effect waves-light btn blue accent-2 boton_iniciar_sesion">Iniciar sesion</a>
+                         <a href="login.html" class="waves-effect waves-light btn indigo darken-4 white-text center-align">Iniciar sesiónn</a>
                    `;
                     //se incrustan en el html
                     document.getElementById("opciones_navbar").innerHTML = contenido;

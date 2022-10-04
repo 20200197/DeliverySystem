@@ -47,6 +47,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     //si no hay sesión se coloca la opción para iniciar sesión
                     sidenav += `<ul id="slide-out" class="sidenav sidenav-fixed blue accent-2">
                         <div class="opciones-sidenav">
+                        <li id="sesion_navbar" class="hide-on-large-only valign-wrapper"></li>
+            <hr class="hide-on-large-only">
                             <li class="collection-item"><a href="index.html" class="tooltipped" data-position="right"
                                     data-tooltip="Hogar"><i class="material-icons  white-text">home</i><span
                                         class="white-text hide-on-large-only">Inicio</span></a>
