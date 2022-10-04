@@ -590,14 +590,13 @@ class Producto extends Validator
     /** Top 5 productos mas vendido y 5 menos vendidos **/
     public function readProductosMasVendidos()
     {
-        $sql = "SELECT producto.nombre_producto, sum(detalle_factura.cantidad_pedido) as cantidad_pedido, (sum(detalle_factura.cantidad_pedido) * (detalle_factura.precio + detalle_factura.costo_envio)) as total, categoria.categoria  
-        from producto 
-        inner join detalle_factura detalle_factura on detalle_factura.id_producto = producto.id_producto 
-        inner join factura factura on factura.id_factura = detalle_factura.id_factura 
-        inner join comentario_producto comentario_producto on comentario_producto.id_detalle = detalle_factura.id_detalle 
-		inner join categoria categoria on producto.id_categoria = categoria.id_categoria
-        group by producto.nombre_producto, detalle_factura.precio, detalle_factura.costo_envio, cantidad_pedido, categoria.categoria
-        order by cantidad_pedido desc limit 5";
+        $sql = "SELECT nombre_producto, sum(cantidad_pedido) as pedido, sum(cantidad_pedido * precio) as total, categoria
+        FROM producto
+        INNER JOIN detalle_factura USING (id_producto)
+        INNER JOIN factura USING (id_factura)
+        INNER JOIN categoria USING (id_categoria)
+        GROUP BY nombre_producto, categoria
+        ORDER BY pedido DESC LIMIT 5;";
         $params = null;
         return Database::getRows($sql, $params);
     }

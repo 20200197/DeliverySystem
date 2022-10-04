@@ -41,7 +41,7 @@ if ($dataProductos = $producto->readAll()) {
         foreach ($dataProductos as $rowProducto) {;
             // Se imprimen las celdas con los datos de los productos.
             $pdf->cell(90, 10, utf8_decode($rowProducto['nombre_producto']), 1, 0);
-            $pdf->cell(32, 10, $rowProducto['cantidad_pedido'], 1, 0);
+            $pdf->cell(32, 10, $rowProducto['pedido'], 1, 0);
             $pdf->cell(30, 10, $rowProducto['total'], 1, 0);
             $pdf->cell(32, 10, utf8_decode($rowProducto['categoria']), 1, 1);
         }
