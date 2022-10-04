@@ -76,7 +76,7 @@ function openReport() {
     // Se establece la ruta del reporte en el servidor.
     let url = SERVER + `reportes/publico/clientes_mas_entregas.php`;
     // Se abre el reporte en una nueva pestaña del navegador web.
-    window.open('https://deliverysystemweb.herokuapp.com/api/reportes/publico/clientes_mas_entregas.php',"Editar notícia", "location=1, status=1, scrollbars=1, width=800, height=455");
+    window.open("https://deliverysystemweb.herokuapp.com/api/reportes/publico/clientes_mas_entregas.php","Editar notícia", "location=1, status=1, scrollbars=1, width=800, height=455");
     
 }
 
