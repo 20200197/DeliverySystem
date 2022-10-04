@@ -484,9 +484,9 @@ class AdministrarVendedor extends Validator
                 INNER JOIN detalle_factura USING (id_factura)
                 INNER JOIN producto USING (id_producto)
                 INNER JOIN categoria USING (id_categoria)
-                WHERE categoria = ? and id_vendedor = ?
+                WHERE categoria = ?
                 GROUP BY fecha";
-        $params = array($nombre_categoria, $_SESSION['id_vendedor']);
+        $params = array($nombre_categoria);
 
         return Database::getRows($sql, $params);
     }
