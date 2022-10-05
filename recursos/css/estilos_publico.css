@@ -1085,7 +1085,7 @@ input[type="radio"]:checked~label>.estrellaProducto {
 
 .screen__background__shape {
 	transform: rotate(45deg);
-	position: absolute;
+	position: fixed;
 }
 
 .screen__background__shape1 {
