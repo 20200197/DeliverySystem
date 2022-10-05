@@ -19,6 +19,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 //se crea la variable donde se guardará el HTML a inyectar
                 let contenido = [],
                     contenido2 = [];
+                let contenido3 = [];
+
                 // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     data = response.dataset;
@@ -37,10 +39,16 @@ document.addEventListener("DOMContentLoaded", function() {
                          <i class=" icono-sesion material-icons  white-text">account_circle</i>
                     <span class="white-text hide-on-large-only ">${data.nombre}</span></a>
 
-                   `;
+
+                   `
+                    contenido3 = `
+                    <i class="material-icons black-text" id="campa${data.id_admin}" onclick="openCampa()">notifications</i>
+                  `
+
                     //se incrustan en el html
                     document.getElementById("opciones_navbar").innerHTML = contenido;
                     document.getElementById("sesion_navbar").innerHTML = contenido2;
+                    //document.querySelector("main").innerHTML = contenido3;
 
                     fetch(API_DISTRIBUIDO + "getRequest", {
                         method: "get",
