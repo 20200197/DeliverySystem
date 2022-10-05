@@ -5,19 +5,20 @@ const API_DISTRIBUIDO = SERVER + 'dashboard/administrar_distribuidor.php?action=
 
 
 //Método que se ejecuta cuando se carga la página
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     //Se busca si se ha iniciado sesión o no
     fetch(API_perfil + "obtenerSesion", {
         method: "get",
-    }).then(function (request) {
+    }).then(function(request) {
         //Se verifica que la sentencia se haya ejecutado
         if (request.ok) {
             //Se convierte la petición en formato JSON
-            request.json().then(function (response) {
+            request.json().then(function(response) {
                 //Se crea la variable donde se guardarán los datos
                 let data = [];
                 //se crea la variable donde se guardará el HTML a inyectar
-                let contenido = [], contenido2 = [];
+                let contenido = [],
+                    contenido2 = [];
                 // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     data = response.dataset;
@@ -43,23 +44,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     fetch(API_DISTRIBUIDO + "getRequest", {
                         method: "get",
-                    }).then(function (request) {
+                    }).then(function(request) {
                         //Se verifica que la sentencia se haya ejecutado
                         if (request.ok) {
                             //Se convierte la petición en formato JSON
-                            request.json().then(function (response) {
-                          
+                            request.json().then(function(response) {
+
                                 //se crea la variable donde se guardará el HTML a inyectar
                                 let contenido = [];
                                 let title = [];
                                 // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
                                 if (response.status) {
-  
-                                        document.getElementById("campa"+data.id_admin).innerHTML = 'notifications';
+
+                                    document.getElementById("campa" + data.id_admin).innerHTML = 'notifications';
 
                                 } else {
                                     //si no hay sesión se coloca la opción para iniciar sesión
-                                    document.getElementById("campa"+data.id_admin).innerHTML = 'notifications_none';
+                                    document.getElementById("campa" + data.id_admin).innerHTML = 'notifications_none';
                                 }
                                 // Se envían los datos a la función del controlador para llenar la tabla en la vista.
                             });
@@ -76,12 +77,12 @@ document.addEventListener("DOMContentLoaded", function () {
                         <a href="index.html" class="waves-effect waves-light btn blue accent-2 boton_iniciar_sesion">Iniciar sesion</a>
                     </div>
                     `
-        
-                    
-                    
+
+
+
                     ;
 
-                   
+
 
                 }
                 // Se envían los datos a la función del controlador para llenar la tabla en la vista.
@@ -93,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-   
+
 });
 
 function openCampa() {
@@ -101,18 +102,18 @@ function openCampa() {
     let title = '';
     fetch(API_DISTRIBUIDO + "getRequest", {
         method: "get",
-    }).then(function (request) {
+    }).then(function(request) {
         //Se verifica que la sentencia se haya ejecutado
         if (request.ok) {
             //Se convierte la petición en formato JSON
-            request.json().then(function (response) {
+            request.json().then(function(response) {
                 //Se crea la variable donde se guardarán los datos
                 let data = [];
                 //se crea la variable donde se guardará el HTML a inyectar
 
                 // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
-                    response.dataset.map(function (row) {
+                    response.dataset.map(function(row) {
 
 
                         //Si hay sesión se reeemplazan las opciones
@@ -127,8 +128,8 @@ function openCampa() {
                     title: title,
                     html: contenido,
                     showCancelButton: true,
-                }).then(function () {
-            
+                }).then(function() {
+
                 });
                 // Se envían los datos a la función del controlador para llenar la tabla en la vista.
             });
