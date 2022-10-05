@@ -1093,7 +1093,7 @@ input[type="radio"]:checked~label>.estrellaProducto {
 	width: 520px;
 	background: #FFF;	
 	top: -50px;
-	right: 120px;	
+
 	border-radius: 0 72px 0 0;
 }
 
@@ -1120,7 +1120,7 @@ input[type="radio"]:checked~label>.estrellaProducto {
 	width: 200px;
 	background: #0288d1;	
 	top: 420px;
-	
+	right: 50px;	
 	border-radius: 60px;
 }
 
