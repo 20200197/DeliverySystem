@@ -54,7 +54,7 @@ function fillTable(dataset) {
             <td data-target="Vendedor:"><br> ${row.nombre_vendedor}
             </td>
             <td data-target="Cliente:"><br> ${row.nombre_cliente}</td>
-            <td data-target="Dirección:"><div class="col s12 offset-s1">${row.descripcion_direccion}</div></td>
+            <td data-target="Dirección:"><br>${row.descripcion_direccion}</td>
             <td data-target="Fecha:">${row.fecha_compra == null ? 'Sin asignar' : row.fecha_compra}</td>
             <td data-target="Costo de envío:">${row.costo_envio == null ? 'Sin asignar' : '$'+row.costo_envio}</td>
          </tr>
