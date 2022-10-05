@@ -206,7 +206,7 @@ function cargar_productos(id) {
 
                             <tr>
                                     <td class="center" ata-target="Producto: ">
-                                        <img src="../../../api/imagenes/productos/${row.imagen}" class="responsive-img" alt="" width="200" height="200">
+                                        <img src="../../../api/imagenes/productos/${row.imagen}" class="responsive-img materialboxed" alt="" width="200" height="200">
                                         <span>${row.nombre_producto}</span>
                                     </td>
                                     <td data-target="Precio: ">$${row.precio}</td>
@@ -226,6 +226,8 @@ function cargar_productos(id) {
                         //Se le muestra el problema
                         sweetAlert(2, response.exception, null);
                     }
+                M.Materialbox.init(document.querySelectorAll('.materialboxed'));
+
                 })
             } else {
                 //Se imprime la consola
