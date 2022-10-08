@@ -71,7 +71,7 @@ function fillTable(dataset) {
                 </a>
                 <a class="btn ${row.status ? "green accent-4" : " blue accent-2"
                     } tooltipped" data-position="right" data-tooltip="Entregar" onClick="entregar(${row.id_detalle},${
-                row.id_status
+                row.status
             })">
                     <i class="material-icons">assignment_turned_in</i>
                 </a>
@@ -92,10 +92,8 @@ function fillTable(dataset) {
 
 function entregar(id, estado) {
     //Se verifica el estado del pedido y se notifica si es posible la acción o no
-    if (estado == 3) {
+    if (estado) {
         sweetAlert(3, 'Ya se ha entregado.', null);
-    } else if (estado == 4) {
-        sweetAlert(3, 'El pedido ha sido cancelado, no se puede entregar.', null);
     } else {
         //Se crear una variable de tipo form
         let datos = new FormData();
