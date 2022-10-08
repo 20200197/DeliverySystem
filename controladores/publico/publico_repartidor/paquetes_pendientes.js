@@ -31,36 +31,53 @@ function fillTable(dataset) {
             </td>
             
             <td data-target="Dirección y punto de referencia: ">
-            <div class="row ">
-            <div class="col s12 offset-s1">
-            <i class="material-icons blue-text text-accent-2 tooltipped" data-position="right" data-tooltip="Dirección">location_on</i>
-            <span>${row.descripcion_direccion}</span>
-            </div>
-        <div class="col s12 offset-s1">
-            <i class="material-icons blue-text text-accent-2 tooltipped" data-position="right" data-tooltip="Punto de referencia">map</i>
-            <span>${row.punto_referencia}</span>
-        </div>
-        </div>
+                <div class="row ">
+                    <div class="col s12">
+                    <i class="material-icons blue-text text-accent-2 tooltipped" data-position="right" data-tooltip="Dirección">location_on</i>
+                    <span>${row.descripcion_direccion}</span>
+                    </div>
+                    <div class="col s12">
+                        <i class="material-icons blue-text text-accent-2 tooltipped" data-position="right" data-tooltip="Punto de referencia">map</i>
+                        <span>${row.punto_referencia}</span>
+                    </div>
+                </div>
             </td>
-            <td data-target="Productos: "> <a href="#modal_info" class="waves-effect waves-light modal-trigger" onClick="cargar_productos(${row.id_factura})"><i class="material-icons blue-text text-accent-2 center-align">remove_red_eye</i></a></td>
-            <td data-target="Total: ">$${row.total}</td>
-
+            <td data-target="Producto: ">
+                <div class="row">
+                    <div class="col s12">
+                    <img src="../../../api/imagenes/productos/${row.imagen}" width="120px">
+                    </div>
+                    <div class="col s12 valign-wrapper">
+                        <i class="material-icons blue-text text-accent-2 tooltipped" data-position="right" data-tooltip="Nombre del producto">bookmark</i>
+                        <span class="center-align">${row.nombre_producto}</span>
+                    </div>
+                </div>
+            </td>
+            <td data-target="Detalle: ">
+                <div class="row ">
+                    <div class="col s12 valign-wrapper">
+                    <i class="material-icons blue-text text-accent-2 tooltipped" data-position="right" data-tooltip="Cantidad">developer_board</i>
+                    <span>${row.cantidad_pedido}</span>
+                    </div>
+                    <div class="col s12 valign-wrapper">
+                        <i class="material-icons blue-text text-accent-2 tooltipped" data-position="right" data-tooltip="Precio">attach_money</i>
+                        <span>${row.precio}</span>
+                    </div>
+                </div>
+            </td>
             <td data-target="Opciones: ">
-           <a class="btn blue accent-2" href="mapa.html?id=${row.id_cliente}&latitude=${row.latitude}&longitud=${row.longitud}"><i class="material-icons">map</i></a>
-                <a class="btn ${row.id_status == 3 ? 'green accent-4' : row.id_status == 4 ? 'grey lighten-1' : ' blue accent-2'} tooltipped" data-position="right" data-tooltip="Entregar" onClick="entregar(${row.id_factura},${row.id_status})"><i class="material-icons">assignment_turned_in</i></a>
-                <a class="btn ${row.id_status == 3 ? 'grey lighten-1' : row.id_status == 4 ? 'red darken-2' : ' blue accent-2'} tooltipped" data-position="right" data-tooltip="Cancelar" onClick="cancelar(${row.id_factura},${row.id_status})"><i class="material-icons">assignment_returned</i></a>
-
-            </td>
-           
+                <a class="btn blue accent-2" href="mapa.html?id=${row.id_cliente}&latitude=${row.latitude}&longitud=${row.longitud}">
+                    <i class="material-icons">map</i>
+                </a>
+                <a class="btn ${row.status ? "green accent-4" : " blue accent-2"
+                    } tooltipped" data-position="right" data-tooltip="Entregar" onClick="entregar(${row.id_detalle},${
+                row.id_status
+            })">
+                    <i class="material-icons">assignment_turned_in</i>
+                </a>
+           </td>
         </tr>
-       
-        `
-       
-        
-
-
-
-
+        `;
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById("contenido").innerHTML = content;
