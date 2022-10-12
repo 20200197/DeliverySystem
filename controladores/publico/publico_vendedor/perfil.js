@@ -37,7 +37,7 @@ function onMapClick(e) {
         Layer = L.marker(e.latlng);
         //Se concatena la latitud con la longitud separados por coma para usar guardarlo en una variable
         cords = Layer.getLatLng().lat + ', ' + Layer.getLatLng().lng;
-    } else {//<-- si ya existe un marcador se remueve el que ya existe para poner uno nuevo
+    } else { //<-- si ya existe un marcador se remueve el que ya existe para poner uno nuevo
         Layer.remove();
         Layer = L.marker(e.latlng);
         //Se concatena la latitud con la longitud separados por coma para usar guardarlo en una variable
@@ -53,15 +53,15 @@ map.on('click', onMapClick);
 
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     // Petición para obtener en nombre del usuario que ha iniciado sesión.
     fetch(API_PERFIL + 'readProfile', {
         method: 'get'
-    }).then(function (request) {
+    }).then(function(request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
         if (request.ok) {
             // Se obtiene la respuesta en formato JSON.
-            request.json().then(function (response) {
+            request.json().then(function(response) {
                 // Se revisa si el usuario está autenticado, de lo contrario se envía a iniciar sesión.
                 if (response.session) {
                     // Se comprueba si la respuesta es satisfactoria, de lo contrario se direcciona a la página web principal.
@@ -92,14 +92,14 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             console.log(request.status + ' ' + request.statusText);
         }
-        
+
     });
     M.updateTextFields();
     // Se define una variable para establecer las opciones del componente Modal.
     let options = {
-        dismissible: false
-    }
-    // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
+            dismissible: false
+        }
+        // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
     M.Modal.init(document.querySelectorAll('.modal'), options);
     // Se inicializa el componente Material Box para que funcione el efecto Lightbox.
     M.Materialbox.init(document.querySelectorAll('.materialboxed'));
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 //funcionamiento del formulario de actualizar
-document.getElementById('update-form').addEventListener('submit', function () {
+document.getElementById('update-form').addEventListener('submit', function() {
     event.preventDefault();
 
     const data = new FormData(document.getElementById('update-form'));
@@ -115,9 +115,9 @@ document.getElementById('update-form').addEventListener('submit', function () {
     fetch(API_PERFIL + 'updatePerfil', {
         method: 'post',
         body: data
-    }).then(function (request) {
+    }).then(function(request) {
         if (request.ok) {
-            request.json().then(function (response) {
+            request.json().then(function(response) {
                 if (response.status) {
                     sweetAlert(1, response.message, 'estadistica.html');
                 } else {
@@ -131,19 +131,19 @@ document.getElementById('update-form').addEventListener('submit', function () {
 
 });
 
-document.getElementById('confirmar-form').addEventListener('submit', function () {
+document.getElementById('confirmar-form').addEventListener('submit', function() {
     event.preventDefault();
     fetch(API_PERFIL + 'checkPass', {
         method: 'post',
         body: new FormData(document.getElementById('confirmar-form'))
-    }).then(function (request) {
+    }).then(function(request) {
         if (request.ok) {
-            request.json().then(function (response) {
-                if(response.status){
+            request.json().then(function(response) {
+                if (response.status) {
                     sweetAlert(1, response.message, null);
                     M.Modal.getInstance(document.getElementById('modal-confirmar-contrasenia')).close();
                     M.Modal.getInstance(document.getElementById('modal-cambiar-contrasenia')).open();
-                }else{
+                } else {
                     sweetAlert(2, response.exception, null);
                 }
             });
@@ -153,18 +153,18 @@ document.getElementById('confirmar-form').addEventListener('submit', function ()
     });
 });
 
-document.getElementById('cambiar-contra-form').addEventListener('submit', function () {
+document.getElementById('cambiar-contra-form').addEventListener('submit', function() {
     event.preventDefault();
     fetch(API_PERFIL + 'changePass', {
         method: 'post',
         body: new FormData(document.getElementById('cambiar-contra-form'))
-    }).then(function (request) {
+    }).then(function(request) {
         if (request.ok) {
-            request.json().then(function (response) {
-                if(response.status){
+            request.json().then(function(response) {
+                if (response.status) {
                     sweetAlert(1, response.message, null);
                     M.Modal.getInstance(document.getElementById('modal-cambiar-contrasenia')).close();
-                }else{
+                } else {
                     sweetAlert(2, response.exception, null);
                 }
             });
@@ -179,7 +179,7 @@ function openCheckPass() {
 }
 
 //Validaciones
-document.getElementById("dui_vendedor").addEventListener("input", function (evt) {
+document.getElementById("dui_vendedor").addEventListener("input", function(evt) {
     let value = this.value.replace("-", "");
     //comienzo de linea  Digito numerico   Final de linea
     if (value.match(/^(\d{2})(\d{3}){2}(\w{1})$/)) {
@@ -188,7 +188,7 @@ document.getElementById("dui_vendedor").addEventListener("input", function (evt)
     this.value = value;
 });
 
-document.getElementById("telefono_vendedor").addEventListener("keyup", function (evt) {
+document.getElementById("telefono_vendedor").addEventListener("keyup", function(evt) {
     var telefono = document.getElementById("telefono_vendedor").value.length;
     var valor = document.getElementById("telefono_vendedor").value;
     if (telefono == 4) {

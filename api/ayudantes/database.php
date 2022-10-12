@@ -2,6 +2,8 @@
 /*
 *   Clase para realizar las operaciones en la base de datos.
 */
+
+header('Access-Control-Allow-Origin: *');
 class Database
 {
     // Propiedades de la clase para manejar las acciones respectivas.
@@ -17,10 +19,10 @@ class Database
         // Credenciales para establecer la conexión con la base de datos.
 
 
-        $server = 'ec2-54-204-241-136.compute-1.amazonaws.com';
-        $database = 'ddst4ve3chtnv2';
-        $username = 'tmzmqmvgaftjqq';
-        $password = '3e062d1774890fac95e362058ab841cbec91ada63cc48e80e26e74a65eeb6c10';     
+        $server = 'localhost';
+        $database = 'dbDeliverySystem';
+        $username = 'postgres';
+        $password = 'admin';     
 
 
         // Se crea la conexión mediante la extensión PDO y el controlador para PostgreSQL.

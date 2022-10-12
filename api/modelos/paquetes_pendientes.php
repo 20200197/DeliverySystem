@@ -31,11 +31,14 @@ class PaquetesPendientes extends Validator
     //Función para cargar las facturas
     public function cargarFacturas()
     {
-        $sql = "SELECT c.id_cliente, CONCAT(c.nombre_cliente, ' ',c.apellido_cliente) as nombre, c.correo_cliente, c.telefono_cliente, d.descripcion_direccion, d.punto_referencia, f.id_factura, f.total, ef.id_status,(CAST(split_part(coordenadas,',',1) AS VARCHAR))as latitude,(CAST(split_part(coordenadas,', ',2) AS VARCHAR))as longitud FROM factura f
-        INNER JOIN direccion d ON d.id_direccion = f.id_direccion
-        INNER JOIN cliente c ON c.id_cliente = d.id_cliente
-        INNER JOIN estado_factura ef ON ef.id_status = f.id_status
-        WHERE id_repartidor = ? AND f.id_status NOT IN (1) ORDER BY id_factura";
+        $sql = "SELECT c.id_cliente, CONCAT(c.nombre_cliente, ' ',c.apellido_cliente) as nombre, c.correo_cliente, c.telefono_cliente, df.id_detalle, d.descripcion_direccion, d.punto_referencia,
+        p.nombre_producto, p.imagen, df.cantidad_pedido, df.precio, df.status, (CAST(split_part(coordenadas,',',1) AS VARCHAR))as latitude,(CAST(split_part(coordenadas,', ',2) AS VARCHAR))as longitud
+        FROM cliente c
+        INNER JOIN direccion d ON d.id_cliente = c.id_cliente
+        INNER JOIN factura f ON f.id_direccion = d.id_direccion
+        INNER JOIN detalle_factura df ON df.id_factura = f.id_factura
+        INNER JOIN producto p ON p.id_producto = df.id_producto
+        WHERE id_repartidor = ? AND f.id_status NOT IN (1) AND df.status NOT IN (true) ORDER BY df.id_factura";
         $params = array($this->identificador);
         return Database::getRows($sql, $params);
     }
@@ -43,7 +46,7 @@ class PaquetesPendientes extends Validator
     //Función para cambiar el estado a entregado
     public function entregar()
     {
-        $sql = 'UPDATE factura set id_status = 3 WHERE id_factura = ?';
+        $sql = 'UPDATE detalle_factura set STATUS = true WHERE id_detalle = ?';
         $params = array($this->identificador);
         return Database::executeRow($sql, $params);
     }

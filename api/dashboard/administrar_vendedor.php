@@ -56,11 +56,18 @@ if (isset($_GET['action'])) {
                 break;
                 //Cerrar sesión
             case 'logOut':
-                if (session_destroy()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Se ha cerrado sesión correctamente';
+                //Se verifica que exista una sesión activa
+                if (!isset($_SESSION['id_vendedor'])) {
+                    $result['exception'] = 'No hya una sesión activa';
                 } else {
-                    $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
+                    //Se elimina la esión
+                    unset($_SESSION['id_vendedor']);
+                    if (isset($_SESSION['id_vendedor'])) {
+                        $result['exception'] = 'OCurrió un problema durante el cerrado de sesión';
+                    } else {
+                        $result['status'] = 1;
+                        $result['message'] = 'Sesión cerrada con éxito';
+                    }
                 }
                 break;
             case 'cambiarEstado':
@@ -189,7 +196,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Lo sentimos, usted se encuentra desactivado';
                 } elseif ($administrar_vendedor->checkPass($_POST['password']) && $administrar_vendedor->checkStatus()) {
 
-                    
+
 
                     $result['dataset'] = $administrar_vendedor->checkRango();
                     if (in_array("91 days", $result['dataset']) == true) {

@@ -2,12 +2,12 @@
 const API_HISTORIAL_REPARTIDOR = SERVER + 'publico/historial_repartidor.php?action=';
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     // Se define una variable para establecer las opciones del componente Modal.
     let options = {
-        dismissible: false
-    }
-    // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
+            dismissible: false
+        }
+        // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
     M.Modal.init(document.querySelectorAll('.modal'), options);
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
     // Se inicializa el componente Dropdown para que funcione la lista desplegable en los menús.
@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', function () {
 function readHistorialRepartidor() {
     fetch(API_HISTORIAL_REPARTIDOR + 'readAll', {
         method: 'get'
-    }).then(function (request) {
+    }).then(function(request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
         if (request.ok) {
             // Se obtiene la respuesta en formato JSON.
-            request.json().then(function (response) {
+            request.json().then(function(response) {
                 let data = [];
                 // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
@@ -47,7 +47,7 @@ function fillTable(dataset) {
     //Declaramos variables
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
-    dataset.map(function (row) {
+    dataset.map(function(row) {
         content += `
         <tr>
             <td data-target="Producto:">${row.nombre_producto}</td>
@@ -76,8 +76,8 @@ function openReport() {
     // Se establece la ruta del reporte en el servidor.
     let url = SERVER + `reportes/publico/clientes_mas_entregas.php`;
     // Se abre el reporte en una nueva pestaña del navegador web.
-    window.open("https://deliverysystemweb.herokuapp.com/api/reportes/publico/clientes_mas_entregas.php","Editar notícia", "location=1, status=1, scrollbars=1, width=800, height=455");
-    
+    window.open(url);
+
 }
 
 
@@ -93,67 +93,65 @@ function openReportComent() {
 
 cordova.plugins.SitewaertsDocumentViewer.canViewDocument(
     SERVER + `reportes/publico/clientes_mas_entregas.php`, '', options, onPossible, onMissingApp, onImpossible, onError);
-    var options = {
-        title: STRING,
-        documentView : {
-            closeLabel : STRING
-        },
-        navigationView : {
-            closeLabel : STRING
-        },
-        email : {
-            enabled : BOOLEAN
-        },
-        print : {
-            enabled : BOOLEAN
-        },
-        openWith : {
-            enabled : BOOLEAN
-        },
-        bookmarks : {
-            enabled : BOOLEAN
-        },
-        search : {
-            enabled : BOOLEAN
-        },
-        autoClose: {
-            onPause : BOOLEAN
-        }
+var options = {
+    title: STRING,
+    documentView: {
+        closeLabel: STRING
+    },
+    navigationView: {
+        closeLabel: STRING
+    },
+    email: {
+        enabled: BOOLEAN
+    },
+    print: {
+        enabled: BOOLEAN
+    },
+    openWith: {
+        enabled: BOOLEAN
+    },
+    bookmarks: {
+        enabled: BOOLEAN
+    },
+    search: {
+        enabled: BOOLEAN
+    },
+    autoClose: {
+        onPause: BOOLEAN
     }
-    function onPossible(){
-        window.console.log('document can be shown');
-        //e.g. track document usage
-      }
+}
 
-      function onMissingApp(appId, installer)
-{
-    if(confirm("Do you want to install the free PDF Viewer App "
-            + appId + " for Android?"))
-    {
+function onPossible() {
+    window.console.log('document can be shown');
+    //e.g. track document usage
+}
+
+function onMissingApp(appId, installer) {
+    if (confirm("Do you want to install the free PDF Viewer App " +
+            appId + " for Android?")) {
         installer();
     }
 }
 
-function onImpossible(){
+function onImpossible() {
     window.console.log('document cannot be shown');
     //e.g. track document usage
-  }
-
-  function onError(error){
-    window.console.log(error);
-    alert("Sorry! Cannot show document.");
-  }
-
-  cordova.plugins.SitewaertsDocumentViewer.viewDocument(
-    SERVER + `reportes/publico/clientes_mas_entregas.php`, mimeType, options, onShow, onClose, onMissingApp, onError, linkHandlers);
-
-    function onShow(){
-        window.console.log('document shown');
-        //e.g. track document usage
-      }
-
-      function onClose(){
-  window.console.log('document closed');
-  //e.g. remove temp files
 }
 
+function onError(error) {
+    window.console.log(error);
+    alert("Sorry! Cannot show document.");
+}
+
+cordova.plugins.SitewaertsDocumentViewer.viewDocument(
+    SERVER + `reportes/publico/clientes_mas_entregas.php`, mimeType, options, onShow, onClose, onMissingApp, onError, linkHandlers);
+
+function onShow() {
+    window.console.log('document shown');
+    //e.g. track document usage
+}
+
+function onClose() {
+    window.console.log('document closed');
+    //e.g. remove temp files
+}

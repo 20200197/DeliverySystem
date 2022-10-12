@@ -17,15 +17,14 @@
     <!--Encabezado y sesión-->
     <header>
         <nav class="row white">
-    
+
             <div class="col l5 m5 s5 hide-on-med-and-down">
                 <div class="col m3 s3 l3 show-on-small center valign-wrapper">
                     <a href="#" data-target="slide-out" class="sidenav-trigger"><i
                             class="material-icons large blue-text">menu</i></a>
                 </div>
                 <div class="col l9 m9 s10 push-m1 valign-wrapper">
-                    <img class="responsive-img" src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png"
-                        alt="">
+                    <img class="responsive-img" src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
                 </div>
             </div>
             <div class="col l12 m12 s12 hide-on-large-only">
@@ -34,25 +33,23 @@
                             class="material-icons large blue-text">menu</i></a>
                 </div>
                 <div class="col l7 m11 s10 valign-wrapper logo-centrado">
-                    <img class="responsive-img center-align"
-                        src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
+                    <img class="responsive-img center-align" src="../../../recursos/img/privado/admin/modals/logo_delivery_system.png" alt="">
                 </div>
             </div>
-    
+
             <div class="col m7 s7 l7 right-align valign-wrapper hide-on-med-and-down" id="opciones_navbar">
-    
+
             </div>
         </nav>
-    
+
     </header>
-    
-    
+
+
     <ul id="slide-out" class="sidenav sidenav-fixed blue accent-2 left-align">
         <div class="opciones-sidenav">
             <li id="sesion_navbar" class="hide-on-large-only valign-wrapper"></li>
             <hr class="hide-on-large-only">
-            <li class="collection-item"><a href="estadistica.html" class="tooltipped" data-position="right"
-                    data-tooltip="Estadísticas"><i class="material-icons  white-text">insert_chart</i><span
+            <li class="collection-item"><a href="estadistica.html" class="tooltipped" data-position="right" data-tooltip="Estadísticas"><i class="material-icons  white-text">insert_chart</i><span
                         class="white-text hide-on-large-only">Estadísticas</span></a>
             </li>
             <li><a href="perfil.html" class="tooltipped Hide-on-large-only " data-position="right" data-tooltip="Perfil"><i
@@ -62,19 +59,16 @@
                         class="material-icons  white-text">business_center</i><span
                         class="white-text hide-on-large-only">Mis
                         productos</span></a></li>
-            <li class="hide-on-large-only"><button onclick="logOut('Vendedor')"
-                    class="tooltipped transparent logout valign-wrapper" data-position="right"
-                    data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
+            <li class="hide-on-large-only"><button onclick="logOut('Vendedor')" class="tooltipped transparent logout valign-wrapper" data-position="right" data-tooltip="Cerrar sesión"><i class="material-icons  white-text">arrow_back</i><span
                         class="white-text hide-on-large-only">Cerrar sesión</span></button></li>
         </div>
         <div class="cerrar-navbar hide-on-med-and-down ">
             <li>
-                <button onclick="logOut('Vendedor')" class="tooltipped white-text transparent logout valign-wrapper"
-                    data-position="right" data-tooltip="Cerrar sesión"><i class="material-icons ">arrow_back</i><span
+                <button onclick="logOut('Vendedor')" class="tooltipped white-text transparent logout valign-wrapper" data-position="right" data-tooltip="Cerrar sesión"><i class="material-icons ">arrow_back</i><span
                         class="white-text hide-on-large-only">Cerrar sesión</span></button>
             </li>
         </div>
-    
+
     </ul>
     <!--Información de la página-->
     <main class="center">
@@ -109,8 +103,7 @@
                 <div class="col l12 m12 s12 center" id="graficaTotalPromedio">
 
                     <div class="TotalPromedio"></div>
-                    <div class="col l10 m10 s10 push-l1 push-m1 push-s1 slider-styled slider-round"
-                        id="sliderTotalPromedio"></div>
+                    <div class="col l10 m10 s10 push-l1 push-m1 push-s1 slider-styled slider-round" id="sliderTotalPromedio"></div>
                     <div class="col l10 m10 s10 push-l1 push-m1 push-s1">
                         <div class="col l6 m6 s12 center">
                             <span id="fechaInicial"></span>
@@ -127,7 +120,7 @@
         </div>
         <h5>Zona de reportes</h5>
         <div class="row center">
-            <h6>Compras de clientes entre un rango de fechas</h6>
+            <h6>Compras de clientes entre un rango de precios</h6>
             <div class="col l10 m10 s10 push-l1 push-m1 push-s1">
                 <div class="col l10 m10 s12 push-l1 push-m1 slider-styled slider-round" id="sliderRango"></div>
                 <div class="col l10 m10 s10 push-l1 push-m1 push-s1 row">
@@ -167,7 +160,7 @@
                         <a href="" class="centrador-mapa">
                             <i class="material-icons medium hide-on-small-only white-text">facebook</i>
                             <i class="material-icons small hide-on-med-and-up white-text">facebook</i>
-    
+
                         </a>
                     </div>
                     <div class="col l3 s3">
@@ -204,20 +197,15 @@
     <script src="../../../js/chartist.js"></script>
     <script src="../../../js/chartist-plugin-tooltip.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.1/nouislider.min.js"
-        integrity="sha512-1mDhG//LAjM3pLXCJyaA+4c+h5qmMoTc7IuJyuNNPaakrWT9rVTxICK4tIizf7YwJsXgDC2JP74PGCc7qxLAHw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.1/nouislider.min.js" integrity="sha512-1mDhG//LAjM3pLXCJyaA+4c+h5qmMoTc7IuJyuNNPaakrWT9rVTxICK4tIizf7YwJsXgDC2JP74PGCc7qxLAHw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.5/dayjs.min.js"></script>
     <script src="https://unpkg.com/dayjs@1.9.4/locale/es.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"
-        integrity="sha512-igVQ7hyQVijOUlfg3OmcTZLwYJIBXU63xL9RC12xBHNpmGJAktDnzl9Iw0J4yrSaQtDxTTVlwhY730vphoVqJQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js" integrity="sha512-igVQ7hyQVijOUlfg3OmcTZLwYJIBXU63xL9RC12xBHNpmGJAktDnzl9Iw0J4yrSaQtDxTTVlwhY730vphoVqJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script type="text/javascript" src="../../../controladores/publico/activation.js"></script>
     <script type="text/javascript" src="../../../controladores/componentes.js"></script>
     <script type="text/javascript" src="../../../controladores/validator.js"></script>
-    <script type="text/javascript"
-        src="../../../controladores/publico/publico_vendedor/estadistica_vendedor.js"></script>
+    <script type="text/javascript" src="../../../controladores/publico/publico_vendedor/estadistica_vendedor.js"></script>
     <script type="text/javascript" src="../../../controladores/publico/publico_vendedor/estadistica.js"></script>
     <script type="text/javascript" src="../../../controladores/publico/publico_vendedor/opciones_sesion.js"></script>
     <script src="../../../controladores/activador.js"></script>

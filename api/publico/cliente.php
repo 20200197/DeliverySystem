@@ -13,9 +13,18 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['id_cliente'])) {
         switch ($_GET['action']) {
             case 'logOut':
-                if (session_destroy()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Sesión cerrada con éxito';
+                //Se verifica que exista una sesión activa
+                if (!isset($_SESSION['id_cliente'])) {
+                   $result['exception'] = 'No hya una sesión activa';
+                } else {
+                    //Se elimina la esión
+                    unset($_SESSION['id_cliente']);
+                    if (isset($_SESSION['id_cliente'])) {
+                       $result['exception'] = 'OCurrió un problema durante el cerrado de sesión';
+                    } else {
+                        $result['status'] = 1;
+                        $result['message'] = 'Sesión cerrada con éxito';
+                    }
                 }
                 break;
             default:

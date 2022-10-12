@@ -18,10 +18,19 @@ if (isset($_GET['action'])) {
         switch ($_GET['action']) {
                 //Leer direcciones del cliente  
             case 'logOut':
-                if (session_destroy()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Sesión cerrada con éxito';
-                }
+                //Se verifica que exista una sesión activa
+                if (!isset($_SESSION['id_repartidor'])) {
+                    $result['exception'] = 'No hya una sesión activa';
+                 } else {
+                     //Se elimina la esión
+                     unset($_SESSION['id_repartidor']);
+                     if (isset($_SESSION['id_repartidor'])) {
+                        $result['exception'] = 'OCurrió un problema durante el cerrado de sesión';
+                     } else {
+                         $result['status'] = 1;
+                         $result['message'] = 'Sesión cerrada con éxito';
+                     }
+                 }
                 break;
             case 'readAll':
                 if ($result['dataset'] = $direcciones->readDirecciones()) {

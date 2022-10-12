@@ -2,7 +2,7 @@
 const API_PAQUETES = SERVER + "publico/paquetes_pendientes.php?action=";
 
 //Método que carga los datos cuando se inicia la página
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     //Se cargan los datos en la vista
     readRows(API_PAQUETES);
 });
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function fillTable(dataset) {
     let content = [];
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
-    dataset.map(function (row) {
+    dataset.map(function(row) {
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         content += `
         <tr>
@@ -31,36 +31,53 @@ function fillTable(dataset) {
             </td>
             
             <td data-target="Dirección y punto de referencia: ">
-            <div class="row ">
-            <div class="col s12 offset-s1">
-            <i class="material-icons blue-text text-accent-2 tooltipped" data-position="right" data-tooltip="Dirección">location_on</i>
-            <span>${row.descripcion_direccion}</span>
-            </div>
-        <div class="col s12 offset-s1">
-            <i class="material-icons blue-text text-accent-2 tooltipped" data-position="right" data-tooltip="Punto de referencia">map</i>
-            <span>${row.punto_referencia}</span>
-        </div>
-        </div>
+                <div class="row ">
+                    <div class="col s12">
+                    <i class="material-icons blue-text text-accent-2 tooltipped" data-position="right" data-tooltip="Dirección">location_on</i>
+                    <span>${row.descripcion_direccion}</span>
+                    </div>
+                    <div class="col s12">
+                        <i class="material-icons blue-text text-accent-2 tooltipped" data-position="right" data-tooltip="Punto de referencia">map</i>
+                        <span>${row.punto_referencia}</span>
+                    </div>
+                </div>
             </td>
-            <td data-target="Productos: "> <a href="#modal_info" class="waves-effect waves-light modal-trigger" onClick="cargar_productos(${row.id_factura})"><i class="material-icons blue-text text-accent-2 center-align">remove_red_eye</i></a></td>
-            <td data-target="Total: ">$${row.total}</td>
-
+            <td data-target="Producto: ">
+                <div class="row">
+                    <div class="col s12">
+                    <img src="../../../api/imagenes/productos/${row.imagen}" width="120px">
+                    </div>
+                    <div class="col s12 valign-wrapper">
+                        <i class="material-icons blue-text text-accent-2 tooltipped" data-position="right" data-tooltip="Nombre del producto">bookmark</i>
+                        <span class="center-align">${row.nombre_producto}</span>
+                    </div>
+                </div>
+            </td>
+            <td data-target="Detalle: ">
+                <div class="row ">
+                    <div class="col s12 valign-wrapper">
+                    <i class="material-icons blue-text text-accent-2 tooltipped" data-position="right" data-tooltip="Cantidad">developer_board</i>
+                    <span>${row.cantidad_pedido}</span>
+                    </div>
+                    <div class="col s12 valign-wrapper">
+                        <i class="material-icons blue-text text-accent-2 tooltipped" data-position="right" data-tooltip="Precio">attach_money</i>
+                        <span>${row.precio}</span>
+                    </div>
+                </div>
+            </td>
             <td data-target="Opciones: ">
-           <a class="btn blue accent-2" href="mapa.html?id=${row.id_cliente}&latitude=${row.latitude}&longitud=${row.longitud}"><i class="material-icons">map</i></a>
-                <a class="btn ${row.id_status == 3 ? 'green accent-4' : row.id_status == 4 ? 'grey lighten-1' : ' blue accent-2'} tooltipped" data-position="right" data-tooltip="Entregar" onClick="entregar(${row.id_factura},${row.id_status})"><i class="material-icons">assignment_turned_in</i></a>
-                <a class="btn ${row.id_status == 3 ? 'grey lighten-1' : row.id_status == 4 ? 'red darken-2' : ' blue accent-2'} tooltipped" data-position="right" data-tooltip="Cancelar" onClick="cancelar(${row.id_factura},${row.id_status})"><i class="material-icons">assignment_returned</i></a>
-
-            </td>
-           
+                <a class="btn blue accent-2" href="mapa.html?id=${row.id_cliente}&latitude=${row.latitude}&longitud=${row.longitud}">
+                    <i class="material-icons">map</i>
+                </a>
+                <a class="btn ${row.status ? "green accent-4" : " blue accent-2"
+                    } tooltipped" data-position="right" data-tooltip="Entregar" onClick="entregar(${row.id_detalle},${
+                row.status
+            })">
+                    <i class="material-icons">assignment_turned_in</i>
+                </a>
+           </td>
         </tr>
-       
-        `
-       
-        
-
-
-
-
+        `;
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById("contenido").innerHTML = content;
@@ -75,10 +92,8 @@ function fillTable(dataset) {
 
 function entregar(id, estado) {
     //Se verifica el estado del pedido y se notifica si es posible la acción o no
-    if (estado == 3) {
+    if (estado) {
         sweetAlert(3, 'Ya se ha entregado.', null);
-    } else if (estado == 4) {
-        sweetAlert(3, 'El pedido ha sido cancelado, no se puede entregar.', null);
     } else {
         //Se crear una variable de tipo form
         let datos = new FormData();
@@ -100,11 +115,11 @@ function entregar(id, estado) {
                 fetch(API_PAQUETES + 'entregar', {
                     method: 'post',
                     body: datos,
-                }).then(function (request) {
+                }).then(function(request) {
                     //Se verifica si se logró llegar a la api
                     if (request) {
                         //Se convierte a JSON
-                        request.json().then(function (response) {
+                        request.json().then(function(response) {
                             //Se verifica el estado de la ejecución
                             if (response.status) {
                                 //Se cargan los datos en la vista
@@ -153,11 +168,11 @@ function cancelar(id, estado) {
                 fetch(API_PAQUETES + 'cancelar', {
                     method: 'post',
                     body: datos,
-                }).then(function (request) {
+                }).then(function(request) {
                     //Se verifica si se logró llegar a la api
                     if (request) {
                         //Se convierte a JSON
-                        request.json().then(function (response) {
+                        request.json().then(function(response) {
                             //Se verifica el estado de la ejecución
                             if (response.status) {
                                 //Se cargan los datos en la vista
@@ -187,26 +202,25 @@ function cargar_productos(id) {
     let datos = new FormData();
     datos.append('identificador', id);
     //Se crea la petición
-    fetch(API_PAQUETES + 'cargarProductos',
-        {
-            method: 'post',
-            body: datos,
-        }).then(function (request) {
-            //Se revisa si la ejecución 
-            if (request.ok) {
-                //Se crea el JSON
-                request.json().then(function (response) {
-                    //Se revisa el estado que devolvió la respuesta
-                    if (response.status) {
-                        //Se crea una tupla donde se guardará el html a inyectar
-                        let contenido = [];
-                        //Se crea un map del resultado
-                        response.dataset.map(function (row) {
-                            contenido += `
+    fetch(API_PAQUETES + 'cargarProductos', {
+        method: 'post',
+        body: datos,
+    }).then(function(request) {
+        //Se revisa si la ejecución 
+        if (request.ok) {
+            //Se crea el JSON
+            request.json().then(function(response) {
+                //Se revisa el estado que devolvió la respuesta
+                if (response.status) {
+                    //Se crea una tupla donde se guardará el html a inyectar
+                    let contenido = [];
+                    //Se crea un map del resultado
+                    response.dataset.map(function(row) {
+                        contenido += `
 
                             <tr>
                                     <td class="center" ata-target="Producto: ">
-                                        <img src="../../../api/imagenes/productos/${row.imagen}" class="responsive-img materialboxed" alt="" width="200" height="200">
+                                        <img src="../../../api/imagenes/productos/${row.imagen}" class="responsive-img" alt="">
                                         <span>${row.nombre_producto}</span>
                                     </td>
                                     <td data-target="Precio: ">$${row.precio}</td>
@@ -216,24 +230,22 @@ function cargar_productos(id) {
                             `
 
 
-                                ;
+                        ;
 
-                        });
-                        //Se inyecta el html en el modal
-                        document.getElementById("contenido_modal").innerHTML = contenido;
+                    });
+                    //Se inyecta el html en el modal
+                    document.getElementById("contenido_modal").innerHTML = contenido;
 
-                    } else {
-                        //Se le muestra el problema
-                        sweetAlert(2, response.exception, null);
-                    }
-                M.Materialbox.init(document.querySelectorAll('.materialboxed'));
-
-                })
-            } else {
-                //Se imprime la consola
-                console.log(request.status + ' ' + request.statusText);
-            }
-        })
+                } else {
+                    //Se le muestra el problema
+                    sweetAlert(2, response.exception, null);
+                }
+            })
+        } else {
+            //Se imprime la consola
+            console.log(request.status + ' ' + request.statusText);
+        }
+    })
 
 }
 
@@ -282,7 +294,7 @@ function openMap(id) {
         title: 'Selecciona la categoria',
         html: '<div class="col s12 m12 l12" id="map"></div>',
         showCancelButton: true,
-    }).then(function () {
+    }).then(function() {
         //Obtenemos la opcion seleccinada
         var selectedOption = document.getElementById("opciones_categoriaa").options[document.getElementById("opciones_categoriaa").selectedIndex];
         console.log(selectedOption.text);

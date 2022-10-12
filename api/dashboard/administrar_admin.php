@@ -26,10 +26,14 @@ if (isset($_GET['action'])) {
                 break;
                 //Cerrar sesión
             case 'logOut':
-                if (session_destroy()) {
+                // verifica que eista la sesión
+                if (!isset($_SESSION['id_admin'])) {
+                    $result['exception'] = 'No hay una sesión que cerrar';
+                } elseif ($token->delToken('admin')) {
+                    unset($_SESSION['id_admin']);
+                    unset($_SESSION['admin_token']);
                     $result['status'] = 1;
-                    $token->delToken('admin');
-                    $result['message'] = 'Se ha cerrado sesión correctamente';
+                    $result['message'] = 'sesión cerrada correctamente';
                 } else {
                     $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
                 }
