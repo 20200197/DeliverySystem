@@ -38,7 +38,8 @@ class PaquetesPendientes extends Validator
         INNER JOIN factura f ON f.id_direccion = d.id_direccion
         INNER JOIN detalle_factura df ON df.id_factura = f.id_factura
         INNER JOIN producto p ON p.id_producto = df.id_producto
-        WHERE id_repartidor = ? AND f.id_status NOT IN (1) AND df.status NOT IN (true) ORDER BY df.id_factura";
+        WHERE id_repartidor = ? --AND f.id_status NOT IN (1) AND df.status NOT IN (true) 
+        ORDER BY df.id_factura";
         $params = array($this->identificador);
         return Database::getRows($sql, $params);
     }

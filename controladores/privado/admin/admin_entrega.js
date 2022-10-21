@@ -7,7 +7,27 @@ document.addEventListener('DOMContentLoaded', function () {
     //Se ejecuta el método de inactividad
     actividad();
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
-    readRows(API_ENTREGA);
+    fetch(API_ENTREGA + "readAll", {
+        method: "get",
+    }).then(function(request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function(response) {
+                let data = [];
+                // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    data = response.dataset;
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+                // Se envían los datos a la función del controlador para llenar la tabla en la vista.
+                fillTable(data);
+            });
+        } else {
+            console.log(request.status + " " + request.statusText);
+        }
+    });
     // Se define una variable para establecer las opciones del componente Modal.
     let options = {
         dismissible: false
